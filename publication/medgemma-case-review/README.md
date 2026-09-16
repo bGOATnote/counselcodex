@@ -8,8 +8,11 @@ Use C22 → C47 → C49 to discuss failure modes, then **Roadmap** and **Live de
 The header restores the **Prepared for** Counsel badge and keeps **Case index**,
 **Live demo**, **Roadmap**, **Repo** and **Presentation view** accessible. Demo,
 roadmap and repository links open separate tabs, preserving the selected case.
-The proposed roadmap is a graphic-only page based on presentation slides 15–16;
-it does not claim that later clinical stages are implemented or approved.
+The roadmap page shows the supplied goal.png architecture image, unchanged in
+pixels. It is a historical proposed design, not the current Fable demo. The
+frozen V25 cohort recorded no judge calls; not every pictured component ran.
+The diagram’s release and gold-rubric labels are historical; they do not imply
+clinical deployment or gold labels in the present inference context.
 
 **Live demo** links to http://localhost:4120/stripped. This is the viewing
 computer, not a public inference server. **Get disposition** sends one fresh
@@ -26,12 +29,12 @@ in the repository disclosures. No saved results or prompts were changed.
 ## Review controls
 
 - Search by case ID, symptom, disposition or rationale. Each index link includes an exact message excerpt.
-- Filter to the six Fable/MedGemma disagreements, under-escalations or over-escalations. Filters and case alerts use the three primary models and selected Nemotron repetition; V25 is separate historical context.
+- Filter to Fable/MedGemma disagreements, Astra/Fable disagreements, under-escalations or over-escalations. Astra/Fable includes either saved effort; both are visible. Under/over filters and case alerts use all five visible response cards and selected Nemotron repetition; V25 remains separate historical context.
 - Deep links include `index.html#C22`, `index.html#C47` and `index.html#C49`.
 - Nemotron defaults to unchanged baseline A repetition 1. Repetition 2 is selectable; no best-response selection occurs.
 - The sticky header’s **Case index** link returns to the index from any scroll position. Search, filters and Nemotron selection are preserved. **Clear filters** returns all 50 case links.
 - The index is always hidden while a case is open. **Presentation view** enlarges the case text. Left/right arrows move through matching cases; Escape or / returns to the index. Browser Back and Forward restore index/case navigation.
-- Three primary cards show a bucket, one comparison label and the saved rationale. The collapsed **Historical pipeline · V25** section preserves its response, completion status, early actions and source links.
+- Fable, Astra extra high, Astra max, MedGemma and Nemotron cards each show a bucket, one comparison label and the saved rationale. Astra efforts are separately labeled; max is not ultra. The collapsed **Historical pipeline · V25** section preserves its response, completion status, early actions and source links.
 - **Record details** contains each model configuration and source links. **About the study** contains provenance, reference notes and interpretation limits. Reference cards show only their labels and dispositions.
 
 ## Build and verify
@@ -41,16 +44,16 @@ From the repository root with the supported Node runtime:
 ```bash
 node scripts/build-medgemma-case-review.mjs
 node scripts/build-medgemma-case-review.mjs --verify
-node --test tests/medgemma-case-review.test.mjs tests/historical-case-review.test.mjs
+node --test tests/medgemma-case-review.test.mjs tests/historical-case-review.test.mjs tests/astra-case-review.test.mjs
 ```
 
-Build replaces only these derived presentation files. Verify requires exact saved bytes and makes no changes. Neither command makes provider calls. The builder checks frozen generation, raw/parsed parity, the original V25 score replay, and the saved Fable/MedGemma comparison. The manifest binds admitted sources and renderer files. Original experiment artifacts and references remain unchanged.
+Build replaces only these derived presentation files. Verify requires exact saved bytes and makes no changes. Neither command makes provider calls. The builder checks frozen generation, raw/parsed parity, both Astra message-only request protocols, the original V25 score replay, and the saved Fable/MedGemma comparison. The manifest binds admitted sources and renderer files. Original experiment artifacts and references remain unchanged.
 
 ## Interpretation
 
 Physician v3 is a single-physician, unblinded post-output reassessment of a known 50-message development set. It is not independent clinical validation. Original CSV labels are discussion context and are not combined with physician scores.
 
-Fable is the preserved historical low-effort run. MedGemma is the recorded local Q5_K_M configuration. Nemotron uses the registered unchanged three-bucket baseline A, with two repetitions shown separately. V25 is retained in a collapsed historical section because it used a different five-route multi-stage pipeline, rather than the simple three-bucket protocol. Its original 21/49 all-case result and 21/27 completed-release agreement are distinct from this post-hoc three-bucket physician-v3 display. Only 27/50 V25 cases had an eligible completed release; 23 remain incomplete. Rejected proposals and separately issued early actions are never displayed as completed dispositions.
+Fable is the preserved historical low-effort run. Astra is the saved gpt-6-astra configuration with xhigh and max effort, 50 one-shot calls each. Astra versus Fable disagrees on C07, C19 and C47 for both efforts; their buckets otherwise match Fable. No new inference occurs. MedGemma is the recorded local Q5_K_M configuration. Nemotron uses the registered unchanged three-bucket baseline A, with two repetitions shown separately. V25 is retained in a collapsed historical section because it used a different five-route multi-stage pipeline, rather than the simple three-bucket protocol. Its original 21/49 all-case result and 21/27 completed-release agreement are distinct from this post-hoc three-bucket physician-v3 display. Only 27/50 V25 cases had an eligible completed release; 23 remain incomplete. Rejected proposals and separately issued early actions are never displayed as completed dispositions.
 
 Under/over-escalation compares completed route order SELF_CARE < ASYNC_PHYSICIAN < URGENT_ESCALATION against accepted physician v3 buckets. It is not a patient-harm measurement. Incomplete output is a separate operational status, never a self-care prediction. The source scorecards retain the two false-negative endpoints, distinguishing omitted clinician involvement from omitted urgent escalation. Repeated endpoint pills are omitted from the cards. Rationale accuracy and care delivery are not validated by route agreement.
 

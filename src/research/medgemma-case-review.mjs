@@ -107,9 +107,21 @@ export function escalationDirection(disposition, acceptedBuckets) {
 }
 
 export function addHistoricalModels(data, historical) {
-  assert.deepEqual(historical.models.map(model => model.id).sort(), ["nano-r1", "nano-r2", "v25"]);
+  return addSavedModels(data, historical, ["nano-r1", "nano-r2", "v25"]);
+}
+
+export function addAstraModels(data, astra) {
+  const result = addSavedModels(data, astra, ["astra-max", "astra-xhigh"]);
+  result.astraFableDisagreementIds = result.cases.filter(row => ["astra-xhigh", "astra-max"].some(id => row[id].disposition !== row.fable.disposition)).map(row => row.id);
+  result.schema = "disposition-case-review/v3";
+  return result;
+}
+
+function addSavedModels(data, historical, expectedModels) {
+  assert.deepEqual(historical.models.map(model => model.id).sort(), expectedModels);
   const result = structuredClone(data);
-  result.historicalModelNotes = {};
+  result.historicalModelNotes ??= {};
+  result.modelConfigurations ??= {};
   const references = result.cases.map(row => ({ id: row.id, message: row.message, acceptedBuckets: row.physician.acceptedBuckets }));
   for (const model of historical.models) {
     assert.deepEqual(model.records.map(row => row.id), IDS, `${model.id}: 50 ordered records required`);
@@ -132,6 +144,7 @@ export function addHistoricalModels(data, historical) {
       clinicianActionFN: metrics.clinicianAction.FN, clinicianActionDenominator: metrics.clinicianAction.positiveDenominator,
       urgentActionFN: metrics.urgentAction.FN, urgentActionDenominator: metrics.urgentAction.positiveDenominator };
     result.historicalModelNotes[model.id] = model.referenceNote;
+    if (model.metadata) result.modelConfigurations[model.id] = structuredClone(model.metadata);
     for (const [i, row] of model.records.entries()) {
       const scored = metrics.rows[i];
       result.cases[i][model.id] = { disposition: row.disposition, rationale: row.disposition === null ? null : row.rationale, failure: row.failureReason ?? null,
@@ -190,7 +203,7 @@ export function caseReviewClient() {
   const node = (tag, text, className) => { const value = document.createElement(tag); if (text !== undefined) value.textContent = text; if (className) value.className = className; return value; };
   const missed = value => value === "FN" || value === "FN_FAILED_OUTPUT";
   let nanoId = "nano-r1", current = null, activeFilter = "all", shown = [];
-  const modelsFor = row => [row.fable, row.medgemma, row[nanoId]].filter(Boolean);
+  const modelsFor = row => [row.fable, row["astra-xhigh"], row["astra-max"], row.medgemma, row[nanoId]].filter(Boolean);
   const direction = (row, value) => {
     if (value.disposition === null) return "incomplete";
     if (row.physician.acceptedBuckets.includes(value.disposition)) return "aligned";
@@ -218,7 +231,7 @@ export function caseReviewClient() {
     el("reference-case").textContent = row.id + " reference notes";
     el("status").textContent = row.id + " selected. Case index hidden.";
     const urgent = [], clinician = [];
-    for (const [name, value] of [["Fable", row.fable], ["MedGemma", row.medgemma], ["Nemotron", row[nanoId]]]) {
+    for (const [name, value] of [["Fable", row.fable], ["Astra extra high", row["astra-xhigh"]], ["Astra max", row["astra-max"]], ["MedGemma", row.medgemma], ["Nemotron", row[nanoId]]]) {
       if (!value || value.disposition === null) continue;
       if (missed(value.urgentAction)) urgent.push(name);
       else if (missed(value.clinicianAction)) clinician.push(name);
@@ -229,6 +242,13 @@ export function caseReviewClient() {
     el("alert").hidden = alerts.length === 0;
     el("alert").textContent = alerts.join(" ");
     renderModel("fable", row.fable, "Fable 5.1", "Historical hosted run · low effort · 15 Sep 2026");
+    for (const [id, name, effort] of [["astra-xhigh", "Astra · extra high", "xhigh"], ["astra-max", "Astra · max", "max"]]) {
+      if (row[id]) {
+        const config = data.modelConfigurations[id];
+        renderModel(id, row[id], name, config.requestedModel + " · " + effort + " effort · " + config.maxOutputTokens + " output-token limit · " + config.provider);
+      }
+      el(id).hidden = !row[id];
+    }
     renderModel("medgemma", row.medgemma, "MedGemma 27B", "Text instruction model · local Q5_K_M · 16 Sep 2026");
     if (row[nanoId]) renderModel("nano", row[nanoId], "Nemotron Nano", "Unchanged baseline A · Q5_K_M · repetition " + (nanoId === "nano-r1" ? "1" : "2"));
     if (row.v25) renderModel("v25", row.v25, "Historical V25", "Complex pipeline · five routes collapsed after generation");
@@ -257,17 +277,19 @@ export function caseReviewClient() {
     for (const [label, path] of links) { const link = node("a", label, "source-link"); link.href = sourceURL(path); link.target = "_blank"; link.rel = "noopener noreferrer"; record.append(link); }
     body.append(record); card.append(top, body);
   }
+  const astraDisagrees = row => ["astra-xhigh", "astra-max"].some(id => row[id] && row[id].disposition !== row.fable.disposition);
+  const filterMatches = (row, key) => key === "all" || (key === "disagree" ? row.dispositionDisagrees : key === "astra" ? astraDisagrees(row) : modelsFor(row).some(value => direction(row, value) === key));
   function matches(row) {
     const query = el("search").value.trim().toLowerCase();
     const searchable = [row.id, row.message, ...row.physician.acceptedBuckets, ...modelsFor(row).flatMap(value => [value.disposition, value.rationale]), row.csv.disposition].join(" ").toLowerCase();
-    return (!query || searchable.includes(query)) && (activeFilter === "all" || (activeFilter === "disagree" ? row.dispositionDisagrees : modelsFor(row).some(value => direction(row, value) === activeFilter)));
+    return (!query || searchable.includes(query)) && filterMatches(row, activeFilter);
   }
   function renderIndex() {
     shown = data.cases.filter(matches); const list = el("case-list"); list.replaceChildren();
     el("count").textContent = shown.length === 50 ? "50 cases" : shown.length + " of 50 cases";
     for (const filter of document.querySelectorAll("[data-filter]")) {
-      const key = filter.dataset.filter, label = { all: "All", disagree: "Fable ≠ MedGemma", under: "Under", over: "Over" }[key];
-      const count = key === "all" ? 50 : data.cases.filter(row => key === "disagree" ? row.dispositionDisagrees : modelsFor(row).some(value => direction(row, value) === key)).length;
+      const key = filter.dataset.filter, label = { all: "All", disagree: "Fable ≠ MedGemma", astra: "Astra ≠ Fable", under: "Under", over: "Over" }[key];
+      const count = data.cases.filter(row => filterMatches(row, key)).length;
       filter.textContent = label + " · " + count;
     }
     for (const row of shown) {
@@ -344,15 +366,15 @@ export function renderCaseReview(data) {
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-${scriptHash}'; style-src 'sha256-${styleHash}'; connect-src 'none'; img-src data:; font-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"><title>Disposition Study</title><style>${CSS}</style></head>
 <body><a class="skip" href="#index-heading">Skip to content</a>
-<header><div class="topline"><a class="brand" href="#index" data-index-link aria-label="Disposition Study — case index"><div class="recipient-logo"><span>Prepared for</span>${counselLogo}</div><h1>Disposition Study</h1></a><nav class="header-tools" aria-label="Study navigation"><a id="case-link" class="index-return" href="#index" data-index-link hidden>← Case index</a><a id="live-demo-link" href="http://localhost:4120/stripped" target="_blank" rel="noopener noreferrer" title="Local Fable demo — requires the server on this computer">Live demo ↗</a><a id="roadmap-link" href="roadmap.html" target="_blank" rel="noopener noreferrer" title="Proposed roadmap — opens a graphic in a new tab">Roadmap ↗</a><a href="https://github.com/bGOATnote/counselcodex" target="_blank" rel="noopener noreferrer">Repo ↗</a><button type="button" id="focus-mode" aria-pressed="false" disabled>Presentation view</button></nav></div></header>
+<header><div class="topline"><a class="brand" href="#index" data-index-link aria-label="Disposition Study — case index"><div class="recipient-logo"><span>Prepared for</span>${counselLogo}</div><h1>Disposition Study</h1></a><nav class="header-tools" aria-label="Study navigation"><a id="case-link" class="index-return" href="#index" data-index-link hidden>← Case index</a><a id="live-demo-link" href="http://localhost:4120/stripped" target="_blank" rel="noopener noreferrer" title="Local Fable demo — requires the server on this computer">Live demo ↗</a><a id="roadmap-link" href="roadmap.html" target="_blank" rel="noopener noreferrer" title="Architecture roadmap — opens the supplied graphic in a new tab">Roadmap ↗</a><a href="https://github.com/bGOATnote/counselcodex" target="_blank" rel="noopener noreferrer">Repo ↗</a><button type="button" id="focus-mode" aria-pressed="false" disabled>Presentation view</button></nav></div></header>
 <main class="layout">
-<section id="case-index" class="index" aria-label="Case index"><div class="index-head"><div class="index-title"><h2 id="index-heading" tabindex="-1">Case index</h2><span id="count" class="count">50 cases</span></div><div class="index-controls"><label class="sr-only" for="search">Search cases and model responses</label><input id="search" class="search" type="search" placeholder="Search cases…" autocomplete="off"><div class="filters" aria-label="Case filters"><button class="filter" data-filter="all" aria-pressed="true">All · 50</button><button class="filter" data-filter="disagree" aria-pressed="false">Fable ≠ MedGemma · 6</button><button class="filter" data-filter="under" aria-pressed="false">Under</button><button class="filter" data-filter="over" aria-pressed="false">Over</button></div><button id="clear-filters" class="clear-filters" type="button" hidden>Clear filters</button></div></div><ol id="case-list" class="case-list"></ol></section>
+<section id="case-index" class="index" aria-label="Case index"><div class="index-head"><div class="index-title"><h2 id="index-heading" tabindex="-1">Case index</h2><span id="count" class="count">50 cases</span></div><div class="index-controls"><label class="sr-only" for="search">Search cases and model responses</label><input id="search" class="search" type="search" placeholder="Search cases…" autocomplete="off"><div class="filters" aria-label="Case filters"><button class="filter" data-filter="all" aria-pressed="true">All · 50</button><button class="filter" data-filter="disagree" aria-pressed="false">Fable ≠ MedGemma · 6</button><button class="filter" data-filter="astra" aria-pressed="false">Astra ≠ Fable</button><button class="filter" data-filter="under" aria-pressed="false">Under</button><button class="filter" data-filter="over" aria-pressed="false">Over</button></div><button id="clear-filters" class="clear-filters" type="button" hidden>Clear filters</button></div></div><ol id="case-list" class="case-list"></ol></section>
 <section id="case-detail" class="detail" aria-label="Selected case" hidden><div class="case-top"><h2 id="case-heading" class="case-kicker" tabindex="-1"></h2><nav class="case-nav" aria-label="Case navigation"><button type="button" id="previous" aria-label="Previous matching case">← Previous</button><button type="button" id="next" aria-label="Next matching case">Next →</button></nav></div><article class="message-card"><h3 class="card-label">Patient message</h3><blockquote id="message" class="message"></blockquote></article>
 <div id="alert" class="alert-strip" hidden></div><div class="reference-grid"><section class="reference-card"><h3 class="card-label">Physician Gold</h3><p id="physician-route" class="reference-route"></p></section><section class="reference-card csv"><h3 class="card-label">Original CSV disposition</h3><p id="csv-route" class="reference-route"></p></section></div>
 <section id="case-images" class="case-images" aria-label="Ankle discussion images" hidden><div class="image-pair">${caseImages}</div><p class="caption">Discussion images added after evaluation; not model inputs or verified images of C22.</p></section>
-<div class="models-head"><h2>Model responses</h2><label class="repeat-label" for="nano-repeat">Nemotron <select id="nano-repeat"><option value="nano-r1">Repeat 1</option><option value="nano-r2">Repeat 2</option></select></label></div><div class="models"><article id="fable" class="model-card" aria-label="Fable response"></article><article id="medgemma" class="model-card" aria-label="MedGemma response"></article><article id="nano" class="model-card" aria-label="Nemotron response"></article></div>
-<details id="historical-pipeline" class="historical-pipeline"><summary>Historical pipeline · V25</summary><div class="historical-body"><p>Different five-route, multi-stage protocol. <strong>27 of 50 runs completed.</strong> Its original 21/49 score uses the earlier reference and is not a direct comparison with the three models above.</p><article id="v25" class="model-card" aria-label="Historical V25 response"></article></div></details></section></main>
-<details id="study-details" class="technical"><summary>About the study</summary><p>Independent research demonstration by Brandon Dent, MD, prepared for Counsel. The Counsel wordmark identifies the intended audience, not sponsorship or institutional endorsement. Synthetic messages and saved outputs only; not for patient care.</p><p>Live demo opens the local Fable application in a separate tab. Get disposition sends a new request to Anthropic; this saved viewer makes no calls. Localhost refers to the computer opening the link. Roadmap opens a proposed sequence from presentation slides 15–16. The C22 discussion images are the existing presentation derivatives; they were not evaluated or supplied to the models. See the repository disclosures and asset provenance for their unresolved permissions.</p><p>Physician Gold refers to physician v3, a single-physician, unblinded post-output reassessment of this known 50-message development set. Agreement does not establish clinical safety or validate model rationales. No patient outcomes were measured. Original CSV labels are separate discussion context and are not included in physician scoring.</p><p>Frozen generation records are verified before display. Fable and MedGemma used identical instruction text and message-only user content. Nemotron baseline A and V25 are separately preserved configurations; V25 adds multi-stage processing context. Model family, inference date, runtime, quantization and decoding differ. Historical Fable is not a contemporaneous control. Model configuration and source links are under each card’s Record details. No clinical superiority or promotion is claimed.</p><p>Under/over filters compare the three primary models with physician v3, using the selected Nemotron repetition. Fable ≠ MedGemma is a pairwise filter. Nemotron defaults to unchanged baseline A repeat 1; repeat 2 remains available without selecting a better response. V25 is excluded from these filters and alerts. Incomplete V25 releases and separately issued early actions remain distinct from completed dispositions.</p><p>The source scorecards retain separate endpoints for missed clinician involvement and missed urgent escalation. Care-setting agreement is not a patient-harm measurement. Full messages and model rationales are displayed verbatim.</p><div id="case-provenance" hidden><h3 id="reference-case"></h3><p id="physician-note"></p><p id="prior-route"></p><p>Input SHA-256: <code id="input-hash"></code></p></div><p>MedGemma generation frozen: <span id="freeze-time"></span><br>Instruction SHA-256: <code id="prompt-hash"></code></p><p><a id="reference-link" target="_blank" rel="noopener noreferrer">Physician reference ↗</a><a id="csv-link" target="_blank" rel="noopener noreferrer">Original CSV ↗</a><a href="https://github.com/bGOATnote/counselcodex/blob/main/docs/MEDGEMMA_27B_COMPARISON_2026-09-16.md" target="_blank" rel="noopener noreferrer">Full report ↗</a></p><p>Case index, Escape or / returns to the index, preserving search, filters and Nemotron selection. Left/right arrows move between matching cases. Presentation view enlarges the selected case. Browser Back and Forward restore index/case navigation. The cases and images work offline. Keep roadmap.html beside this file for the roadmap. The live demo needs the local server and provider access; repository links need internet.</p></details>
+<div class="models-head"><h2>Model responses</h2><label class="repeat-label" for="nano-repeat">Nemotron <select id="nano-repeat"><option value="nano-r1">Repeat 1</option><option value="nano-r2">Repeat 2</option></select></label></div><div class="models"><article id="fable" class="model-card" aria-label="Fable response"></article><article id="astra-xhigh" class="model-card" aria-label="Astra extra high response"></article><article id="astra-max" class="model-card" aria-label="Astra max response"></article><article id="medgemma" class="model-card" aria-label="MedGemma response"></article><article id="nano" class="model-card" aria-label="Nemotron response"></article></div>
+<details id="historical-pipeline" class="historical-pipeline"><summary>Historical pipeline · V25</summary><div class="historical-body"><p>Different five-route, multi-stage protocol. <strong>27 of 50 runs completed.</strong> Its original 21/49 score uses the earlier reference and is not a direct comparison with the saved runs above.</p><article id="v25" class="model-card" aria-label="Historical V25 response"></article></div></details></section></main>
+<details id="study-details" class="technical"><summary>About the study</summary><p>Independent research demonstration by Brandon Dent, MD, prepared for Counsel. The Counsel wordmark identifies the intended audience, not sponsorship or institutional endorsement. Synthetic messages and saved outputs only; not for patient care.</p><p>Live demo opens the local Fable application in a separate tab. Get disposition sends a new request to Anthropic; this saved viewer makes no calls. Localhost refers to the computer opening the link. Roadmap displays the presenter-supplied goal.png architecture image, with its pixels preserved. It describes a historical proposed design, not the current live Fable path or clinical deployment. Not every pictured component ran in V25; the frozen cohort recorded no judge calls. Physician references remain scorecard-only after output freeze. The C22 discussion images are the existing presentation derivatives; they were not evaluated or supplied to the models. See the repository disclosures and asset provenance for their unresolved permissions.</p><p>Physician Gold refers to physician v3, a single-physician, unblinded post-output reassessment of this known 50-message development set. Agreement does not establish clinical safety or validate model rationales. No patient outcomes were measured. Original CSV labels are separate discussion context and are not included in physician scoring.</p><p>Frozen generation records are verified before display. Fable, Astra and MedGemma used identical instruction text and message-only user content. Both Astra efforts are shown separately: xhigh and max; max is not labeled ultra. Nemotron baseline A and V25 are separately preserved configurations; V25 adds multi-stage processing context. Model family, inference date, runtime, quantization and decoding differ. Historical Fable is not a contemporaneous control. Model configuration and source links are under each card’s Record details. No clinical superiority or promotion is claimed.</p><p>Under/over filters compare all five visible response cards with physician v3, using the selected Nemotron repetition. Fable ≠ MedGemma is a pairwise filter. Astra ≠ Fable includes any case where either saved Astra effort differs from Fable; both efforts are always visible. These are separate configurations, not five independent model families. Nemotron defaults to unchanged baseline A repeat 1; repeat 2 remains available without selecting a better response. V25 is excluded from these filters and alerts. Incomplete V25 releases and separately issued early actions remain distinct from completed dispositions.</p><p>The source scorecards retain separate endpoints for missed clinician involvement and missed urgent escalation. Care-setting agreement is not a patient-harm measurement. Full messages and model rationales are displayed verbatim.</p><div id="case-provenance" hidden><h3 id="reference-case"></h3><p id="physician-note"></p><p id="prior-route"></p><p>Input SHA-256: <code id="input-hash"></code></p></div><p>MedGemma generation frozen: <span id="freeze-time"></span><br>Instruction SHA-256: <code id="prompt-hash"></code></p><p><a id="reference-link" target="_blank" rel="noopener noreferrer">Physician reference ↗</a><a id="csv-link" target="_blank" rel="noopener noreferrer">Original CSV ↗</a><a href="https://github.com/bGOATnote/counselcodex/blob/main/docs/MEDGEMMA_27B_COMPARISON_2026-09-16.md" target="_blank" rel="noopener noreferrer">Full report ↗</a></p><p>Case index, Escape or / returns to the index, preserving search, filters and Nemotron selection. Left/right arrows move between matching cases. Presentation view enlarges the selected case. Browser Back and Forward restore index/case navigation. The cases and images work offline. Keep roadmap.html beside this file for the roadmap. The live demo needs the local server and provider access; repository links need internet.</p></details>
 <p id="status" role="status" aria-live="polite" class="sr-only"></p><noscript><p>This saved viewer requires JavaScript. Read the comparison report in the repository for a text version.</p></noscript><script type="application/json" id="case-data">${safeEmbeddedJSON(data)}</script><script>${client}</script></body></html>\n`;
 }
 
@@ -369,8 +391,11 @@ Use C22 → C47 → C49 to discuss failure modes, then **Roadmap** and **Live de
 The header restores the **Prepared for** Counsel badge and keeps **Case index**,
 **Live demo**, **Roadmap**, **Repo** and **Presentation view** accessible. Demo,
 roadmap and repository links open separate tabs, preserving the selected case.
-The proposed roadmap is a graphic-only page based on presentation slides 15–16;
-it does not claim that later clinical stages are implemented or approved.
+The roadmap page shows the supplied goal.png architecture image, unchanged in
+pixels. It is a historical proposed design, not the current Fable demo. The
+frozen V25 cohort recorded no judge calls; not every pictured component ran.
+The diagram’s release and gold-rubric labels are historical; they do not imply
+clinical deployment or gold labels in the present inference context.
 
 **Live demo** links to http://localhost:4120/stripped. This is the viewing
 computer, not a public inference server. **Get disposition** sends one fresh
@@ -387,12 +412,12 @@ in the repository disclosures. No saved results or prompts were changed.
 ## Review controls
 
 - Search by case ID, symptom, disposition or rationale. Each index link includes an exact message excerpt.
-- Filter to the six Fable/MedGemma disagreements, under-escalations or over-escalations. Filters and case alerts use the three primary models and selected Nemotron repetition; V25 is separate historical context.
+- Filter to Fable/MedGemma disagreements, Astra/Fable disagreements, under-escalations or over-escalations. Astra/Fable includes either saved effort; both are visible. Under/over filters and case alerts use all five visible response cards and selected Nemotron repetition; V25 remains separate historical context.
 - Deep links include \`index.html#C22\`, \`index.html#C47\` and \`index.html#C49\`.
 - Nemotron defaults to unchanged baseline A repetition 1. Repetition 2 is selectable; no best-response selection occurs.
 - The sticky header’s **Case index** link returns to the index from any scroll position. Search, filters and Nemotron selection are preserved. **Clear filters** returns all 50 case links.
 - The index is always hidden while a case is open. **Presentation view** enlarges the case text. Left/right arrows move through matching cases; Escape or / returns to the index. Browser Back and Forward restore index/case navigation.
-- Three primary cards show a bucket, one comparison label and the saved rationale. The collapsed **Historical pipeline · V25** section preserves its response, completion status, early actions and source links.
+- Fable, Astra extra high, Astra max, MedGemma and Nemotron cards each show a bucket, one comparison label and the saved rationale. Astra efforts are separately labeled; max is not ultra. The collapsed **Historical pipeline · V25** section preserves its response, completion status, early actions and source links.
 - **Record details** contains each model configuration and source links. **About the study** contains provenance, reference notes and interpretation limits. Reference cards show only their labels and dispositions.
 
 ## Build and verify
@@ -402,16 +427,16 @@ From the repository root with the supported Node runtime:
 \`\`\`bash
 node scripts/build-medgemma-case-review.mjs
 node scripts/build-medgemma-case-review.mjs --verify
-node --test tests/medgemma-case-review.test.mjs tests/historical-case-review.test.mjs
+node --test tests/medgemma-case-review.test.mjs tests/historical-case-review.test.mjs tests/astra-case-review.test.mjs
 \`\`\`
 
-Build replaces only these derived presentation files. Verify requires exact saved bytes and makes no changes. Neither command makes provider calls. The builder checks frozen generation, raw/parsed parity, the original V25 score replay, and the saved Fable/MedGemma comparison. The manifest binds admitted sources and renderer files. Original experiment artifacts and references remain unchanged.
+Build replaces only these derived presentation files. Verify requires exact saved bytes and makes no changes. Neither command makes provider calls. The builder checks frozen generation, raw/parsed parity, both Astra message-only request protocols, the original V25 score replay, and the saved Fable/MedGemma comparison. The manifest binds admitted sources and renderer files. Original experiment artifacts and references remain unchanged.
 
 ## Interpretation
 
 Physician v3 is a single-physician, unblinded post-output reassessment of a known 50-message development set. It is not independent clinical validation. Original CSV labels are discussion context and are not combined with physician scores.
 
-Fable is the preserved historical low-effort run. MedGemma is the recorded local Q5_K_M configuration. Nemotron uses the registered unchanged three-bucket baseline A, with two repetitions shown separately. V25 is retained in a collapsed historical section because it used a different five-route multi-stage pipeline, rather than the simple three-bucket protocol. Its original 21/49 all-case result and 21/27 completed-release agreement are distinct from this post-hoc three-bucket physician-v3 display. Only 27/50 V25 cases had an eligible completed release; 23 remain incomplete. Rejected proposals and separately issued early actions are never displayed as completed dispositions.
+Fable is the preserved historical low-effort run. Astra is the saved gpt-6-astra configuration with xhigh and max effort, 50 one-shot calls each. Astra versus Fable disagrees on C07, C19 and C47 for both efforts; their buckets otherwise match Fable. No new inference occurs. MedGemma is the recorded local Q5_K_M configuration. Nemotron uses the registered unchanged three-bucket baseline A, with two repetitions shown separately. V25 is retained in a collapsed historical section because it used a different five-route multi-stage pipeline, rather than the simple three-bucket protocol. Its original 21/49 all-case result and 21/27 completed-release agreement are distinct from this post-hoc three-bucket physician-v3 display. Only 27/50 V25 cases had an eligible completed release; 23 remain incomplete. Rejected proposals and separately issued early actions are never displayed as completed dispositions.
 
 Under/over-escalation compares completed route order SELF_CARE < ASYNC_PHYSICIAN < URGENT_ESCALATION against accepted physician v3 buckets. It is not a patient-harm measurement. Incomplete output is a separate operational status, never a self-care prediction. The source scorecards retain the two false-negative endpoints, distinguishing omitted clinician involvement from omitted urgent escalation. Repeated endpoint pills are omitted from the cards. Rationale accuracy and care delivery are not validated by route agreement.
 
@@ -422,7 +447,7 @@ The reviewed Counsel wordmark is embedded unchanged under **Prepared for**. Abou
 All case and model text is rendered as text, not executable markup. The standalone document blocks scripted network connections and external assets with a Content Security Policy; only embedded data images are admitted. Images are pinned by SHA-256. Live-demo navigation is an explicit link, never an embedded frame or background request.
 `;
   const manifest = { schema: "medgemma-case-review-manifest/v1", caseCount: data.cases.length, disagreementIds: data.disagreementIds,
-    generationCompletedAt: data.completedAt, scoredAt: data.scoredAt, inferenceEnabled: false, csvScored: false,
+    astraFableDisagreementIds: data.astraFableDisagreementIds ?? [], generationCompletedAt: data.completedAt, scoredAt: data.scoredAt, inferenceEnabled: false, csvScored: false,
     independentClinicalValidation: false, sourceHashes, provenance: data.provenance,
     artifacts: { "index.html": sha256(html), "roadmap.html": sha256(roadmap), "README.md": sha256(readme) } };
   return { "index.html": html, "roadmap.html": roadmap, "README.md": readme, "manifest.json": JSON.stringify(manifest, null, 2) + "\n" };

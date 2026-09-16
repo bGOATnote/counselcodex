@@ -14,7 +14,7 @@ is shown separately.
 | [C22](https://bgoatnote.github.io/counselcodex/#C22) | Start with missed clinician involvement and the information needed for an ankle assessment. The X-ray and photograph are presentation illustrations, added after evaluation; they were not model inputs or verified images of this synthetic case. |
 | [C47](https://bgoatnote.github.io/counselcodex/#C47) | Examine the second Fable false negative: reasonable self-care advice can still omit required clinician review. |
 | [C49](https://bgoatnote.github.io/counselcodex/#C49) | Compare the exact message, saved rationales and urgent-versus-async disagreement. Keep physician and CSV dispositions separate. |
-| **Roadmap** | Open the graphic-only page. The sequence from slides 15–16 is proposed work: agree the task, freeze an independent reference, test one matched change, then consider shadow observation and a supervised pilot. |
+| **Roadmap** | Open the supplied `goal.png` architecture graphic. Discuss the earlier design and which components were actually exercised: saved V25 made zero judge calls. The live Fable path remains one call without retrieval or a judge. |
 | **Live demo** | Submit one synthetic message and describe the result that actually appears. This is a fresh call, separate from the saved comparison. |
 
 The **Prepared for** Counsel badge identifies the intended audience, not
@@ -36,7 +36,8 @@ local server and provider access.
 3. Confirm the sample picker and submit button are enabled. Keep the API key
    server-side. Open this script and the [saved case viewer](../publication/medgemma-case-review/index.html)
    from the local checkout. It works offline and embeds all 50 exact messages,
-   Fable, MedGemma and Nano responses plus a collapsed historical V25 section.
+   Fable, Astra extra high, Astra max, MedGemma and Nano responses plus a collapsed
+   historical V25 section.
    Its records are separate from live submissions. Keep the [workflow-study viewer](../publication/workflow-study-review/index.html)
    available for retrieval-ablation questions.
 4. Keep the [latest five-call handoff manifest](../outputs/stripped-gui-handoff-2026-09-16/manifest.json)
@@ -86,13 +87,19 @@ repetition. Escape and `/` also return to the index. Previous/Next follows the
 filtered list; browser Back/Forward restores either screen. **Presentation view**
 enlarges the message and cards.
 
-Physician Gold and CSV cards show label and disposition. The three primary model
-cards show saved responses, with configuration and source links under **Record
-details**; under/over filters exclude historical V25. The
-collapsed V25 section preserves incomplete releases and separately issued early
-actions. **About the study** retains provenance, unblinded reference limitations
-and the independent-project disclosure. CSV labels remain discussion context;
-these saved comparisons are not clinical validation.
+Physician Gold and CSV cards show label and disposition. Five response cards
+show Fable, Astra extra high, Astra max, MedGemma and Nemotron, with configuration
+and source links under **Record details**. Both Astra runs preserve all 50 saved
+responses using actual efforts `xhigh` and `max`, not `ultra`; each differs from
+Fable on C07, C19 and C47. **Astra ≠ Fable** selects a difference in either Astra
+run. Under/over filters use all five cards and exclude historical V25.
+
+The collapsed V25 section preserves incomplete releases and separately issued
+early actions. **About the study** retains provenance, unblinded reference limits
+and the independent-project disclosure. Physician gold is scorecard-only after
+generation; CSV labels remain discussion context. The roadmap reproduces the
+supplied historical graphic, not proof that all pictured components ran. V25 made
+zero judge calls. These saved comparisons are not clinical validation.
 
 For a question about retrieval, use the separate workflow-study viewer: its source
 package changes C47 to physician review in both Fable repetitions while C22 remains

@@ -5,8 +5,9 @@ import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
-import { addHistoricalModels, caseReviewArtifacts, caseReviewClient, escalationDirection, loadCaseReview, projectCaseReview, publishCaseReview, renderCaseReview, safeEmbeddedJSON } from "../src/research/medgemma-case-review.mjs";
+import { addAstraModels, addHistoricalModels, caseReviewArtifacts, caseReviewClient, escalationDirection, loadCaseReview, projectCaseReview, publishCaseReview, renderCaseReview, safeEmbeddedJSON } from "../src/research/medgemma-case-review.mjs";
 import { loadHistoricalCaseReview } from "../scripts/load-historical-case-review.mjs";
+import { loadAstraCaseReview } from "../scripts/load-astra-case-review.mjs";
 import { parseCsv } from "../src/lib/csv.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -122,9 +123,30 @@ test("simple viewer keeps comparisons qualified behind an index-first interface"
   assert.doesNotMatch(html, /id="print"|class="hero"|class="metrics"|class="case-footer"/);
   assert.doesNotMatch(header, /Same message|MedGemma|Nemotron/);
   assert.match(html, /<summary>About the study<\/summary>/);
-  assert.match(html, /Fable and MedGemma used identical instruction text and message-only user content/);
+  assert.match(html, /Fable, Astra and MedGemma used identical instruction text and message-only user content/);
   assert.match(html, /V25 adds multi-stage processing context/);
   assert.doesNotMatch(html, /the only user content supplied to each model/);
   assert.match(client, /document\.querySelector\("\.skip"\).*preventDefault/);
   assert.match(client, /history\.pushState/);
+});
+
+test("Astra joins the same physician comparison without changing existing case records", () => {
+  const base = addHistoricalModels(projectCaseReview(source()), loadHistoricalCaseReview(root));
+  const astra = loadAstraCaseReview(root);
+  const data = addAstraModels(base, astra);
+  assert.deepEqual(data.astraFableDisagreementIds, ["C07", "C19", "C47"]);
+  assert.deepEqual(data.cases.map(({ ["astra-xhigh"]: xhigh, ["astra-max"]: max, ...row }) => row), base.cases);
+  for (const model of astra.models) {
+    assert.deepEqual(data.modelConfigurations[model.id], model.metadata);
+    assert.equal(data.metrics[model.id].denominator, 50);
+    for (const [index, row] of data.cases.entries()) {
+      assert.equal(row[model.id].rationale, model.records[index].rationale);
+      assert.equal(row[model.id].agrees, row.physician.acceptedBuckets.includes(model.records[index].disposition));
+    }
+  }
+  assert.equal(data.cases[46]["astra-xhigh"].clinicianAction, "TP");
+  assert.equal(data.cases[21]["astra-max"].clinicianAction, "FN");
+  const unsafe = structuredClone(astra);
+  unsafe.models[0].records[0].message += " changed";
+  assert.throws(() => addAstraModels(base, unsafe), /message differs/);
 });

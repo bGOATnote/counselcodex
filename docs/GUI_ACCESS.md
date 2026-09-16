@@ -3,7 +3,7 @@
 | Surface | Entry point | Behavior |
 | --- | --- | --- |
 | Saved case review | [Public case index](https://bgoatnote.github.io/counselcodex/#index) · [standalone HTML](../publication/medgemma-case-review/index.html) | Inspect all 50 synthetic messages and saved results; no model calls. |
-| Proposed roadmap | [Public graphic](https://bgoatnote.github.io/counselcodex/roadmap.html) · [offline graphic](../publication/medgemma-case-review/roadmap.html) | Graphic-only page summarizing the proposed sequence from presentation slides 15–16. |
+| Historical architecture roadmap | [Public graphic](https://bgoatnote.github.io/counselcodex/roadmap.html) · [offline graphic](../publication/medgemma-case-review/roadmap.html) | Graphic-only page containing the supplied `goal.png`, with identical decoded pixels and stripped EXIF metadata. |
 | Live three-bucket demonstration | [http://localhost:4120/stripped](http://localhost:4120/stripped) | Requires the local setup below; each submission makes one provider call. |
 
 The public viewer was verified on 16 September 2026 after successful CI and
@@ -14,6 +14,7 @@ The live launcher binds port 4120 to 127.0.0.1.
 [Navigation and comparison refinement](CASE_REVIEW_REFINEMENT_2026-09-16.md).
 [Two-screen viewer verification](CASE_VIEWER_SIMPLIFICATION_2026-09-16.md).
 [Browser presentation update](PRESENTATION_HUB_2026-09-16.md).
+[Astra and supplied roadmap update](ASTRA_VIEWER_ROADMAP_2026-09-16.md).
 
 ## Browser presentation
 
@@ -30,7 +31,7 @@ URL and `#index` open the index. Links such as `#C22`, `#C47` and `#C49` open a 
 The sticky header contains the **Prepared for** Counsel logo, **Disposition Study**,
 **Live demo**, **Roadmap**, **Repo**, **Presentation view**, and **Case index** on the
 case screen. Live demo, Roadmap and Repo open separate tabs, preserving the current
-case. Roadmap contains only its graphic. Presentation view enlarges the message
+case. Roadmap contains only the supplied architecture graphic. Presentation view enlarges the message
 and cards. **Case index**, Escape or `/` returns to the index, preserving search,
 filters and Nano repetition. Previous/Next moves through the filtered cases;
 browser Back/Forward restores the index or case screen.
@@ -39,17 +40,25 @@ C22 includes the existing PowerPoint X-ray and external photograph derivatives.
 Their caption states that these are discussion images added after evaluation,
 not model inputs or verified images of C22.
 
-Physician Gold and original CSV cards show their labels and dispositions. Three
-primary cards show saved Fable, MedGemma and Nemotron responses. **Record details**
-holds each model’s configuration and source links. Under/over filters
-use those three responses; the disagreement filter covers Fable versus MedGemma.
-Nano defaults to baseline A repetition 1, with repetition 2 available.
+Physician Gold and original CSV cards show their labels and dispositions. Five
+cards show saved Fable, Astra extra high, Astra max, MedGemma and Nemotron
+responses. Each Astra run has all 50 saved outputs; the actual effort values are
+`xhigh` and `max`, not `ultra`. Both differ from Fable on C07, C19 and C47.
+**Record details** holds each configuration and source links. Under/over filters
+use all five displayed responses; **Astra ≠ Fable** matches a difference in either
+saved Astra run. The separate Fable/MedGemma filter remains available. Nano
+defaults to baseline A repetition 1, with repetition 2 available.
 
 **Historical pipeline · V25** stays collapsed and retains all 50 records,
 including 23 incomplete releases. It does not contribute to the primary filters.
 **About the study** holds reference limitations, provenance and the independent
 project disclosure. The CSV remains discussion context; agreement is not clinical
 validation.
+
+The roadmap is the historical architecture illustration, not a claim that all
+pictured components ran. The saved V25 run made zero judge calls. The selected
+live path remains one Fable call without a judge or retrieval; physician gold is
+used only for scorecards after generation, never as model context.
 
 ## Live GUI
 
