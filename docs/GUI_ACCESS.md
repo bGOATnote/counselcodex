@@ -2,13 +2,14 @@
 
 | Surface | Entry point | Behavior |
 | --- | --- | --- |
-| Saved four-model case review | [Public publishing target](https://bgoatnote.github.io/counselcodex/#C49) · [standalone HTML](../publication/medgemma-case-review/index.html) | Inspect all 50 synthetic messages and saved results; no model calls. |
+| Saved four-model case review | [Public case viewer](https://bgoatnote.github.io/counselcodex/#C49) · [standalone HTML](../publication/medgemma-case-review/index.html) | Inspect all 50 synthetic messages and saved results; no model calls. |
 | Live three-bucket demonstration | [http://localhost:4120/stripped](http://localhost:4120/stripped) | Requires the local setup below; each submission makes one provider call. |
 
-The public viewer URL is the deployment target; verify publication before sharing
-it as an available hosted service. The standalone HTML works now from a checkout
-or after download. Localhost refers to the viewing computer, not the presenter’s
-server. The live launcher binds port 4120 to 127.0.0.1.
+The public viewer was verified on 16 September 2026 after successful CI and
+GitHub Pages deployment. The standalone HTML also works from a checkout or after
+download. Localhost refers to the viewing computer, not the presenter’s server.
+The live launcher binds port 4120 to 127.0.0.1.
+[Publication and browser verification](CASE_REVIEW_HANDOFF_2026-09-16.md).
 
 ## Saved four-model viewer
 

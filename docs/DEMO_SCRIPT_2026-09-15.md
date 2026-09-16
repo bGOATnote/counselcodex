@@ -11,9 +11,9 @@ is shown separately. Slides 2–4 introduce C22, C47 and C49 before the demonstr
 
 1. Follow the [GUI access guide](GUI_ACCESS.md), run `npm run demo`, and open
    [the local server](http://localhost:4120/stripped). Localhost requires a server
-   on the viewing machine. The separate saved-results viewer’s publishing target
-   is [the C49 case link](https://bgoatnote.github.io/counselcodex/#C49); verify
-   deployment before describing it as available publicly.
+   on the viewing machine. The separate [public saved-results viewer](https://bgoatnote.github.io/counselcodex/#C49)
+   opens C49. Check that it loads before the session and keep the offline copy
+   available.
 2. Confirm Fable 5.1, low effort. Expand **Model configuration** and compare the
    prompt hash with the [GUI guide](STRIPPED_FABLE_GUI_2026-09-15.md).
 3. Confirm the sample picker and submit button are enabled. Keep the API key
