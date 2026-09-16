@@ -1,11 +1,15 @@
 # Take home requirements and evidence audit
 
-15 September 2026; presentation revision 14 reviewed on 16 September. The working three-bucket router and its scored evaluation
-meet the assignment's build and evaluation requirements. The `/stripped` GUI
-also has recorded live browser verification. The submission identifies the current system and retains earlier V25
-failures as historical evidence.
-Completing a synthetic take-home is a different claim from clinical readiness.
-For subsequent handoff fixes and the current export, see the
+First audited 15 September 2026; requirements and current submission re-reviewed
+on 16 September 2026. The working three-bucket router, evaluation, slides and
+recorded live demonstration meet the assignment's core deliverables. Its simple
+interface is appropriate: the brief explicitly accepts a prompt-driven demo or
+small script and prioritizes problem framing and evaluation over polish.
+
+The expanded project exceeded the assignment's timebox, and the user-added ankle
+photographs have unverified synthetic provenance. These exceptions remain
+explicit below. Completing the take-home does not establish clinical readiness.
+For handoff fixes and export review, see the
 [September 16 presentation and repository review](PRESENTATION_REPO_RED_TEAM_2026-09-16.md).
 
 ## Sources and interpretation
@@ -38,11 +42,11 @@ On 16 September, the user explicitly requested two ankle photographs and an Otta
 | Read an incoming asynchronous patient message and decide its route; assignment p. 1 | Core objective | [Frozen protocol](../src/stripped/protocol.ts), [one-step Mastra workflow](../src/stripped/workflow.ts), [GUI](STRIPPED_FABLE_GUI_2026-09-15.md) | **Delivered.** One message produces one of three buckets plus a short rationale. It classifies; it does not deliver care or enqueue a clinician task. |
 | Understand the existing workflow, what works and what does not, and defend the view; assignment p. 2 | Required analysis | Source audit below; [reference record](../data/evaluation/physician-system-reference-v2.json); [physician development review](PHYSICIAN_REVIEW_SCORECARD_2026-09-13.md) | **Evidence available.** Present concrete disagreements and uncertain boundaries; original labels are workflow outputs, not established clinical truth. |
 | Decide the goal and ideal approach, scope a V0, explain MVP tradeoffs; assignment p. 2 | Required product reasoning | [Three-bucket comparison](STRIPPED_3BUCKET_COMPARISON_2026-09-15.md), [simplification analysis](DISPOSITION_SIMPLIFICATION_2026-09-15.md), exact short prompt | **Delivered.** Explain why the submission retains assignment buckets and a short rationale, and why the earlier five-route full-response contract answers a different question. |
-| Build a lightweight working V0; assignment p. 2 | Required implementation | [Workflow](../src/stripped/workflow.ts), [transport adapter](../apps/evaluation/lib/stripped-handler.ts), [GUI verification](STRIPPED_FABLE_GUI_2026-09-15.md) | **Delivered.** TypeScript, real Mastra execution, one provider call, zero retries/fallbacks, local traces and accounting. A complex stack, notebook, or polished repository is not required. |
-| Define the right answer and show the system's score; assignment p. 3 | Required evaluation; spreadsheet, slide table, or repository file all accepted | [Reference provenance](../data/evaluation/physician-system-reference-v2.json), [Fable physician scorecard](../outputs/stripped-3bucket-fable-2026-09-15/scorecard-A-physician.json), [separate CSV scorecard](../outputs/stripped-3bucket-fable-2026-09-15/scorecard-B-csv.json) | **Delivered.** Original v2 agreement: 44/49. Revised v3 agreement: 48/50 after physician amendments and inclusion of C25. All 50 calls completed. Original CSV scores remain separate discussion evidence. No independent accuracy claim. See [v3 adjudication](PHYSICIAN_ADJUDICATION_V3_2026-09-15.md). |
-| Slide deck that tells the chosen story; assignment p. 3 | Required; no mandated file extension | [Current deck source](INTERVIEW_DECK_2026-09-15.md), [PowerPoint](../output/submission-2026-09-15/counsel-disposition-take-home.pptx), [PDF](../output/submission-2026-09-15/counsel-disposition-take-home.pdf) | **Delivered.** Twenty-eight editable slides: fifteen main slides including the live demo, thirteen appendix slides. Slides 2 and 3 show the exact C22/C47 messages, false negatives and potential delayed assessment. Slide 4 presents the historical architecture, observed results and validation roadmap. Appendix 16 provides the corrected Ottawa discussion illustration; slides 21–22 cover conditional timing. Appendices 23–28 reproduce all 17 other substantively discussed messages verbatim. All rendered pages visually inspected. Dated historical decks remain separate. |
-| Live demo where the team can see the build work; assignment p. 3 | Required; provided messages explicitly allowed | [Browser-verification report](STRIPPED_FABLE_GUI_2026-09-15.md#browser-verification--2026-09-15), [six-call manifest](../outputs/stripped-gui-2026-09-15/manifest.json), [demo script](DEMO_SCRIPT_2026-09-15.md) | **Capability demonstrated.** Six live synthetic browser calls, five visible final results, one intentionally discarded after editing; no provider failure. At interview, perform fresh live submissions within the existing allowance; label any saved-trace fallback as replay. |
-| A roughly 35-minute presentation/demo followed by 25 minutes Q&A; assignment p. 3 | Session plan | Current deck speaker notes and demo script | **Rehearsal requirement.** Allocate time for the implementation, live cases, evaluation, failures, and next step; keep detailed attempts in appendix. The 60-minute calendar session itself is not evidence of 60 minutes of prepared slides. |
+| Build a lightweight working V0; assignment p. 2 | Required implementation | [Workflow](../src/stripped/workflow.ts), [transport adapter](../apps/evaluation/lib/stripped-handler.ts), [GUI verification](STRIPPED_FABLE_GUI_2026-09-15.md) | **Delivered.** TypeScript, real Mastra execution, one provider call, zero retries/fallbacks, local traces and accounting. The assignment accepts a script, notebook or prompt-driven demo; additional agents or a polished interface are not required. |
+| Define the right answer and show the system's score; assignment p. 3 | Required evaluation; spreadsheet, slide table, or repository file all accepted | [Reference provenance](../data/evaluation/physician-system-reference-v2.json), [Fable physician scorecard](../outputs/stripped-3bucket-fable-2026-09-15/scorecard-A-physician.json), [separate CSV scorecard](../outputs/stripped-3bucket-fable-2026-09-15/scorecard-B-csv.json), [repeat study](WORKFLOW_AWARE_RESULTS_2026-09-16.md) | **Delivered.** Historical outputs scored 44/49 under v2 and 48/50 under the post-output physician-v3 amendments, including C25. Fresh baseline repetitions with identical request bodies scored 45/50 and 46/50 against v3. All planned calls completed; neither reference revision nor repeat variation is an established model improvement. CSV comparisons remain separate. |
+| Slide deck that tells the chosen story; assignment p. 3 | Required; no mandated file extension | [Current deck source](INTERVIEW_DECK_2026-09-15.md), [PowerPoint](../output/submission-2026-09-15/counsel-disposition-take-home.pptx), [PDF](../output/submission-2026-09-15/counsel-disposition-take-home.pdf) | **Delivered.** Forty-five editable slides: fifteen main and thirty appendix slides. Slides 2–3 present the exact C22/C47 messages and missed clinician review; slide 4 identifies the historical architecture. Slides 5–7 address FP/FN, judge design and evidence retrieval; slide 8 is the live demo. Detailed attempts and case text remain in the appendix. Each export receives separate structural and visual review. |
+| Live demo where the team can see the build work; assignment p. 3 | Required; provided messages explicitly allowed | [Browser-verification report](STRIPPED_FABLE_GUI_2026-09-15.md#browser-verification--2026-09-15), [six-call manifest](../outputs/stripped-gui-2026-09-15/manifest.json), [later five-call manifest](../outputs/stripped-gui-handoff-2026-09-16/manifest.json), [demo script](DEMO_SCRIPT_2026-09-15.md) | **Capability demonstrated.** The original six calls and later five-call handoff completed without provider failure; one original browser result was intentionally discarded after an edit. Show a live submission, input edit and trace, then clearly switch to saved offline case review. Label any saved-trace fallback as replay. |
+| A roughly 35-minute presentation/demo followed by 25 minutes Q&A; assignment p. 3 | Session plan | Current deck speaker notes and demo script | **Planned.** Fifteen main slides allocate 35 minutes, including seven minutes for the live demo and separate saved review. Thirty appendix slides support the 25-minute Q&A. Actual rehearsal and interview delivery remain operator actions. |
 | Optional code/repository link; assignment p. 3 | Optional | [Repository](https://github.com/bGOATnote/counselcodex), [README](../README.md) | **Access check at handoff.** This presentation revision does not verify remote visibility or recipient access. The repository link and portable exports are available as handoff materials. No public web deployment is required; localhost is a demonstration URL for the presenter. |
 | Synthetic data only; assignment p. 3 | Assignment constraint | Byte-identical provided dataset, synthetic edited browser case, GUI footer, message-only request contract | **Evaluation maintained. Presentation exception:** the user subsequently requested two ankle photographs on slide 2 and an educational illustration in appendix 16. The photographs have unverified synthetic provenance; the illustration has unverified authorship and licensing. All stay outside evaluation. Synthetic-only conformance is not claimed for the whole deck. |
 | 6–8 hours as upper bound; stop at hour 11 and explain next steps on a slide; assignment p. 1 | Explicit timebox | Dated multi-day experiments and prior accounting | **Exception, not retroactively satisfiable.** The expanded project exceeded the brief. Disclose the expansion and the minimal build that should have been the initial submission; do not call the whole repository an eight-hour build. Exact elapsed labor is not established. |
@@ -122,15 +126,15 @@ Slides 14–15 now specify that proposal. The first 30 days produce an agreed po
 |---|---|
 | The reviewer cannot tell which system is running. | Lead with `/stripped`, Fable 5.1 low effort, three buckets, and one call. Put V25 in a dated comparison section. |
 | The headline increases because the taxonomy became coarser. | Disclose the five-to-three mapping: frozen five-way Opus moves from 35/49 exact to 46/49 after collapse with zero new inference. Do not plot it as a model improvement. |
-| A polished score hides failed delivery or an unresolved label. | Retain V25 27/50 completion and its historical v2 21/49 delivered agreement. C25 is included and correct in current v3 48/50; only its finer timing label remains unscored. |
+| A polished score hides failed delivery or an unresolved label. | Retain V25 27/50 completion and its historical v2 21/49 delivered agreement. Historical Fable outputs score 48/50 under v3, including C25; fresh baseline repetitions score 45/50 and 46/50. C25's finer timing label remains unscored. |
 | “Gold” means whatever makes the new model look good. | Explain reference reconstruction, development exposure and contested self-care cases; keep CSV scoring separate and gold absent from inference. |
 | More reasoning or more agents are presented as progress by default. | Show max effort: 44/49 to 42/49, unchanged 31/50 CSV score, higher observed cost/latency; do not claim a stable model ranking from one pass. |
 | An old trace is presented as a new live result. | Make live submissions visible; use run IDs and clearly label replay if needed. The six historical GUI checks are demonstration evidence, not a new clinical cohort. |
 | Proposed work promises clinical outcomes before integration or validation. | Offer ownership of a scoped, testable improvement and a decision record. State dependencies on Counsel's workflow, review and data access. |
 
-## Audit verification
+## Original audit verification and current re-review
 
-This was a read-only implementation/source review plus this new audit document.
+The original audit was a read-only implementation/source review plus this document.
 The supplied CSV and repository copy were independently hashed and counted;
 all six archived GUI trace hashes matched their manifest. PDF requirements were
 checked against rendered pages, and the role DOCX was rendered with bundled
@@ -141,4 +145,16 @@ allocates seven live-demo minutes within a 35-minute main presentation, followed
 by the assignment's 25-minute Q&A. Actual interview delivery and email submission
 remain future operator actions.
 
-The later presentation revision adds the presenter-supplied name and role, official Counsel logo and a clickable local-demo link to the cover. It also includes the user-supplied historical architecture PNG, with incidental metadata removed and pixels unchanged. The image is visibly distinguished from current behavior and from proof that every pictured component executed. All 19 substantively discussed patient messages are shown verbatim; no CSV labels are added to prompts or physician scoring.
+The current presentation retains the presenter-supplied name and role, official
+Counsel logo and a clickable local-demo link on the cover. The historical
+architecture image remains visibly separate from current behavior and does not
+prove that every pictured component executed. Discussed messages appear verbatim
+on the relevant slide or in case-text appendices; no CSV labels enter prompts or
+physician scoring.
+
+The September 16 re-review checked the supplied assignment and role profile,
+current execution path, 45-slide source, original browser records and completed
+workflow-aware study. The supplied CSV and repository copy were again confirmed
+byte-identical with 50 rows. No new model call or reference change was made.
+Production agents, a validated clinical judge and care-delivery integration are
+role aspirations and proposed next work, not missing take-home deliverables.

@@ -34,6 +34,8 @@ This is an independent synthetic prototype for the take-home assignment. I will 
 
 The September 16 study completed 1,568 one-shot calls with two models, four arms and two repetitions over 98 unique development messages. Its contemporaneous identical-request Fable baseline returned 45/50 and 46/50 against the unchanged physician v3 reference. Historical 48/50 remains an observation, not a stable or independently validated performance level. The demo retains the historical protocol; no new research arm is promoted. The original v2 result remains 44/49. Main slides show the current findings, and appendices preserve the historical comparisons.
 
+Open with the shared clinical problem: a reassuring routing error can delay necessary assessment, while unnecessary escalation consumes attention. I built the smallest executable contract and made its behavior inspectable. I tested added complexity, retained the failures and kept the demonstration simple because the additional components did not establish a reliable improvement. The expanded project exceeded the original assignment timebox; it is not presented as an eight-hour build. The first four slides establish the concrete failure and the historical architecture before discussing the proposed evaluation controls.
+
 ### Sources
 
 - [docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md](../docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md)
@@ -138,130 +140,168 @@ Scope: Historical proposed design; not every component ran in V25. “Release/sh
 
 The user supplied this historical roadmap diagram. It records a proposed architecture, not the current implementation. Its Current Candidate, Release / Ship, and Gold Rubric labels are historical and must not be read as present claims. The diagram includes proposed components and is not evidence that every pictured component executed in frozen V25. In particular, the completed V25 audit reports zero judge calls. The earlier evaluated approach did not meet the intended full-response contract consistently. V25 completed 27 of 50 first attempts, delivered 21 exact-route agreements among 49 eligible cases, and had 22/49 post-hoc three-bucket agreement, with only C12 changing under the collapse. Median final latency among 27 completes was 18.63 seconds. These original v2 results remain unchanged and have not been rescored against v3 here. Release means an application output in this evaluation, not clinical deployment. The stripped baseline changes the contract, prompt, configuration, and responsibilities together, so the comparison does not isolate the effect of any individual component. The present producer receives only the frozen protocol and patient message; physician gold enters offline scoring after the outputs are frozen. This history motivates establishing a simple baseline early and adding complexity only against a prespecified failure mode. The current GUI does not replace or alter V25. Exact C12 text appears in appendix 27.
 
+Describe the initial architecture as an overextended scope with incomplete delivery, then show the simpler contract and the subsequent bounded experiments. The accurate conclusion is that added components did not establish a reliable improvement. Do not suggest that the later expanded research was completed inside the original take-home timebox or that an unfinished feature is already integrated.
+
 ### Sources
 
 - [docs/V25_COMPLETED_REPORT.md](../docs/V25_COMPLETED_REPORT.md)
 - [outputs/submission-audit-2026-09-15/audit.json](../outputs/submission-audit-2026-09-15/audit.json)
 - [output/submission-2026-09-15/content/assets/provenance.json](../output/submission-2026-09-15/content/assets/provenance.json)
 
-## Slide 5: The decision and the available evidence
+## Slide 5: Reduce missed care and unnecessary escalation
 
 Time: 2 minutes.
 
-| Assignment evidence | Implementation choice |
-| --- | --- |
-| An incoming patient message | Choose a care-route bucket |
-| Three supplied disposition labels | Keep the assignment interface |
-| 50 CSV rows; the brief describes 20 | Run and retain every supplied message |
-| Clinical disagreement with supplied labels | Use physician review for clinical evaluation |
+- False negatives: required review not selected
+Preserve critical unknowns. Review severity and required timing.
+- False positives: referral beyond the agreed reference
+Review referral burden and defensible alternatives.
+- Next: independent clinical adjudication
+Test fresh cases. Check every new miss.
 
-Scope: CSV labels remain an archived discussion baseline. They do not select the model or define clinical correctness.
+Scope: Measure missed clinician-review routes, missed urgent routes and unnecessary referrals separately.
 
 ### Speaker notes
 
-The original file is byte-identical to the supplied CSV and contains 50 messages. I used every row and documented the mismatch with the brief. The CSV contains disagreements relevant to red-flag recognition, so agreement with it is not a model-selection objective. Its historical score is preserved separately for traceability. The clinical target is also subject to review: it must specify when guidance alone is sufficient and when physician action is needed. Internal service levels and access to patient records were not established in this exercise.
+Define the endpoint before calling an output a false positive or false negative. A clinician-action false negative is SELF_CARE when the frozen reference requires async or urgent action. An urgent false negative is any non-urgent route when urgent escalation is required. Severity, timing and actual care completion are separate from bucket agreement. No patient outcomes were measured.
 
-The labels are the frozen research interface. They do not fully specify the receiving service or distinguish first physician contact from the location and deadline of definitive assessment. The later service-context review explains why async contact can still support same-day care. No saved label or output changes.
+C22 does not provide the examination findings needed to apply the Ottawa rule. Missing tenderness or four-step weight-bearing information must remain unknown, not be recorded as absent. This does not make every incomplete ankle assessment an emergency. Clinical and operational owners must agree when uncertainty requires physician review, clarification or examination. Rapid async contact can begin same-day care; it cannot itself establish access to examination or completed treatment.
+
+C47 remains a historical missed clinician review. Its route agrees with the reference in the source-package repetitions, but that does not certify the rationale. C32, C34 and C38 illustrate why clinicians must also review the reference: their revised self-care targets are label corrections, not model improvements. Do not optimize toward every prior physician label without examining whether the target is defensible.
+
+Next, two physicians independently label new cases without seeing model outputs, with adjudication or an explicit uncertainty category. Fix severity-specific acceptance limits, false-alarm and workload limits, and the handling of abstentions before inference. Track the exact cases: an unchanged urgent-miss count concealed the C49/C43 exchange in the rapid-context experiment. Register a case-level critical-regression rule for future comparisons. Keep familiar examples as regression cases, separate from the independent result. If later clinical use is considered, establish a receiving clinician, response deadline, pause procedure and incident review first. These are proposed controls, not implemented care delivery.
 
 ### Sources
 
-- [docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md](../docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md)
-- [outputs/submission-audit-2026-09-15/audit.json](../outputs/submission-audit-2026-09-15/audit.json)
+- [docs/WORKFLOW_REFERENCE_REVIEW_PROTOCOL_2026-09-16.md](../docs/WORKFLOW_REFERENCE_REVIEW_PROTOCOL_2026-09-16.md)
+- [docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md](../docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md)
 - [docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md](../docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md)
-- [docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md](../docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md)
+- [https://aci.health.nsw.gov.au/ecat/appendices/ottawa-ankle-adult](https://aci.health.nsw.gov.au/ecat/appendices/ottawa-ankle-adult)
 
-## Slide 6: The frozen three-bucket contract
+## Slide 6: Validate the judge before relying on it
 
 Time: 2 minutes.
 
-| Bucket | Meaning |
-| --- | --- |
-| SELF_CARE | Guidance only; no clinician action now |
-| ASYNC_PHYSICIAN | Physician review by message, potentially the same day |
-| URGENT_ESCALATION | Same-day in-person care or emergency action |
+1. Clinician-defined
+criterion
+2. Quoted evidence
+3. PASS / FAIL /
+ABSTAIN
 
-- Medication refill → ASYNC_PHYSICIAN unless clear same-day or emergency red flags require escalation.
-- Return one exact bucket and a short rationale as JSON.
+- Built: retrospective research judges and planted-defect tests.
+- Next: blinded physician calibration of missed failures and false alarms.
 
-Scope: Service context: rapid messaging can begin same-day care. Response deadlines and completed care are unmeasured.
+Scope: Offline research only. No judge in the live demonstration.
 
 ### Speaker notes
 
-This is the same three-bucket protocol used for the frozen experiments. It has no new clinical rules or prompt edits. The input is one patient message. The output is one bucket and a rationale. There is no separate patient-response generator, retrieval step, judge call, or queue integration. A rationale can still contain medical advice, so correct routing alone cannot establish its clinical quality. A future operational specification would need to define timing and responsibility for escalation.
+Start with the clinical decision and one narrow, observable criterion. Examples include whether the route requires clinician action, whether a rationale invents a negative finding, and whether a medication recommendation omits a required precaution. These are different endpoints and should not be collapsed into a single impression of quality. Provide only information available at decision time. Return criterion identity, a quoted evidence span, verdict and short justification. If the criterion cannot be determined, return ABSTAIN rather than force a pass. Use deterministic software checks for contracts that can be checked directly.
 
-ASYNC_PHYSICIAN describes a communication channel, not an assumption of delayed care. Rapid async physician review can be compatible with same-day care, subject to the available clinical capabilities and the required deadline. The urgent bucket in this frozen evaluation still combines same-day in-person care and emergency action. Its saved labels and deterministic scores remain unchanged. The service-context correction does not make all async alternatives clinically interchangeable. A future clinical and operational contract must specify the next contact, necessary care setting, clinical deadline and who confirms completion. None of those service events was measured or implemented in the current prototype.
+Implemented outside the selected GUI: five retrospective Mastra research judges with evidence spans, decision-time boundaries and typed abstention; nine separate deterministic software-contract scorers. Those five criterion-specific CQA agents are one research implementation. A separate graph reviewer scores seven criteria; its 28-call full-versus-concise experiment detected seven of seven planted target defects and accepted seven of seven target controls in each style. Those results do not validate the five CQA agents. The authored examples check the graph reviewer’s target mechanism, not clinical validity. They do not establish rare-failure sensitivity or a safe online gate. Historical V25 recorded zero judge calls in its 50-case cohort, despite the proposed architecture diagram. The stripped demonstration calls no judge.
 
-The table explains the displayed routes and the public service context. It is not a verbatim quotation of the frozen minimal system prompt. The newer workflow experiment explicitly tests adding these distinctions in a separate version. The selected demonstration retains its original prompt.
+Proposed validation: clinicians author the criteria and independently label development, calibration and untouched test sets. Blind reviewers to model identity and model output where constructing the clinical target; judge-validation reviewers necessarily see the output they are evaluating. Include uncommon high-severity failures, with sampling and prevalence reported separately. For each criterion report failure sensitivity, false-alarm rate, abstention, uncertainty intervals and review workload. Test whether the judge ranks competing versions correctly, including across model families. Version the rubric, examples and judge configuration. Begin retrospectively; a blocking judge or automated repair needs a separate comparison including new errors and delay.
+
+Counsel’s supplied report describes specialized condition-specific judges over full clinical threads. This project is limited to opening messages and does not reproduce its proprietary rubric or transfer its reported metrics. Weighted aggregate recall cannot be read as sensitivity for rare serious errors. The next useful contribution is a clinician-reviewed judge calibration set and a documented decision about which criterion can be evaluated reliably.
 
 ### Sources
 
-- [src/stripped/protocol.ts](../src/stripped/protocol.ts)
-- [data/evaluation/physician-adjudication-v3-2026-09-15.json](../data/evaluation/physician-adjudication-v3-2026-09-15.json)
-- [docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md](../docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md)
-- [https://www.counselhealth.com/](https://www.counselhealth.com/)
+- [docs/JUDGE_STYLE_COMPARISON_2026-09-14.md](../docs/JUDGE_STYLE_COMPARISON_2026-09-14.md)
+- [docs/V25_COMPLETED_REPORT.md](../docs/V25_COMPLETED_REPORT.md)
+- [https://www.counselhealth.com/ai-report/llm-as-a-judge](https://www.counselhealth.com/ai-report/llm-as-a-judge)
+- [https://tech.abridge.com/blog/continual-monitoring-validating-and-using-llm-judges](https://tech.abridge.com/blog/continual-monitoring-validating-and-using-llm-judges)
+- [src/mastra/agents/quality-judges.ts](../src/mastra/agents/quality-judges.ts)
+- [src/cqa/rubrics.ts](../src/cqa/rubrics.ts)
+- [src/mastra/workflows/quality-audit-workflow.ts](../src/mastra/workflows/quality-audit-workflow.ts)
+- [src/evaluation/handoff-graders.mjs](../src/evaluation/handoff-graders.mjs)
 
-## Slide 7: Live demonstration
+## Slide 7: Add RAG only for a demonstrated gap
+
+Time: 2 minutes.
+
+1. Retrieve
+sources
+2. Check
+applicability
+3. Cite the
+source
+4. Test against
+control
+
+- Observed: C47 matched the reference; C22 remained missed.
+- Dense ranking changed selected cards for 0/98 messages.
+
+Scope: Research only. Next: clinically reviewed retrieval cases and an isolated ablation. Evidence cannot replace an examination.
+
+### Speaker notes
+
+Retrieval-augmented generation supplies selected external evidence to the model. The narrow use here is to test a documented failure mechanism, not to attach an undifferentiated guideline library to every message. Retrieve sources with version, citation, inclusion and exclusion conditions. Check applicability against facts actually present in the message, preserving unknown findings. The answer should cite the source supporting the decision and avoid asserting that missing clinical findings are negative. Retrieved content is evidence, not an instruction that overrides the routing contract.
+
+Completed research includes seven source cards, lexical and dense search, exclusions, citations and frozen evidence packets. The four-arm study compared original prompt, rapid async context, explicit care pathways, and pathways plus the evidence package. Fable’s evidence package scored 46/50 in both repetitions, versus 45/50 twice for the contemporary pathway arm. C47 changed to async in both repetitions. C22 remained self-care despite receiving both ankle cards. Dense ranking changed the selected card order for none of 98 messages relative to the lexical path. Packet metadata can differ; this is a selection comparison, not a byte-identity claim. No embeddings-specific benefit was observed.
+
+The package adds evidence-use instructions as well as cards, so this is not an isolated causal test of retrieval. A later offline candidate audit surfaced omitted topics, but none of the candidate pairs has clinician relevance review. Retrieval ranking, source applicability and downstream clinical decisions need separate labels. Next, review relevance and applicability independently, include paraphrases, exclusions and negation, then run a matched new-case comparison that changes one component. Separate missing-source failures from misinterpreted evidence, unsupported patient facts and missing examination findings.
+
+The selected live GUI remains message-only and invokes no retrieval. These experiments justify a more specific next evaluation; they do not establish clinical improvement or deployment readiness.
+
+### Sources
+
+- [docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md](../docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md)
+- [docs/WORKFLOW_EVIDENCE_FAILURE_ANALYSIS_2026-09-16.md](../docs/WORKFLOW_EVIDENCE_FAILURE_ANALYSIS_2026-09-16.md)
+- [docs/WORKFLOW_EVIDENCE_REVIEW_2026-09-16.md](../docs/WORKFLOW_EVIDENCE_REVIEW_2026-09-16.md)
+- [docs/RETRIEVAL_CANDIDATE_AUDIT_2026-09-16.md](../docs/RETRIEVAL_CANDIDATE_AUDIT_2026-09-16.md)
+
+## Slide 8: Live demo: inspect the decision
 
 Time: 7 minutes.
 
-- C01: routine symptoms
-- C02: symptoms requiring urgent escalation
-- C06: stable medication refill
-- Edit C06 to add chest symptoms; inspect the new trace
+1. Run one message
+2. Inspect configuration
+3. Review saved failures
 
-**Each submission starts one independent provider call.**
+- C01: routine symptoms. C02: urgent symptoms. C06: refill.
+- Edit the message; confirm that the prior answer clears.
 
-Scope: Open /stripped. Use a clearly labeled saved record if the live attempt cannot complete. Exact inputs: appendix 23.
+**One message. One provider call. One bucket and rationale.**
+
+Scope: Live /stripped and saved offline review are separate. Exact inputs: appendix 23.
 
 ### Speaker notes
 
-Use the canonical local server at localhost:4120/stripped after npm run demo. The public reviewer guide documents startup and offline review. Confirm the exact message, submit, and describe the actual output. Show loading, disposition, and rationale, then the request and response trace. Edit C06 to add crushing chest pressure, sweating, and left-arm radiation. Confirm that editing clears the old answer and that the next call contains only the edited message. Frozen benchmark records and live demonstrations are different observations. If the call fails, preserve the failure and show a dated saved run with its ID. A saved result must be identified as such. The prior browser verification covered all three buckets and an in-flight edit.
+Use the canonical local server at localhost:4120/stripped after npm run demo. The public reviewer guide documents startup and offline review. Confirm the exact message, submit, and describe the actual output. Show loading, disposition and rationale, then expand Model configuration. Edit C06 to add crushing chest pressure, sweating, and left-arm radiation. Confirm that editing clears the old answer and that the next call contains only the edited message. Frozen benchmark records and live demonstrations are different observations. If the call fails, preserve the failure and show a dated saved run with its ID. A saved result must be identified as such. The prior browser verification covered all three buckets and an in-flight edit.
+
+Mastra provides one visible step. It does not rewrite the model request or invoke an additional model. The frozen configuration is claude-fable-5-1, adaptive thinking, low effort, and 4096 maximum output tokens. The system prompt and message-only user content are unchanged. Request-shape, payload-size, and concurrency checks protect the software boundary. They do not adjudicate clinical decisions. Tests compare all saved requests and replay all saved responses through the parser. These checks establish request and parser compatibility, not clinical performance on new cases.
+
+Keep the interface simple and use the demonstration to expose the implementation boundary. Name the three exact outputs: SELF_CARE, ASYNC_PHYSICIAN and URGENT_ESCALATION. The frozen refill rule routes prescribing assessment to async unless clear same-day or emergency red flags require escalation. Explain that async can support same-day care but the prototype does not confirm receiving services, treatment or follow-up.
+
+Suggested seven-minute sequence: one minute to establish the contract and choose the routine case, two minutes for urgent and refill submissions, one minute to edit and inspect stale-result handling, one minute for the frozen configuration and single-call implementation, and two minutes in the separate offline case viewer to compare saved failures and repetitions. Use actual live output; preserve unexpected answers. If provider timing prevents completion, explicitly switch to a dated saved result. No benchmark score is attached to a new live answer. Traces expose the request and returned rationale, not hidden chain of thought.
+
+The submitted brief accepts a lightweight prompt-driven build. The value demonstrated is an executable contract, inspectable behavior, error handling and reproducible evaluation. Judge and retrieval experiments on slides 6 and 7 are not live features. The original 48/50 is historical saved-output agreement; fresh identical-request controls returned 45/50 and 46/50.
+
+During the prepared walkthrough, keep Request & response trace collapsed and use Model configuration plus the short workflow implementation to explain the call boundary. Complete trace records remain available for separate technical inspection. The saved-result viewer is a separate local page, not an integrated feature of the live classifier.
 
 ### Sources
 
 - [docs/DEMO_SCRIPT_2026-09-15.md](../docs/DEMO_SCRIPT_2026-09-15.md)
 - [outputs/stripped-gui-2026-09-15/manifest.json](../outputs/stripped-gui-2026-09-15/manifest.json)
 - [docs/GUI_ACCESS.md](../docs/GUI_ACCESS.md)
-
-## Slide 8: One call through a visible workflow
-
-Time: 2 minutes.
-
-1. Patient message
-2. One Mastra step
-3. Native Anthropic call
-4. Disposition and trace
-
-- TypeScript reproduces all 50 frozen Fable request bodies byte for byte.
-- The trace exposes final text, request IDs, token counts, and latency.
-- Input edits clear results and prevent stale answers from appearing.
-
-Scope: No automatic retry or fallback. Exported traces omit hidden reasoning and credentials.
-
-### Speaker notes
-
-Mastra provides one visible step. It does not rewrite the model request or invoke an additional model. The frozen configuration is claude-fable-5-1, adaptive thinking, low effort, and 4096 maximum output tokens. The system prompt and message-only user content are unchanged. Request-shape, payload-size, and concurrency checks protect the software boundary. They do not adjudicate clinical decisions. Tests compare all saved requests and replay all saved responses through the parser. These checks establish request and parser compatibility, not clinical performance on new cases.
-
-### Sources
-
 - [src/stripped/workflow.ts](../src/stripped/workflow.ts)
 - [tests/stripped-gui-protocol.test.mjs](../tests/stripped-gui-protocol.test.mjs)
 - [tests/stripped-gui-workflow.test.mjs](../tests/stripped-gui-workflow.test.mjs)
+- publication/workflow-study-review/README.md
+- [docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md](../docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md)
 
-## Slide 9: Historical outputs: a reference revision
+## Slide 9: Revised labels changed the historical score
 
 Time: 2 minutes.
 
-| Reference view | Fable agreement | What changed |
+| Reference | Agreement | Change |
 | --- | --- | --- |
-| Original physician v2 | 44/49 | C25 excluded; original record preserved |
-| Revised labels, same 49 cases | 47/49 | C32, C34, C38 accepted as self-care |
-| Physician v3, all 50 cases | 48/50 | C25 accepted as urgent escalation |
+| Original v2 | 44/49 | C25 excluded |
+| Revised, same 49 | 47/49 | C32, C34, C38 accepted as self-care |
+| v3, all 50 | 48/50 | C25 accepted as urgent |
 
-- C22 and C47 remain ASYNC_PHYSICIAN.
-- C25 receives a three-bucket label; the review does not specify emergency versus same-day care.
+- Same model outputs. Revised physician labels.
 
-Scope: Single physician reassessment after viewing outputs; unblinded development evidence. Exact case text: appendices 24–25.
+Scope: Single physician, post-output review. Independent validation remains pending. Exact messages: appendices 24–25.
 
 ### Speaker notes
 
@@ -276,7 +316,7 @@ These are historical saved outputs. New identical-request repetitions against th
 - [docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md](../docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md)
 - [docs/STRIPPED_STRATIFICATION_FABLE_2026-09-15.md](../docs/STRIPPED_STRATIFICATION_FABLE_2026-09-15.md)
 
-## Slide 10: Clearer workflow language: mixed Fable results
+## Slide 10: Workflow context produced mixed results
 
 Time: 3 minutes.
 
@@ -287,8 +327,8 @@ Time: 3 minutes.
 | Explicit care pathways | 45 / 45 | 3 / 3 | 1 / 1 |
 | Pathways + source cards | 46 / 46 | 2 / 2 | 1 / 1 |
 
-- Each cell shows repetition 1 / repetition 2.
-- The source package changes C47 to physician review in both repetitions; C22 remains missed.
+- Cells show repetition 1 / repetition 2.
+- Source package: C47 matched the reference; C22 remained missed.
 
 Scope: Same 50 known cases and physician v3. Historical 48/50 did not reproduce with identical request bodies.
 
@@ -306,18 +346,17 @@ Rapid async context repetition 2 fixes C49 but newly assigns C43 to async, leavi
 - [outputs/workflow-aware-disposition-2026-09-16/study/scorecard-workflow-aware.json](../outputs/workflow-aware-disposition-2026-09-16/study/scorecard-workflow-aware.json)
 - [data/evaluation/physician-adjudication-v3-2026-09-15.json](../data/evaluation/physician-adjudication-v3-2026-09-15.json)
 
-## Slide 11: Reference overtriage: three corrected self-care labels
+## Slide 11: Correct routing still needs a sound rationale
 
 Time: 2 minutes.
 
-| Case | Physician correction | Separate advice requirement |
+| Case | Revised route | Separate rationale concern |
 | --- | --- | --- |
-| C32: recent ear pain | ASYNC → SELF_CARE | Watchful waiting with reassessment criteria |
-| C34: seasonal allergies | ASYNC → SELF_CARE | Check assumptions in medication advice |
-| C38: improving sprain | ASYNC → SELF_CARE | Include pregnancy precautions for ibuprofen |
+| C32: ear pain | SELF_CARE | Watchful waiting and reassessment |
+| C34: allergies | SELF_CARE | Medication assumptions |
+| C38: sprain | SELF_CARE | Pregnancy precautions omitted |
 
-- The prior reference has false positives for clinician action; Fable is a true negative after correction.
-- C38’s frozen rationale omits pregnancy precautions. Correct routing does not resolve that omission.
+- These are reference corrections, not model improvements.
 
 Scope: Physician corrections apply to these cases. Rationale quality is a separate, unscored endpoint. Exact patient messages: appendix 25.
 
@@ -332,7 +371,7 @@ These cases were previously counted as model misses because the physician refere
 - [https://www.cdc.gov/ear-infection/about/index.html](https://www.cdc.gov/ear-infection/about/index.html)
 - [https://www.fda.gov/drugs/drug-safety-and-availability/fda-recommends-avoiding-use-nsaids-pregnancy-20-weeks-or-later-because-they-can-result-low-amniotic](https://www.fda.gov/drugs/drug-safety-and-availability/fda-recommends-avoiding-use-nsaids-pregnancy-20-weeks-or-later-because-they-can-result-low-amniotic)
 
-## Slide 12: Local Nano: agreement hides exchanged misses
+## Slide 12: Nano: higher agreement, new missed reviews
 
 Time: 2 minutes.
 
@@ -343,8 +382,7 @@ Time: 2 minutes.
 | Explicit care pathways | 41 / 41 | 3 / 3 | 4 / 4 |
 | Pathways + source cards | 43 / 43 | 3 / 3 | 3 / 3 |
 
-- All three variants introduce new missed-review cases versus their own baseline.
-- Repeat stability does not establish correctness.
+- All three variants introduced new missed-review cases.
 
 Scope: Installed Nemotron 3 Nano, quantized and non-thinking. Two repetitions on known cases; no variant promoted.
 
@@ -362,17 +400,17 @@ This is local development evidence. No patient data, queue integration or clinic
 - [outputs/workflow-aware-disposition-2026-09-16/study/scorecard-workflow-aware.json](../outputs/workflow-aware-disposition-2026-09-16/study/scorecard-workflow-aware.json)
 - [data/research/workflow-aware-v1/nano-serving-provenance.json](../data/research/workflow-aware-v1/nano-serving-provenance.json)
 
-## Slide 13: Failure modes and evidence limits
+## Slide 13: How could this evaluation mislead us?
 
 Time: 2 minutes.
 
-| Failure mode | Current evidence or required work |
+| Failure | Required check |
 | --- | --- |
-| Known score treated as stable | Historical 48/50 becomes 45/50 and 46/50 on repetition |
-| Aggregate count hides new misses | C43 replaces C49 as an urgent-reference miss |
-| Patient text changes the routing instruction | Nano follows an embedded instruction; appendix 44 |
-| Fast response treated as completed care | Measure required action, deadline and ownership |
-| Known cases treated as validation | Independent blinded references remain pending |
+| A saved score appears stable | Repeat identical requests |
+| Equal totals conceal different misses | Inspect every changed case |
+| Patient text redirects the model | Test instruction boundaries |
+| A fast reply substitutes for care | Measure completed action and timing |
+| Known examples appear independent | Use new, blinded references |
 
 Scope: Software checks and retrospective agreement do not establish clinical readiness.
 
@@ -380,7 +418,7 @@ Scope: Software checks and retrospective agreement do not establish clinical rea
 
 The evaluation must make it difficult to mistake a successful software check for a clinical result. Stale-result handling was exercised in browser verification. Reference revisions are documented with old and new labels, case IDs, source hashes, and a same-denominator comparison. The historical saved baseline misses two clinician-action cases. Medication precautions remain a distinct concern even when a route is accepted. The merged urgent bucket cannot certify escalation timing. These known development messages have informed design decisions, so a new blinded assessment remains necessary before a clinical performance claim.
 
-The completed study adds direct failure evidence. Exact baseline request parity does not reproduce the original agreement. Fable rapid-context repetition 2 exchanges urgent misses without changing their count. The source package changes C47 to the accepted route but do not eliminate other clinician misses and introduce authored challenge regressions. The full endpoint and case-level record matters more than a ranking. These are development observations, not measured outcomes in Counsel care.
+The completed study adds direct failure evidence. Exact baseline request parity does not reproduce the original agreement. Fable rapid-context repetition 2 exchanges urgent misses without changing their count. The source package changes C47 to the accepted route but does not eliminate other clinician misses and introduces authored challenge regressions. The full endpoint and case-level record matters more than a ranking. These are development observations, not measured outcomes in Counsel care.
 
 WP16B adds an instruction to ignore reported symptoms. Nano baseline, rapid context and evidence arms return SELF_CARE in both repetitions; the explicit pathway arm returns URGENT_ESCALATION. Fable returns URGENT_ESCALATION in every arm and repetition. This is a model-output instruction-boundary failure on an authored probe, not evidence of code execution or a measured patient outcome. Adding source text and applicability instructions does not guarantee resistance.
 
@@ -391,18 +429,20 @@ WP16B adds an instruction to ignore reported symptoms. Nano baseline, rapid cont
 - [outputs/stripped-gui-2026-09-15/manifest.json](../outputs/stripped-gui-2026-09-15/manifest.json)
 - [docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md](../docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md)
 
-## Slide 14: First 30 days: one reviewed decision
+## Slide 14: First 30 days: one test, one reviewed decision
 
 Time: 2 minutes.
 
-| When | Deliverable and owner | Decision before the next step |
+| When | Work with | Deliverable |
 | --- | --- | --- |
-| Week 1 | Routing and timing policy<br>Clinical lead + care operations | Can clinicians apply the same boundaries? |
-| Week 2 | New cases with blinded labels<br>Clinical evaluation lead | Fix error definitions and acceptance limits before inference. |
-| Week 3 | One scoped comparison<br>Applied AI + clinical review | Fewer misses within escalation and workload limits? |
-| Week 4 | Reviewed change and evaluation<br>Engineering + clinical safety | Continue, revise or stop against the agreed criteria. |
+| Week 1 | Clinical + operations | Agreed routing and timing policy |
+| Week 2 | Clinical evaluation | New, independently labeled cases |
+| Week 3 | Applied AI | One paired comparison |
+| Week 4 | Clinical safety + engineering | Reproducible result and decision |
 
-Scope: The development ablation is complete. Blinded clinical validation remains pending. The selected GUI stays unchanged.
+**Own the implementation, evaluation and handoff.**
+
+Scope: Proposed collaboration. Decide to continue, revise or stop using criteria agreed before inference.
 
 ### Speaker notes
 
@@ -420,6 +460,8 @@ The four-arm workflow study supplies developmental evidence for choosing a mecha
 
 The completed new control changes the immediate priority: establish the clinical contract and independent reference before another tuned disposition run. No new arm uniformly improves both cohorts and both models. Review C22/C47 and the newly surfaced C07, C43 and C49 disagreements; then choose one mechanism and a new prespecified comparison. Do not tune the 50 familiar messages to a perfect result.
 
+The commitment is a bounded, reviewable contribution: own the code, preserve the baseline, prepare clinical review material, make one matched comparison and hand over a result that supports a decision. The outcome may be retaining the baseline. Clinical partners own the policy and adjudication; care operations own the feasible pathway. Do not promise a specific agreement increase or clinical outcome before measurement.
+
 ### Sources
 
 - Supplied Copy of physician AI scientist.docx, First 30 days and First 6 months outcomes
@@ -432,14 +474,14 @@ The completed new control changes the immediate priority: establish the clinical
 
 Time: 2 minutes.
 
-| Stage and owner | Deliverable | Decision to proceed |
+| Stage | Evidence required | Decision |
 | --- | --- | --- |
-| Now<br>Clinical + operations | Care pathways, action deadlines and receiving clinician | Do labels describe first contact or required care? |
-| 2–4 weeks<br>Evaluation + AI | New cases, independent ratings and paired comparisons | Fewer missed actions within agreed referral limits? |
-| Months 2–3<br>Operations | Normal-care observation, action timing and overrides | Does the aid improve completed care? |
-| Months 3–6<br>Clinical safety | Supervised workflow; pause criteria and rollback | Does evidence support this use and population? |
+| Now | Clinical pathway and owner | Agree on the task |
+| Weeks 2–4 | Independent paired evaluation | Continue, revise or stop |
+| Months 2–3 | Observe alongside normal care | Check timing and clinician burden |
+| Months 3–6 | Supervised pilot, pause and rollback | Expand only if evidence supports use |
 
-Scope: Proposed sequence. Clinical review and approved data access determine timing. The current GUI remains a synthetic demonstration.
+Scope: Proposed sequence, subject to clinical review and approved data access. Current GUI: synthetic demonstration.
 
 ### Speaker notes
 

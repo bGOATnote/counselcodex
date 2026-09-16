@@ -1,5 +1,8 @@
 # Fable disposition GUI
 
+Implementation and evidence re-reviewed 16 September 2026. The dated browser
+verification and original validation results below remain historical records.
+
 The `/stripped` page connects a minimal TypeScript interface to the frozen **Fable 5.1 low-effort three-bucket protocol**. One submitted message produces one disposition and a short rationale through one Mastra workflow step and one native Anthropic Messages API call.
 
 ## Run locally
@@ -13,6 +16,12 @@ npm run demo
 Open <http://localhost:4120/stripped>. Put `ANTHROPIC_API_KEY` in the repository-root `.env`, or supply it in the server environment. The key stays on the server. The launcher uses a fixed port and fails if it is occupied. See [GUI access](GUI_ACCESS.md) for preflight, troubleshooting and saved review artifacts. Earlier browser records used port 4121; they remain historical observations, not the current launch contract.
 
 Choose a synthetic sample, edit its text if desired, and click **Get disposition**. Editing clears the prior result; each submission is independent. Open **Request & response trace** to see the exact request body, final response text, run/provider IDs, usage, estimated cost, and latency. **Download trace JSON** saves the same record with browser receipt time. Traces omit hidden reasoning and signatures; the short rationale is the model's explanation.
+
+For the presentation, show the live submission, edit and trace first, then open
+the [separate offline case viewer](../publication/workflow-study-review/index.html)
+from the local checkout. It compares saved study outputs and references without
+making a model call. The live demonstration has no judge or retrieval step.
+See the [seven-minute walkthrough on slide 8](DEMO_SCRIPT_2026-09-15.md).
 
 ## Frozen protocol
 
@@ -32,10 +41,18 @@ Mastra runs a standalone `stripped-fable-5-1` workflow with one `one-disposition
 
 ## What the scores mean
 
-Current physician-reference agreement is **48/50 under v3**, including C25 as
-urgent and the C32/C34/C38 self-care corrections. C22 and C47 remain false
-negatives. This is a reference revision after outputs were observed, not a new
-run or model improvement. See [the adjudication record](PHYSICIAN_ADJUDICATION_V3_2026-09-15.md).
+**Historical saved-output agreement is 48/50 under v3**, including C25 as urgent
+and the C32/C34/C38 self-care corrections. C22 and C47 are false negatives in
+that saved run. This is a reference revision after outputs were observed, not a
+new run or model improvement. See [the adjudication record](PHYSICIAN_ADJUDICATION_V3_2026-09-15.md).
+
+Fresh baseline repetitions with identical request bodies scored **45/50 and
+46/50** against the same v3 reference. The source-package arm scored 46/50 in
+both repetitions and resolved C47, while retaining other misses. These results
+did not justify changing the selected demonstration. The [completed study](WORKFLOW_AWARE_RESULTS_2026-09-16.md)
+preserves all repetitions, exact disagreements and reference limitations. Its
+retrieval variants remain separate from this GUI.
+
 The original comparison below is preserved as historical v2 evidence.
 
 | Frozen experiment | Physician scorecard A | CSV scorecard B |
@@ -70,7 +87,7 @@ The edited-message trace downloaded successfully and its saved JSON was checked 
 
 All six calls are archived in [the GUI verification directory](../outputs/stripped-gui-2026-09-15/manifest.json). Total estimated cost: **$0.04081**; conservative accounted cost: **$0.05307**; reconciled remaining allocation: **$71.29728**. These are six synthetic UI checks, not a new benchmark.
 
-## Validation
+## Original validation — 2026-09-15
 
 - Passed: `npm run lint`, `npm run typecheck`, `npm test` (851 passed, 48 skipped), `npm run review:test` (178 passed), `npm run review:build`, and `npm run build`.
 - Focused tests exercise request parity, one-call execution through real Mastra with mocked transport, output parsing, trace projection, unknown usage, local origin, strict input, body timeout, and concurrent requests.

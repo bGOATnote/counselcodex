@@ -6,7 +6,7 @@
 2. [Historical physician-adjudication workbook](counsel-disposition-adjudication-v3.xlsx)
 3. [Physician v3 report](../../docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md), [requirements audit](../../docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md), and [evidence/failure review](../../docs/SUBMISSION_RED_TEAM_2026-09-15.md)
 
-Revision 29 contains 45 slides: 15 main slides, including a seven-minute live demo,
+Revision 32 contains 45 slides: 15 main slides, including a seven-minute live demo,
 planned for 35 minutes. Thirty appendix slides support 25 further minutes of discussion.
 [Full narrative and speaker notes](../../docs/INTERVIEW_DECK_2026-09-15.md).
 Current slides and notes contain no financial content or individual recipient names.
@@ -32,6 +32,10 @@ results with a proposal to test the simple baseline on unseen cases and add a
 component only against a documented clinical failure. The proposed diagram is
 not a record that every pictured component ran in V25. Its release language does
 not describe clinical deployment; current gold remains scorecard-only after freeze.
+Slides 5–7 distinguish proposed FP/FN controls, retrospective judge design and
+targeted retrieval research. Slide 8 demonstrates the live router and a separate
+saved-output review. The main narrative treats added complexity as a tested
+hypothesis: the completed experiments did not establish a reliable improvement.
 Slides 14–15 set out the proposed first 30 days and following 2–6 months, with
 owners, deliverables and evidence needed before expanding use.
 

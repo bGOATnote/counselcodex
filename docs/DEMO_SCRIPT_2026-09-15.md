@@ -1,8 +1,11 @@
 # Live disposition demo
 
-Seven minutes inside the 35-minute slide/demo session. The current surface is
+Re-reviewed 16 September 2026. Slide 8 allocates seven minutes inside the
+35-minute main presentation. The current surface is
 **/stripped, Fable 5.1 low effort, three buckets, one provider call per submit**.
 Frozen traces are an explicitly labeled fallback, never a claimed live completion.
+The live workflow has no judge or retrieval step; saved comparative evaluation
+is shown separately.
 
 ## Before the session
 
@@ -12,7 +15,8 @@ Frozen traces are an explicitly labeled fallback, never a claimed live completio
 2. Confirm Fable 5.1, low effort. Expand **Model configuration** and compare the
    prompt hash with the [GUI guide](STRIPPED_FABLE_GUI_2026-09-15.md).
 3. Confirm the sample picker and submit button are enabled. Keep the API key
-   server-side. Open the evaluation appendix and this script.
+   server-side. Open this script and the [offline case viewer](../publication/workflow-study-review/index.html)
+   from the local checkout. Its saved records are separate from live submissions.
 4. Keep the [latest five-call handoff manifest](../outputs/stripped-gui-handoff-2026-09-16/manifest.json)
    and [original six-call verification](../outputs/stripped-gui-2026-09-15/manifest.json)
    available. These are dated integration checks, separate
@@ -20,17 +24,22 @@ Frozen traces are an explicitly labeled fallback, never a claimed live completio
 5. Preserve any configuration, usage-limit, or provider error. Do not repeat
    requests solely to obtain an expected answer.
 
+The expanded trace includes a neutral estimated-cost row. To keep financial figures
+out of the presentation, use Model configuration and the saved comparison viewer
+in the prepared walkthrough. Inspect the complete trace separately.
+
 ## Timed walkthrough
 
 | Time | Action | Suggested words |
 | --- | --- | --- |
 | 0:00–0:40 | Show /stripped and the three-bucket contract. | “This classifies one opening message. Each submit makes one native Fable call through one Mastra step. It does not send a clinician task or claim that care has happened.” |
-| 0:40–1:40 | Select C01. Verify the runny nose, mild sore throat, no fever, and preserved intake. Submit and inspect loading and the actual answer. | “I am sending this message now. The bucket and rationale are generated for this call. The frozen benchmark is a different record.” |
-| 1:40–2:50 | Select C02. Verify chest pressure, left-arm radiation, sweating, and nausea. Submit. | “This exercises the urgent category. It combines same-day and emergency care, so route agreement alone does not establish appropriate transport or timing.” |
-| 2:50–4:00 | Select C06, stable losartan refill. Submit. | “The explicit refill rule creates an async physician-review task category unless clear red flags require escalation.” |
-| 4:00–5:10 | Append the synthetic update below to C06. Show the old result disappearing. Submit. | “The edit starts a new assessment using only the edited message. No prior answer or reference label enters the request.” |
-| 5:10–6:20 | Expand the trace. Inspect one call, model/effort, message-only user content, IDs, usage, timing, and final text. Download JSON. | “This is an execution trace and short explanation. Hidden reasoning and server API-key headers are omitted; submitted message text is retained. Clinical quality of the rationale remains unscored.” |
-| 6:20–7:00 | Return to the scorecard slide. | “These frozen outputs scored 44/49 against the original physician reference and 48/50 after physician corrections and inclusion of C25. C22 and C47 remain undertriage cases. Live examples demonstrate the interface; they do not validate the revised reference.” |
+| 0:40–1:25 | Select C01. Verify the runny nose, mild sore throat, no fever, and preserved intake. Submit and inspect loading and the actual answer. | “I am sending this message now. The bucket and rationale are generated for this call. The frozen benchmark is a different record.” |
+| 1:25–2:15 | Select C02. Verify chest pressure, left-arm radiation, sweating, and nausea. Submit. | “This exercises the urgent category. It combines same-day and emergency care, so route agreement alone does not establish appropriate transport or timing.” |
+| 2:15–3:05 | Select C06, stable losartan refill. Submit. | “The explicit refill rule assigns a physician-review category unless clear red flags require escalation.” |
+| 3:05–4:00 | Append the synthetic update below to C06. Show the old result disappearing. Submit. | “The edit starts a new assessment using only the edited message. No prior answer or reference label enters the request.” |
+| 4:00–5:00 | Expand Model configuration and show the one-call workflow implementation. Keep Request & response trace collapsed during the prepared presentation. | “The prompt and model settings are fixed. One Mastra step sends one message-only user turn. Complete execution records remain available for separate technical inspection.” |
+| 5:00–6:15 | Clearly switch to the separate offline viewer. Select C47, Fable, repetition 1; compare the baseline and source-package outputs. Briefly show C22 remaining self-care. | “These are saved research calls. The source package changes C47 to physician review in both repetitions, but C22 remains missed. No judge or retrieval has been added to the live demo.” |
+| 6:15–7:00 | Return to the evaluation slides. | “Historical outputs scored 44/49 under the original physician reference and 48/50 after its correction. Fresh identical-request baseline runs scored 45/50 and 46/50. The added components did not establish a reliable improvement, so the selected demonstration is unchanged.” |
 
 Exact synthetic update to append to C06:
 
