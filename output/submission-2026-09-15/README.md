@@ -141,7 +141,7 @@ It used a different output contract and is not rescored against v3 here.
 buckets plus a rationale through TypeScript and one Mastra step. Follow the
 [reviewer access guide](../../docs/GUI_ACCESS.md) to launch `npm run demo` and open
 `http://localhost:4120/stripped`.
-Localhost is on the presenter's machine, not a remotely hosted service.
+Localhost refers to the computer running the server; this is not a remotely hosted service.
 
 The [demo script](../../docs/DEMO_SCRIPT_2026-09-15.md) covers routine symptoms,
 urgent symptoms, a refill, an edited message, and trace inspection. Prior
