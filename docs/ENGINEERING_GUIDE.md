@@ -89,7 +89,7 @@ command map, not permission to run other entry points.
 | `npm run batch` | Historical rules evaluation, not the selected hosted model | Overwrites `outputs/predictions.csv` |
 | `npm run evaluate` | Historical rules evaluation, not the selected hosted model | Calls `batch`, then also overwrites `outputs/metrics.json` and `outputs/evaluation_cases.csv` |
 | `npm run ablate` | Historical component evaluation | Overwrites `outputs/component-ablation-v1.json` |
-| `npm run rag:search` | Default hybrid search can call an embedding provider | Opens the historical evidence database; `--lexical` avoids embeddings but does not make the command a current-GUI feature |
+| `npm run rag:search` | Default hybrid search can call an embedding provider | Opens or initializes the historical database, including schema/configuration writes. `--lexical` avoids embedding calls but the current CLI still requires `OPENAI_API_KEY`; neither mode is a read-only onboarding check. |
 | `npm run rag:build` | Source download; `--embed` adds embedding calls | Materializes the historical evidence store |
 | `scripts/stripped-*.mjs` generation entry points | Hosted inference; an extra `--live` flag is not generally required | Write experiment artifacts; not setup or reproduction checks |
 | `scripts/local-nemotron-smoke.mjs` | Local model generation | Writes a new run; “local” does not mean read-only |
