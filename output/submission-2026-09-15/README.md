@@ -6,14 +6,19 @@
 2. [Current physician-adjudication workbook](counsel-disposition-adjudication-v3.xlsx)
 3. [Physician v3 report](../../docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md), [requirements audit](../../docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md), and [evidence/failure review](../../docs/SUBMISSION_RED_TEAM_2026-09-15.md)
 
-Revision 14 contains 28 slides: 15 main slides, including a seven-minute live demo,
+Revision 15 contains 28 slides: 15 main slides, including a seven-minute live demo,
 planned for 35 minutes. Thirteen appendix slides support 25 further minutes of discussion.
 [Full narrative and speaker notes](../../docs/INTERVIEW_DECK_2026-09-15.md).
 Current slides and notes contain no financial content or individual recipient names.
 
 The cover identifies Brandon Dent, MD and the presenter-supplied former UNR role,
-uses the official Counsel logo, and links to the local demonstration. The link
-requires the local server; it is not a hosted application.
+labels the Counsel logo “Prepared for,” and links to the local demonstration
+and the [public reviewer guide](../../docs/GUI_ACCESS.md). The local link requires
+`npm run demo` on the viewer’s computer. The presenter acts in a personal capacity;
+the former affiliation is biographical and no institutional or vendor endorsement
+is claimed. Codex provided development assistance. AI-generated reviews are not
+independent physician judgments. [Project disclosures](../../DISCLOSURES.md) explain
+these boundaries and the unresolved third-party media permissions.
 Slides 2 and 3 show the exact C22 and C47 messages and identify both as false
 negatives for required clinician review. Their harm statements concern possible
 delayed assessment; no observed patient harm is claimed. C22 retains both ankle
@@ -82,8 +87,8 @@ It used a different output contract and is not rescored against v3 here.
 
 `/stripped` accepts one synthetic patient message and returns one of three
 buckets plus a rationale through TypeScript and one Mastra step. Follow the
-[startup instructions](../../README.md#run-the-current-demo) for
-`http://localhost:4120/stripped`; the existing local server uses port 4121.
+[reviewer access guide](../../docs/GUI_ACCESS.md) to launch `npm run demo` and open
+`http://localhost:4120/stripped`.
 Localhost is on the presenter's machine, not a remotely hosted service.
 
 The [demo script](../../docs/DEMO_SCRIPT_2026-09-15.md) covers routine symptoms,
