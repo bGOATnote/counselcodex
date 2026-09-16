@@ -37,13 +37,15 @@ No patient should rely on a demonstration output to make a care decision.
 The project does not claim regulatory clearance, clinical readiness, HIPAA
 compliance, institutional review approval or prospective validation.
 
-The current 48/50 result is agreement with a revised physician reference on a
+The historical saved 48/50 result is agreement with a revised physician reference on a
 known synthetic set. The original result was 44/49. The revision followed review
 of existing outputs; it changed reference labels and included C25, not model
 behavior. C22 and C47 remain false negatives for required clinician review.
 No patient outcome or observed harm was measured. Rationale quality, subgroup
 performance and generalization to unseen cases remain separate questions.
 See the [adjudication record](docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md).
+
+A separate repeated-control study returned 45/50 and 46/50 with the same Fable request bodies, so the historical result did not reproduce. That study also tested prompt variants and a local Nemotron model. Its 50 known cases use the same post-output physician reference; its 48 authored challenges have no independent clinical review. Repeated and paired outputs are not additional independent patients. No research arm replaced the demonstration, and no score establishes clinical readiness. See the [completed results](docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md).
 
 ## Data, images and local operation
 

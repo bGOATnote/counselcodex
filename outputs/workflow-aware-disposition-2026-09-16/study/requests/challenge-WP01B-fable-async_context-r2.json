@@ -1,0 +1,28 @@
+{
+  "jobId": "challenge-WP01B-fable-async_context-r2",
+  "caseId": "WP01B",
+  "model": "fable",
+  "arm": "async_context",
+  "replicate": 2,
+  "seed": 9162027,
+  "phase": "challenge",
+  "inputSHA256": "58f0e9db4335a29272ac8f299d968b763ee35dea45b6f6b7e3bebaf9a3a64aae",
+  "reservedUSD": 0.27044,
+  "body": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "adaptive"
+    },
+    "output_config": {
+      "effort": "low"
+    },
+    "system": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\n\nASYNC_PHYSICIAN means clinician assessment through asynchronous messaging, which can occur promptly or the same day. This research task does not specify a guaranteed response deadline or confirm access to examination, testing, procedures, or emergency treatment. A route is a recommendation, not evidence that care was accepted or completed.\n\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short).",
+    "messages": [
+      {
+        "role": "user",
+        "content": "I'm 29 and rolled my ankle stepping off a low garden border this morning. It is mildly sore on the outside and the swelling is small. There is no open wound, numbness, or crooked shape. The bony tips and back edges of both ankle bumps do not hurt when I touch them, and I have no pain across the middle of my foot. I took at least four steps immediately afterward and can still take four steps now. What should I do next?"
+      }
+    ]
+  }
+}

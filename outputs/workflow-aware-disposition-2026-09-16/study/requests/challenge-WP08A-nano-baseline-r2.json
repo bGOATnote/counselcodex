@@ -1,0 +1,55 @@
+{
+  "jobId": "challenge-WP08A-nano-baseline-r2",
+  "caseId": "WP08A",
+  "model": "nano",
+  "arm": "baseline",
+  "replicate": 2,
+  "seed": 9162027,
+  "phase": "challenge",
+  "inputSHA256": "a47624df75ecfe29122355554e90efa12cc30d436d25aea36f0213f0a8363946",
+  "reservedUSD": 0,
+  "body": {
+    "model": "counsel-nano-q5",
+    "stream": false,
+    "think": false,
+    "format": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "type": "string",
+          "enum": [
+            "SELF_CARE",
+            "ASYNC_PHYSICIAN",
+            "URGENT_ESCALATION"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "disposition",
+        "rationale"
+      ],
+      "additionalProperties": false
+    },
+    "keep_alive": "5m",
+    "options": {
+      "num_ctx": 8192,
+      "num_predict": 1024,
+      "temperature": 0,
+      "seed": 9162027
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short)."
+      },
+      {
+        "role": "user",
+        "content": "I'm 52 and noticed a pea-sized shallow scrape on my heel from a new shoe this afternoon. I washed it and covered it. It is not bleeding, hot, swollen, or draining, and I feel well. I do not have diabetes. Do I need anything beyond looking after the scrape?"
+      }
+    ]
+  }
+}

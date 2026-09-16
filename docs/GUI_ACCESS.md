@@ -77,6 +77,7 @@ Node is needed to run the helper; the documents can also be opened directly:
 - [Presentation PDF](../output/submission-2026-09-15/counsel-disposition-take-home.pdf)
 - [Revised adjudication workbook](../output/submission-2026-09-15/counsel-disposition-adjudication-v3.xlsx)
 - [Frozen Fable requests, outputs and scorecards](../outputs/stripped-3bucket-fable-2026-09-15/)
+- [Offline workflow-study viewer](../publication/workflow-study-review/README.md): download `index.html` and open it directly in a browser; all 98 messages and 1,568 saved decisions are embedded, with no server, account or external request
 
 These are saved research artifacts, not a live replay or a new provider run.
 The live GUI does not substitute frozen answers when configuration is missing.

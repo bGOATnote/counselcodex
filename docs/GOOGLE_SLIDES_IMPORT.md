@@ -27,7 +27,7 @@ Conversion creates a separate copy, so retain the source export and PDF.
 
 The exported package and rendered PDF were inspected locally. **The file has
 not been imported or inspected inside Google Slides.** Conversion can change
-wrapping, table height, notes or hyperlinks. Check all 32 slides against the PDF,
+wrapping, table height, notes or hyperlinks. Check all 45 slides against the PDF,
 especially the cover, C22/C47 slides and roadmap tables. Confirm that the public
 reviewer-guide link works and remember that the local GUI link requires a
 running server on the viewing computer.

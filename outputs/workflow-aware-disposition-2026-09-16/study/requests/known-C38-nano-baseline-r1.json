@@ -1,0 +1,55 @@
+{
+  "jobId": "known-C38-nano-baseline-r1",
+  "caseId": "C38",
+  "model": "nano",
+  "arm": "baseline",
+  "replicate": 1,
+  "seed": 9162026,
+  "phase": "known",
+  "inputSHA256": "14187def66b19e9c60c11d8763664e2845e491d242f6f9350ef58ceb701de6fe",
+  "reservedUSD": 0,
+  "body": {
+    "model": "counsel-nano-q5",
+    "stream": false,
+    "think": false,
+    "format": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "type": "string",
+          "enum": [
+            "SELF_CARE",
+            "ASYNC_PHYSICIAN",
+            "URGENT_ESCALATION"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "disposition",
+        "rationale"
+      ],
+      "additionalProperties": false
+    },
+    "keep_alive": "5m",
+    "options": {
+      "num_ctx": 8192,
+      "num_predict": 1024,
+      "temperature": 0,
+      "seed": 9162026
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short)."
+      },
+      {
+        "role": "user",
+        "content": "22F. Following up on my ankle sprain from last week — it's improving. Just wondering how much ibuprofen I can safely take and for how long."
+      }
+    ]
+  }
+}

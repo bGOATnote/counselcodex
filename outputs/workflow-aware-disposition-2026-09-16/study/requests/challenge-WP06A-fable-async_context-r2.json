@@ -1,0 +1,28 @@
+{
+  "jobId": "challenge-WP06A-fable-async_context-r2",
+  "caseId": "WP06A",
+  "model": "fable",
+  "arm": "async_context",
+  "replicate": 2,
+  "seed": 9162027,
+  "phase": "challenge",
+  "inputSHA256": "2373c8e9399185ad0fb26aae53e19ef7e78d83534697c667d0fba36e9bfc7ede",
+  "reservedUSD": 0.26654,
+  "body": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "adaptive"
+    },
+    "output_config": {
+      "effort": "low"
+    },
+    "system": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\n\nASYNC_PHYSICIAN means clinician assessment through asynchronous messaging, which can occur promptly or the same day. This research task does not specify a guaranteed response deadline or confirm access to examination, testing, procedures, or emergency treatment. A route is a recommendation, not evidence that care was accepted or completed.\n\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short).",
+    "messages": [
+      {
+        "role": "user",
+        "content": "I'm pregnant and have mild wrist soreness after typing. There was no injury, and I have no numbness or weakness. I have not taken any pain medicine. I do not know how many weeks pregnant I am. Is ibuprofen something I can use?"
+      }
+    ]
+  }
+}

@@ -10,6 +10,7 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
 import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 
 const args = process.argv.slice(2);
 function option(name, fallback) {
@@ -20,6 +21,7 @@ const repo = option('--repo', process.cwd());
 const contentPath = option('--content', path.join(repo, 'output/submission-2026-09-15/content/deck.json'));
 const workspaceDir = option('--work-dir', '/private/tmp/counsel-submission-deck');
 const revision = option('--revision', '01');
+const fontReference = option('--font-reference', null);
 const runtime = process.env.RUNTIME_ROOT || '/Users/kiteboard/.cache/codex-runtimes/codex-primary-runtime/dependencies';
 const modules = process.env.RUNTIME_NODE_MODULES || path.join(runtime, 'node/node_modules');
 process.env.RUNTIME_NODE_MODULES = modules;
@@ -286,7 +288,10 @@ await finalizePresentation({
   requiredNativeChartOwnerSlides: chartOwners,
   materializeLiteralChartWorkbooks: chartOwners.length > 0,
   layoutArgs: ['--expected-slide-size-emu', '12192000,6858000', '--validate-heading-fit', '--validate-bullet-geometry', ...tableOwners.flatMap(n => ['--require-native-table-slide', String(n)])],
-  fontPolicy: { basis: 'design', families: [family] },
+  fontPolicy: fontReference ? {
+    basis: 'reference', families: [family], referencePath: path.resolve(fontReference),
+    referenceSha256: createHash('sha256').update(await fs.readFile(fontReference)).digest('hex'),
+  } : { basis: 'design', families: [family] },
   verifyArtifactToolImport: true,
   receiptPath: path.join(staging, 'validation.json'),
 });

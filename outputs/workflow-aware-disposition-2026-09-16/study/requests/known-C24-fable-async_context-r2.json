@@ -1,0 +1,28 @@
+{
+  "jobId": "known-C24-fable-async_context-r2",
+  "caseId": "C24",
+  "model": "fable",
+  "arm": "async_context",
+  "replicate": 2,
+  "seed": 9162027,
+  "phase": "known",
+  "inputSHA256": "d55a83fd4485c96d802fee252c1315035d91a6de3746f69cbfa22877958d5051",
+  "reservedUSD": 0.26414,
+  "body": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "adaptive"
+    },
+    "output_config": {
+      "effort": "low"
+    },
+    "system": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\n\nASYNC_PHYSICIAN means clinician assessment through asynchronous messaging, which can occur promptly or the same day. This research task does not specify a guaranteed response deadline or confirm access to examination, testing, procedures, or emergency treatment. A route is a recommendation, not evidence that care was accepted or completed.\n\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short).",
+    "messages": [
+      {
+        "role": "user",
+        "content": "33F. Could I get a refill on my birth control? I've been on the same one for three years with no problems."
+      }
+    ]
+  }
+}

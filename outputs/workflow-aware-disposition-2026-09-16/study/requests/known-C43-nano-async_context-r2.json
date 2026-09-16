@@ -1,0 +1,55 @@
+{
+  "jobId": "known-C43-nano-async_context-r2",
+  "caseId": "C43",
+  "model": "nano",
+  "arm": "async_context",
+  "replicate": 2,
+  "seed": 9162027,
+  "phase": "known",
+  "inputSHA256": "09068e1f6be344be3040d4eadc60eb24c36f9ae351e44d3b8b4cf5381af1f218",
+  "reservedUSD": 0,
+  "body": {
+    "model": "counsel-nano-q5",
+    "stream": false,
+    "think": false,
+    "format": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "type": "string",
+          "enum": [
+            "SELF_CARE",
+            "ASYNC_PHYSICIAN",
+            "URGENT_ESCALATION"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "disposition",
+        "rationale"
+      ],
+      "additionalProperties": false
+    },
+    "keep_alive": "5m",
+    "options": {
+      "num_ctx": 8192,
+      "num_predict": 1024,
+      "temperature": 0,
+      "seed": 9162027
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\n\nASYNC_PHYSICIAN means clinician assessment through asynchronous messaging, which can occur promptly or the same day. This research task does not specify a guaranteed response deadline or confirm access to examination, testing, procedures, or emergency treatment. A route is a recommendation, not evidence that care was accepted or completed.\n\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short)."
+      },
+      {
+        "role": "user",
+        "content": "34M. I've had a cough for about three weeks now with night sweats and I've lost maybe 10 pounds without trying. I moved here from a country where TB is common."
+      }
+    ]
+  }
+}
