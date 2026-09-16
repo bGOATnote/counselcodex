@@ -1,0 +1,59 @@
+{
+  "schema": "workflow-aware-nano-serving-provenance/v1",
+  "observedAt": "2026-09-16T07:26:49.780812+00:00",
+  "modelAlias": "counsel-nano-q5",
+  "manifestSHA256": "36896b6271148892f83130812cb14116beeb2a518f98a0a17b469250b84901c8",
+  "configSHA256": "d43a9a87e134e35e38b506a5f2fc7d53de61a9c5fc322d97ddf223c1ea06ea3f",
+  "modelFamily": "nemotron_h_moe",
+  "parameterSize": "31.6B",
+  "quantization": "Q5_K_M",
+  "renderer": "nemotron-3-nano",
+  "parser": "nemotron-3-nano",
+  "ollamaVersion": "0.32.1",
+  "legacyTemplateSHA256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+  "legacyTemplateIsEffectiveChatFormat": false,
+  "effectiveChatFormat": "Native nemotron-3-nano renderer selected by the model config and pinned Ollama version.",
+  "verification": {
+    "method": "Read-only inspection of the installed manifest/config and version-pinned upstream source; no inference probe.",
+    "systemContent": "The renderer writes the first system message into the native system role and preserves later system roles. Renderer control strings are excluded by the study request firewall.",
+    "thinkingDisabled": "With think:false and no in-content control overrides, the renderer emits an empty closed thinking block before generation.",
+    "overridePolicy": "Reject literal /think or /no_think control strings in any Nano request message before planning or dispatch.",
+    "unquantizedCheckpointProvenance": "not_verified",
+    "generationCalls": 0
+  },
+  "sources": [
+    {
+      "url": "https://github.com/ollama/ollama/blob/v0.32.1/server/prompt.go#L126-L145",
+      "purpose": "Select the configured native renderer before the legacy template path."
+    },
+    {
+      "url": "https://github.com/ollama/ollama/blob/v0.32.1/model/renderers/nemotron3nano.go",
+      "sha256": "e165992b733b46a38e2d2396788ca371071de8908d97d8e83d540efc6352a804",
+      "purpose": "System-role serialization, thinking-mode selection, and content override behavior."
+    },
+    {
+      "url": "https://github.com/ollama/ollama/blob/v0.32.1/model/renderers/renderer.go",
+      "purpose": "Map the configured nemotron-3-nano renderer name to its implementation."
+    }
+  ],
+  "sampling": {
+    "inheritedParametersSHA256": "11696e2b0d3f9dcfcc97895099eb122b6811c1c1497f9eb9a047d454ceb57fee",
+    "inheritedParameters": {
+      "num_ctx": 8192,
+      "num_predict": 384,
+      "temperature": 0
+    },
+    "explicitStudyOverrides": {
+      "num_ctx": 8192,
+      "num_predict": 1024,
+      "temperature": 0,
+      "seed": "study seed + replicate - 1"
+    },
+    "otherParameters": {
+      "top_k": "implicit runtime default; effective value not independently measured",
+      "top_p": "implicit runtime default; effective value not independently measured",
+      "penalties": "implicit runtime defaults; effective values not independently measured"
+    },
+    "interpretation": "This study compares the declared local serving configuration; it does not evaluate or claim the model publisher recommended sampling configuration."
+  }
+}
