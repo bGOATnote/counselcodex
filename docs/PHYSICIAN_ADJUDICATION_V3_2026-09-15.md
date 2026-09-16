@@ -40,13 +40,13 @@ The patient reports an ankle injury, swelling and bruising, with the ability to 
 
 Fable chooses self-care and describes deformity and numbness as absent although the message does not establish either. Its later conditional advice does not change the selected bucket. The physician retains async review to address the unresolved assessment. Record this as a missed need for clinician action, **not** a confirmed fracture, a documented positive Ottawa rule, or an emergency-transport miss.
 
-**Presentation:** slide 8 shows the input evidence, missing findings, predicted versus accepted bucket, and the defined false-negative endpoint.
+**Presentation:** [C22: incomplete ankle assessment](INTERVIEW_DECK_2026-09-15.md#slide-2-c22-incomplete-ankle-assessment) shows the input evidence, missing findings, predicted versus accepted bucket, and the defined false-negative endpoint.
 
 ### C25: resolve the label at the supplied level of detail
 
 The patient describes unilateral calf pain, warmth and swelling after a recent long flight. The physician now accepts `URGENT_ESCALATION`; Fable already selected that bucket. C25 is therefore included in the new /50 denominator. The amendment supplies no same-day-versus-emergency subdivision. The original null accepted-route record remains intact.
 
-**Presentation:** slide 6 reconciles the denominator and states this limit explicitly.
+**Presentation:** [A reference revision, with the original retained](INTERVIEW_DECK_2026-09-15.md#slide-9-a-reference-revision-with-the-original-retained) reconciles the denominator and states this limit explicitly.
 
 ### C32 and C34: correct reference overtriage
 
@@ -54,7 +54,7 @@ For C32, the physician accepts watchful waiting for short-duration ear pain in a
 
 For C34, the physician explicitly corrects the prior async label for seasonal allergy symptoms to self-care. This accepts Fable's route. It does not validate every assumption or medication suggestion in the rationale; for example, the opening message does not establish the model's description of the patient as otherwise healthy.
 
-**Presentation:** slide 10 identifies both as reference corrections and labels Fable's decisions as true negatives for clinician action.
+**Presentation:** [Reference overtriage: three corrected self-care labels](INTERVIEW_DECK_2026-09-15.md#slide-11-reference-overtriage-three-corrected-self-care-labels) identifies both as reference corrections and labels Fable's decisions as true negatives for clinician action.
 
 ### C38: route agreement and medication precautions can diverge
 
@@ -62,7 +62,7 @@ The improving ankle sprain and OTC ibuprofen question are accepted as self-care.
 
 The correct label remains `SELF_CARE` under the physician's amendment. Preserve the original rationale and record the pregnancy-precaution omission separately. This audit does not certify the remaining dosing, contraindication, interaction, or follow-up advice.
 
-**Presentation:** slide 10 names this omission; slide 11 separates routing and rationale-quality evaluation.
+**Presentation:** [Reference overtriage: three corrected self-care labels](INTERVIEW_DECK_2026-09-15.md#slide-11-reference-overtriage-three-corrected-self-care-labels) names this omission; [Clinical quality assurance uses separate endpoints](INTERVIEW_DECK_2026-09-15.md#slide-12-clinical-quality-assurance-uses-separate-endpoints) separates routing and rationale-quality evaluation.
 
 ### C47: persistent symptoms still require clinician action
 
@@ -70,7 +70,7 @@ The patient reports approximately one month of difficulty falling asleep and day
 
 This is a false negative for clinician action under the adjudicated policy. The message does not independently establish emergency risk or a specific diagnosis. Both frozen Astra settings selected async review.
 
-**Presentation:** slide 9 is dedicated to C47. It shows the route error, unsupported negative history, and the exact Astra disagreement.
+**Presentation:** [C47: persistent sleep difficulty needs review](INTERVIEW_DECK_2026-09-15.md#slide-3-c47-persistent-sleep-difficulty-needs-review) shows the route error, unsupported negative history, and the exact Astra disagreement.
 
 ## Reconciliation of scores
 

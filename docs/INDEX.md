@@ -9,6 +9,7 @@
 5. [GUI access and troubleshooting](GUI_ACCESS.md).
 6. [Latest handoff verification](HANDOFF_REVIEW_2026-09-16.md) and [CI policy](CI_AND_REVIEW.md).
 7. [Project disclosures](../DISCLOSURES.md), [security boundary](../SECURITY.md) and [publication review](PUBLICATION_REVIEW_2026-09-16.md).
+8. [Presentation and repository red-team review](PRESENTATION_REPO_RED_TEAM_2026-09-16.md) and [Google Slides import guide](GOOGLE_SLIDES_IMPORT.md).
 
 ## Current implementation
 

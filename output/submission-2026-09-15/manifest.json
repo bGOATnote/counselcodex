@@ -1,9 +1,9 @@
 {
   "schema": "counsel-submission/v4",
-  "updatedAt": "2026-09-16T04:52:02.641367+00:00",
+  "updatedAt": "2026-09-16T05:30:41.738884+00:00",
   "frozenRuntimeCommit": "1f5e433f13e848aef738019c1d453be31edc214c",
   "baseCommit": "a77d6084364f68627134ed125b2ec409d071f599",
-  "scope": "Public reviewer access, canonical loopback GUI launcher, independent-work and rights disclosures, dependency pull-request resolution, supported Node setup, CI improvements and presentation revision 15. Frozen clinical inputs, prompts, results, physician references and V25 clinical source are unchanged.",
+  "scope": "Presentation and repository red-team corrections; Google Slides-friendly PowerPoint export; offline CI publication integrity checks. Frozen clinical inputs, prompts, results, physician references and V25 clinical source are unchanged.",
   "repository": {
     "url": "https://github.com/bGOATnote/counselcodex",
     "branch": "main",
@@ -31,7 +31,7 @@
     "nativeTables": 18,
     "allPdfPagesVisuallyInspected": true,
     "powerPointApplicationOpened": false,
-    "revision": "15",
+    "revision": "18",
     "speakerNotesMatchSource": true,
     "recipientNameMatches": 0,
     "financialTermMatches": 0,
@@ -132,7 +132,7 @@
       ]
     },
     "clickableLocalDemoInPPTXAndPDF": true,
-    "localDemoURL": "http://localhost:4121/stripped",
+    "localDemoURL": "http://localhost:4120/stripped",
     "localDemoRequiresLocalServer": true,
     "presenterName": "Brandon Dent, MD",
     "presenterSuppliedRole": "Former EM assistant community professor at UNR",
@@ -146,7 +146,48 @@
     "coverLinksVerifiedInPPTXAndPDF": true,
     "independentWorkDisclosureVisible": true,
     "preparedForLogoLabel": true,
-    "other27PagesPixelIdenticalToRevision14": true
+    "visualComparison": {
+      "referenceRevision": "15",
+      "changedSlides": [
+        1,
+        13,
+        14
+      ],
+      "pixelIdenticalOtherPages": 25,
+      "layoutFindings": 0,
+      "layoutWarnings": 0
+    },
+    "visibleScoreQualification": "Known development cases. One physician reassessed labels after viewing outputs.",
+    "googleSlides": {
+      "path": "output/submission-2026-09-15/counsel-disposition-google-slides.pptx",
+      "format": "PowerPoint OOXML import file",
+      "nativeGoogleSlidesCreated": false,
+      "actualGoogleSlidesImportTested": false,
+      "canonicalPptxByteIdentical": true,
+      "profile": {
+        "profile": "editable native content; common font; embedded raster media",
+        "resolvedFontFamilies": [
+          "Arial"
+        ],
+        "encodedThemeTokens": [
+          "+mj-lt",
+          "+mn-lt"
+        ],
+        "nativeTables": 18,
+        "nativeImages": 5,
+        "externalRelationships": "two intended hyperlinks only",
+        "macros": false,
+        "embeddedObjects": false,
+        "smartArt": false,
+        "animations": false,
+        "transitions": false,
+        "canonicalAndImportDeckByteIdentical": true,
+        "layoutFindings": 0,
+        "layoutWarnings": 0
+      },
+      "guide": "docs/GOOGLE_SLIDES_IMPORT.md",
+      "qa": "output/submission-2026-09-15/compatibility-review.json"
+    }
   },
   "currentWorkbook": {
     "path": "output/submission-2026-09-15/counsel-disposition-adjudication-v3.xlsx",
@@ -194,7 +235,7 @@
   "verification": {
     "npm run lint": {
       "status": "passed",
-      "javascriptModules": 90,
+      "javascriptModules": 91,
       "node": "24.19.0"
     },
     "npm run typecheck": {
@@ -243,7 +284,9 @@
         "python/dispo_agent.py",
         "python/evaluate.py"
       ],
-      "checks": "Three import-order and five line-length findings in unchanged legacy Python files."
+      "checks": "Three import-order and five line-length findings in unchanged legacy Python files.",
+      "historicalOnly": true,
+      "currentTypeScriptSubmissionCheck": false
     },
     "protectedSourceAndFrozenResults": {
       "status": "clinical_inputs_and_frozen_results_unchanged",
@@ -258,19 +301,19 @@
       "newProviderCallsForScoring": 0
     },
     "currentChangeScope": {
-      "code": "GUI disclosure text and links, deterministic launcher and supported-runtime checks, dependency pins and CI workflow.",
+      "code": "Offline artifact verifier and deck builders only; no GUI or clinical runtime changes.",
       "currentChecks": [
-        "Supported-runtime npm ci, lint, typecheck, npm test, review:test, both production builds",
-        "7 launcher regressions including IPv4/IPv6 conflict and Node-engine checks",
-        "5 merged dependency PRs with fresh successful Linux CI",
-        "Generated native server loopback and request-policy checks; no provider calls",
-        "5 actual-browser synthetic submissions, one provider call each",
-        "PPTX/PDF hyperlinks, notes, exact-case text and rendered-cover verification",
-        "Original 158 data/output artifact hashes preserved"
+        "Supported-runtime lint, typecheck and npm test",
+        "Immutable baseline, v3 and conditional-timing scoring reproduced offline",
+        "All 28 slides rendered; exact text, notes, links and native objects checked",
+        "Public-history names and secret checks; changed publication files checked separately",
+        "Zero known dependency advisories",
+        "Artifact hashes, canonical URLs, exact case quotes and narrative consistency verified"
       ],
-      "newBrowserProviderCalls": 5,
+      "newBrowserProviderCalls": 0,
       "newProviderCallsForCI": 0,
-      "clinicalBenchmarkRerun": false
+      "clinicalBenchmarkRerun": false,
+      "earlierGuiHandoffRetained": true
     },
     "npm run review:test": {
       "status": "passed",
@@ -296,7 +339,8 @@
     "submissionManifestHashes": {
       "status": "passed",
       "unchangedDataAndOutputArtifacts": 158,
-      "bothWorkbooksUnchanged": true
+      "bothWorkbooksUnchanged": true,
+      "unchangedDataOutputAndWorkbookArtifactsThisReview": 166
     },
     "githubActions": {
       "workflowUrl": "https://github.com/bGOATnote/counselcodex/actions/workflows/ci.yml",
@@ -346,6 +390,31 @@
       "clinicalBenchmark": false,
       "finalSupportedRuntime": "24.19.0",
       "finalNextVersion": "16.3.5"
+    },
+    "node scripts/verify-submission-package.mjs": {
+      "status": "passed",
+      "providerCalls": 0,
+      "checks": [
+        "declared artifact SHA-256 and sizes",
+        "case quotations visible verbatim",
+        "slide counts and session timing",
+        "local source paths",
+        "canonical local/public cover links",
+        "source and published narrative byte identity"
+      ]
+    },
+    "redTeamReview": {
+      "path": "docs/PRESENTATION_REPO_RED_TEAM_2026-09-16.md",
+      "scope": "Current presentation, evidence and reviewer handoff; not a new complete security scan or clinical experiment",
+      "date": "2026-09-16",
+      "testsPassed": 906,
+      "testsSkipped": 48,
+      "testsFailed": 0,
+      "modelCalls": 0,
+      "dependencyAdvisories": 0,
+      "historySecretFindings": 1,
+      "historySecretFindingDisposition": "Deliberate canary in tests/stripped-gui-workflow.test.mjs; not a live credential",
+      "actualGoogleSlidesImportTested": false
     }
   },
   "contentReview": {
@@ -365,8 +434,8 @@
     "historicalEmployeeReferencesMadePublic": false,
     "finalChangedFilesNameMatches": 0,
     "publicHistoryNameScan": {
-      "trackedFiles": 7896,
-      "historicalBlobs": 7424,
+      "trackedFiles": 7903,
+      "historicalBlobs": 7462,
       "officeBlobs": 15,
       "currentMatches": 0,
       "historyMatches": 0,
@@ -379,7 +448,8 @@
   "remainingHandoffSteps": [
     "Presenter rehearses the 35-minute session and live demonstration.",
     "Presenter confirms delivery of the exported package; repository URL was already shared.",
-    "Resolve unverified media permissions, any necessary subject consent and assignment-dataset redistribution terms with the relevant rights holders or qualified counsel."
+    "Resolve unverified media permissions, any necessary subject consent and assignment-dataset redistribution terms with the relevant rights holders or qualified counsel.",
+    "Import the PowerPoint into Google Slides if desired and inspect the converted copy before presenting; conversion has not been tested inside Google Slides."
   ],
   "limitations": [
     "The reference is a single physician unblinded post-output reassessment of known development cases.",
@@ -389,7 +459,8 @@
     "The expanded project exceeded the original timebox.",
     "Timing subtype agreement is 31/40 conditional and 38/49 end-to-end. Four refill-policy conflicts and four emergency-versus-same-day disagreements remain unresolved; current GUI retains its original three-bucket contract.",
     "Public repository and presentation disclosures do not establish legal clearance, media permissions, subject consent or a general open-source license.",
-    "The first four new GUI checks used the prior dependency build; the final smoke used updated dependencies and supported Node 24.19.0. These are integration observations, not new clinical validation."
+    "The first four new GUI checks used the prior dependency build; the final smoke used updated dependencies and supported Node 24.19.0. These are integration observations, not new clinical validation.",
+    "The Google Slides-friendly file is an editable PPTX; no native Google Slides copy was created or inspected."
   ],
   "sourceAttachmentsCopied": false,
   "sourceAttachmentFingerprints": {
@@ -412,8 +483,8 @@
   },
   "artifacts": {
     "README.md": {
-      "sha256": "4527388c46ff57af51c00b46c857dab3607098a35e09bd79447da135f57db255",
-      "bytes": 10118
+      "sha256": "79b4f30a4d95d6e35d2603fe301a0348398e3559e4d3c7df123a7afd7ea3e912",
+      "bytes": 10666
     },
     "SECURITY.md": {
       "sha256": "8ffcfed42df5bfad4003173787d361e811bfbc7ea5ebf54db3a6dcef1b2bdf88",
@@ -460,8 +531,8 @@
       "bytes": 5479
     },
     "docs/DEMO_SCRIPT_2026-09-15.md": {
-      "sha256": "9fce020486b4d504bbde4d71b8c955c2bdb0b1a58cbcc4394b5cc46b9b14eecf",
-      "bytes": 5095
+      "sha256": "913acbb487f174ab4c24dd49b92ef065f612c4652e4ae3abd87c75269b34ea56",
+      "bytes": 5565
     },
     "docs/DISPOSITION_SIMPLIFICATION_2026-09-15.md": {
       "sha256": "64bef7216579c77c6d43b920fb89441a2432ae1b330a6311096dfa919a2c0418",
@@ -480,12 +551,12 @@
       "bytes": 3890
     },
     "docs/INDEX.md": {
-      "sha256": "7f641fb9edde1cc13a08e5feb3a884c6193c5a77ba6f902f9495e4cd88b5681b",
-      "bytes": 2419
+      "sha256": "21e331e4771a1c250d52161e8b991e0c94ff91ef69b017714a7ea164d780bee4",
+      "bytes": 2569
     },
     "docs/INTERVIEW_DECK_2026-09-15.md": {
-      "sha256": "91bfd053eb7690e5ba3584a2aa442aa97a200514480b46b2521a58dbdad10f64",
-      "bytes": 54519
+      "sha256": "7a3d77ce589103d91e00625631ecf3c2fef14fd0df9e6f8c9997a3eecf47c2b1",
+      "bytes": 54440
     },
     "docs/KIMI_K3_B300_INVESTIGATION_2026-09-16.md": {
       "sha256": "173af8be441a2bd521d386542e0693067ce489a34cacc4a49eb3bd6b5e7cb005",
@@ -500,8 +571,8 @@
       "bytes": 8826
     },
     "docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md": {
-      "sha256": "2e6b81ce6f2765a052dd2c4fc135ffcdcf574f1863b1bf18c94ea02336886a9e",
-      "bytes": 11807
+      "sha256": "dc79ea402d4a7f1ef39c61c3a8d6152b09772c5522974524e968de34c49e7ac5",
+      "bytes": 12548
     },
     "docs/PUBLICATION_REVIEW_2026-09-16.md": {
       "sha256": "cbd97f9aa2c0902919773892a49e8211cbefc415a7d6612fec1f844956d94278",
@@ -528,8 +599,8 @@
       "bytes": 18346
     },
     "docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md": {
-      "sha256": "3ef7579df7bd7853677339070c1eae919ee6a198fe081a13489043e82617e90d",
-      "bytes": 19663
+      "sha256": "ff894e30b4174f37f1fee28e4308035c0fbb423d4a95cd4bdf83f5ba877931ad",
+      "bytes": 19817
     },
     "docs/TRACE_AND_ABLATION.md": {
       "sha256": "5d8f3e197228c5221d9b6e237ca410ea685a69b9dcbbd35ee84eca57c8336bee",
@@ -584,8 +655,8 @@
       "bytes": 172742
     },
     "output/submission-2026-09-15/README.md": {
-      "sha256": "72ee167399a9e5d35e324251f78e465a8fddcd28ea9148c504d33e207633e2ac",
-      "bytes": 7865
+      "sha256": "fa6ac0600cdcab1d9ed6f03b3dae20c4948c7357ec6cc5006dcababb5115dfc9",
+      "bytes": 8445
     },
     "output/submission-2026-09-15/content/assets/ankle-external-view.jpg": {
       "sha256": "7fa5771a82cb52bec28ad0a9631bc0afed7a4ae037deb4f1b5b47b73b1bc7732",
@@ -616,8 +687,8 @@
       "bytes": 3706
     },
     "output/submission-2026-09-15/content/deck.json": {
-      "sha256": "96f1a1e430c5ef79f7138c7c184abf5fa3b8ff90337fd6fa527a97f2a438f956",
-      "bytes": 59790
+      "sha256": "c5568937dbd385b9efded2a4737ef8406a3ed7293d69dc7bf42aae2e01c3eed8",
+      "bytes": 59737
     },
     "output/submission-2026-09-15/counsel-disposition-adjudication-v3.xlsx": {
       "sha256": "66652c5af3d8de35385b5e56c392addac2eace8878355bab924a9743525e5072",
@@ -628,12 +699,12 @@
       "bytes": 64988
     },
     "output/submission-2026-09-15/counsel-disposition-take-home.pdf": {
-      "sha256": "64fa1685a389331e9ccdc794432315289362af3fec202d05e2226e1a2ebe6d77",
-      "bytes": 1366349
+      "sha256": "efdc01ab11e001f303f8f68f98703b166eda38ef87d5e4d3a1c2d4e3d1267921",
+      "bytes": 1370002
     },
     "output/submission-2026-09-15/counsel-disposition-take-home.pptx": {
-      "sha256": "d02e7ccb960fce755f441579c6df122c42802799c659a617559b29dbc587500e",
-      "bytes": 2868819
+      "sha256": "ade4983ddf148206167993305e426f5434bbe8c7d0e0d4c4af5a2c240fbeadcb",
+      "bytes": 2868773
     },
     "outputs/physician-adjudication-v3-2026-09-15/all-case-comparison.csv": {
       "sha256": "2568540398859a92da4ddde06b439ca5adecce9be96799995568a4cf0979a0ff",
@@ -1268,12 +1339,12 @@
       "bytes": 15791
     },
     "scripts/build-submission-deck.mjs": {
-      "sha256": "ab29170fea2716a37d78a7196d4ab14e85057611882b034bc431ca38e347f183",
-      "bytes": 20313
+      "sha256": "ce038949349723ae235526a820a223b9ef1b72cf2a46046bd3423fcea873fcdd",
+      "bytes": 21927
     },
     "scripts/build-submission-narrative.mjs": {
-      "sha256": "2310a8e034cb270c0c603728d472092b89bfb897f394c1c88985b8387d0962e6",
-      "bytes": 3566
+      "sha256": "b3462e037c1534ddc52914df96e62d15f9dab6dcbd1ea34dae63971afd12961a",
+      "bytes": 3964
     },
     "scripts/build-submission-workbook.mjs": {
       "sha256": "527255c037a7165d1ac2e2d416c13c9ab9685502d21ce33a8422b90e700022c3",
@@ -1336,8 +1407,8 @@
       "bytes": 8405
     },
     ".github/workflows/ci.yml": {
-      "sha256": "a4be62df9530d4c6bcb0c98cbef15f4b227f1b0380d09ff8c55a1e775728eaf8",
-      "bytes": 1574
+      "sha256": "b926260ccba7cd4db3f6aef6f0da3625b6b977be615c7d2d92891a4e0f951411",
+      "bytes": 1630
     },
     ".nvmrc": {
       "sha256": "8fb7215a78fb2dacb282d6fca135a48bd69892ad6560efa3c5a9c12b0200ac7c",
@@ -1368,12 +1439,12 @@
       "bytes": 751
     },
     "docs/CI_AND_REVIEW.md": {
-      "sha256": "a81b54e3654d2ef53c02563d3e0584a13af3b088f94a0b17b4e88aadd7dcf704",
-      "bytes": 2497
+      "sha256": "f8747a1f31d4521132b6fc74e079267f03f5b30ecec13ca9b5c707cd88e6b0fb",
+      "bytes": 2881
     },
     "docs/GUI_ACCESS.md": {
-      "sha256": "8a139efe67bf7b7728c30483cfa2de04083f3dc99cab3111bc68caaac0b37941",
-      "bytes": 3604
+      "sha256": "a6650a9b525083f43d79838ee8dcfd9b704a96a75fadebf2fdb29c1721bea67e",
+      "bytes": 4336
     },
     "docs/HANDOFF_REVIEW_2026-09-16.md": {
       "sha256": "5a39137be74d225cc82d95aad848d001f8e18d7bc64faf4d24a633bb96a91437",
@@ -1422,6 +1493,26 @@
     "tests/demo-launcher.test.mjs": {
       "sha256": "7719d6b67a4f915b34b82eb5d1a0fc6182ecd166b96c645dcf5b2e83f38e76aa",
       "bytes": 5454
+    },
+    "docs/GOOGLE_SLIDES_IMPORT.md": {
+      "sha256": "a1dd6fdb8d8b196ef3111ed515b5e9d8e6f8f66a90442a913e6d2d11f8eae3df",
+      "bytes": 2063
+    },
+    "docs/PRESENTATION_REPO_RED_TEAM_2026-09-16.md": {
+      "sha256": "d927c0cd6cd5475649d6c70e9e9a8b64c783c53ba1dc78ea5340cfb6c807f7c3",
+      "bytes": 4814
+    },
+    "output/submission-2026-09-15/compatibility-review.json": {
+      "sha256": "77af0f06f97897d358796ecd588d12bba4f03b1eb7110c868d638e3e4dc14469",
+      "bytes": 5470
+    },
+    "output/submission-2026-09-15/counsel-disposition-google-slides.pptx": {
+      "sha256": "ade4983ddf148206167993305e426f5434bbe8c7d0e0d4c4af5a2c240fbeadcb",
+      "bytes": 2868773
+    },
+    "scripts/verify-submission-package.mjs": {
+      "sha256": "c0e24d747d46fbc37d3a4d02e5fbc52fb05f4207304cf78520996cb575f681db",
+      "bytes": 3694
     }
   },
   "conditionalTimingExperiment": {

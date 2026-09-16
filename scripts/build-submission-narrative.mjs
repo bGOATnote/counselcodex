@@ -29,6 +29,7 @@ for (const [i, slide] of spec.slides.entries()) {
   if (slide.type === "prompt") lines.push("```text", ...slide.body, "```", "");
   else if (slide.body) lines.push(...slide.body.map((item) => `- ${item}`), "");
   if (slide.emphasis) lines.push(`**${slide.emphasis}**`, "");
+  if (slide.scoreQualifier) lines.push(slide.scoreQualifier, "");
   if (slide.harm) lines.push(`**${slide.harm}**`, "");
   if (slide.footnote) lines.push(`Scope: ${slide.footnote}`, "");
   lines.push("### Speaker notes", "", slide.notes, "", "### Sources", "");
@@ -39,5 +40,12 @@ for (const [i, slide] of spec.slides.entries()) {
   lines.push("");
 }
 if (spec.slides.slice(0, spec.mainSlides).reduce((total, slide) => total + slide.minutes, 0) !== spec.presentationMinutes) throw new Error("Session timing mismatch");
-writeFileSync(resolve(root, "docs/INTERVIEW_DECK_2026-09-15.md"), lines.join("\n"));
-console.log(`Wrote ${spec.slides.length} slides, ${spec.presentationMinutes} presentation minutes.`);
+const target = resolve(root, "docs/INTERVIEW_DECK_2026-09-15.md");
+const narrative = lines.join("\n");
+if (process.argv.includes("--verify")) {
+  if (readFileSync(target, "utf8") !== narrative) throw new Error("Slide narrative differs from deck.json; regenerate it before publishing.");
+  console.log(`Verified ${spec.slides.length} slides and their speaker notes.`);
+} else {
+  writeFileSync(target, narrative);
+  console.log(`Wrote ${spec.slides.length} slides, ${spec.presentationMinutes} presentation minutes.`);
+}

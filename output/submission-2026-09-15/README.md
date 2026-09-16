@@ -2,14 +2,17 @@
 
 ## Review in this order
 
-1. [Slides in PDF](counsel-disposition-take-home.pdf) or [editable PowerPoint](counsel-disposition-take-home.pptx)
+1. [Slides in PDF](counsel-disposition-take-home.pdf) or [Google Slides-friendly editable PowerPoint](counsel-disposition-google-slides.pptx) ([import guide](../../docs/GOOGLE_SLIDES_IMPORT.md))
 2. [Current physician-adjudication workbook](counsel-disposition-adjudication-v3.xlsx)
 3. [Physician v3 report](../../docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md), [requirements audit](../../docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md), and [evidence/failure review](../../docs/SUBMISSION_RED_TEAM_2026-09-15.md)
 
-Revision 15 contains 28 slides: 15 main slides, including a seven-minute live demo,
+Revision 18 contains 28 slides: 15 main slides, including a seven-minute live demo,
 planned for 35 minutes. Thirteen appendix slides support 25 further minutes of discussion.
 [Full narrative and speaker notes](../../docs/INTERVIEW_DECK_2026-09-15.md).
 Current slides and notes contain no financial content or individual recipient names.
+The standard [PowerPoint](counsel-disposition-take-home.pptx) contains the same
+bytes as the explicitly named Google Slides import copy. Both preserve editable
+text and tables. Conversion inside Google Slides has not been verified.
 
 The cover identifies Brandon Dent, MD and the presenter-supplied former UNR role,
 labels the Counsel logo “Prepared for,” and links to the local demonstration
@@ -93,12 +96,16 @@ Localhost is on the presenter's machine, not a remotely hosted service.
 
 The [demo script](../../docs/DEMO_SCRIPT_2026-09-15.md) covers routine symptoms,
 urgent symptoms, a refill, an edited message, and trace inspection. Prior
-browser verification is [archived](../../outputs/stripped-gui-2026-09-15/manifest.json).
+browser verification is [archived](../../outputs/stripped-gui-2026-09-15/manifest.json);
+the [September 16 handoff checks](../../outputs/stripped-gui-handoff-2026-09-16/manifest.json)
+include the updated dependency stack.
 Saved records are explicitly identified when used as a fallback.
 
 The [repository](https://github.com/bGOATnote/counselcodex) and portable exports
-provide the review materials. Repository access should be checked at handoff;
-this artifact revision does not establish remote visibility or recipient access.
+provide the review materials. Public repository access and artifact downloads
+were verified on September 16. The presenter has shared the repository URL;
+delivery of the complete package and access by each recipient are not established
+by that check.
 The original brief, role document, judge report and private preparation are not
 included. [Image provenance](content/assets/provenance.json) records all four
 user-supplied assets and the official logo, including their hashes. The two photographs have metadata removed
@@ -119,6 +126,7 @@ discloses. A timed human rehearsal and final submission remain outstanding.
 ```bash
 node scripts/submission-evidence-audit.mjs
 node scripts/score-physician-adjudication-v3.mjs
+node scripts/verify-submission-package.mjs
 ```
 
 Run from the repository root. These verify preserved records and scoring with

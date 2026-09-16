@@ -9,6 +9,15 @@ The launcher always uses port 4120 and binds the server to 127.0.0.1.
 
 ## Live GUI
 
+Start from a local checkout of the public repository:
+
+```bash
+git clone https://github.com/bGOATnote/counselcodex.git
+cd counselcodex
+```
+
+If you already have a checkout, use that repository directory instead.
+
 From the repository root, use Node.js 22.18.0 (the `.nvmrc` and CI version),
 or Node.js 24.11+. Node 23 and early Node 24 releases are outside the dependency
 engine range. With nvm installed, run `nvm install && nvm use` first:
@@ -20,6 +29,14 @@ npm run review:build
 
 Set `ANTHROPIC_API_KEY` in the server environment or in a repository-root `.env`
 file. The file is Git-ignored. The stripped demo needs only that provider key.
+The account must also be authorized to call the exact frozen model,
+`claude-fable-5-1`, with the recorded low-effort settings. A general Anthropic
+account does not establish access to this model. The repository does not grant
+model access, and the launcher does not verify entitlement.
+
+If the provider rejects authentication or model access, preserve the error and
+use the saved artifacts below. Do not replace the model and present that output
+as the frozen Fable result; a replacement would be a separate experiment.
 
 ```bash
 npm run demo:check

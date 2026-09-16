@@ -22,7 +22,9 @@ Prepared for
 
 ![Counsel Health logo](../output/submission-2026-09-15/content/assets/counsel-logo.png)
 
-**48/50 with revised physician labels; original result retained at 44/49.**
+**48/50 with revised physician labels. Original result retained at 44/49.**
+
+Known development cases. One physician reassessed labels after viewing outputs.
 
 Scope: Independent take-home project; former affiliation is biographical. No institutional or vendor endorsement.
 
@@ -329,11 +331,11 @@ Time: 2 minutes.
 
 | Failure mode | Current evidence or required work |
 | --- | --- |
-| A stale answer appears under a new message | Verified edit cancellation and message matching |
-| Reference correction appears to improve the model | Retained v2 scores and explicit v3 reconciliation |
-| A correct route includes unsafe advice | C38 illustrates the need for separate rationale review |
-| Urgent routing hides timing or transport | Requires an explicit operational policy |
-| Known cases appear to be independent validation | New blinded cases and reviewers still required |
+| Stale answers after edits | Verified cancellation and message matching |
+| Reference changes inflate gains | Retained v2 scores and explicit v3 reconciliation |
+| Correct route, unsafe advice | C38 requires separate rationale review |
+| Urgent route, unclear timing | Requires a policy for timing and transport |
+| Known cases used as validation | New blinded cases and reviewers still required |
 
 Scope: Software checks and retrospective agreement do not establish clinical readiness.
 
@@ -351,12 +353,12 @@ The evaluation must make it difficult to mistake a successful software check for
 
 Time: 2 minutes.
 
-| When | Artifact and accountable owner | Decision before the next step |
+| When | Deliverable and owner | Decision before the next step |
 | --- | --- | --- |
-| Week 1 | Routing and timing policy<br>Clinical lead + care operations | Can independent clinicians apply the same boundaries? |
-| Week 2 | New cases and blinded physician labels<br>Clinical evaluation lead | Are error definitions and acceptance limits fixed before inference? |
-| Week 3 | Paired test of missing-context handling<br>Applied AI + clinical review | Does it reduce missed action within escalation and workload limits? |
-| Week 4 | One reviewed V0 and a reproducible report<br>Engineering + clinical safety | Continue, revise or stop against the agreed criteria. |
+| Week 1 | Routing and timing policy<br>Clinical lead + care operations | Can clinicians apply the same boundaries? |
+| Week 2 | New cases with blinded labels<br>Clinical evaluation lead | Fix error definitions and acceptance limits before inference. |
+| Week 3 | Paired test of missing information<br>Applied AI + clinical review | Fewer misses within escalation and workload limits? |
+| Week 4 | Reviewed change and evaluation<br>Engineering + clinical safety | Continue, revise or stop against the agreed criteria. |
 
 Scope: Proposed sequence. Week 4 produces a reviewed change and an evidence-based decision on its use.
 

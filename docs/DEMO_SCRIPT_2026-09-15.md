@@ -13,8 +13,9 @@ Frozen traces are an explicitly labeled fallback, never a claimed live completio
    prompt hash with the [GUI guide](STRIPPED_FABLE_GUI_2026-09-15.md).
 3. Confirm the sample picker and submit button are enabled. Keep the API key
    server-side. Open the evaluation appendix and this script.
-4. Keep the [six-call verification manifest](../outputs/stripped-gui-2026-09-15/manifest.json)
-   and fallback records available. These are dated integration checks, separate
+4. Keep the [latest five-call handoff manifest](../outputs/stripped-gui-handoff-2026-09-16/manifest.json)
+   and [original six-call verification](../outputs/stripped-gui-2026-09-15/manifest.json)
+   available. These are dated integration checks, separate
    from both the frozen benchmark and fresh interview calls.
 5. Preserve any configuration, usage-limit, or provider error. Do not repeat
    requests solely to obtain an expected answer.
@@ -28,7 +29,7 @@ Frozen traces are an explicitly labeled fallback, never a claimed live completio
 | 1:40–2:50 | Select C02. Verify chest pressure, left-arm radiation, sweating, and nausea. Submit. | “This exercises the urgent category. It combines same-day and emergency care, so route agreement alone does not establish appropriate transport or timing.” |
 | 2:50–4:00 | Select C06, stable losartan refill. Submit. | “The explicit refill rule creates an async physician-review task category unless clear red flags require escalation.” |
 | 4:00–5:10 | Append the synthetic update below to C06. Show the old result disappearing. Submit. | “The edit starts a new assessment using only the edited message. No prior answer or reference label enters the request.” |
-| 5:10–6:20 | Expand the trace. Inspect one call, model/effort, message-only user content, IDs, usage, timing, and final text. Download JSON. | “This is an execution trace and short explanation. Hidden reasoning and credentials are omitted. Clinical quality of the rationale remains unscored.” |
+| 5:10–6:20 | Expand the trace. Inspect one call, model/effort, message-only user content, IDs, usage, timing, and final text. Download JSON. | “This is an execution trace and short explanation. Hidden reasoning and server API-key headers are omitted; submitted message text is retained. Clinical quality of the rationale remains unscored.” |
 | 6:20–7:00 | Return to the scorecard slide. | “These frozen outputs scored 44/49 against the original physician reference and 48/50 after physician corrections and inclusion of C25. C22 and C47 remain undertriage cases. Live examples demonstrate the interface; they do not validate the revised reference.” |
 
 Exact synthetic update to append to C06:
@@ -54,12 +55,17 @@ Then open the artifact and state its date and run ID.
 | C06 | `4709c058-d859-4013-8966-db500431f078` | ASYNC_PHYSICIAN | 4.601 s / about 4.61 s |
 | C06 plus update | `020bc741-6523-4387-8623-0c12969e408d` | URGENT_ESCALATION | 3.688 s / 3.695 s |
 
-Records live in [the GUI verification directory](../outputs/stripped-gui-2026-09-15/).
+These September 15 records live in [the original GUI verification directory](../outputs/stripped-gui-2026-09-15/).
 An additional in-flight edit check discarded the browser's C01 result while the
 server preserved the call. The final-build C06 check returned ASYNC_PHYSICIAN
 in 3.949 seconds. All six completed with valid JSON and no provider failures.
 The test harness's download-event listener timed out, but the actual saved JSON
 was verified by filesystem readback.
+
+The [September 16 handoff report](HANDOFF_REVIEW_2026-09-16.md) documents five
+additional successful browser submissions. Its final C06 run used the updated
+dependencies and supported Node runtime. Use the dated artifact that matches
+the claim being demonstrated; neither batch is independent clinical validation.
 
 ## Questions to invite
 

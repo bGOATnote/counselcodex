@@ -5,6 +5,8 @@ meet the assignment's build and evaluation requirements. The `/stripped` GUI
 also has recorded live browser verification. The submission identifies the current system and retains earlier V25
 failures as historical evidence.
 Completing a synthetic take-home is a different claim from clinical readiness.
+For subsequent handoff fixes and the current export, see the
+[September 16 presentation and repository review](PRESENTATION_REPO_RED_TEAM_2026-09-16.md).
 
 ## Sources and interpretation
 

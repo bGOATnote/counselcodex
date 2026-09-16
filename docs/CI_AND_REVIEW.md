@@ -16,6 +16,12 @@ runtime lock and verifies that artifact's versions. No live provider credential
 is configured or needed for these checks. A green run is software verification,
 not clinical validation or a new model evaluation.
 
+The offline submission check verifies every declared artifact hash, the exact
+case quotations, slide count and timing, source links, canonical demo address,
+and agreement between deck source and the published speaker notes. This catches
+stale exports and handoff metadata before publication. It does not establish
+clinical correctness or guarantee Google Slides conversion fidelity.
+
 The current demo's protocol tests compare the request bytes against all 50
 frozen requests. Native HTTP tests exercise loopback host/origin enforcement
 before handler dispatch. These checks matter when reviewing framework updates,

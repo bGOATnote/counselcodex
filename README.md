@@ -18,9 +18,11 @@ This address works on the machine running the server; it is not a hosted service
 The public slides and saved results below require no setup or API key.
 
 - [Submission package](output/submission-2026-09-15/README.md): editable slides, PDF, and evaluation workbook
+- [Google Slides-friendly PowerPoint](output/submission-2026-09-15/counsel-disposition-google-slides.pptx) and [import instructions](docs/GOOGLE_SLIDES_IMPORT.md)
 - [Slide narrative and speaker notes](docs/INTERVIEW_DECK_2026-09-15.md): case-led presentation and seven-minute live demo
 - [Live demo script](docs/DEMO_SCRIPT_2026-09-15.md)
 - [Handoff verification and merged dependency reviews](docs/HANDOFF_REVIEW_2026-09-16.md)
+- [Presentation and repository red-team review](docs/PRESENTATION_REPO_RED_TEAM_2026-09-16.md)
 - [Physician adjudication v3](docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md): case corrections, current scores, and exact Astra/Fable differences
 - [Original evaluation appendix](docs/EVAL_APPENDIX_2026-09-15.md)
 - [Requirements audit](docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md) and [red-team review](docs/SUBMISSION_RED_TEAM_2026-09-15.md)
@@ -105,6 +107,9 @@ restarts. Six documented browser calls cost $0.04081 estimated and $0.05307
 conservatively accounted. See the [GUI guide](docs/STRIPPED_FABLE_GUI_2026-09-15.md)
 for setup, accounting, and run IDs. This is an independent research demo,
 not Counsel's deployed product or patient care.
+The [September 16 handoff checks](outputs/stripped-gui-handoff-2026-09-16/manifest.json)
+record five further browser submissions, including a final check on the updated
+dependency stack. These are integration checks, not a new clinical benchmark.
 
 ## Frozen experiments
 
@@ -147,6 +152,7 @@ npm run review:test
 npm run build
 node scripts/submission-evidence-audit.mjs
 node scripts/score-physician-adjudication-v3.mjs
+node scripts/verify-submission-package.mjs
 ```
 
 The generators under `scripts/stripped-*` make paid calls when executed.

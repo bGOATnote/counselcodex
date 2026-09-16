@@ -137,8 +137,9 @@ for (const [index, data] of slides.entries()) {
       text(slide, data.reviewerLink.label, 84, 543, 225, 27, 20, { color: colors.teal, bold: true });
       text(slide, data.reviewerLink.url, 314, 544, 886, 27, 20, { color: colors.teal });
     }
-    if (data.emphasis) text(slide, data.emphasis, 84, 592, 1080, 43, 25, { color: colors.teal, bold: true });
-    if (data.footnote || data.footer) text(slide, data.footnote || data.footer, 84, 650, 1070, 48, 18, { color: colors.muted });
+    if (data.emphasis) text(slide, data.emphasis, 84, 592, 1080, 34, 25, { color: colors.teal, bold: true });
+    if (data.scoreQualifier) text(slide, data.scoreQualifier, 84, 629, 1080, 28, 20, { color: colors.text });
+    if (data.footnote || data.footer) text(slide, data.footnote || data.footer, 84, data.scoreQualifier ? 669 : 650, 1070, data.scoreQualifier ? 31 : 48, data.scoreQualifier ? 16 : 18, { color: colors.muted });
   } else {
     const titleSize = title.length > 65 ? 43 : 47;
     const titleHeight = lineCount(title, 1120, titleSize, true) * titleSize * 1.14 + 8;
@@ -234,15 +235,30 @@ for (const [index, data] of slides.entries()) {
 const candidate = path.join(staging, 'candidate.pptx');
 await (await PresentationFile.exportPptx(presentation)).save(candidate);
 const links = slides.flatMap((slide, index) => [slide.demoLink, slide.reviewerLink].filter(Boolean).map((link, linkIndex) => ({ slide: index + 1, url: link.url, relationshipId: `rIdExternalLink${linkIndex + 1}` })));
-if (links.length) {
-  // Artifact Tool authors the deck; add the requested native OOXML hyperlinks
-  // before the structural validator and final export inspect the package.
+{
+  // Artifact Tool authors the deck. Normalize inherited font defaults as well
+  // as visible text, so later edits retain the same common font after import.
+  // Add native OOXML hyperlinks before structural validation and final export.
   const linked = spawnSync(runtimePython, ['-c', String.raw`
 import json,sys,zipfile,xml.etree.ElementTree as ET
-file,links=sys.argv[1],json.loads(sys.argv[2])
+file,links,family,title=sys.argv[1],json.loads(sys.argv[2]),sys.argv[3],sys.argv[4]
 ns={'a':'http://schemas.openxmlformats.org/drawingml/2006/main','r':'http://schemas.openxmlformats.org/officeDocument/2006/relationships'}
 ET.register_namespace('a',ns['a']);ET.register_namespace('r',ns['r']);ET.register_namespace('p','http://schemas.openxmlformats.org/presentationml/2006/main')
 with zipfile.ZipFile(file) as z: entries={i.filename:(i,z.read(i.filename)) for i in z.infolist()}
+for name,(info,data) in list(entries.items()):
+ if name.startswith('ppt/') and '/theme/' in name and name.endswith('.xml'):
+  root=ET.fromstring(data)
+  for font in root.findall('.//a:fontScheme',ns):
+   font.set('name','Arial')
+   for element in font.iter():
+    if 'typeface' in element.attrib: element.set('typeface',family)
+  entries[name]=(info,ET.tostring(root,encoding='utf-8',xml_declaration=True))
+core='docProps/core.xml';root=ET.fromstring(entries[core][1])
+for tag,value in [('http://purl.org/dc/elements/1.1/}creator','Brandon Dent, MD'),('http://schemas.openxmlformats.org/package/2006/metadata/core-properties}lastModifiedBy','Brandon Dent, MD'),('http://purl.org/dc/elements/1.1/}title',title)]:
+ element=root.find('{'+tag)
+ if element is None: element=ET.SubElement(root,'{'+tag)
+ element.text=value
+entries[core]=(entries[core][0],ET.tostring(root,encoding='utf-8',xml_declaration=True))
 for link in links:
  name=f"ppt/slides/slide{link['slide']}.xml"; rel=f"ppt/slides/_rels/slide{link['slide']}.xml.rels"
  root=ET.fromstring(entries[name][1]); runs=[r for r in root.findall('.//a:r',ns) if r.find('a:t',ns) is not None and r.find('a:t',ns).text==link['url']]
@@ -256,8 +272,8 @@ for link in links:
  entries[name]=(entries[name][0],ET.tostring(root,encoding='utf-8',xml_declaration=True));entries[rel]=(entries[rel][0],ET.tostring(relationships,encoding='utf-8',xml_declaration=True))
 with zipfile.ZipFile(file,'w') as z:
  for info,data in entries.values():z.writestr(info,data)
-`, candidate, JSON.stringify(links)], { encoding: 'utf8', timeout: 30000 });
-  if (linked.status !== 0) throw new Error(`Native hyperlink creation failed: ${linked.stderr || linked.stdout}`);
+`, candidate, JSON.stringify(links), family, spec.title || slides[0].title], { encoding: 'utf8', timeout: 30000 });
+  if (linked.status !== 0) throw new Error(`Portable package preparation failed: ${linked.stderr || linked.stdout}`);
 }
 const finalPath = path.join(output, 'counsel-disposition-take-home.pptx');
 await finalizePresentation({
@@ -274,6 +290,10 @@ await finalizePresentation({
   verifyArtifactToolImport: true,
   receiptPath: path.join(staging, 'validation.json'),
 });
+// The canonical deck already uses the portable profile. Keep a clearly named,
+// identical import file rather than maintain two potentially divergent decks.
+const googleSlidesPath = path.join(output, 'counsel-disposition-google-slides.pptx');
+await fs.copyFile(finalPath, googleSlidesPath, fs.constants.COPYFILE_EXCL);
 await fs.writeFile(path.join(staging, 'slide-index.json'), JSON.stringify(layoutMetadata, null, 2));
 const previews = path.join(staging, 'previews');
 await fs.mkdir(previews, { recursive: true });
@@ -290,4 +310,4 @@ const converted = spawnSync(soffice, [`-env:UserInstallation=${pathToFileURL(pro
 if (converted.status !== 0) throw new Error(`PDF conversion failed: ${converted.stderr || converted.stdout}`);
 const pdfPath = finalPath.replace(/\.pptx$/, '.pdf');
 await fs.access(pdfPath);
-console.log(JSON.stringify({ finalPath, pdfPath, previews, receipt: path.join(staging, 'validation.json'), slides: slides.length, tableOwners, chartOwners }, null, 2));
+console.log(JSON.stringify({ finalPath, googleSlidesPath, pdfPath, previews, receipt: path.join(staging, 'validation.json'), slides: slides.length, tableOwners, chartOwners, googleSlidesImportTested: false }, null, 2));
