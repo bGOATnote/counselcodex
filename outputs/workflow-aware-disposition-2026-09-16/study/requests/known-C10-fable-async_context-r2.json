@@ -1,0 +1,28 @@
+{
+  "jobId": "known-C10-fable-async_context-r2",
+  "caseId": "C10",
+  "model": "fable",
+  "arm": "async_context",
+  "replicate": 2,
+  "seed": 9162027,
+  "phase": "known",
+  "inputSHA256": "0c8fd0a89a9a929960050e132ef1aa7383aab56efa5ba0f4cbfc0bab379d80a7",
+  "reservedUSD": 0.26502,
+  "body": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "adaptive"
+    },
+    "output_config": {
+      "effort": "low"
+    },
+    "system": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\n\nASYNC_PHYSICIAN means clinician assessment through asynchronous messaging, which can occur promptly or the same day. This research task does not specify a guaranteed response deadline or confirm access to examination, testing, procedures, or emergency treatment. A route is a recommendation, not evidence that care was accepted or completed.\n\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short).",
+    "messages": [
+      {
+        "role": "user",
+        "content": "50M. For a few weeks I've had pain in my upper right belly that comes and goes, usually after a fatty meal. No fever, no yellowing of my skin or eyes."
+      }
+    ]
+  }
+}

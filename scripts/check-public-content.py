@@ -50,6 +50,10 @@ class CheckError(Exception):
     """An error code safe to print without exposing source content."""
 
 
+class JsonObjectPairs(list):
+    """Retain every source member, including values shadowed by duplicate keys."""
+
+
 class Guard:
     def __init__(self, args: argparse.Namespace):
         self.args = args
@@ -131,7 +135,7 @@ class Guard:
 
     def json_text(self, text: str, path: str, lines: bool = False) -> None:
         try:
-            objects = (json.loads(line) for line in text.splitlines() if line.strip()) if lines else [json.loads(text)]
+            objects = (json.loads(line, object_pairs_hook=JsonObjectPairs) for line in text.splitlines() if line.strip()) if lines else [json.loads(text, object_pairs_hook=JsonObjectPairs)]
             for obj in objects:
                 pending = [(obj, 0)]
                 while pending:
@@ -142,11 +146,13 @@ class Guard:
                         self.scan_text(value, path)
                         if value.lstrip().startswith(("{", "[", '"')):
                             try:
-                                pending.append((json.loads(value), depth + 1))
-                            except (ValueError, RecursionError):
+                                pending.append((json.loads(value, object_pairs_hook=JsonObjectPairs), depth + 1))
+                            except RecursionError:
+                                raise CheckError("json_nesting_limit_exceeded") from None
+                            except ValueError:
                                 pass  # Ordinary prose is not required to be JSON.
-                    elif isinstance(value, dict):
-                        for key, child in value.items():
+                    elif isinstance(value, JsonObjectPairs):
+                        for key, child in value:
                             self.scan_text(key, path)
                             pending.append((child, depth + 1))
                     elif isinstance(value, list):
@@ -209,6 +215,24 @@ class Guard:
                     if not self.safe_member_path(member.filename) or member.flag_bits & 1 or mode_type not in {0, stat.S_IFREG, stat.S_IFDIR}:
                         raise CheckError("unsafe_or_encrypted_archive_member")
                     if member.is_dir():
+                        if member.file_size:
+                            raise CheckError("invalid_zip_directory_size")
+                        begin = offset + 30 + name_length + extra_length
+                        encoded = data[begin:begin + member.compress_size]
+                        if len(encoded) != member.compress_size:
+                            raise CheckError("invalid_zip_directory_size")
+                        if member.compress_type == zipfile.ZIP_STORED:
+                            if encoded:
+                                raise CheckError("invalid_zip_directory_size")
+                        elif member.compress_type == zipfile.ZIP_DEFLATED:
+                            try:
+                                decoder = zlib.decompressobj(-15)
+                                if decoder.decompress(encoded, 1) or not decoder.eof or decoder.unconsumed_tail or decoder.unused_data:
+                                    raise CheckError("invalid_zip_directory_size")
+                            except zlib.error:
+                                raise CheckError("invalid_zip_directory_size") from None
+                        else:
+                            raise CheckError("unsupported_zip_directory_compression")
                         continue
                     expanded += member.file_size
                     if member.file_size > self.args.max_member_bytes or expanded > self.args.max_archive_bytes:
@@ -364,9 +388,82 @@ class Guard:
         result = self.member_content(expanded, inner_path)
         return {"kind": "gzip", "expandedBytes": len(expanded), "payload": result, "metadataScanned": True}
 
+    def tar_original_metadata(self, data: bytes, path: str) -> int:
+        # tarfile applies PAX/GNU overrides before yielding a member. Inspect
+        # original physical headers and extension records before that happens.
+        offset, headers = 0, 0
+        extensions = {tarfile.XHDTYPE, tarfile.XGLTYPE, tarfile.GNUTYPE_LONGNAME, tarfile.GNUTYPE_LONGLINK}
+        while offset + 512 <= len(data):
+            block = data[offset:offset + 512]
+            if not any(block):
+                if any(data[offset:]):
+                    raise CheckError("trailing_tar_data")
+                return headers
+            headers += 1
+            if headers > self.args.max_archive_entries:
+                raise CheckError("archive_entry_limit_exceeded")
+            where = path + "!<header-" + str(headers) + ">"
+            header = tarfile.TarInfo.frombuf(block, "utf-8", "strict")
+            if header.type == tarfile.GNUTYPE_SPARSE or header.issparse():
+                raise CheckError("archive_links_devices_or_sparse_not_supported")
+            # Do not silently discard nonzero text after a field's terminator.
+            fields = [(0, 100), (157, 257), (265, 297), (297, 329)]
+            if block[257:265] == tarfile.POSIX_MAGIC:
+                fields.append((345, 500))
+            for start, end in fields:
+                field = block[start:end]
+                if b"\0" in field and any(field.split(b"\0", 1)[1]):
+                    raise CheckError("nonzero_tar_text_field_padding")
+            for value in (header.name, header.linkname, header.uname, header.gname):
+                self.scan_text(value, where)
+            if not self.safe_member_path(header.name):
+                raise CheckError("unsafe_archive_member_path")
+            if self.forbidden_path(header.name):
+                self.finding(where, "forbidden_publication_path")
+            if header.size < 0 or header.size > self.args.max_member_bytes:
+                raise CheckError("archive_expansion_limit_exceeded")
+            begin, end = offset + 512, offset + 512 + header.size
+            next_offset = (end + 511) // 512 * 512
+            if next_offset > len(data):
+                raise CheckError("truncated_tar_member")
+            if any(data[end:next_offset]):
+                raise CheckError("nonzero_tar_member_padding")
+            if header.type in extensions:
+                payload = data[begin:end]
+                if header.type in {tarfile.GNUTYPE_LONGNAME, tarfile.GNUTYPE_LONGLINK}:
+                    self.metadata_text(payload.rstrip(b"\0"), where)
+                else:
+                    cursor, records = 0, 0
+                    while cursor < len(payload):
+                        records += 1
+                        space = payload.find(b" ", cursor, cursor + 21)
+                        if records > self.args.max_archive_entries or space < 0 or not payload[cursor:space].isdigit():
+                            raise CheckError("invalid_tar_pax_record")
+                        length = int(payload[cursor:space])
+                        stop = cursor + length
+                        if stop > len(payload) or stop <= space + 2 or payload[stop - 1:stop] != b"\n":
+                            raise CheckError("invalid_tar_pax_record")
+                        record = payload[space + 1:stop - 1]
+                        if b"=" not in record:
+                            raise CheckError("invalid_tar_pax_record")
+                        key, value = record.split(b"=", 1)
+                        if not key:
+                            raise CheckError("invalid_tar_pax_record")
+                        self.metadata_text(key, where)
+                        self.metadata_text(value, where)
+                        # Size overrides and sparse maps change physical member
+                        # boundaries. They are unnecessary within these limits;
+                        # fail rather than let two parsers inspect different bytes.
+                        if key == b"size" or key.startswith(b"GNU.sparse."):
+                            raise CheckError("unsupported_tar_pax_layout_override")
+                        cursor = stop
+            offset = next_offset
+        raise CheckError("missing_tar_end_marker" if headers else "invalid_tar")
+
     def tar_content(self, data: bytes, path: str) -> dict:
         entries, files, expanded, names, image_files, failed_files, metadata_files = 0, 0, 0, set(), 0, 0, 0
         try:
+            original_headers = self.tar_original_metadata(data, path)
             with tarfile.open(fileobj=io.BytesIO(data), mode="r:") as archive:
                 for member in archive:
                     entries += 1
@@ -417,7 +514,7 @@ class Guard:
                     raise CheckError("trailing_tar_data")
         except (tarfile.TarError, OSError, ValueError, RecursionError):
             raise CheckError("invalid_tar") from None
-        return {"kind": "tar_gzip", "entriesScanned": entries, "filesInspected": files, "filesScanned": files - image_files - failed_files, "imageFilesNotContentScanned": image_files, "metadataFilesInspected": metadata_files, "unsupportedMembers": failed_files, "regularMemberInspectionComplete": True, "expandedBytes": len(data), "memberBytes": expanded, "metadataScanned": True}
+        return {"kind": "tar_gzip", "entriesScanned": entries, "originalHeadersInspected": original_headers, "originalHeaderMetadataScanned": True, "filesInspected": files, "filesScanned": files - image_files - failed_files, "imageFilesNotContentScanned": image_files, "metadataFilesInspected": metadata_files, "unsupportedMembers": failed_files, "regularMemberInspectionComplete": True, "expandedBytes": len(data), "memberBytes": expanded, "metadataScanned": True}
 
     def appledouble(self, data: bytes, path: str) -> dict:
         # Narrow RFC 1740 v2 + Apple's copyfile ATTR layout. No unpacking,
@@ -525,7 +622,9 @@ class Guard:
         if text.lstrip().startswith(("{", "[")):
             try:
                 json.loads(text)
-            except (ValueError, RecursionError):
+            except RecursionError:
+                raise CheckError("json_nesting_limit_exceeded") from None
+            except ValueError:
                 pass
             else:
                 self.json_text(text, path)
@@ -567,7 +666,8 @@ class Guard:
                 return self.compressed(data, path)
         if suffix == ".pdf" or data.startswith(b"%PDF-"):
             return self.pdf(data, path)
-        return self.member_content(data, path)
+        with self.archive_timeout():
+            return self.member_content(data, path)
 
     def git(self, *args: str) -> bytes:
         try:

@@ -39,6 +39,17 @@ Scoring creates its derived JSON artifacts once. Running it again verifies that 
 
 The top-level study registration supplements, rather than replaces, the original pre-generation reference and request freezes. Consult their recorded timestamps when auditing the sequence.
 
+## Offline inspection aids
+
+```bash
+npm run research:review:verify
+npm run research:retrieval:verify
+```
+
+The [single-file case viewer](../publication/workflow-study-review/README.md) compares all saved model/arm/repetition results with their own contemporary controls. Download its HTML and open it without a server or network access. Its verifier recomputes the completed scorecard before checking exact publication bytes.
+
+The separate [candidate-discovery audit](RETRIEVAL_CANDIDATE_AUDIT_2026-09-16.md) reuses frozen embeddings and cards, reads no clinical targets, and makes no inference calls. Its verifier refuses absent or changed outputs. The 686 relevance/applicability pairs remain unreviewed; broader candidate discovery is not a clinical improvement.
+
 ## Generation is an explicit separate action
 
 The CLI separates `plan`, `preflight`, `generate`, `unload`, `freeze` and `status`. Planning and status do not dispatch disposition calls. Provider keys are read only for the relevant provider operation and never serialized in requests or traces.
@@ -55,7 +66,7 @@ workflow-aware-study.ts plan --messages <message-only-json> \
 
 The hosted configuration uses the observed `claude-fable-5-1` alias with the original low-effort settings. That alias may not be available to another account. The local configuration uses an already installed Nemotron 3 Nano Q5 model with a pinned artifact digest, Ollama version and native renderer. The sanitized [provenance file](../data/research/workflow-aware-v1/nano-serving-provenance.json) records what was verified and what was not. The research does not claim a verified upstream checkpoint revision or equivalent inference settings across the two models.
 
-Nano workers share a local execution lock. Unload the model only after its worker completes, record the lifecycle receipt, and freeze the study only after every planned job has settled. Source inspection verified native system-message rendering; literal `/think` and `/no_think` controls are rejected before planning because that renderer treats them as mode overrides.
+Nano workers using the same budget ledger share a local execution lock. Separate ledgers do not provide machine-wide mutual exclusion; an operator must prevent independent studies from using the same local server concurrently. Unload the model only after its worker completes, record the lifecycle receipt, and freeze the study only after every planned job has settled. Source inspection verified native system-message rendering; literal `/think` and `/no_think` controls are rejected before planning because that renderer treats them as mode overrides.
 
 ## Focused engineering checks
 

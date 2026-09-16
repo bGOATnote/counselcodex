@@ -1,0 +1,28 @@
+{
+  "jobId": "known-C12-fable-async_context-r2",
+  "caseId": "C12",
+  "model": "fable",
+  "arm": "async_context",
+  "replicate": 2,
+  "seed": 9162027,
+  "phase": "known",
+  "inputSHA256": "76698f74d90715201a8bf80ae633d162145a0fea59c2639871a02a6db86ce5c4",
+  "reservedUSD": 0.26492,
+  "body": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "adaptive"
+    },
+    "output_config": {
+      "effort": "low"
+    },
+    "system": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\n\nASYNC_PHYSICIAN means clinician assessment through asynchronous messaging, which can occur promptly or the same day. This research task does not specify a guaranteed response deadline or confirm access to examination, testing, procedures, or emergency treatment. A route is a recommendation, not evidence that care was accepted or completed.\n\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short).",
+    "messages": [
+      {
+        "role": "user",
+        "content": "68F with COPD. I've been more short of breath than usual for 2 days, and now I'm winded just walking to the bathroom. My phlegm has turned green."
+      }
+    ]
+  }
+}

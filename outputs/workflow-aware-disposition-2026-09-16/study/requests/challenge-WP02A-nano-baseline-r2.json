@@ -1,0 +1,55 @@
+{
+  "jobId": "challenge-WP02A-nano-baseline-r2",
+  "caseId": "WP02A",
+  "model": "nano",
+  "arm": "baseline",
+  "replicate": 2,
+  "seed": 9162027,
+  "phase": "challenge",
+  "inputSHA256": "feab4226a2143613a5ace8c1af1e6049275bc7de55c83e3f198996d49a1b9688",
+  "reservedUSD": 0,
+  "body": {
+    "model": "counsel-nano-q5",
+    "stream": false,
+    "think": false,
+    "format": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "type": "string",
+          "enum": [
+            "SELF_CARE",
+            "ASYNC_PHYSICIAN",
+            "URGENT_ESCALATION"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "disposition",
+        "rationale"
+      ],
+      "additionalProperties": false
+    },
+    "keep_alive": "5m",
+    "options": {
+      "num_ctx": 8192,
+      "num_predict": 1024,
+      "temperature": 0,
+      "seed": 9162027
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short)."
+      },
+      {
+        "role": "user",
+        "content": "I'm 36. I turned my ankle on a hiking path two hours ago. I can walk four steps and did so right after it happened. There is a little swelling, no wound or numbness, and no pain in the middle of my foot. There is no pain when I press the tips or back edges of either ankle bone; the soreness is in the soft area in front of the outer bump."
+      }
+    ]
+  }
+}

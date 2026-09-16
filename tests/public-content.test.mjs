@@ -226,7 +226,8 @@ test("tar gzip inspects file contents, member names and PAX metadata without dis
       { name: 'meta.txt', text: 'safe', pax: { comment: 'Fixture Orchard' } },
     ] });
     const r = f.check(); assert.equal(r.status, 1); assert.equal(r.report.errors.length, 0);
-    assert.equal(r.report.files[0].extraction.filesScanned, 3); assert.equal(r.report.findings.length, 3);
+    assert.equal(r.report.files[0].extraction.filesScanned, 3); assert.equal(r.report.findings.length, 5);
+    assert.equal(r.report.files[0].extraction.originalHeaderMetadataScanned, true);
     assert(!r.text.includes(PHRASE));
   } finally { f.cleanup(); }
 });
@@ -399,4 +400,109 @@ for operation in ('tar','appledouble'):
 print('both deadlines propagated')`;
   const r = run("python3", ["-c", code, SCRIPT, appleDouble([['com.example.comment','safe']]).toString('base64')], { timeout: 5000 });
   assert.equal(r.status, 0, r.stderr); assert.equal(r.stdout.trim(), "both deadlines propagated"); assert.equal(r.stderr, "");
+});
+
+test("decoded JSON checks every duplicate member, including nested strings and JSONL", () => {
+  const f = fixture(); try {
+    const duplicate = '{"name":"Fixture \\u004frchard","name":"safe"}';
+    f.put("duplicate.json", duplicate);
+    f.put("nested.json", JSON.stringify({ responseText: duplicate }));
+    f.put("records.jsonl", '{"safe":true}\n' + duplicate + '\n');
+    f.add("duplicate.json", "nested.json", "records.jsonl");
+    const r = f.check();
+    assert.equal(r.status, 1); assert.equal(r.report.findings.length, 3); assert.equal(r.report.errors.length, 0);
+    assert(!r.text.includes(PHRASE)); assert(!r.text.includes(HASH));
+    f.put("duplicate.json", '{"name":"safe","name":"also safe"}'); f.add("duplicate.json");
+    const safe = f.check(); assert.equal(safe.report.findings.length, 2);
+    assert.equal(safe.report.files.find(x => x.path === 'duplicate.json').coverage, 'scanned');
+  } finally { f.cleanup(); }
+});
+
+test("Office refuses directory payloads but permits empty directory entries", () => {
+  const f = fixture(); try {
+    f.office('directory.docx', { 'word/': PHRASE }); f.add('directory.docx');
+    const r = f.check(); assert.equal(r.status, 2); assert(codes(r).includes('invalid_zip_directory_size'));
+    assert.equal(r.report.files[0].coverage, 'failed'); assert(!r.text.includes(PHRASE));
+    const forged = run('python3', ['-c', `import struct,sys,zipfile
+p=sys.argv[1]
+with zipfile.ZipFile(p) as z: offset=z.getinfo('word/').header_offset
+b=bytearray(open(p,'rb').read()); central=b.find(b'PK\\x01\\x02',offset)
+struct.pack_into('<I',b,offset+14,0); struct.pack_into('<I',b,offset+22,0)
+while central>=0:
+ n,e,c=struct.unpack_from('<HHH',b,central+28)
+ if b[central+46:central+46+n]==b'word/':
+  struct.pack_into('<I',b,central+16,0); struct.pack_into('<I',b,central+24,0); break
+ central=b.find(b'PK\\x01\\x02',central+46+n+e+c)
+else: raise AssertionError('missing directory')
+open(p,'wb').write(b)`, join(f.repo, 'directory.docx')]);
+    assert.equal(forged.status, 0, forged.stderr); f.add('directory.docx');
+    const hidden = f.check(); assert.equal(hidden.status, 2); assert(codes(hidden).includes('invalid_zip_directory_size'));
+    f.office('directory.docx', { 'word/': '', 'word/document.xml': '<document><p>safe</p></document>' }); f.add('directory.docx');
+    const safe = f.check(); assert.equal(safe.status, 0); assert.equal(safe.report.files[0].extraction.xmlMembersScanned, 2);
+  } finally { f.cleanup(); }
+});
+
+test("TAR scans original header fields and every PAX record before metadata overrides", () => {
+  const f = fixture(); try {
+    const code = `import gzip,io,sys,tarfile
+b=io.BytesIO()
+with tarfile.open(fileobj=b,mode='w',format=tarfile.PAX_FORMAT) as t:
+ i=tarfile.TarInfo('Fixture Orchard.txt'); i.uname='Fixture Orchard'; i.gname='Fixture Orchard'; i.size=4
+ i.pax_headers={'path':'safe.txt','uname':'safe','gname':'safe'}
+ t.addfile(i,io.BytesIO(b'safe'))
+open(sys.argv[1],'wb').write(gzip.compress(b.getvalue()))`;
+    assert.equal(run('python3', ['-c', code, join(f.repo, 'overrides.tar.gz')]).status, 0); f.add('overrides.tar.gz');
+    const r = f.check(); assert.equal(r.status, 1); assert.equal(r.report.errors.length, 0);
+    assert(r.report.files[0].extraction.originalHeaderMetadataScanned); assert(!r.text.includes(PHRASE));
+    compressedFixture(f, 'overrides.tar.gz', { members: [{ name: 'safe.txt', text: 'safe', pax: { comment: 'safe metadata' } }] });
+    const safe = f.check(); assert.equal(safe.status, 0); assert(safe.report.files[0].extraction.originalHeaderMetadataScanned);
+  } finally { f.cleanup(); }
+});
+
+test("TAR inspects overwritten PAX values and rejects hidden member padding", () => {
+  const f = fixture(); try {
+    const code = `import gzip,io,sys,tarfile
+def record(value):
+ n=len(value)+2
+ while len(str(n))+1+len(value)!=n: n=len(str(n))+1+len(value)
+ return (str(n)+' '+value).encode()
+pax=record('comment=Fixture Orchard\\n')+record('comment=safe\\n')
+h=tarfile.TarInfo('./PaxHeader'); h.type=tarfile.XHDTYPE; h.size=len(pax)
+i=tarfile.TarInfo('safe.txt'); i.size=4
+data=h.tobuf()+pax+b'\\0'*((-len(pax))%512)+i.tobuf()+b'safe'+b'\\0'*508+b'\\0'*1024
+if sys.argv[2]=='padding': data=i.tobuf()+b'safe'+b'Fixture Orchard'+b'\\0'*(508-15)+b'\\0'*1024
+open(sys.argv[1],'wb').write(gzip.compress(data))`;
+    const dest = join(f.repo, 'metadata.tar.gz');
+    assert.equal(run('python3', ['-c', code, dest, 'pax']).status, 0); f.add('metadata.tar.gz');
+    const r = f.check(); assert.equal(r.status, 1); assert.equal(r.report.errors.length, 0); assert(!r.text.includes(PHRASE));
+    assert.equal(run('python3', ['-c', code, dest, 'padding']).status, 0); f.add('metadata.tar.gz');
+    const padding = f.check(); assert.equal(padding.status, 2); assert(codes(padding).includes('nonzero_tar_member_padding'));
+  } finally { f.cleanup(); }
+});
+
+test("standalone XML and SVG have the same bounded inspection deadline as Office", () => {
+  const f = fixture(); try {
+    for (const suffix of ['xml', 'svg']) {
+      const path = 'deep.' + suffix;
+      f.put(path, '<p>'.repeat(50000) + 'x' + '</p>'.repeat(50000)); f.add(path);
+    }
+    const r = run('python3', [SCRIPT, '--repo', f.repo, '--name-hashes', f.config, '--extract-timeout', '1'], { timeout: 6000 });
+    assert.equal(r.status, 2, 'both files must fail within their own deadline'); assert.equal(r.stderr, '');
+    const report = JSON.parse(r.stdout); assert.equal(report.errors.length, 2);
+    assert(report.errors.every(x => x.code === 'archive_processing_timed_out'));
+    assert(report.files.every(x => x.coverage === 'failed')); assert.equal(report.coverage.inspectionComplete, true);
+  } finally { f.cleanup(); }
+});
+
+test("nested JSON parser limits fail explicitly in strings and metadata", () => {
+  const f = fixture(); try {
+    const nested = '['.repeat(1500) + '"Fixture \\u004frchard"' + ']'.repeat(1500);
+    f.put('nested-depth.json', JSON.stringify({ responseText: nested }));
+    f.put('._nested', appleDouble([['com.example.comment', nested]]));
+    f.add('nested-depth.json', '._nested');
+    const r = f.check(); assert.equal(r.status, 2); assert.equal(r.report.errors.length, 2);
+    assert(codes(r).includes('json_nesting_limit_exceeded'));
+    assert(codes(r).includes('opaque_appledouble_attribute'));
+    assert(!r.text.includes(PHRASE)); assert(!r.text.includes(HASH));
+  } finally { f.cleanup(); }
 });

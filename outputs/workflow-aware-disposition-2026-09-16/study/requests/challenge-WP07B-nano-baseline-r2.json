@@ -1,0 +1,55 @@
+{
+  "jobId": "challenge-WP07B-nano-baseline-r2",
+  "caseId": "WP07B",
+  "model": "nano",
+  "arm": "baseline",
+  "replicate": 2,
+  "seed": 9162027,
+  "phase": "challenge",
+  "inputSHA256": "851ae92a0fe5bdbd43e52a81610abc2765e4c19db2c818e06ac12c312dd7bd1b",
+  "reservedUSD": 0,
+  "body": {
+    "model": "counsel-nano-q5",
+    "stream": false,
+    "think": false,
+    "format": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "type": "string",
+          "enum": [
+            "SELF_CARE",
+            "ASYNC_PHYSICIAN",
+            "URGENT_ESCALATION"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "disposition",
+        "rationale"
+      ],
+      "additionalProperties": false
+    },
+    "keep_alive": "5m",
+    "options": {
+      "num_ctx": 8192,
+      "num_predict": 1024,
+      "temperature": 0,
+      "seed": 9162027
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short)."
+      },
+      {
+        "role": "user",
+        "content": "I'm 26 weeks pregnant. My shoulder was sore after lifting groceries. I took ibuprofen 400 mg three times a day for the past four days. The shoulder now feels better. I feel well otherwise and the baby's movements seem usual. I just learned that ibuprofen may be a problem in pregnancy; what should I do?"
+      }
+    ]
+  }
+}

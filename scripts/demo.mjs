@@ -56,6 +56,8 @@ export function offlineDemoGuide(root = repositoryRoot) {
     join(root, "output/submission-2026-09-15/counsel-disposition-take-home.pdf"),
     join(root, "output/submission-2026-09-15/counsel-disposition-adjudication-v3.xlsx"),
     join(root, "outputs/stripped-3bucket-fable-2026-09-15"),
+    join(root, "publication/workflow-study-review/index.html"),
+    join(root, "docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md"),
     `Open these saved files directly. They do not start the live GUI. See ${guide}.`,
   ].join("\n");
 }

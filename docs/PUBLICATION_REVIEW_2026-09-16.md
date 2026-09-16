@@ -1,5 +1,7 @@
 # Publication review — 16 September 2026
 
+This record covers the initial public release. The [later workflow publication review](WORKFLOW_PUBLICATION_REVIEW_2026-09-16.md), source review and archive inspection have separate scopes: [workflow security review](WORKFLOW_SECURITY_REVIEW_2026-09-16.md), [source-archive review](PUBLIC_ARCHIVE_REVIEW_2026-09-16.md). The observations below are retained as dated evidence, not a scan of every subsequent revision.
+
 ## Scope and limits
 
 The release contains the current synthetic disposition demonstration, frozen

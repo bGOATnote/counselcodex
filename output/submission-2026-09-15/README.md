@@ -3,11 +3,11 @@
 ## Review in this order
 
 1. [Slides in PDF](counsel-disposition-take-home.pdf) or [Google Slides-friendly editable PowerPoint](counsel-disposition-google-slides.pptx) ([import guide](../../docs/GOOGLE_SLIDES_IMPORT.md))
-2. [Current physician-adjudication workbook](counsel-disposition-adjudication-v3.xlsx)
+2. [Historical physician-adjudication workbook](counsel-disposition-adjudication-v3.xlsx)
 3. [Physician v3 report](../../docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md), [requirements audit](../../docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md), and [evidence/failure review](../../docs/SUBMISSION_RED_TEAM_2026-09-15.md)
 
-Revision 21 contains 32 slides: 15 main slides, including a seven-minute live demo,
-planned for 35 minutes. Seventeen appendix slides support 25 further minutes of discussion.
+Revision 29 contains 45 slides: 15 main slides, including a seven-minute live demo,
+planned for 35 minutes. Thirty appendix slides support 25 further minutes of discussion.
 [Full narrative and speaker notes](../../docs/INTERVIEW_DECK_2026-09-15.md).
 Current slides and notes contain no financial content or individual recipient names.
 The standard [PowerPoint](counsel-disposition-take-home.pptx) contains the same
@@ -37,14 +37,14 @@ owners, deliverables and evidence needed before expanding use.
 
 Appendices 23–28 reproduce the exact messages for all other substantively discussed
 cases: C01, C02, C06, C07, C12, C13, C16, C18, C19, C24, C25, C28, C32, C34, C38,
-C44 and C46. With C22 and C47, all 19 discussed case inputs are visible verbatim.
+C44 and C46. With C22 and C47, those historical sections contain 19 visible case inputs.
 Appendix 31 adds the exact C04, C43 and C49 messages discussed in the separate
 false-negative experiment, bringing the visible total to 22 case inputs.
 
-## Current result
+## Historical saved result
 
 The frozen Fable 5.1 low-effort run produced 50 valid outputs from 50 calls.
-Physician-reference agreement is **48/50 under v3**, with **C22 and C47** remaining
+Historical physician-reference agreement is **48/50 under v3**, with **C22 and C47** remaining
 as undertriage cases. The original **44/49 under v2** is retained. Three
 self-care labels were corrected and C25 was resolved as urgent. Model behavior
 and prompt did not change. This is unblinded post-output physician reassessment,
@@ -54,6 +54,32 @@ Astra extra-high and max each score **47/50**. Exact differences with Fable occu
 on **C07, C19 and C47**. The current Fable demonstration remains unchanged.
 Rationale quality is a separate endpoint: C38's accepted self-care route does
 not resolve its omitted pregnancy precautions.
+
+## Workflow-aware experiment and repeated controls
+
+Slides 10 and 12 report the separate completed **1,568-call** study: Fable and
+local Nemotron 3 Nano, four arms, two repetitions, 50 familiar messages and
+48 separate authored challenges. All 100 new Fable baseline request bodies
+match the historical originals exactly. They returned **45/50 and 46/50**;
+the older **48/50 did not reproduce**. The source-package arm returned 46/50
+twice, changing C47 to clinician review but retaining C07 and C22 as missed
+reviews. Nano reached at most 43/50, with new missed-review cases versus its own
+control. The GUI protocol is unchanged; no research variant is promoted.
+
+Appendices 33–40 separate study methods, retrieval limitations, reference
+quality, retained historical comparisons, authored challenge results and exact
+case substitutions. Appendices 41–45 reproduce all additional discussed inputs,
+including an instruction embedded in patient text that Nano followed in its
+source-package arm. The presentation now contains **25 exact assignment
+messages and seven separately identified authored probes**. The source package
+includes evidence-use instructions, and embeddings changed no selected packet;
+neither a retrieval benefit nor clinical validation is established.
+
+Read the [complete results](../../docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md),
+[evidence failure analysis](../../docs/WORKFLOW_EVIDENCE_FAILURE_ANALYSIS_2026-09-16.md)
+and [clinical operations roadmap](../../docs/WORKFLOW_CLINICAL_OPERATIONS_ROADMAP_2026-09-16.md).
+Known physician-v3 agreement and unreviewed challenge compatibility remain
+separate. No patient outcome or completed-care timing was measured.
 
 ## False-negative reduction experiment
 
@@ -88,7 +114,9 @@ The live GUI remains the original three-bucket workflow.
 
 ## Workbook guide
 
-The new v3 workbook contains:
+The new 1,568-call study is available in the [offline case viewer](../../publication/workflow-study-review/README.md) and [separate scorecards](../../docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md). It is not silently substituted into the historical workbooks.
+
+The v3 workbook covers the earlier frozen runs and contains:
 
 - **Summary:** original/revised agreement and the common 49-case comparison.
 - **Clinical review:** six physician adjudications and remaining uncertainty.

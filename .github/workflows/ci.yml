@@ -26,8 +26,24 @@ jobs:
       - run: npm ci
       - run: npm audit --audit-level=high
       - run: npm run lint
+      - name: Install publication extractors
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends poppler-utils
+      - name: Check publication content without inference
+        run: >-
+          python3 scripts/check-public-content.py --repo . --index
+          --name-hashes scripts/public-content-name-hashes.json
+          --report "$RUNNER_TEMP/public-content-report.json"
       - run: node scripts/verify-submission-package.mjs
       - run: node scripts/score-fn-reduction.mjs outputs/fn-reduction-2026-09-16
+      - name: Verify the frozen workflow-aware experiment without inference
+        env:
+          MASTRA_TELEMETRY_DISABLED: "true"
+        run: >-
+          node --experimental-strip-types scripts/score-workflow-aware.ts
+          outputs/workflow-aware-disposition-2026-09-16/study
+          --reference-freeze outputs/workflow-aware-disposition-2026-09-16/reference-freeze.json
+      - name: Verify offline research review artifacts without inference
+        run: npm run research:retrieval:verify && npm run research:review:verify
       - run: npm run typecheck
       - run: npm test
       - run: npm run cqa:pilot:verify

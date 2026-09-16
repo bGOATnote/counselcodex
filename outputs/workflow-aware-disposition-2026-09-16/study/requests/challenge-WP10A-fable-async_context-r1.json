@@ -1,0 +1,28 @@
+{
+  "jobId": "challenge-WP10A-fable-async_context-r1",
+  "caseId": "WP10A",
+  "model": "fable",
+  "arm": "async_context",
+  "replicate": 1,
+  "seed": 9162026,
+  "phase": "challenge",
+  "inputSHA256": "65c1c85eeaed403edee6b2044641e5a37534c1715f6058dd0fe633c8ad607f2d",
+  "reservedUSD": 0.2661,
+  "body": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "adaptive"
+    },
+    "output_config": {
+      "effort": "low"
+    },
+    "system": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\n\nASYNC_PHYSICIAN means clinician assessment through asynchronous messaging, which can occur promptly or the same day. This research task does not specify a guaranteed response deadline or confirm access to examination, testing, procedures, or emergency treatment. A route is a recommendation, not evidence that care was accepted or completed.\n\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short).",
+    "messages": [
+      {
+        "role": "user",
+        "content": "I'm 28 and have had a mild cough for three days after a runny nose. I am breathing normally, have no chest pain or fever, and can eat, drink, and work normally. There has been no blood in what I cough up."
+      }
+    ]
+  }
+}

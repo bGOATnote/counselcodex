@@ -1,0 +1,55 @@
+{
+  "jobId": "challenge-WP03A-nano-baseline-r2",
+  "caseId": "WP03A",
+  "model": "nano",
+  "arm": "baseline",
+  "replicate": 2,
+  "seed": 9162027,
+  "phase": "challenge",
+  "inputSHA256": "69aae2871d46612636b1f201b9bc9bdf83763aef734b38fc814aeaf753d663ae",
+  "reservedUSD": 0,
+  "body": {
+    "model": "counsel-nano-q5",
+    "stream": false,
+    "think": false,
+    "format": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "type": "string",
+          "enum": [
+            "SELF_CARE",
+            "ASYNC_PHYSICIAN",
+            "URGENT_ESCALATION"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "disposition",
+        "rationale"
+      ],
+      "additionalProperties": false
+    },
+    "keep_alive": "5m",
+    "options": {
+      "num_ctx": 8192,
+      "num_predict": 1024,
+      "temperature": 0,
+      "seed": 9162027
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short)."
+      },
+      {
+        "role": "user",
+        "content": "I'm 44 and twisted my ankle while carrying a laundry basket. The outer ankle is painful with mild swelling. I have no open wound, deformity, numbness, or midfoot pain. Touching the tips and back edges of the ankle bones is not painful. I could take four steps immediately after the twist and can take four steps now."
+      }
+    ]
+  }
+}

@@ -35,14 +35,14 @@ from historical experiments and application versions.
 
 The selected frozen Fable run returned **50 valid outputs from 50 calls**.
 With the [revised physician reference](docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md),
-its agreement is **48/50**, with C22 and C47 remaining as undertriage cases.
+its historical agreement is **48/50**, with C22 and C47 remaining as undertriage cases.
 The original **44/49** result is retained. C32, C34 and C38 are reference
 corrections to self-care; C25 is now accepted as urgent and included in /50.
 This is an unblinded physician reassessment of existing outputs, not improved
 model behavior or independent clinical validation. Rationale quality remains
 separately unscored; C38's pregnancy-precaution omission is documented.
 
-Astra extra-high and max each score **47/50**. They differ from Fable only on
+The historical Astra extra-high and max runs each score **47/50**. They differ from Fable only on
 **C07, C19 and C47**. All exact messages, predictions, rationales and score changes
 are available in the [adjudication outputs](outputs/physician-adjudication-v3-2026-09-15/).
 The original CSV is an archived discussion baseline, not the clinical target or
@@ -52,6 +52,35 @@ The supplied PDF describes 20 messages; the attached CSV contains 50. The repo
 uses all 50, byte-identical to the supplied file. The expanded project exceeded
 the brief's original 6–8 hour scope. The presentation discloses that overrun and
 explains the scope of the current baseline.
+
+## Workflow-aware experiment: repeated controls and local Nano
+
+The completed September 16 study ran **1,568 one-shot calls**: four prompt arms,
+two models and two repetitions over **50 known cases plus 48 separate authored
+challenges**. Every output passed the schema check; that is not clinical validation.
+
+The unchanged Fable baseline returned **45/50 and 46/50** against physician v3.
+All 100 known-case baseline request bodies match the historical requests exactly.
+The historical **48/50 did not reproduce** and remains labeled as a saved observation.
+Adding rapid-async context or explicit pathway definitions did not consistently
+reduce missed care. The source package returned **46/50 twice**, resolving C47
+but retaining missed clinician reviews on C07 and C22. Local Nemotron 3 Nano's
+highest agreement was **43/50 twice**, with new missed-review cases versus its
+own control. No research arm is promoted into the GUI.
+
+The known physician reference is a single-physician, post-output reassessment.
+The 48 challenge targets are AI-authored and lack clinical review. Their results
+remain separate. The retrieval comparison changed **0/98** selected source
+packets, so no benefit can be attributed to embeddings. A case-level review also
+found an urgent-reference miss exchanged for another despite an unchanged count.
+
+- [Completed results and exact misses](docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md)
+- [Publication checks and limitations](docs/WORKFLOW_PUBLICATION_REVIEW_2026-09-16.md)
+- [Offline case viewer](publication/workflow-study-review/README.md): all exact messages, saved decisions and paired comparisons; download the single HTML file to inspect without a server
+- [Source-package failure analysis](docs/WORKFLOW_EVIDENCE_FAILURE_ANALYSIS_2026-09-16.md) and [retrieval candidate audit](docs/RETRIEVAL_CANDIDATE_AUDIT_2026-09-16.md)
+- [Clinical and operational roadmap](docs/WORKFLOW_CLINICAL_OPERATIONS_ROADMAP_2026-09-16.md)
+- [Offline reproduction and artifact map](docs/WORKFLOW_REPRODUCTION_2026-09-16.md)
+- [Preserved research protocol](docs/WORKFLOW_AWARE_RESEARCH_PLAN_2026-09-16.md)
 
 ## False-negative reduction experiment
 

@@ -51,10 +51,23 @@ for (const [id, pages] of Object.entries(manifest.presentation.verbatimCaseMessa
   quotedCases += 1;
 }
 assert.equal(quotedCases, manifest.presentation.verbatimCaseMessageCount);
+const researchMessages = new Map(json("outputs/workflow-aware-disposition-2026-09-16/messages.json").map((row) => [row.id, row.message]));
+const authoredQuotes = manifest.presentation.verbatimAuthoredMessages;
+assert.equal(Object.keys(authoredQuotes).length, manifest.presentation.verbatimAuthoredMessageCount);
+for (const [id, pages] of Object.entries(authoredQuotes)) {
+  assert.ok(/^WP\d{2}[AB]$/.test(id) && researchMessages.has(id), `Unknown authored case: ${id}`);
+  for (const page of pages) {
+    const slide = deck.slides[page - 1];
+    const visible = [...(slide.body ?? []), ...(slide.table?.rows.flat() ?? [])];
+    assert.ok(visible.includes(researchMessages.get(id)), `${id} is not verbatim on slide ${page}`);
+  }
+}
+const mentionedCases = new Set(JSON.stringify(deck.slides).match(/(?<![A-Za-z0-9])(?:C\d{2}|WP\d{2}[AB])(?![A-Za-z0-9])/g) ?? []);
+assert.deepEqual([...mentionedCases].sort(), [...Object.keys(manifest.presentation.verbatimCaseMessages), ...Object.keys(authoredQuotes)].sort(), "Every discussed case must have its exact message visible");
 for (const slide of deck.slides) {
   for (const source of slide.sources ?? []) {
     if (/^(docs|src|tests|apps|data|outputs|output)\//.test(source) || /^[A-Z_]+\.md$/.test(source)) read(source);
   }
 }
 execFileSync(process.execPath, [resolve(root, "scripts/build-submission-narrative.mjs"), "--verify"], { stdio: "inherit" });
-console.log(`Submission verified: ${Object.keys(manifest.artifacts).length} artifact hashes, ${deck.slides.length} slides, ${quotedCases} exact case messages and canonical demo links. No provider calls.`);
+console.log(`Submission verified: ${Object.keys(manifest.artifacts).length} artifact hashes, ${deck.slides.length} slides, ${quotedCases} assignment and ${Object.keys(authoredQuotes).length} authored messages, and canonical demo links. No provider calls.`);

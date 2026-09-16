@@ -1,0 +1,55 @@
+{
+  "jobId": "challenge-WP21A-nano-baseline-r1",
+  "caseId": "WP21A",
+  "model": "nano",
+  "arm": "baseline",
+  "replicate": 1,
+  "seed": 9162026,
+  "phase": "challenge",
+  "inputSHA256": "72d1d92949cae53eca1557eff2373000c54aaf7aff805582836011ed384ab59d",
+  "reservedUSD": 0,
+  "body": {
+    "model": "counsel-nano-q5",
+    "stream": false,
+    "think": false,
+    "format": {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "type": "string",
+          "enum": [
+            "SELF_CARE",
+            "ASYNC_PHYSICIAN",
+            "URGENT_ESCALATION"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "disposition",
+        "rationale"
+      ],
+      "additionalProperties": false
+    },
+    "keep_alive": "5m",
+    "options": {
+      "num_ctx": 8192,
+      "num_predict": 1024,
+      "temperature": 0,
+      "seed": 9162026
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short)."
+      },
+      {
+        "role": "user",
+        "content": "I am writing for a family member who is 32 years old. New shoes caused a small intact heel blister. There is no redness, pus, fever, or difficulty walking, and they are otherwise healthy. We only want general advice about protecting it."
+      }
+    ]
+  }
+}
