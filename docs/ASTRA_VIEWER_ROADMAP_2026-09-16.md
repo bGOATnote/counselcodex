@@ -67,3 +67,27 @@ These distinctions remain in About the study and the presentation guides.
   added text and no external asset requests. Console warnings/errors were empty.
 - No inference, clinical reference changes, frozen-output changes, live workflow
   changes or PowerPoint modifications occurred.
+
+## Hosted release
+
+Release commit: `f58a40b3c684f3dffef78c6cafed0bdea1b6ca1e`.
+[CI](https://github.com/bGOATnote/counselcodex/actions/runs/35131977911) and
+[Pages deployment](https://github.com/bGOATnote/counselcodex/actions/runs/35133025698)
+passed. The release index was covered by the prior full publication scan and a
+scan of every changed file, with exact blob identity checked across all 16,623
+indexed files. There were no findings or extraction errors. Existing image/OCR
+coverage limitations remain; the supplied graphic was visually checked. The
+staged secret scan found no leaks. Hosted CI repeated the full publication scan.
+
+Both public pages returned HTTP 200 with bytes identical to the local artifacts:
+
+| File | Bytes | SHA-256 |
+| --- | ---: | --- |
+| index.html | 1,541,590 | `8829787f61faf241a251f6201527e0fa47e59597e9825fbac2c3c37621b25faa` |
+| roadmap.html | 1,408,096 | `2e0e0aa4e0a81d371964903576dfab33eff99f345eaaea1e72b8bb01c290271d` |
+
+Public-browser checks confirmed both Astra cards on C47, the C07/C19/C47 filter
+results, the hidden detail screen on index, and the loaded 1280×720 roadmap PNG
+with no added visible text. No console errors or warnings were reported.
+Existing public tabs were reloaded; temporary preview tabs and viewport
+overrides were removed, and the temporary loopback preview server was stopped.
