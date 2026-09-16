@@ -1,6 +1,6 @@
 # Disposition model case review
 
-[Open the hosted case viewer](https://bgoatnote.github.io/counselcodex/#C49), or download [index.html](https://github.com/bGOATnote/counselcodex/raw/refs/heads/main/publication/medgemma-case-review/index.html) and open it directly in a browser. The file works offline and starts at C49. All 50 synthetic messages, saved model rationales, physician v3 accepted dispositions and original CSV labels are embedded. Selecting a case replaces the previous case; no other full patient message remains in the detail panel.
+[Open the hosted case viewer](https://bgoatnote.github.io/counselcodex/#index), or download [index.html](https://github.com/bGOATnote/counselcodex/raw/refs/heads/main/publication/medgemma-case-review/index.html) and open it directly in a browser. The file works offline and opens the case index. A case deep link opens only that case. All 50 synthetic messages, saved model rationales, physician v3 accepted dispositions and original CSV labels are embedded. Selecting a case hides the index. The index and case details are separate screens; only one is visible at a time.
 
 ## Review controls
 
@@ -8,10 +8,10 @@
 - Filter to the six Fable/MedGemma disagreements, under-escalations or over-escalations. Filters and case alerts use the three primary models and selected Nemotron repetition; V25 is separate historical context.
 - Deep links include `index.html#C22`, `index.html#C47` and `index.html#C49`.
 - Nemotron defaults to unchanged baseline A repetition 1. Repetition 2 is selectable; no best-response selection occurs.
-- The fixed **Case index** button restores and focuses the index from anywhere, including presentation view, while preserving your case and filters. **Clear filters** returns all 50 case links.
-- Presentation view hides the index. Left/right arrows move through the filtered list. Escape restores the index; / opens its search. Browser Back and Forward restore selection.
+- The sticky header’s **Case index** link returns to the index from any scroll position. Search, filters and Nemotron selection are preserved. **Clear filters** returns all 50 case links.
+- The index is always hidden while a case is open. **Presentation view** enlarges the case text. Left/right arrows move through matching cases; Escape or / returns to the index. Browser Back and Forward restore index/case navigation.
 - Three primary cards show a bucket, one comparison label and the saved rationale. The collapsed **Historical pipeline · V25** section preserves its response, completion status, early actions and source links.
-- Print exports only the selected case. Source links open the repository separately.
+- **Record details** contains each model configuration and source links. **About the study** contains provenance, reference notes and interpretation limits. Reference cards show only their labels and dispositions.
 
 ## Build and verify
 
@@ -35,6 +35,6 @@ Under/over-escalation compares completed route order SELF_CARE < ASYNC_PHYSICIAN
 
 Model families, inference dates, runtime, quantization, decoding and pipeline scope differ. This inspection tool is not a controlled ranking, clinical validation or model promotion. It does not expose hidden reasoning or submit patient messages.
 
-The reviewed Counsel wordmark is embedded unchanged and labeled “Prepared for.” It identifies the intended audience of this independent project, not sponsorship or endorsement.
+The reviewed Counsel wordmark is embedded unchanged. About the study identifies Counsel as the intended audience of this independent project, not a sponsor or endorser.
 
 All case and model text is rendered as text, not executable markup. The standalone document blocks network connections and external assets with a Content Security Policy. Internet access is needed only when a reviewer chooses an external source link.

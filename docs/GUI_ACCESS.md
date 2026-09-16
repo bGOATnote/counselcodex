@@ -2,7 +2,7 @@
 
 | Surface | Entry point | Behavior |
 | --- | --- | --- |
-| Saved case review | [Public case viewer](https://bgoatnote.github.io/counselcodex/#C49) · [standalone HTML](../publication/medgemma-case-review/index.html) | Inspect all 50 synthetic messages and saved results; no model calls. |
+| Saved case review | [Public case index](https://bgoatnote.github.io/counselcodex/#index) · [standalone HTML](../publication/medgemma-case-review/index.html) | Inspect all 50 synthetic messages and saved results; no model calls. |
 | Live three-bucket demonstration | [http://localhost:4120/stripped](http://localhost:4120/stripped) | Requires the local setup below; each submission makes one provider call. |
 
 The public viewer was verified on 16 September 2026 after successful CI and
@@ -14,36 +14,31 @@ The live launcher binds port 4120 to 127.0.0.1.
 
 ## Saved comparison viewer
 
-Open [the standalone viewer](../publication/medgemma-case-review/index.html)
-directly in a browser. It needs no server, account, API key or internet connection.
-All messages and displayed results are embedded; source links require internet.
+Open [the public index](https://bgoatnote.github.io/counselcodex/#index) or the
+[standalone HTML](../publication/medgemma-case-review/index.html). The file works
+offline; only source links need internet.
 
-Search or select a case, then compare its exact message, physician v3 accepted
-buckets, original CSV label, and saved Fable, MedGemma and Nemotron Nano responses.
-C49 opens by default; links ending in `#C22`, `#C47` or `#C49` select those cases.
-**Presentation view** hides the index. The fixed **Back to case index** button
-exits that view and focuses the visible index without changing the selected case
-or filters. **Clear filters** is a separate action.
+The viewer has two screens: the index contains all case links, search and filters;
+a selected case shows its message and responses with the index hidden. The root
+URL and `#index` open the index. Links such as `#C22`, `#C47` and `#C49` open a case.
 
-The Disagreements filter covers only the six historical Fable/MedGemma differences.
-Under/over-escalation filters use the three primary responses and selected Nano
-repetition; repetition 1 has six cases in each filter. Nano shows unchanged
-baseline A repetition 1 by default; repetition 2 is selectable.
+The sticky header contains the Counsel logo, **Disposition Study**, **Repository**,
+**Presentation view**, and a **Case index** link on the case screen. Presentation
+view enlarges the message and cards. **Case index**, Escape or `/` returns to the
+index, preserving search, filters and Nano repetition. Previous/Next moves through
+the filtered cases; browser Back/Forward restores the index or case screen.
 
-The collapsed **Historical pipeline · V25** section retains records for all 50
-cases without adding V25 to primary filters. V25 has 27 completed releases and
-23 incomplete attempts. Missing releases remain incomplete, never self-care or
-agreement; separately issued early actions are identified. Its original 21/49
-result is preserved separately from the viewer’s derived three-bucket comparison
-against physician v3. There is no incomplete-results filter in the primary view.
+Physician Gold and original CSV cards show their labels and dispositions. Three
+primary cards show saved Fable, MedGemma and Nemotron responses. **Record details**
+holds each model’s configuration and source links. Under/over filters
+use those three responses; the disagreement filter covers Fable versus MedGemma.
+Nano defaults to baseline A repetition 1, with repetition 2 available.
 
-The Counsel wordmark appears under **Prepared for**. The viewer is an independent
-research demonstration; the branding does not imply affiliation or endorsement.
-
-Physician v3 is a post-output, unblinded assessment of this known development set.
-CSV labels are separate discussion context. Under/over-escalation describes
-completed route differences, not measured harm or independent clinical validation.
-See the [viewer methods and verification guide](../publication/medgemma-case-review/README.md).
+**Historical pipeline · V25** stays collapsed and retains all 50 records,
+including 23 incomplete releases. It does not contribute to the primary filters.
+**About the study** holds reference limitations, provenance and the independent
+project disclosure. The CSV remains discussion context; agreement is not clinical
+validation.
 
 ## Live GUI
 

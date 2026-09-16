@@ -28,7 +28,7 @@ not from the word “current” in a historical filename.
 15. [Source-package failure analysis](WORKFLOW_EVIDENCE_FAILURE_ANALYSIS_2026-09-16.md) and [retrieval candidate audit](RETRIEVAL_CANDIDATE_AUDIT_2026-09-16.md). These diagnose development failures; they do not establish improved clinical care.
 16. [MedGemma 27B comparison](MEDGEMMA_27B_COMPARISON_2026-09-16.md): one local Q5_K_M run, 46/50 physician-v3 agreement, resolved C22/C47 referrals, added C32/C34/C38 referrals and a missed urgent route on C49. All six Fable disagreements include exact messages and rationales.
 
-17. [Saved case review](https://bgoatnote.github.io/counselcodex/#C49) and [offline instructions](../publication/medgemma-case-review/README.md): all 50 assignment messages, physician v3 and CSV references, and three primary responses: Fable, MedGemma and Nemotron baseline repetitions. Collapsed historical V25 retains incomplete releases separately; primary filters exclude it.
+17. [Saved case index](https://bgoatnote.github.io/counselcodex/#index) and [offline instructions](../publication/medgemma-case-review/README.md): separate index and case screens for all 50 messages; physician/CSV buckets and Fable, MedGemma and Nemotron responses. V25 and study methods remain collapsed.
 
 ## Current implementation
 

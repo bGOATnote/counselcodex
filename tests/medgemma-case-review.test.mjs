@@ -62,7 +62,9 @@ test("offline HTML binds exact script and style, and contains one replaceable de
   assert.equal((html.match(/id="fable"/g) || []).length, 1);
   assert.equal((html.match(/id="medgemma"/g) || []).length, 1);
   assert.match(script, /replaceChildren/); assert.match(script, /popstate/); assert.match(script, /hashchange/);
-  assert.match(script, /"C49"/);
+  assert.match(html, /id="case-index"[^>]*>/);
+  assert.match(html, /id="case-detail"[^>]* hidden>/);
+  assert.match(script, /history\.replaceState\(null, "", "#index"\)/);
 });
 
 test("artifact verification detects stale derived bytes and never repairs them", () => {
@@ -106,12 +108,17 @@ test("ordinal classification separates incomplete and ambiguous accepted ranges"
   assert.equal(escalationDirection("ASYNC_PHYSICIAN", ["SELF_CARE", "ASYNC_PHYSICIAN"]), "aligned");
 });
 
-test("four-model display scopes pairwise agreement and prompt identity precisely", () => {
+test("simple viewer keeps comparisons qualified behind an index-first interface", () => {
   const data = projectCaseReview(source());
   const html = renderCaseReview(data), client = caseReviewClient.toString();
-  assert.match(client, /Fable \/ MedGemma differ/);
-  assert.match(client, /Fable \/ MedGemma match/);
+  assert.match(html, /Fable ≠ MedGemma is a pairwise filter/);
   assert.doesNotMatch(client, /"Models disagree"|"Same disposition"|"Model dispositions match\."/);
+  const header = html.match(/<header>([\s\S]*?)<\/header>/)[1];
+  assert.match(header, /Disposition Study/);
+  assert.match(header, /id="case-link"[^>]*href="#index"/);
+  assert.doesNotMatch(html, /id="print"|class="hero"|class="metrics"|class="case-footer"/);
+  assert.doesNotMatch(header, /Same message|Fable|MedGemma|Nemotron|Prepared for/);
+  assert.match(html, /<summary>About the study<\/summary>/);
   assert.match(html, /Fable and MedGemma used identical instruction text and message-only user content/);
   assert.match(html, /V25 adds multi-stage processing context/);
   assert.doesNotMatch(html, /the only user content supplied to each model/);

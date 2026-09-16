@@ -93,14 +93,12 @@ found an urgent-reference miss exchanged for another despite an unchanged count.
 
 ## Review all 50 cases interactively
 
-[Open the saved case review](https://bgoatnote.github.io/counselcodex/#C49): select
-one case to see the full message, physician v3, original CSV disposition, and
-saved responses from **Fable, MedGemma and Nemotron**. A collapsed historical
-section retains V25 for examining the earlier pipeline, including its incomplete
-releases. Under/over-escalation filters apply to the three primary responses;
-the CSV remains a discussion reference. **Back to case index** restores navigation
-without losing the selected case or filters. Search, deep links and presentation
-mode support a walkthrough; no model calls or patient input are available.
+[Open the case index](https://bgoatnote.github.io/counselcodex/#index), then select
+one of 50 messages. The case screen shows the full message, physician and CSV
+buckets, and saved **Fable, MedGemma and Nemotron** responses. Historical V25 stays
+collapsed. **Case index** returns to search and filters; **Presentation view**
+enlarges the message and cards. Method and provenance are under **About the study**.
+No model calls or patient input are available.
 [Offline HTML and provenance](publication/medgemma-case-review/README.md).
 
 ## Separate MedGemma 27B comparison
