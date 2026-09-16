@@ -1,0 +1,70 @@
+import { createHash } from "node:crypto";
+
+// Proposed sequence from submission slides 15–16 and:
+// docs/WORKFLOW_CLINICAL_OPERATIONS_ROADMAP_2026-09-16.md
+// docs/WORKFLOW_REFERENCE_REVIEW_PROTOCOL_2026-09-16.md
+// This graphic describes future work; it does not alter a clinical workflow.
+export function renderCaseReviewRoadmap() {
+  const style = `
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#f6f5f0}body{display:flex;justify-content:center;align-items:center;min-height:100vh}main{width:100%;max-width:1600px}svg{display:block;width:100%;height:auto}text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#172f3d}.title{font-family:Georgia,"Times New Roman",serif;font-size:58px}.subtitle{font-size:27px;fill:#526673}.eyebrow{font-size:17px;font-weight:650;letter-spacing:1.8px}.current{font-size:31px;font-weight:550}.detail{font-size:23px;fill:#526673}.number{font-size:20px;font-weight:700;fill:#146d70}.heading{font-size:28px;font-weight:650}.body{font-size:23px}.decision{font-size:20px;font-weight:650;fill:#146d70}.footnote{font-size:21px;fill:#526673}.step{fill:#fffefa;stroke:#d1ded8;stroke-width:1.5}.arrow{fill:none;stroke:#146d70;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}@media print{@page{size:landscape;margin:0}body{min-height:0}}
+`;
+  const styleHash = createHash("sha256").update(style).digest("base64");
+  return `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'sha256-${styleHash}'; script-src 'none'; connect-src 'none'; img-src 'none'; font-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"><title>Roadmap · Disposition Study</title><style>${style}</style></head>
+<body><main><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="roadmap-title roadmap-description">
+<title id="roadmap-title">Proposed roadmap: evidence before supervised use</title>
+<desc id="roadmap-description">The current demonstration sends one synthetic message through one Fable call to three buckets, with no judge or retrieval. Proposed next stages are an agreed clinical and operations contract, an independent reference frozen before inference, one matched comparison, shadow observation alongside normal care, and a supervised pilot only after evidence and approval, with pause and rollback. Historical V25 completed 27 of 50 releases. Repeated baseline runs agreed with the physician reference on 45 and 46 of 50 cases. These are development observations, not clinical validation.</desc>
+<rect width="1600" height="1000" fill="#f6f5f0"/>
+<text x="60" y="88" class="title">Evidence before supervised use</text>
+<text x="62" y="136" class="subtitle">Proposed roadmap · advance on evidence, not dates.</text>
+
+<rect x="60" y="177" width="1480" height="134" rx="12" fill="#e5f0ed"/>
+<text x="88" y="211" class="eyebrow">CURRENT DEMONSTRATION</text>
+<text x="88" y="252" class="current">Synthetic message → one Fable call → three buckets</text>
+<text x="88" y="288" class="detail">Message-only. No judge or retrieval. Saved comparisons remain separate.</text>
+
+<text x="62" y="363" class="eyebrow">PROPOSED NEXT STEPS</text>
+
+<rect x="60" y="389" width="272" height="342" rx="12" class="step"/>
+<text x="84" y="427" class="number">01</text>
+<text x="84" y="472" class="heading">Agree the task</text>
+<text x="84" y="529" class="body"><tspan x="84">Clinical + operations:</tspan><tspan x="84" dy="34">required action,</tspan><tspan x="84" dy="34">timing, capability</tspan><tspan x="84" dy="34">and care owner.</tspan></text>
+<text x="84" y="698" class="decision">Agreed contract</text>
+
+<path d="M340 558H354M348 552L354 558L348 564" class="arrow"/>
+<rect x="362" y="389" width="272" height="342" rx="12" class="step"/>
+<text x="386" y="427" class="number">02</text>
+<text x="386" y="472" class="heading"><tspan x="386">Independent</tspan><tspan x="386" dy="34">reference</tspan></text>
+<text x="386" y="554" class="body"><tspan x="386">Two clinicians label</tspan><tspan x="386" dy="34">new cases, blinded</tspan><tspan x="386" dy="34">to model answers.</tspan></text>
+<text x="386" y="698" class="decision">Freeze before inference</text>
+
+<path d="M642 558H656M650 552L656 558L650 564" class="arrow"/>
+<rect x="664" y="389" width="272" height="342" rx="12" class="step"/>
+<text x="688" y="427" class="number">03</text>
+<text x="688" y="472" class="heading"><tspan x="688">One matched</tspan><tspan x="688" dy="34">comparison</tspan></text>
+<text x="688" y="554" class="body"><tspan x="688">Same new messages.</tspan><tspan x="688" dy="34">Judge or retrieval</tspan><tspan x="688" dy="34">only for a defined</tspan><tspan x="688" dy="34">failure to test.</tspan></text>
+<text x="688" y="698" class="decision">Continue, revise or stop</text>
+
+<path d="M944 558H958M952 552L958 558L952 564" class="arrow"/>
+<rect x="966" y="389" width="272" height="342" rx="12" class="step"/>
+<text x="990" y="427" class="number">04</text>
+<text x="990" y="472" class="heading"><tspan x="990">Shadow</tspan><tspan x="990" dy="34">observation</tspan></text>
+<text x="990" y="554" class="body"><tspan x="990">Care is unchanged.</tspan><tspan x="990" dy="34">Measure missed</tspan><tspan x="990" dy="34">actions, delay and</tspan><tspan x="990" dy="34">review burden.</tspan></text>
+<text x="990" y="698" class="decision">Clinicians decide</text>
+
+<path d="M1246 558H1260M1254 552L1260 558L1254 564" class="arrow"/>
+<rect x="1268" y="389" width="272" height="342" rx="12" class="step"/>
+<text x="1292" y="427" class="number">05</text>
+<text x="1292" y="472" class="heading"><tspan x="1292">Supervised</tspan><tspan x="1292" dy="34">pilot</tspan></text>
+<text x="1292" y="554" class="body"><tspan x="1292">Only after evidence</tspan><tspan x="1292" dy="34">and explicit approval.</tspan><tspan x="1292" dy="34">Defined pause rules,</tspan><tspan x="1292" dy="34">owner and rollback.</tspan></text>
+<text x="1292" y="698" class="decision">Approval to proceed</text>
+
+<text x="62" y="785" class="subtitle">Every transition requires a review decision. A score alone does not authorize use.</text>
+
+<rect x="60" y="827" width="1480" height="121" rx="12" fill="#edf0eb"/>
+<text x="84" y="862" class="eyebrow">LESSONS FROM COMPLETED DEVELOPMENT</text>
+<text x="84" y="901" class="body">Historical V25: 27/50 completed outputs.</text>
+<text x="801" y="901" class="body">Repeated Fable: 45/50 and 46/50 vs physician v3.</text>
+<text x="84" y="931" class="footnote">Known synthetic cases; neither result is clinical validation. Retain the simple baseline and test one justified change.</text>
+</svg></main></body></html>\n`;
+}

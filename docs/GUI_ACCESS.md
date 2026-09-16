@@ -1,8 +1,9 @@
-# Open the demonstration and saved case review
+# Browser presentation and live demonstration
 
 | Surface | Entry point | Behavior |
 | --- | --- | --- |
 | Saved case review | [Public case index](https://bgoatnote.github.io/counselcodex/#index) · [standalone HTML](../publication/medgemma-case-review/index.html) | Inspect all 50 synthetic messages and saved results; no model calls. |
+| Proposed roadmap | [Public graphic](https://bgoatnote.github.io/counselcodex/roadmap.html) · [offline graphic](../publication/medgemma-case-review/roadmap.html) | Graphic-only page summarizing the proposed sequence from presentation slides 15–16. |
 | Live three-bucket demonstration | [http://localhost:4120/stripped](http://localhost:4120/stripped) | Requires the local setup below; each submission makes one provider call. |
 
 The public viewer was verified on 16 September 2026 after successful CI and
@@ -11,23 +12,32 @@ download. Localhost refers to the viewing computer, not the presenter’s server
 The live launcher binds port 4120 to 127.0.0.1.
 [Publication and browser verification](CASE_REVIEW_HANDOFF_2026-09-16.md).
 [Navigation and comparison refinement](CASE_REVIEW_REFINEMENT_2026-09-16.md).
-[Current two-screen viewer verification](CASE_VIEWER_SIMPLIFICATION_2026-09-16.md).
+[Two-screen viewer verification](CASE_VIEWER_SIMPLIFICATION_2026-09-16.md).
+[Browser presentation update](PRESENTATION_HUB_2026-09-16.md).
 
-## Saved comparison viewer
+## Browser presentation
 
 Open [the public index](https://bgoatnote.github.io/counselcodex/#index) or the
-[standalone HTML](../publication/medgemma-case-review/index.html). The file works
-offline; only source links need internet.
+[standalone HTML](../publication/medgemma-case-review/index.html). The browser can
+carry the prepared discussion: **C22 → C47 → C49 → Roadmap → Live demo**. Keep the
+PowerPoint/PDF as the detailed supplement and fallback. Cases and images work
+offline; keep `index.html` and `roadmap.html` together for offline roadmap access.
 
 The viewer has two screens: the index contains all case links, search and filters;
 a selected case shows its message and responses with the index hidden. The root
 URL and `#index` open the index. Links such as `#C22`, `#C47` and `#C49` open a case.
 
-The sticky header contains the Counsel logo, **Disposition Study**, **Repository**,
-**Presentation view**, and a **Case index** link on the case screen. Presentation
-view enlarges the message and cards. **Case index**, Escape or `/` returns to the
-index, preserving search, filters and Nano repetition. Previous/Next moves through
-the filtered cases; browser Back/Forward restores the index or case screen.
+The sticky header contains the **Prepared for** Counsel logo, **Disposition Study**,
+**Live demo**, **Roadmap**, **Repo**, **Presentation view**, and **Case index** on the
+case screen. Live demo, Roadmap and Repo open separate tabs, preserving the current
+case. Roadmap contains only its graphic. Presentation view enlarges the message
+and cards. **Case index**, Escape or `/` returns to the index, preserving search,
+filters and Nano repetition. Previous/Next moves through the filtered cases;
+browser Back/Forward restores the index or case screen.
+
+C22 includes the existing PowerPoint X-ray and external photograph derivatives.
+Their caption states that these are discussion images added after evaluation,
+not model inputs or verified images of C22.
 
 Physician Gold and original CSV cards show their labels and dispositions. Three
 primary cards show saved Fable, MedGemma and Nemotron responses. **Record details**
@@ -42,6 +52,14 @@ project disclosure. The CSV remains discussion context; agreement is not clinica
 validation.
 
 ## Live GUI
+
+On 16 September 2026, a read-only check received HTTP 200 from the local page and
+verified the source and built API route: **Get disposition** sends one native
+Anthropic request using `claude-fable-5-1`, adaptive thinking and low effort. The
+runtime retained successful prior calls with provider request IDs. This check
+made no new inference and did not revalidate current provider access. Opening
+the link alone makes no call; the saved viewer never substitutes frozen answers
+for a live result.
 
 Start from a local checkout of the public repository:
 
@@ -111,7 +129,7 @@ Node is needed to run the helper; the documents can also be opened directly:
 - [Presentation PDF](../output/submission-2026-09-15/counsel-disposition-take-home.pdf)
 - [Revised adjudication workbook](../output/submission-2026-09-15/counsel-disposition-adjudication-v3.xlsx)
 - [Frozen Fable requests, outputs and scorecards](../outputs/stripped-3bucket-fable-2026-09-15/)
-- [Saved case viewer](../publication/medgemma-case-review/index.html): all 50 assignment messages, saved dispositions and rationales, physician v3 and separate CSV labels
+- [Saved case viewer](../publication/medgemma-case-review/index.html) and [roadmap](../publication/medgemma-case-review/roadmap.html): keep both HTML files in the same directory; the viewer embeds all 50 messages, saved responses and C22 images
 - [Offline workflow-study viewer](../publication/workflow-study-review/README.md): download `index.html` and open it directly in a browser; all 98 messages and 1,568 saved decisions are embedded, with no server, account or external request
 
 These are saved research artifacts, not a live replay or a new provider run.

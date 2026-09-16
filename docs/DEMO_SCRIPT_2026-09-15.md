@@ -1,18 +1,35 @@
-# Live disposition demo
+# Browser presentation and live disposition demo
 
-Re-reviewed 16 September 2026. Slide 9 allocates seven minutes inside the
-35-minute main presentation. The current surface is
+Re-reviewed 16 September 2026. Use the browser as the main presentation surface,
+with the PowerPoint/PDF available for deeper discussion. The live demonstration is
 **/stripped, Fable 5.1 low effort, three buckets, one provider call per submit**.
 Frozen traces are an explicitly labeled fallback, never a claimed live completion.
 The live workflow has no judge or retrieval step; saved comparative evaluation
-is shown separately. Slides 2–4 introduce C22, C47 and C49 before the demonstration.
+is shown separately.
+
+## Main discussion sequence
+
+| View | Discussion |
+| --- | --- |
+| [C22](https://bgoatnote.github.io/counselcodex/#C22) | Start with missed clinician involvement and the information needed for an ankle assessment. The X-ray and photograph are presentation illustrations, added after evaluation; they were not model inputs or verified images of this synthetic case. |
+| [C47](https://bgoatnote.github.io/counselcodex/#C47) | Examine the second Fable false negative: reasonable self-care advice can still omit required clinician review. |
+| [C49](https://bgoatnote.github.io/counselcodex/#C49) | Compare the exact message, saved rationales and urgent-versus-async disagreement. Keep physician and CSV dispositions separate. |
+| **Roadmap** | Open the graphic-only page. The sequence from slides 15–16 is proposed work: agree the task, freeze an independent reference, test one matched change, then consider shadow observation and a supervised pilot. |
+| **Live demo** | Submit one synthetic message and describe the result that actually appears. This is a fresh call, separate from the saved comparison. |
+
+The **Prepared for** Counsel badge identifies the intended audience, not
+endorsement. The sticky header provides **Case index**, **Live demo**, **Roadmap**,
+**Repo** and **Presentation view**. Demo, roadmap and repository open in separate
+tabs so the selected case remains available. Keep `index.html` and `roadmap.html`
+side by side for offline presentation; only the live demo requires a running
+local server and provider access.
 
 ## Before the session
 
 1. Follow the [GUI access guide](GUI_ACCESS.md), run `npm run demo`, and open
    [the local server](http://localhost:4120/stripped). Localhost requires a server
-   on the viewing machine. The separate [public saved-results viewer](https://bgoatnote.github.io/counselcodex/#C49)
-   opens C49. Check that it loads before the session and keep the offline copy
+   on the viewing machine. Open the [public case index](https://bgoatnote.github.io/counselcodex/#index)
+   and check C22, C47, C49 and the Roadmap link. Keep both offline HTML files
    available.
 2. Confirm Fable 5.1, low effort. Expand **Model configuration** and compare the
    prompt hash with the [GUI guide](STRIPPED_FABLE_GUI_2026-09-15.md).
@@ -33,7 +50,12 @@ The expanded trace includes a neutral estimated-cost row. To keep financial figu
 out of the presentation, use Model configuration and the saved comparison viewer
 in the prepared walkthrough. Inspect the complete trace separately.
 
-## Timed walkthrough
+The latest read-only local check received HTTP 200 and verified the native
+Anthropic call in source and the compiled route. Existing successful traces
+record Fable model identity and provider request IDs. No new call was triggered
+by that check; it does not establish that a future submission will succeed.
+
+## Optional seven-minute live walkthrough
 
 | Time | Action | Suggested words |
 | --- | --- | --- |

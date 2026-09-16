@@ -115,9 +115,12 @@ test("simple viewer keeps comparisons qualified behind an index-first interface"
   assert.doesNotMatch(client, /"Models disagree"|"Same disposition"|"Model dispositions match\."/);
   const header = html.match(/<header>([\s\S]*?)<\/header>/)[1];
   assert.match(header, /Disposition Study/);
+  assert.match(header, /Prepared for/);
+  assert.match(header, /href="http:\/\/localhost:4120\/stripped"/);
+  assert.match(header, /href="roadmap.html"/);
   assert.match(header, /id="case-link"[^>]*href="#index"/);
   assert.doesNotMatch(html, /id="print"|class="hero"|class="metrics"|class="case-footer"/);
-  assert.doesNotMatch(header, /Same message|Fable|MedGemma|Nemotron|Prepared for/);
+  assert.doesNotMatch(header, /Same message|MedGemma|Nemotron/);
   assert.match(html, /<summary>About the study<\/summary>/);
   assert.match(html, /Fable and MedGemma used identical instruction text and message-only user content/);
   assert.match(html, /V25 adds multi-stage processing context/);

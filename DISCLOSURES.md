@@ -57,7 +57,8 @@ make inference offline, remove provider processing or establish privacy
 compliance. See [GUI access](docs/GUI_ACCESS.md) and [SECURITY.md](SECURITY.md).
 
 The presentation's ankle photographs, Ottawa illustration and historical
-architecture diagram were separately supplied by the presenter. They were
+architecture diagram were separately supplied by the presenter. The saved case
+viewer also displays the same metadata-stripped ankle photograph and radiograph. They were
 added for discussion after evaluation and are not C22 inputs, patient outcomes
 or validation evidence. Metadata removal is not proof of consent, ownership or
 de-identification. Synthetic provenance and publication consent for the

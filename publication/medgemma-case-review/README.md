@@ -2,6 +2,27 @@
 
 [Open the hosted case viewer](https://bgoatnote.github.io/counselcodex/#index), or download [index.html](https://github.com/bGOATnote/counselcodex/raw/refs/heads/main/publication/medgemma-case-review/index.html) and open it directly in a browser. The file works offline and opens the case index. A case deep link opens only that case. All 50 synthetic messages, saved model rationales, physician v3 accepted dispositions and original CSV labels are embedded. Selecting a case hides the index. The index and case details are separate screens; only one is visible at a time.
 
+## Present from the browser
+
+Use C22 → C47 → C49 to discuss failure modes, then **Roadmap** and **Live demo**.
+The header restores the **Prepared for** Counsel badge and keeps **Case index**,
+**Live demo**, **Roadmap**, **Repo** and **Presentation view** accessible. Demo,
+roadmap and repository links open separate tabs, preserving the selected case.
+The proposed roadmap is a graphic-only page based on presentation slides 15–16;
+it does not claim that later clinical stages are implemented or approved.
+
+**Live demo** links to http://localhost:4120/stripped. This is the viewing
+computer, not a public inference server. **Get disposition** sends one fresh
+Anthropic request using the frozen Fable settings; opening the page does not.
+Keep the local server running and provider access available. The saved viewer
+works without that server. Keep both HTML files together for offline presenting;
+only live calls and repository/source links need external connectivity.
+
+C22 includes the same two metadata-stripped discussion photos as the PowerPoint.
+They were added after evaluation, are not model inputs, and are not verified
+images of the synthetic case. Asset provenance and unresolved permissions remain
+in the repository disclosures. No saved results or prompts were changed.
+
 ## Review controls
 
 - Search by case ID, symptom, disposition or rationale. Each index link includes an exact message excerpt.
@@ -35,6 +56,6 @@ Under/over-escalation compares completed route order SELF_CARE < ASYNC_PHYSICIAN
 
 Model families, inference dates, runtime, quantization, decoding and pipeline scope differ. This inspection tool is not a controlled ranking, clinical validation or model promotion. It does not expose hidden reasoning or submit patient messages.
 
-The reviewed Counsel wordmark is embedded unchanged. About the study identifies Counsel as the intended audience of this independent project, not a sponsor or endorser.
+The reviewed Counsel wordmark is embedded unchanged under **Prepared for**. About the study identifies Counsel as the intended audience of this independent project, not a sponsor or endorser.
 
-All case and model text is rendered as text, not executable markup. The standalone document blocks network connections and external assets with a Content Security Policy. Internet access is needed only when a reviewer chooses an external source link.
+All case and model text is rendered as text, not executable markup. The standalone document blocks scripted network connections and external assets with a Content Security Policy; only embedded data images are admitted. Images are pinned by SHA-256. Live-demo navigation is an explicit link, never an embedded frame or background request.
