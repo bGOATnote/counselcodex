@@ -9,6 +9,17 @@ OpenAI or Anthropic is claimed. Developed with Codex assistance. See
 [disclosures and media-rights limitations](DISCLOSURES.md) and
 [third-party notices](THIRD_PARTY_NOTICES.md). Not for patient care.
 
+## Open the presentation
+
+- [Case index](https://bgoatnote.github.io/counselcodex/#index): all 50 messages, physician and CSV dispositions, and saved model responses
+- [Roadmap graphic](https://bgoatnote.github.io/counselcodex/roadmap.html): the supplied historical proposed architecture; it differs from the current live workflow
+- [Google Slides-friendly PowerPoint](output/submission-2026-09-15/counsel-disposition-google-slides.pptx)
+
+The public case viewer requires no setup or API key and makes no model calls.
+Its header links to the roadmap, repository and a separate
+[local live Fable demo](http://localhost:4120/stripped), which requires a running
+server on the viewer's own computer. See the [launch instructions](docs/GUI_ACCESS.md).
+
 ## Engineering entry points
 
 For code changes, start with [AGENTS.md](AGENTS.md) and the
@@ -30,6 +41,8 @@ The public slides and saved results below require no setup or API key.
 - [Google Slides-friendly PowerPoint](output/submission-2026-09-15/counsel-disposition-google-slides.pptx) and [import instructions](docs/GOOGLE_SLIDES_IMPORT.md)
 - [Slide narrative and speaker notes](docs/INTERVIEW_DECK_2026-09-15.md): case-led presentation and seven-minute live demo
 - [Live demo script](docs/DEMO_SCRIPT_2026-09-15.md)
+- [Astra cards, roadmap provenance and public-viewer verification](docs/ASTRA_VIEWER_ROADMAP_2026-09-16.md)
+- [Public repository security and handoff review](docs/PUBLIC_HANDOFF_SECURITY_2026-09-16.md)
 - [Handoff verification and merged dependency reviews](docs/HANDOFF_REVIEW_2026-09-16.md)
 - [Presentation and repository red-team review](docs/PRESENTATION_REPO_RED_TEAM_2026-09-16.md)
 - [False-negative reduction experiment](docs/FALSE_NEGATIVE_REDUCTION_RESULTS_2026-09-16.md) and [clinical validation plan](docs/FALSE_NEGATIVE_REDUCTION_PLAN_2026-09-16.md)
@@ -38,7 +51,7 @@ The public slides and saved results below require no setup or API key.
 - [Requirements audit](docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md) and [red-team review](docs/SUBMISSION_RED_TEAM_2026-09-15.md)
 
 The exported slides and workbook are available in the submission package.
-The GUI runs locally; its presentation link requires the local server.
+The saved-output case viewer is public; the live Fable demo runs locally.
 Use the [repository guide](docs/INDEX.md) to distinguish the current submission
 from historical experiments and application versions.
 
@@ -95,10 +108,13 @@ found an urgent-reference miss exchanged for another despite an unchanged count.
 
 [Open the case index](https://bgoatnote.github.io/counselcodex/#index), then select
 one of 50 messages. The case screen shows the full message, physician and CSV
-buckets, and saved **Fable, MedGemma and Nemotron** responses. Historical V25 stays
-collapsed. **Case index** returns to search and filters; **Presentation view**
-enlarges the message and cards. Method and provenance are under **About the study**.
-No model calls or patient input are available.
+buckets, and five saved response cards: **Fable 5.1, Astra extra high, Astra max,
+MedGemma 27B and Nemotron Nano**. Astra's recorded efforts are `xhigh` and `max`;
+there is no ultra run. **Astra ≠ Fable** filters to C07, C19 and C47.
+Historical V25 stays collapsed. **Case index** returns to search and filters;
+**Presentation view** enlarges the message and cards. Method and provenance are
+under **About the study**. The public viewer makes no model calls and accepts
+no patient input.
 [Offline HTML and provenance](publication/medgemma-case-review/README.md).
 
 ## Separate MedGemma 27B comparison

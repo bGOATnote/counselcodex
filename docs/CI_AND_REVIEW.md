@@ -5,6 +5,7 @@ requests, and manual dispatch. It runs once for a pull-request branch rather
 than duplicating push and pull-request jobs. A newer run cancels an obsolete
 run for the same branch or pull request. Jobs have read-only repository
 permissions and a 30-minute timeout; action dependencies are pinned by commit.
+Checkout does not persist the GitHub token in Git configuration.
 
 ## Required evidence
 
@@ -64,8 +65,36 @@ recorded in [the handoff report](HANDOFF_REVIEW_2026-09-16.md).
 
 ## Deployment boundary
 
-There is no automatic clinical or public service deployment. CI produces and
-checks local research artifacts; it does not publish a live patient-input API,
-run paid benchmarks or promote V25. The supported demonstration is the
+The [Pages workflow](../.github/workflows/case-review-pages.yml) publishes the
+static saved-output viewer after successful CI on the same repository's `main`
+push or manual run. It checks out the tested commit, rejects a superseded
+revision and copies only `index.html`, `roadmap.html`, `manifest.json` and
+`README.md`. The preparation job has no write permission; the separate deploy
+job receives Pages write and identity-token permissions. Pull-request runs do
+not authorize publication.
+
+This publishes saved research artifacts, not a live patient-input API. CI does
+not run paid benchmarks or promote V25. The live demonstration is the
 [loopback-only GUI](GUI_ACCESS.md). A future hosted deployment needs a separate
 review of authentication, data handling, operating ownership and clinical use.
+
+## Repository security checks
+
+GitHub secret scanning, push protection, Dependabot alerts and automatic
+security-update pull requests are enabled. Dependency updates still require
+review and CI; they are not automatically merged. Merged branches are deleted
+automatically. Workflow tokens default to read-only and cannot approve pull
+request reviews.
+
+`main` requires the GitHub Actions `test` check against an up-to-date base and
+resolved review conversations. Force-pushes and deletion are disabled. The
+repository owner's administrator override remains available for maintenance;
+these settings do not imply independent approval of owner-authored changes.
+
+Before sharing a release, run the indexed publication-content check and a
+redacted secret scan. The root `.gitleaksignore` contains one exact historical
+fingerprint for a synthetic canary in a mocked-provider redaction test. It does
+not exclude the test file, other commits or a credential family. Review any new
+finding before adding an exception. Automated checks supplement source review;
+they do not prove the absence of secrets, identifying image content or software
+vulnerabilities.
