@@ -1,0 +1,51 @@
+{
+  "schema": "fn-reduction-study-plan/v1",
+  "frozenAt": "2026-09-16T06:07:09.349Z",
+  "status": "prespecified_development_experiment",
+  "decision": "Run exactly these three arms once; no iterative tuning or automatic runtime promotion.",
+  "experimentalChange": "One material-unknowns paragraph added to the frozen three-bucket prompt; provider and generation settings unchanged.",
+  "arms": [
+    {
+      "name": "known-regression-candidate",
+      "runId": "d0f8e594-a16c-4d50-8de2-12668c6bd250",
+      "plannedCases": 50,
+      "manifestSHA256": "d33213581328f2100467e2d9332ac6d7a484d3bb912c2a2fdc68eade9da76f68",
+      "promptSHA256": "839cde0c0e43f42018fc04172b547750876dcf196bcff94f2da7b8424022a8f7"
+    },
+    {
+      "name": "authored-challenge-baseline",
+      "runId": "acd72f02-34c6-4d3d-8a86-d69e5d295574",
+      "plannedCases": 24,
+      "manifestSHA256": "6343c0f5d74a6afb2312ae34128c0b419f30da5d3a0388cfc6301afb35d33724",
+      "promptSHA256": "80810b85df956d779709a71dbc0d85534f5847e2563b0be5235048cb254a03ce"
+    },
+    {
+      "name": "authored-challenge-candidate",
+      "runId": "042efa54-fbbf-4c1d-82e1-6320ededb029",
+      "plannedCases": 24,
+      "manifestSHA256": "b865f7111ab7ccab404b275e7980093bc652decdfcc0e9d2d41b353a9b489ae2",
+      "promptSHA256": "839cde0c0e43f42018fc04172b547750876dcf196bcff94f2da7b8424022a8f7"
+    }
+  ],
+  "newProviderCalls": 98,
+  "baselinePromptSHA256": "80810b85df956d779709a71dbc0d85534f5847e2563b0be5235048cb254a03ce",
+  "candidatePromptSHA256": "839cde0c0e43f42018fc04172b547750876dcf196bcff94f2da7b8424022a8f7",
+  "referenceHashes": {
+    "data/research/fn-reduction-v1/proposed-reference.json": "d1e1e88e08e3941deb68888f6ae0fab1e9e8ceee43e83fd34acbdc2f08a219a1"
+  },
+  "primaryEndpoints": [
+    "False negatives at any-clinician-action boundary (ASYNC_PHYSICIAN or URGENT_ESCALATION versus SELF_CARE)",
+    "Urgent false negatives reported separately",
+    "New false positives/referral burden on SELF_CARE cases",
+    "Case-level changes with exact messages and short rationales",
+    "Invalid outputs remain in all-case agreement denominators and are reported as unresolved decisions"
+  ],
+  "review": "Proposed challenge labels are AI-authored and unreviewed. Model rationale assertion review is descriptive, not clinical attestation.",
+  "limitations": [
+    "Original 50 are repeatedly inspected known development cases and use a historical baseline run; prompt effect is confounded by run variability.",
+    "The 24 new challenges are AI-authored with proposed labels frozen before generation, not independent physician validation or a representative workload.",
+    "No finer emergency-timing validation is possible with three output buckets.",
+    "Independent clinical evaluation requires genuinely new cases, blinded physicians, adjudication, and reference freeze before future generation."
+  ],
+  "safety": "No clinical deployment or claim of safety follows from these results; frozen GUI and V25 remain unchanged."
+}

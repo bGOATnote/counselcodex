@@ -6,8 +6,8 @@
 2. [Current physician-adjudication workbook](counsel-disposition-adjudication-v3.xlsx)
 3. [Physician v3 report](../../docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md), [requirements audit](../../docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md), and [evidence/failure review](../../docs/SUBMISSION_RED_TEAM_2026-09-15.md)
 
-Revision 18 contains 28 slides: 15 main slides, including a seven-minute live demo,
-planned for 35 minutes. Thirteen appendix slides support 25 further minutes of discussion.
+Revision 20 contains 31 slides: 15 main slides, including a seven-minute live demo,
+planned for 35 minutes. Sixteen appendix slides support 25 further minutes of discussion.
 [Full narrative and speaker notes](../../docs/INTERVIEW_DECK_2026-09-15.md).
 Current slides and notes contain no financial content or individual recipient names.
 The standard [PowerPoint](counsel-disposition-take-home.pptx) contains the same
@@ -38,6 +38,8 @@ owners, deliverables and evidence needed before expanding use.
 Appendices 23–28 reproduce the exact messages for all other substantively discussed
 cases: C01, C02, C06, C07, C12, C13, C16, C18, C19, C24, C25, C28, C32, C34, C38,
 C44 and C46. With C22 and C47, all 19 discussed case inputs are visible verbatim.
+Appendix 31 adds the exact C04, C43 and C49 messages discussed in the separate
+false-negative experiment, bringing the visible total to 22 case inputs.
 
 ## Current result
 
@@ -52,6 +54,21 @@ Astra extra-high and max each score **47/50**. Exact differences with Fable occu
 on **C07, C19 and C47**. The current Fable demonstration remains unchanged.
 Rationale quality is a separate endpoint: C38's accepted self-care route does
 not resolve its omitted pregnancy precautions.
+
+## False-negative reduction experiment
+
+Appendix 29 reports a separate prompt experiment that **did not improve the
+known-case result**: agreement fell from 48/50 to 44/50, and three urgent cases
+moved to async review. C47 improved, C22 remained missed, C07 became a new missed
+clinician referral, and C32 became an additional referral under the unchanged
+reference. The current GUI was not changed. All 98 planned new calls completed;
+there was no further prompt iteration.
+
+The separate 24-case challenge improved from 22/24 to 23/24 against **AI-authored,
+unreviewed labels**. That is not independent physician validation. Appendix 30
+specifies the clinical policy, new independently labeled cases and prospective
+evaluation still required. [Full results and exact paired outputs](../../docs/FALSE_NEGATIVE_REDUCTION_RESULTS_2026-09-16.md)
+and [clinical validation plan](../../docs/FALSE_NEGATIVE_REDUCTION_PLAN_2026-09-16.md).
 
 ## Additional timing experiment
 

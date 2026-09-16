@@ -1,0 +1,24 @@
+{
+  "id": "C07",
+  "arm": "candidate",
+  "inputSHA256": "9ce2f33af6b7880c3936da3c07fe2302ecd75a53163af691a612511d30f9ee2d",
+  "beganAt": "2026-09-16T06:08:10.148Z",
+  "reservedUSD": 0.2655,
+  "body": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "adaptive"
+    },
+    "output_config": {
+      "effort": "low"
+    },
+    "system": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\n\nUse only findings stated in the message. An unreported finding is unknown, not absent. Choose SELF_CARE only when the supplied information supports no clinician assessment now. If missing information could materially change that decision, choose ASYNC_PHYSICIAN unless reported findings warrant URGENT_ESCALATION. Missing information alone does not establish an emergency.\n\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short).",
+    "messages": [
+      {
+        "role": "user",
+        "content": "My 3-year-old has had a fever up to 102F for 2 days. He's still drinking okay and pretty playful in between the fevers. No rash that I can see."
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "id": "C43",
+  "arm": "candidate",
+  "inputSHA256": "09068e1f6be344be3040d4eadc60eb24c36f9ae351e44d3b8b4cf5381af1f218",
+  "beganAt": "2026-09-16T06:08:47.438Z",
+  "reservedUSD": 0.26582,
+  "body": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "adaptive"
+    },
+    "output_config": {
+      "effort": "low"
+    },
+    "system": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\n\nUse only findings stated in the message. An unreported finding is unknown, not absent. Choose SELF_CARE only when the supplied information supports no clinician assessment now. If missing information could materially change that decision, choose ASYNC_PHYSICIAN unless reported findings warrant URGENT_ESCALATION. Missing information alone does not establish an emergency.\n\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short).",
+    "messages": [
+      {
+        "role": "user",
+        "content": "34M. I've had a cough for about three weeks now with night sweats and I've lost maybe 10 pounds without trying. I moved here from a country where TB is common."
+      }
+    ]
+  }
+}

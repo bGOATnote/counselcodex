@@ -1,0 +1,451 @@
+{
+  "protocol": "fn-reduction-one-call/v1",
+  "runId": "d0f8e594-a16c-4d50-8de2-12668c6bd250",
+  "frozenAt": "2026-09-16T06:07:09.346Z",
+  "arm": "candidate",
+  "provider": "Anthropic Messages API",
+  "settings": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "adaptive"
+    },
+    "output_config": {
+      "effort": "low"
+    }
+  },
+  "systemPrompt": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\n\nUse only findings stated in the message. An unreported finding is unknown, not absent. Choose SELF_CARE only when the supplied information supports no clinician assessment now. If missing information could materially change that decision, choose ASYNC_PHYSICIAN unless reported findings warrant URGENT_ESCALATION. Missing information alone does not establish an emergency.\n\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short).",
+  "promptSHA256": "839cde0c0e43f42018fc04172b547750876dcf196bcff94f2da7b8424022a8f7",
+  "messagesPath": "outputs/fn-reduction-2026-09-16/known-messages.json",
+  "messagesSHA256": "a8bcbbb056e5d0836e5259a879c6f09729bd5c40f633cb96f08d69a6a33e66ca",
+  "cases": [
+    {
+      "id": "C01",
+      "message": "Hi, I've had a runny nose and a mild sore throat for about 2 days. No fever, I'm still eating and drinking fine. Should I be worried?"
+    },
+    {
+      "id": "C02",
+      "message": "45M. I've had crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach. I have high cholesterol."
+    },
+    {
+      "id": "C03",
+      "message": "28F. It burns when I pee and I'm going a lot more often, started 2 days ago. No fever, no back pain. I'm not pregnant. I've had UTIs before."
+    },
+    {
+      "id": "C04",
+      "message": "62F, I'm diabetic. I got a small cut on the bottom of my foot about 4 days ago and now the skin around it is red and a little swollen. No fever. It's tender when I press on it."
+    },
+    {
+      "id": "C05",
+      "message": "I've been feeling really hopeless for a few weeks now. Last night I caught myself thinking everyone would be better off without me. I don't know what to do."
+    },
+    {
+      "id": "C06",
+      "message": "Could I get a refill on my losartan? I've been on 50mg once a day for about 2 years, my blood pressure is well controlled, last home reading was 122/78."
+    },
+    {
+      "id": "C07",
+      "message": "My 3-year-old has had a fever up to 102F for 2 days. He's still drinking okay and pretty playful in between the fevers. No rash that I can see."
+    },
+    {
+      "id": "C08",
+      "message": "35F. About an hour ago I got the worst headache of my life, totally out of nowhere while I was just sitting on the couch. It hit like a thunderclap. My neck feels a bit stiff now too."
+    },
+    {
+      "id": "C09",
+      "message": "30F, I'm 32 weeks pregnant. I've had a bad headache that won't go away, my vision is a little blurry, and my hands and face look puffy."
+    },
+    {
+      "id": "C10",
+      "message": "50M. For a few weeks I've had pain in my upper right belly that comes and goes, usually after a fatty meal. No fever, no yellowing of my skin or eyes."
+    },
+    {
+      "id": "C11",
+      "message": "I have a small itchy red rash on my forearm since I did some gardening yesterday. It's not spreading and I'm breathing fine."
+    },
+    {
+      "id": "C12",
+      "message": "68F with COPD. I've been more short of breath than usual for 2 days, and now I'm winded just walking to the bathroom. My phlegm has turned green."
+    },
+    {
+      "id": "C13",
+      "message": "55M. My right hand has been numb and tingly for a few days, worse at night. No weakness anywhere, no face drooping, my speech is normal."
+    },
+    {
+      "id": "C14",
+      "message": "I ate shrimp about 20 minutes ago. Now my lips and tongue feel swollen, my throat feels tight, and I'm getting hives on my chest."
+    },
+    {
+      "id": "C15",
+      "message": "I'd like to get tested for STIs. No symptoms, but I had a new partner recently and want to be safe."
+    },
+    {
+      "id": "C16",
+      "message": "My 6-month-old has a fever of 100.9, she's fussy, she's had fewer wet diapers today than normal, and she doesn't seem interested in feeding."
+    },
+    {
+      "id": "C17",
+      "message": "40M. I hurt my low back lifting something a week ago. Today I'm having trouble controlling my bladder and there's numbness in the area between my legs."
+    },
+    {
+      "id": "C18",
+      "message": "Can I refill my albuterol inhaler? I use it maybe once a week, no bad attacks recently."
+    },
+    {
+      "id": "C19",
+      "message": "I've been dizzy on and off for a few days. The room spins when I roll over or turn my head in bed, but it settles. No chest pain, no weakness, no headache."
+    },
+    {
+      "id": "C20",
+      "message": "70M on warfarin. I fell and hit my head yesterday. Today I have a bad headache and I've thrown up twice."
+    },
+    {
+      "id": "C21",
+      "message": "55F. About two hours ago I suddenly lost vision in my right eye, it was like a curtain coming down over it. No pain at all. It hasn't come back."
+    },
+    {
+      "id": "C22",
+      "message": "24M. I rolled my ankle playing basketball last night. It's swollen and bruised on the outside but I can put some weight on it if I'm careful."
+    },
+    {
+      "id": "C23",
+      "message": "60M. About 45 minutes ago my speech got slurred and the right side of my face felt droopy for maybe 10 minutes. It's back to normal now so I figured it was nothing, but wanted to check."
+    },
+    {
+      "id": "C24",
+      "message": "33F. Could I get a refill on my birth control? I've been on the same one for three years with no problems."
+    },
+    {
+      "id": "C25",
+      "message": "42F. I flew back from Europe two days ago and now my left calf is painful, swollen, and warm compared to the other one."
+    },
+    {
+      "id": "C26",
+      "message": "19M. Scratchy throat since yesterday, no fever, no trouble swallowing. Just annoying. Anything I can take?"
+    },
+    {
+      "id": "C27",
+      "message": "70F. Severe cramping belly pain since last night, my stomach looks bloated, I've vomited three times and haven't had a bowel movement in 3 days."
+    },
+    {
+      "id": "C28",
+      "message": "29F, about 8 weeks pregnant. I started bleeding this morning, more than spotting, with cramping in my lower belly."
+    },
+    {
+      "id": "C29",
+      "message": "45F. I had my cholesterol checked last week at a lab. Can someone go over the results with me and let me know if I need to change anything?"
+    },
+    {
+      "id": "C30",
+      "message": "36M. I got into poison ivy while clearing brush on Saturday. Itchy blistery rash on both forearms, spreading a bit within that area. No fever, no trouble breathing."
+    },
+    {
+      "id": "C31",
+      "message": "50F. Bad headache since yesterday with a fever of 101.5, my neck is stiff and it hurts to look at bright light."
+    },
+    {
+      "id": "C32",
+      "message": "My 8-year-old says her right ear has hurt since last night. No fever, she ate breakfast fine and went to school."
+    },
+    {
+      "id": "C33",
+      "message": "65M, type 2 diabetes. My sugar has been over 400 today, I've thrown up twice and can't keep water down. I feel awful."
+    },
+    {
+      "id": "C34",
+      "message": "27F. My seasonal allergies are back — sneezing, itchy eyes, stuffy nose. What over the counter option do you recommend?"
+    },
+    {
+      "id": "C35",
+      "message": "58M. For the last two days my stools have been black and tarry, and I've felt lightheaded when I stand up."
+    },
+    {
+      "id": "C36",
+      "message": "31F. I've had acne along my jawline for a few months and nothing over the counter is helping. Would like to talk about options."
+    },
+    {
+      "id": "C37",
+      "message": "44M. Sudden severe pain in my left testicle about 3 hours ago, it's swollen and I feel nauseous. Pain isn't letting up."
+    },
+    {
+      "id": "C38",
+      "message": "22F. Following up on my ankle sprain from last week — it's improving. Just wondering how much ibuprofen I can safely take and for how long."
+    },
+    {
+      "id": "C39",
+      "message": "39F, two weeks postpartum. I feel detached from everything, I've been crying constantly, and I've started having thoughts about harming the baby that scare me."
+    },
+    {
+      "id": "C40",
+      "message": "47M. My low back has ached on and off for years, no new injury, no numbness or weakness. I'd like a referral for physical therapy."
+    },
+    {
+      "id": "C41",
+      "message": "My 6-year-old has a fever of 103 and I just noticed purple spots on his legs that don't fade when I press on them. He seems very sleepy."
+    },
+    {
+      "id": "C42",
+      "message": "52F. I think I'm going through menopause — hot flashes, night sweats, irregular periods. I'd like to discuss what my options are."
+    },
+    {
+      "id": "C43",
+      "message": "34M. I've had a cough for about three weeks now with night sweats and I've lost maybe 10 pounds without trying. I moved here from a country where TB is common."
+    },
+    {
+      "id": "C44",
+      "message": "68M. Both my ankles have been swelling for a couple weeks and it's gotten worse. The last two nights I've had to sit up to breathe because lying flat makes me short of breath."
+    },
+    {
+      "id": "C45",
+      "message": "25F. I got my STI panel results in the portal and I don't understand what one of the values means. Can someone explain?"
+    },
+    {
+      "id": "C46",
+      "message": "30M. Requesting a refill of my finasteride, 1mg daily. No side effects, been on it about a year."
+    },
+    {
+      "id": "C47",
+      "message": "45F. I've had trouble falling asleep for the last month or so. Work has been stressful. I'm functioning but tired all day."
+    },
+    {
+      "id": "C48",
+      "message": "71F. I fell in the kitchen this morning and my right hip hurts badly. I can't put any weight on that leg."
+    },
+    {
+      "id": "C49",
+      "message": "28M. Sharp pain on the left side of my chest since yesterday, worse when I take a deep breath. I did a heavy chest workout two days ago. No shortness of breath, no leg swelling, I don't smoke."
+    },
+    {
+      "id": "C50",
+      "message": "40F. My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get. I'm out of sumatriptan and would like a refill."
+    }
+  ],
+  "sourceHashes": {
+    "scripts/fn-reduction-protocol.mjs": "3bd24bb4b13ae5adabbfd4417130541a1b96356d5732df0668cd34371337341f",
+    "scripts/fn-reduction-experiment.mjs": "e40e7e78a73e805040ccdc8c58b2263545e1c0f00e556201405316a38ef29283"
+  },
+  "callPolicy": {
+    "callsPerCase": 1,
+    "automaticRetries": 0,
+    "fallbacks": 0,
+    "judgeCalls": 0,
+    "concurrency": 4
+  },
+  "contextPolicy": "The user message contains only the supplied message. No case ID, label, reference, retrieved context or previous output enters a request. Scoring occurs after generation is frozen.",
+  "budget": {
+    "path": "outputs/fn-reduction-2026-09-16/budget.json",
+    "sha256": "5c7c85fb182b611260d441ce646d11dfa62ea0943b9a4dc7580913b816984343",
+    "reservedUSD": 13.268339999999997,
+    "perCase": [
+      {
+        "id": "C01",
+        "reservedUSD": 0.2653
+      },
+      {
+        "id": "C02",
+        "reservedUSD": 0.2663
+      },
+      {
+        "id": "C03",
+        "reservedUSD": 0.26544
+      },
+      {
+        "id": "C04",
+        "reservedUSD": 0.26616
+      },
+      {
+        "id": "C05",
+        "reservedUSD": 0.26576
+      },
+      {
+        "id": "C06",
+        "reservedUSD": 0.26568
+      },
+      {
+        "id": "C07",
+        "reservedUSD": 0.2655
+      },
+      {
+        "id": "C08",
+        "reservedUSD": 0.2663
+      },
+      {
+        "id": "C09",
+        "reservedUSD": 0.26534
+      },
+      {
+        "id": "C10",
+        "reservedUSD": 0.26564
+      },
+      {
+        "id": "C11",
+        "reservedUSD": 0.26512
+      },
+      {
+        "id": "C12",
+        "reservedUSD": 0.26554
+      },
+      {
+        "id": "C13",
+        "reservedUSD": 0.26536
+      },
+      {
+        "id": "C14",
+        "reservedUSD": 0.26522
+      },
+      {
+        "id": "C15",
+        "reservedUSD": 0.26462
+      },
+      {
+        "id": "C16",
+        "reservedUSD": 0.26544
+      },
+      {
+        "id": "C17",
+        "reservedUSD": 0.26566
+      },
+      {
+        "id": "C18",
+        "reservedUSD": 0.26438
+      },
+      {
+        "id": "C19",
+        "reservedUSD": 0.26574
+      },
+      {
+        "id": "C20",
+        "reservedUSD": 0.26472
+      },
+      {
+        "id": "C21",
+        "reservedUSD": 0.26552
+      },
+      {
+        "id": "C22",
+        "reservedUSD": 0.26546
+      },
+      {
+        "id": "C23",
+        "reservedUSD": 0.26634
+      },
+      {
+        "id": "C24",
+        "reservedUSD": 0.26476
+      },
+      {
+        "id": "C25",
+        "reservedUSD": 0.26502
+      },
+      {
+        "id": "C26",
+        "reservedUSD": 0.26476
+      },
+      {
+        "id": "C27",
+        "reservedUSD": 0.26552
+      },
+      {
+        "id": "C28",
+        "reservedUSD": 0.26492
+      },
+      {
+        "id": "C29",
+        "reservedUSD": 0.26542
+      },
+      {
+        "id": "C30",
+        "reservedUSD": 0.26592
+      },
+      {
+        "id": "C31",
+        "reservedUSD": 0.26486
+      },
+      {
+        "id": "C32",
+        "reservedUSD": 0.26488
+      },
+      {
+        "id": "C33",
+        "reservedUSD": 0.26498
+      },
+      {
+        "id": "C34",
+        "reservedUSD": 0.26506
+      },
+      {
+        "id": "C35",
+        "reservedUSD": 0.26476
+      },
+      {
+        "id": "C36",
+        "reservedUSD": 0.26518
+      },
+      {
+        "id": "C37",
+        "reservedUSD": 0.26502
+      },
+      {
+        "id": "C38",
+        "reservedUSD": 0.26546
+      },
+      {
+        "id": "C39",
+        "reservedUSD": 0.26582
+      },
+      {
+        "id": "C40",
+        "reservedUSD": 0.26524
+      },
+      {
+        "id": "C41",
+        "reservedUSD": 0.26536
+      },
+      {
+        "id": "C42",
+        "reservedUSD": 0.26526
+      },
+      {
+        "id": "C43",
+        "reservedUSD": 0.26582
+      },
+      {
+        "id": "C44",
+        "reservedUSD": 0.26614
+      },
+      {
+        "id": "C45",
+        "reservedUSD": 0.26502
+      },
+      {
+        "id": "C46",
+        "reservedUSD": 0.26456
+      },
+      {
+        "id": "C47",
+        "reservedUSD": 0.26508
+      },
+      {
+        "id": "C48",
+        "reservedUSD": 0.26474
+      },
+      {
+        "id": "C49",
+        "reservedUSD": 0.26648
+      },
+      {
+        "id": "C50",
+        "reservedUSD": 0.26576
+      }
+    ]
+  },
+  "pricing": {
+    "inputUSDPerMillion": 10,
+    "outputUSDPerMillion": 50,
+    "cacheReadUSDPerMillion": 0.25,
+    "cacheWriteUSDPerMillion": 20,
+    "conservativeInputUSDPerMillion": 20,
+    "basis": "Frozen Fable accounting assumptions; estimates are not invoices."
+  },
+  "interpretation": "Authored development ablation, not independent clinical validation or a deployed policy."
+}

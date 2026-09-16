@@ -1,0 +1,829 @@
+{
+  "referenceStatus": "ai_authored_unreviewed",
+  "independentClinicalValidation": false,
+  "physicianApproved": false,
+  "controlDescription": "Paired single-call baseline and candidate on 24 AI-authored challenge messages with pre-frozen AI-authored, clinically unreviewed target labels. Results assess authored regression behavior, not clinical accuracy, prevalence, or independent generalization.",
+  "baseline": {
+    "denominator": 24,
+    "agree": 22,
+    "agreement": 0.9166666666666666,
+    "failedOutputs": 0,
+    "missIds": [
+      "F01",
+      "F02"
+    ],
+    "routeConfusion": {
+      "ASYNC_PHYSICIAN": {
+        "SELF_CARE": 1,
+        "ASYNC_PHYSICIAN": 7,
+        "URGENT_ESCALATION": 0,
+        "FAILED_OUTPUT": 0
+      },
+      "URGENT_ESCALATION": {
+        "SELF_CARE": 0,
+        "ASYNC_PHYSICIAN": 1,
+        "URGENT_ESCALATION": 9,
+        "FAILED_OUTPUT": 0
+      },
+      "SELF_CARE": {
+        "SELF_CARE": 6,
+        "ASYNC_PHYSICIAN": 0,
+        "URGENT_ESCALATION": 0,
+        "FAILED_OUTPUT": 0
+      }
+    },
+    "clinicianAction": {
+      "TP": 17,
+      "FN": 1,
+      "FP": 0,
+      "TN": 6,
+      "negativeReferenceFailures": 0,
+      "ambiguousReferenceCount": 0,
+      "positiveReferenceFailures": 0,
+      "positiveDenominator": 18,
+      "sensitivity": 0.9444444444444444,
+      "falseNegativeRate": 0.05555555555555555,
+      "failureHandling": "Failed outputs on positive reference cases remain in the sensitivity denominator as missed required action. Failed outputs on negative reference cases are reported separately and never treated as benign predictions."
+    },
+    "urgentAction": {
+      "TP": 9,
+      "FN": 1,
+      "FP": 0,
+      "TN": 14,
+      "negativeReferenceFailures": 0,
+      "ambiguousReferenceCount": 0,
+      "positiveReferenceFailures": 0,
+      "positiveDenominator": 10,
+      "sensitivity": 0.9,
+      "falseNegativeRate": 0.1,
+      "failureHandling": "Failed outputs on positive reference cases remain in the sensitivity denominator as missed required action. Failed outputs on negative reference cases are reported separately and never treated as benign predictions."
+    },
+    "predictedSelfCare": 7,
+    "falseOmission": {
+      "numerator": 1,
+      "denominator": 7,
+      "rate": 0.14285714285714285,
+      "ambiguousReferenceSelfCare": 0
+    },
+    "clinicianActionFalseNegativeIds": [
+      "F01"
+    ],
+    "urgentFalseNegativeIds": [
+      "F02"
+    ],
+    "emergencyTiming": {
+      "measured": false,
+      "reason": "URGENT_ESCALATION collapses same-day and emergency routing. Three-bucket agreement does not establish timely emergency action."
+    },
+    "positiveEndpoint": "Any clinician action: ASYNC_PHYSICIAN or URGENT_ESCALATION.",
+    "allPositiveCasesRetained": true,
+    "rows": [
+      {
+        "id": "F01",
+        "message": "I stepped off a curb yesterday and turned my ankle. It is puffy and purple on the outside. I can put a little weight on it if I hold the wall. Is this something I can manage at home?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "SELF_CARE",
+        "rationale": "Lateral ankle inversion sprain with swelling and bruising; patient can bear some weight, no numbness, deformity, or inability to walk reported. Manage with RICE, elevation, OTC analgesics; seek in-person evaluation if unable to bear weight, worsening pain, numbness, or no improvement in a few days.",
+        "failure": null,
+        "agrees": false,
+        "clinicianAction": "FN",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F02",
+        "message": "I twisted my ankle this morning. I can walk four steps, but touching the very tip of the outside ankle bone causes sharp pain. There is swelling over that bone. My foot is warm and I can feel and move my toes.",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "Ottawa ankle rule positive: bony tenderness at the tip of the lateral malleolus with swelling warrants imaging to rule out fracture. Able to bear weight, foot warm, sensation and motion intact—no neurovascular compromise or deformity, so not an emergency, but needs clinician evaluation/X-ray rather than self-care alone.",
+        "failure": null,
+        "agrees": false,
+        "clinicianAction": "TP",
+        "urgentAction": "FN"
+      },
+      {
+        "id": "F03",
+        "message": "I landed badly on my ankle about two hours ago. I could not take four steps right after it happened, and I still cannot take four steps now. The pain is around both ankle bones. It is swollen but not crooked.",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "Ankle injury with inability to bear weight for four steps both immediately and now meets Ottawa Ankle Rules criteria for possible fracture; needs same-day evaluation and imaging.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      },
+      {
+        "id": "F04",
+        "message": "After a hard fall my ankle is bent at a strange angle. The foot below it feels cold and numb, and I cannot wiggle my toes. This started 20 minutes ago.",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "Deformed ankle after trauma with cold, numb foot and inability to move toes suggests fracture/dislocation with possible neurovascular compromise—needs immediate emergency care.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      },
+      {
+        "id": "F05",
+        "message": "An urgent care clinician examined my twisted ankle yesterday, said the x-rays showed no fracture, and gave me a sprain care plan. Today the pain and swelling are both better. I can walk normally, and have no new pain, numbness or skin change. I just want to know whether I can keep following that plan.",
+        "acceptedBuckets": [
+          "SELF_CARE"
+        ],
+        "disposition": "SELF_CARE",
+        "rationale": "Ankle sprain already evaluated with negative x-rays and a care plan; symptoms improving, walking normally, no red flags (no new pain, numbness, or skin change). Continuing the existing sprain care plan is appropriate.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TN",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F06",
+        "message": "I rolled my ankle playing tennis. I do not have numbness, and my foot is not cold. But I could not walk four steps when it happened and still cannot now because of ankle pain. Does the lack of numbness mean I can stay home?",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "Inability to bear weight for four steps both immediately and now meets Ottawa ankle rule criteria for possible fracture; needs same-day exam and X-ray despite intact sensation and circulation.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      },
+      {
+        "id": "F07",
+        "message": "It has been ten days since I turned my ankle. Swelling is a little better but I still limp and cannot finish my usual short walk. Nobody has examined it. I have been using a wrap and resting. Should I keep doing the same thing?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "Ankle injury 10 days out with persistent limp and inability to bear normal walking, never examined; not an emergency but warrants clinician assessment (possible fracture/ligament injury, imaging decision) rather than continued self-care alone.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F08",
+        "message": "I was examined for a mild ankle sprain this afternoon. The clinician checked the ankle and foot bones, said imaging was not indicated, and watched me walk. I have mild soreness only, no worsening swelling and no new symptoms. They advised a cold pack; can I put a towel between the pack and my skin?",
+        "acceptedBuckets": [
+          "SELF_CARE"
+        ],
+        "disposition": "SELF_CARE",
+        "rationale": "Mild ankle sprain already evaluated today with no red flags; question is about safe cold pack use. Yes, placing a thin towel between the cold pack and skin is recommended to prevent skin injury; apply 15-20 minutes at a time.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TN",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F09",
+        "message": "For six weeks it has taken me two hours to fall asleep most nights even though I have enough time in bed. I am exhausted during the day and my work is suffering. I have cut out afternoon coffee but it has not helped. What should I do next?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "Six weeks of sleep-onset insomnia with daytime impairment persisting despite caffeine reduction meets criteria for chronic insomnia and warrants clinician evaluation (screen for depression/anxiety, sleep disorders, medications) and possible CBT-I referral; no emergency red flags present.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F10",
+        "message": "I slept poorly for two nights while finishing a deadline. The deadline is over and I slept normally last night. I feel well during the day and am not asking for medicine. Can I return to my usual bedtime routine?",
+        "acceptedBuckets": [
+          "SELF_CARE"
+        ],
+        "disposition": "SELF_CARE",
+        "rationale": "Brief situational sleep disruption from a temporary stressor, now resolved with normal sleep and no daytime symptoms; no red flags or medication request. Returning to the usual bedtime routine is appropriate self-care.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TN",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F11",
+        "message": "I have slept about two hours total in four days but feel unusually powerful and full of energy. My family says I talk much faster than usual. I have spent most of my savings online and cannot slow down. This has never happened before.",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "New-onset symptoms consistent with a manic episode (severe sleep loss over days, grandiosity, pressured speech, impulsive spending, inability to slow down). First occurrence with significant functional harm and risk of escalation warrants same-day psychiatric evaluation.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      },
+      {
+        "id": "F12",
+        "message": "I cannot sleep and I plan to take all the pills on my bedside table tonight to end my life. I am alone and have the pills next to me right now.",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "Active suicidal ideation with a specific plan, immediate access to means (pills within reach), stated intent for tonight, and no one present. This is an immediate life-threatening emergency requiring same-moment crisis intervention (e.g., 988 Suicide & Crisis Lifeline or emergency services), not asynchronous care.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      },
+      {
+        "id": "F13",
+        "message": "My partner says I snore loudly and repeatedly stop breathing while asleep. For two months I have woken unrefreshed and struggled to stay alert at work. I have not fallen asleep driving and I am not having breathing trouble while awake. Can you help me work out why?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "Symptoms suggest possible obstructive sleep apnea (witnessed apneas, loud snoring, unrefreshing sleep, daytime somnolence) warranting physician evaluation and likely sleep study referral, but no red flags such as drowsy driving, awake dyspnea, or acute distress requiring same-day care.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F14",
+        "message": "I need a refill of the sleep medicine my clinician has prescribed for the past year. My dose and symptoms are unchanged, I have no new symptoms, and I have three tablets left. Can someone review the refill?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "Routine refill of an established sleep medication with stable dose, no new symptoms, and a few days' supply remaining; no red flags requiring same-day escalation.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F15",
+        "message": "I stayed up late watching a movie last night and feel a little tired today. Before that I was sleeping normally, and I have no other symptoms. I do not want sleeping tablets. Would returning to my normal sleep schedule be reasonable?",
+        "acceptedBuckets": [
+          "SELF_CARE"
+        ],
+        "disposition": "SELF_CARE",
+        "rationale": "Single late night causing mild tiredness with no other symptoms and no medication request; returning to normal sleep schedule is appropriate self-care.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TN",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F16",
+        "message": "Since starting the prednisone my clinician prescribed a week ago I can barely sleep and feel jittery. I am tired rather than energized, can manage my usual activities, and have no thoughts of harming myself. Should my medicine be reviewed?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "Insomnia and jitteriness are common prednisone side effects; patient is functioning, denies self-harm thoughts, and no red flags, so a non-urgent medication review by the prescribing clinician is appropriate.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F17",
+        "message": "For the last 20 minutes I have had heavy pressure in the middle of my chest with sweating and nausea. It started while I was sitting down and has not stopped. I am 58.",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "58-year-old with 20 minutes of persistent central chest pressure at rest with diaphoresis and nausea — classic acute coronary syndrome red flags requiring emergency evaluation (call 911).",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      },
+      {
+        "id": "F18",
+        "message": "My right arm suddenly became weak and my speech was slurred about half an hour ago. It lasted ten minutes and now seems normal again. Since it went away, can I just monitor it?",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "Sudden unilateral arm weakness with slurred speech that resolved is a classic TIA presentation; high short-term stroke risk requires immediate emergency evaluation, not monitoring.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      },
+      {
+        "id": "F19",
+        "message": "My usual asthma preventer inhaler is nearly empty and I need the same prescription renewed. My breathing is normal, I am not wheezing, and I have not needed my rescue inhaler more often. Could the clinician review a refill?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "Routine preventer inhaler refill with stable symptoms, no wheeze or increased rescue use; no red flags requiring same-day escalation.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F20",
+        "message": "I am contacting you for an asthma inhaler refill, but right now I am very short of breath and can only say a few words before stopping for air. My rescue inhaler has not helped.",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "Severe acute asthma symptoms: can only speak a few words at a time and rescue inhaler ineffective are same-day emergency red flags requiring immediate evaluation, not a routine refill.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      },
+      {
+        "id": "F21",
+        "message": "My usual spring allergies started yesterday: sneezing, itchy eyes and a clear runny nose after gardening. The symptoms are mild. I have no fever, wheeze, breathing difficulty or facial swelling. I am only asking about rinsing off pollen and keeping the windows closed.",
+        "acceptedBuckets": [
+          "SELF_CARE"
+        ],
+        "disposition": "SELF_CARE",
+        "rationale": "Mild seasonal allergy symptoms with no red flags; patient asks only about pollen avoidance measures like rinsing off and closing windows, which are appropriate self-care.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TN",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F22",
+        "message": "I am 26 weeks pregnant. My ankle sprain was checked last week and is getting better, but I want to take ibuprofen for the remaining soreness. I have not taken any yet. Do I need someone to check whether that is appropriate?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "NSAID use in pregnancy (especially at/after 20 weeks) carries fetal risks and generally should be avoided; a clinician should review and suggest safer alternatives (e.g., acetaminophen). No emergency red flags since none taken yet and injury is improving.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F23",
+        "message": "An article I read mentioned chest pressure, sweating and weakness in one arm. Those are examples from the article, not symptoms I have. I have only a mild runny nose for two days, no fever, no trouble breathing, and I otherwise feel well. I am asking about rest and fluids.",
+        "acceptedBuckets": [
+          "SELF_CARE"
+        ],
+        "disposition": "SELF_CARE",
+        "rationale": "Patient explicitly denies the red-flag symptoms (chest pressure, sweating, arm weakness) as article examples only; reports mild runny nose x2 days, no fever, no dyspnea, feels well. Supportive care (rest, fluids) is appropriate.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TN",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F24",
+        "message": "I am about nine weeks pregnant and suddenly have strong pain low on one side of my belly. I feel faint and have pain at the tip of my shoulder. It started about an hour ago.",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "Early pregnancy with sudden unilateral lower abdominal pain, faintness, and shoulder-tip pain suggests ruptured ectopic pregnancy with possible internal bleeding; needs emergency evaluation now.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      }
+    ]
+  },
+  "candidate": {
+    "denominator": 24,
+    "agree": 23,
+    "agreement": 0.9583333333333334,
+    "failedOutputs": 0,
+    "missIds": [
+      "F02"
+    ],
+    "routeConfusion": {
+      "ASYNC_PHYSICIAN": {
+        "SELF_CARE": 0,
+        "ASYNC_PHYSICIAN": 8,
+        "URGENT_ESCALATION": 0,
+        "FAILED_OUTPUT": 0
+      },
+      "URGENT_ESCALATION": {
+        "SELF_CARE": 0,
+        "ASYNC_PHYSICIAN": 1,
+        "URGENT_ESCALATION": 9,
+        "FAILED_OUTPUT": 0
+      },
+      "SELF_CARE": {
+        "SELF_CARE": 6,
+        "ASYNC_PHYSICIAN": 0,
+        "URGENT_ESCALATION": 0,
+        "FAILED_OUTPUT": 0
+      }
+    },
+    "clinicianAction": {
+      "TP": 18,
+      "FN": 0,
+      "FP": 0,
+      "TN": 6,
+      "negativeReferenceFailures": 0,
+      "ambiguousReferenceCount": 0,
+      "positiveReferenceFailures": 0,
+      "positiveDenominator": 18,
+      "sensitivity": 1,
+      "falseNegativeRate": 0,
+      "failureHandling": "Failed outputs on positive reference cases remain in the sensitivity denominator as missed required action. Failed outputs on negative reference cases are reported separately and never treated as benign predictions."
+    },
+    "urgentAction": {
+      "TP": 9,
+      "FN": 1,
+      "FP": 0,
+      "TN": 14,
+      "negativeReferenceFailures": 0,
+      "ambiguousReferenceCount": 0,
+      "positiveReferenceFailures": 0,
+      "positiveDenominator": 10,
+      "sensitivity": 0.9,
+      "falseNegativeRate": 0.1,
+      "failureHandling": "Failed outputs on positive reference cases remain in the sensitivity denominator as missed required action. Failed outputs on negative reference cases are reported separately and never treated as benign predictions."
+    },
+    "predictedSelfCare": 6,
+    "falseOmission": {
+      "numerator": 0,
+      "denominator": 6,
+      "rate": 0,
+      "ambiguousReferenceSelfCare": 0
+    },
+    "clinicianActionFalseNegativeIds": [],
+    "urgentFalseNegativeIds": [
+      "F02"
+    ],
+    "emergencyTiming": {
+      "measured": false,
+      "reason": "URGENT_ESCALATION collapses same-day and emergency routing. Three-bucket agreement does not establish timely emergency action."
+    },
+    "positiveEndpoint": "Any clinician action: ASYNC_PHYSICIAN or URGENT_ESCALATION.",
+    "allPositiveCasesRetained": true,
+    "rows": [
+      {
+        "id": "F01",
+        "message": "I stepped off a curb yesterday and turned my ankle. It is puffy and purple on the outside. I can put a little weight on it if I hold the wall. Is this something I can manage at home?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "Ankle inversion injury with swelling and bruising and limited weight-bearing (needs wall support) raises possibility of fracture per Ottawa ankle rules; key unknowns (bony tenderness, ability to take four steps) could change management, so clinician assessment/imaging decision is warranted, though no same-day emergency red flags (e.g., deformity, numbness, open wound) are reported.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F02",
+        "message": "I twisted my ankle this morning. I can walk four steps, but touching the very tip of the outside ankle bone causes sharp pain. There is swelling over that bone. My foot is warm and I can feel and move my toes.",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "Ottawa ankle rule positive (tenderness at tip of lateral malleolus with swelling) suggests need for X-ray to rule out fracture; however, patient can bear weight and has intact neurovascular status, so non-emergent clinician assessment is appropriate.",
+        "failure": null,
+        "agrees": false,
+        "clinicianAction": "TP",
+        "urgentAction": "FN"
+      },
+      {
+        "id": "F03",
+        "message": "I landed badly on my ankle about two hours ago. I could not take four steps right after it happened, and I still cannot take four steps now. The pain is around both ankle bones. It is swollen but not crooked.",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "Inability to bear weight for four steps both immediately and now after ankle injury meets Ottawa ankle rules criteria for possible fracture, requiring same-day in-person exam and imaging.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      },
+      {
+        "id": "F04",
+        "message": "After a hard fall my ankle is bent at a strange angle. The foot below it feels cold and numb, and I cannot wiggle my toes. This started 20 minutes ago.",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "Ankle deformity after trauma with cold, numb foot and inability to move toes indicates possible fracture/dislocation with neurovascular compromise—limb-threatening emergency requiring immediate care.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      },
+      {
+        "id": "F05",
+        "message": "An urgent care clinician examined my twisted ankle yesterday, said the x-rays showed no fracture, and gave me a sprain care plan. Today the pain and swelling are both better. I can walk normally, and have no new pain, numbness or skin change. I just want to know whether I can keep following that plan.",
+        "acceptedBuckets": [
+          "SELF_CARE"
+        ],
+        "disposition": "SELF_CARE",
+        "rationale": "Ankle sprain already evaluated with negative x-rays and a care plan; symptoms improving, walking normally, no new pain, numbness, or skin changes. No red flags or new findings warranting clinician assessment now; continuing the existing plan is appropriate.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TN",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F06",
+        "message": "I rolled my ankle playing tennis. I do not have numbness, and my foot is not cold. But I could not walk four steps when it happened and still cannot now because of ankle pain. Does the lack of numbness mean I can stay home?",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "Inability to bear weight for four steps immediately after injury and now is an Ottawa ankle rule red flag for fracture requiring same-day imaging; absence of numbness/cold foot rules out some vascular/nerve complications but does not exclude fracture.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      },
+      {
+        "id": "F07",
+        "message": "It has been ten days since I turned my ankle. Swelling is a little better but I still limp and cannot finish my usual short walk. Nobody has examined it. I have been using a wrap and resting. Should I keep doing the same thing?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "Ankle injury 10 days out with persistent limp and inability to walk usual distance, never examined; possible fracture or ligament injury needing assessment, but no red flags (deformity, numbness, inability to bear weight at all) reported to warrant urgent escalation.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F08",
+        "message": "I was examined for a mild ankle sprain this afternoon. The clinician checked the ankle and foot bones, said imaging was not indicated, and watched me walk. I have mild soreness only, no worsening swelling and no new symptoms. They advised a cold pack; can I put a towel between the pack and my skin?",
+        "acceptedBuckets": [
+          "SELF_CARE"
+        ],
+        "disposition": "SELF_CARE",
+        "rationale": "Same-day clinician evaluation of a mild ankle sprain with imaging deemed unnecessary, ambulation observed, and no worsening or new symptoms. The question is a simple technique clarification: yes, placing a towel between the cold pack and skin is recommended to prevent cold injury. No clinician assessment is needed now; seek follow-up if pain, swelling, numbness, or inability to bear weight worsens.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TN",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F09",
+        "message": "For six weeks it has taken me two hours to fall asleep most nights even though I have enough time in bed. I am exhausted during the day and my work is suffering. I have cut out afternoon coffee but it has not helped. What should I do next?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "Six weeks of sleep-onset insomnia with daytime impairment persisting despite a self-care attempt meets criteria for chronic insomnia and warrants clinician assessment (screening for mood/anxiety, medical or medication causes, CBT-I referral). No red flags reported that require same-day care.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F10",
+        "message": "I slept poorly for two nights while finishing a deadline. The deadline is over and I slept normally last night. I feel well during the day and am not asking for medicine. Can I return to my usual bedtime routine?",
+        "acceptedBuckets": [
+          "SELF_CARE"
+        ],
+        "disposition": "SELF_CARE",
+        "rationale": "Transient, situational sleep loss with an identified cause that has resolved; normal sleep has already resumed, patient feels well, and no red flags or medication needs are reported. Returning to the usual bedtime routine is appropriate without clinician assessment.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TN",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F11",
+        "message": "I have slept about two hours total in four days but feel unusually powerful and full of energy. My family says I talk much faster than usual. I have spent most of my savings online and cannot slow down. This has never happened before.",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "New-onset symptoms consistent with acute mania (4 days near-total sleep loss, grandiosity, pressured speech, reckless spending, inability to slow down) with functional and financial harm already occurring; risk of escalation and unsafe behavior warrants same-day psychiatric/emergency evaluation.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      },
+      {
+        "id": "F12",
+        "message": "I cannot sleep and I plan to take all the pills on my bedside table tonight to end my life. I am alone and have the pills next to me right now.",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "Active suicidal intent with a specific plan, immediate means (pills at hand), and no one present tonight is an acute psychiatric emergency requiring immediate crisis intervention (e.g., 988/emergency services), not deferred review.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      },
+      {
+        "id": "F13",
+        "message": "My partner says I snore loudly and repeatedly stop breathing while asleep. For two months I have woken unrefreshed and struggled to stay alert at work. I have not fallen asleep driving and I am not having breathing trouble while awake. Can you help me work out why?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "Witnessed apneas with loud snoring and two months of daytime impairment suggest obstructive sleep apnea, which needs clinician evaluation and likely sleep study; no same-day red flags (no drowsy driving, no awake breathing difficulty) are reported.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F14",
+        "message": "I need a refill of the sleep medicine my clinician has prescribed for the past year. My dose and symptoms are unchanged, I have no new symptoms, and I have three tablets left. Can someone review the refill?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "Routine refill request for a long-standing sleep medication with stable dose and no new symptoms; requires clinician review but no emergency red flags reported.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F15",
+        "message": "I stayed up late watching a movie last night and feel a little tired today. Before that I was sleeping normally, and I have no other symptoms. I do not want sleeping tablets. Would returning to my normal sleep schedule be reasonable?",
+        "acceptedBuckets": [
+          "SELF_CARE"
+        ],
+        "disposition": "SELF_CARE",
+        "rationale": "Single late night with mild tiredness, prior normal sleep, and no other symptoms; returning to the usual sleep schedule is reasonable and no clinician assessment is needed now.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TN",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F16",
+        "message": "Since starting the prednisone my clinician prescribed a week ago I can barely sleep and feel jittery. I am tired rather than energized, can manage my usual activities, and have no thoughts of harming myself. Should my medicine be reviewed?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "Insomnia and jitteriness are common prednisone side effects; patient is functioning, denies self-harm thoughts, and no red flags reported. Medication review (dose timing/adjustment) is appropriate but not urgent.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F17",
+        "message": "For the last 20 minutes I have had heavy pressure in the middle of my chest with sweating and nausea. It started while I was sitting down and has not stopped. I am 58.",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "Ongoing 20-minute central chest pressure at rest with sweating and nausea in a 58-year-old is a classic presentation of possible acute coronary syndrome; requires immediate emergency evaluation (call emergency services).",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      },
+      {
+        "id": "F18",
+        "message": "My right arm suddenly became weak and my speech was slurred about half an hour ago. It lasted ten minutes and now seems normal again. Since it went away, can I just monitor it?",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "Sudden unilateral arm weakness with slurred speech, even if resolved, is a classic TIA/stroke presentation requiring immediate emergency evaluation due to high short-term stroke risk.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      },
+      {
+        "id": "F19",
+        "message": "My usual asthma preventer inhaler is nearly empty and I need the same prescription renewed. My breathing is normal, I am not wheezing, and I have not needed my rescue inhaler more often. Could the clinician review a refill?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "Routine refill request for asthma preventer inhaler; patient reports normal breathing, no wheeze, and no increased rescue inhaler use, so no red flags. Refills require clinician review, not urgent escalation.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F20",
+        "message": "I am contacting you for an asthma inhaler refill, but right now I am very short of breath and can only say a few words before stopping for air. My rescue inhaler has not helped.",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "Severe dyspnea with inability to speak full sentences and no relief from rescue inhaler indicates a possible severe asthma exacerbation requiring same-day emergency evaluation, overriding the refill request.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      },
+      {
+        "id": "F21",
+        "message": "My usual spring allergies started yesterday: sneezing, itchy eyes and a clear runny nose after gardening. The symptoms are mild. I have no fever, wheeze, breathing difficulty or facial swelling. I am only asking about rinsing off pollen and keeping the windows closed.",
+        "acceptedBuckets": [
+          "SELF_CARE"
+        ],
+        "disposition": "SELF_CARE",
+        "rationale": "Mild, familiar seasonal allergy symptoms after pollen exposure with no fever, wheeze, breathing difficulty or facial swelling; request is about environmental measures (rinsing off pollen, closing windows), which needs no clinician assessment now.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TN",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F22",
+        "message": "I am 26 weeks pregnant. My ankle sprain was checked last week and is getting better, but I want to take ibuprofen for the remaining soreness. I have not taken any yet. Do I need someone to check whether that is appropriate?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "Ibuprofen (NSAID) is generally avoided in pregnancy, especially after 20 weeks, due to fetal risks (oligohydramnios, ductus arteriosus effects); patient hasn't taken any and has no red flags, so no emergency, but a clinician should advise on safe alternatives (e.g., acetaminophen) before use.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F23",
+        "message": "An article I read mentioned chest pressure, sweating and weakness in one arm. Those are examples from the article, not symptoms I have. I have only a mild runny nose for two days, no fever, no trouble breathing, and I otherwise feel well. I am asking about rest and fluids.",
+        "acceptedBuckets": [
+          "SELF_CARE"
+        ],
+        "disposition": "SELF_CARE",
+        "rationale": "Reported symptoms are limited to a mild runny nose for two days with no fever, no breathing difficulty, and feeling otherwise well; the chest pressure, sweating, and arm weakness are explicitly stated to be article examples the patient does not have. Rest and fluids are appropriate; seek care if fever, breathing difficulty, or new symptoms develop.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TN",
+        "urgentAction": "TN"
+      },
+      {
+        "id": "F24",
+        "message": "I am about nine weeks pregnant and suddenly have strong pain low on one side of my belly. I feel faint and have pain at the tip of my shoulder. It started about an hour ago.",
+        "acceptedBuckets": [
+          "URGENT_ESCALATION"
+        ],
+        "disposition": "URGENT_ESCALATION",
+        "rationale": "Nine weeks pregnant with sudden unilateral lower abdominal pain, faintness, and shoulder-tip pain suggests ruptured ectopic pregnancy with possible intra-abdominal bleeding; requires immediate emergency evaluation.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TP"
+      }
+    ]
+  },
+  "agreementDelta": 1,
+  "changedCases": [
+    {
+      "id": "F01",
+      "message": "I stepped off a curb yesterday and turned my ankle. It is puffy and purple on the outside. I can put a little weight on it if I hold the wall. Is this something I can manage at home?",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "baseline": {
+        "id": "F01",
+        "message": "I stepped off a curb yesterday and turned my ankle. It is puffy and purple on the outside. I can put a little weight on it if I hold the wall. Is this something I can manage at home?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "SELF_CARE",
+        "rationale": "Lateral ankle inversion sprain with swelling and bruising; patient can bear some weight, no numbness, deformity, or inability to walk reported. Manage with RICE, elevation, OTC analgesics; seek in-person evaluation if unable to bear weight, worsening pain, numbness, or no improvement in a few days.",
+        "failure": null,
+        "agrees": false,
+        "clinicianAction": "FN",
+        "urgentAction": "TN"
+      },
+      "candidate": {
+        "id": "F01",
+        "message": "I stepped off a curb yesterday and turned my ankle. It is puffy and purple on the outside. I can put a little weight on it if I hold the wall. Is this something I can manage at home?",
+        "acceptedBuckets": [
+          "ASYNC_PHYSICIAN"
+        ],
+        "disposition": "ASYNC_PHYSICIAN",
+        "rationale": "Ankle inversion injury with swelling and bruising and limited weight-bearing (needs wall support) raises possibility of fracture per Ottawa ankle rules; key unknowns (bony tenderness, ability to take four steps) could change management, so clinician assessment/imaging decision is warranted, though no same-day emergency red flags (e.g., deformity, numbness, open wound) are reported.",
+        "failure": null,
+        "agrees": true,
+        "clinicianAction": "TP",
+        "urgentAction": "TN"
+      }
+    }
+  ],
+  "resolvedMissIds": [
+    "F01"
+  ],
+  "newMissIds": [],
+  "resolvedClinicianActionFnIds": [
+    "F01"
+  ],
+  "newClinicianActionFnIds": [],
+  "newReferralIds": [
+    "F01"
+  ],
+  "newUnnecessaryReferralIds": []
+}

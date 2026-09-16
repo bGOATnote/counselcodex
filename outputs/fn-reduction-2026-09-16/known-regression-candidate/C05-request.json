@@ -1,0 +1,24 @@
+{
+  "id": "C05",
+  "arm": "candidate",
+  "inputSHA256": "6a9ad551d64efda6b5f6ee2d2dc58fba2c24f9a128c790fc9ead0dbf4e0eb2d7",
+  "beganAt": "2026-09-16T06:08:09.521Z",
+  "reservedUSD": 0.26576,
+  "body": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "adaptive"
+    },
+    "output_config": {
+      "effort": "low"
+    },
+    "system": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\n\nUse only findings stated in the message. An unreported finding is unknown, not absent. Choose SELF_CARE only when the supplied information supports no clinician assessment now. If missing information could materially change that decision, choose ASYNC_PHYSICIAN unless reported findings warrant URGENT_ESCALATION. Missing information alone does not establish an emergency.\n\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short).",
+    "messages": [
+      {
+        "role": "user",
+        "content": "I've been feeling really hopeless for a few weeks now. Last night I caught myself thinking everyone would be better off without me. I don't know what to do."
+      }
+    ]
+  }
+}

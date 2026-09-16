@@ -10,6 +10,7 @@
 6. [Latest handoff verification](HANDOFF_REVIEW_2026-09-16.md) and [CI policy](CI_AND_REVIEW.md).
 7. [Project disclosures](../DISCLOSURES.md), [security boundary](../SECURITY.md) and [publication review](PUBLICATION_REVIEW_2026-09-16.md).
 8. [Presentation and repository red-team review](PRESENTATION_REPO_RED_TEAM_2026-09-16.md) and [Google Slides import guide](GOOGLE_SLIDES_IMPORT.md).
+9. [False-negative reduction results](FALSE_NEGATIVE_REDUCTION_RESULTS_2026-09-16.md), [clinical validation plan](FALSE_NEGATIVE_REDUCTION_PLAN_2026-09-16.md), and [clinician-review templates](../data/research/fn-reduction-v1/reviewer-pack/README.md). The separate candidate was not adopted into the GUI.
 
 ## Current implementation
 
@@ -21,6 +22,8 @@
 | `data/patient_messages.csv` | Original synthetic assignment messages and discussion labels |
 | `data/evaluation/` | Versioned physician references and amendments; offline scoring only |
 | `outputs/stripped-*` | Frozen requests, responses, scorecards and verification records |
+| `outputs/fn-reduction-2026-09-16/` | Separate development experiment, including adverse results and unchanged-reference comparisons |
+| `data/research/fn-reduction-v1/` | Synthetic challenge inputs, unreviewed proposed labels and blank review forms |
 
 ## Experiments and historical applications
 

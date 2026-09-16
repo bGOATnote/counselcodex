@@ -1,0 +1,24 @@
+{
+  "id": "C20",
+  "arm": "candidate",
+  "inputSHA256": "e09d9675992313489d794903652b706fa594688c16e90f126cdf97c72231808b",
+  "beganAt": "2026-09-16T06:08:23.407Z",
+  "reservedUSD": 0.26472,
+  "body": {
+    "model": "claude-fable-5-1",
+    "max_tokens": 4096,
+    "thinking": {
+      "type": "adaptive"
+    },
+    "output_config": {
+      "effort": "low"
+    },
+    "system": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\n\nUse only findings stated in the message. An unreported finding is unknown, not absent. Choose SELF_CARE only when the supplied information supports no clinician assessment now. If missing information could materially change that decision, choose ASYNC_PHYSICIAN unless reported findings warrant URGENT_ESCALATION. Missing information alone does not establish an emergency.\n\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short).",
+    "messages": [
+      {
+        "role": "user",
+        "content": "70M on warfarin. I fell and hit my head yesterday. Today I have a bad headache and I've thrown up twice."
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+Choose exactly one bucket for the patient message:
+1. SELF_CARE
+2. ASYNC_PHYSICIAN
+3. URGENT_ESCALATION
+
+Medication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.
+
+Use only findings stated in the message. An unreported finding is unknown, not absent. Choose SELF_CARE only when the supplied information supports no clinician assessment now. If missing information could materially change that decision, choose ASYNC_PHYSICIAN unless reported findings warrant URGENT_ESCALATION. Missing information alone does not establish an emergency.
+
+Return only JSON with "disposition" (one exact bucket name) and "rationale" (short).

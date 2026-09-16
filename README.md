@@ -23,6 +23,7 @@ The public slides and saved results below require no setup or API key.
 - [Live demo script](docs/DEMO_SCRIPT_2026-09-15.md)
 - [Handoff verification and merged dependency reviews](docs/HANDOFF_REVIEW_2026-09-16.md)
 - [Presentation and repository red-team review](docs/PRESENTATION_REPO_RED_TEAM_2026-09-16.md)
+- [False-negative reduction experiment](docs/FALSE_NEGATIVE_REDUCTION_RESULTS_2026-09-16.md) and [clinical validation plan](docs/FALSE_NEGATIVE_REDUCTION_PLAN_2026-09-16.md)
 - [Physician adjudication v3](docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md): case corrections, current scores, and exact Astra/Fable differences
 - [Original evaluation appendix](docs/EVAL_APPENDIX_2026-09-15.md)
 - [Requirements audit](docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md) and [red-team review](docs/SUBMISSION_RED_TEAM_2026-09-15.md)
@@ -51,6 +52,22 @@ The supplied PDF describes 20 messages; the attached CSV contains 50. The repo
 uses all 50, byte-identical to the supplied file. The expanded project exceeded
 the brief's original 6–8 hour scope. The presentation discloses that overrun and
 explains the scope of the current baseline.
+
+## False-negative reduction experiment
+
+A separate one-paragraph prompt change completed **98 one-shot calls**. It did
+not improve the known-case result: **48/50 → 44/50** under unchanged physician
+reference v3. C47 moved to the accepted async route, but C22 remained self-care,
+C07 became a new missed clinician referral, and C04/C43/C49 moved from urgent
+to async. C32 became an additional referral against its accepted self-care label.
+Required clinician action remained **41/43**; urgent routing fell **25/25 → 22/25**.
+
+On a separate 24-case challenge, agreement changed **22/24 → 23/24** against
+**AI-authored, unreviewed proposed labels**. Those are development checks, not
+physician agreement or independent clinical validation. The experiment stopped
+after the planned pass. The frozen GUI remains unchanged. See the
+[exact messages, paired outputs and separate scorecards](docs/FALSE_NEGATIVE_REDUCTION_RESULTS_2026-09-16.md)
+and the [blank clinician-review materials](data/research/fn-reduction-v1/reviewer-pack/README.md).
 
 ## Conditional timing experiment
 
