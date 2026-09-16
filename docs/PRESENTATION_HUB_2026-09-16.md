@@ -51,3 +51,27 @@ another for offline presenting. Saved cases and images need no model service;
 live inference needs the local server and Anthropic access. Repository links
 need internet. Publication manifests bind the renderer, roadmap, source deck,
 reviewed photo bytes and generated pages.
+
+## Hosted release
+
+Release commit: `422a818d4da9d2444632dc5ead9550d8cc765eed`.
+[CI](https://github.com/bGOATnote/counselcodex/actions/runs/35129454238) and
+[Pages deployment](https://github.com/bGOATnote/counselcodex/actions/runs/35130485391)
+passed. The exact-index publication scan covered 16,620 files with zero findings
+and errors; 40 existing visual-extraction warnings remained. Changed images and
+the new graphic were visually inspected. The staged secret scan found no leaks.
+
+Both public pages returned HTTP 200 with bytes identical to local artifacts:
+
+| File | Bytes | SHA-256 |
+| --- | ---: | --- |
+| index.html | 1,437,381 | `b6975446242a071836fb493df55d0811dc807edf268f8b036e246f1c49cd3bff` |
+| roadmap.html | 6,413 | `a3e23dcc12698b61f4c388fa1d3d45c09c917c7191e830683d7c2c244576e068` |
+
+Actual public-browser checks confirmed the restored badge, loaded image
+dimensions, hidden index on C22 and both new header links. Live demo opened the
+local Fable page with Get disposition enabled; Roadmap opened the published
+graphic. Both preserved C22 in the original tab. No call was submitted and no
+console errors or warnings were observed. An already-open viewer required a
+reload to replace its previous HTML. Temporary preview tabs and viewport
+overrides were removed.
