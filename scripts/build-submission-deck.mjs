@@ -118,20 +118,27 @@ for (const [index, data] of slides.entries()) {
   slide.speakerNotes.textFrame.setText(notes);
   if (type === 'cover') {
     text(slide, data.eyebrow || 'COUNSEL PHYSICIAN AI ENGINEER TAKE-HOME', 80, 54, data.logo ? 900 : 1120, 35, 19, { bold: true, color: colors.muted });
-    if (data.logo) slide.images.add({ blob: new Uint8Array(await fs.readFile(path.resolve(repo, data.logo.path))), contentType: 'image/png', alt: data.logo.alt, fit: 'contain', position: { left: 1030, top: 40, width: 170, height: 71 } });
+    if (data.logo) {
+      if (data.logo.label) text(slide, data.logo.label, 1030, 17, 170, 23, 16, { color: colors.muted });
+      slide.images.add({ blob: new Uint8Array(await fs.readFile(path.resolve(repo, data.logo.path))), contentType: 'image/png', alt: data.logo.alt, fit: 'contain', position: { left: 1030, top: 40, width: 170, height: 71 } });
+    }
     text(slide, title, 80, 124, 1110, 170, 68, { bold: true, color: colors.navy });
-    if (data.subtitle) text(slide, data.subtitle, 84, 325, 1060, 76, 30, { color: colors.text });
+    if (data.subtitle) text(slide, data.subtitle, 84, 310, 1060, 42, 30, { color: colors.text });
     if (data.body) paragraphs(slide, data.body, 84, 415, 1090, 123, { size: 24, gap: 17 });
     if (data.presenter) {
-      text(slide, data.presenter.name, 84, 405, 1090, 37, 30, { color: colors.navy, bold: true });
-      text(slide, data.presenter.title, 84, 448, 1090, 31, 23);
+      text(slide, data.presenter.name, 84, 375, 1090, 37, 30, { color: colors.navy, bold: true });
+      text(slide, data.presenter.title, 84, 416, 1090, 31, 23);
     }
     if (data.demoLink) {
-      text(slide, data.demoLink.url, 84, 492, 1090, 31, 24, { color: colors.teal });
-      text(slide, data.demoLink.label, 84, 531, 1090, 26, 18, { color: colors.muted });
+      text(slide, data.demoLink.url, 84, 466, 1090, 31, 24, { color: colors.teal });
+      text(slide, data.demoLink.label, 84, 503, 1090, 26, 18, { color: colors.muted });
     }
-    if (data.emphasis) text(slide, data.emphasis, 84, 563, 1080, 70, 27, { color: colors.teal, bold: true });
-    if (data.footnote || data.footer) text(slide, data.footnote || data.footer, 84, 646, 1070, 35, 18, { color: colors.muted });
+    if (data.reviewerLink) {
+      text(slide, data.reviewerLink.label, 84, 543, 225, 27, 20, { color: colors.teal, bold: true });
+      text(slide, data.reviewerLink.url, 314, 544, 886, 27, 20, { color: colors.teal });
+    }
+    if (data.emphasis) text(slide, data.emphasis, 84, 592, 1080, 43, 25, { color: colors.teal, bold: true });
+    if (data.footnote || data.footer) text(slide, data.footnote || data.footer, 84, 650, 1070, 48, 18, { color: colors.muted });
   } else {
     const titleSize = title.length > 65 ? 43 : 47;
     const titleHeight = lineCount(title, 1120, titleSize, true) * titleSize * 1.14 + 8;
@@ -226,7 +233,7 @@ for (const [index, data] of slides.entries()) {
 
 const candidate = path.join(staging, 'candidate.pptx');
 await (await PresentationFile.exportPptx(presentation)).save(candidate);
-const links = slides.flatMap((slide, index) => slide.demoLink ? [{ slide: index + 1, url: slide.demoLink.url }] : []);
+const links = slides.flatMap((slide, index) => [slide.demoLink, slide.reviewerLink].filter(Boolean).map((link, linkIndex) => ({ slide: index + 1, url: link.url, relationshipId: `rIdExternalLink${linkIndex + 1}` })));
 if (links.length) {
   // Artifact Tool authors the deck; add the requested native OOXML hyperlinks
   // before the structural validator and final export inspect the package.
@@ -242,7 +249,7 @@ for link in links:
  assert len(runs)==1, 'Expected one exact visible URL'
  props=runs[0].find('a:rPr',ns)
  if props is None: props=ET.Element('{'+ns['a']+'}rPr');runs[0].insert(0,props)
- rid='rIdLocalDemo';ET.SubElement(props,'{'+ns['a']+'}hlinkClick',{'{'+ns['r']+'}id':rid})
+ rid=link['relationshipId'];ET.SubElement(props,'{'+ns['a']+'}hlinkClick',{'{'+ns['r']+'}id':rid})
  relationships=ET.fromstring(entries[rel][1]); uri='http://schemas.openxmlformats.org/package/2006/relationships'
  assert all(x.attrib.get('Id')!=rid for x in relationships)
  ET.SubElement(relationships,'{'+uri+'}Relationship',{'Id':rid,'Type':ns['r']+'/hyperlink','Target':link['url'],'TargetMode':'External'})

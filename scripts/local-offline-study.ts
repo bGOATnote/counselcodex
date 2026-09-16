@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from "node:fs";
 import { resolve, join } from "node:path";
+import { tmpdir } from "node:os";
 import { execFileSync } from "node:child_process";
 import { pathToFileURL } from "node:url";
 import { isDeepStrictEqual } from "node:util";
@@ -169,7 +170,7 @@ async function runLocalStudyUnlocked(directory: string, split: string) {
   save(join(dir, `after-${split}-${new Date().toISOString().replaceAll(":", "-")}.json`), await memorySample());
 }
 export async function runLocalStudy(directory: string, split: string) {
-  const lock = "/private/tmp/counsel-local-offline-ollama.lock";
+  const lock = join(tmpdir(), "counsel-local-offline-ollama.lock");
   try { mkdirSync(lock); } catch (error) { if ((error as NodeJS.ErrnoException).code === "EEXIST") throw new Error("LOCAL_RUN_LOCKED: verify the recorded owner before removing a stale lock"); throw error; }
   try {
     save(join(lock, "owner.json"), { pid: process.pid, directory: resolve(directory), split, createdAt: new Date().toISOString() });
