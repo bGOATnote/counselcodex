@@ -14,7 +14,7 @@ const guide = "docs/GUI_ACCESS.md";
 
 export function inspectDemoSetup({ root = repositoryRoot, environment = process.env, nodeVersion = process.versions.node, resolveNext } = {}) {
   const [major, minor] = nodeVersion.split(".").map(Number);
-  if (!(major > 22 || (major === 22 && minor >= 18))) throw new Error("Use Node.js 22.18 or newer, then run npm ci.");
+  if (!((major === 22 && minor >= 18) || major > 24 || (major === 24 && minor >= 11))) throw new Error("Use Node.js 22.18+ within Node 22, or Node 24.11+. CI uses 22.18.0. Then run npm ci.");
   let nextBinary;
   try { nextBinary = (resolveNext ?? (() => createRequire(join(root, "package.json")).resolve("next/dist/bin/next")))(); }
   catch { throw new Error("Dependencies are missing. Run npm ci from the repository root."); }

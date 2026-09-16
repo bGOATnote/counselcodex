@@ -1,0 +1,66 @@
+{
+  "id": "cc427722-a797-4c66-a612-d88a7203d11a",
+  "status": "complete",
+  "createdAt": "2026-09-16T04:40:02.054Z",
+  "completedAt": "2026-09-16T04:40:06.562Z",
+  "message": "Could I get a refill on my losartan? I've been on 50mg once a day for about 2 years, my blood pressure is well controlled, last home reading was 122/78.\nUpdate: I now have crushing chest pressure, sweating, and pain going into my left arm.",
+  "protocol": {
+    "model": "claude-fable-5-1",
+    "effort": "low",
+    "promptSHA256": "80810b85df956d779709a71dbc0d85534f5847e2563b0be5235048cb254a03ce"
+  },
+  "result": {
+    "disposition": "URGENT_ESCALATION",
+    "rationale": "Although the initial request is a routine losartan refill, the update reports crushing chest pressure, sweating, and pain radiating to the left arm—classic red flags for acute coronary syndrome requiring immediate emergency evaluation (call 911)."
+  },
+  "error": null,
+  "trace": {
+    "workflowId": "stripped-fable-5-1",
+    "stepId": "one-disposition",
+    "providerCalls": 1,
+    "providerRequestId": "req_011Cf6W6y2sCakXroj8e94Yb",
+    "latencyMs": 4508,
+    "usage": {
+      "inputTokens": 228,
+      "outputTokens": 107,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0
+    },
+    "estimatedUSD": 0.00763,
+    "request": {
+      "model": "claude-fable-5-1",
+      "max_tokens": 4096,
+      "thinking": {
+        "type": "adaptive"
+      },
+      "output_config": {
+        "effort": "low"
+      },
+      "system": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short).",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Could I get a refill on my losartan? I've been on 50mg once a day for about 2 years, my blood pressure is well controlled, last home reading was 122/78.\nUpdate: I now have crushing chest pressure, sweating, and pain going into my left arm."
+        }
+      ]
+    },
+    "response": {
+      "id": "msg_011Cf6W6yrj8c75NYGXnsqPU",
+      "model": "claude-fable-5-1",
+      "stop_reason": "end_turn",
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"disposition\": \"URGENT_ESCALATION\", \"rationale\": \"Although the initial request is a routine losartan refill, the update reports crushing chest pressure, sweating, and pain radiating to the left arm—classic red flags for acute coronary syndrome requiring immediate emergency evaluation (call 911).\"}"
+        }
+      ],
+      "usage": {
+        "inputTokens": 228,
+        "outputTokens": 107,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0
+      }
+    }
+  },
+  "accountedUSD": 0.00991
+}

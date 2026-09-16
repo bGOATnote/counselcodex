@@ -1,0 +1,66 @@
+{
+  "id": "d7f2ef33-3501-4f78-972e-e42bfacfabc1",
+  "status": "complete",
+  "createdAt": "2026-09-16T04:38:25.276Z",
+  "completedAt": "2026-09-16T04:38:30.425Z",
+  "message": "Could I get a refill on my losartan? I've been on 50mg once a day for about 2 years, my blood pressure is well controlled, last home reading was 122/78.",
+  "protocol": {
+    "model": "claude-fable-5-1",
+    "effort": "low",
+    "promptSHA256": "80810b85df956d779709a71dbc0d85534f5847e2563b0be5235048cb254a03ce"
+  },
+  "result": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "rationale": "Routine refill request for a stable, long-term losartan prescription with well-controlled blood pressure and no red-flag symptoms; requires physician review but not urgent."
+  },
+  "error": null,
+  "trace": {
+    "workflowId": "stripped-fable-5-1",
+    "stepId": "one-disposition",
+    "providerCalls": 1,
+    "providerRequestId": "req_011Cf6Vyq5C1dhf4xu1rMpEt",
+    "latencyMs": 5149,
+    "usage": {
+      "inputTokens": 198,
+      "outputTokens": 84,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0
+    },
+    "estimatedUSD": 0.00618,
+    "request": {
+      "model": "claude-fable-5-1",
+      "max_tokens": 4096,
+      "thinking": {
+        "type": "adaptive"
+      },
+      "output_config": {
+        "effort": "low"
+      },
+      "system": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short).",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Could I get a refill on my losartan? I've been on 50mg once a day for about 2 years, my blood pressure is well controlled, last home reading was 122/78."
+        }
+      ]
+    },
+    "response": {
+      "id": "msg_011Cf6VyqoqqFJhL74zKRLeE",
+      "model": "claude-fable-5-1",
+      "stop_reason": "end_turn",
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"disposition\": \"ASYNC_PHYSICIAN\", \"rationale\": \"Routine refill request for a stable, long-term losartan prescription with well-controlled blood pressure and no red-flag symptoms; requires physician review but not urgent.\"}"
+        }
+      ],
+      "usage": {
+        "inputTokens": 198,
+        "outputTokens": 84,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0
+      }
+    }
+  },
+  "accountedUSD": 0.00816
+}

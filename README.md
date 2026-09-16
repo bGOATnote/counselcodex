@@ -20,6 +20,7 @@ The public slides and saved results below require no setup or API key.
 - [Submission package](output/submission-2026-09-15/README.md): editable slides, PDF, and evaluation workbook
 - [Slide narrative and speaker notes](docs/INTERVIEW_DECK_2026-09-15.md): case-led presentation and seven-minute live demo
 - [Live demo script](docs/DEMO_SCRIPT_2026-09-15.md)
+- [Handoff verification and merged dependency reviews](docs/HANDOFF_REVIEW_2026-09-16.md)
 - [Physician adjudication v3](docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md): case corrections, current scores, and exact Astra/Fable differences
 - [Original evaluation appendix](docs/EVAL_APPENDIX_2026-09-15.md)
 - [Requirements audit](docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md) and [red-team review](docs/SUBMISSION_RED_TEAM_2026-09-15.md)
@@ -69,7 +70,7 @@ GUI remains the three-bucket demonstration.
 
 ## Run the current demo
 
-Requires Node 22.18+ and `ANTHROPIC_API_KEY` in the server environment or
+Use Node 22.18.0 (pinned in `.nvmrc`, matching CI), or Node 24.11+, and `ANTHROPIC_API_KEY` in the server environment or
 repository-root `.env`.
 
 ```bash

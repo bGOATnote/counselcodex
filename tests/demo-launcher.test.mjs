@@ -31,7 +31,12 @@ test("preflight gives actionable failures for missing key, build, dependencies a
   const options = fixture(t);
   assert.throws(() => inspectDemoSetup(options), /ANTHROPIC_API_KEY is missing/);
   assert.throws(() => inspectDemoSetup({ ...options, environment: { ANTHROPIC_API_KEY: "  " } }), /missing or empty/);
-  assert.throws(() => inspectDemoSetup({ ...options, nodeVersion: "22.17.0" }), /22.18 or newer/);
+  for (const nodeVersion of ["22.17.0", "23.0.0", "24.3.0", "24.10.9"]) {
+    assert.throws(() => inspectDemoSetup({ ...options, nodeVersion }), /Node.js 22.18/);
+  }
+  for (const nodeVersion of ["22.18.0", "22.20.0", "24.11.0", "24.19.0"]) {
+    assert.doesNotThrow(() => inspectDemoSetup({ ...options, nodeVersion, environment: { ANTHROPIC_API_KEY: "offline-fixture-value" } }));
+  }
   assert.throws(() => inspectDemoSetup({ ...options, resolveNext: () => { throw new Error("module missing"); } }), /npm ci/);
   rmSync(join(options.root, "apps/evaluation/.next/BUILD_ID"));
   assert.throws(() => inspectDemoSetup(options), /npm run review:build/);

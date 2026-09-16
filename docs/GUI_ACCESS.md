@@ -9,7 +9,9 @@ The launcher always uses port 4120 and binds the server to 127.0.0.1.
 
 ## Live GUI
 
-From the repository root, using Node.js 22.18 or newer:
+From the repository root, use Node.js 22.18.0 (the `.nvmrc` and CI version),
+or Node.js 24.11+. Node 23 and early Node 24 releases are outside the dependency
+engine range. With nvm installed, run `nvm install && nvm use` first:
 
 ```bash
 npm ci
