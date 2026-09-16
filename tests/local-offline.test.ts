@@ -104,6 +104,6 @@ test("first attempts preserve errors, resume never generates again, and score bi
     writeFileSync(path, JSON.stringify(saved), { flag: "wx" });
     saved.output.verdict = "unsupported"; writeFileSync(path, JSON.stringify(saved));
     assert.throws(() => scoreLocalStudy(dir), /RAW_MISMATCH/);
-    assert.equal(existsSync("/private/tmp/counsel-local-offline-ollama.lock"), false);
+    assert.equal(existsSync(join(tmpdir(), "counsel-local-offline-ollama.lock")), false);
   } finally { globalThis.fetch = originalFetch; rmSync(parent, { recursive: true, force: true }); }
 });

@@ -82,6 +82,12 @@ request without provider execution.
 Presentation validation, exact case-message checks and final artifact hashes
 are recorded in the [submission manifest](../output/submission-2026-09-15/manifest.json).
 
+The initial Ubuntu CI run exposed a macOS-specific `/private/tmp` lock path in
+the local offline-study runner. The runner now uses `node:os` `tmpdir()` while
+preserving exclusive directory creation, owner recording and cleanup. Its five
+focused tests pass with mocked generation. Current hosted verification is
+available in the [GitHub CI workflow](https://github.com/bGOATnote/counselcodex/actions/workflows/ci.yml).
+
 Scanner telemetry reported 12,419,023 total input/output tokens across four
 tasks, including 11,846,912 cached input tokens. This is the tool-reported
 aggregate, not a measure of newly generated text or a financial estimate.

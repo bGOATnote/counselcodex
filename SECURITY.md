@@ -1,5 +1,9 @@
 # Safety and security boundary
 
+Read [project disclosures](DISCLOSURES.md) for authorship, affiliation, AI
+assistance, evaluation limits and unresolved media permissions. No institutional
+or vendor endorsement, certification or warranty is claimed.
+
 The evaluation messages are synthetic. Do not add protected health information,
 credentials, production endpoints, or live patient traces. The presentation
 contains user-supplied discussion images, separately identified in its asset
