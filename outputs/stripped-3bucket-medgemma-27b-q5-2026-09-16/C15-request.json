@@ -1,0 +1,26 @@
+{
+  "id": "C15",
+  "inputSHA256": "fa387f9f80425cdbe67ae7870daa5be6eaec945e2203efb8129aaa514c37c934",
+  "body": {
+    "model": "counsel-medgemma-27b-text-q5:latest",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short)."
+      },
+      {
+        "role": "user",
+        "content": "I'd like to get tested for STIs. No symptoms, but I had a new partner recently and want to be safe."
+      }
+    ],
+    "stream": false,
+    "keep_alive": "15m",
+    "options": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 4096,
+      "repeat_penalty": 1
+    }
+  }
+}

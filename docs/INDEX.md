@@ -26,6 +26,7 @@ not from the word “current” in a historical filename.
 13. [Current publication source archives](../publication/historical-sources/README.md) and [archive review](PUBLIC_ARCHIVE_REVIEW_2026-09-16.md): separate source-only derivatives, with immutable originals retained privately and historical Git availability disclosed.
 14. [Offline case viewer](../publication/workflow-study-review/README.md): all 98 messages and 1,568 saved decisions, with exact model/arm/repetition contrasts and source packets.
 15. [Source-package failure analysis](WORKFLOW_EVIDENCE_FAILURE_ANALYSIS_2026-09-16.md) and [retrieval candidate audit](RETRIEVAL_CANDIDATE_AUDIT_2026-09-16.md). These diagnose development failures; they do not establish improved clinical care.
+16. [MedGemma 27B comparison](MEDGEMMA_27B_COMPARISON_2026-09-16.md): one local Q5_K_M run, 46/50 physician-v3 agreement, resolved C22/C47 referrals, added C32/C34/C38 referrals and a missed urgent route on C49. All six Fable disagreements include exact messages and rationales.
 
 ## Current implementation
 
@@ -37,6 +38,8 @@ not from the word “current” in a historical filename.
 | `data/patient_messages.csv` | Original synthetic assignment messages and discussion labels |
 | `data/evaluation/` | Versioned physician references and amendments; offline scoring only |
 | `outputs/stripped-*` | Frozen requests, responses, scorecards and verification records |
+| `scripts/stripped-3bucket-medgemma.mjs` | Separate pinned local MedGemma generation and offline artifact verification; no reference access during generation |
+| `scripts/score-stripped-3bucket-medgemma.mjs` | Offline physician-v3 scoring and exact historical Fable comparison after generation freeze |
 | `outputs/fn-reduction-2026-09-16/` | Separate development experiment, including adverse results and unchanged-reference comparisons |
 | `src/research/workflow-aware/` | Separate typed, single-call research workflow and bounded evidence selection |
 | `outputs/workflow-aware-disposition-2026-09-16/` | Completed 1,568-call study, generation freeze and separate offline scorecards |

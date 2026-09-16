@@ -1,0 +1,26 @@
+{
+  "id": "C04",
+  "inputSHA256": "4d307ea5fff71d10992dfebb600c1d805c5bbc88fef2a39c94515cf4eb8855d1",
+  "body": {
+    "model": "counsel-medgemma-27b-text-q5:latest",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short)."
+      },
+      {
+        "role": "user",
+        "content": "62F, I'm diabetic. I got a small cut on the bottom of my foot about 4 days ago and now the skin around it is red and a little swollen. No fever. It's tender when I press on it."
+      }
+    ],
+    "stream": false,
+    "keep_alive": "15m",
+    "options": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 4096,
+      "repeat_penalty": 1
+    }
+  }
+}

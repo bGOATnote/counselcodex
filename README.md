@@ -91,6 +91,21 @@ found an urgent-reference miss exchanged for another despite an unchanged count.
 - [Offline reproduction and artifact map](docs/WORKFLOW_REPRODUCTION_2026-09-16.md)
 - [Preserved research protocol](docs/WORKFLOW_AWARE_RESEARCH_PLAN_2026-09-16.md)
 
+## Separate MedGemma 27B comparison
+
+The local **MedGemma 27B text-instruct, Q5_K_M** run returned 50 valid outputs
+from 50 one-shot calls using the unchanged stripped prompt. Agreement with
+physician v3 was **46/50**, compared with the historical Fable result of 48/50.
+MedGemma resolved the C22/C47 missed clinician referrals but added referrals on
+C32/C34/C38 and missed the urgent route on C49. Clinician-action false negatives
+were **0/43**; urgent-action false negatives were **1/25**. These separate
+endpoints do not support a claim of clinical superiority. The GUI is unchanged.
+
+See the [full comparison and exact six disagreements](docs/MEDGEMMA_27B_COMPARISON_2026-09-16.md)
+and [frozen requests, outputs and scorecards](outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/).
+This is one quantized local configuration on familiar development cases;
+CSV labels were not scored.
+
 ## False-negative reduction experiment
 
 A separate one-paragraph prompt change completed **98 one-shot calls**. It did

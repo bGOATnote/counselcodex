@@ -1,0 +1,26 @@
+{
+  "id": "C50",
+  "inputSHA256": "0ede5c086d3ea812a589febf64e2b33fcde3c4795b2b686a9b02453986a0b81e",
+  "body": {
+    "model": "counsel-medgemma-27b-text-q5:latest",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short)."
+      },
+      {
+        "role": "user",
+        "content": "40F. My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get. I'm out of sumatriptan and would like a refill."
+      }
+    ],
+    "stream": false,
+    "keep_alive": "15m",
+    "options": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 4096,
+      "repeat_penalty": 1
+    }
+  }
+}

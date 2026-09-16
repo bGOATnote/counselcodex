@@ -1,0 +1,26 @@
+{
+  "id": "C23",
+  "inputSHA256": "fafcc12a29fc8d5d9ca0b4cf6f77ed95ee50eaa5069ea54da237a99132d04b6b",
+  "body": {
+    "model": "counsel-medgemma-27b-text-q5:latest",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short)."
+      },
+      {
+        "role": "user",
+        "content": "60M. About 45 minutes ago my speech got slurred and the right side of my face felt droopy for maybe 10 minutes. It's back to normal now so I figured it was nothing, but wanted to check."
+      }
+    ],
+    "stream": false,
+    "keep_alive": "15m",
+    "options": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 4096,
+      "repeat_penalty": 1
+    }
+  }
+}

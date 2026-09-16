@@ -1,0 +1,26 @@
+{
+  "id": "C35",
+  "inputSHA256": "2bc73c1bc3f8d0f68af8a2ce72d8c43a2b0ca3e53b069595817b6bb63f6863ed",
+  "body": {
+    "model": "counsel-medgemma-27b-text-q5:latest",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short)."
+      },
+      {
+        "role": "user",
+        "content": "58M. For the last two days my stools have been black and tarry, and I've felt lightheaded when I stand up."
+      }
+    ],
+    "stream": false,
+    "keep_alive": "15m",
+    "options": {
+      "temperature": 0,
+      "seed": 42,
+      "num_ctx": 8192,
+      "num_predict": 4096,
+      "repeat_penalty": 1
+    }
+  }
+}

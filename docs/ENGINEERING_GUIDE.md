@@ -11,6 +11,7 @@ root**, regardless of where the checkout lives.
 |---|---|---|
 | Local `/stripped` demonstration | Selected application; frozen three-bucket protocol | [GUI guide](GUI_ACCESS.md), [protocol](../src/stripped/protocol.ts) |
 | Workflow-aware Fable/Nano study | Completed, frozen research; not used by the GUI | [Results](WORKFLOW_AWARE_RESULTS_2026-09-16.md), [reproduction](WORKFLOW_REPRODUCTION_2026-09-16.md) |
+| MedGemma 27B comparison | Separate frozen local Q5_K_M run; not used by the GUI | [Results and offline scoring](MEDGEMMA_27B_COMPARISON_2026-09-16.md) |
 | Offline case viewer | Published inspection of saved outputs; no inference | [Viewer instructions](../publication/workflow-study-review/README.md) |
 | Retrieval candidate audit | Post-study inspection; relevance review pending | [Audit report](RETRIEVAL_CANDIDATE_AUDIT_2026-09-16.md) |
 | `/candidate` | Historical V25 application; preserve its behavior | [V25 contract](V25_README.md) |
@@ -35,6 +36,7 @@ the current entry point, its imports and the applicable completed report.
 | Inspect research generation and budgets | [runner](../src/research/workflow-aware/runner.ts), [budget](../src/research/workflow-aware/budget.ts), [transport](../src/research/workflow-aware/transport.ts), [CLI](../scripts/workflow-aware-study.ts) | `npm run test:workflow-research`; read freeze constraints first |
 | Inspect research prompt/evidence boundaries | [protocol](../src/research/workflow-aware/protocol.ts), [workflow](../src/research/workflow-aware/workflow.ts), [evidence](../src/research/workflow-aware/evidence.ts), [embeddings](../src/research/workflow-aware/embeddings.ts) | `npm run test:workflow-research`; version any new experiment separately |
 | Reproduce research metrics | [scorer](../scripts/score-workflow-aware.ts), [artifact map and exact command](WORKFLOW_REPRODUCTION_2026-09-16.md) | Completed-generation replay; no new model calls |
+| Inspect or reproduce MedGemma comparison | [runner and artifact verifier](../scripts/stripped-3bucket-medgemma.mjs), [offline scorer](../scripts/score-stripped-3bucket-medgemma.mjs) | `node --test tests/stripped*medgemma*.test.mjs`; use the distinct verification/scoring commands below |
 | Change the offline viewer | [renderer](../src/research/workflow-review.ts), [builder](../scripts/build-workflow-review.ts), [tests](../tests/workflow-review.test.ts) | `npm run research:review:verify`, focused tests and browser inspection |
 | Inspect expanded retrieval candidates | [audit](../src/research/retrieval-candidate-audit.ts), [CLI](../scripts/audit-workflow-retrieval-candidates.ts), [tests](../tests/retrieval-candidate-audit.test.ts) | `npm run research:retrieval:verify` |
 | Update slide content or notes | [deck JSON](../output/submission-2026-09-15/content/deck.json), [deck builder](../scripts/build-submission-deck.mjs), [narrative builder](../scripts/build-submission-narrative.mjs) | Render/export review and submission verifier; follow package instructions |
@@ -91,7 +93,10 @@ command map, not permission to run other entry points.
 | `npm run ablate` | Historical component evaluation | Overwrites `outputs/component-ablation-v1.json` |
 | `npm run rag:search` | Default hybrid search can call an embedding provider | Opens or initializes the historical database, including schema/configuration writes. `--lexical` avoids embedding calls but the current CLI still requires `OPENAI_API_KEY`; neither mode is a read-only onboarding check. |
 | `npm run rag:build` | Source download; `--embed` adds embedding calls | Materializes the historical evidence store |
-| `scripts/stripped-*.mjs` generation entry points | Hosted inference; an extra `--live` flag is not generally required | Write experiment artifacts; not setup or reproduction checks |
+| Historical `scripts/stripped-*.mjs` generation entry points | Hosted inference; an extra `--live` flag is not generally required | Write experiment artifacts; not setup or reproduction checks |
+| `node scripts/stripped-3bucket-medgemma.mjs generate` | Up to 50 sequential local Ollama calls in a fresh run | Requires the pinned model, runtime and loopback endpoint. Never repeats started cases. A completed run is verified without inference. Do not edit this frozen runner to launch another variant. |
+| `node scripts/stripped-3bucket-medgemma.mjs verify` | None | Checks all 50 saved attempts, hashes, exact inputs, model identity and raw/parsed parity. No runtime or weight download required. |
+| `node scripts/score-stripped-3bucket-medgemma.mjs` | None | Verifies the frozen run before reading physician v3. Creates scorecards/report once; later replay requires identical bytes. CSV labels are not scored. |
 | `scripts/local-nemotron-smoke.mjs` | Local model generation | Writes a new run; “local” does not mean read-only |
 
 For scorer or builder commands not listed here, inspect the output handling.

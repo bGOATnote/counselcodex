@@ -1,9 +1,9 @@
 {
   "schema": "counsel-submission/v4",
-  "updatedAt": "2026-09-16T14:09:29.605314+00:00",
+  "updatedAt": "2026-09-16T15:01:22.409Z",
   "frozenRuntimeCommit": "1f5e433f13e848aef738019c1d453be31edc214c",
   "baseCommit": "a77d6084364f68627134ed125b2ec409d071f599",
-  "scope": "Presentation revision32 and assignment/GUI review: concise FP/FN management, retrospective judge design and targeted RAG on slides5\u20137; live demonstration and separate saved review on slide8. Completed experiments remain development evidence. All frozen outputs, reference labels, model prompts, runtime behavior and V25 are unchanged.",
+  "scope": "Presentation revision32 retained. Added a separate 50-call local MedGemma 27B Q5_K_M comparison with physician-v3 scoring and exact historical Fable disagreements. Existing outputs, references, model prompts, GUI behavior and V25 remain unchanged. The added comparison is development evidence, not clinical validation.",
   "repository": {
     "url": "https://github.com/bGOATnote/counselcodex",
     "branch": "main",
@@ -734,8 +734,8 @@
       "bytes": 7087
     },
     "README.md": {
-      "sha256": "bd3e41e46a0af47615834304630bfc3fe98eeabb0d84c5eaaf5fb9501b4128c3",
-      "bytes": 14973
+      "sha256": "b26f5e518da36b5aef92843c456e79d71d57272a2f21a5d7921a1050d44ab7c7",
+      "bytes": 15862
     },
     "SECURITY.md": {
       "sha256": "8ffcfed42df5bfad4003173787d361e811bfbc7ea5ebf54db3a6dcef1b2bdf88",
@@ -898,8 +898,8 @@
       "bytes": 7307
     },
     "docs/INDEX.md": {
-      "sha256": "3ab178f08a0eaf37d03a8bc132679547f2937ac447502933ad23ee72f830e215",
-      "bytes": 5542
+      "sha256": "466648b8cdfbce925a09446d96a016512878ca13452495efa68190309643c7d2",
+      "bytes": 6125
     },
     "docs/INTERVIEW_DECK_2026-09-15.md": {
       "sha256": "a9befff62edb001d13dd038bbf795c045a2c20b6034aacf1ffe06dc20139c2a6",
@@ -35596,6 +35596,854 @@
     "tests/workflow-review.test.ts": {
       "sha256": "3307bdf1281cadc542899a759c28eac3917dca06218a229da7788fe42b748367",
       "bytes": 10532
+    },
+    "docs/ENGINEERING_GUIDE.md": {
+      "sha256": "1acd74200ec9dd9f18a8daa8a4743aebf54d5ef0dbb99f954ee4c8a68d7fe53b",
+      "bytes": 15973
+    },
+    "docs/MEDGEMMA_27B_COMPARISON_2026-09-16.md": {
+      "sha256": "910ef655f33fa4f46bb410b964883b0dd5e697efec0d1707df090c3e729f1ace",
+      "bytes": 10318
+    },
+    "scripts/stripped-3bucket-medgemma.mjs": {
+      "sha256": "9e431100ac4638123c22280638b73f2bbac6d1f074a10581edb2620c5677bc5b",
+      "bytes": 16435
+    },
+    "scripts/score-stripped-3bucket-medgemma.mjs": {
+      "sha256": "63fab68f4c0d98120b6582c826ec300abebdb8b09d0553018613b99278390c2e",
+      "bytes": 18160
+    },
+    "tests/stripped-medgemma.test.mjs": {
+      "sha256": "c1735572a77d18128fad2e8c121240700681150a8780b21f8f7765708d5edaaa",
+      "bytes": 6977
+    },
+    "tests/stripped-3bucket-medgemma-score.test.mjs": {
+      "sha256": "442dbd80ff001d8fd389b09a62167ab13990a2340098dbab4e770464ad2cbbcd",
+      "bytes": 6712
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C01-parsed.json": {
+      "sha256": "5060f7d3a280812947c5fcc98423b77a7df17d9dc2edd991c589a5555b46c953",
+      "bytes": 451
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C01-raw.json": {
+      "sha256": "6b195fd3127306d5dcb4bb0cce6d4f8e7c23098610c9dfd58dada0732c3c23d2",
+      "bytes": 688
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C01-request.json": {
+      "sha256": "e70369a4da3112d045919b7dea457e91bafdf43c3227ae653ca93f9163a4f0de",
+      "bytes": 946
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C01-started.json": {
+      "sha256": "0c4dc81328c39f755e9d5326a674a73a4c64662b0091efb951ac73239898c737",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C02-parsed.json": {
+      "sha256": "db4522b18dbd042fbc0620746a69eebe8319f1e2f0f65b27230a56ac2c83e503",
+      "bytes": 521
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C02-raw.json": {
+      "sha256": "93774816ad39f580e3931725cbd9e174f6c41e50b9b668f70bc7075aefb4c3d9",
+      "bytes": 758
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C02-request.json": {
+      "sha256": "fd3886b077b976d9236f64dc2e05d565fbad424c0e2b2edb154050b577b81f74",
+      "bytes": 996
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C02-started.json": {
+      "sha256": "a0247f902f9992b52204d54c38eb85e6972a214b79c0f754b1a7fa78e90a77d1",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C03-parsed.json": {
+      "sha256": "79ef63d395cfd60cea3957be598ca6c9f47839a3d14059e1084d3ef69309bd99",
+      "bytes": 506
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C03-raw.json": {
+      "sha256": "e488b1b9ca3952664f587773d43163758a1e20024c22b7905dcff531a026c39e",
+      "bytes": 742
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C03-request.json": {
+      "sha256": "04143f9718bc5deaed0cedcbd242628dfcc50646450ae61fb9e1f457985cd9c2",
+      "bytes": 953
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C03-started.json": {
+      "sha256": "171c1b7d6c495a1974362a830a982f15239ee303e1dd366ec2556681ff267f0e",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C04-parsed.json": {
+      "sha256": "819be45da0e3e5a388c95c6eccf193a1b574e1283f38c42de1f1dc661d0c6e1d",
+      "bytes": 548
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C04-raw.json": {
+      "sha256": "aaf1616ec431c2dde1c273a3e4edfcea738cefafdb7f21db1c81b529b58e9110",
+      "bytes": 785
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C04-request.json": {
+      "sha256": "89e80e9fdf0a99a209ed59e762d1f2939bbf5082b97137484b9b6513544d674c",
+      "bytes": 989
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C04-started.json": {
+      "sha256": "ae4bcf230e26be7c63394133017351d8c27c88ef5ed5a7c5386f09eaf23c0c27",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C05-parsed.json": {
+      "sha256": "f5eaf51dbac571c965d991ef1be35dd3bd4f490d339742221aa14729ff950ef5",
+      "bytes": 467
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C05-raw.json": {
+      "sha256": "8de723661aa2ad877abe41fe86cadc47543d1d101d50a557824bd476846e4301",
+      "bytes": 704
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C05-request.json": {
+      "sha256": "2bc502b2d38e8d8549869e6e5f725c580164db1b633418a00a7fa2575d3d7d98",
+      "bytes": 969
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C05-started.json": {
+      "sha256": "f27c051beebd274b69fbab7dc5f243952296fa7fcbdc4a16b957eb995986c328",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C06-parsed.json": {
+      "sha256": "e3640c16a2c47cc3a3a1c5a1b22e4bd79cfa997d549b6699d6d143f14495e751",
+      "bytes": 481
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C06-raw.json": {
+      "sha256": "b4f71454129b6cdb7e8360be54fe8a17300a5c9df4926e57f07b1ac9bbfa4e79",
+      "bytes": 717
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C06-request.json": {
+      "sha256": "ba46d7dc630136e4dfdcdd8036cc042a428924db0c085c83835a5617564c861d",
+      "bytes": 965
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C06-started.json": {
+      "sha256": "4a17037916fc71604c0a9cd24242c04fc5f45fe0f32606acca6e16800cab9b8c",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C07-parsed.json": {
+      "sha256": "7fbbae9017738c2bf4ee907f136963f57cb110e747740454702a67ce0f08b80d",
+      "bytes": 513
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C07-raw.json": {
+      "sha256": "e39a8ee301b27b54a50bb84b192b1a55b51698d17b767365fa9d6750afd382c5",
+      "bytes": 750
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C07-request.json": {
+      "sha256": "fb20c4e5437d807111bf48d195c88dfdf1039cae70ddf2f8a2a9397ee370ef50",
+      "bytes": 956
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C07-started.json": {
+      "sha256": "32ab071664fca2e79bc6a4a055891e757d2268ea3e0c2161623fbdebca4fdb96",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C08-parsed.json": {
+      "sha256": "bf95dfb0c71ee00d71a5caeafd1b87099e268d3bdcd7ac1c07a9c857ee19a721",
+      "bytes": 514
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C08-raw.json": {
+      "sha256": "432ad15f51455a252af8f9d65e08423de86a7a74fe172e91b769b8aac1d82cd9",
+      "bytes": 751
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C08-request.json": {
+      "sha256": "0de5ab208d203bd650be51508aae2cd2742753939a12b67fad730f92bd8c264a",
+      "bytes": 996
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C08-started.json": {
+      "sha256": "d36b9eaaf1107f45d139fccec5423ea7750b687e3163e8a86decddbfd4cf4119",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C09-parsed.json": {
+      "sha256": "c9544be0011d5e1821b406ef3ce07a544f12c3c06734c176446eb696bd32a8ad",
+      "bytes": 538
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C09-raw.json": {
+      "sha256": "5e03248fded401cdb96ad26e34916e5f916f393d578ffb5cb3a16956a3c4def0",
+      "bytes": 775
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C09-request.json": {
+      "sha256": "67f7c3256dac9a806e7ca0ac43fe5b5bf7b0480437d045e765fd3c635df48dd7",
+      "bytes": 948
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C09-started.json": {
+      "sha256": "9a15751ed8098df36c3649e5ab2028396a3c77106171354344932aead098fdb9",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C10-parsed.json": {
+      "sha256": "86c36510706a121a84f1405559af53bbf5354debfa1cf58ba1b3292d0073c789",
+      "bytes": 511
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C10-raw.json": {
+      "sha256": "647b0d16a7167d0c62fb499a59d2043628f026c9e5e47b28fc6d73780a2be379",
+      "bytes": 748
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C10-request.json": {
+      "sha256": "08cc2df50f51be7237b7a6bf752c4ebf356fc935799acca2f206adec9e77b691",
+      "bytes": 963
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C10-started.json": {
+      "sha256": "a2bff3d9140c46ef3286c75a817a119b9620abd728fb387a2bfea2ecc01ffc92",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C11-parsed.json": {
+      "sha256": "a9eeec443b30dcf4813c6e4dbf74fac407c1d022057eeefaf0d101c2c6d6cc21",
+      "bytes": 471
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C11-raw.json": {
+      "sha256": "20b2fa733316ea248c8432cf6cac148d470ee896cc8883d09a68b380160e43d5",
+      "bytes": 708
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C11-request.json": {
+      "sha256": "3f157f6cb370250aec6c3c404f3a79bc140510d737ba4d1353383b0e5e7d6c70",
+      "bytes": 937
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C11-started.json": {
+      "sha256": "51eb1a22c13b0f83a7e09dc2564d98677fb5f1762500fa6b0129ce87d6b86b2d",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C12-parsed.json": {
+      "sha256": "040979346c2643626273372521d1df1fdc2391ddd69857c20ea9da396914c9b7",
+      "bytes": 569
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C12-raw.json": {
+      "sha256": "d18203bad6878193d60d7611e36bcd7dccfb283e84ced471e761c80824a26714",
+      "bytes": 806
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C12-request.json": {
+      "sha256": "7b30721d1985468deef482ac46e2d6593236a708d5219e97e8afe4a5aeee7d2c",
+      "bytes": 958
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C12-started.json": {
+      "sha256": "30f3c25c077e00d72746bda157480cb3e45944d180492d0a08459568b0db3804",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C13-parsed.json": {
+      "sha256": "f2ff9789cda88946243cadfb7bb696e62e07bbc14c13f378ec13565701f3db23",
+      "bytes": 474
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C13-raw.json": {
+      "sha256": "95a8d39023400c116bb0d19a0d1033ffe580351926f0a5e963439625ff40ae8c",
+      "bytes": 711
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C13-request.json": {
+      "sha256": "92e480bc76b90bfeaedcb0ec7907bdd3baf970d75ca547ca8a55832c2cf55cb3",
+      "bytes": 949
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C13-started.json": {
+      "sha256": "eef346cda5d82e8a8767a091fd85a735ce6814fb1f83658982f9ac500f94c489",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C14-parsed.json": {
+      "sha256": "da1f50ec6988662f81c1129394b533824bbfab4203aa0528644c0e2943453749",
+      "bytes": 525
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C14-raw.json": {
+      "sha256": "c35361ad8e9e151048341dc2924b07f9467263bff22190b04550b9b57bbe8fba",
+      "bytes": 762
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C14-request.json": {
+      "sha256": "14a01855f7a0ac5ff1ce7fd423320fdca213906252faad5b61685980c0ad8482",
+      "bytes": 942
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C14-started.json": {
+      "sha256": "c7323ad7ab8b2a723d3596ca57b4bd6222fb78af692f1a2bf0cef129a3c1b56f",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C15-parsed.json": {
+      "sha256": "9b3c524b6014b75808aac4d39bb9cc3820475dc77421359681fa2b6ac1c617ba",
+      "bytes": 475
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C15-raw.json": {
+      "sha256": "e58a81d2afd316cab6b1e47d651c3507f3d36de3b540f583a71f6c95049086e8",
+      "bytes": 711
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C15-request.json": {
+      "sha256": "cbece225f86a77ccb538064cf073d86ad6c2473ca6808276c9124fb7c6ad880b",
+      "bytes": 912
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C15-started.json": {
+      "sha256": "f2115a932932a48390be67257b3c063df39e957519074bd121fce2285d764ddf",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C16-parsed.json": {
+      "sha256": "91d90f5ce38056e1cc88f3f9e91a82a2a91d64bc6998e96041321589c01d67d0",
+      "bytes": 515
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C16-raw.json": {
+      "sha256": "f51251be8c98fecdf78588cc15d043992989090f2e8cc8a843552bfec3b94b14",
+      "bytes": 752
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C16-request.json": {
+      "sha256": "92078f3feb52d4be65af38667df768d4ebe68c3cedff006c93558847688c491f",
+      "bytes": 953
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C16-started.json": {
+      "sha256": "2d58ba3b8fe1d29faf860bbf4853478a17f20ba2883928bc5c51c906d08836d6",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C17-parsed.json": {
+      "sha256": "82f32eba7a9a8336536b366cf16a0a65f6ec0d6fa8cc24ea9a0c273bc1243232",
+      "bytes": 525
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C17-raw.json": {
+      "sha256": "2afb9b84296daa6e90e5b3c1006264e13c60446825e0de4ae6b30087926db71b",
+      "bytes": 762
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C17-request.json": {
+      "sha256": "63a068c95cf16165952ce622eb734cab19c2edfd4d0bdd46263d2d4882b1f1fd",
+      "bytes": 964
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C17-started.json": {
+      "sha256": "04944e1c2dcc68f8fc05d773ca14be6e294b7115d7edde61824fff363772e2b1",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C18-parsed.json": {
+      "sha256": "496a254655ecd7d86a7711fe65849df8a9cf227b015717d05928ec845df9d023",
+      "bytes": 461
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C18-raw.json": {
+      "sha256": "f558d5df5c67bd7b3373907925530e630b749e6c42fa4784bbb87c10c33fe360",
+      "bytes": 698
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C18-request.json": {
+      "sha256": "836a476415cdccbedb465126622acd83798353f370d32d418f88a41f859dbfc2",
+      "bytes": 900
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C18-started.json": {
+      "sha256": "af73bf57470a0416727e98d7fb1c63778acc500ca2d7de5ae953beffdfbc37b3",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C19-parsed.json": {
+      "sha256": "269081bec69c843fc9a823a92f0bd71df81884cbecbba777307bd04f0c0b8573",
+      "bytes": 545
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C19-raw.json": {
+      "sha256": "6150cbfc59c75d6e011c1256e31f6609831491d89b6329f3ebf2e4a3db595e88",
+      "bytes": 782
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C19-request.json": {
+      "sha256": "6906d9a32f663bb74f328beb464e10335af6b064170c10669c7f5d2e82f2f5db",
+      "bytes": 968
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C19-started.json": {
+      "sha256": "e85a021a65a5b14786a37db0ef8fbcf3b7413b5ce6ae407b91dca105fe70ab87",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C20-parsed.json": {
+      "sha256": "a37f6aa0ec36eabeaff33f6759110b40988df4bb36839ce16c90d8ed26ef749c",
+      "bytes": 517
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C20-raw.json": {
+      "sha256": "ec94f3f26ebac99045becf5b4b0f246434434c440e267f4ef1091940073d74b0",
+      "bytes": 754
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C20-request.json": {
+      "sha256": "0f92db41c7cb08bea43541a6d7e6ce2090fa23eb87c02ce3a2c9cb32093ef4cb",
+      "bytes": 917
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C20-started.json": {
+      "sha256": "f718df61960a8054f4a2bc8d2d00b6838b13fbbb3bacdbf61af0dc3b4aaefd0f",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C21-parsed.json": {
+      "sha256": "dfd72111c42425cf7f98f35bdbd7a2fb31f041708920b2e9ee04a57d09323e92",
+      "bytes": 519
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C21-raw.json": {
+      "sha256": "11f666304f1aab9be08afae75b23068aa6313ec32b7c3ef93ba4b5e3fda1966d",
+      "bytes": 755
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C21-request.json": {
+      "sha256": "38e19a2cc6c6b28ae13c42ef32abb5a756165409654e54f890eed0378ae1daa5",
+      "bytes": 957
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C21-started.json": {
+      "sha256": "84eaec200a7b995077331637bfedf68a2e2ee85fdfb5398958f4559ffabe23ae",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C22-parsed.json": {
+      "sha256": "fadb76964f45814584b79039b5c08c5037d5b2d5fe91145b9661806d6ea9040a",
+      "bytes": 480
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C22-raw.json": {
+      "sha256": "26983403c61d8b4b8933fa477f6e6eb16b2230445025fa4f89b7f4c88faf4764",
+      "bytes": 717
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C22-request.json": {
+      "sha256": "67c9c34d7e69434aee4a9bf05697b43952183f05053e0ae8428ee75348cf206c",
+      "bytes": 954
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C22-started.json": {
+      "sha256": "edba9c454ad311af653182781bf40d9350e059ef2ac2560d49fc79dd22cc4d81",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C23-parsed.json": {
+      "sha256": "e27fb3a301dd07d75b5f89a95e93a997cdd3aad8b17331dc7348a895946b6f93",
+      "bytes": 516
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C23-raw.json": {
+      "sha256": "521f9753e028618ebad3a5db0d0e25aef4055323d56bc45d1bc1e40515356451",
+      "bytes": 753
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C23-request.json": {
+      "sha256": "360baf0e0fe2c72c46a10ba9efa47dc79690eb3a30a54b028798abcb9bd43476",
+      "bytes": 998
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C23-started.json": {
+      "sha256": "f38abd0b98b0a0d73a7261ce1d7cc1ac06226f3e9d8191b9ace36e0a46edf23c",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C24-parsed.json": {
+      "sha256": "cd30c6f40ef83c189fa02abdb5e5d1dc26ea3376d8f70fcc705b9453aa629c76",
+      "bytes": 461
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C24-raw.json": {
+      "sha256": "d1146193e8565c38f333ad9bd4417338d2dd67adc71208e14c2cc1f5e6c741e0",
+      "bytes": 698
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C24-request.json": {
+      "sha256": "7e7527da07f50dd645c07c3f6473fc415ad238a633e25fde0a9069a5e7245d74",
+      "bytes": 919
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C24-started.json": {
+      "sha256": "ed97cb3a788bc61356a9dbf78fdbf4e342779df5bdab36df5ecb9b528e886ef0",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C25-parsed.json": {
+      "sha256": "a5c7506d5e34f68ad0006e872dabbfc27bfd12c6771c530a9fcb8826dc74e02d",
+      "bytes": 502
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C25-raw.json": {
+      "sha256": "d7ce83589bc8a469d01d92f355be871c182bfa0ab8127c647a4cd606e3cd23a0",
+      "bytes": 739
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C25-request.json": {
+      "sha256": "15d80583fcb0434bd99c0d5b56b2f09447c5c8cd57ac9694c9fd5a55955bf618",
+      "bytes": 932
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C25-started.json": {
+      "sha256": "282debd11b0b201fbad86a274697e8a6c04ee2ad7bd2870f10f6f7813c136b7a",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C26-parsed.json": {
+      "sha256": "15a04544ef96c9b00840a2b40bfbc20f5950a95bdb08550c0e234b66c5d0eaf7",
+      "bytes": 449
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C26-raw.json": {
+      "sha256": "d21da7539c2db86d57384e95993a66cd7f84f009d1924af32e3cd77d2b448a23",
+      "bytes": 686
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C26-request.json": {
+      "sha256": "f1e987573b42179afa6e9672c42e89e14be0411b3b78f0ebbda45eccf3ed75da",
+      "bytes": 919
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C26-started.json": {
+      "sha256": "76b6ac47efec4e6bcc5a95d3d20027c73b38dceaeed1876ed65ba10c60f0ba45",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C27-parsed.json": {
+      "sha256": "68f60aa4cc6799a0679f5d68ff920f1e4621bd9f4a967c2178d60ae212bfb6c0",
+      "bytes": 576
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C27-raw.json": {
+      "sha256": "de41d54b59415320c11cd1902221e6b8ea9008dbd2674514680d0243b9eeab09",
+      "bytes": 813
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C27-request.json": {
+      "sha256": "e0401f6a0a03edcdafa822184da4ae79e070c17dd4f3d980ef0944808fcd2d59",
+      "bytes": 957
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C27-started.json": {
+      "sha256": "4fd5cbabbd3a01ea3a082a582565750d624aec3b83008a783828c1bdc763e915",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C28-parsed.json": {
+      "sha256": "20886dec6df64f476c0a5f13c9e5968184019cbdf6e09f7fe73ffde845c8c619",
+      "bytes": 497
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C28-raw.json": {
+      "sha256": "d8989a4902aea5ef00c679cded5d8d3799b160bc81a33837f7ad90653456596d",
+      "bytes": 734
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C28-request.json": {
+      "sha256": "dc2120f854999cccd7b59e53089feacee142499156a3d2e4801e25dbb6a40e01",
+      "bytes": 927
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C28-started.json": {
+      "sha256": "5b63fd8fde6b67763211dadab59c3e82fc40d278d31785a0d661da02b71dd2cd",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C29-parsed.json": {
+      "sha256": "7623b547242f1adc4da146f585633196daa003328c3ab895ff2263df822cac38",
+      "bytes": 527
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C29-raw.json": {
+      "sha256": "99bd16f0eefb1e57d7eb97dd50d95483fe0dbea46d74ad063699873b959b3784",
+      "bytes": 764
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C29-request.json": {
+      "sha256": "9e079ed34e5d4a5fd7e6648aa2377c311b05c22f52f208039bcfdd024e8c3d5c",
+      "bytes": 952
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C29-started.json": {
+      "sha256": "91ffa7e3f894cdf1cbe5bf214bf728b1fdd4f637252c2e0190f99c5513e7cc5c",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C30-parsed.json": {
+      "sha256": "d4c4708d202a580049073557058f40e4849e0b4a53845ac347edc616bca71a13",
+      "bytes": 459
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C30-raw.json": {
+      "sha256": "7385372fa01da39194dbdd60dc108339d135141269efbdaf3e6b6ecdb33735d2",
+      "bytes": 696
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C30-request.json": {
+      "sha256": "9da976770a2c8e1786c81f7380071cbc4e6e83d1eb9dc00cb8afee21e01bba4b",
+      "bytes": 977
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C30-started.json": {
+      "sha256": "d33cbf08812687489ea6fbb7367e9dbfcd3bbbfbf43c72338693a42d42231b65",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C31-parsed.json": {
+      "sha256": "d8ca6bf3f5715dc88011b1eb7548f0a0e1f8f809c9f00d944432fe87cb615db1",
+      "bytes": 538
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C31-raw.json": {
+      "sha256": "5b00cf75c0448bd8cf01bf9ae856bcee4e595f1ef462eceff569b311e8d3af86",
+      "bytes": 775
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C31-request.json": {
+      "sha256": "0edbfc973d739c231c2a9e16efa36e0c414c82bfe9ce349639fd4c03ba1d95c5",
+      "bytes": 924
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C31-started.json": {
+      "sha256": "731831990601573066cd587253d73ed052a40f89650d2c1cc35c3c4c4c498c42",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C32-parsed.json": {
+      "sha256": "100e3edb01a45d796bd7329810176f0cfeb8717f4085b0caee36918c7f8ce663",
+      "bytes": 469
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C32-raw.json": {
+      "sha256": "ae3b9124738a8e18429fad108a8b83d2e452b4803d93e2312808834a514ed15f",
+      "bytes": 706
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C32-request.json": {
+      "sha256": "221cc79d66fe37d47c22e1823c1fd192b2218798c556904e1420fc6cf96211f6",
+      "bytes": 925
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C32-started.json": {
+      "sha256": "6f87133409af8499e94d552d479f130ca38bac61ea01f248e1cb776f6bea54ad",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C33-parsed.json": {
+      "sha256": "373ea6f2485adef22f1efad44f165f5d0b70ffbe91f28226fd84a786094d7683",
+      "bytes": 502
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C33-raw.json": {
+      "sha256": "529fc824fbe1097c47b73b25d234f2895ee681f3cc38803ab71c82fadc80287c",
+      "bytes": 739
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C33-request.json": {
+      "sha256": "f0e2560f217a6a06848be58b42e70236b94d680ab940dc32d259e032f74325fd",
+      "bytes": 930
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C33-started.json": {
+      "sha256": "e08243a117a07673d1d7e195962c77335bb14aefbe997ed08cbc009f0ab48bfa",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C34-parsed.json": {
+      "sha256": "660da668cb335147f025b07b04a3ff0b76310078c7ebc5518b966c3e97783496",
+      "bytes": 461
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C34-raw.json": {
+      "sha256": "b377fd3bf3c0872b03b74cb549ada606d794898d3a49019de37be462c6254911",
+      "bytes": 698
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C34-request.json": {
+      "sha256": "9e7a7c744881c54c48a7bbcc6c2e404eb8845a8b8b37a33c52db40fc93f3e91d",
+      "bytes": 934
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C34-started.json": {
+      "sha256": "3896ea346f814fb9553e9954bae7d36c12bc5c5891893d00c19e171e23e0582b",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C35-parsed.json": {
+      "sha256": "70399a70fdd3c719fda273340263e5c8c475774ec664240d06dc20092f257ac6",
+      "bytes": 552
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C35-raw.json": {
+      "sha256": "85eae139d1a1feb83fd787cb9733df3e872d5f86c6e30d2548f48467a4297c9f",
+      "bytes": 788
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C35-request.json": {
+      "sha256": "80c5b9aed91d6079e4e2d933128c2e3b89bce20dd06d4d7273bca443feeb9668",
+      "bytes": 919
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C35-started.json": {
+      "sha256": "065617fdc332cd329d2f2830363bd8caad19a20182e6de369df8a74409cbeb27",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C36-parsed.json": {
+      "sha256": "b1c3ac8c3d03afd7424867b3746b7e21f0e6d8e7263a0b0d00b42b7bdf9f2ccf",
+      "bytes": 488
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C36-raw.json": {
+      "sha256": "9dd2dc28e5f587e87e0f7d8cc1707db2b33f3fd15b92db2716b70a351a5fc01a",
+      "bytes": 725
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C36-request.json": {
+      "sha256": "339f8eb7511c5066425772c377498001da5010ff55a0af35c90efc84de9a00e4",
+      "bytes": 940
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C36-started.json": {
+      "sha256": "bf6adcc793ccaaccd3f532fbe47a0cc34f6e72b8832f5ae03109ac89302d97bc",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C37-parsed.json": {
+      "sha256": "32218daa4d636ffbac64cd9026a81a2eda9e788d9cbfbd775ff8bdd02bef1f1b",
+      "bytes": 539
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C37-raw.json": {
+      "sha256": "cea47cbe21a265354072b63fe4d52a10d72f957c015c039646b3f37681247c0a",
+      "bytes": 776
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C37-request.json": {
+      "sha256": "82f4c32cc76ef62bc0848712bc6fdc4912f163e408986fe2995917b98b4d7c4a",
+      "bytes": 932
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C37-started.json": {
+      "sha256": "8f1a037aab8bb1791700b182de92bfb007c53b6d231558b605fc1709032bf1e2",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C38-parsed.json": {
+      "sha256": "7f66110b8d12ae6b78b2f389c535d27d7c0b9b7e7c2321f1534aa0c03c025557",
+      "bytes": 509
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C38-raw.json": {
+      "sha256": "4cb845c90a626a8a6f55bec67a5da198400d230158c21350b2f92be61cd314b3",
+      "bytes": 746
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C38-request.json": {
+      "sha256": "73aff776ae35d63463cd3fc6b4275b7bf22b12a339df7ff4d5338a415caa81d7",
+      "bytes": 954
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C38-started.json": {
+      "sha256": "115c22f518070c6a2e3406e213511d58d3ad8390b4a7becb871b46264470c9f1",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C39-parsed.json": {
+      "sha256": "92740ec46edb6b66c47628ca62679caaa668135454614c6e18e969445238dcc5",
+      "bytes": 514
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C39-raw.json": {
+      "sha256": "988c6e16b51315a44ff8a1673b93bcb285c0d6a194d723d69433378f7207adae",
+      "bytes": 751
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C39-request.json": {
+      "sha256": "7808569cb152b45ad92af52de536ff51451581ea966a98b14880e761ca632571",
+      "bytes": 972
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C39-started.json": {
+      "sha256": "5aaebf6303d1524dff18ea49971380fe2b0ab5d35a5a05e5133127806f48940b",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C40-parsed.json": {
+      "sha256": "b78f964b298bb8ebeb3c29ba1704af09dc4086fbdcd74f83dbcf8ae88493aab1",
+      "bytes": 483
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C40-raw.json": {
+      "sha256": "c6d2dcebeb53a2dd06492e4184d150360033f339ce4a1201cb7c12cdd0d90841",
+      "bytes": 720
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C40-request.json": {
+      "sha256": "6c78bae5fe03469a04a46fbd406296a2991f5668ee98e527edab7c44a715f989",
+      "bytes": 943
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C40-started.json": {
+      "sha256": "8456118a829ce34564a0fed8fb291be176d61f50b34894510dbd5959773f9d97",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C41-parsed.json": {
+      "sha256": "19b787f4d01d45e9596e6d883fc73e4282b80584321b51e53b96a429d00058d0",
+      "bytes": 561
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C41-raw.json": {
+      "sha256": "8cdee9b503e07b2ae21392984e1b0a45fa7f5ba2a234e1944d2c94e9a1caa989",
+      "bytes": 798
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C41-request.json": {
+      "sha256": "b866f923ca55dcac90b8200bebf9c7fea3864482756433c31a9dd850c1eba1f8",
+      "bytes": 949
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C41-started.json": {
+      "sha256": "67bb146ed67f604d3df9e7643f783b53cdcb8a411ea7810c585bf7e128ec1c6e",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C42-parsed.json": {
+      "sha256": "8573b6534d24aea9b5c50c118b2edfaa5a58da1d262063b414b88fccc5d59ccd",
+      "bytes": 493
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C42-raw.json": {
+      "sha256": "10596f26191ddc2a7b4f31de56d2af9d79a4a3832af40998f6720deba4983691",
+      "bytes": 730
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C42-request.json": {
+      "sha256": "eb1ec960855d7798e0809934802c37956be5e82e6b3bf33adedc9dac141e21c1",
+      "bytes": 944
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C42-started.json": {
+      "sha256": "6d5856855cd5cde04a2cbb8722a6fcd8f5a6d7ede11da3b348efccc34904a902",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C43-parsed.json": {
+      "sha256": "26f05a86ab56d65ac96bb0437a9211c175701472a86b8d7711d171047a06761c",
+      "bytes": 517
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C43-raw.json": {
+      "sha256": "d7e65593d56f242ef216892c5ce9ac8a789afb2401a57b1aa0c184652166d48a",
+      "bytes": 754
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C43-request.json": {
+      "sha256": "c92f8091bf51283780913905caccc934e776f60738bf2cb26692ce14343e43b2",
+      "bytes": 972
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C43-started.json": {
+      "sha256": "4af5eab7641fa9e79c6be5618e3b02ea105c64b6b80ecf4d269801df2d533768",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C44-parsed.json": {
+      "sha256": "4a1279c2093bd16368cc7c57c5d8275d96cd1590e391ce0787bebf9e0adbf759",
+      "bytes": 601
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C44-raw.json": {
+      "sha256": "043904ff9f903bef9db194f473bc049cc9b114d37125555e729b1b6cada0708b",
+      "bytes": 838
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C44-request.json": {
+      "sha256": "eb5a7228746c83f0bc0cd722887470d6f178898bed54a6caaad5cc9a4e2d01cf",
+      "bytes": 988
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C44-started.json": {
+      "sha256": "77cdb030c9bc91b7a21a503d909d77bae771f7ba6d5cdcda1bf7cbe78095c111",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C45-parsed.json": {
+      "sha256": "3b9e033de3e164cd5d3ca7bf3054324743822c959c5e2e533a13acb32495a27c",
+      "bytes": 480
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C45-raw.json": {
+      "sha256": "2fe3ee76284d7f7148ca9594d78e93c589ee556433c3ff0b30220081ae1e2e6d",
+      "bytes": 717
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C45-request.json": {
+      "sha256": "042cf4a81022ce318a8bdbdbe530569ad48ceb0543dcda66905924bfc6584ff1",
+      "bytes": 932
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C45-started.json": {
+      "sha256": "793e982395c4ef03e600c4ea188b4e9ff63814de15bb8134da9f6cdf22487c61",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C46-parsed.json": {
+      "sha256": "38e4c4c4324154e7322b4b8269171eb111166f66cabc945d7fee5e465f29380b",
+      "bytes": 461
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C46-raw.json": {
+      "sha256": "b917abe8285f5c1c3ec89d4e68ea1b7e93aaa774c0b552e95f151f498b36f58f",
+      "bytes": 698
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C46-request.json": {
+      "sha256": "f0753550171df386519a17a6793aeecb9de8cc0aefce9414687d461597910982",
+      "bytes": 909
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C46-started.json": {
+      "sha256": "98d7c86f995c02cf7e4154499e7ca217eec58de2ade256cf3ef31a0b62edff91",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C47-parsed.json": {
+      "sha256": "a22a1b5e2001c979794d999ccf019251aad6d9fde08239e78977ceab91e2aa28",
+      "bytes": 510
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C47-raw.json": {
+      "sha256": "1168a3aa1e2be93cfe48e8ad98e7fa7eac050bc352ac053eb755747f8a770624",
+      "bytes": 747
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C47-request.json": {
+      "sha256": "50474e5b7b4e3123b80e1d4e103809b8f9621d9c6c9c6013bc97ce53cb9a6ed1",
+      "bytes": 935
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C47-started.json": {
+      "sha256": "5250ac0a34ffe330767dc4b538bde1e9c13e657f81e5c49d7ac0edd1935c4562",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C48-parsed.json": {
+      "sha256": "5fa42d6a5d855cb7a85f5c6ebba4fd2bd96fe1615e5c82030780f099b9afaf16",
+      "bytes": 517
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C48-raw.json": {
+      "sha256": "60b6e7e65c2aac4a280c24071599ccdd806066e0ce2299046bb63600d9856d86",
+      "bytes": 754
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C48-request.json": {
+      "sha256": "c537229e42d267967af3111bb040deb7ce19d58520d9bccf628690ea9895a196",
+      "bytes": 918
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C48-started.json": {
+      "sha256": "1d653a0489ee2e57fa730d64f74b366cd7295e4bcd5ecd2df09b51b729d99d4f",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C49-parsed.json": {
+      "sha256": "0f9909e965648220de4cf10af3330cb736bfbcc8349373d529b78ff2053eb749",
+      "bytes": 537
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C49-raw.json": {
+      "sha256": "732ec23a959c8102f392416b062b3f0169d41c7bbd17d3772046f91b6fbd65dd",
+      "bytes": 774
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C49-request.json": {
+      "sha256": "8c78eb19336547cf1d501943eb0153ad030c01dd28a5bf7e64dc90098727b636",
+      "bytes": 1005
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C49-started.json": {
+      "sha256": "c91167419b399bedfdb2ca3e8776c341ac706c09e586f19620ea674527192b0c",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C50-parsed.json": {
+      "sha256": "b5b71bf0088a7150c416b17f171ee42b9edac6ed5f803b1d6499ef937ef59203",
+      "bytes": 486
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C50-raw.json": {
+      "sha256": "7bed390e933a2d71b36671f3e8ca4790d53ea45e3159680a001d8665b6e8dc53",
+      "bytes": 723
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C50-request.json": {
+      "sha256": "63f7ff9f91d100237451c09c91a4c08af270355bbff010b47b5b97634b16687a",
+      "bytes": 969
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C50-started.json": {
+      "sha256": "3522238c82739fd146774c24020804620b320e268ab6d11b8e336ee58bcab3c8",
+      "bytes": 203
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/comparison-fable.json": {
+      "sha256": "2267751e01d756f48d4a3614b1887af932cf471aa166056f881a0585408ec3f6",
+      "bytes": 145806
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/generation-complete.json": {
+      "sha256": "aa24b8768d543bfb6a2b3efbfc17a1022faf52596cbac338df14ecb13305ac65",
+      "bytes": 19654
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/manifest.json": {
+      "sha256": "c7d83fc1d4ab647b3f9707d718de9f30b7157babd2fbab75d92d09f595a22e95",
+      "bytes": 17548
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/scorecard-A-physician-v3.json": {
+      "sha256": "dc5be4349d74f014488745ac70f57b2f3cab5e1e6db47f693cdc9a5d93be4acc",
+      "bytes": 27656
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/scoring-audit.json": {
+      "sha256": "8b2075afc4bb3f78d446662390e25cc14b7df304a186aff15321544ee2d23187",
+      "bytes": 20243
+    },
+    "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/system-prompt.txt": {
+      "sha256": "94dfda446d9fe8d449b6059db68c5637158acd0e92df64144b062b5d19f944eb",
+      "bytes": 293
     }
   },
   "conditionalTimingExperiment": {
@@ -35874,5 +36722,47 @@
     "postStudyExploratory": true,
     "clinicallyReviewedPairs": 0,
     "newProviderCalls": 0
+  },
+  "supplementalMedgemmaComparison": {
+    "report": "docs/MEDGEMMA_27B_COMPARISON_2026-09-16.md",
+    "outputs": "outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16",
+    "model": "google/medgemma-27b-text-it",
+    "quantization": "Q5_K_M",
+    "inferenceAttempts": 50,
+    "validOutputs": 50,
+    "reference": "physician-adjudication-v3-2026-09-15",
+    "agreement": {
+      "agree": 46,
+      "denominator": 50
+    },
+    "clinicianActionFalseNegatives": {
+      "count": 0,
+      "denominator": 43
+    },
+    "urgentActionFalseNegatives": {
+      "count": 1,
+      "denominator": 25,
+      "ids": [
+        "C49"
+      ]
+    },
+    "clinicianActionFalsePositiveIds": [
+      "C32",
+      "C34",
+      "C38"
+    ],
+    "historicalFableDisagreementIds": [
+      "C22",
+      "C32",
+      "C34",
+      "C38",
+      "C47",
+      "C49"
+    ],
+    "csvScored": false,
+    "guiChanged": false,
+    "presentationChanged": false,
+    "clinicalPromotion": false,
+    "interpretation": "Single local quantized configuration on familiar development messages; resolves historical missed referrals but adds an urgent-reference miss. Not independent clinical validation."
   }
 }
