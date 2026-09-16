@@ -3,11 +3,19 @@
 A synthetic disposition prototype: one incoming patient message produces
 `SELF_CARE`, `ASYNC_PHYSICIAN`, or `URGENT_ESCALATION`, plus a short rationale.
 
+Independent take-home project by **Brandon Dent, MD**. The former UNR role is
+biographical; no endorsement by Counsel Health, the University of Nevada, Reno,
+OpenAI or Anthropic is claimed. Developed with Codex assistance. See
+[disclosures and media-rights limitations](DISCLOSURES.md) and
+[third-party notices](THIRD_PARTY_NOTICES.md). Not for patient care.
+
 ## Current take-home submission
 
 **Fable 5.1 low effort, one native Anthropic call, one TypeScript/Mastra step.**
-Open the [current local demo](http://localhost:4121/stripped), or launch it below
-at port 4120. **/stripped** is the current presentation surface.
+Use the [GUI access guide](docs/GUI_ACCESS.md) to launch the current demo at
+[http://localhost:4120/stripped](http://localhost:4120/stripped).
+This address works on the machine running the server; it is not a hosted service.
+The public slides and saved results below require no setup or API key.
 
 - [Submission package](output/submission-2026-09-15/README.md): editable slides, PDF, and evaluation workbook
 - [Slide narrative and speaker notes](docs/INTERVIEW_DECK_2026-09-15.md): case-led presentation and seven-minute live demo
@@ -67,13 +75,20 @@ repository-root `.env`.
 ```bash
 npm ci
 npm run review:build
-npm run start --workspace @counselcodex/evaluation
-# Open http://localhost:4120/stripped
+npm run demo
 ```
+
+The launcher checks local prerequisites and fails clearly if port 4120 is
+occupied. It does not choose a different port. Use `npm run demo:check` for
+preflight only, or `npm run demo:offline` to locate saved review artifacts.
+Live submission requires provider access; startup does not test that access or
+make a model call. [Setup, troubleshooting and data flow](docs/GUI_ACCESS.md).
 
 Choose a synthetic message and click **Get disposition**. Expand
 **Request & response trace** for the exact request, final text, usage, timing,
-and run/provider IDs. Downloaded traces omit hidden reasoning and credentials.
+and run/provider IDs. Downloaded traces omit hidden reasoning and server API-key
+headers. Submitted text is retained verbatim; do not paste credentials or real
+patient information into a message.
 Editing clears the old answer. Each new submission is independent.
 
 The standalone workflow needs only the Anthropic key. It has no retrieval

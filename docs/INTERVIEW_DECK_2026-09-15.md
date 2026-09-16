@@ -14,17 +14,21 @@ A three-bucket prototype with versioned physician review
 
 Former EM assistant community professor at UNR
 
-[http://localhost:4121/stripped](http://localhost:4121/stripped) — Local demo. Requires the local server.
+[http://localhost:4120/stripped](http://localhost:4120/stripped) — Local demo. Run npm run demo on this computer.
+
+[Public reviewer guide](https://github.com/bGOATnote/counselcodex/blob/main/docs/GUI_ACCESS.md)
+
+Prepared for
 
 ![Counsel Health logo](../output/submission-2026-09-15/content/assets/counsel-logo.png)
 
 **48/50 with revised physician labels; original result retained at 44/49.**
 
-Scope: The score changed after physician reassessment. Model outputs and prompt are unchanged.
+Scope: Independent take-home project; former affiliation is biographical. No institutional or vendor endorsement.
 
 ### Speaker notes
 
-This is an independent synthetic prototype for the take-home assignment. I will demonstrate the implementation, show the evaluation record, and distinguish errors in model decisions from errors in the reference. The current physician reassessment gives Fable 48 agreements in 50 cases. The original reference gave 44 in 49. Three prior reference labels were corrected and one excluded case was resolved. This is a change in the scoring reference, not evidence of improved model behavior or independent clinical validation. The plan is 35 minutes including a seven-minute demo, followed by 25 minutes of discussion. Brandon Dent, MD presents this work. Presenter-supplied role: former EM assistant community professor at UNR. The Counsel Health logo identifies the assignment organization and does not imply endorsement. The cover hyperlink opens the local demo and requires the local server.
+This is an independent synthetic prototype for the take-home assignment. I will demonstrate the implementation, show the evaluation record, and distinguish errors in model decisions from errors in the reference. The current physician reassessment gives Fable 48 agreements in 50 cases. The original reference gave 44 in 49. Three prior reference labels were corrected and one excluded case was resolved. This is a change in the scoring reference, not evidence of improved model behavior or independent clinical validation. The plan is 35 minutes including a seven-minute demo, followed by 25 minutes of discussion. Brandon Dent, MD presents this work. Presenter-supplied role: former EM assistant community professor at UNR. The Counsel Health logo identifies the assignment organization and does not imply endorsement. The cover hyperlink opens the local demo and requires the local server. The author presents this work in a personal capacity. The former UNR role is biographical, with no claim of current appointment or institutional approval. Prepared for labels the Counsel logo as the intended audience, not official authorship or endorsement. No approval by Counsel Health, the University of Nevada, Reno, OpenAI or Anthropic is claimed. Codex provided development assistance, including implementation, tests, documentation and presentation preparation. Model-generated reviews are not independent physician judgments. Rights and consent for the third-party media have not been independently cleared; metadata removal does not establish those rights. See DISCLOSURES.md for the full boundaries and unresolved permissions. The public reviewer guide explains canonical startup at localhost:4120/stripped and saved-artifact review.
 
 ### Sources
 
@@ -32,6 +36,8 @@ This is an independent synthetic prototype for the take-home assignment. I will 
 - [docs/STRIPPED_FABLE_GUI_2026-09-15.md](../docs/STRIPPED_FABLE_GUI_2026-09-15.md)
 - [https://www.counselhealth.com](https://www.counselhealth.com)
 - [output/submission-2026-09-15/content/assets/provenance.json](../output/submission-2026-09-15/content/assets/provenance.json)
+- [DISCLOSURES.md](../DISCLOSURES.md)
+- [docs/GUI_ACCESS.md](../docs/GUI_ACCESS.md)
 
 ## Slide 2: C22: incomplete ankle assessment
 
@@ -181,12 +187,13 @@ Scope: Open /stripped. Use a clearly labeled saved record if the live attempt ca
 
 ### Speaker notes
 
-Use the current server at localhost:4121/stripped, or localhost:4120/stripped after the documented launch. Confirm the exact message, submit, and describe the actual output. Show loading, disposition, and rationale, then the request and response trace. Edit C06 to add crushing chest pressure, sweating, and left-arm radiation. Confirm that editing clears the old answer and that the next call contains only the edited message. Frozen benchmark records and live demonstrations are different observations. If the call fails, preserve the failure and show a dated saved run with its ID. A saved result must be identified as such. The prior browser verification covered all three buckets and an in-flight edit.
+Use the canonical local server at localhost:4120/stripped after npm run demo. The public reviewer guide documents startup and offline review. Confirm the exact message, submit, and describe the actual output. Show loading, disposition, and rationale, then the request and response trace. Edit C06 to add crushing chest pressure, sweating, and left-arm radiation. Confirm that editing clears the old answer and that the next call contains only the edited message. Frozen benchmark records and live demonstrations are different observations. If the call fails, preserve the failure and show a dated saved run with its ID. A saved result must be identified as such. The prior browser verification covered all three buckets and an in-flight edit.
 
 ### Sources
 
 - [docs/DEMO_SCRIPT_2026-09-15.md](../docs/DEMO_SCRIPT_2026-09-15.md)
 - [outputs/stripped-gui-2026-09-15/manifest.json](../outputs/stripped-gui-2026-09-15/manifest.json)
+- [docs/GUI_ACCESS.md](../docs/GUI_ACCESS.md)
 
 ## Slide 8: One call through a visible workflow
 
@@ -504,14 +511,16 @@ Scope: github.com/bGOATnote/counselcodex · Source, slides and workbooks form th
 
 ### Speaker notes
 
-The v3 workbook exposes the current reference, original reference, exact frozen predictions, physician annotations, and all model comparisons. The original workbook retains its v2 and separate CSV results. The adjudication scorer verifies source hashes and reproduces the new records without inference. The source and artifact manifest identifies the files used. Start the GUI using the documented server-side Anthropic key configuration; no retrieval initialization is needed. The normal launch uses port 4120, while the existing local server uses 4121. Localhost is a service on the presenter’s machine, not a remotely hosted application. The submitted trace exposes final output and execution information, not hidden reasoning.
+The v3 workbook exposes the current reference, original reference, exact frozen predictions, physician annotations, and all model comparisons. The original workbook retains its v2 and separate CSV results. The adjudication scorer verifies source hashes and reproduces the new records without inference. The source and artifact manifest identifies the files used. Start the GUI using the documented server-side Anthropic key configuration; no retrieval initialization is needed. The canonical launcher, npm run demo, binds the local GUI to port 4120. Localhost is a service on the presenter’s machine, not a remotely hosted application. The submitted trace exposes final output and execution information, not hidden reasoning.
 
 ### Sources
 
-- README.md
+- [README.md](../README.md)
 - [docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md](../docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md)
 - [output/submission-2026-09-15/counsel-disposition-adjudication-v3.xlsx](../output/submission-2026-09-15/counsel-disposition-adjudication-v3.xlsx)
 - [output/submission-2026-09-15/manifest.json](../output/submission-2026-09-15/manifest.json)
+- [docs/GUI_ACCESS.md](../docs/GUI_ACCESS.md)
+- [DISCLOSURES.md](../DISCLOSURES.md)
 
 ## Slide 21: Experimental appendix: timing within the assigned setting
 

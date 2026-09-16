@@ -12,8 +12,9 @@ for (const [i, slide] of spec.slides.entries()) {
   if (slide.subtitle) lines.push(slide.subtitle, "");
   if (slide.presenter) lines.push(`**${slide.presenter.name}**`, "", slide.presenter.title, "");
   if (slide.demoLink) lines.push(`[${slide.demoLink.url}](${slide.demoLink.url}) — ${slide.demoLink.label}`, "");
+  if (slide.reviewerLink) lines.push(`[${slide.reviewerLink.label}](${slide.reviewerLink.url})`, "");
   if (slide.roadmap) lines.push(slide.roadmap, "");
-  if (slide.logo) lines.push(`![${slide.logo.alt}](../${slide.logo.path})`, "");
+  if (slide.logo) lines.push(...(slide.logo.label ? [slide.logo.label, ""] : []), `![${slide.logo.alt}](../${slide.logo.path})`, "");
   if (slide.table) {
     const row = (cells) => `| ${cells.map((cell) => String(cell).replaceAll("|", "\\|").replaceAll("\n", "<br>")).join(" | ")} |`;
     lines.push(row(slide.table.headers), row(slide.table.headers.map(() => "---")), ...slide.table.rows.map(row), "");
@@ -32,7 +33,7 @@ for (const [i, slide] of spec.slides.entries()) {
   if (slide.footnote) lines.push(`Scope: ${slide.footnote}`, "");
   lines.push("### Speaker notes", "", slide.notes, "", "### Sources", "");
   for (const source of slide.sources ?? []) {
-    const link = /^https?:/.test(source) ? source : /^(docs|src|tests|apps|data|outputs|output)\//.test(source) ? `../${source}` : null;
+    const link = /^https?:/.test(source) ? source : /^(docs|src|tests|apps|data|outputs|output)\//.test(source) || /^[A-Z_]+\.md$/.test(source) ? `../${source}` : null;
     lines.push(link ? `- [${source}](${link})` : `- ${source}`);
   }
   lines.push("");

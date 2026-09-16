@@ -1,0 +1,131 @@
+
+> counselcodex@0.1.0 build
+> npm run build:candidate && npm run build:mastra
+
+
+> counselcodex@0.1.0 build:candidate
+> npm run build --workspace @counselcodex/evaluation && npm run build:candidate:verify
+
+
+> @counselcodex/evaluation@0.1.0 build
+> next build --webpack
+
+▲ Next.js 16.3.3 (webpack)
+✓ Running next.config.ts took 61ms
+- Experiments (use with caution):
+  ✓ externalDir
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.2s
+  Running TypeScript ...
+  Finished TypeScript in 177ms ...
+  Collecting page data using 15 workers ...
+(node:12386) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12385) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  Generating static pages using 15 workers (0/2) ...
+✓ Generating static pages using 15 workers (2/2) in 506ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ƒ /
+├ ƒ /_not-found
+├ ƒ /api/candidate
+├ ƒ /api/clinician-queue
+├ ƒ /api/disposition
+├ ƒ /api/response-review
+├ ƒ /api/review-backups
+├ ƒ /api/v0
+├ ƒ /candidate
+├ ƒ /quality
+├ ƒ /queue
+├ ƒ /review
+└ ƒ /v0
+
+
+ƒ Proxy (Middleware)
+
+ƒ  (Dynamic)  server-rendered on demand
+
+
+> counselcodex@0.1.0 build:candidate:verify
+> node scripts/verify-candidate-artifact.mjs
+
+{
+  "status": "verified",
+  "surface": "next-hosted-mastra-candidate",
+  "scope": "entry-manifest-and-traced-dependency-inclusion-only",
+  "buildId": "H6raT0onhpZYvEXH6PIqJ",
+  "entries": {
+    "/api/candidate/route": "app/api/candidate/route.js",
+    "/candidate/page": "app/candidate/page.js"
+  },
+  "files": {
+    "app-path-routes-manifest.json": "f86b27a35e387ad1f5e15de0a4075dbe0cfa88cf3b2b0cdb426dcbfc4e6e21e5",
+    "BUILD_ID": "16abe75780a3ad3a6155fbb4a5a1aa67468ec6b3b44b7125b5f548c5d684d055",
+    "build-manifest.json": "33314b41f45e82fe8e2b09cced231fb8056b5e86ed089e99958f48a07c304d54",
+    "package.json": "091a04fa67c7907b98e106fcff8b964e13129754fce72d24f3025b97c4887fa3",
+    "prerender-manifest.json": "fa43ee78efd174e4599baec9fefe5b0d6b1e08ed2557b53a6b8dcf01b2f2f70a",
+    "react-loadable-manifest.json": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "required-server-files.json": "2267973c1158d78087088f02d66820f1c0058df358f17a5f5d3b3f4aca8545e0",
+    "routes-manifest.json": "b1e83264cb461f4db85b80eb04348318d183f0279bcb93211dd2af3fac6796fe",
+    "server/app-paths-manifest.json": "28aa0669404ad89433d137b63093dedd47b45f49e14472bb60a0cb672d478fcb",
+    "server/app/api/candidate/route.js": "6b0c7b34d3963c6c61557f69a26f3493e4d1a75960953b12ed4a1cbf48a355fb",
+    "server/app/api/candidate/route.js.nft.json": "22eed4b55822d9437af17fdaadf8cc5072073964e9d4eb67647d8152c21b87e1",
+    "server/app/candidate/page.js": "52b31a662b9cecd8793a5d0de0ecb451cdac923d3b04b0dcbf9db8b304331cde",
+    "server/functions-config-manifest.json": "e59946d134e33eab369f970ee57128a04569f1776c2b5aad8b2af947dd2e1357",
+    "server/middleware-build-manifest.js": "de36d13c63f856e5672172d9ca9a6c504a7c05032994eafd419630d88d4872c4",
+    "server/middleware-manifest.json": "0a8520bc7e076f7ae717c2d62713990c83e8a3d74626f327a3844bc0504e210c",
+    "server/middleware-react-loadable-manifest.js": "ad2e79ec91e2a5440840da3d8bd222c279b3b4c47e89a968327a66f6cb12eb82",
+    "server/next-font-manifest.js": "2c0f5bbb79d07dfea405146a62d7e15a7a9e890d29e38b7db2631fcf6e480da8",
+    "server/next-font-manifest.json": "926e772d34a53f2a4d9b16071dd6ea77b051b2b7acc49d9165723debe3fbbe0f",
+    "server/pages-manifest.json": "f79d77e6b5217464cbeb4a002eda67303f04ac657e64aeb61bbeeebf51aba6fd",
+    "server/prefetch-hints.json": "a15a000be4287063bf536cd24c1cfb27183b04d38215b43d7f426e3f26bd15b1",
+    "server/server-reference-manifest.js": "ce01006c00e1f63bcbfe41b3f7edd260d969b41d0a323b705c44e1ef9df13d8c",
+    "server/server-reference-manifest.json": "ab2381d724bbc082bb68a431e0047987d0e5c565f309570909c3e0c0d15c9b61"
+  },
+  "artifactIdentity": "733d6777b988d9885c061c466e372fe9da75c5eb27216bc43b0923b4c556f0fd",
+  "runtimeExecutionVerified": false,
+  "clinicalApproval": false
+}
+
+> counselcodex@0.1.0 build:mastra
+> MASTRA_TELEMETRY_DISABLED=true mastra build && npm run build:mastra:verify
+
+[32mINFO[39m [2026-09-15 14:26:25.620 -0300] (Mastra CLI): [36mAnalyzing dependencies...[39m
+[32mINFO[39m [2026-09-15 14:26:27.471 -0300] (Mastra CLI): [36mOptimizing dependencies...[39m
+[32mINFO[39m [2026-09-15 14:26:27.473 -0300] (Mastra CLI): [36mBundling Mastra application[39m
+[32mINFO[39m [2026-09-15 14:26:28.710 -0300] (Mastra CLI): [36mBundling Mastra done[39m
+[32mINFO[39m [2026-09-15 14:26:28.710 -0300] (Mastra CLI): [36mCopying public files[39m
+[32mINFO[39m [2026-09-15 14:26:28.715 -0300] (Mastra CLI): [36mDone copying public files[39m
+[32mINFO[39m [2026-09-15 14:26:28.715 -0300] (Mastra CLI): [36mCopying .npmrc file[39m
+[32mINFO[39m [2026-09-15 14:26:28.715 -0300] (Mastra CLI): [36mDone copying .npmrc file[39m
+[32mINFO[39m [2026-09-15 14:26:28.715 -0300] (Mastra CLI): [36mInstalling dependencies[39m
+npm error code ENOTFOUND
+[32mINFO[39m [2026-09-15 14:34:39.089 -0300] (Mastra CLI): [36mnpm error code ENOTFOUND[39m
+npm error syscall getaddrinfo
+npm error errno ENOTFOUND
+npm error network request to https://registry.npmjs.org/@mastra%2fcore failed, reason: getaddrinfo ENOTFOUND registry.npmjs.org
+npm error network This is a problem related to network connectivity.
+npm error network In most cases you are behind a proxy or have bad network settings.
+npm error network
+npm error network If you are behind a proxy, please make sure that the
+npm error network 'proxy' config is set properly.  See: 'npm help config'
+[32mINFO[39m [2026-09-15 14:34:39.090 -0300] (Mastra CLI): [36mnpm error syscall getaddrinfo
+npm error errno ENOTFOUND
+npm error network request to https://registry.npmjs.org/@mastra%2fcore failed, reason: getaddrinfo ENOTFOUND registry.npmjs.org
+npm error network This is a problem related to network connectivity.
+npm error network In most cases you are behind a proxy or have bad network settings.
+npm error network
+npm error network If you are behind a proxy, please make sure that the
+npm error network 'proxy' config is set properly.  See: 'npm help config'[39m
+npm error Log files were not written due to an error writing to the directory: /Users/kiteboard/.npm/_logs
+npm error You can rerun the command with `--loglevel=verbose` to see the logs in your terminal
+[32mINFO[39m [2026-09-15 14:34:39.090 -0300] (Mastra CLI): [36mnpm error Log files were not written due to an error writing to the directory: /Users/kiteboard/.npm/_logs
+npm error You can rerun the command with `--loglevel=verbose` to see the logs in your terminal[39m
+[31mERROR[39m [2026-09-15 14:34:39.095 -0300] (Mastra CLI): [36mFailed during bundler bundle stage: Process exited with code 1[39m
+    [35mdomain[39m: "DEPLOYER"
+    [35mcategory[39m: "SYSTEM"
+    [35mdetails[39m: {}

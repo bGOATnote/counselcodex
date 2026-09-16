@@ -6,8 +6,9 @@ Frozen traces are an explicitly labeled fallback, never a claimed live completio
 
 ## Before the session
 
-1. Open [the current server](http://localhost:4121/stripped). For a fresh launch,
-   follow [README](../README.md) and open port 4120 `/stripped`.
+1. Follow the [GUI access guide](GUI_ACCESS.md), run `npm run demo`, and open
+   [the local server](http://localhost:4120/stripped). The public guide is the
+   shareable entry point; localhost requires a server on the viewing machine.
 2. Confirm Fable 5.1, low effort. Expand **Model configuration** and compare the
    prompt hash with the [GUI guide](STRIPPED_FABLE_GUI_2026-09-15.md).
 3. Confirm the sample picker and submit button are enabled. Keep the API key
