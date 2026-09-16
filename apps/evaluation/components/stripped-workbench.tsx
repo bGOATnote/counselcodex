@@ -91,13 +91,13 @@ export function StrippedWorkbench({ cases, protocol }: Props) {
         <div className={styles.brand}>
           {/* The existing static brand asset needs no image transformation. */}
           <img src="/counsel-symbol.svg" width="50" height="51" alt="" />
-          <div><p className={styles.eyebrow}>Counsel Codex</p><h1>Disposition</h1></div>
+          <div><p className={styles.eyebrow}>Independent take-home project</p><h1>Disposition</h1></div>
         </div>
         <p className={styles.model}>Fable 5.1 <span aria-hidden="true">·</span> {protocol.effort} effort</p>
       </header>
 
       <main className={styles.workspace}>
-        <p className={styles.intro}>One message. One disposition.</p>
+        <p className={styles.intro}>One message. One disposition. Synthetic inputs only; submitted text is sent to Anthropic.</p>
         <div className={styles.columns}>
           <section className={styles.panel} aria-labelledby="stripped-message-heading">
             <h2 id="stripped-message-heading">Patient message</h2>
@@ -131,6 +131,7 @@ export function StrippedWorkbench({ cases, protocol }: Props) {
         </div>
         <footer className={styles.footer}>
           <p>Synthetic-message research demo · Not for patient care.</p>
+          <p>Prepared for discussion with Counsel Health. No institutional or vendor endorsement. <a href="https://github.com/bGOATnote/counselcodex/blob/main/DISCLOSURES.md" target="_blank" rel="noreferrer">Project disclosures</a> · <a href="https://github.com/bGOATnote/counselcodex/blob/main/docs/GUI_ACCESS.md" target="_blank" rel="noreferrer">Setup and saved results</a></p>
           <details><summary>Model configuration</summary><dl className={styles.metadata}><dt>Model</dt><dd>{protocol.model}</dd><dt>Effort</dt><dd>{protocol.effort}</dd><dt>Prompt SHA-256</dt><dd>{protocol.promptSHA256}</dd></dl></details>
         </footer>
       </main>

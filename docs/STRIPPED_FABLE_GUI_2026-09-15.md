@@ -7,10 +7,10 @@ The `/stripped` page connects a minimal TypeScript interface to the frozen **Fab
 ```bash
 npm ci
 npm run review:build
-npm run start --workspace @counselcodex/evaluation
+npm run demo
 ```
 
-Open <http://localhost:4120/stripped>. Put `ANTHROPIC_API_KEY` in the repository-root `.env`, or supply it in the server environment. The key stays on the server. During this handoff, the new demo runs at <http://localhost:4121/stripped> alongside the existing server on port 4120.
+Open <http://localhost:4120/stripped>. Put `ANTHROPIC_API_KEY` in the repository-root `.env`, or supply it in the server environment. The key stays on the server. The launcher uses a fixed port and fails if it is occupied. See [GUI access](GUI_ACCESS.md) for preflight, troubleshooting and saved review artifacts. Earlier browser records used port 4121; they remain historical observations, not the current launch contract.
 
 Choose a synthetic sample, edit its text if desired, and click **Get disposition**. Editing clears the prior result; each submission is independent. Open **Request & response trace** to see the exact request body, final response text, run/provider IDs, usage, estimated cost, and latency. **Download trace JSON** saves the same record with browser receipt time. Traces omit hidden reasoning and signatures; the short rationale is the model's explanation.
 
@@ -32,12 +32,18 @@ Mastra runs a standalone `stripped-fable-5-1` workflow with one `one-disposition
 
 ## What the scores mean
 
+Current physician-reference agreement is **48/50 under v3**, including C25 as
+urgent and the C32/C34/C38 self-care corrections. C22 and C47 remain false
+negatives. This is a reference revision after outputs were observed, not a new
+run or model improvement. See [the adjudication record](PHYSICIAN_ADJUDICATION_V3_2026-09-15.md).
+The original comparison below is preserved as historical v2 evidence.
+
 | Frozen experiment | Physician scorecard A | CSV scorecard B |
 | --- | --- | --- |
 | Fable 5.1 low effort — used here | **44/49** | **31/50** |
 | Fable 5.1 max effort | 42/49 | 31/50 |
 
-The GUI preserves the configuration that produced 44/49; it does not rerun or replace that scorecard. Live calls can vary. The physician denominator excludes C25. CSV labels remain a separate score. See [three-bucket comparison](STRIPPED_3BUCKET_COMPARISON_2026-09-15.md) and [max-effort ablation](STRIPPED_3BUCKET_FABLE_MAX_2026-09-15.md).
+The GUI preserves the configuration that produced 44/49; it does not rerun or replace that scorecard. Live calls can vary. The original v2 denominator excludes C25; v3 includes all 50 cases. CSV labels remain a separate historical discussion baseline, not the current selection target. See [three-bucket comparison](STRIPPED_3BUCKET_COMPARISON_2026-09-15.md) and [max-effort ablation](STRIPPED_3BUCKET_FABLE_MAX_2026-09-15.md).
 
 **Higher agreement does not establish better clinical policy on the contested OTC/self-care gold labels.** This is a synthetic disposition demonstration, not a clinical-readiness or V25 promotion claim.
 

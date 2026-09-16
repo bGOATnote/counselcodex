@@ -6,7 +6,8 @@
 2. [Presentation narrative](INTERVIEW_DECK_2026-09-15.md) and [demo script](DEMO_SCRIPT_2026-09-15.md).
 3. [Physician adjudication v3](PHYSICIAN_ADJUDICATION_V3_2026-09-15.md): current 48/50 agreement, corrected reference labels, and C22/C47 false negatives.
 4. [Requirements audit](TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md) and [failure review](SUBMISSION_RED_TEAM_2026-09-15.md).
-5. [Security boundary](../SECURITY.md) and [publication review](PUBLICATION_REVIEW_2026-09-16.md).
+5. [GUI access and troubleshooting](GUI_ACCESS.md).
+6. [Project disclosures](../DISCLOSURES.md), [security boundary](../SECURITY.md) and [publication review](PUBLICATION_REVIEW_2026-09-16.md).
 
 ## Current implementation
 
