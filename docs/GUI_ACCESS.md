@@ -10,6 +10,7 @@ GitHub Pages deployment. The standalone HTML also works from a checkout or after
 download. Localhost refers to the viewing computer, not the presenter’s server.
 The live launcher binds port 4120 to 127.0.0.1.
 [Publication and browser verification](CASE_REVIEW_HANDOFF_2026-09-16.md).
+[Navigation and comparison refinement](CASE_REVIEW_REFINEMENT_2026-09-16.md).
 
 ## Saved comparison viewer
 
