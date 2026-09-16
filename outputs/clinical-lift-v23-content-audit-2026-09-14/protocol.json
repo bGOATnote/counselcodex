@@ -1,0 +1,121 @@
+{
+  "protocolVersion": "v23-prospective-content-audit/v1",
+  "declaredAtUtc": "2026-09-14T23:49:23Z",
+  "status": "predeclared-awaiting-parent-cohort-identification",
+  "purpose": "Failure-inclusive, artifact-grounded content audit of the upcoming frozen v23 full-50 cohort. Determine what the first producer, review, repair, release and early-event path actually said and changed; do not substitute route-label agreement or judge acceptance for clinical truth.",
+  "reviewer": {
+    "role": "Independent engineering/model reviewer relative to the online producer and judge",
+    "limitations": [
+      "This is an AI-assisted engineering/content review, not physician adjudication, a calibrated clinical gold standard, or a blinded independent clinical evaluation.",
+      "The reviewer has seen earlier runs and helped engineer the system. The preselected cases are targeted regression cases, not a random or held-out representative sample.",
+      "The physician-reviewed incumbent cohort is a development reference. Agreement with that reference is neither proof of correctness nor a required condition for a defensible alternative.",
+      "No new paid provider calls, runtime changes, source-corpus changes, or revisions to historical inputs, outputs, labels or judge records are authorized by this protocol."
+    ]
+  },
+  "cohortBinding": {
+    "expectedFamily": "clinical-lift-v23 full-50 frozen cohort",
+    "state": "unbound-until-parent-supplies-completed-output-location",
+    "requiredBeforeAudit": [
+      "Record the parent-supplied cohort directory and immutable manifest path/hash without guessing a future directory.",
+      "Record the cohort's run configuration, prompt/policy/source-corpus identities and available runtime/code identities exactly as captured; mark absent identifiers unknown.",
+      "Enumerate the cohort's declared schedule and every captured attempt, including unfinished, cancelled and failed attempts. Do not silently select a better retry or another version.",
+      "Record completion/cutoff time and artifact hashes used for the audit. Missing, inconsistent or unreconstructable records remain explicit audit limitations."
+    ]
+  },
+  "selection": {
+    "preselectedCaseIds": ["C02", "C06", "C07", "C13", "C16", "C22", "C25", "C30", "C48", "C50"],
+    "additionalMandatoryInclusion": [
+      "Every case with any runtime-failed or review-required attempt in the bound cohort, regardless of route, judge acceptance, later repair, or later successful attempt.",
+      "Every attempted run without a completed final result at the cohort cutoff, including cancellation, abort, malformed result, missing journal, partial response, or unresolved release state."
+    ],
+    "attemptPolicy": "Audit every bound-cohort attempt and every scheduled trial for each included case. Deduplicate the selection union by case identifier, not by successful run. Preserve separate attempt-level and case-level denominators. Additional investigations, if any, are supplemental and cannot silently enlarge the predeclared sample.",
+    "missingPreselectedCasePolicy": "Retain a missing preselected case in the selection accounting with an unavailable-artifact finding; do not replace it with another case.",
+    "sourceOfInclusion": "Use explicit captured status, failure, release, schema/contract and schedule fields. If they conflict, include the attempt and describe the conflict rather than resolving it in favor of success."
+  },
+  "requiredCasePacket": [
+    "Exact original patient message and all patient-authored updates, with speaker, sequence and scope preserved. Separate patient denials, unreported findings, clinician assertions, assistant questions and model inferences.",
+    "Exact first producer draft/raw record, including patientMessage, reason, routing, differential, redFlags, vitalSigns, clarification and source-applicability claims when present.",
+    "Accepted/exposed context-stage findings and internal early-stage proposals sufficient to trace whether an invented fact originated upstream; never treat those interpretations as patient truth.",
+    "Actually selected source passages supplied to each producer/reviewer attempt, their source IDs, chunk/quote IDs, URLs and captured text. Distinguish those from the wider corpus, retrieval candidates not selected, and sources found only by this audit.",
+    "Exact online critic, review packet identity, findings and quoted anchors for each review round; malformed or incomplete reviews remain visible.",
+    "Exact field-local patch request/output, mechanical validation and post-patch draft for every repair round. Capture unchanged fields as well as edits.",
+    "Exact final released response, structured route/priority/transport, release state, fallback or care-only result, and any withheld content.",
+    "Every actually emitted early action, clarification and reply event in temporal order, with recorded latency and provenance; distinguish emitted instructions from suppressed internal proposals.",
+    "Any available final GUI/capture rendering used to verify what the user could see. Server events, browser receipt, and paint are different measurements; absent GUI capture is not a GUI pass."
+  ],
+  "auditSequence": [
+    {
+      "step": 1,
+      "action": "Bind artifacts and construct an explicit patient-fact inventory from patient-authored text before using model context or online critic as an authority."
+    },
+    {
+      "step": 2,
+      "action": "Read the first producer and final visible content against the patient inventory and actually selected evidence. Record preliminary defects and defensible alternatives before inspecting the online judge verdict where artifact organization permits; record unavoidable exposure rather than calling the audit blinded. Avoid timing/cost-based quality judgments."
+    },
+    {
+      "step": 3,
+      "action": "Inspect exact critic and patch rounds. Attribute each change to a quoted defect or stated contract issue, assess necessity/materiality, and determine whether repair removed, preserved, introduced or failed to address that defect. Do not count an acceptance change alone as a correction."
+    },
+    {
+      "step": 4,
+      "action": "Replay the emitted clinical timeline. A correct final response does not erase an earlier incorrect instruction or harmful delay; a suppressed internal proposal is not an issued patient instruction. Note clarification that did not block, did block, or had no supported routing consequence."
+    },
+    {
+      "step": 5,
+      "action": "Assess evidence and operational bounds. A reachable URL, exact quote or valid source ID does not establish that a claim follows, that all qualifiers apply, or that a service/appointment/order actually exists. Use additional primary research only when necessary to resolve a concrete ambiguity; log it separately as audit-only evidence."
+    },
+    {
+      "step": 6,
+      "action": "Report itemized findings, uncertainty and alternative routes with their required conditions. Attach timing only after the content assessment to characterize the cost of necessary and unnecessary repair, not to excuse content defects."
+    }
+  ],
+  "findingCategories": {
+    "patient_fact": "Invented, contradicted, overgeneralized, temporally misattributed or wrong-subject patient detail; unknown-to-absent/normal conversion; reported symptom erased; assistant question treated as a patient answer. Locate the exact field and upstream seed if any.",
+    "claim_support": "Unsupported medical or operational claim, omitted qualifying condition, source over-attribution, unsupported observation interval, wrong applicability, or fabricated citation. Separate semantic concern from source-ID/quote-identity failure and from publisher/currentness limitations.",
+    "clinician_task_and_scope": "A necessary assessment/prescribing/testing/follow-up task omitted, or a merely possible task promoted to mandatory clinician burden. No urgent physical visit does not establish no routine clinician task; persistence or missing history alone does not require escalation.",
+    "care_timing_transport": "Wrong current timing, priority, setting or EMS/ED transport; delay of an already-required action; conditional future precautions misrepresented as current emergency; unsafe downgrade/carry-forward. Identify actual patient facts and capability assumptions, not keywords alone.",
+    "clarification": "Question necessity, routing consequence and delay materiality. Relevance alone is insufficient to justify blocking; record nonblocking questions without treating them as a hold.",
+    "ownership_and_capability": "Correct Counsel clinician ownership versus invented referral, contact, booking, prescription, test order, availability, service guarantee or queue completion. Distinguish explicit integration stubs and conditional access fallbacks from executed care.",
+    "repair_effect": "Clinically necessary correction, mechanically necessary correction, optional wording edit, unnecessary repair, introduced defect, missed defect, unchanged preexisting defect, or indeterminate effect. Judge disagreement is not itself a defect.",
+    "defensible_alternative": "A route/timing alternative that can satisfy the stated need under explicit patient facts and realistic access/capability assumptions. State supporting and missing conditions; do not require exact reference-label equality or invent absent features/capabilities.",
+    "artifact_or_framework": "Missing/malformed/rejected review, invalid exact binding, absent source packet, schema/anchor failure, incomplete run or contradictory release record that prevents a conclusion. Separate unusable proof from proven incorrect clinical content."
+  },
+  "findingRecordFields": [
+    "caseId and runId",
+    "phase and exact field/event/source identifiers",
+    "category",
+    "verbatim minimal output anchor and minimal relevant patient/source anchors",
+    "reported facts versus assumptions/unknowns",
+    "concrete concern or reason the alternative is defensible",
+    "materiality: material, potentially-material/uncertain, wording-only, mechanical-only, or no-concrete-defect-identified",
+    "materiality rationale and potential routing/patient/clinician consequence",
+    "origin: patient interpretation, context, first producer, early event, repair, release/rendering, or unresolved",
+    "online critic detected/missed/disputed/not-assessable",
+    "repair outcome: corrected, partially-corrected, unchanged-preexisting, introduced, unnecessary-edit, not-repaired, or indeterminate",
+    "actually issued versus internal/withheld",
+    "defensible alternatives and required conditions, if relevant",
+    "audit-only external sources and retrieval date, if used",
+    "uncertainty and limitations"
+  ],
+  "reporting": {
+    "primaryUnit": "Concrete anchored finding and its evolution across first draft, early events, repair and released response",
+    "requiredCounts": [
+      "Declared cohort attempts, captured attempts, completed attempts, failures/unfinished attempts and missing artifacts.",
+      "Preselected cases, failure-added cases, union of audited cases and attempt counts, with overlaps explicit.",
+      "Material findings corrected, introduced, missed and unchanged, separated from wording-only and mechanical-only findings; do not collapse unequal severities into a single net-benefit score.",
+      "Cases and attempts with necessary repair, unnecessary repair, mixed repair or indeterminate effect; a single attempt may contain multiple findings.",
+      "Issued early-action errors and unresolved/missing early instructions separately from final-content errors and internal proposal defects.",
+      "Defensible route alternatives separately from unsupported alternatives and unassessable disagreements."
+    ],
+    "latency": "Report recorded time to first actionable instruction and final response, plus repair/review phase latency if the captured fields permit exact attribution. Include failed and unfinished runs in accounting; report their observed durations separately from completed-answer percentiles. Do not invent component timings or paint measurements.",
+    "interpretation": "This targeted, failure-inclusive sample characterizes concrete failure modes and observed repair effects; it does not estimate cohort-wide clinical accuracy, independent physician agreement, causal agent lift or deployment readiness.",
+    "nonClaims": [
+      "Judge acceptance, test success, schema validity, exact citation identity and route agreement are not interchangeable with clinical correctness.",
+      "A valid final answer does not negate an earlier patient-visible error.",
+      "An unsupported claim or proof failure does not automatically establish that a route is wrong or that emergency escalation is needed.",
+      "No new physician approval, held-out validation, or benchmark result will be inferred from this audit."
+    ]
+  },
+  "immutability": "Keep this predeclared protocol and all bound inputs/results unchanged. Any post-declaration deviation or amendment must be written to a new dated artifact with rationale and prospective scope; do not rewrite the selection or materiality definitions after seeing outcomes.",
+  "nextAction": "Wait for the parent to identify completed frozen cohort outputs. No future-result probing or runtime edits."
+}

@@ -1,0 +1,340 @@
+{
+  "version": "assessment-timeout-incident/v1",
+  "date": "2026-09-13",
+  "purpose": "GUI incident reproduction and bounded repair verification; not a clinical benchmark",
+  "protocol": {
+    "provider": "Opus 5 final, Haiku 4.5 intake; Astra background review unchanged",
+    "modelDeadlineMs": 50000,
+    "productionBuildRestartedBefore": "cb9fdf29-4eb6-42a3-92a2-4534a1eb82ea",
+    "cases": [
+      "C11 rash",
+      "C08 thunderclap headache",
+      "C13 hand paresthesia",
+      "C13 gradual-onset synthetic update"
+    ],
+    "inference": "Two old-build baseline runs and four repaired-build runs; nonrandomized, changing retrieval, dependent cases. No causal latency or clinical efficacy inference."
+  },
+  "rows": [
+    {
+      "runId": "65889f71-0eef-4ce7-a648-8d1134fe4102",
+      "workflow": "adaptive-disposition/v37",
+      "status": "complete",
+      "failure": null,
+      "runArtifactSha256": "9ca15315098be592699ce810698c82934a30f34b733362b43d5825cdd1deb1bb",
+      "inputHash": "48dd949ddaddaf2ac622e1f2bdf4f3170b3bffc4a28a4ecedec67a87cd82c814",
+      "answerHash": "91fc2249111416101654b0441d41dfa297a1e7906601eb410e80395e490a57a1",
+      "durationMs": 23374,
+      "firstActionMs": null,
+      "firstQuestionMs": null,
+      "route": "SELF_CARE",
+      "priority": null,
+      "modelCalls": 2,
+      "estimatedGenerationUSD": 0.088172,
+      "judge": {
+        "state": "complete",
+        "error": null,
+        "estimatedUSD": 0.09309,
+        "reservedUSD": 1.25,
+        "findings": [
+          {
+            "id": "safety_netting",
+            "reason": "Both emissions give specific local worsening precautions and immediate emergency advice, but omit explicit 911 instructions for breathing difficulty or faintness suggestive of a severe allergic reaction requiring EMS."
+          }
+        ]
+      },
+      "agents": [
+        {
+          "role": "intake",
+          "durationMs": 3336,
+          "firstTextDeltaMs": 1631,
+          "usage": {
+            "inputTokens": 2817,
+            "outputTokens": 74
+          }
+        },
+        {
+          "role": "disposition",
+          "durationMs": 17889,
+          "firstTextDeltaMs": 5148,
+          "usage": {
+            "inputTokens": 11477,
+            "outputTokens": 1104
+          }
+        }
+      ]
+    },
+    {
+      "runId": "7ba447a6-2383-44fb-aaf6-1c86ae06d1dd",
+      "workflow": "adaptive-disposition/v37",
+      "status": "complete",
+      "failure": null,
+      "runArtifactSha256": "1a4d72936f0ff02abb81d5465a90779bd223ac1d775878e0f3679e5a02ad827e",
+      "inputHash": "30c31683c0c03b5a432fcd86d71ac7ae66522a79b2f948dad068a99f33c18447",
+      "answerHash": "09ecb8b465167eb0d9f572bb4fd5bbb5f3c16071476de575ce41b61dab781d36",
+      "durationMs": 50084,
+      "firstActionMs": 7,
+      "firstQuestionMs": null,
+      "route": "EMERGENCY_NOW",
+      "priority": null,
+      "modelCalls": 2,
+      "estimatedGenerationUSD": 0.094209,
+      "judge": {
+        "state": "failed",
+        "error": "INDEPENDENT_REVIEW_FAILED",
+        "estimatedUSD": null,
+        "reservedUSD": 1.25,
+        "findings": null
+      },
+      "agents": [
+        {
+          "role": "intake",
+          "durationMs": 3928,
+          "firstTextDeltaMs": 1620,
+          "usage": {
+            "inputTokens": 2869,
+            "outputTokens": 94
+          }
+        },
+        {
+          "role": "disposition",
+          "durationMs": 46053,
+          "firstTextDeltaMs": 1622,
+          "usage": {
+            "inputTokens": 11379,
+            "outputTokens": 1359
+          }
+        }
+      ]
+    },
+    {
+      "runId": "cb9fdf29-4eb6-42a3-92a2-4534a1eb82ea",
+      "workflow": "adaptive-disposition/v38",
+      "status": "complete",
+      "failure": null,
+      "runArtifactSha256": "c4409b186200e9b42b3ec1d1b0cf85d0f25b7ab84f5fb32b66ed105bc2d3b41a",
+      "inputHash": "48dd949ddaddaf2ac622e1f2bdf4f3170b3bffc4a28a4ecedec67a87cd82c814",
+      "answerHash": "d28dcacebc3640d4142d44e74a2fadbcfa9109f9cf58799c8e5c23e26e6f52b3",
+      "durationMs": 21197,
+      "firstActionMs": null,
+      "firstQuestionMs": null,
+      "route": "SELF_CARE",
+      "priority": null,
+      "modelCalls": 2,
+      "estimatedGenerationUSD": 0.082792,
+      "judge": {
+        "state": "complete",
+        "error": null,
+        "estimatedUSD": 0.09191,
+        "reservedUSD": 1.25,
+        "findings": [
+          {
+            "id": "safety_netting",
+            "reason": "Local worsening precautions are specific and proportionate. However, both emissions omit explicit 911 activation for possible airway compromise or collapse, saying only to seek emergency care immediately."
+          }
+        ]
+      },
+      "agents": [
+        {
+          "role": "intake",
+          "durationMs": 3087,
+          "firstTextDeltaMs": 1488,
+          "streamProgress": {
+            "lastTextDeltaMs": 2940,
+            "textDeltaCount": 59,
+            "textCharacters": 238
+          },
+          "usage": {
+            "inputTokens": 2817,
+            "outputTokens": 72
+          }
+        },
+        {
+          "role": "disposition",
+          "durationMs": 15898,
+          "firstTextDeltaMs": 3910,
+          "streamProgress": {
+            "lastTextDeltaMs": 15870,
+            "textDeltaCount": 18,
+            "textCharacters": 2737
+          },
+          "usage": {
+            "inputTokens": 11238,
+            "outputTokens": 937
+          }
+        }
+      ]
+    },
+    {
+      "runId": "b6fec1ac-1e63-42b6-b6cf-10c493210a0c",
+      "workflow": "adaptive-disposition/v38",
+      "status": "complete",
+      "failure": null,
+      "runArtifactSha256": "da38733b967d55f7a2be249ed247c8c092e1aac900f8c6e4ec35b470572180c2",
+      "inputHash": "30c31683c0c03b5a432fcd86d71ac7ae66522a79b2f948dad068a99f33c18447",
+      "answerHash": "f758bf97a395a4361738ba7554db2c379209800e4d11331fdf3df0e69fb1fac0",
+      "durationMs": 22776,
+      "firstActionMs": 7,
+      "firstQuestionMs": null,
+      "route": "EMERGENCY_NOW",
+      "priority": null,
+      "modelCalls": 2,
+      "estimatedGenerationUSD": 0.090859,
+      "judge": {
+        "state": "failed",
+        "error": "INDEPENDENT_REVIEW_FAILED",
+        "estimatedUSD": null,
+        "reservedUSD": 1.25,
+        "findings": null
+      },
+      "agents": [
+        {
+          "role": "intake",
+          "durationMs": 4224,
+          "firstTextDeltaMs": 1989,
+          "streamProgress": {
+            "lastTextDeltaMs": 4221,
+            "textDeltaCount": 73,
+            "textCharacters": 263
+          },
+          "usage": {
+            "inputTokens": 2869,
+            "outputTokens": 83
+          }
+        },
+        {
+          "role": "disposition",
+          "durationMs": 15990,
+          "firstTextDeltaMs": 1726,
+          "streamProgress": {
+            "lastTextDeltaMs": 15911,
+            "textDeltaCount": 242,
+            "textCharacters": 3586
+          },
+          "usage": {
+            "inputTokens": 11210,
+            "outputTokens": 1261
+          }
+        }
+      ]
+    },
+    {
+      "runId": "7ad1b47e-d5b8-4697-a0e2-1913b6f20da7",
+      "workflow": "adaptive-disposition/v38",
+      "status": "complete",
+      "failure": null,
+      "runArtifactSha256": "798ffef290461eacc8e8e08548ff6d593dd71dc7ccc8da7421aa4fbcb8e99014",
+      "inputHash": "5111bddf95a14bd4755ec8ee19ce23d151627e377ead402a381fdaac0cec952b",
+      "answerHash": "e81d08a425c746412b88f0f68a949e048c2145a54a1d6d25ed7d578c0d702153",
+      "durationMs": 32040,
+      "firstActionMs": null,
+      "firstQuestionMs": 5367,
+      "route": "ASYNC_PHYSICIAN",
+      "priority": "priority",
+      "modelCalls": 2,
+      "estimatedGenerationUSD": 0.10447000000000001,
+      "judge": {
+        "state": "complete",
+        "error": null,
+        "estimatedUSD": 0.12255,
+        "reservedUSD": 1.25,
+        "findings": []
+      },
+      "agents": [
+        {
+          "role": "intake",
+          "durationMs": 5359,
+          "firstTextDeltaMs": 1431,
+          "streamProgress": {
+            "lastTextDeltaMs": 5266,
+            "textDeltaCount": 143,
+            "textCharacters": 617
+          },
+          "usage": {
+            "inputTokens": 2835,
+            "outputTokens": 163
+          }
+        },
+        {
+          "role": "disposition",
+          "durationMs": 24246,
+          "firstTextDeltaMs": 11342,
+          "streamProgress": {
+            "lastTextDeltaMs": 24179,
+            "textDeltaCount": 219,
+            "textCharacters": 3066
+          },
+          "usage": {
+            "inputTokens": 11444,
+            "outputTokens": 1744
+          }
+        }
+      ]
+    },
+    {
+      "runId": "99850f19-eb7e-4c9a-86ee-5ff5f0055b9b",
+      "workflow": "adaptive-disposition/v38",
+      "status": "complete",
+      "failure": null,
+      "runArtifactSha256": "f1ba56177ee74d344245c3b453c5a7e8fb48cf4bbab649cb9508eff772c85f99",
+      "inputHash": "68cc63f87f88ad162698f55278b4d3521028924969ecfc5c53637c99491cd80c",
+      "answerHash": "26d614857b52f9eddd47a8f0de5a404704670cc144f8cfd137c94a922e590fc5",
+      "durationMs": 25572,
+      "firstActionMs": null,
+      "firstQuestionMs": 6352,
+      "route": "ASYNC_PHYSICIAN",
+      "priority": "routine",
+      "modelCalls": 2,
+      "estimatedGenerationUSD": 0.094751,
+      "judge": {
+        "state": "complete",
+        "error": null,
+        "estimatedUSD": 0.12744,
+        "reservedUSD": 1.25,
+        "findings": [
+          {
+            "id": "overtriage",
+            "reason": "The current asynchronous disposition is proportionate, but the early reply and final answer make any numbness spreading up the arm an emergency trigger without qualifying sudden onset or associated deficits. That also captures gradual sensory progression that does not independently establish an emergency."
+          },
+          {
+            "id": "safety_netting",
+            "reason": "The early intake appropriately specifies immediate 911 action for new weakness or speech trouble. However, the displayed final warning replaces that explicit transport instruction with generic emergency care for stroke signs and overbroadly includes sensory spread without an acuity qualifier."
+          },
+          {
+            "id": "clarification",
+            "reason": "The early intake manufactures a priority distinction from distribution/progression: gradual fingertip spread receives standard review, while whole-hand or merely localized numbness receives priority. Sudden onset could matter, but the second branch conflates it with localization, and gradual onset is already recorded. No necessity is established for collecting this before clinician review. The final decision to collect distribution during review is appropriate but does not erase the earlier defect."
+          }
+        ]
+      },
+      "agents": [
+        {
+          "role": "intake",
+          "durationMs": 6342,
+          "firstTextDeltaMs": 1673,
+          "streamProgress": {
+            "lastTextDeltaMs": 6245,
+            "textDeltaCount": 174,
+            "textCharacters": 788
+          },
+          "usage": {
+            "inputTokens": 3011,
+            "outputTokens": 198
+          }
+        },
+        {
+          "role": "disposition",
+          "durationMs": 17498,
+          "firstTextDeltaMs": 4725,
+          "streamProgress": {
+            "lastTextDeltaMs": 17398,
+            "textDeltaCount": 216,
+            "textCharacters": 3090
+          },
+          "usage": {
+            "inputTokens": 11730,
+            "outputTokens": 1284
+          }
+        }
+      ]
+    }
+  ]
+}

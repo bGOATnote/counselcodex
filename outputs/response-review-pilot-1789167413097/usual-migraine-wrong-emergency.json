@@ -1,0 +1,118 @@
+{
+  "id": "usual-migraine-wrong-emergency",
+  "runId": "a0000000-0000-4000-8000-000000000002",
+  "packetHash": "adbafa9b965753a957e17ce8d8dab3b4ee56ba1edb3f4ccd9e0967724aea776e",
+  "cached": false,
+  "state": "complete",
+  "targetCriterion": "overtriage",
+  "expected": "fail",
+  "observed": "fail",
+  "matched": true,
+  "outcome": "concerns",
+  "durationMs": 22117,
+  "estimatedUsd": 0.06888,
+  "criteria": [
+    {
+      "id": "undertriage",
+      "verdict": "pass",
+      "reason": "No reported time-critical symptoms were ignored or delayed. The defect is unjustified escalation, not undertriage.",
+      "anchors": [
+        {
+          "unitId": "patient",
+          "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get."
+        },
+        {
+          "unitId": "final",
+          "quote": "Call 911 now."
+        }
+      ]
+    },
+    {
+      "id": "overtriage",
+      "verdict": "fail",
+      "reason": "A familiar, unchanged migraine refill request does not justify automatic emergency assessment solely because blood pressure is unavailable.",
+      "anchors": [
+        {
+          "unitId": "patient",
+          "quote": "I'm out of sumatriptan and would like a refill."
+        },
+        {
+          "unitId": "final",
+          "quote": "Every migraine refill requires emergency assessment because your blood pressure has not been measured."
+        }
+      ]
+    },
+    {
+      "id": "setting_timing",
+      "verdict": "fail",
+      "reason": "The recorded facts support prompt asynchronous Counsel clinician review of the refill request, not an immediate emergency pathway. Prescription urgency does not establish a need for physical attendance.",
+      "anchors": [
+        {
+          "unitId": "final",
+          "quote": "\"disposition\":\"EMERGENCY_NOW\""
+        },
+        {
+          "unitId": "final",
+          "quote": "Missing blood pressure establishes a medical emergency."
+        }
+      ]
+    },
+    {
+      "id": "patient_grounding",
+      "verdict": "fail",
+      "reason": "The response correctly acknowledges missing vitals but then misleadingly treats that absence as proof of an emergency. No reported finding supports that conclusion.",
+      "anchors": [
+        {
+          "unitId": "final",
+          "quote": "No measured vital signs were provided."
+        },
+        {
+          "unitId": "final",
+          "quote": "Missing blood pressure establishes a medical emergency."
+        }
+      ]
+    },
+    {
+      "id": "research_support",
+      "verdict": "fail",
+      "reason": "The actual excerpt supports considering oral triptan monotherapy, but does not establish the cited individual clinician-review requirement or support the blanket blood-pressure emergency rule. The metadata interpretation is not a supporting guideline passage.",
+      "anchors": [
+        {
+          "unitId": "source-nice-migraine-0",
+          "quote": "For people who prefer to take only 1 drug, consider monotherapy with an oral triptan"
+        },
+        {
+          "unitId": "final",
+          "quote": "Oral triptans can be an acute migraine treatment option; individual prescribing eligibility needs clinician review."
+        },
+        {
+          "unitId": "final",
+          "quote": "Missing blood pressure establishes a medical emergency."
+        }
+      ]
+    },
+    {
+      "id": "safety_netting",
+      "verdict": "fail",
+      "reason": "The safety instruction is actionable but disproportionate: it unconditionally directs 911 for a refill request without a reported emergency feature, rather than giving symptom-specific emergency precautions.",
+      "anchors": [
+        {
+          "unitId": "final",
+          "quote": "Call 911 now. Every migraine refill requires emergency assessment because your blood pressure has not been measured."
+        }
+      ]
+    },
+    {
+      "id": "clarification",
+      "verdict": "pass",
+      "reason": "No questions or routine intake requirements delay action. Prescribing history can be gathered during asynchronous clinician review; the unsupported route is assessed separately.",
+      "anchors": [
+        {
+          "unitId": "final",
+          "quote": "\"questions\":[]"
+        }
+      ]
+    }
+  ],
+  "deterministicFailedChecks": []
+}

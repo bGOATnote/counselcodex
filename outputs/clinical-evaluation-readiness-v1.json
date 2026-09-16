@@ -1,0 +1,291 @@
+{
+  "schemaVersion": "counsel-clinical-evaluation-readiness/v1",
+  "asOf": "2026-09-07",
+  "status": "not_clinically_ready",
+  "reviewDisposition": "READY_FOR_COUNSEL_TECHNICAL_REVIEW__RESEARCH_ONLY",
+  "decision": "Use public benchmarks as bounded stress tests inside an intended-use evidence ladder. No public benchmark score can establish zero harm, local clinical efficacy, or deployment readiness.",
+  "portfolioValidation": {
+    "valid": true,
+    "benchmarkCount": 8,
+    "evidenceGateCount": 7,
+    "portfolioSha256": "6503a8aec8eec136a6210a35793afbcef6b8ff08ca76b706053f9a9d356a465b"
+  },
+  "currentEvidence": {
+    "preAdjudicationArtifactsPassed": true,
+    "frozenAgentContractHoldoutPassed": true,
+    "frozenRetrievalCandidateAdmitted": false,
+    "attestedPhysicianDevelopmentReviewComplete": false,
+    "untouchedRepresentativeClinicalHoldoutPresent": false,
+    "humanFactorsStudyPresent": false,
+    "prospectiveShadowStudyPresent": false,
+    "controlledClinicalOutcomeStudyPresent": false,
+    "externalBenchmarkRuns": 3,
+    "externalBenchmarkSpendUsd": 0,
+    "healthbenchEmergencyStressTest": [
+      {
+        "mode": "always-emergency",
+        "status": "failed",
+        "cohortIdSha256": "076f690a7e8ea4dfc1441ff0c69ff13d55459b4e6026ddfb9bed92a0d1d07353",
+        "falseNegatives": 0,
+        "falsePositives": 74,
+        "emergencyRecall": 1,
+        "emergencyPrecision": 0.2815533980582524,
+        "specificity": 0
+      },
+      {
+        "mode": "never-emergency",
+        "status": "failed",
+        "cohortIdSha256": "076f690a7e8ea4dfc1441ff0c69ff13d55459b4e6026ddfb9bed92a0d1d07353",
+        "falseNegatives": 29,
+        "falsePositives": 0,
+        "emergencyRecall": 0,
+        "emergencyPrecision": null,
+        "specificity": 1
+      },
+      {
+        "mode": "deterministic",
+        "status": "failed",
+        "cohortIdSha256": "076f690a7e8ea4dfc1441ff0c69ff13d55459b4e6026ddfb9bed92a0d1d07353",
+        "falseNegatives": 28,
+        "falsePositives": 0,
+        "emergencyRecall": 0.034482758620689655,
+        "emergencyPrecision": 1,
+        "specificity": 1
+      }
+    ]
+  },
+  "claimDecisions": {
+    "syntheticSoftwareContractEvidence": {
+      "allowed": true,
+      "boundary": "Only the checked-in synthetic contracts and artifacts; completion of the full validation command is still required for a release commit."
+    },
+    "physicianAuthoredDevelopmentReference": {
+      "allowed": false,
+      "boundary": "A signed single-clinician development reference would not be consensus or external validation."
+    },
+    "clinicalPerformanceEstimated": {
+      "allowed": false,
+      "reason": "No untouched representative patient- and episode-independent sample exists."
+    },
+    "clinicalEfficacyEstablished": {
+      "allowed": false,
+      "reason": "No prospective comparative clinical study or patient-outcome evidence exists."
+    },
+    "clinicallyDeploymentReady": {
+      "allowed": false,
+      "reason": "Clinical reference, external validation, human factors, shadow mode, governance, and outcome gates remain incomplete."
+    },
+    "zeroHarmEstablished": {
+      "allowed": false,
+      "reason": "Finite evaluation can discover and bound failure rates but cannot prove the absence of all harm across future users, settings, or distributions."
+    }
+  },
+  "benchmarkDecisions": [
+    {
+      "id": "healthbench",
+      "status": "planned_when_response_system_exists",
+      "currentV0Compatibility": "none",
+      "portfolioRole": "broad_health_response_capability",
+      "permittedClaims": [
+        "response_quality_on_healthbench_distribution"
+      ],
+      "cannotEstablish": [
+        "zero_harm",
+        "local_routing_safety",
+        "clinical_efficacy",
+        "deployment_readiness"
+      ]
+    },
+    {
+      "id": "healthbench_consensus",
+      "status": "executed_derived_stress_test__deterministic_candidate_failed",
+      "currentV0Compatibility": "partial",
+      "portfolioRole": "high_precision_behavior_probe",
+      "permittedClaims": [
+        "criterion_behavior_on_declared_consensus_slice"
+      ],
+      "cannotEstablish": [
+        "zero_harm",
+        "comprehensive_clinical_safety",
+        "clinical_efficacy",
+        "deployment_readiness"
+      ]
+    },
+    {
+      "id": "healthbench_hard",
+      "status": "planned_only_for_future_response_model",
+      "currentV0Compatibility": "none",
+      "portfolioRole": "unsaturated_headroom_stress_test",
+      "permittedClaims": [
+        "response_quality_on_healthbench_hard_distribution"
+      ],
+      "cannotEstablish": [
+        "zero_harm",
+        "clinical_safety",
+        "clinical_efficacy",
+        "deployment_readiness"
+      ]
+    },
+    {
+      "id": "noharm_v2",
+      "status": "planned_when_management_plan_output_exists",
+      "currentV0Compatibility": "none",
+      "portfolioRole": "clinical_management_harm_stress_test",
+      "permittedClaims": [
+        "management_harm_profile_on_noharm_distribution"
+      ],
+      "cannotEstablish": [
+        "zero_harm",
+        "local_routing_safety",
+        "real_world_event_rate",
+        "clinical_efficacy",
+        "deployment_readiness"
+      ]
+    },
+    {
+      "id": "medagentbench_v1",
+      "status": "deferred_until_fhir_tools_exist",
+      "currentV0Compatibility": "none",
+      "portfolioRole": "fhir_tool_action_correctness",
+      "permittedClaims": [
+        "fhir_task_success_on_medagentbench_distribution"
+      ],
+      "cannotEstablish": [
+        "zero_harm",
+        "patient_outcome_benefit",
+        "production_ehr_safety",
+        "clinical_efficacy",
+        "deployment_readiness"
+      ]
+    },
+    {
+      "id": "medagentbench_v2",
+      "status": "watchlist_until_fhir_tools_and_memory_exist",
+      "currentV0Compatibility": "none",
+      "portfolioRole": "fhir_agent_design_and_memory_ablation",
+      "permittedClaims": [
+        "fhir_agent_design_performance_on_declared_medagentbench_partition"
+      ],
+      "cannotEstablish": [
+        "zero_harm",
+        "safe_online_learning",
+        "patient_outcome_benefit",
+        "clinical_efficacy",
+        "deployment_readiness"
+      ]
+    },
+    {
+      "id": "healthagentbench",
+      "status": "watchlist_adjacent_not_release_gate",
+      "currentV0Compatibility": "none",
+      "portfolioRole": "broad_terminal_health_workflow_stress_test",
+      "permittedClaims": [
+        "task_success_on_named_healthagentbench_categories"
+      ],
+      "cannotEstablish": [
+        "zero_harm",
+        "local_routing_safety",
+        "clinical_efficacy",
+        "deployment_readiness"
+      ]
+    },
+    {
+      "id": "medsafe_dx_v0",
+      "status": "watchlist_research_only",
+      "currentV0Compatibility": "partial",
+      "portfolioRole": "escalation_false_reassurance_and_uncertainty_probe",
+      "permittedClaims": [
+        "safety_probe_on_medsafe_dx_distribution"
+      ],
+      "cannotEstablish": [
+        "zero_harm",
+        "local_clinical_performance",
+        "clinical_efficacy",
+        "deployment_readiness"
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "id": "retrieval_candidate_not_admitted",
+      "requiredEvidence": [
+        "Register a new retrieval candidate and new untouched holdout; do not tune the rejected candidate on revealed labels."
+      ]
+    },
+    {
+      "id": "L1_physician_development_review",
+      "requiredEvidence": [
+        "50 of 50 independently locked case reviews",
+        "post-reveal comparison and case completion",
+        "signed integrity-hashed export"
+      ]
+    },
+    {
+      "id": "L2_external_retrospective_validation",
+      "requiredEvidence": [
+        "preregistered intended population, routes, destinations, and SLA",
+        "untouched patient- and episode-independent representative sample",
+        "blinded reference process with calibrated multi-clinician overlap",
+        "all exclusions, denominators, sampling weights, and intervals",
+        "subgroup and temporal validation"
+      ]
+    },
+    {
+      "id": "L3_human_factors_simulation",
+      "requiredEvidence": [
+        "representative clinicians and operations staff",
+        "realistic queue pressure, interruptions, and degraded-system drills",
+        "counterbalanced baseline comparison",
+        "analysis of automation bias and alert fatigue"
+      ]
+    },
+    {
+      "id": "L4_prospective_shadow",
+      "requiredEvidence": [
+        "governance, privacy, security, and incident-response approval",
+        "silent prospective run with no autonomous patient-facing or EHR action",
+        "predefined stop rules and rollback drills",
+        "distribution and model-drift monitoring"
+      ]
+    },
+    {
+      "id": "L5_controlled_clinical_evaluation",
+      "requiredEvidence": [
+        "approved protocol matched to risk and intended use",
+        "prospective comparator design",
+        "independent safety monitoring",
+        "DECIDE-AI reporting for early live evaluation",
+        "SPIRIT-AI and CONSORT-AI reporting when an interventional trial is warranted"
+      ]
+    },
+    {
+      "id": "L6_controlled_release_and_monitoring",
+      "requiredEvidence": [
+        "approved intended use and contraindications",
+        "change control and versioned release evidence",
+        "continuous monitoring with action thresholds",
+        "incident reporting, rollback, and reconciliation",
+        "periodic revalidation on representative data"
+      ]
+    }
+  ],
+  "nextActions": [
+    "Complete and export the attributable 50-case single-clinician development review.",
+    "Freeze the intended-use labeling manual, route destinations, SLAs, subgroup plan, and a new representative patient- and episode-independent holdout before observing labels.",
+    "Run the full Mastra clinical-agent path on the frozen HealthBench reconstruction with a preregistered model, repeated trials, and spend cap; preserve the official-score distinction.",
+    "Run NOHARM v2 only if the system produces comprehensive clinical management plans; keep omission, commission, severe-rate, floor, and resilience visible.",
+    "Defer MedAgentBench until FHIR tools exist, then add authorization, world-state, idempotency, rollback, and audit checks around the public grader.",
+    "Advance through human-factors simulation and prospective shadow mode before any patient-facing or EHR-writing scope is considered."
+  ],
+  "evidenceHashes": {
+    "portfolio": "6503a8aec8eec136a6210a35793afbcef6b8ff08ca76b706053f9a9d356a465b",
+    "preAdjudicationEvidence": "fb2acc165f9e9d3940c50b0fdb289886d7b3d7378e3d64fffe5bcd9c44b0f402",
+    "frozenAgentHoldout": "7342df78112ccce951af21239994b995d7a7cf37b02a9f4a1336a0d9ee3a1009",
+    "frozenRetrievalHoldout": "61523e0b860477b91229479c658ce492e338fa0a9ee195f05a916a97c90abd96",
+    "healthbenchEmergencyEvidence": [
+      "eba81347e9224e586f1868b2c47e2900e46fdf3247af949a57befed575f16d0a",
+      "a22b77cbc93bd29fc2efc03cfee2a0827717dcb22d853acc44f30539ce86994e",
+      "5516026e956b3ec3debe8c02f43f868e8a4d29e1146e3c9c9ba7c2a05bfd5a3a"
+    ]
+  }
+}

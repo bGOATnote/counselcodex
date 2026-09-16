@@ -1,0 +1,245 @@
+{
+  "protocol": "immutable-gui-capture/v1",
+  "label": "C02-active-EMS-update",
+  "runId": "b9210cef-0061-4b7b-8544-4666ba8e4ae7",
+  "files": {
+    "run": {
+      "source": "apps/evaluation/.local/clinical-evidence-graph-v1/runs/b9210cef-0061-4b7b-8544-4666ba8e4ae7.json",
+      "copied": "outputs/candidate-concise-gui-2026-09-14/runs/b9210cef-0061-4b7b-8544-4666ba8e4ae7.json",
+      "sha256": "18bcad4a33124117a75ec194297d374e533e8abf540e6a40d3eae3cdfe60200f",
+      "bytes": 173470
+    },
+    "events": {
+      "source": "apps/evaluation/.local/clinical-evidence-graph-v1/events/b9210cef-0061-4b7b-8544-4666ba8e4ae7.jsonl",
+      "copied": "outputs/candidate-concise-gui-2026-09-14/events/b9210cef-0061-4b7b-8544-4666ba8e4ae7.jsonl",
+      "sha256": "2dd2a79e671361a0d98cb34efec3905b82f2a458d9a2f9b83659f4e7d8e8587a",
+      "bytes": 14256
+    }
+  },
+  "sourceCompletedAt": "2026-09-14T15:16:52.752Z",
+  "graphVersion": "evidence-graph/v15",
+  "runVersion": "disposition-agent/v3",
+  "clinicalPolicyVersion": "disposition-clinical-policy/v1",
+  "config": {
+    "models": {
+      "context": "anthropic/claude-haiku-4-5",
+      "safety": "anthropic/claude-haiku-4-5",
+      "disposition": "anthropic/claude-opus-5",
+      "judge": "openai/gpt-6-astra"
+    },
+    "factGraphMode": "off",
+    "judgeStyle": "concise"
+  },
+  "promptHash": "a6a85b8316e2a64cd1b6cddadf0111e223efe3bb92dc0d679a97be4976b341d7",
+  "inputHash": "ab0ce2a9737c1947d7e53f5d2c0197b39fe7d13ad7eb6181d676705a0b440190",
+  "answerHash": "216819bdb36a8b143b5b8bb9f5f1b033677da69e22eeabecd95e0f66ea26f166",
+  "status": "complete",
+  "release": "model_reviewed",
+  "failure": null,
+  "disposition": "EMERGENCY_NOW",
+  "reviewPriority": null,
+  "patientMessage": "Stay where you are and keep the ambulance coming — do not drive yourself or delay. Your ongoing crushing chest pressure spreading to your left arm with sweating and nausea needs emergency heart assessment now. Follow the dispatcher's instructions and unlock the door if you can. If symptoms worsen, you faint, or you stop being able to speak normally before they arrive, call 911 back immediately.",
+  "reason": "45-year-old with 30 minutes of ongoing crushing central chest pressure radiating to the left arm, with diaphoresis and nausea, consistent with possible acute coronary syndrome; EMS is already en route for this episode, so the existing emergency response should continue.",
+  "earlyNotices": [],
+  "transportAdmission": {
+    "status": "admitted",
+    "code": "TRANSPORT_ADMITTED",
+    "clinicalValidation": false,
+    "binding": {
+      "mode": "continue_ems",
+      "activationQuote": "I called 911 for these symptoms and the dispatcher says the ambulance is coming for me now.",
+      "directive": "Stay where you are and keep the ambulance coming — do not drive yourself or delay. Your ongoing crushing chest pressure spreading to your left arm with sweating and nausea needs emergency heart assessment now. Follow the dispatcher's instructions and unlock the door if you can. If symptoms worsen, you faint, or you stop being able to speak normally before they arrive, call 911 back immediately.",
+      "review": "independent_model"
+    }
+  },
+  "careCorrectionReleased": false,
+  "finalJudge": {
+    "reviewScope": "draft-and-issued-question/v2",
+    "verdict": "accept",
+    "criteria": [
+      {
+        "id": "undertriage",
+        "verdict": "pass",
+        "reason": "Immediate cardiac assessment required; ongoing EMS meets need.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Your ongoing crushing chest pressure spreading to your left arm with sweating and nausea needs emergency heart assessment now."
+          }
+        ]
+      },
+      {
+        "id": "overtriage",
+        "verdict": "pass",
+        "reason": "Persistent ACS-pattern symptoms justify continuing active EMS.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "I called 911 for these symptoms and the dispatcher says the ambulance is coming for me now. The chest pressure is still present."
+          }
+        ]
+      },
+      {
+        "id": "patient_grounding",
+        "verdict": "pass",
+        "reason": "Symptoms and active EMS accurately reflect patient statements.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "I've had crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach."
+          }
+        ]
+      },
+      {
+        "id": "claim_support",
+        "verdict": "pass",
+        "reason": "Supplied evidence supports symptom-based emergency cardiac assessment.",
+        "anchors": [
+          {
+            "unit": "source:07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+            "quote": "Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath."
+          }
+        ]
+      },
+      {
+        "id": "safety_net",
+        "verdict": "pass",
+        "reason": "Worsening prompts immediate dispatcher contact without delaying EMS.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "If symptoms worsen, you faint, or you stop being able to speak normally before they arrive, call 911 back immediately."
+          }
+        ]
+      },
+      {
+        "id": "clarification_delay",
+        "verdict": "pass",
+        "reason": "No issued questions; immediate action remains explicit.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Stay where you are and keep the ambulance coming — do not drive yourself or delay."
+          }
+        ]
+      },
+      {
+        "id": "ownership",
+        "verdict": "pass",
+        "reason": "Existing emergency response retained without invented handoff.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Follow the dispatcher's instructions and unlock the door if you can."
+          }
+        ]
+      }
+    ],
+    "earlyAction": "none",
+    "earlyCorrection": null,
+    "transportReview": {
+      "mode": "continue_ems",
+      "verdict": "supported",
+      "draftQuote": "Stay where you are and keep the ambulance coming — do not drive yourself or delay.",
+      "activation": {
+        "quote": "I called 911 for these symptoms and the dispatcher says the ambulance is coming for me now.",
+        "currentPatient": true,
+        "currentEpisode": true,
+        "active": true
+      }
+    },
+    "ownershipTaskReview": [],
+    "correction": "",
+    "evidenceQueries": []
+  },
+  "failedApplicationChecks": [],
+  "timing": {
+    "firstActionMs": null,
+    "firstQuestionMs": null,
+    "firstPatientReplyMs": 38253,
+    "finalMs": 38286,
+    "workflowMs": 38266,
+    "tracePersistenceMs": 20
+  },
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 1
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 6792
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 23018
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 15231
+    }
+  ],
+  "modelCalls": 4,
+  "repairs": 0,
+  "agentTimings": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "calls": 1,
+      "durationMs": 4629,
+      "firstTextDeltaMs": 1905,
+      "usage": {
+        "inputTokens": 1126,
+        "outputTokens": 215
+      },
+      "failure": null
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "calls": 1,
+      "durationMs": 16841,
+      "firstTextDeltaMs": 1105,
+      "usage": {
+        "inputTokens": 19766,
+        "outputTokens": 1150
+      },
+      "failure": null
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "calls": 1,
+      "durationMs": 6785,
+      "firstTextDeltaMs": 1486,
+      "usage": {
+        "inputTokens": 2559,
+        "outputTokens": 218
+      },
+      "failure": null
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "calls": 1,
+      "durationMs": 15212,
+      "firstTextDeltaMs": 2755,
+      "usage": {
+        "inputTokens": 8966,
+        "outputTokens": 790
+      },
+      "failure": null
+    }
+  ],
+  "traceId": "ea3335e3962e16aa9f2503ba86b262b2",
+  "tracePersisted": true,
+  "eventLogPersisted": true,
+  "estimatedUSD": 0.26259,
+  "pricingVersion": "clinical-study-pricing-2026-09-13/v1",
+  "clinicalApproval": false,
+  "limitation": "Exact runtime artifact capture, not an independent observation of browser rendering, patient receipt, clinical correctness or delivered care. All supplied attempts are retained, including failures. Cost is the standard token estimate, not an invoice; embedding and cache-specific charges are not included."
+}

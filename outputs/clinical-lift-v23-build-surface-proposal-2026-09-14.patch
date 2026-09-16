@@ -1,0 +1,264 @@
+diff --git a/package.json b/package.json
+--- a/package.json
++++ b/package.json
+@@ -44,34 +44,38 @@
+     "batch": "node src/run.mjs batch",
+     "evaluate": "node src/run.mjs evaluate",
+     "dev": "MASTRA_TELEMETRY_DISABLED=true mastra dev",
+-    "build": "MASTRA_TELEMETRY_DISABLED=true mastra build && npm run build:verify",
+-    "build:verify": "node scripts/verify-mastra-artifact.mjs",
++    "build": "npm run build:candidate && npm run build:mastra",
++    "build:candidate": "npm run build --workspace @counselcodex/evaluation && npm run build:candidate:verify",
++    "build:candidate:verify": "node scripts/verify-candidate-artifact.mjs",
++    "build:mastra": "MASTRA_TELEMETRY_DISABLED=true mastra build && npm run build:mastra:verify",
++    "build:mastra:verify": "node scripts/verify-mastra-artifact.mjs",
++    "build:verify": "npm run build:candidate:verify && npm run build:mastra:verify",
+     "typecheck": "tsc --noEmit",
+     "mastra:smoke": "node --experimental-strip-types scripts/mastra-smoke.ts",
+     "mastra:eval": "node --experimental-strip-types scripts/mastra-eval.ts",
+     "agent:eval": "node --experimental-strip-types scripts/clinical-agent-eval.ts",
+     "agent:holdout": "node --experimental-strip-types scripts/clinical-agent-eval.ts data/clinical_agent_temporal_holdout_v1.jsonl outputs/frozen-agent-holdout-v1.json",
+     "agent:live": "node --experimental-strip-types scripts/clinical-agent-live.ts",
+     "cqa:demo": "MASTRA_TELEMETRY_DISABLED=true node --experimental-strip-types scripts/quality-audit-research.ts",
+     "cqa:research": "MASTRA_TELEMETRY_DISABLED=true node --experimental-strip-types scripts/quality-audit-research.ts --live",
+     "cqa:pilot:verify": "node --experimental-strip-types scripts/quality-audit-pilot-report.ts --verify",
+     "healthbench:fetch": "MASTRA_TELEMETRY_DISABLED=true node --experimental-strip-types scripts/healthbench-emergency.mjs fetch",
+     "healthbench:audit": "MASTRA_TELEMETRY_DISABLED=true node --experimental-strip-types scripts/healthbench-emergency.mjs audit",
+     "healthbench:eval": "MASTRA_TELEMETRY_DISABLED=true node --experimental-strip-types scripts/clinical-benchmark.ts run",
+     "healthbench:legacy-eval": "MASTRA_TELEMETRY_DISABLED=true node --experimental-strip-types scripts/healthbench-emergency.mjs evaluate",
+     "healthbench:compare": "node scripts/healthbench-compare.mjs",
+     "review:dev": "npm run dev --workspace @counselcodex/evaluation",
+-    "review:build": "npm run build --workspace @counselcodex/evaluation",
++    "review:build": "npm run build:candidate",
+     "review:status": "npm run status --workspace @counselcodex/evaluation",
+     "review:test": "npm run test --workspace @counselcodex/evaluation",
+     "redteam": "node scripts/red-team.mjs",
+     "ablate": "node scripts/ablate.mjs",
+     "pre-adjudication:eval": "node scripts/pre-adjudication-eval.mjs",
+     "retrieval:holdout": "node scripts/frozen-retrieval-holdout.mjs",
+     "holdout:eval": "npm run retrieval:holdout && npm run agent:holdout",
+     "holdout:verify": "node scripts/verify-archived-holdout.mjs",
+     "evaluation:readiness": "node --experimental-strip-types scripts/clinical-evaluation-readiness.mjs",
+-    "validate": "npm run lint && npm run typecheck && npm test && npm run review:test && npm run redteam && npm run evaluate && npm run ablate && npm run pre-adjudication:eval && npm run holdout:verify && npm run evaluation:readiness && npm run mastra:eval && npm run agent:eval && npm run mastra:smoke && npm run review:build && npm run build",
++    "validate": "npm run lint && npm run typecheck && npm test && npm run review:test && npm run redteam && npm run evaluate && npm run ablate && npm run pre-adjudication:eval && npm run holdout:verify && npm run evaluation:readiness && npm run mastra:eval && npm run agent:eval && npm run mastra:smoke && npm run build",
+     "lint": "node scripts/lint.mjs",
+     "test:unit": "node --test tests/*.test.mjs",
+     "test:mastra": "COUNSEL_MASTRA_TEST_STORAGE=isolated node --experimental-strip-types --test tests/mastra.test.ts tests/clinical-agent.test.ts tests/disposition-agent.test.ts tests/disposition-progressive.test.ts tests/disposition-compact.test.ts tests/disposition-nasal.test.ts",
+diff --git a/README.md b/README.md
+--- a/README.md
++++ b/README.md
+@@ -43,16 +43,25 @@
+ node --experimental-strip-types scripts/clinical-rag.ts build \
+   --bundle outputs/clinical-rag-v8-migration-2026-09-14/corpus/manifest.json \
+   --directory apps/evaluation/.local/clinical-rag-v8 --embed
+-npm run review:build
++npm run build  # candidate Next artifact + separate incumbent native Mastra artifact
+ npm run start --workspace @counselcodex/evaluation
+ # Open http://localhost:4120/candidate
+ 
+ npm run lint
+ npm run typecheck
+ npm test
+ npm run review:test
+-npm run build  # real Mastra bundle + production dependency verification
++npm run build:verify  # verify both existing artifacts without rebuilding
+ ```
+ 
++`npm run build:candidate` builds the current Next-hosted Mastra candidate;
++`npm run build:mastra` builds the separate **incumbent** native Mastra server.
++The default `npm run build` runs both, once each. `review:build` remains a
++compatibility alias for the candidate build. The candidate artifact check
++verifies Next manifests, entries and traced Mastra/PGlite dependencies; it does
++not prove execution or clinical correctness. Native `mastra:smoke` remains a
++historical V0 check. The governed candidate endpoint and actual GUI must still
++be verified; do not deploy the native incumbent bundle as the candidate.
++
+ The candidate registers a real Mastra workflow through `graph-runtime.ts`.
+ Haiku safety and context run in parallel. Context drives hybrid PostgreSQL/vector
+diff --git a/docs/DEMO_RUNBOOK.md b/docs/DEMO_RUNBOOK.md
+--- a/docs/DEMO_RUNBOOK.md
++++ b/docs/DEMO_RUNBOOK.md
+@@ -2,7 +2,10 @@
+ 
+ 14 September 2026 · candidate `evidence-graph/v23`
+ 
+-Run the checks in [README](../README.md), including both production builds. Use
++Run `npm run build` and the checks in [README](../README.md). The default build
++verifies the current Next-hosted candidate and separately builds/verifies the
++incumbent native Mastra artifact. `build:candidate` and `build:mastra` select one
++surface explicitly; native Studio/smoke is not candidate verification. Use
+ the existing single server/database owner; open <http://localhost:4120/candidate>.
+ Do not open the incumbent `/` and call it the candidate. No paid benchmark belongs
+ in preflight without a separate allocation. Do not rerun frozen experiment outputs.
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -32,9 +32,9 @@
+       - run: npm run mastra:eval
+       - run: npm run agent:eval
+       - run: npm run mastra:smoke
+-      - run: npm run review:build
++      # Build the actual Next-hosted candidate and the separately named native incumbent once each.
+       - run: npm run build
+       # Verify the generated runtime lock can be installed independently of the
+       # workspace install; never silently deploy a fresh, unlocked resolution.
+       - run: npm ci --prefix .mastra/output --omit=dev --no-audit --no-fund
+-      - run: npm run build:verify
++      - run: npm run build:mastra:verify
+diff --git a/scripts/verify-candidate-artifact.mjs b/scripts/verify-candidate-artifact.mjs
+new file mode 100644
+--- /dev/null
++++ b/scripts/verify-candidate-artifact.mjs
+@@ -0,0 +1,64 @@
++import { createHash } from "node:crypto";
++import { readFileSync, realpathSync, statSync } from "node:fs";
++import { isAbsolute, relative, resolve } from "node:path";
++import { fileURLToPath } from "node:url";
++
++const fail = (code) => { throw new Error(code); };
++const sha256 = value => createHash("sha256").update(value).digest("hex");
++const entries = {
++  "/api/candidate/route": "app/api/candidate/route.js",
++  "/candidate/page": "app/candidate/page.js",
++};
++
++/** Inclusion/manifest evidence only; never imports the server or starts a model/index. */
++export function verifyCandidateArtifact({ projectDirectory = process.cwd() } = {}) {
++  const directory = resolve(projectDirectory, "apps/evaluation/.next");
++  const hashes = {};
++  const read = name => {
++    const path = resolve(directory, name);
++    if (relative(directory, path).startsWith("..") || isAbsolute(relative(directory, path))
++      || name.split(/[\\/]/).some(part => part === ".env" || part.startsWith(".env."))) fail("CANDIDATE_ARTIFACT_PATH_INVALID");
++    try {
++      const base = realpathSync(directory), baseRel = relative(realpathSync(projectDirectory), base);
++      const actual = realpathSync(path), rel = relative(base, actual);
++      if (baseRel.startsWith("..") || isAbsolute(baseRel) || rel.startsWith("..") || isAbsolute(rel) || !statSync(actual).isFile()) fail("CANDIDATE_ARTIFACT_PATH_INVALID");
++      const bytes = readFileSync(actual);
++      if (!bytes.length) fail("CANDIDATE_ARTIFACT_EMPTY");
++      hashes[name] = sha256(bytes);
++      return bytes;
++    } catch (error) {
++      if (error instanceof Error && error.message.startsWith("CANDIDATE_")) throw error;
++      fail("CANDIDATE_ARTIFACT_FILE_MISSING");
++    }
++  };
++  const parse = name => { try { return JSON.parse(read(name).toString("utf8")); } catch (error) {
++    if (error instanceof Error && error.message.startsWith("CANDIDATE_")) throw error;
++    fail("CANDIDATE_ARTIFACT_MANIFEST_INVALID");
++  } };
++  const buildId = read("BUILD_ID").toString("utf8").trim();
++  if (!buildId) fail("CANDIDATE_BUILD_ID_INVALID");
++  const required = parse("required-server-files.json");
++  if (!required || required.version !== 1 || !Array.isArray(required.files) || !required.files.length) fail("CANDIDATE_REQUIRED_FILES_INVALID");
++  for (const file of required.files) {
++    if (typeof file !== "string" || !file.startsWith(".next/")) fail("CANDIDATE_REQUIRED_FILES_INVALID");
++    read(file.slice(".next/".length));
++  }
++  const paths = parse("server/app-paths-manifest.json");
++  if (!paths || typeof paths !== "object" || Array.isArray(paths)) fail("CANDIDATE_ARTIFACT_MANIFEST_INVALID");
++  for (const [route, file] of Object.entries(entries)) {
++    if (paths[route] !== file) fail("CANDIDATE_ENTRY_MISSING");
++    read("server/" + file);
++  }
++  const trace = parse("server/app/api/candidate/route.js.nft.json");
++  if (!trace || trace.version !== 1 || !Array.isArray(trace.files) || trace.files.some(file => typeof file !== "string")) fail("CANDIDATE_TRACE_INVALID");
++  for (const dependency of ["@mastra/core", "@electric-sql/pglite"]) {
++    if (!trace.files.some(file => file.replaceAll("\\", "/").endsWith("/node_modules/" + dependency + "/package.json"))) fail("CANDIDATE_TRACED_DEPENDENCY_MISSING");
++  }
++  const files = Object.fromEntries(Object.entries(hashes).sort(([a], [b]) => a.localeCompare(b)));
++  return { status: "verified", surface: "next-hosted-mastra-candidate", scope: "entry-manifest-and-traced-dependency-inclusion-only",
++    buildId, entries, files, artifactIdentity: sha256(JSON.stringify(files)), runtimeExecutionVerified: false, clinicalApproval: false };
++}
++if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
++  try { console.log(JSON.stringify(verifyCandidateArtifact(), null, 2)); }
++  catch (error) { console.error(error.message); process.exitCode = 1; }
++}
+diff --git a/tests/candidate-artifact.test.mjs b/tests/candidate-artifact.test.mjs
+new file mode 100644
+--- /dev/null
++++ b/tests/candidate-artifact.test.mjs
+@@ -0,0 +1,83 @@
++import assert from "node:assert/strict";
++import { mkdtempSync, mkdirSync, readFileSync, renameSync, symlinkSync, writeFileSync } from "node:fs";
++import { tmpdir } from "node:os";
++import { dirname, join } from "node:path";
++import test from "node:test";
++import { verifyCandidateArtifact } from "../scripts/verify-candidate-artifact.mjs";
++
++function fixture() {
++  const root = mkdtempSync(join(tmpdir(), "candidate-artifact-test-"));
++  const directory = join(root, "apps/evaluation/.next");
++  const put = (name, value) => { const file = join(directory, name); mkdirSync(dirname(file), { recursive: true }); writeFileSync(file, typeof value === "string" || Buffer.isBuffer(value) ? value : JSON.stringify(value)); };
++  put("BUILD_ID", "synthetic-build-only");
++  put("package.json", { type: "commonjs" });
++  put("required-server-files.json", { version: 1, files: [".next/package.json"] });
++  put("server/app-paths-manifest.json", { "/api/candidate/route": "app/api/candidate/route.js", "/candidate/page": "app/candidate/page.js" });
++  // Throwing bodies prove verification reads files rather than importing them.
++  put("server/app/api/candidate/route.js", 'throw new Error("MUST_NOT_EXECUTE_ARTIFACT");');
++  put("server/app/candidate/page.js", 'throw new Error("MUST_NOT_EXECUTE_ARTIFACT");');
++  put("server/app/api/candidate/route.js.nft.json", { version: 1, files: ["../../node_modules/@mastra/core/package.json", "../../node_modules/@electric-sql/pglite/package.json"] });
++  return { root, directory, put };
++}
++test("candidate artifact gate verifies real manifest entries without claiming runtime or clinical correctness", () => {
++  const f = fixture(), result = verifyCandidateArtifact({ projectDirectory: f.root });
++  assert.equal(result.status, "verified"); assert.equal(result.runtimeExecutionVerified, false); assert.equal(result.clinicalApproval, false);
++  assert.equal(result.entries["/api/candidate/route"], "app/api/candidate/route.js");
++  assert.match(result.artifactIdentity, /^[a-f0-9]{64}$/);
++  f.put("server/app/api/candidate/route.js", 'throw new Error("CHANGED_NOT_EXECUTED");');
++  assert.notEqual(verifyCandidateArtifact({ projectDirectory: f.root }).artifactIdentity, result.artifactIdentity);
++});
++for (const [name, path, value, error] of [
++  ["missing candidate", "server/app-paths-manifest.json", { "/page": "app/page.js" }, /CANDIDATE_ENTRY_MISSING/],
++  ["wrong candidate target", "server/app-paths-manifest.json", { "/api/candidate/route": "app/api/disposition/route.js" }, /CANDIDATE_ENTRY_MISSING/],
++  ["unsupported manifest", "required-server-files.json", { version: 2, files: [".next/package.json"] }, /CANDIDATE_REQUIRED_FILES_INVALID/],
++  ["missing generated file", "required-server-files.json", { version: 1, files: [".next/not-present.json"] }, /CANDIDATE_ARTIFACT_FILE_MISSING/],
++  ["outside build path", "required-server-files.json", { version: 1, files: [".next/../../.env"] }, /CANDIDATE_ARTIFACT_PATH_INVALID/],
++  ["untraced Mastra", "server/app/api/candidate/route.js.nft.json", { version: 1, files: [] }, /CANDIDATE_TRACED_DEPENDENCY_MISSING/],
++  ["unsupported trace", "server/app/api/candidate/route.js.nft.json", { version: 2, files: [] }, /CANDIDATE_TRACE_INVALID/],
++]) test("candidate artifact gate rejects " + name, () => { const f = fixture(); f.put(path, value); assert.throws(() => verifyCandidateArtifact({ projectDirectory: f.root }), error); });
++test("default build covers both surfaces once and compatibility aliases do not recurse", () => {
++  const root = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).scripts;
++  const workspace = JSON.parse(readFileSync(new URL("../apps/evaluation/package.json", import.meta.url), "utf8")).scripts;
++  assert.equal(root.build, "npm run build:candidate && npm run build:mastra");
++  assert.equal(root["build:candidate"], "npm run build --workspace @counselcodex/evaluation && npm run build:candidate:verify");
++  assert.equal(root["build:mastra"], "MASTRA_TELEMETRY_DISABLED=true mastra build && npm run build:mastra:verify");
++  assert.equal(root["review:build"], "npm run build:candidate");
++  assert.equal(workspace.build, "next build --webpack");
++  assert.ok(!root.validate.includes("review:build"));
++});
++
++test("entry fingerprint hashes original bytes, not UTF-8 decode/reencode replacements", () => {
++  const f = fixture();
++  const first = Buffer.from([0x80]), second = Buffer.from([0x81]);
++  assert.equal(first.toString("utf8"), second.toString("utf8"));
++  f.put("server/app/api/candidate/route.js", first);
++  const a = verifyCandidateArtifact({ projectDirectory: f.root });
++  f.put("server/app/api/candidate/route.js", second);
++  const b = verifyCandidateArtifact({ projectDirectory: f.root });
++  assert.notEqual(a.artifactIdentity, b.artifactIdentity);
++  assert.equal(b.runtimeExecutionVerified, false, "byte identity does not declare malformed code runnable");
++});
++test("symlinks cannot escape the artifact or project root", () => {
++  const f = fixture(), outside = fixture(), target = join(f.directory, "server/app/api/candidate/route.js");
++  renameSync(target, target + ".saved");
++  symlinkSync(join(outside.directory, "server/app/api/candidate/route.js"), target);
++  assert.throws(() => verifyCandidateArtifact({ projectDirectory: f.root }), /CANDIDATE_ARTIFACT_PATH_INVALID/);
++  const rootEscape = fixture();
++  renameSync(rootEscape.directory, rootEscape.directory + ".saved");
++  symlinkSync(outside.directory, rootEscape.directory, "dir");
++  assert.throws(() => verifyCandidateArtifact({ projectDirectory: rootEscape.root }), /CANDIDATE_ARTIFACT_PATH_INVALID/);
++});
++test("blank build identity, malformed JSON and environment-file paths are rejected", () => {
++  for (const [name, value, code] of [
++    ["BUILD_ID", " \n", /CANDIDATE_BUILD_ID_INVALID/],
++    ["server/app-paths-manifest.json", "null", /CANDIDATE_ARTIFACT_MANIFEST_INVALID/],
++    ["server/app-paths-manifest.json", "{", /CANDIDATE_ARTIFACT_MANIFEST_INVALID/],
++    ["required-server-files.json", { version: 1, files: [".next/.env.local"] }, /CANDIDATE_ARTIFACT_PATH_INVALID/],
++    ["required-server-files.json", { version: 1, files: [".next/../.next-extra/file"] }, /CANDIDATE_ARTIFACT_PATH_INVALID/],
++    ["server/app/api/candidate/route.js.nft.json", { version: 1, files: [null] }, /CANDIDATE_TRACE_INVALID/],
++  ]) {
++    const f = fixture(); f.put(name, value);
++    assert.throws(() => verifyCandidateArtifact({ projectDirectory: f.root }), code);
++  }
++});

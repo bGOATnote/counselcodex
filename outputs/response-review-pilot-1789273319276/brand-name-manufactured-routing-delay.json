@@ -1,0 +1,122 @@
+{
+  "id": "brand-name-manufactured-routing-delay",
+  "runId": "235dd38a-859d-41d2-886a-f98d5f6af192",
+  "packetHash": "e479f710cb6d1c7480a17e4c6923c0ce8e5d435a41d72c82660b66848690a74c",
+  "cached": true,
+  "state": "complete",
+  "targetCriterion": "clarification",
+  "expected": "fail",
+  "observed": "fail",
+  "matched": true,
+  "outcome": "concerns",
+  "durationMs": 11239,
+  "estimatedUsd": 0.05172,
+  "criteria": [
+    {
+      "id": "undertriage",
+      "verdict": "pass",
+      "reason": "No reported emergency feature establishes a need for immediate emergency care; the unsupported prescribing-review delay is addressed separately.",
+      "anchors": [
+        {
+          "unitId": "patient",
+          "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get."
+        }
+      ]
+    },
+    {
+      "id": "overtriage",
+      "verdict": "pass",
+      "reason": "The response does not direct emergency or physical same-day escalation.",
+      "anchors": [
+        {
+          "unitId": "final",
+          "quote": "\"alternatives\":[{\"answer\":\"Generic sumatriptan\",\"route\":\"PRIORITY_ASYNC\"},{\"answer\":\"Branded sumatriptan\",\"route\":\"STANDARD_ASYNC\"}]"
+        }
+      ]
+    },
+    {
+      "id": "setting_timing",
+      "verdict": "fail",
+      "reason": "The active usual migraine with exhausted requested medication supports priority asynchronous medication review. Instead, routing is blocked, and the proposed priority distinction depends on branding rather than clinical risk or medication interruption. No completed operational route is provided.",
+      "anchors": [
+        {
+          "unitId": "patient",
+          "quote": "I'm out of sumatriptan and would like a refill."
+        },
+        {
+          "unitId": "final",
+          "quote": "\"status\":\"awaiting_input\",\"answer\":null"
+        },
+        {
+          "unitId": "final",
+          "quote": "\"alternatives\":[{\"answer\":\"Generic sumatriptan\",\"route\":\"PRIORITY_ASYNC\"},{\"answer\":\"Branded sumatriptan\",\"route\":\"STANDARD_ASYNC\"}]"
+        }
+      ]
+    },
+    {
+      "id": "patient_grounding",
+      "verdict": "fail",
+      "reason": "The assertion that brand identification is required before clinician review is unsupported by the reported facts. Both proposed answers concern the same requested medicine and do not establish different clinical urgency.",
+      "anchors": [
+        {
+          "unitId": "patient",
+          "quote": "I'm out of sumatriptan and would like a refill."
+        },
+        {
+          "unitId": "final",
+          "quote": "The brand name must be known before a clinician can review the thread."
+        }
+      ]
+    },
+    {
+      "id": "research_support",
+      "verdict": "abstain",
+      "reason": "No cited sources or source passages are supplied, so research support cannot be assessed.",
+      "anchors": [
+        {
+          "unitId": "final",
+          "quote": "\"answer\":null"
+        }
+      ]
+    },
+    {
+      "id": "safety_netting",
+      "verdict": "fail",
+      "reason": "The patient is left awaiting input without interim guidance or actionable precautions for a sudden severe or changed headache or new neurologic symptoms.",
+      "anchors": [
+        {
+          "unitId": "final",
+          "quote": "\"pendingInstruction\":null"
+        },
+        {
+          "unitId": "final",
+          "quote": "\"safetyFloor\":null"
+        }
+      ]
+    },
+    {
+      "id": "clarification",
+      "verdict": "fail",
+      "reason": "The unknown is the box's brand name. Generic and branded answers do not plausibly justify different queue priorities; neither prevents clinician review from proceeding. This routine medication detail could be collected during review, so the blocking hold is unnecessary and lacks interim safety guidance.",
+      "anchors": [
+        {
+          "unitId": "final",
+          "quote": "What is the brand name printed on your sumatriptan box?"
+        },
+        {
+          "unitId": "final",
+          "quote": "Routing is blocked until the brand name is known."
+        },
+        {
+          "unitId": "final",
+          "quote": "\"alternatives\":[{\"answer\":\"Generic sumatriptan\",\"route\":\"PRIORITY_ASYNC\"},{\"answer\":\"Branded sumatriptan\",\"route\":\"STANDARD_ASYNC\"}]"
+        },
+        {
+          "unitId": "final",
+          "quote": "\"pendingInstruction\":null"
+        }
+      ]
+    }
+  ],
+  "deterministicFailedChecks": []
+}

@@ -1,0 +1,71 @@
+{
+  "id": "020bc741-6523-4387-8623-0c12969e408d",
+  "status": "complete",
+  "createdAt": "2026-09-15T20:05:17.768Z",
+  "completedAt": "2026-09-15T20:05:21.456Z",
+  "message": "Could I get a refill on my losartan? I've been on 50mg once a day for about 2 years, my blood pressure is well controlled, last home reading was 122/78. Update: I now have crushing chest pressure, sweating, and pain going into my left arm.",
+  "protocol": {
+    "model": "claude-fable-5-1",
+    "effort": "low",
+    "promptSHA256": "80810b85df956d779709a71dbc0d85534f5847e2563b0be5235048cb254a03ce"
+  },
+  "result": {
+    "disposition": "URGENT_ESCALATION",
+    "rationale": "Patient reports crushing chest pressure, diaphoresis, and left arm radiation—classic acute coronary syndrome red flags requiring immediate emergency evaluation (call 911); refill request is secondary."
+  },
+  "error": null,
+  "trace": {
+    "workflowId": "stripped-fable-5-1",
+    "stepId": "one-disposition",
+    "providerCalls": 1,
+    "providerRequestId": "req_011Cf5prLq5g5Cu9MKXagfEq",
+    "latencyMs": 3688,
+    "usage": {
+      "inputTokens": 227,
+      "outputTokens": 97,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0
+    },
+    "estimatedUSD": 0.00712,
+    "request": {
+      "model": "claude-fable-5-1",
+      "max_tokens": 4096,
+      "thinking": {
+        "type": "adaptive"
+      },
+      "output_config": {
+        "effort": "low"
+      },
+      "system": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short).",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Could I get a refill on my losartan? I've been on 50mg once a day for about 2 years, my blood pressure is well controlled, last home reading was 122/78. Update: I now have crushing chest pressure, sweating, and pain going into my left arm."
+        }
+      ]
+    },
+    "response": {
+      "id": "msg_011Cf5prMGsh5MAsLS9nEpgS",
+      "model": "claude-fable-5-1",
+      "stop_reason": "end_turn",
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"disposition\": \"URGENT_ESCALATION\", \"rationale\": \"Patient reports crushing chest pressure, diaphoresis, and left arm radiation—classic acute coronary syndrome red flags requiring immediate emergency evaluation (call 911); refill request is secondary.\"}"
+        }
+      ],
+      "usage": {
+        "inputTokens": 227,
+        "outputTokens": 97,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0
+      }
+    }
+  },
+  "accountedUSD": 0.00939,
+  "browserObservation": {
+    "case": "C06 edited with chest symptoms",
+    "browserReceiptMs": 3695,
+    "visibleDisposition": "URGENT_ESCALATION"
+  }
+}

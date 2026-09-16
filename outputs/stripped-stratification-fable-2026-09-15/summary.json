@@ -1,0 +1,132 @@
+{
+  "parentReferenceId": "physician-adjudication-v3-2026-09-15",
+  "finerReferenceBasis": "physician-system-reference-v2 acceptedRoutes plus physician-v3 parent corrections",
+  "parent": {
+    "agree": 48,
+    "denominator": 50,
+    "agreement": 0.96,
+    "missIds": [
+      "C22",
+      "C47"
+    ]
+  },
+  "endToEnd": {
+    "agree": 38,
+    "denominator": 49,
+    "agreement": 0.7755102040816326,
+    "missIds": [
+      "C06",
+      "C12",
+      "C13",
+      "C16",
+      "C18",
+      "C22",
+      "C24",
+      "C28",
+      "C44",
+      "C46",
+      "C47"
+    ],
+    "excludedIds": [
+      "C25"
+    ]
+  },
+  "conditional": {
+    "agree": 31,
+    "denominator": 40,
+    "agreement": 0.775,
+    "missIds": [
+      "C06",
+      "C12",
+      "C13",
+      "C16",
+      "C18",
+      "C24",
+      "C28",
+      "C44",
+      "C46"
+    ],
+    "definition": "Finer-eligible cases with a correct frozen ASYNC_PHYSICIAN or URGENT_ESCALATION parent; failures retained",
+    "byParent": {
+      "ASYNC_PHYSICIAN": {
+        "agree": 11,
+        "denominator": 16,
+        "agreement": 0.6875,
+        "missIds": [
+          "C06",
+          "C13",
+          "C18",
+          "C24",
+          "C46"
+        ]
+      },
+      "URGENT_ESCALATION": {
+        "agree": 20,
+        "denominator": 24,
+        "agreement": 0.8333333333333334,
+        "missIds": [
+          "C12",
+          "C16",
+          "C28",
+          "C44"
+        ]
+      }
+    }
+  },
+  "coverage": {
+    "cases": 50,
+    "subtypeCalls": 41,
+    "passthroughCases": 9,
+    "failedSubtypeIds": [],
+    "parentMissIds": [
+      "C22",
+      "C47"
+    ],
+    "subtypeMissIds": [
+      "C06",
+      "C12",
+      "C13",
+      "C16",
+      "C18",
+      "C24",
+      "C28",
+      "C44",
+      "C46"
+    ],
+    "parentChangedBySubtypeIds": []
+  },
+  "interpretation": [
+    "The first stage reuses frozen predictions; unchanged parent agreement is a preservation check, not a fresh replication.",
+    "Conditional subtype agreement omits known parent errors by definition; end-to-end agreement retains them.",
+    "Physician-v3 corrections were made after reviewing model outputs and are not blinded independent validation.",
+    "Route agreement does not establish clinical advice quality or deployment readiness.",
+    "Historical five-way Opus35/49 used physician-v2; it is not directly comparable to a v3-adjusted numerator."
+  ],
+  "csvLabelsRead": false,
+  "csvAgreementScored": false,
+  "model": "claude-fable-5-1",
+  "effort": "low",
+  "timing": {
+    "parent": {
+      "count": 50,
+      "medianMs": 3799.5,
+      "p95NearestRankMs": 4710
+    },
+    "subtypeCallsOnly": {
+      "count": 41,
+      "medianMs": 4112,
+      "p95NearestRankMs": 6039
+    },
+    "sequentialPipelineEstimate": {
+      "count": 50,
+      "medianMs": 7708,
+      "p95NearestRankMs": 9709
+    },
+    "interpretation": "Sequential latency adds the saved parent latency to the new subtype latency per case. This is an estimate across separate runs, not a live end-to-end measurement."
+  },
+  "accounting": {
+    "newSubtypeEstimatedUSD": 0.2984,
+    "newSubtypeAccountedUSD": 0.39015,
+    "interpretation": "New subtype run only. Estimates use the existing accounting convention and are not provider invoices."
+  }
+}

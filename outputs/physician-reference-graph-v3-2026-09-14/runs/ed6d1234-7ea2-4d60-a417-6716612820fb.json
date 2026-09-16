@@ -1,0 +1,1893 @@
+{
+  "status": "review_required",
+  "answer": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "reviewPriority": "priority",
+    "workType": "clinical_review",
+    "reason": "The automated assessment needs clinician review; this is a conservative workflow fallback, not a new clinical finding.",
+    "patientMessage": "Priority review by the Counsel clinician in this thread is needed today. This recommendation does not confirm a clinician has accepted the request.",
+    "differential": [],
+    "redFlags": [],
+    "vitalSigns": "The automated assessment has not established the vital-sign context.",
+    "questions": [],
+    "evidence": [],
+    "evidenceLimitations": "No model-reviewed clinical explanation has been released. The draft and review outcome are retained for clinician assessment."
+  },
+  "origin": "validation_safeguard",
+  "modelCalls": 6,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "black tarry stool melena etiology",
+          "gastrointestinal bleeding upper lower distinction",
+          "stool appearance hemoglobin oxidation"
+        ],
+        "findings": [],
+        "question": null
+      },
+      "usage": {
+        "inputTokens": 983,
+        "outputTokens": 46
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1759,
+      "streamProgress": {
+        "lastTextDeltaMs": 2291,
+        "textDeltaCount": 3,
+        "textCharacters": 171
+      },
+      "durationMs": 2320
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "SELF_CARE",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "Purely educational question about terminology from a leaflet, with the patient explicitly stating none of the listed symptoms are present. No reported current symptoms, no trajectory or functional concern, so no clinician assessment is required for routing. Information only; safety-net advice added should melena actually occur in future.",
+        "patientMessage": "No medical visit is needed for this question. \"Black tarry stool\" (melena) means stool that looks black, sticky and tar-like because blood from higher in the digestive tract has been partly digested on the way through. It is different from bright red blood, and iron or bismuth medicines can also darken stool. If you ever do pass black tarry stool, vomit blood or coffee-ground material, or feel faint, get emergency care right away. Counsel remains available if questions come up.",
+        "differential": [
+          "Educational query only; no current symptoms reported to triage",
+          "Melena as a marker of upper GI bleeding — informational context only"
+        ],
+        "redFlags": [
+          {
+            "concern": "Black tarry stool (melena)",
+            "status": "denied",
+            "quote": "I do not have any of those symptoms."
+          },
+          {
+            "concern": "Crushing chest pressure",
+            "status": "denied",
+            "quote": "I do not have any of those symptoms."
+          },
+          {
+            "concern": "Worst headache of my life",
+            "status": "denied",
+            "quote": "I do not have any of those symptoms."
+          }
+        ],
+        "vitalSigns": "No vital signs reported; none measured or provided, and none are needed for this informational request. Absence of vitals does not establish either safety or abnormality.",
+        "questions": [],
+        "evidenceLimitations": "Sources are agent-compiled emergency-department synthesis and a consumer health-topic summary, not primary guidelines or telehealth protocols; they describe melena generally and were not reviewed for currency. The patient reports no symptoms, so no individual clinical applicability was assessed.",
+        "citations": [
+          {
+            "passageId": "cdfcd69baf5b3fe70eb00b07a8bf95136c38b5d50cad55500f3e05d1aec9c232",
+            "quote": "melena (black tarry stool — requires only 50-100 mL blood in upper GI tract)",
+            "claim": "Black tarry stool (melena) reflects blood in the upper GI tract",
+            "applicability": "applicable",
+            "limitation": "ED reference synthesis, agent-compiled; used only for definition, not for this patient's care."
+          },
+          {
+            "passageId": "c3e1484955f5dd9c4f94d5e56afd7f8472c97bb971da87f02d1d38e6d9f11611",
+            "quote": "Signs of bleeding in the upper digestive tract include: \n Bright red blood in vomit \n Vomit that looks like coffee grounds \n Black or tarry stool",
+            "claim": "Black or tarry stool is listed as a sign of digestive tract bleeding in consumer guidance",
+            "applicability": "applicable",
+            "limitation": "Consumer summary; general education only, no individual applicability."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 10690,
+        "outputTokens": 979
+      },
+      "failure": null,
+      "firstTextDeltaMs": 2288,
+      "streamProgress": {
+        "lastTextDeltaMs": 18475,
+        "textDeltaCount": 276,
+        "textCharacters": 2772
+      },
+      "durationMs": 18484
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "action": "NONE",
+        "basis": [],
+        "reason": "Patient is reading educational material and requesting clarification of terminology, not reporting symptoms or requesting clinical care.",
+        "patientMessage": "",
+        "physicalRequirement": null
+      },
+      "usage": {
+        "inputTokens": 1958,
+        "outputTokens": 52
+      },
+      "failure": null,
+      "firstTextDeltaMs": 872,
+      "streamProgress": {
+        "lastTextDeltaMs": 1582,
+        "textDeltaCount": 28,
+        "textCharacters": 232
+      },
+      "durationMs": 1593
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "revise",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "An educational response without clinical referral is proportionate to the explicit denial of the leaflet's symptoms.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I do not have any of those symptoms."
+              },
+              {
+                "unit": "draft",
+                "quote": "\"disposition\":\"SELF_CARE\""
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "The current route appropriately avoids treating quoted leaflet examples as current emergencies.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I only want to understand what the phrase black tarry stool means."
+              },
+              {
+                "unit": "draft",
+                "quote": "No medical visit is needed for this question."
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "The draft preserves the educational context and does not invent current symptoms or vital signs.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Educational query only; no current symptoms reported to triage"
+              },
+              {
+                "unit": "patient",
+                "quote": "I am reading a health leaflet."
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "fail",
+            "reason": "The definition makes an upper digestive source categorical, although the supplied sources also describe lower sources of melena. The emergency threshold for feeling faint alone also extends beyond the bleeding context of the evidence. The iron/bismuth statement is supported.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "because blood from higher in the digestive tract has been partly digested on the way through"
+              },
+              {
+                "unit": "source:325cfd3248098ef13ca6838a2653175c3b856391c5952eec8875ff6affbfa776",
+                "quote": "Possible from right-sided colonic or small bowel source with slow transit"
+              },
+              {
+                "unit": "draft",
+                "quote": "or feel faint, get emergency care right away"
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "fail",
+            "reason": "Immediate assessment for future bleeding symptoms is reasonable, but the wording independently directs emergency care for any future feeling of faintness. Tie faintness to suspected bleeding and distinguish immediate ED care from calling 911 for associated instability.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "If you ever do pass black tarry stool, vomit blood or coffee-ground material, or feel faint, get emergency care right away."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No question was issued or required to answer this terminology request.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "No clinician assessment or follow-up is currently needed, and the draft does not claim an accepted handoff, prescription, or completed follow-up.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Counsel remains available if questions come up."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "correction": "Describe melena as black, tar-like stool from digested blood, usually from the upper digestive tract rather than exclusively so. Retain immediate ED assessment for actual black tarry stool or bloody/coffee-ground vomit; tie faintness to suspected bleeding and advise calling 911 if bleeding is accompanied by fainting or marked faintness. Remove the standalone emergency instruction for any future faint feeling.",
+        "evidenceQueries": []
+      },
+      "usage": {
+        "inputTokens": 5846,
+        "outputTokens": 934
+      },
+      "failure": null,
+      "firstTextDeltaMs": 5010,
+      "streamProgress": {
+        "lastTextDeltaMs": 18839,
+        "textDeltaCount": 857,
+        "textCharacters": 3673
+      },
+      "durationMs": 19044
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "SELF_CARE",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "Purely educational terminology question from a leaflet, with explicit statement that none of the listed symptoms are present. No reported current symptoms, trajectory or functional impact, so no clinician assessment is needed for routing. Information only, with a safety net should melena actually occur later.",
+        "patientMessage": "No visit is needed for this question. \"Black tarry stool\" (melena) means stool that looks black, sticky and tar-like because blood has been partly digested on its way through the gut — usually from the upper digestive tract, though a slower-moving small-bowel or right-colon source can also cause it. Iron or bismuth medicines can darken stool too. If you ever pass black tarry stool or vomit blood or coffee-ground material, seek emergency assessment; call 911 if that bleeding comes with fainting or marked faintness. Counsel is here if questions come up.",
+        "differential": [
+          "Educational query only; no current symptoms reported to triage",
+          "Melena as a marker of GI bleeding — informational context only"
+        ],
+        "redFlags": [
+          {
+            "concern": "Black tarry stool (melena)",
+            "status": "denied",
+            "quote": "I do not have any of those symptoms."
+          },
+          {
+            "concern": "Crushing chest pressure",
+            "status": "denied",
+            "quote": "I do not have any of those symptoms."
+          },
+          {
+            "concern": "Worst headache of my life",
+            "status": "denied",
+            "quote": "I do not have any of those symptoms."
+          }
+        ],
+        "vitalSigns": "No vital signs reported or measured; none are needed for this informational request. Their absence establishes neither safety nor abnormality.",
+        "questions": [],
+        "evidenceLimitations": "Sources are agent-compiled emergency-department synthesis and a consumer health summary, not primary guidelines or telehealth protocols, and were used only for the definition and general bleeding signs. As the patient reports no symptoms, no individual clinical applicability was assessed.",
+        "citations": [
+          {
+            "passageId": "325cfd3248098ef13ca6838a2653175c3b856391c5952eec8875ff6affbfa776",
+            "quote": "**Melena:** Black, tarry, malodorous stool",
+            "claim": "Melena means black, tarry stool, most often from an upper GI source but also possible from a slow-transit small bowel or right colonic source",
+            "applicability": "applicable",
+            "limitation": "ED reference synthesis, agent-compiled; used for definition only, not for this patient's care."
+          },
+          {
+            "passageId": "c3e1484955f5dd9c4f94d5e56afd7f8472c97bb971da87f02d1d38e6d9f11611",
+            "quote": "Signs of bleeding in the upper digestive tract include: \n Bright red blood in vomit \n Vomit that looks like coffee grounds \n Black or tarry stool",
+            "claim": "Black or tarry stool and blood or coffee-ground vomit are listed signs of digestive tract bleeding",
+            "applicability": "applicable",
+            "limitation": "Consumer summary; general education only, no individual applicability."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 11556,
+        "outputTokens": 995
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1615,
+      "streamProgress": {
+        "lastTextDeltaMs": 15577,
+        "textDeltaCount": 236,
+        "textCharacters": 2830
+      },
+      "durationMs": 15723
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "accept",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Self care is appropriate for an educational question with explicit denial of the quoted symptoms; no current assessment need is reported.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I do not have any of those symptoms."
+              },
+              {
+                "unit": "patient",
+                "quote": "I only want to understand what the phrase black tarry stool means."
+              },
+              {
+                "unit": "draft",
+                "quote": "\"disposition\":\"SELF_CARE\""
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "The draft does not mistake leaflet examples for current emergencies. Emergency advice is conditional on future bleeding symptoms.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "No visit is needed for this question."
+              },
+              {
+                "unit": "draft",
+                "quote": "If you ever pass black tarry stool or vomit blood or coffee-ground material, seek emergency assessment"
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "The draft correctly identifies an informational request and explicit symptom denials without inventing findings or vital signs.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I am reading a health leaflet."
+              },
+              {
+                "unit": "draft",
+                "quote": "Purely educational terminology question from a leaflet, with explicit statement that none of the listed symptoms are present."
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "The definition, possible bleeding locations and medication-related dark stool are supported. Emergency assessment for overt bleeding and EMS for associated faintness are reasonable clinical inferences from bleeding and hemodynamic-significance evidence, not falsely attributed source rules.",
+            "anchors": [
+              {
+                "unit": "source:325cfd3248098ef13ca6838a2653175c3b856391c5952eec8875ff6affbfa776",
+                "quote": "**Melena:** Black, tarry, malodorous stool"
+              },
+              {
+                "unit": "source:325cfd3248098ef13ca6838a2653175c3b856391c5952eec8875ff6affbfa776",
+                "quote": "**Melena:** Possible from right-sided colonic or small bowel source with slow transit"
+              },
+              {
+                "unit": "source:325cfd3248098ef13ca6838a2653175c3b856391c5952eec8875ff6affbfa776",
+                "quote": "Syncope or pre-syncope"
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "The conditional safety net identifies significant bleeding signs, emergency assessment and explicit 911 escalation for fainting or marked faintness.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "If you ever pass black tarry stool or vomit blood or coffee-ground material, seek emergency assessment; call 911 if that bleeding comes with fainting or marked faintness."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No question was issued, and no unnecessary clarification blocks the educational answer.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "The draft names Counsel as a resource without claiming an accepted handoff, response time, prescription or completed follow-up. No clinician follow-up plan is needed for the stated request.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Counsel is here if questions come up."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "correction": "",
+        "evidenceQueries": []
+      },
+      "usage": {
+        "inputTokens": 5852,
+        "outputTokens": 927
+      },
+      "failure": null,
+      "firstTextDeltaMs": 2100,
+      "streamProgress": {
+        "lastTextDeltaMs": 15722,
+        "textDeltaCount": 895,
+        "textCharacters": 3608
+      },
+      "durationMs": 15927
+    }
+  ],
+  "guidance": [
+    {
+      "id": "8125a5af5c1f4f7dfcb3407677efeb9fc2cca62351ef943cf3f434c95a5a6ac5",
+      "title": "Gastrointestinal Bleeding — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gastrointestinal-bleeding-approach.md",
+      "section": "Differential Diagnosis",
+      "summary": "ic-megacolon`): bloody diarrhea with colonic dilation, IBD or C. diff\n- **Mesenteric venous thrombosis** (`acute-mesenteric-venous-thrombosis`): abdominal pain with bloody stool, hypercoagulable state\n- **Mesenteric ischemia** (`mesenteric-ischemia`): pain out of proportion with eventual bloody stool (late finding)\n\n### Urgent\n- **Diverticular bleeding** (`acute-diverticulitis`): painless massive hematochezia, typically self-limited (80%), more common in right colon. Most common cause of lower GI bleed.\n- **Sigmoid volvulus** (`sigmoid-volvulus`): distension, obstipation, may have bloody stool if ischemic\n- **Incarcerated hernia** (`incarcerated-hernia`): strangulated hernia → ischemic bowel → bloody stool\n\n### Non-Emergent\n- **Hemorrhoids:** bright red blood per rectum on toilet paper or dripping into bowl, painless (internal) or painful with thrombosis (external). Most common cause of rectal bleeding in outpatients. Diagnosis of exclusion in ED — do NOT anchor.\n- **Anal fissure:** painful bright red rectal bleeding with bowel movements\n- **Inflammatory bowel disease flare:** bloody diarrhea, crampy abdominal pain, known IBD history\n- **Angiodysplasia (AVM):** painless rectal bleeding, elderly, associated with aortic stenosis (Heyde syndrome) and renal failure",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "8125a5af5c1f4f7dfcb3407677efeb9fc2cca62351ef943cf3f434c95a5a6ac5",
+          "sourceId": "openem:gastrointestinal-bleeding-approach",
+          "excerpt": "ic-megacolon`): bloody diarrhea with colonic dilation, IBD or C. diff\n- **Mesenteric venous thrombosis** (`acute-mesenteric-venous-thrombosis`): abdominal pain with bloody stool, hypercoagulable state\n- **Mesenteric ischemia** (`mesenteric-ischemia`): pain out of proportion with eventual bloody stool (late finding)\n\n### Urgent\n- **Diverticular bleeding** (`acute-diverticulitis`): painless massive hematochezia, typically self-limited (80%), more common in right colon. Most common cause of lower GI bleed.\n- **Sigmoid volvulus** (`sigmoid-volvulus`): distension, obstipation, may have bloody stool if ischemic\n- **Incarcerated hernia** (`incarcerated-hernia`): strangulated hernia → ischemic bowel → bloody stool\n\n### Non-Emergent\n- **Hemorrhoids:** bright red blood per rectum on toilet paper or dripping into bowl, painless (internal) or painful with thrombosis (external). Most common cause of rectal bleeding in outpatients. Diagnosis of exclusion in ED — do NOT anchor.\n- **Anal fissure:** painful bright red rectal bleeding with bowel movements\n- **Inflammatory bowel disease flare:** bloody diarrhea, crampy abdominal pain, known IBD history\n- **Angiodysplasia (AVM):** painless rectal bleeding, elderly, associated with aortic stenosis (Heyde syndrome) and renal failure",
+          "excerptSha256": "d61c31a935557d640e1b4dc02e8845f71e0503fadd128ca98b5e86e4f6cd1288",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "42bc5b0532aaf20783fa0cb6fc3ea1e19f6e0d52491c7f3b7f9963b440d77cc4",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "cdfcd69baf5b3fe70eb00b07a8bf95136c38b5d50cad55500f3e05d1aec9c232",
+      "title": "Gastrointestinal Bleeding — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gastrointestinal-bleeding-approach.md",
+      "section": "Recognition",
+      "summary": "GI bleeding accounts for approximately 300,000 US hospitalizations annually. The ED priorities are: (1) assess severity and hemodynamic status, (2) resuscitate, (3) localize the source (upper vs lower), (4) identify high-risk patients, and (5) facilitate appropriate endoscopic or surgical intervention.\n\n**Upper vs lower GI bleeding:**\n- **Upper GI (proximal to ligament of Treitz):** hematemesis (bright red or coffee-ground), melena (black tarry stool — requires only 50-100 mL blood in upper GI tract), NG aspirate positive for blood. 80% of acute GI bleeds are upper.\n- **Lower GI (distal to ligament of Treitz):** hematochezia (bright red blood per rectum), maroon stool. However, brisk upper GI bleed can cause hematochezia (15% of cases) — do NOT assume lower source based on hematochezia alone.\n- **Occult/chronic:** iron deficiency anemia, positive fecal occult blood, fatigue\n\n**Key historical elements:**\n- Character of bleeding: hematemesis, coffee-ground, melena, hematochezia, maroon stool\n- Onset and duration: acute single episode vs recurrent vs chronic\n- Volume estimate: number of episodes, teaspoon vs cup vs toilet bowl (patient estimates are unreliable — assess hemodynamics instead)\n- Associated symptoms: abdominal pain (PUD, ischemia), painless bleeding (diverticulum, AVM, varices), dysphagia (esophageal source), weight loss (malignancy)\n- NSAID or aspirin use (PUD)\n- Anticoagulation: warfarin, DOACs, heparin, dual antiplatelet therapy\n- Alcohol use and liver disease history (variceal hemorrhage, coagulopathy)\n- Prior GI bleeding episodes and their causes\n- Prior aortic surgery or known AAA (aortoenteric fistula — \"herald bleed\" → massive hemorrhage)\n- Recent vomiting or retching (Mallory-Weiss tear, Boerhaave syndrome)\n\n**Volume status assessment:**",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "cdfcd69baf5b3fe70eb00b07a8bf95136c38b5d50cad55500f3e05d1aec9c232",
+          "sourceId": "openem:gastrointestinal-bleeding-approach",
+          "excerpt": "GI bleeding accounts for approximately 300,000 US hospitalizations annually. The ED priorities are: (1) assess severity and hemodynamic status, (2) resuscitate, (3) localize the source (upper vs lower), (4) identify high-risk patients, and (5) facilitate appropriate endoscopic or surgical intervention.\n\n**Upper vs lower GI bleeding:**\n- **Upper GI (proximal to ligament of Treitz):** hematemesis (bright red or coffee-ground), melena (black tarry stool — requires only 50-100 mL blood in upper GI tract), NG aspirate positive for blood. 80% of acute GI bleeds are upper.\n- **Lower GI (distal to ligament of Treitz):** hematochezia (bright red blood per rectum), maroon stool. However, brisk upper GI bleed can cause hematochezia (15% of cases) — do NOT assume lower source based on hematochezia alone.\n- **Occult/chronic:** iron deficiency anemia, positive fecal occult blood, fatigue\n\n**Key historical elements:**\n- Character of bleeding: hematemesis, coffee-ground, melena, hematochezia, maroon stool\n- Onset and duration: acute single episode vs recurrent vs chronic\n- Volume estimate: number of episodes, teaspoon vs cup vs toilet bowl (patient estimates are unreliable — assess hemodynamics instead)\n- Associated symptoms: abdominal pain (PUD, ischemia), painless bleeding (diverticulum, AVM, varices), dysphagia (esophageal source), weight loss (malignancy)\n- NSAID or aspirin use (PUD)\n- Anticoagulation: warfarin, DOACs, heparin, dual antiplatelet therapy\n- Alcohol use and liver disease history (variceal hemorrhage, coagulopathy)\n- Prior GI bleeding episodes and their causes\n- Prior aortic surgery or known AAA (aortoenteric fistula — \"herald bleed\" → massive hemorrhage)\n- Recent vomiting or retching (Mallory-Weiss tear, Boerhaave syndrome)\n\n**Volume status assessment:**",
+          "excerptSha256": "668f3eb8a8da3ccbad9df9b83438763121124de884f17321def3db4fd0d7825e",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "42bc5b0532aaf20783fa0cb6fc3ea1e19f6e0d52491c7f3b7f9963b440d77cc4",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "5bb13fe12480d14d04e30728eacbc4400b2c71f95c8c6424a6a6ad787456a52e",
+      "title": "Gastrointestinal Bleeding — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gastrointestinal-bleeding-approach.md",
+      "section": "Pitfalls",
+      "summary": "1. **Trusting the initial hemoglobin.** In acute hemorrhage, hemoglobin does not equilibrate for 6-24 hours. A hemoglobin of 12 g/dL in a patient who vomited a liter of blood 30 minutes ago is NOT reassuring. Assess hemodynamic status (vital signs, lactate) rather than hemoglobin for acute resuscitation decisions.\n\n2. **Assuming hematochezia means lower GI source.** 15% of hematochezia is from brisk upper GI bleeding. A hemodynamically unstable patient with bright red blood per rectum should have an upper GI source considered and may need emergent EGD, not colonoscopy.\n\n3. **Forgetting aortoenteric fistula.** Any patient with prior aortic surgery (open or endovascular) presenting with GI bleeding has an aortoenteric fistula until proven otherwise. The \"herald bleed\" (small self-limited initial bleed) precedes massive exsanguinating hemorrhage by hours to days. CTA and vascular surgery consultation immediately.\n\n4. **Over-resuscitating variceal hemorrhage.** In known or suspected variceal hemorrhage, aggressive volume resuscitation raises portal pressure and increases bleeding risk. Target SBP 90-100 mmHg. Restrictive transfusion (Hgb target 7) reduces rebleeding and mortality vs liberal transfusion (NEJM 2013, Villanueva et al.).\n\n5. **Skipping rectal exam.** Stool color is critical for localization (melena → upper, maroon → mid-GI, bright red → lower or brisk upper). A rectal exam also identifies hemorrhoids, masses, and fissures. It takes 30 seconds and provides information no blood test can.\n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "5bb13fe12480d14d04e30728eacbc4400b2c71f95c8c6424a6a6ad787456a52e",
+          "sourceId": "openem:gastrointestinal-bleeding-approach",
+          "excerpt": "1. **Trusting the initial hemoglobin.** In acute hemorrhage, hemoglobin does not equilibrate for 6-24 hours. A hemoglobin of 12 g/dL in a patient who vomited a liter of blood 30 minutes ago is NOT reassuring. Assess hemodynamic status (vital signs, lactate) rather than hemoglobin for acute resuscitation decisions.\n\n2. **Assuming hematochezia means lower GI source.** 15% of hematochezia is from brisk upper GI bleeding. A hemodynamically unstable patient with bright red blood per rectum should have an upper GI source considered and may need emergent EGD, not colonoscopy.\n\n3. **Forgetting aortoenteric fistula.** Any patient with prior aortic surgery (open or endovascular) presenting with GI bleeding has an aortoenteric fistula until proven otherwise. The \"herald bleed\" (small self-limited initial bleed) precedes massive exsanguinating hemorrhage by hours to days. CTA and vascular surgery consultation immediately.\n\n4. **Over-resuscitating variceal hemorrhage.** In known or suspected variceal hemorrhage, aggressive volume resuscitation raises portal pressure and increases bleeding risk. Target SBP 90-100 mmHg. Restrictive transfusion (Hgb target 7) reduces rebleeding and mortality vs liberal transfusion (NEJM 2013, Villanueva et al.).\n\n5. **Skipping rectal exam.** Stool color is critical for localization (melena → upper, maroon → mid-GI, bright red → lower or brisk upper). A rectal exam also identifies hemorrhoids, masses, and fissures. It takes 30 seconds and provides information no blood test can.\n",
+          "excerptSha256": "32999f67fb90bb8e7c678f3fc7ab808dc4ef05b35f7bbe19ba838db19b180e30",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "42bc5b0532aaf20783fa0cb6fc3ea1e19f6e0d52491c7f3b7f9963b440d77cc4",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "e718366b0f411c6fba547ebdf76ecb0ec4ca8fa1fc4962c9695d3a0a9959c2ff",
+      "title": "Gastrointestinal Bleeding — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gastrointestinal-bleeding-approach.md",
+      "section": "Pitfalls",
+      "summary": " (melena → upper, maroon → mid-GI, bright red → lower or brisk upper). A rectal exam also identifies hemorrhoids, masses, and fissures. It takes 30 seconds and provides information no blood test can.\n\n6. **Clear NG aspirate excluding upper GI bleed.** A clear NG aspirate has a negative predictive value of only 60-80% for upper GI bleeding. Duodenal bleeds distal to a closed pylorus may not reflux into the stomach. If clinical suspicion for UGIB is high despite clear aspirate, proceed with EGD.\n\n7. **Discharging patients on anticoagulants with \"minor\" GI bleed.** Any GI bleed in an anticoagulated patient requires serious consideration. The bleeding may be minor now but can become catastrophic. Assess the indication for anticoagulation, consult with the prescribing physician, and ensure very close follow-up if discharging.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "e718366b0f411c6fba547ebdf76ecb0ec4ca8fa1fc4962c9695d3a0a9959c2ff",
+          "sourceId": "openem:gastrointestinal-bleeding-approach",
+          "excerpt": " (melena → upper, maroon → mid-GI, bright red → lower or brisk upper). A rectal exam also identifies hemorrhoids, masses, and fissures. It takes 30 seconds and provides information no blood test can.\n\n6. **Clear NG aspirate excluding upper GI bleed.** A clear NG aspirate has a negative predictive value of only 60-80% for upper GI bleeding. Duodenal bleeds distal to a closed pylorus may not reflux into the stomach. If clinical suspicion for UGIB is high despite clear aspirate, proceed with EGD.\n\n7. **Discharging patients on anticoagulants with \"minor\" GI bleed.** Any GI bleed in an anticoagulated patient requires serious consideration. The bleeding may be minor now but can become catastrophic. Assess the indication for anticoagulation, consult with the prescribing physician, and ensure very close follow-up if discharging.",
+          "excerptSha256": "1968b79b644ad028412a27f933e04dee7fe83ec23eb915af7bc8eabcebd0c28a",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "42bc5b0532aaf20783fa0cb6fc3ea1e19f6e0d52491c7f3b7f9963b440d77cc4",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "325cfd3248098ef13ca6838a2653175c3b856391c5952eec8875ff6affbfa776",
+      "title": "Gastrointestinal Hemorrhage",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gi-hemorrhage.md",
+      "section": "Recognition",
+      "summary": "### Upper GI Bleed (proximal to ligament of Treitz)\n- **Hematemesis:** Bright red blood or coffee-ground emesis\n- **Melena:** Black, tarry, malodorous stool (requires ~150 mL blood in upper GI tract)\n- **Hematochezia from upper source:** Brisk upper GI bleed with rapid transit\n\n**Common causes:** Peptic ulcer disease (35-50%), esophageal/gastric varices (10-20%), Mallory-Weiss tear, erosive gastritis/esophagitis, Dieulafoy lesion, malignancy\n\n### Lower GI Bleed (distal to ligament of Treitz)\n- **Hematochezia:** Bright red or maroon blood per rectum\n- **Melena:** Possible from right-sided colonic or small bowel source with slow transit\n\n**Common causes:** Diverticulosis (30-40%), angiodysplasia, colitis (ischemic, infectious, IBD), hemorrhoids, post-polypectomy bleeding, malignancy\n\n### Signs of Hemodynamic Significance\n- Tachycardia (HR > 100) — earliest sign\n- Hypotension (SBP < 90) — indicates >30% blood volume loss\n- Orthostatic vital sign changes (SBP drop > 20 or HR increase > 20 on standing)\n- Altered mental status, diaphoresis, pallor\n- Syncope or pre-syncope\n- Hemoglobin < 7 g/dL or rapidly dropping\n\n### Risk Stratification\n**Glasgow-Blatchford Score (GBS)** for UGIB: Score 0-1 identifies very low risk patients suitable for outpatient management. Incorporates BUN, hemoglobin, SBP, HR, melena, syncope, hepatic disease, heart failure.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "325cfd3248098ef13ca6838a2653175c3b856391c5952eec8875ff6affbfa776",
+          "sourceId": "openem:gi-hemorrhage",
+          "excerpt": "### Upper GI Bleed (proximal to ligament of Treitz)\n- **Hematemesis:** Bright red blood or coffee-ground emesis\n- **Melena:** Black, tarry, malodorous stool (requires ~150 mL blood in upper GI tract)\n- **Hematochezia from upper source:** Brisk upper GI bleed with rapid transit\n\n**Common causes:** Peptic ulcer disease (35-50%), esophageal/gastric varices (10-20%), Mallory-Weiss tear, erosive gastritis/esophagitis, Dieulafoy lesion, malignancy\n\n### Lower GI Bleed (distal to ligament of Treitz)\n- **Hematochezia:** Bright red or maroon blood per rectum\n- **Melena:** Possible from right-sided colonic or small bowel source with slow transit\n\n**Common causes:** Diverticulosis (30-40%), angiodysplasia, colitis (ischemic, infectious, IBD), hemorrhoids, post-polypectomy bleeding, malignancy\n\n### Signs of Hemodynamic Significance\n- Tachycardia (HR > 100) — earliest sign\n- Hypotension (SBP < 90) — indicates >30% blood volume loss\n- Orthostatic vital sign changes (SBP drop > 20 or HR increase > 20 on standing)\n- Altered mental status, diaphoresis, pallor\n- Syncope or pre-syncope\n- Hemoglobin < 7 g/dL or rapidly dropping\n\n### Risk Stratification\n**Glasgow-Blatchford Score (GBS)** for UGIB: Score 0-1 identifies very low risk patients suitable for outpatient management. Incorporates BUN, hemoglobin, SBP, HR, melena, syncope, hepatic disease, heart failure.",
+          "excerptSha256": "8e681c60baf0b569a5a5a96332c692bc804c293657da2e85a81424171cb74565",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "0d5edaee0c55c3a2d38653a952e82521b7352cff024406efc324200864b6687a",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "c3e1484955f5dd9c4f94d5e56afd7f8472c97bb971da87f02d1d38e6d9f11611",
+      "title": "Gastrointestinal Bleeding",
+      "url": "https://medlineplus.gov/gastrointestinalbleeding.html",
+      "section": "Health-topic summary",
+      "summary": "Your digestive or gastrointestinal (GI) tract includes the esophagus, stomach, small intestine, large intestine or colon, rectum, and anus. Bleeding can come from any of these areas. The amount of bleeding can be so small that only a lab test can find it. \n\n Signs of bleeding in the digestive tract depend on where it is and how much bleeding there is. \n\n Signs of bleeding in the upper digestive tract include: \n Bright red blood in vomit \n Vomit that looks like coffee grounds \n Black or tarry stool \n Dark blood mixed with stool \n \n\n Signs of bleeding in the lower digestive tract include: \n Black or tarry stool \n Dark blood mixed with stool \n Stool mixed or coated with bright red blood \n \n\n GI bleeding is not a disease, but a symptom of a disease. There are many possible causes of GI bleeding, including hemorrhoids , peptic ulcers , tears or inflammation in the esophagus, diverticulosis and diverticulitis , ulcerative colitis and Crohn's disease , colonic polyps , or cancer in the colon , stomach or esophagus . \n\n The test used most often to look for the cause of GI bleeding is called endoscopy . It uses a flexible instrument inserted through the mouth or rectum to view the inside of the GI tract. A type of endoscopy called colonoscopy looks at the large intestine. \n\n\n NIH: National Institute of Diabetes and Digestive and Kidney Diseases",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "c3e1484955f5dd9c4f94d5e56afd7f8472c97bb971da87f02d1d38e6d9f11611",
+          "sourceId": "medlineplus:1308",
+          "excerpt": "Your digestive or gastrointestinal (GI) tract includes the esophagus, stomach, small intestine, large intestine or colon, rectum, and anus. Bleeding can come from any of these areas. The amount of bleeding can be so small that only a lab test can find it. \n\n Signs of bleeding in the digestive tract depend on where it is and how much bleeding there is. \n\n Signs of bleeding in the upper digestive tract include: \n Bright red blood in vomit \n Vomit that looks like coffee grounds \n Black or tarry stool \n Dark blood mixed with stool \n \n\n Signs of bleeding in the lower digestive tract include: \n Black or tarry stool \n Dark blood mixed with stool \n Stool mixed or coated with bright red blood \n \n\n GI bleeding is not a disease, but a symptom of a disease. There are many possible causes of GI bleeding, including hemorrhoids , peptic ulcers , tears or inflammation in the esophagus, diverticulosis and diverticulitis , ulcerative colitis and Crohn's disease , colonic polyps , or cancer in the colon , stomach or esophagus . \n\n The test used most often to look for the cause of GI bleeding is called endoscopy . It uses a flexible instrument inserted through the mouth or rectum to view the inside of the GI tract. A type of endoscopy called colonoscopy looks at the large intestine. \n\n\n NIH: National Institute of Diabetes and Digestive and Kidney Diseases",
+          "excerptSha256": "9eb360aecdf9d148e8ce0826747924aa89c44274213d0d7d06f9d52a7af1185d",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "c45e62f694a1fb179b081fb6e55437b4e4cd77581ac0e2df61503a36840c1e2c",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "cc4eedfae0f20ed7b7bf1a14341d2c55bac5d24fff73e4c231e5b5011d9a4fdf",
+      "title": "Gastrointestinal Hemorrhage",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gi-hemorrhage.md",
+      "section": "Differential Diagnosis",
+      "summary": "- Epistaxis with swallowed blood (anterior rhinoscopy)\n- Hemoptysis (cough-associated, frothy, pulmonary source)\n- Aortoenteric fistula (history of aortic graft, herald bleed followed by massive hemorrhage)\n- Meckel diverticulum (younger patients, painless lower GI bleed)\n- Upper GI source mimicking lower GI bleed (rapid transit UGIB causes hematochezia)\n- Iron/bismuth ingestion (black stool without occult blood positivity)\n- Coagulopathy-related bleeding (anticoagulant use, liver disease, DIC)",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "cc4eedfae0f20ed7b7bf1a14341d2c55bac5d24fff73e4c231e5b5011d9a4fdf",
+          "sourceId": "openem:gi-hemorrhage",
+          "excerpt": "- Epistaxis with swallowed blood (anterior rhinoscopy)\n- Hemoptysis (cough-associated, frothy, pulmonary source)\n- Aortoenteric fistula (history of aortic graft, herald bleed followed by massive hemorrhage)\n- Meckel diverticulum (younger patients, painless lower GI bleed)\n- Upper GI source mimicking lower GI bleed (rapid transit UGIB causes hematochezia)\n- Iron/bismuth ingestion (black stool without occult blood positivity)\n- Coagulopathy-related bleeding (anticoagulant use, liver disease, DIC)",
+          "excerptSha256": "1cfe434212c2ce49e7db7e111ccb48fdf7394c43606d088caea12b9ce27f8b66",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "0d5edaee0c55c3a2d38653a952e82521b7352cff024406efc324200864b6687a",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "74f9a87a6ad89f8cebc92a68177581cdbac075f06b90775b6c0cb81e481ce771",
+      "title": "Gastrointestinal Hemorrhage",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gi-hemorrhage.md",
+      "section": "Pitfalls",
+      "summary": "1. **Trusting an initial normal hemoglobin in acute hemorrhage.** Hemoglobin does not equilibrate for 6-24 hours after acute blood loss. A patient in hemorrhagic shock with a normal Hgb is still hemorrhaging. Resuscitate based on hemodynamics, not lab values.\n\n2. **Interpreting a clear NG aspirate as excluding UGIB.** A duodenal source with a competent pylorus produces a clear or bilious aspirate. NG aspirate has a 10-15% false-negative rate for UGIB. If clinical suspicion is high, proceed with upper endoscopy.\n\n3. **Missing aortoenteric fistula.** Any patient with a prior aortic graft presenting with GI bleeding has an aortoenteric fistula until proven otherwise. The \"herald bleed\" (small initial bleed) precedes catastrophic exsanguination by hours to days. CT angiography is the initial diagnostic study.\n\n4. **Aggressively resuscitating variceal hemorrhage with crystalloid.** Overaggressive volume expansion raises portal pressure and worsens variceal bleeding. Use a restrictive strategy. Transfuse to hemoglobin 7 g/dL. Start octreotide early.\n\n5. **Omitting antibiotic prophylaxis in cirrhotic patients with GI bleed.** Ceftriaxone 1 g IV daily x 7 days reduces bacterial infections and mortality in cirrhotic patients with GI hemorrhage regardless of bleed source. This is standard of care per Baveno VII.\n\n6. **Delaying endoscopy in high-risk UGIB.** Hemodynamically significant UGIB (active hematemesis, shock, bloody NG aspirate) requires endoscopy within 12 hours. Waiting for \"optimization\" in an actively hemorrhaging patient costs lives.\n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "74f9a87a6ad89f8cebc92a68177581cdbac075f06b90775b6c0cb81e481ce771",
+          "sourceId": "openem:gi-hemorrhage",
+          "excerpt": "1. **Trusting an initial normal hemoglobin in acute hemorrhage.** Hemoglobin does not equilibrate for 6-24 hours after acute blood loss. A patient in hemorrhagic shock with a normal Hgb is still hemorrhaging. Resuscitate based on hemodynamics, not lab values.\n\n2. **Interpreting a clear NG aspirate as excluding UGIB.** A duodenal source with a competent pylorus produces a clear or bilious aspirate. NG aspirate has a 10-15% false-negative rate for UGIB. If clinical suspicion is high, proceed with upper endoscopy.\n\n3. **Missing aortoenteric fistula.** Any patient with a prior aortic graft presenting with GI bleeding has an aortoenteric fistula until proven otherwise. The \"herald bleed\" (small initial bleed) precedes catastrophic exsanguination by hours to days. CT angiography is the initial diagnostic study.\n\n4. **Aggressively resuscitating variceal hemorrhage with crystalloid.** Overaggressive volume expansion raises portal pressure and worsens variceal bleeding. Use a restrictive strategy. Transfuse to hemoglobin 7 g/dL. Start octreotide early.\n\n5. **Omitting antibiotic prophylaxis in cirrhotic patients with GI bleed.** Ceftriaxone 1 g IV daily x 7 days reduces bacterial infections and mortality in cirrhotic patients with GI hemorrhage regardless of bleed source. This is standard of care per Baveno VII.\n\n6. **Delaying endoscopy in high-risk UGIB.** Hemodynamically significant UGIB (active hematemesis, shock, bloody NG aspirate) requires endoscopy within 12 hours. Waiting for \"optimization\" in an actively hemorrhaging patient costs lives.\n",
+          "excerptSha256": "80c45158837c03ef839de0c6075e4004805ad9ed798aa63472454b0ab10cc3fe",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "0d5edaee0c55c3a2d38653a952e82521b7352cff024406efc324200864b6687a",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    }
+  ],
+  "safetyFloor": null,
+  "rejectedAnswer": {
+    "disposition": "SELF_CARE",
+    "reviewPriority": null,
+    "workType": null,
+    "reason": "Purely educational terminology question from a leaflet, with explicit statement that none of the listed symptoms are present. No reported current symptoms, trajectory or functional impact, so no clinician assessment is needed for routing. Information only, with a safety net should melena actually occur later.",
+    "patientMessage": "No visit is needed for this question. \"Black tarry stool\" (melena) means stool that looks black, sticky and tar-like because blood has been partly digested on its way through the gut — usually from the upper digestive tract, though a slower-moving small-bowel or right-colon source can also cause it. Iron or bismuth medicines can darken stool too. If you ever pass black tarry stool or vomit blood or coffee-ground material, seek emergency assessment; call 911 if that bleeding comes with fainting or marked faintness. Counsel is here if questions come up.",
+    "differential": [
+      "Educational query only; no current symptoms reported to triage",
+      "Melena as a marker of GI bleeding — informational context only"
+    ],
+    "redFlags": [
+      {
+        "concern": "Black tarry stool (melena)",
+        "status": "denied",
+        "quote": "I do not have any of those symptoms."
+      },
+      {
+        "concern": "Crushing chest pressure",
+        "status": "denied",
+        "quote": "I do not have any of those symptoms."
+      },
+      {
+        "concern": "Worst headache of my life",
+        "status": "denied",
+        "quote": "I do not have any of those symptoms."
+      }
+    ],
+    "vitalSigns": "No vital signs reported or measured; none are needed for this informational request. Their absence establishes neither safety nor abnormality.",
+    "questions": [],
+    "evidenceLimitations": "Sources are agent-compiled emergency-department synthesis and a consumer health summary, not primary guidelines or telehealth protocols, and were used only for the definition and general bleeding signs. As the patient reports no symptoms, no individual clinical applicability was assessed.",
+    "citations": [
+      {
+        "passageId": "325cfd3248098ef13ca6838a2653175c3b856391c5952eec8875ff6affbfa776",
+        "quote": "**Melena:** Black, tarry, malodorous stool",
+        "claim": "Melena means black, tarry stool, most often from an upper GI source but also possible from a slow-transit small bowel or right colonic source",
+        "applicability": "applicable",
+        "limitation": "ED reference synthesis, agent-compiled; used for definition only, not for this patient's care."
+      },
+      {
+        "passageId": "c3e1484955f5dd9c4f94d5e56afd7f8472c97bb971da87f02d1d38e6d9f11611",
+        "quote": "Signs of bleeding in the upper digestive tract include: \n Bright red blood in vomit \n Vomit that looks like coffee grounds \n Black or tarry stool",
+        "claim": "Black or tarry stool and blood or coffee-ground vomit are listed signs of digestive tract bleeding",
+        "applicability": "applicable",
+        "limitation": "Consumer summary; general education only, no individual applicability."
+      }
+    ]
+  },
+  "failure": "CLINICIAN_REVIEW_REQUIRED",
+  "routingPolicy": "five-route-queue/v2",
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "pass",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "pass",
+      "detail": "Checks explicit timing/destination tokens, not the clinical correctness or complete consistency of the message."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen from a COPD diagnosis alone; targeted medication-instruction check."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "fail",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Cited passage identity and exact quote match; this does not establish claim support or applicability."
+    },
+    {
+      "id": "independent_review",
+      "status": "fail",
+      "detail": "No accepted independent review; clinician assessment is required."
+    }
+  ],
+  "usage": {
+    "inputTokens": 36885,
+    "outputTokens": 3933
+  },
+  "graph": {
+    "version": "evidence-graph/v3",
+    "mode": "hybrid",
+    "context": {
+      "queries": [
+        "black tarry stool melena etiology",
+        "gastrointestinal bleeding upper lower distinction",
+        "stool appearance hemoglobin oxidation"
+      ],
+      "findings": [],
+      "question": null
+    },
+    "safety": {
+      "action": "NONE",
+      "basis": [],
+      "reason": "Patient is reading educational material and requesting clarification of terminology, not reporting symptoms or requesting clinical care.",
+      "patientMessage": "",
+      "physicalRequirement": null
+    },
+    "retrieval": [
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "black tarry stool melena etiology",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "8125a5af5c1f4f7dfcb3407677efeb9fc2cca62351ef943cf3f434c95a5a6ac5",
+              "end": 2780,
+              "hash": "d61c31a935557d640e1b4dc02e8845f71e0503fadd128ca98b5e86e4f6cd1288",
+              "text": "ic-megacolon`): bloody diarrhea with colonic dilation, IBD or C. diff\n- **Mesenteric venous thrombosis** (`acute-mesenteric-venous-thrombosis`): abdominal pain with bloody stool, hypercoagulable state\n- **Mesenteric ischemia** (`mesenteric-ischemia`): pain out of proportion with eventual bloody stool (late finding)\n\n### Urgent\n- **Diverticular bleeding** (`acute-diverticulitis`): painless massive hematochezia, typically self-limited (80%), more common in right colon. Most common cause of lower GI bleed.\n- **Sigmoid volvulus** (`sigmoid-volvulus`): distension, obstipation, may have bloody stool if ischemic\n- **Incarcerated hernia** (`incarcerated-hernia`): strangulated hernia → ischemic bowel → bloody stool\n\n### Non-Emergent\n- **Hemorrhoids:** bright red blood per rectum on toilet paper or dripping into bowl, painless (internal) or painful with thrombosis (external). Most common cause of rectal bleeding in outpatients. Diagnosis of exclusion in ED — do NOT anchor.\n- **Anal fissure:** painful bright red rectal bleeding with bowel movements\n- **Inflammatory bowel disease flare:** bloody diarrhea, crampy abdominal pain, known IBD history\n- **Angiodysplasia (AVM):** painless rectal bleeding, elderly, associated with aortic stenosis (Heyde syndrome) and renal failure",
+              "start": 1499,
+              "section": 2,
+              "documentId": "openem:gastrointestinal-bleeding-approach",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Gastrointestinal Bleeding — Emergency Evaluation\nGI bleed; GI hemorrhage; upper GI bleed; lower GI bleed; hematemesis; melena; hematochezia; bloody stool; vomiting blood; rectal bleeding\nDifferential Diagnosis\nic-megacolon`): bloody diarrhea with colonic dilation, IBD or C. diff\n- **Mesenteric venous thrombosis** (`acute-mesenteric-venous-thrombosis`): abdominal pain with bloody stool, hypercoagulable state\n- **Mesenteric ischemia** (`mesenteric-ischemia`): pain out of proportion with eventual bloody stool (late finding)\n\n### Urgent\n- **Diverticular bleeding** (`acute-diverticulitis`): painless massive hematochezia, typically self-limited (80%), more common in right colon. Most common cause of lower GI bleed.\n- **Sigmoid volvulus** (`sigmoid-volvulus`): distension, obstipation, may have bloody stool if ischemic\n- **Incarcerated hernia** (`incarcerated-hernia`): strangulated hernia → ischemic bowel → bloody stool\n\n### Non-Emergent\n- **Hemorrhoids:** bright red blood per rectum on toilet paper or dripping into bowl, painless (internal) or painful with thrombosis (external). Most common cause of rectal bleeding in outpatients. Diagnosis of exclusion in ED — do NOT anchor.\n- **Anal fissure:** painful bright red rectal bleeding with bowel movements\n- **Inflammatory bowel disease flare:** bloody diarrhea, crampy abdominal pain, known IBD history\n- **Angiodysplasia (AVM):** painless rectal bleeding, elderly, associated with aortic stenosis (Heyde syndrome) and renal failure"
+            },
+            "document": {
+              "id": "openem:gastrointestinal-bleeding-approach",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gastrointestinal-bleeding-approach.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Gastrointestinal Bleeding — Emergency Evaluation",
+              "aliases": [
+                "GI bleed",
+                "GI hemorrhage",
+                "upper GI bleed",
+                "lower GI bleed",
+                "hematemesis",
+                "melena",
+                "hematochezia",
+                "bloody stool",
+                "vomiting blood",
+                "rectal bleeding"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "42bc5b0532aaf20783fa0cb6fc3ea1e19f6e0d52491c7f3b7f9963b440d77cc4",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03225806451612903,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "on with strangulation can cause bloody stool\n- **Ischemic colitis** (`ischemic-colitis`): bloody diarrhea in elderly, often watershed distribution, crampy abdominal pain\n- **Acute hepatic failure** (`acute-hepatic-failure`): coagulopathy causing or worsening GI hemorrhage\n- **Toxic megacolon** (`tox",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "cdfcd69baf5b3fe70eb00b07a8bf95136c38b5d50cad55500f3e05d1aec9c232",
+              "end": 1786,
+              "hash": "668f3eb8a8da3ccbad9df9b83438763121124de884f17321def3db4fd0d7825e",
+              "text": "GI bleeding accounts for approximately 300,000 US hospitalizations annually. The ED priorities are: (1) assess severity and hemodynamic status, (2) resuscitate, (3) localize the source (upper vs lower), (4) identify high-risk patients, and (5) facilitate appropriate endoscopic or surgical intervention.\n\n**Upper vs lower GI bleeding:**\n- **Upper GI (proximal to ligament of Treitz):** hematemesis (bright red or coffee-ground), melena (black tarry stool — requires only 50-100 mL blood in upper GI tract), NG aspirate positive for blood. 80% of acute GI bleeds are upper.\n- **Lower GI (distal to ligament of Treitz):** hematochezia (bright red blood per rectum), maroon stool. However, brisk upper GI bleed can cause hematochezia (15% of cases) — do NOT assume lower source based on hematochezia alone.\n- **Occult/chronic:** iron deficiency anemia, positive fecal occult blood, fatigue\n\n**Key historical elements:**\n- Character of bleeding: hematemesis, coffee-ground, melena, hematochezia, maroon stool\n- Onset and duration: acute single episode vs recurrent vs chronic\n- Volume estimate: number of episodes, teaspoon vs cup vs toilet bowl (patient estimates are unreliable — assess hemodynamics instead)\n- Associated symptoms: abdominal pain (PUD, ischemia), painless bleeding (diverticulum, AVM, varices), dysphagia (esophageal source), weight loss (malignancy)\n- NSAID or aspirin use (PUD)\n- Anticoagulation: warfarin, DOACs, heparin, dual antiplatelet therapy\n- Alcohol use and liver disease history (variceal hemorrhage, coagulopathy)\n- Prior GI bleeding episodes and their causes\n- Prior aortic surgery or known AAA (aortoenteric fistula — \"herald bleed\" → massive hemorrhage)\n- Recent vomiting or retching (Mallory-Weiss tear, Boerhaave syndrome)\n\n**Volume status assessment:**",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:gastrointestinal-bleeding-approach",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Gastrointestinal Bleeding — Emergency Evaluation\nGI bleed; GI hemorrhage; upper GI bleed; lower GI bleed; hematemesis; melena; hematochezia; bloody stool; vomiting blood; rectal bleeding\nRecognition\nGI bleeding accounts for approximately 300,000 US hospitalizations annually. The ED priorities are: (1) assess severity and hemodynamic status, (2) resuscitate, (3) localize the source (upper vs lower), (4) identify high-risk patients, and (5) facilitate appropriate endoscopic or surgical intervention.\n\n**Upper vs lower GI bleeding:**\n- **Upper GI (proximal to ligament of Treitz):** hematemesis (bright red or coffee-ground), melena (black tarry stool — requires only 50-100 mL blood in upper GI tract), NG aspirate positive for blood. 80% of acute GI bleeds are upper.\n- **Lower GI (distal to ligament of Treitz):** hematochezia (bright red blood per rectum), maroon stool. However, brisk upper GI bleed can cause hematochezia (15% of cases) — do NOT assume lower source based on hematochezia alone.\n- **Occult/chronic:** iron deficiency anemia, positive fecal occult blood, fatigue\n\n**Key historical elements:**\n- Character of bleeding: hematemesis, coffee-ground, melena, hematochezia, maroon stool\n- Onset and duration: acute single episode vs recurrent vs chronic\n- Volume estimate: number of episodes, teaspoon vs cup vs toilet bowl (patient estimates are unreliable — assess hemodynamics instead)\n- Associated symptoms: abdominal pain (PUD, ischemia), painless bleeding (diverticulum, AVM, varices), dysphagia (esophageal source), weight loss (malignancy)\n- NSAID or aspirin use (PUD)\n- Anticoagulation: warfarin, DOACs, heparin, dual antiplatelet therapy\n- Alcohol use and liver disease history (variceal hemorrhage, coagulopathy)\n- Prior GI bleeding episodes and their causes\n- Prior aortic surgery or known AAA (aortoenteric fistula — \"herald bleed\" → massive hemorrhage)\n- Recent vomiting or retching (Mallory-Weiss tear, Boerhaave syndrome)\n\n**Volume status assessment:**"
+            },
+            "document": {
+              "id": "openem:gastrointestinal-bleeding-approach",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gastrointestinal-bleeding-approach.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Gastrointestinal Bleeding — Emergency Evaluation",
+              "aliases": [
+                "GI bleed",
+                "GI hemorrhage",
+                "upper GI bleed",
+                "lower GI bleed",
+                "hematemesis",
+                "melena",
+                "hematochezia",
+                "bloody stool",
+                "vomiting blood",
+                "rectal bleeding"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "42bc5b0532aaf20783fa0cb6fc3ea1e19f6e0d52491c7f3b7f9963b440d77cc4",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.032018442622950824,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- Resting tachycardia (HR > 100): suggests > 15% blood volume loss\n- Orthostatic hypotension: suggests > 15-30% loss\n- Supine hypotension (SBP < 90): suggests > 30-40% loss\n- Altered mental status, anuria: suggests > 40% loss (Class IV hemorrhagic shock)"
+            }
+          },
+          {
+            "chunk": {
+              "id": "325cfd3248098ef13ca6838a2653175c3b856391c5952eec8875ff6affbfa776",
+              "end": 1362,
+              "hash": "8e681c60baf0b569a5a5a96332c692bc804c293657da2e85a81424171cb74565",
+              "text": "### Upper GI Bleed (proximal to ligament of Treitz)\n- **Hematemesis:** Bright red blood or coffee-ground emesis\n- **Melena:** Black, tarry, malodorous stool (requires ~150 mL blood in upper GI tract)\n- **Hematochezia from upper source:** Brisk upper GI bleed with rapid transit\n\n**Common causes:** Peptic ulcer disease (35-50%), esophageal/gastric varices (10-20%), Mallory-Weiss tear, erosive gastritis/esophagitis, Dieulafoy lesion, malignancy\n\n### Lower GI Bleed (distal to ligament of Treitz)\n- **Hematochezia:** Bright red or maroon blood per rectum\n- **Melena:** Possible from right-sided colonic or small bowel source with slow transit\n\n**Common causes:** Diverticulosis (30-40%), angiodysplasia, colitis (ischemic, infectious, IBD), hemorrhoids, post-polypectomy bleeding, malignancy\n\n### Signs of Hemodynamic Significance\n- Tachycardia (HR > 100) — earliest sign\n- Hypotension (SBP < 90) — indicates >30% blood volume loss\n- Orthostatic vital sign changes (SBP drop > 20 or HR increase > 20 on standing)\n- Altered mental status, diaphoresis, pallor\n- Syncope or pre-syncope\n- Hemoglobin < 7 g/dL or rapidly dropping\n\n### Risk Stratification\n**Glasgow-Blatchford Score (GBS)** for UGIB: Score 0-1 identifies very low risk patients suitable for outpatient management. Incorporates BUN, hemoglobin, SBP, HR, melena, syncope, hepatic disease, heart failure.",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:gi-hemorrhage",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Gastrointestinal Hemorrhage\nGI bleed; GI hemorrhage; upper GI bleed; lower GI bleed; UGIB; LGIB; variceal bleed; melena; hematochezia; hematemesis\nRecognition\n### Upper GI Bleed (proximal to ligament of Treitz)\n- **Hematemesis:** Bright red blood or coffee-ground emesis\n- **Melena:** Black, tarry, malodorous stool (requires ~150 mL blood in upper GI tract)\n- **Hematochezia from upper source:** Brisk upper GI bleed with rapid transit\n\n**Common causes:** Peptic ulcer disease (35-50%), esophageal/gastric varices (10-20%), Mallory-Weiss tear, erosive gastritis/esophagitis, Dieulafoy lesion, malignancy\n\n### Lower GI Bleed (distal to ligament of Treitz)\n- **Hematochezia:** Bright red or maroon blood per rectum\n- **Melena:** Possible from right-sided colonic or small bowel source with slow transit\n\n**Common causes:** Diverticulosis (30-40%), angiodysplasia, colitis (ischemic, infectious, IBD), hemorrhoids, post-polypectomy bleeding, malignancy\n\n### Signs of Hemodynamic Significance\n- Tachycardia (HR > 100) — earliest sign\n- Hypotension (SBP < 90) — indicates >30% blood volume loss\n- Orthostatic vital sign changes (SBP drop > 20 or HR increase > 20 on standing)\n- Altered mental status, diaphoresis, pallor\n- Syncope or pre-syncope\n- Hemoglobin < 7 g/dL or rapidly dropping\n\n### Risk Stratification\n**Glasgow-Blatchford Score (GBS)** for UGIB: Score 0-1 identifies very low risk patients suitable for outpatient management. Incorporates BUN, hemoglobin, SBP, HR, melena, syncope, hepatic disease, heart failure."
+            },
+            "document": {
+              "id": "openem:gi-hemorrhage",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gi-hemorrhage.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Gastrointestinal Hemorrhage",
+              "aliases": [
+                "GI bleed",
+                "GI hemorrhage",
+                "upper GI bleed",
+                "lower GI bleed",
+                "UGIB",
+                "LGIB",
+                "variceal bleed",
+                "melena",
+                "hematochezia",
+                "hematemesis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "0d5edaee0c55c3a2d38653a952e82521b7352cff024406efc324200864b6687a",
+              "related": [],
+              "concepts": [
+                "gastrointestinal"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.029857397504456328,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "cc4eedfae0f20ed7b7bf1a14341d2c55bac5d24fff73e4c231e5b5011d9a4fdf",
+              "end": 499,
+              "hash": "1cfe434212c2ce49e7db7e111ccb48fdf7394c43606d088caea12b9ce27f8b66",
+              "text": "- Epistaxis with swallowed blood (anterior rhinoscopy)\n- Hemoptysis (cough-associated, frothy, pulmonary source)\n- Aortoenteric fistula (history of aortic graft, herald bleed followed by massive hemorrhage)\n- Meckel diverticulum (younger patients, painless lower GI bleed)\n- Upper GI source mimicking lower GI bleed (rapid transit UGIB causes hematochezia)\n- Iron/bismuth ingestion (black stool without occult blood positivity)\n- Coagulopathy-related bleeding (anticoagulant use, liver disease, DIC)",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:gi-hemorrhage",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Gastrointestinal Hemorrhage\nGI bleed; GI hemorrhage; upper GI bleed; lower GI bleed; UGIB; LGIB; variceal bleed; melena; hematochezia; hematemesis\nDifferential Diagnosis\n- Epistaxis with swallowed blood (anterior rhinoscopy)\n- Hemoptysis (cough-associated, frothy, pulmonary source)\n- Aortoenteric fistula (history of aortic graft, herald bleed followed by massive hemorrhage)\n- Meckel diverticulum (younger patients, painless lower GI bleed)\n- Upper GI source mimicking lower GI bleed (rapid transit UGIB causes hematochezia)\n- Iron/bismuth ingestion (black stool without occult blood positivity)\n- Coagulopathy-related bleeding (anticoagulant use, liver disease, DIC)"
+            },
+            "document": {
+              "id": "openem:gi-hemorrhage",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gi-hemorrhage.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Gastrointestinal Hemorrhage",
+              "aliases": [
+                "GI bleed",
+                "GI hemorrhage",
+                "upper GI bleed",
+                "lower GI bleed",
+                "UGIB",
+                "LGIB",
+                "variceal bleed",
+                "melena",
+                "hematochezia",
+                "hematemesis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "0d5edaee0c55c3a2d38653a952e82521b7352cff024406efc324200864b6687a",
+              "related": [],
+              "concepts": [
+                "gastrointestinal"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.02938045560996381,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "c3e1484955f5dd9c4f94d5e56afd7f8472c97bb971da87f02d1d38e6d9f11611",
+              "end": 1357,
+              "hash": "9eb360aecdf9d148e8ce0826747924aa89c44274213d0d7d06f9d52a7af1185d",
+              "text": "Your digestive or gastrointestinal (GI) tract includes the esophagus, stomach, small intestine, large intestine or colon, rectum, and anus. Bleeding can come from any of these areas. The amount of bleeding can be so small that only a lab test can find it. \n\n Signs of bleeding in the digestive tract depend on where it is and how much bleeding there is. \n\n Signs of bleeding in the upper digestive tract include: \n Bright red blood in vomit \n Vomit that looks like coffee grounds \n Black or tarry stool \n Dark blood mixed with stool \n \n\n Signs of bleeding in the lower digestive tract include: \n Black or tarry stool \n Dark blood mixed with stool \n Stool mixed or coated with bright red blood \n \n\n GI bleeding is not a disease, but a symptom of a disease. There are many possible causes of GI bleeding, including hemorrhoids , peptic ulcers , tears or inflammation in the esophagus, diverticulosis and diverticulitis , ulcerative colitis and Crohn's disease , colonic polyps , or cancer in the colon , stomach or esophagus . \n\n The test used most often to look for the cause of GI bleeding is called endoscopy . It uses a flexible instrument inserted through the mouth or rectum to view the inside of the GI tract. A type of endoscopy called colonoscopy looks at the large intestine. \n\n\n NIH: National Institute of Diabetes and Digestive and Kidney Diseases",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:1308",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Gastrointestinal Bleeding\nGI bleeding\nHealth-topic summary\nYour digestive or gastrointestinal (GI) tract includes the esophagus, stomach, small intestine, large intestine or colon, rectum, and anus. Bleeding can come from any of these areas. The amount of bleeding can be so small that only a lab test can find it. \n\n Signs of bleeding in the digestive tract depend on where it is and how much bleeding there is. \n\n Signs of bleeding in the upper digestive tract include: \n Bright red blood in vomit \n Vomit that looks like coffee grounds \n Black or tarry stool \n Dark blood mixed with stool \n \n\n Signs of bleeding in the lower digestive tract include: \n Black or tarry stool \n Dark blood mixed with stool \n Stool mixed or coated with bright red blood \n \n\n GI bleeding is not a disease, but a symptom of a disease. There are many possible causes of GI bleeding, including hemorrhoids , peptic ulcers , tears or inflammation in the esophagus, diverticulosis and diverticulitis , ulcerative colitis and Crohn's disease , colonic polyps , or cancer in the colon , stomach or esophagus . \n\n The test used most often to look for the cause of GI bleeding is called endoscopy . It uses a flexible instrument inserted through the mouth or rectum to view the inside of the GI tract. A type of endoscopy called colonoscopy looks at the large intestine. \n\n\n NIH: National Institute of Diabetes and Digestive and Kidney Diseases"
+            },
+            "document": {
+              "id": "medlineplus:1308",
+              "url": "https://medlineplus.gov/gastrointestinalbleeding.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Gastrointestinal Bleeding",
+              "aliases": [
+                "GI bleeding"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "c45e62f694a1fb179b081fb6e55437b4e4cd77581ac0e2df61503a36840c1e2c",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1226",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:357",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Gastrointestinal Hemorrhage"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.026334026334026334,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 12.693624999985332,
+          "embeddingMs": 753.4660829999775,
+          "vectorMs": 7.4656250000116415,
+          "totalMs": 803.06912499998
+        },
+        "warnings": [],
+        "embeddingTokens": 8,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "gastrointestinal bleeding upper lower distinction",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "cdfcd69baf5b3fe70eb00b07a8bf95136c38b5d50cad55500f3e05d1aec9c232",
+              "end": 1786,
+              "hash": "668f3eb8a8da3ccbad9df9b83438763121124de884f17321def3db4fd0d7825e",
+              "text": "GI bleeding accounts for approximately 300,000 US hospitalizations annually. The ED priorities are: (1) assess severity and hemodynamic status, (2) resuscitate, (3) localize the source (upper vs lower), (4) identify high-risk patients, and (5) facilitate appropriate endoscopic or surgical intervention.\n\n**Upper vs lower GI bleeding:**\n- **Upper GI (proximal to ligament of Treitz):** hematemesis (bright red or coffee-ground), melena (black tarry stool — requires only 50-100 mL blood in upper GI tract), NG aspirate positive for blood. 80% of acute GI bleeds are upper.\n- **Lower GI (distal to ligament of Treitz):** hematochezia (bright red blood per rectum), maroon stool. However, brisk upper GI bleed can cause hematochezia (15% of cases) — do NOT assume lower source based on hematochezia alone.\n- **Occult/chronic:** iron deficiency anemia, positive fecal occult blood, fatigue\n\n**Key historical elements:**\n- Character of bleeding: hematemesis, coffee-ground, melena, hematochezia, maroon stool\n- Onset and duration: acute single episode vs recurrent vs chronic\n- Volume estimate: number of episodes, teaspoon vs cup vs toilet bowl (patient estimates are unreliable — assess hemodynamics instead)\n- Associated symptoms: abdominal pain (PUD, ischemia), painless bleeding (diverticulum, AVM, varices), dysphagia (esophageal source), weight loss (malignancy)\n- NSAID or aspirin use (PUD)\n- Anticoagulation: warfarin, DOACs, heparin, dual antiplatelet therapy\n- Alcohol use and liver disease history (variceal hemorrhage, coagulopathy)\n- Prior GI bleeding episodes and their causes\n- Prior aortic surgery or known AAA (aortoenteric fistula — \"herald bleed\" → massive hemorrhage)\n- Recent vomiting or retching (Mallory-Weiss tear, Boerhaave syndrome)\n\n**Volume status assessment:**",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:gastrointestinal-bleeding-approach",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Gastrointestinal Bleeding — Emergency Evaluation\nGI bleed; GI hemorrhage; upper GI bleed; lower GI bleed; hematemesis; melena; hematochezia; bloody stool; vomiting blood; rectal bleeding\nRecognition\nGI bleeding accounts for approximately 300,000 US hospitalizations annually. The ED priorities are: (1) assess severity and hemodynamic status, (2) resuscitate, (3) localize the source (upper vs lower), (4) identify high-risk patients, and (5) facilitate appropriate endoscopic or surgical intervention.\n\n**Upper vs lower GI bleeding:**\n- **Upper GI (proximal to ligament of Treitz):** hematemesis (bright red or coffee-ground), melena (black tarry stool — requires only 50-100 mL blood in upper GI tract), NG aspirate positive for blood. 80% of acute GI bleeds are upper.\n- **Lower GI (distal to ligament of Treitz):** hematochezia (bright red blood per rectum), maroon stool. However, brisk upper GI bleed can cause hematochezia (15% of cases) — do NOT assume lower source based on hematochezia alone.\n- **Occult/chronic:** iron deficiency anemia, positive fecal occult blood, fatigue\n\n**Key historical elements:**\n- Character of bleeding: hematemesis, coffee-ground, melena, hematochezia, maroon stool\n- Onset and duration: acute single episode vs recurrent vs chronic\n- Volume estimate: number of episodes, teaspoon vs cup vs toilet bowl (patient estimates are unreliable — assess hemodynamics instead)\n- Associated symptoms: abdominal pain (PUD, ischemia), painless bleeding (diverticulum, AVM, varices), dysphagia (esophageal source), weight loss (malignancy)\n- NSAID or aspirin use (PUD)\n- Anticoagulation: warfarin, DOACs, heparin, dual antiplatelet therapy\n- Alcohol use and liver disease history (variceal hemorrhage, coagulopathy)\n- Prior GI bleeding episodes and their causes\n- Prior aortic surgery or known AAA (aortoenteric fistula — \"herald bleed\" → massive hemorrhage)\n- Recent vomiting or retching (Mallory-Weiss tear, Boerhaave syndrome)\n\n**Volume status assessment:**"
+            },
+            "document": {
+              "id": "openem:gastrointestinal-bleeding-approach",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gastrointestinal-bleeding-approach.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Gastrointestinal Bleeding — Emergency Evaluation",
+              "aliases": [
+                "GI bleed",
+                "GI hemorrhage",
+                "upper GI bleed",
+                "lower GI bleed",
+                "hematemesis",
+                "melena",
+                "hematochezia",
+                "bloody stool",
+                "vomiting blood",
+                "rectal bleeding"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "42bc5b0532aaf20783fa0cb6fc3ea1e19f6e0d52491c7f3b7f9963b440d77cc4",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.032266458495966696,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- Resting tachycardia (HR > 100): suggests > 15% blood volume loss\n- Orthostatic hypotension: suggests > 15-30% loss\n- Supine hypotension (SBP < 90): suggests > 30-40% loss\n- Altered mental status, anuria: suggests > 40% loss (Class IV hemorrhagic shock)"
+            }
+          },
+          {
+            "chunk": {
+              "id": "e718366b0f411c6fba547ebdf76ecb0ec4ca8fa1fc4962c9695d3a0a9959c2ff",
+              "end": 2152,
+              "hash": "1968b79b644ad028412a27f933e04dee7fe83ec23eb915af7bc8eabcebd0c28a",
+              "text": " (melena → upper, maroon → mid-GI, bright red → lower or brisk upper). A rectal exam also identifies hemorrhoids, masses, and fissures. It takes 30 seconds and provides information no blood test can.\n\n6. **Clear NG aspirate excluding upper GI bleed.** A clear NG aspirate has a negative predictive value of only 60-80% for upper GI bleeding. Duodenal bleeds distal to a closed pylorus may not reflux into the stomach. If clinical suspicion for UGIB is high despite clear aspirate, proceed with EGD.\n\n7. **Discharging patients on anticoagulants with \"minor\" GI bleed.** Any GI bleed in an anticoagulated patient requires serious consideration. The bleeding may be minor now but can become catastrophic. Assess the indication for anticoagulation, consult with the prescribing physician, and ensure very close follow-up if discharging.",
+              "start": 1320,
+              "section": 6,
+              "documentId": "openem:gastrointestinal-bleeding-approach",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Gastrointestinal Bleeding — Emergency Evaluation\nGI bleed; GI hemorrhage; upper GI bleed; lower GI bleed; hematemesis; melena; hematochezia; bloody stool; vomiting blood; rectal bleeding\nPitfalls\n (melena → upper, maroon → mid-GI, bright red → lower or brisk upper). A rectal exam also identifies hemorrhoids, masses, and fissures. It takes 30 seconds and provides information no blood test can.\n\n6. **Clear NG aspirate excluding upper GI bleed.** A clear NG aspirate has a negative predictive value of only 60-80% for upper GI bleeding. Duodenal bleeds distal to a closed pylorus may not reflux into the stomach. If clinical suspicion for UGIB is high despite clear aspirate, proceed with EGD.\n\n7. **Discharging patients on anticoagulants with \"minor\" GI bleed.** Any GI bleed in an anticoagulated patient requires serious consideration. The bleeding may be minor now but can become catastrophic. Assess the indication for anticoagulation, consult with the prescribing physician, and ensure very close follow-up if discharging."
+            },
+            "document": {
+              "id": "openem:gastrointestinal-bleeding-approach",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gastrointestinal-bleeding-approach.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Gastrointestinal Bleeding — Emergency Evaluation",
+              "aliases": [
+                "GI bleed",
+                "GI hemorrhage",
+                "upper GI bleed",
+                "lower GI bleed",
+                "hematemesis",
+                "melena",
+                "hematochezia",
+                "bloody stool",
+                "vomiting blood",
+                "rectal bleeding"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "42bc5b0532aaf20783fa0cb6fc3ea1e19f6e0d52491c7f3b7f9963b440d77cc4",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03177805800756621,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "ssive volume resuscitation raises portal pressure and increases bleeding risk. Target SBP 90-100 mmHg. Restrictive transfusion (Hgb target 7) reduces rebleeding and mortality vs liberal transfusion (NEJM 2013, Villanueva et al.).\n\n5. **Skipping rectal exam.** Stool color is critical for localization",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "325cfd3248098ef13ca6838a2653175c3b856391c5952eec8875ff6affbfa776",
+              "end": 1362,
+              "hash": "8e681c60baf0b569a5a5a96332c692bc804c293657da2e85a81424171cb74565",
+              "text": "### Upper GI Bleed (proximal to ligament of Treitz)\n- **Hematemesis:** Bright red blood or coffee-ground emesis\n- **Melena:** Black, tarry, malodorous stool (requires ~150 mL blood in upper GI tract)\n- **Hematochezia from upper source:** Brisk upper GI bleed with rapid transit\n\n**Common causes:** Peptic ulcer disease (35-50%), esophageal/gastric varices (10-20%), Mallory-Weiss tear, erosive gastritis/esophagitis, Dieulafoy lesion, malignancy\n\n### Lower GI Bleed (distal to ligament of Treitz)\n- **Hematochezia:** Bright red or maroon blood per rectum\n- **Melena:** Possible from right-sided colonic or small bowel source with slow transit\n\n**Common causes:** Diverticulosis (30-40%), angiodysplasia, colitis (ischemic, infectious, IBD), hemorrhoids, post-polypectomy bleeding, malignancy\n\n### Signs of Hemodynamic Significance\n- Tachycardia (HR > 100) — earliest sign\n- Hypotension (SBP < 90) — indicates >30% blood volume loss\n- Orthostatic vital sign changes (SBP drop > 20 or HR increase > 20 on standing)\n- Altered mental status, diaphoresis, pallor\n- Syncope or pre-syncope\n- Hemoglobin < 7 g/dL or rapidly dropping\n\n### Risk Stratification\n**Glasgow-Blatchford Score (GBS)** for UGIB: Score 0-1 identifies very low risk patients suitable for outpatient management. Incorporates BUN, hemoglobin, SBP, HR, melena, syncope, hepatic disease, heart failure.",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:gi-hemorrhage",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Gastrointestinal Hemorrhage\nGI bleed; GI hemorrhage; upper GI bleed; lower GI bleed; UGIB; LGIB; variceal bleed; melena; hematochezia; hematemesis\nRecognition\n### Upper GI Bleed (proximal to ligament of Treitz)\n- **Hematemesis:** Bright red blood or coffee-ground emesis\n- **Melena:** Black, tarry, malodorous stool (requires ~150 mL blood in upper GI tract)\n- **Hematochezia from upper source:** Brisk upper GI bleed with rapid transit\n\n**Common causes:** Peptic ulcer disease (35-50%), esophageal/gastric varices (10-20%), Mallory-Weiss tear, erosive gastritis/esophagitis, Dieulafoy lesion, malignancy\n\n### Lower GI Bleed (distal to ligament of Treitz)\n- **Hematochezia:** Bright red or maroon blood per rectum\n- **Melena:** Possible from right-sided colonic or small bowel source with slow transit\n\n**Common causes:** Diverticulosis (30-40%), angiodysplasia, colitis (ischemic, infectious, IBD), hemorrhoids, post-polypectomy bleeding, malignancy\n\n### Signs of Hemodynamic Significance\n- Tachycardia (HR > 100) — earliest sign\n- Hypotension (SBP < 90) — indicates >30% blood volume loss\n- Orthostatic vital sign changes (SBP drop > 20 or HR increase > 20 on standing)\n- Altered mental status, diaphoresis, pallor\n- Syncope or pre-syncope\n- Hemoglobin < 7 g/dL or rapidly dropping\n\n### Risk Stratification\n**Glasgow-Blatchford Score (GBS)** for UGIB: Score 0-1 identifies very low risk patients suitable for outpatient management. Incorporates BUN, hemoglobin, SBP, HR, melena, syncope, hepatic disease, heart failure."
+            },
+            "document": {
+              "id": "openem:gi-hemorrhage",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gi-hemorrhage.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Gastrointestinal Hemorrhage",
+              "aliases": [
+                "GI bleed",
+                "GI hemorrhage",
+                "upper GI bleed",
+                "lower GI bleed",
+                "UGIB",
+                "LGIB",
+                "variceal bleed",
+                "melena",
+                "hematochezia",
+                "hematemesis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "0d5edaee0c55c3a2d38653a952e82521b7352cff024406efc324200864b6687a",
+              "related": [],
+              "concepts": [
+                "gastrointestinal"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.030621785881252923,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "cc4eedfae0f20ed7b7bf1a14341d2c55bac5d24fff73e4c231e5b5011d9a4fdf",
+              "end": 499,
+              "hash": "1cfe434212c2ce49e7db7e111ccb48fdf7394c43606d088caea12b9ce27f8b66",
+              "text": "- Epistaxis with swallowed blood (anterior rhinoscopy)\n- Hemoptysis (cough-associated, frothy, pulmonary source)\n- Aortoenteric fistula (history of aortic graft, herald bleed followed by massive hemorrhage)\n- Meckel diverticulum (younger patients, painless lower GI bleed)\n- Upper GI source mimicking lower GI bleed (rapid transit UGIB causes hematochezia)\n- Iron/bismuth ingestion (black stool without occult blood positivity)\n- Coagulopathy-related bleeding (anticoagulant use, liver disease, DIC)",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:gi-hemorrhage",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Gastrointestinal Hemorrhage\nGI bleed; GI hemorrhage; upper GI bleed; lower GI bleed; UGIB; LGIB; variceal bleed; melena; hematochezia; hematemesis\nDifferential Diagnosis\n- Epistaxis with swallowed blood (anterior rhinoscopy)\n- Hemoptysis (cough-associated, frothy, pulmonary source)\n- Aortoenteric fistula (history of aortic graft, herald bleed followed by massive hemorrhage)\n- Meckel diverticulum (younger patients, painless lower GI bleed)\n- Upper GI source mimicking lower GI bleed (rapid transit UGIB causes hematochezia)\n- Iron/bismuth ingestion (black stool without occult blood positivity)\n- Coagulopathy-related bleeding (anticoagulant use, liver disease, DIC)"
+            },
+            "document": {
+              "id": "openem:gi-hemorrhage",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gi-hemorrhage.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Gastrointestinal Hemorrhage",
+              "aliases": [
+                "GI bleed",
+                "GI hemorrhage",
+                "upper GI bleed",
+                "lower GI bleed",
+                "UGIB",
+                "LGIB",
+                "variceal bleed",
+                "melena",
+                "hematochezia",
+                "hematemesis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "0d5edaee0c55c3a2d38653a952e82521b7352cff024406efc324200864b6687a",
+              "related": [],
+              "concepts": [
+                "gastrointestinal"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.0293236301369863,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "c3e1484955f5dd9c4f94d5e56afd7f8472c97bb971da87f02d1d38e6d9f11611",
+              "end": 1357,
+              "hash": "9eb360aecdf9d148e8ce0826747924aa89c44274213d0d7d06f9d52a7af1185d",
+              "text": "Your digestive or gastrointestinal (GI) tract includes the esophagus, stomach, small intestine, large intestine or colon, rectum, and anus. Bleeding can come from any of these areas. The amount of bleeding can be so small that only a lab test can find it. \n\n Signs of bleeding in the digestive tract depend on where it is and how much bleeding there is. \n\n Signs of bleeding in the upper digestive tract include: \n Bright red blood in vomit \n Vomit that looks like coffee grounds \n Black or tarry stool \n Dark blood mixed with stool \n \n\n Signs of bleeding in the lower digestive tract include: \n Black or tarry stool \n Dark blood mixed with stool \n Stool mixed or coated with bright red blood \n \n\n GI bleeding is not a disease, but a symptom of a disease. There are many possible causes of GI bleeding, including hemorrhoids , peptic ulcers , tears or inflammation in the esophagus, diverticulosis and diverticulitis , ulcerative colitis and Crohn's disease , colonic polyps , or cancer in the colon , stomach or esophagus . \n\n The test used most often to look for the cause of GI bleeding is called endoscopy . It uses a flexible instrument inserted through the mouth or rectum to view the inside of the GI tract. A type of endoscopy called colonoscopy looks at the large intestine. \n\n\n NIH: National Institute of Diabetes and Digestive and Kidney Diseases",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:1308",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Gastrointestinal Bleeding\nGI bleeding\nHealth-topic summary\nYour digestive or gastrointestinal (GI) tract includes the esophagus, stomach, small intestine, large intestine or colon, rectum, and anus. Bleeding can come from any of these areas. The amount of bleeding can be so small that only a lab test can find it. \n\n Signs of bleeding in the digestive tract depend on where it is and how much bleeding there is. \n\n Signs of bleeding in the upper digestive tract include: \n Bright red blood in vomit \n Vomit that looks like coffee grounds \n Black or tarry stool \n Dark blood mixed with stool \n \n\n Signs of bleeding in the lower digestive tract include: \n Black or tarry stool \n Dark blood mixed with stool \n Stool mixed or coated with bright red blood \n \n\n GI bleeding is not a disease, but a symptom of a disease. There are many possible causes of GI bleeding, including hemorrhoids , peptic ulcers , tears or inflammation in the esophagus, diverticulosis and diverticulitis , ulcerative colitis and Crohn's disease , colonic polyps , or cancer in the colon , stomach or esophagus . \n\n The test used most often to look for the cause of GI bleeding is called endoscopy . It uses a flexible instrument inserted through the mouth or rectum to view the inside of the GI tract. A type of endoscopy called colonoscopy looks at the large intestine. \n\n\n NIH: National Institute of Diabetes and Digestive and Kidney Diseases"
+            },
+            "document": {
+              "id": "medlineplus:1308",
+              "url": "https://medlineplus.gov/gastrointestinalbleeding.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Gastrointestinal Bleeding",
+              "aliases": [
+                "GI bleeding"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "c45e62f694a1fb179b081fb6e55437b4e4cd77581ac0e2df61503a36840c1e2c",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1226",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:357",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Gastrointestinal Hemorrhage"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.027271052146674038,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 28.412542000005487,
+          "embeddingMs": 793.1826250000158,
+          "vectorMs": 6.902249999984633,
+          "totalMs": 844.5675000000047
+        },
+        "warnings": [],
+        "embeddingTokens": 7,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "stool appearance hemoglobin oxidation",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "5bb13fe12480d14d04e30728eacbc4400b2c71f95c8c6424a6a6ad787456a52e",
+              "end": 1520,
+              "hash": "32999f67fb90bb8e7c678f3fc7ab808dc4ef05b35f7bbe19ba838db19b180e30",
+              "text": "1. **Trusting the initial hemoglobin.** In acute hemorrhage, hemoglobin does not equilibrate for 6-24 hours. A hemoglobin of 12 g/dL in a patient who vomited a liter of blood 30 minutes ago is NOT reassuring. Assess hemodynamic status (vital signs, lactate) rather than hemoglobin for acute resuscitation decisions.\n\n2. **Assuming hematochezia means lower GI source.** 15% of hematochezia is from brisk upper GI bleeding. A hemodynamically unstable patient with bright red blood per rectum should have an upper GI source considered and may need emergent EGD, not colonoscopy.\n\n3. **Forgetting aortoenteric fistula.** Any patient with prior aortic surgery (open or endovascular) presenting with GI bleeding has an aortoenteric fistula until proven otherwise. The \"herald bleed\" (small self-limited initial bleed) precedes massive exsanguinating hemorrhage by hours to days. CTA and vascular surgery consultation immediately.\n\n4. **Over-resuscitating variceal hemorrhage.** In known or suspected variceal hemorrhage, aggressive volume resuscitation raises portal pressure and increases bleeding risk. Target SBP 90-100 mmHg. Restrictive transfusion (Hgb target 7) reduces rebleeding and mortality vs liberal transfusion (NEJM 2013, Villanueva et al.).\n\n5. **Skipping rectal exam.** Stool color is critical for localization (melena → upper, maroon → mid-GI, bright red → lower or brisk upper). A rectal exam also identifies hemorrhoids, masses, and fissures. It takes 30 seconds and provides information no blood test can.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:gastrointestinal-bleeding-approach",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Gastrointestinal Bleeding — Emergency Evaluation\nGI bleed; GI hemorrhage; upper GI bleed; lower GI bleed; hematemesis; melena; hematochezia; bloody stool; vomiting blood; rectal bleeding\nPitfalls\n1. **Trusting the initial hemoglobin.** In acute hemorrhage, hemoglobin does not equilibrate for 6-24 hours. A hemoglobin of 12 g/dL in a patient who vomited a liter of blood 30 minutes ago is NOT reassuring. Assess hemodynamic status (vital signs, lactate) rather than hemoglobin for acute resuscitation decisions.\n\n2. **Assuming hematochezia means lower GI source.** 15% of hematochezia is from brisk upper GI bleeding. A hemodynamically unstable patient with bright red blood per rectum should have an upper GI source considered and may need emergent EGD, not colonoscopy.\n\n3. **Forgetting aortoenteric fistula.** Any patient with prior aortic surgery (open or endovascular) presenting with GI bleeding has an aortoenteric fistula until proven otherwise. The \"herald bleed\" (small self-limited initial bleed) precedes massive exsanguinating hemorrhage by hours to days. CTA and vascular surgery consultation immediately.\n\n4. **Over-resuscitating variceal hemorrhage.** In known or suspected variceal hemorrhage, aggressive volume resuscitation raises portal pressure and increases bleeding risk. Target SBP 90-100 mmHg. Restrictive transfusion (Hgb target 7) reduces rebleeding and mortality vs liberal transfusion (NEJM 2013, Villanueva et al.).\n\n5. **Skipping rectal exam.** Stool color is critical for localization (melena → upper, maroon → mid-GI, bright red → lower or brisk upper). A rectal exam also identifies hemorrhoids, masses, and fissures. It takes 30 seconds and provides information no blood test can.\n"
+            },
+            "document": {
+              "id": "openem:gastrointestinal-bleeding-approach",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gastrointestinal-bleeding-approach.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Gastrointestinal Bleeding — Emergency Evaluation",
+              "aliases": [
+                "GI bleed",
+                "GI hemorrhage",
+                "upper GI bleed",
+                "lower GI bleed",
+                "hematemesis",
+                "melena",
+                "hematochezia",
+                "bloody stool",
+                "vomiting blood",
+                "rectal bleeding"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "42bc5b0532aaf20783fa0cb6fc3ea1e19f6e0d52491c7f3b7f9963b440d77cc4",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03278688524590164,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n6. **Clear NG aspirate excluding upper GI bleed.** A clear NG aspirate has a negative predictive value of only 60-80% for upper GI bleeding. Duodenal bleeds distal to a closed pylorus may not reflux into the stomach. If clinical suspicion for UGIB is high despite clear aspirate, proceed with EGD.\n\n"
+            }
+          },
+          {
+            "chunk": {
+              "id": "8125a5af5c1f4f7dfcb3407677efeb9fc2cca62351ef943cf3f434c95a5a6ac5",
+              "end": 2780,
+              "hash": "d61c31a935557d640e1b4dc02e8845f71e0503fadd128ca98b5e86e4f6cd1288",
+              "text": "ic-megacolon`): bloody diarrhea with colonic dilation, IBD or C. diff\n- **Mesenteric venous thrombosis** (`acute-mesenteric-venous-thrombosis`): abdominal pain with bloody stool, hypercoagulable state\n- **Mesenteric ischemia** (`mesenteric-ischemia`): pain out of proportion with eventual bloody stool (late finding)\n\n### Urgent\n- **Diverticular bleeding** (`acute-diverticulitis`): painless massive hematochezia, typically self-limited (80%), more common in right colon. Most common cause of lower GI bleed.\n- **Sigmoid volvulus** (`sigmoid-volvulus`): distension, obstipation, may have bloody stool if ischemic\n- **Incarcerated hernia** (`incarcerated-hernia`): strangulated hernia → ischemic bowel → bloody stool\n\n### Non-Emergent\n- **Hemorrhoids:** bright red blood per rectum on toilet paper or dripping into bowl, painless (internal) or painful with thrombosis (external). Most common cause of rectal bleeding in outpatients. Diagnosis of exclusion in ED — do NOT anchor.\n- **Anal fissure:** painful bright red rectal bleeding with bowel movements\n- **Inflammatory bowel disease flare:** bloody diarrhea, crampy abdominal pain, known IBD history\n- **Angiodysplasia (AVM):** painless rectal bleeding, elderly, associated with aortic stenosis (Heyde syndrome) and renal failure",
+              "start": 1499,
+              "section": 2,
+              "documentId": "openem:gastrointestinal-bleeding-approach",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Gastrointestinal Bleeding — Emergency Evaluation\nGI bleed; GI hemorrhage; upper GI bleed; lower GI bleed; hematemesis; melena; hematochezia; bloody stool; vomiting blood; rectal bleeding\nDifferential Diagnosis\nic-megacolon`): bloody diarrhea with colonic dilation, IBD or C. diff\n- **Mesenteric venous thrombosis** (`acute-mesenteric-venous-thrombosis`): abdominal pain with bloody stool, hypercoagulable state\n- **Mesenteric ischemia** (`mesenteric-ischemia`): pain out of proportion with eventual bloody stool (late finding)\n\n### Urgent\n- **Diverticular bleeding** (`acute-diverticulitis`): painless massive hematochezia, typically self-limited (80%), more common in right colon. Most common cause of lower GI bleed.\n- **Sigmoid volvulus** (`sigmoid-volvulus`): distension, obstipation, may have bloody stool if ischemic\n- **Incarcerated hernia** (`incarcerated-hernia`): strangulated hernia → ischemic bowel → bloody stool\n\n### Non-Emergent\n- **Hemorrhoids:** bright red blood per rectum on toilet paper or dripping into bowl, painless (internal) or painful with thrombosis (external). Most common cause of rectal bleeding in outpatients. Diagnosis of exclusion in ED — do NOT anchor.\n- **Anal fissure:** painful bright red rectal bleeding with bowel movements\n- **Inflammatory bowel disease flare:** bloody diarrhea, crampy abdominal pain, known IBD history\n- **Angiodysplasia (AVM):** painless rectal bleeding, elderly, associated with aortic stenosis (Heyde syndrome) and renal failure"
+            },
+            "document": {
+              "id": "openem:gastrointestinal-bleeding-approach",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gastrointestinal-bleeding-approach.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Gastrointestinal Bleeding — Emergency Evaluation",
+              "aliases": [
+                "GI bleed",
+                "GI hemorrhage",
+                "upper GI bleed",
+                "lower GI bleed",
+                "hematemesis",
+                "melena",
+                "hematochezia",
+                "bloody stool",
+                "vomiting blood",
+                "rectal bleeding"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "42bc5b0532aaf20783fa0cb6fc3ea1e19f6e0d52491c7f3b7f9963b440d77cc4",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.030834914611005692,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "on with strangulation can cause bloody stool\n- **Ischemic colitis** (`ischemic-colitis`): bloody diarrhea in elderly, often watershed distribution, crampy abdominal pain\n- **Acute hepatic failure** (`acute-hepatic-failure`): coagulopathy causing or worsening GI hemorrhage\n- **Toxic megacolon** (`tox",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "c3e1484955f5dd9c4f94d5e56afd7f8472c97bb971da87f02d1d38e6d9f11611",
+              "end": 1357,
+              "hash": "9eb360aecdf9d148e8ce0826747924aa89c44274213d0d7d06f9d52a7af1185d",
+              "text": "Your digestive or gastrointestinal (GI) tract includes the esophagus, stomach, small intestine, large intestine or colon, rectum, and anus. Bleeding can come from any of these areas. The amount of bleeding can be so small that only a lab test can find it. \n\n Signs of bleeding in the digestive tract depend on where it is and how much bleeding there is. \n\n Signs of bleeding in the upper digestive tract include: \n Bright red blood in vomit \n Vomit that looks like coffee grounds \n Black or tarry stool \n Dark blood mixed with stool \n \n\n Signs of bleeding in the lower digestive tract include: \n Black or tarry stool \n Dark blood mixed with stool \n Stool mixed or coated with bright red blood \n \n\n GI bleeding is not a disease, but a symptom of a disease. There are many possible causes of GI bleeding, including hemorrhoids , peptic ulcers , tears or inflammation in the esophagus, diverticulosis and diverticulitis , ulcerative colitis and Crohn's disease , colonic polyps , or cancer in the colon , stomach or esophagus . \n\n The test used most often to look for the cause of GI bleeding is called endoscopy . It uses a flexible instrument inserted through the mouth or rectum to view the inside of the GI tract. A type of endoscopy called colonoscopy looks at the large intestine. \n\n\n NIH: National Institute of Diabetes and Digestive and Kidney Diseases",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:1308",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Gastrointestinal Bleeding\nGI bleeding\nHealth-topic summary\nYour digestive or gastrointestinal (GI) tract includes the esophagus, stomach, small intestine, large intestine or colon, rectum, and anus. Bleeding can come from any of these areas. The amount of bleeding can be so small that only a lab test can find it. \n\n Signs of bleeding in the digestive tract depend on where it is and how much bleeding there is. \n\n Signs of bleeding in the upper digestive tract include: \n Bright red blood in vomit \n Vomit that looks like coffee grounds \n Black or tarry stool \n Dark blood mixed with stool \n \n\n Signs of bleeding in the lower digestive tract include: \n Black or tarry stool \n Dark blood mixed with stool \n Stool mixed or coated with bright red blood \n \n\n GI bleeding is not a disease, but a symptom of a disease. There are many possible causes of GI bleeding, including hemorrhoids , peptic ulcers , tears or inflammation in the esophagus, diverticulosis and diverticulitis , ulcerative colitis and Crohn's disease , colonic polyps , or cancer in the colon , stomach or esophagus . \n\n The test used most often to look for the cause of GI bleeding is called endoscopy . It uses a flexible instrument inserted through the mouth or rectum to view the inside of the GI tract. A type of endoscopy called colonoscopy looks at the large intestine. \n\n\n NIH: National Institute of Diabetes and Digestive and Kidney Diseases"
+            },
+            "document": {
+              "id": "medlineplus:1308",
+              "url": "https://medlineplus.gov/gastrointestinalbleeding.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Gastrointestinal Bleeding",
+              "aliases": [
+                "GI bleeding"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "c45e62f694a1fb179b081fb6e55437b4e4cd77581ac0e2df61503a36840c1e2c",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1226",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:357",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Gastrointestinal Hemorrhage"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.028474711270410194,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "325cfd3248098ef13ca6838a2653175c3b856391c5952eec8875ff6affbfa776",
+              "end": 1362,
+              "hash": "8e681c60baf0b569a5a5a96332c692bc804c293657da2e85a81424171cb74565",
+              "text": "### Upper GI Bleed (proximal to ligament of Treitz)\n- **Hematemesis:** Bright red blood or coffee-ground emesis\n- **Melena:** Black, tarry, malodorous stool (requires ~150 mL blood in upper GI tract)\n- **Hematochezia from upper source:** Brisk upper GI bleed with rapid transit\n\n**Common causes:** Peptic ulcer disease (35-50%), esophageal/gastric varices (10-20%), Mallory-Weiss tear, erosive gastritis/esophagitis, Dieulafoy lesion, malignancy\n\n### Lower GI Bleed (distal to ligament of Treitz)\n- **Hematochezia:** Bright red or maroon blood per rectum\n- **Melena:** Possible from right-sided colonic or small bowel source with slow transit\n\n**Common causes:** Diverticulosis (30-40%), angiodysplasia, colitis (ischemic, infectious, IBD), hemorrhoids, post-polypectomy bleeding, malignancy\n\n### Signs of Hemodynamic Significance\n- Tachycardia (HR > 100) — earliest sign\n- Hypotension (SBP < 90) — indicates >30% blood volume loss\n- Orthostatic vital sign changes (SBP drop > 20 or HR increase > 20 on standing)\n- Altered mental status, diaphoresis, pallor\n- Syncope or pre-syncope\n- Hemoglobin < 7 g/dL or rapidly dropping\n\n### Risk Stratification\n**Glasgow-Blatchford Score (GBS)** for UGIB: Score 0-1 identifies very low risk patients suitable for outpatient management. Incorporates BUN, hemoglobin, SBP, HR, melena, syncope, hepatic disease, heart failure.",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:gi-hemorrhage",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Gastrointestinal Hemorrhage\nGI bleed; GI hemorrhage; upper GI bleed; lower GI bleed; UGIB; LGIB; variceal bleed; melena; hematochezia; hematemesis\nRecognition\n### Upper GI Bleed (proximal to ligament of Treitz)\n- **Hematemesis:** Bright red blood or coffee-ground emesis\n- **Melena:** Black, tarry, malodorous stool (requires ~150 mL blood in upper GI tract)\n- **Hematochezia from upper source:** Brisk upper GI bleed with rapid transit\n\n**Common causes:** Peptic ulcer disease (35-50%), esophageal/gastric varices (10-20%), Mallory-Weiss tear, erosive gastritis/esophagitis, Dieulafoy lesion, malignancy\n\n### Lower GI Bleed (distal to ligament of Treitz)\n- **Hematochezia:** Bright red or maroon blood per rectum\n- **Melena:** Possible from right-sided colonic or small bowel source with slow transit\n\n**Common causes:** Diverticulosis (30-40%), angiodysplasia, colitis (ischemic, infectious, IBD), hemorrhoids, post-polypectomy bleeding, malignancy\n\n### Signs of Hemodynamic Significance\n- Tachycardia (HR > 100) — earliest sign\n- Hypotension (SBP < 90) — indicates >30% blood volume loss\n- Orthostatic vital sign changes (SBP drop > 20 or HR increase > 20 on standing)\n- Altered mental status, diaphoresis, pallor\n- Syncope or pre-syncope\n- Hemoglobin < 7 g/dL or rapidly dropping\n\n### Risk Stratification\n**Glasgow-Blatchford Score (GBS)** for UGIB: Score 0-1 identifies very low risk patients suitable for outpatient management. Incorporates BUN, hemoglobin, SBP, HR, melena, syncope, hepatic disease, heart failure."
+            },
+            "document": {
+              "id": "openem:gi-hemorrhage",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gi-hemorrhage.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Gastrointestinal Hemorrhage",
+              "aliases": [
+                "GI bleed",
+                "GI hemorrhage",
+                "upper GI bleed",
+                "lower GI bleed",
+                "UGIB",
+                "LGIB",
+                "variceal bleed",
+                "melena",
+                "hematochezia",
+                "hematemesis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "0d5edaee0c55c3a2d38653a952e82521b7352cff024406efc324200864b6687a",
+              "related": [],
+              "concepts": [
+                "gastrointestinal"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.026494565217391304,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "74f9a87a6ad89f8cebc92a68177581cdbac075f06b90775b6c0cb81e481ce771",
+              "end": 1563,
+              "hash": "80c45158837c03ef839de0c6075e4004805ad9ed798aa63472454b0ab10cc3fe",
+              "text": "1. **Trusting an initial normal hemoglobin in acute hemorrhage.** Hemoglobin does not equilibrate for 6-24 hours after acute blood loss. A patient in hemorrhagic shock with a normal Hgb is still hemorrhaging. Resuscitate based on hemodynamics, not lab values.\n\n2. **Interpreting a clear NG aspirate as excluding UGIB.** A duodenal source with a competent pylorus produces a clear or bilious aspirate. NG aspirate has a 10-15% false-negative rate for UGIB. If clinical suspicion is high, proceed with upper endoscopy.\n\n3. **Missing aortoenteric fistula.** Any patient with a prior aortic graft presenting with GI bleeding has an aortoenteric fistula until proven otherwise. The \"herald bleed\" (small initial bleed) precedes catastrophic exsanguination by hours to days. CT angiography is the initial diagnostic study.\n\n4. **Aggressively resuscitating variceal hemorrhage with crystalloid.** Overaggressive volume expansion raises portal pressure and worsens variceal bleeding. Use a restrictive strategy. Transfuse to hemoglobin 7 g/dL. Start octreotide early.\n\n5. **Omitting antibiotic prophylaxis in cirrhotic patients with GI bleed.** Ceftriaxone 1 g IV daily x 7 days reduces bacterial infections and mortality in cirrhotic patients with GI hemorrhage regardless of bleed source. This is standard of care per Baveno VII.\n\n6. **Delaying endoscopy in high-risk UGIB.** Hemodynamically significant UGIB (active hematemesis, shock, bloody NG aspirate) requires endoscopy within 12 hours. Waiting for \"optimization\" in an actively hemorrhaging patient costs lives.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:gi-hemorrhage",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Gastrointestinal Hemorrhage\nGI bleed; GI hemorrhage; upper GI bleed; lower GI bleed; UGIB; LGIB; variceal bleed; melena; hematochezia; hematemesis\nPitfalls\n1. **Trusting an initial normal hemoglobin in acute hemorrhage.** Hemoglobin does not equilibrate for 6-24 hours after acute blood loss. A patient in hemorrhagic shock with a normal Hgb is still hemorrhaging. Resuscitate based on hemodynamics, not lab values.\n\n2. **Interpreting a clear NG aspirate as excluding UGIB.** A duodenal source with a competent pylorus produces a clear or bilious aspirate. NG aspirate has a 10-15% false-negative rate for UGIB. If clinical suspicion is high, proceed with upper endoscopy.\n\n3. **Missing aortoenteric fistula.** Any patient with a prior aortic graft presenting with GI bleeding has an aortoenteric fistula until proven otherwise. The \"herald bleed\" (small initial bleed) precedes catastrophic exsanguination by hours to days. CT angiography is the initial diagnostic study.\n\n4. **Aggressively resuscitating variceal hemorrhage with crystalloid.** Overaggressive volume expansion raises portal pressure and worsens variceal bleeding. Use a restrictive strategy. Transfuse to hemoglobin 7 g/dL. Start octreotide early.\n\n5. **Omitting antibiotic prophylaxis in cirrhotic patients with GI bleed.** Ceftriaxone 1 g IV daily x 7 days reduces bacterial infections and mortality in cirrhotic patients with GI hemorrhage regardless of bleed source. This is standard of care per Baveno VII.\n\n6. **Delaying endoscopy in high-risk UGIB.** Hemodynamically significant UGIB (active hematemesis, shock, bloody NG aspirate) requires endoscopy within 12 hours. Waiting for \"optimization\" in an actively hemorrhaging patient costs lives.\n"
+            },
+            "document": {
+              "id": "openem:gi-hemorrhage",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/gi-hemorrhage.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Gastrointestinal Hemorrhage",
+              "aliases": [
+                "GI bleed",
+                "GI hemorrhage",
+                "upper GI bleed",
+                "lower GI bleed",
+                "UGIB",
+                "LGIB",
+                "variceal bleed",
+                "melena",
+                "hematochezia",
+                "hematemesis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "0d5edaee0c55c3a2d38653a952e82521b7352cff024406efc324200864b6687a",
+              "related": [],
+              "concepts": [
+                "gastrointestinal"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.02357456140350877,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n7. **Forgetting to reverse anticoagulants.** Warfarin: 4-factor PCC 25-50 units/kg IV provides immediate reversal (faster than FFP). Vitamin K 10 mg IV takes 6-12 hours for full effect. DOACs: idarucizumab for dabigatran; andexanet alfa or PCC for factor Xa inhibitors.\n\n8. **Attributing hematochezi"
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 40.14587499998743,
+          "embeddingMs": 1858.6280839999963,
+          "vectorMs": 6.35708399998839,
+          "totalMs": 1911.9100000000035
+        },
+        "warnings": [],
+        "embeddingTokens": 6,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "accept",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "Self care is appropriate for an educational question with explicit denial of the quoted symptoms; no current assessment need is reported.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I do not have any of those symptoms."
+            },
+            {
+              "unit": "patient",
+              "quote": "I only want to understand what the phrase black tarry stool means."
+            },
+            {
+              "unit": "draft",
+              "quote": "\"disposition\":\"SELF_CARE\""
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "The draft does not mistake leaflet examples for current emergencies. Emergency advice is conditional on future bleeding symptoms.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "No visit is needed for this question."
+            },
+            {
+              "unit": "draft",
+              "quote": "If you ever pass black tarry stool or vomit blood or coffee-ground material, seek emergency assessment"
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "The draft correctly identifies an informational request and explicit symptom denials without inventing findings or vital signs.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I am reading a health leaflet."
+            },
+            {
+              "unit": "draft",
+              "quote": "Purely educational terminology question from a leaflet, with explicit statement that none of the listed symptoms are present."
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "pass",
+          "reason": "The definition, possible bleeding locations and medication-related dark stool are supported. Emergency assessment for overt bleeding and EMS for associated faintness are reasonable clinical inferences from bleeding and hemodynamic-significance evidence, not falsely attributed source rules.",
+          "anchors": [
+            {
+              "unit": "source:325cfd3248098ef13ca6838a2653175c3b856391c5952eec8875ff6affbfa776",
+              "quote": "**Melena:** Black, tarry, malodorous stool"
+            },
+            {
+              "unit": "source:325cfd3248098ef13ca6838a2653175c3b856391c5952eec8875ff6affbfa776",
+              "quote": "**Melena:** Possible from right-sided colonic or small bowel source with slow transit"
+            },
+            {
+              "unit": "source:325cfd3248098ef13ca6838a2653175c3b856391c5952eec8875ff6affbfa776",
+              "quote": "Syncope or pre-syncope"
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "pass",
+          "reason": "The conditional safety net identifies significant bleeding signs, emergency assessment and explicit 911 escalation for fainting or marked faintness.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "If you ever pass black tarry stool or vomit blood or coffee-ground material, seek emergency assessment; call 911 if that bleeding comes with fainting or marked faintness."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No question was issued, and no unnecessary clarification blocks the educational answer.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"questions\":[]"
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "The draft names Counsel as a resource without claiming an accepted handoff, response time, prescription or completed follow-up. No clinician follow-up plan is needed for the stated request.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Counsel is here if questions come up."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "none",
+      "earlyCorrection": null,
+      "correction": "",
+      "evidenceQueries": []
+    },
+    "release": "clinician_required",
+    "clinicalApproval": false,
+    "corrections": 1,
+    "careCorrectionReleased": false,
+    "sourceIntegrity": true,
+    "citations": []
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "clinical-evidence-graph",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "ed6d1234-7ea2-4d60-a417-6716612820fb",
+  "traceId": "3d763bdc99c16a3982f5f6562271f57d",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "I am reading a health leaflet. It lists \"black tarry stool\", \"crushing chest pressure\" and \"worst headache of my life\". I do not have any of those symptoms. I only want to understand what the phrase black tarry stool means.",
+  "inputHash": "959c974f59faad50eb48cee752b986d0ee1eb30f449affcd2752a7846287093d",
+  "answerHash": "cba974fa31aa7cbe32221e2fa46d98fb1c431b3736588d2d962326d54a596a32",
+  "promptHash": "159c8970404e7edee74ec214710b64bfe4bc94bc42b10fe4aea5c9b8a36aaca9",
+  "guidanceHash": "0340fce3b11f2c32d153bbf644e2db6d9b8451566b3e67bf51d48042c1736761",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-14T03:08:27.607Z",
+  "durationMs": 73564,
+  "workflowDurationMs": 73453,
+  "tracePersistenceDurationMs": 111,
+  "steps": [
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 1598
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 22728
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 50712
+    }
+  ],
+  "responseEvents": [],
+  "safetyNotices": [],
+  "firstActionMs": null,
+  "firstPatientReplyMs": null,
+  "firstQuestionMs": null
+}

@@ -1,0 +1,2229 @@
+{
+  "status": "review_required",
+  "answer": {
+    "disposition": "EMERGENCY_NOW",
+    "reviewPriority": null,
+    "workType": null,
+    "reason": "The automated assessment needs clinician review; this is a conservative workflow fallback, not a new clinical finding.",
+    "patientMessage": "Call 911 now. Do not drive yourself or wait for a message reply.",
+    "differential": [],
+    "redFlags": [],
+    "vitalSigns": "The automated assessment has not established the vital-sign context.",
+    "questions": [],
+    "evidence": [],
+    "evidenceLimitations": "No model-reviewed clinical explanation has been released. The draft and review outcome are retained for clinician assessment."
+  },
+  "origin": "validation_safeguard",
+  "modelCalls": 6,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "acute chest pain with radiation to left arm sweating nausea"
+        ],
+        "findings": [
+          {
+            "finding": "Crushing central chest pressure",
+            "status": "reported",
+            "quote": "crushing pressure in the center of my chest for the last 30 minutes"
+          },
+          {
+            "finding": "Pain radiating to left arm",
+            "status": "reported",
+            "quote": "it's going into my left arm"
+          },
+          {
+            "finding": "Diaphoresis",
+            "status": "reported",
+            "quote": "feel sweaty"
+          },
+          {
+            "finding": "Nausea",
+            "status": "reported",
+            "quote": "a bit sick to my stomach"
+          },
+          {
+            "finding": "High cholesterol",
+            "status": "reported",
+            "quote": "I have high cholesterol"
+          },
+          {
+            "finding": "Symptom duration 30 minutes",
+            "status": "reported",
+            "quote": "for the last 30 minutes"
+          }
+        ],
+        "question": null
+      },
+      "usage": {
+        "inputTokens": 1807,
+        "outputTokens": 206
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1384,
+      "streamProgress": {
+        "lastTextDeltaMs": 5862,
+        "textDeltaCount": 170,
+        "textCharacters": 712
+      },
+      "durationMs": 6011
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "EMERGENCY_NOW",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "45-year-old with 30 minutes of crushing central chest pressure radiating to the left arm, with diaphoresis and nausea, plus hyperlipidemia. This symptom cluster is a classic possible acute coronary syndrome presentation requiring immediate EMS transport, ECG and troponin — not asynchronous review.",
+        "patientMessage": "Call 911 now and do not drive yourself. Your crushing central chest pressure lasting 30 minutes, spreading to your left arm, with sweating and nausea, can mean a heart attack and needs emergency assessment immediately. Stay with someone and unlock your door for paramedics. Do not wait for a reply in this thread or for any clinician review before calling.",
+        "differential": [
+          "Acute coronary syndrome / myocardial infarction",
+          "Aortic dissection",
+          "Pulmonary embolism"
+        ],
+        "redFlags": [
+          {
+            "concern": "Crushing central chest pressure >20 minutes",
+            "status": "reported",
+            "quote": "crushing pressure in the center of my chest for the last 30 minutes"
+          },
+          {
+            "concern": "Radiation to left arm",
+            "status": "reported",
+            "quote": "it's going into my left arm"
+          },
+          {
+            "concern": "Diaphoresis",
+            "status": "reported",
+            "quote": "I feel sweaty"
+          },
+          {
+            "concern": "Nausea",
+            "status": "reported",
+            "quote": "a bit sick to my stomach"
+          },
+          {
+            "concern": "Cardiac risk factor: hyperlipidemia",
+            "status": "reported",
+            "quote": "I have high cholesterol"
+          },
+          {
+            "concern": "Shortness of breath",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Syncope or light-headedness",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Tearing pain to back (dissection)",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Stimulant/cocaine use in past 72 hours",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs provided: blood pressure, heart rate, respiratory rate, oxygen saturation and temperature were not reported in this message. Absence of reported values does not mean they are normal or unmeasured.",
+        "questions": [],
+        "evidenceLimitations": "Supplied sources are consumer patient summaries and an agent-compiled emergency-department synthesis; neither is a telehealth routing protocol, and neither dictates this channel decision. The routing choice is my clinical inference from the patient's reported features. No ECG, troponin, vitals or examination is available, so diagnosis cannot be confirmed or excluded remotely; alternatives such as aortic dissection or pulmonary embolism remain possible and require in-person emergency testing.",
+        "citations": [
+          {
+            "passageId": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+            "quote": "Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath.",
+            "claim": "Crushing chest pressure with nausea and sweating warrants immediate medical care.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary, not a guideline; does not specify telehealth routing."
+          },
+          {
+            "passageId": "6678de85ca9c75685ac1f8f69d3890b2d0aa37ba94b2ec57161c0a01d40caf5c",
+            "quote": "Chest pain, heaviness, or discomfort in the center or left side of the chest (this is the most common symptom)",
+            "claim": "Central chest pressure with arm pain, sweating and nausea matches described heart attack symptoms.",
+            "applicability": "applicable",
+            "limitation": "Symptom lists are not diagnostic; confirmation requires ECG/troponin."
+          },
+          {
+            "passageId": "19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+            "quote": "Duration: seconds (usually benign), > 20 minutes (concerning for ACS)",
+            "claim": "Pressure-type chest pain lasting over 20 minutes with arm radiation is concerning for ACS.",
+            "applicability": "uncertain",
+            "limitation": "Agent-compiled secondary ED synthesis, currency not assessed; not a primary guideline."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 7735,
+        "outputTokens": 1440
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1519,
+      "streamProgress": {
+        "lastTextDeltaMs": 22194,
+        "textDeltaCount": 347,
+        "textCharacters": 3756
+      },
+      "durationMs": 22270
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "action": "EMS_NOW",
+        "basis": [
+          {
+            "quote": "crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach",
+            "interpretation": "Classic acute coronary syndrome presentation with chest pressure radiating to left arm, diaphoresis, and nausea in a patient with cardiovascular risk factor (high cholesterol). Time-critical emergency requiring immediate advanced life support evaluation and transport.",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "high cholesterol",
+            "interpretation": "Established cardiovascular risk factor increasing acute coronary event likelihood and supporting emergent evaluation.",
+            "currentPatient": true,
+            "present": true
+          }
+        ],
+        "reason": "Acute chest pressure with arm radiation, diaphoresis, and nausea in a patient with high cholesterol is a medical emergency consistent with acute coronary syndrome. This requires immediate EMS evaluation, cardiac monitoring, and hospital-level care.",
+        "patientMessage": "Call 911 or your local emergency number immediately. Describe your chest pressure, left arm discomfort, sweating and nausea to the dispatcher. Chew aspirin if available and not allergic. Do not drive yourself."
+      },
+      "usage": {
+        "inputTokens": 1793,
+        "outputTokens": 265
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1984,
+      "streamProgress": {
+        "lastTextDeltaMs": 4450,
+        "textDeltaCount": 95,
+        "textCharacters": 1203
+      },
+      "durationMs": 4519
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "verdict": "revise",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Immediate emergency activation appropriately addresses ongoing symptoms concerning for acute coronary syndrome.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "crushing pressure in the center of my chest for the last 30 minutes"
+              },
+              {
+                "unit": "draft",
+                "quote": "Call 911 now and do not drive yourself."
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "Emergency transport is justified by present prolonged crushing chest pressure with arm radiation and autonomic symptoms, not by missing information or cholesterol alone. The early action is independently supported.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "it's going into my left arm and I feel sweaty and a bit sick to my stomach"
+              },
+              {
+                "unit": "early",
+                "quote": "Call 911 now. Do not drive yourself or wait for a message reply."
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "Reported symptoms and risk factor are accurately represented. Unreported associated symptoms and vital signs remain unknown, and heart attack is presented as a possibility rather than a confirmed diagnosis.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I have high cholesterol."
+              },
+              {
+                "unit": "draft",
+                "quote": "Absence of reported values does not mean they are normal or unmeasured."
+              },
+              {
+                "unit": "draft",
+                "quote": "can mean a heart attack"
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "fail",
+            "reason": "The supplied consumer passages support the symptom interpretation and immediate medical care. However, the actual excerpts do not support the specific EMS/no-driving instructions, and ECG/troponin requirements rest only on an unverified research synthesis. A source header describing emergency transport is not substantive transport guidance. These *",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "requiring immediate EMS transport, ECG and troponin"
+              },
+              {
+                "unit": "source:07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+                "quote": "Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath."
+              },
+              {
+                "unit": "source:575b71f9a6f96d2b9d9aa5586fa84978660a00743e5e42bfead957fa698639d0",
+                "quote": "Always obtain ECG and troponin regardless of initial impression."
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "Explicit immediate 911 instructions and avoidance of self-transport or waiting are appropriate; conditional deterioration advice is unnecessary when emergency activation is already required.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Do not wait for a reply in this thread or for any clinician review before calling."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No questions or history requirements delay emergency action.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              },
+              {
+                "unit": "draft",
+                "quote": "Call 911 now"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "The draft directs emergency activation without claiming dispatch, completed handoff, prescribing, scheduled follow-up, or resolution.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "needs emergency assessment immediately"
+              },
+              {
+                "unit": "draft",
+                "quote": "Do not wait for a reply in this thread or for any clinician review before calling."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "supported",
+        "earlyCorrection": null,
+        "correction": "Keep EMERGENCY_NOW and the immediate 911/no-driving instruction unchanged. Repair the evidence supporting emergency transport and ECG/troponin assessment with directly applicable clinical sources; do not treat the synthesis as independent guideline authority. Support or omit ancillary paramedic-preparation advice. Evidence repair must not delay emergency action.",
+        "evidenceQueries": [
+          "suspected heart attack emergency transport",
+          "acute chest pain ECG troponin evaluation"
+        ]
+      },
+      "usage": {
+        "inputTokens": 4810,
+        "outputTokens": 1034
+      },
+      "failure": null,
+      "firstTextDeltaMs": 2014,
+      "streamProgress": {
+        "lastTextDeltaMs": 16516,
+        "textDeltaCount": 1004,
+        "textCharacters": 4307
+      },
+      "durationMs": 16679
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "EMERGENCY_NOW",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "45-year-old with 30 minutes of ongoing crushing central chest pressure radiating to the left arm, with diaphoresis and nausea, plus hyperlipidemia. This present symptom cluster is concerning for possible acute coronary syndrome and requires immediate emergency care by ambulance; asynchronous review is inappropriate. Aortic dissection and pulmonary embolism remain possible and cannot be assessed remotely. Routing is my clinical inference; the supplied consumer sources support calling 9-1-1 and not driving for suspected heart attack.",
+        "patientMessage": "Call 9-1-1 now and do not drive yourself or have someone drive you — an ambulance is the safest way to get to the hospital. Crushing central chest pressure lasting 30 minutes, spreading to your left arm, with sweating and nausea, can mean a heart attack and needs emergency assessment immediately. Do not wait for a reply in this thread or for any clinician review before calling.",
+        "differential": [
+          "Acute coronary syndrome / myocardial infarction",
+          "Aortic dissection",
+          "Pulmonary embolism"
+        ],
+        "redFlags": [
+          {
+            "concern": "Crushing central chest pressure ongoing >20 minutes",
+            "status": "reported",
+            "quote": "crushing pressure in the center of my chest for the last 30 minutes"
+          },
+          {
+            "concern": "Radiation to left arm",
+            "status": "reported",
+            "quote": "it's going into my left arm"
+          },
+          {
+            "concern": "Diaphoresis",
+            "status": "reported",
+            "quote": "I feel sweaty"
+          },
+          {
+            "concern": "Nausea",
+            "status": "reported",
+            "quote": "a bit sick to my stomach"
+          },
+          {
+            "concern": "Cardiac risk factor: hyperlipidemia",
+            "status": "reported",
+            "quote": "I have high cholesterol"
+          },
+          {
+            "concern": "Shortness of breath",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Syncope or light-headedness",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Tearing pain radiating to back (dissection)",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Stimulant/cocaine use in past 72 hours",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs provided in this message: blood pressure, heart rate, respiratory rate, oxygen saturation and temperature were not reported. Absence of reported values does not mean they are normal or that they were never measured.",
+        "questions": [],
+        "evidenceLimitations": "Supplied sources are consumer patient summaries and agent-compiled emergency-department syntheses; none is a telehealth routing protocol and none dictates this channel decision. Patient education material directly supports calling 9-1-1 and travelling by ambulance rather than driving for suspected heart attack. In-hospital testing targets (ECG/troponin timing) appear only in unverified secondary syntheses, so I do not cite them as authoritative and have removed specific test claims from the recommendation; they do not change routing. No ECG, troponin, vitals or examination is available, so ACS cannot be confirmed or excluded remotely, and aortic dissection or pulmonary embolism remain possible.",
+        "citations": [
+          {
+            "passageId": "e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+            "quote": "Call 9-1-1 for emergency medical care, even if you are not sure that you’re having a heart attack.",
+            "claim": "Suspected heart attack symptoms warrant calling 9-1-1 immediately even without certainty.",
+            "applicability": "applicable",
+            "limitation": "Patient education material, not a guideline; does not address telehealth routing."
+          },
+          {
+            "passageId": "e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+            "quote": "An ambulance is the best and safest way to get to the hospital. Do not drive to the hospital or let someone else drive you.",
+            "claim": "Supports ambulance transport rather than self-driving for suspected heart attack.",
+            "applicability": "applicable",
+            "limitation": "Consumer education; no guarantee of specific EMS interventions or response."
+          },
+          {
+            "passageId": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+            "quote": "Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath.",
+            "claim": "Crushing persistent chest pressure with nausea and sweating warrants immediate medical care.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary; symptom lists are not diagnostic."
+          },
+          {
+            "passageId": "6678de85ca9c75685ac1f8f69d3890b2d0aa37ba94b2ec57161c0a01d40caf5c",
+            "quote": "Chest pain, heaviness, or discomfort in the center or left side of the chest (this is the most common symptom)",
+            "claim": "Central chest pressure with arm pain, sweating and nausea matches described heart attack symptoms.",
+            "applicability": "applicable",
+            "limitation": "Symptom match is not diagnosis; confirmation requires in-person emergency evaluation."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 14171,
+        "outputTokens": 1755
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1781,
+      "streamProgress": {
+        "lastTextDeltaMs": 24367,
+        "textDeltaCount": 377,
+        "textCharacters": 4721
+      },
+      "durationMs": 24383
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "verdict": "accept",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Immediate EMS activation matches the ongoing potentially time-critical chest-pain presentation and explicitly bypasses asynchronous review.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "crushing pressure in the center of my chest for the last 30 minutes"
+              },
+              {
+                "unit": "draft",
+                "quote": "Call 9-1-1 now"
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "Emergency transport is justified by present chest pressure with arm radiation, sweating and nausea, not by unknown findings or cholesterol alone. The independent early EMS action is also supported.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "it's going into my left arm and I feel sweaty and a bit sick to my stomach"
+              },
+              {
+                "unit": "early",
+                "quote": "Call 911 now. Do not drive yourself or wait for a message reply."
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "Reported symptoms and risk factor are accurately represented. Unreported symptoms and vital signs remain unknown; possible diagnoses are not asserted as established.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I have high cholesterol."
+              },
+              {
+                "unit": "draft",
+                "quote": "Absence of reported values does not mean they are normal or that they were never measured."
+              },
+              {
+                "unit": "draft",
+                "quote": "concerning for possible acute coronary syndrome"
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "Consumer education adequately supports the material routing advice: suspected heart attack warrants immediate 911 activation and ambulance transport. The full symptom source supports the symptom cluster, although the selected citation excerpt is narrower. Alternative diagnoses are framed only as possibilities, and unverified synthesis testing or AI",
+            "anchors": [
+              {
+                "unit": "source:e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+                "quote": "Call 9-1-1 for emergency medical care, even if you are not sure that you’re having a heart attack."
+              },
+              {
+                "unit": "source:e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+                "quote": "An ambulance is the best and safest way to get to the hospital. Do not drive to the hospital or let someone else drive you."
+              },
+              {
+                "unit": "source:07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+                "quote": "Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath."
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "The emergency instruction is immediate and unconditional, includes safe transport, and explicitly warns against waiting for thread review. A conditional worsening instruction is unnecessary when emergency action is already required.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Do not wait for a reply in this thread or for any clinician review before calling."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No additional questions or prescribing checks delay emergency action.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              },
+              {
+                "unit": "context",
+                "quote": "\"question\":null"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "The response directs the patient to activate EMS without claiming a completed handoff, promising service availability, or implying that this thread resolves the episode.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "requires immediate emergency care by ambulance; asynchronous review is inappropriate."
+              },
+              {
+                "unit": "draft",
+                "quote": "needs emergency assessment immediately."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "supported",
+        "earlyCorrection": null,
+        "correction": "",
+        "evidenceQueries": []
+      },
+      "usage": {
+        "inputTokens": 7766,
+        "outputTokens": 1056
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1710,
+      "streamProgress": {
+        "lastTextDeltaMs": 16185,
+        "textDeltaCount": 1049,
+        "textCharacters": 4542
+      },
+      "durationMs": 16295
+    }
+  ],
+  "guidance": [
+    {
+      "id": "19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+      "title": "Chest Pain — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+      "section": "Recognition",
+      "summary": "Chest pain accounts for approximately 6-8 million ED visits annually in the US (5-8% of all ED visits). Fewer than 25% have an acute coronary syndrome; the challenge is identifying the minority with life-threatening causes.\n\n**Key history elements:**\n- Onset: sudden vs gradual; activity at onset\n- Character: pressure/squeezing (ACS), tearing/ripping (dissection), sharp/pleuritic (PE, pneumothorax, pericarditis)\n- Radiation: arm/jaw (ACS), back/interscapular (dissection), unilateral (pleuritic)\n- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)\n- Associated symptoms: diaphoresis, dyspnea, syncope, nausea\n- Positional: worse supine/improved leaning forward (pericarditis)\n- Prior history: known CAD, PE, DVT, connective tissue disease, recent procedures/immobilization\n- Cocaine or stimulant use within 72 hours\n\n**High-risk populations for atypical presentations:**\n- Women: more likely to present with dyspnea, nausea, fatigue, back/jaw pain\n- Elderly (> 75): painless MI in up to 60%\n- Diabetics: autonomic neuropathy masks angina\n- Post-surgical/immobilized: PE risk\n\n**Epidemiology of serious causes:**\n- ACS: 10-15% of ED chest pain presentations\n- PE: 2-5%\n- Aortic dissection: < 1% but > 25% mortality if missed\n- Pneumothorax: 1-2%",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+          "sourceId": "openem:chest-pain",
+          "excerpt": "Chest pain accounts for approximately 6-8 million ED visits annually in the US (5-8% of all ED visits). Fewer than 25% have an acute coronary syndrome; the challenge is identifying the minority with life-threatening causes.\n\n**Key history elements:**\n- Onset: sudden vs gradual; activity at onset\n- Character: pressure/squeezing (ACS), tearing/ripping (dissection), sharp/pleuritic (PE, pneumothorax, pericarditis)\n- Radiation: arm/jaw (ACS), back/interscapular (dissection), unilateral (pleuritic)\n- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)\n- Associated symptoms: diaphoresis, dyspnea, syncope, nausea\n- Positional: worse supine/improved leaning forward (pericarditis)\n- Prior history: known CAD, PE, DVT, connective tissue disease, recent procedures/immobilization\n- Cocaine or stimulant use within 72 hours\n\n**High-risk populations for atypical presentations:**\n- Women: more likely to present with dyspnea, nausea, fatigue, back/jaw pain\n- Elderly (> 75): painless MI in up to 60%\n- Diabetics: autonomic neuropathy masks angina\n- Post-surgical/immobilized: PE risk\n\n**Epidemiology of serious causes:**\n- ACS: 10-15% of ED chest pain presentations\n- PE: 2-5%\n- Aortic dissection: < 1% but > 25% mortality if missed\n- Pneumothorax: 1-2%",
+          "excerptSha256": "34e2b67bcc7402aa854897a64bda2e3acba3f6ef414d369c44e42fbbe59179e9",
+          "retrievedAt": "2026-09-13T23:53:28.155Z",
+          "sourceContentHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+      "title": "Chest Pain",
+      "url": "https://medlineplus.gov/chestpain.html",
+      "section": "Health-topic summary",
+      "summary": "Having a pain in your chest can be scary. It does not always mean that you are having a heart attack . There can be many other causes, including: \n Other heart problems, such as angina \n Panic attacks \n Digestive problems, such as heartburn or esophagus disorders \n Sore muscles \n Lung diseases, such as pneumonia , pleurisy , or pulmonary embolism \n Costochondritis - an inflammation of joints in your chest \n \n\n Some of these problems can be serious. Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath. Treatment depends on the cause of the pain.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+          "sourceId": "medlineplus:4744",
+          "excerpt": "Having a pain in your chest can be scary. It does not always mean that you are having a heart attack . There can be many other causes, including: \n Other heart problems, such as angina \n Panic attacks \n Digestive problems, such as heartburn or esophagus disorders \n Sore muscles \n Lung diseases, such as pneumonia , pleurisy , or pulmonary embolism \n Costochondritis - an inflammation of joints in your chest \n \n\n Some of these problems can be serious. Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath. Treatment depends on the cause of the pain.",
+          "excerptSha256": "3c4f7db5a65ad5bc93659ca9dd5bf3d34dde62438bafe5aaf972dddc31ee68bc",
+          "retrievedAt": "2026-09-13T23:53:28.155Z",
+          "sourceContentHash": "7b170b3bcd033cd1fe978fd52e16baf1463a93b60ca6c006fef0ef1ab61175cc",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "6678de85ca9c75685ac1f8f69d3890b2d0aa37ba94b2ec57161c0a01d40caf5c",
+      "title": "Heart Attack — Symptoms and emergency action",
+      "url": "https://www.nhlbi.nih.gov/health/heart-attack/symptoms",
+      "section": "What are the symptoms of a heart attack?",
+      "summary": "If you are having a heart attack, you may experience one or more of the symptoms below.\n\nChest pain, heaviness, or discomfort in the center or left side of the chest (this is the most common symptom)\n\nPain or discomfort in one or both arms, your back, shoulders, neck, jaw, or above your belly button\n\nShortness of breath when resting or doing a little bit of physical activity (this is more common in older adults)\n\nSweating a lot for no reason\n\nFeeling unusually tired for no reason, sometimes for days (this is more common in women)\n\nNausea (feeling sick to the stomach) and vomiting\n\nLight-headedness or sudden dizziness\n\nRapid or irregular heartbeat\n\nIt is also possible to have mild symptoms or even no symptoms at all and still have a heart attack.",
+      "reviewedAt": "2022-03-24",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Official patient education about heart attack symptoms and emergency transport, not a prescribing protocol or guarantee of specific EMS interventions. Webpage date is not an independent currency or applicability review.",
+      "retrievedPassages": [
+        {
+          "id": "6678de85ca9c75685ac1f8f69d3890b2d0aa37ba94b2ec57161c0a01d40caf5c",
+          "sourceId": "nhlbi:heart-attack-symptoms",
+          "excerpt": "If you are having a heart attack, you may experience one or more of the symptoms below.\n\nChest pain, heaviness, or discomfort in the center or left side of the chest (this is the most common symptom)\n\nPain or discomfort in one or both arms, your back, shoulders, neck, jaw, or above your belly button\n\nShortness of breath when resting or doing a little bit of physical activity (this is more common in older adults)\n\nSweating a lot for no reason\n\nFeeling unusually tired for no reason, sometimes for days (this is more common in women)\n\nNausea (feeling sick to the stomach) and vomiting\n\nLight-headedness or sudden dizziness\n\nRapid or irregular heartbeat\n\nIt is also possible to have mild symptoms or even no symptoms at all and still have a heart attack.",
+          "excerptSha256": "28b10cf4a1fa0d4ce602fbc4a13daa42851ecdb77b797139504811167519ae42",
+          "retrievedAt": "2026-09-13T23:53:28.155Z",
+          "sourceContentHash": "0e38245e8b966c342901981bd09128bc8ab8b5ae33f687a45af4ae3d815dcdb4",
+          "kind": "patient_summary",
+          "limitations": "Official patient education about heart attack symptoms and emergency transport, not a prescribing protocol or guarantee of specific EMS interventions. Webpage date is not an independent currency or applicability review."
+        }
+      ]
+    },
+    {
+      "id": "e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+      "title": "Heart Attack — Symptoms and emergency action",
+      "url": "https://www.nhlbi.nih.gov/health/heart-attack/symptoms",
+      "section": "When to call 9-1-1",
+      "summary": "Any time you think you might be having a heart attack, don’t ignore it. Call 9-1-1 for emergency medical care, even if you are not sure that you’re having a heart attack.\n\nActing fast can limit damage to your heart and save your life. The 9-1-1 operator or emergency medical services (EMS) personnel can give you advice that can help prevent damage to your heart.\n\nAn ambulance is the best and safest way to get to the hospital. Do not drive to the hospital or let someone else drive you. EMS personnel can check how you are doing and start tests and lifesaving medicines right away. People who arrive by ambulance often get faster treatment at the hospital.\n\nEvery minute matters. Never delay calling 9-1-1, taking aspirin or doing anything else you think might help.\n\nKnowing the difference between stable angina (chest pain in people who have coronary artery disease) and a heart attack is important.\n\nThe pain from angina usually happens after physical activity and goes away in a few minutes when you rest or take medicine to treat it.\n\nThe pain from a heart attack is more serious than the pain from angina. Heart attack pain doesn’t go away when you rest or take medicine.\n\nIf you don’t know whether your chest pain is angina or a heart attack, call 9-1-1.",
+      "reviewedAt": "2022-03-24",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Official patient education about heart attack symptoms and emergency transport, not a prescribing protocol or guarantee of specific EMS interventions. Webpage date is not an independent currency or applicability review.",
+      "retrievedPassages": [
+        {
+          "id": "e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+          "sourceId": "nhlbi:heart-attack-symptoms",
+          "excerpt": "Any time you think you might be having a heart attack, don’t ignore it. Call 9-1-1 for emergency medical care, even if you are not sure that you’re having a heart attack.\n\nActing fast can limit damage to your heart and save your life. The 9-1-1 operator or emergency medical services (EMS) personnel can give you advice that can help prevent damage to your heart.\n\nAn ambulance is the best and safest way to get to the hospital. Do not drive to the hospital or let someone else drive you. EMS personnel can check how you are doing and start tests and lifesaving medicines right away. People who arrive by ambulance often get faster treatment at the hospital.\n\nEvery minute matters. Never delay calling 9-1-1, taking aspirin or doing anything else you think might help.\n\nKnowing the difference between stable angina (chest pain in people who have coronary artery disease) and a heart attack is important.\n\nThe pain from angina usually happens after physical activity and goes away in a few minutes when you rest or take medicine to treat it.\n\nThe pain from a heart attack is more serious than the pain from angina. Heart attack pain doesn’t go away when you rest or take medicine.\n\nIf you don’t know whether your chest pain is angina or a heart attack, call 9-1-1.",
+          "excerptSha256": "1cf2ebc280b306e0c2ffa44a84a99b58b4dd8dcd16ab3866fbf7381c2faf84f2",
+          "retrievedAt": "2026-09-13T23:53:28.155Z",
+          "sourceContentHash": "0e38245e8b966c342901981bd09128bc8ab8b5ae33f687a45af4ae3d815dcdb4",
+          "kind": "patient_summary",
+          "limitations": "Official patient education about heart attack symptoms and emergency transport, not a prescribing protocol or guarantee of specific EMS interventions. Webpage date is not an independent currency or applicability review."
+        }
+      ]
+    },
+    {
+      "id": "c6fa955f98b27c58f4ef01fb809f66882cc486332ef3bf7e110c5ae11eb09ed7",
+      "title": "Chest Pain — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+      "section": "Critical Actions",
+      "summary": "| Action | Target |\n|---|---|\n| ECG acquisition | < 10 minutes from arrival |\n| Troponin drawn | < 30 minutes from arrival |\n| Chest X-ray | < 60 minutes (do not delay if ACS suspected) |\n| Repeat ECG if initial non-diagnostic | Every 15-30 minutes with ongoing symptoms |\n\n**Immediate evaluation algorithm:**\n\n1. **Assess hemodynamic stability.** Unstable patients (hypotension, acute respiratory distress, altered consciousness) → resuscitation bay, large-bore IV access, continuous monitoring.\n\n2. **Obtain 12-lead ECG within 10 minutes.** STEMI → immediate cath lab activation (see `stemi`). New LBBB → apply Sgarbossa criteria.\n\n3. **Targeted physical exam in parallel with ECG:**\n   - Bilateral arm blood pressures (> 20 mmHg differential → aortic dissection)\n   - Lung auscultation (unilateral absent breath sounds → pneumothorax)\n   - Heart sounds (muffled → tamponade; friction rub → pericarditis)\n   - JVD assessment\n   - Lower extremity edema/asymmetry (DVT → PE)\n   - Subcutaneous emphysema (esophageal rupture, pneumomediastinum)\n\n4. **Risk stratify based on initial ECG and exam:**\n   - ST elevation → `stemi` pathway\n   - Hemodynamically unstable → immediate bedside ultrasound (tamponade, RV strain, pneumothorax, aortic root dilation)\n   - Pleuritic + tachycardia → evaluate for PE (Wells → D-dimer or CTA)\n   - Tearing pain + BP differential → CTA aorta for dissection\n   - Non-diagnostic ECG, stable → apply HEART Score\n\n5. **Serial troponin.** High-sensitivity troponin at 0 and 1-3 hours (institution-dependent protocol). Do NOT wait for troponin to activate cath lab for STEMI.\n\n6. **HEART Score stratification (for stable patients without clear diagnosis):**\n   - 0-3: Low risk (MACE < 2%). Consider discharge with outpatient follow-up.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "c6fa955f98b27c58f4ef01fb809f66882cc486332ef3bf7e110c5ae11eb09ed7",
+          "sourceId": "openem:chest-pain",
+          "excerpt": "| Action | Target |\n|---|---|\n| ECG acquisition | < 10 minutes from arrival |\n| Troponin drawn | < 30 minutes from arrival |\n| Chest X-ray | < 60 minutes (do not delay if ACS suspected) |\n| Repeat ECG if initial non-diagnostic | Every 15-30 minutes with ongoing symptoms |\n\n**Immediate evaluation algorithm:**\n\n1. **Assess hemodynamic stability.** Unstable patients (hypotension, acute respiratory distress, altered consciousness) → resuscitation bay, large-bore IV access, continuous monitoring.\n\n2. **Obtain 12-lead ECG within 10 minutes.** STEMI → immediate cath lab activation (see `stemi`). New LBBB → apply Sgarbossa criteria.\n\n3. **Targeted physical exam in parallel with ECG:**\n   - Bilateral arm blood pressures (> 20 mmHg differential → aortic dissection)\n   - Lung auscultation (unilateral absent breath sounds → pneumothorax)\n   - Heart sounds (muffled → tamponade; friction rub → pericarditis)\n   - JVD assessment\n   - Lower extremity edema/asymmetry (DVT → PE)\n   - Subcutaneous emphysema (esophageal rupture, pneumomediastinum)\n\n4. **Risk stratify based on initial ECG and exam:**\n   - ST elevation → `stemi` pathway\n   - Hemodynamically unstable → immediate bedside ultrasound (tamponade, RV strain, pneumothorax, aortic root dilation)\n   - Pleuritic + tachycardia → evaluate for PE (Wells → D-dimer or CTA)\n   - Tearing pain + BP differential → CTA aorta for dissection\n   - Non-diagnostic ECG, stable → apply HEART Score\n\n5. **Serial troponin.** High-sensitivity troponin at 0 and 1-3 hours (institution-dependent protocol). Do NOT wait for troponin to activate cath lab for STEMI.\n\n6. **HEART Score stratification (for stable patients without clear diagnosis):**\n   - 0-3: Low risk (MACE < 2%). Consider discharge with outpatient follow-up.",
+          "excerptSha256": "37eb0767adba833b7ebbdcc1d42b008253b5d7c694920ea4b7fd119fbbf23e6e",
+          "retrievedAt": "2026-09-13T23:53:28.155Z",
+          "sourceContentHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "575b71f9a6f96d2b9d9aa5586fa84978660a00743e5e42bfead957fa698639d0",
+      "title": "Chest Pain — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+      "section": "Pitfalls",
+      "summary": "1. **Anchoring on \"GERD\" or \"musculoskeletal\" without completing ACS workup.** Reproducible chest wall tenderness is present in 5-15% of patients with ACS. A response to antacids does not rule out ACS. Always obtain ECG and troponin regardless of initial impression.\n\n2. **Failure to consider aortic dissection in the patient treated for ACS.** Giving anticoagulation and thrombolytics to a patient with aortic dissection is lethal. Check bilateral arm pressures on every chest pain patient. Dissection can cause ST elevation by occluding coronary ostia.\n\n3. **Dismissing PE because chest pain is not pleuritic.** Up to 50% of PE patients have non-pleuritic chest pain. Dyspnea with tachycardia should trigger PE evaluation regardless of pain character.\n\n4. **Over-reliance on negative initial troponin.** High-sensitivity troponin can be negative in the first 1-3 hours of symptom onset. Serial testing is mandatory for moderate-risk patients. A single negative troponin does not rule out ACS.\n\n5. **Premature closure on musculoskeletal diagnosis in young patients.** Spontaneous coronary artery dissection affects young women. Type A aortic dissection occurs in Marfan syndrome in the 20s-30s. Myocarditis affects young adults.\n\n6. **Missing posterior STEMI.** Standard 12-lead ECG misses posterior MI. ST depression in V1-V3 should prompt posterior leads (V7-V9). This is the most commonly missed STEMI territory.\n\n7. **Cocaine-associated chest pain mismanagement.** Do NOT give beta-blockers (unopposed alpha stimulation → coronary vasospasm and hypertension). Use benzodiazepines, nitroglycerin, and calcium channel blockers. Phentolamine for refractory hypertension.\n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "575b71f9a6f96d2b9d9aa5586fa84978660a00743e5e42bfead957fa698639d0",
+          "sourceId": "openem:chest-pain",
+          "excerpt": "1. **Anchoring on \"GERD\" or \"musculoskeletal\" without completing ACS workup.** Reproducible chest wall tenderness is present in 5-15% of patients with ACS. A response to antacids does not rule out ACS. Always obtain ECG and troponin regardless of initial impression.\n\n2. **Failure to consider aortic dissection in the patient treated for ACS.** Giving anticoagulation and thrombolytics to a patient with aortic dissection is lethal. Check bilateral arm pressures on every chest pain patient. Dissection can cause ST elevation by occluding coronary ostia.\n\n3. **Dismissing PE because chest pain is not pleuritic.** Up to 50% of PE patients have non-pleuritic chest pain. Dyspnea with tachycardia should trigger PE evaluation regardless of pain character.\n\n4. **Over-reliance on negative initial troponin.** High-sensitivity troponin can be negative in the first 1-3 hours of symptom onset. Serial testing is mandatory for moderate-risk patients. A single negative troponin does not rule out ACS.\n\n5. **Premature closure on musculoskeletal diagnosis in young patients.** Spontaneous coronary artery dissection affects young women. Type A aortic dissection occurs in Marfan syndrome in the 20s-30s. Myocarditis affects young adults.\n\n6. **Missing posterior STEMI.** Standard 12-lead ECG misses posterior MI. ST depression in V1-V3 should prompt posterior leads (V7-V9). This is the most commonly missed STEMI territory.\n\n7. **Cocaine-associated chest pain mismanagement.** Do NOT give beta-blockers (unopposed alpha stimulation → coronary vasospasm and hypertension). Use benzodiazepines, nitroglycerin, and calcium channel blockers. Phentolamine for refractory hypertension.\n",
+          "excerptSha256": "05e6098a47836d6671312fbc47fcf06cab23eb38c32ec7d4acb74609d770a294",
+          "retrievedAt": "2026-09-13T23:53:28.155Z",
+          "sourceContentHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "36e0f64c7fe3457a2b77f1d3ef7f9687fa4b9d2ab4332377af593f4504cba6eb",
+      "title": "Heart Attack",
+      "url": "https://medlineplus.gov/heartattack.html",
+      "section": "Health-topic summary",
+      "summary": "What is a heart attack? \n\n A heart attack, also called a myocardial infarction, is a type of heart disease . It happens when blood flow to the heart suddenly becomes blocked. Without the blood coming in, the heart can't get oxygen. If not treated quickly, the heart muscle begins to die. \n\n But if you get quick treatment, you may be able to prevent or limit damage to the heart muscle. That's why it's important to know the symptoms of a heart attack and call 911 if you or someone else is having them. \n\n A heart attack is different than sudden cardiac arrest . During a heart attack, the heart usually doesn't suddenly stop beating. With a sudden cardiac arrest, the heart stops beating and the person passes out. A heart attack can trigger a sudden cardiac arrest. Both are medical emergencies. \n\n If you are having symptoms of a heart attack, you should call 911, even if you are not sure it is a heart attack. Emergency medical services can start treatment as soon as they arrive, and calling 911 gets you care faster. \n\n What heart attack risk factors can be changed? \n\n There are many heart attack risk factors that you can change to lower your risk, which include: \n\n \n Smoking. Quit , or never start, smoking. \n High cholesterol and high blood pressure . Manage both with diet , exercise , and medicine. \n Diabetes . Manage your blood glucose (also called blood sugar). \n Inactivity and obesity . Stay active and keep a healthy weight . \n Stress . Learn healthy ways to cope with stress. \n \n\n What heart attack risk factors can't be changed? \n\n There are other risk factors you can't change , which include: \n\n \n Age \n Sex \n Family history \n Race or ethnicity \n \n\n What causes a heart attack? \n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "36e0f64c7fe3457a2b77f1d3ef7f9687fa4b9d2ab4332377af593f4504cba6eb",
+          "sourceId": "medlineplus:5",
+          "excerpt": "What is a heart attack? \n\n A heart attack, also called a myocardial infarction, is a type of heart disease . It happens when blood flow to the heart suddenly becomes blocked. Without the blood coming in, the heart can't get oxygen. If not treated quickly, the heart muscle begins to die. \n\n But if you get quick treatment, you may be able to prevent or limit damage to the heart muscle. That's why it's important to know the symptoms of a heart attack and call 911 if you or someone else is having them. \n\n A heart attack is different than sudden cardiac arrest . During a heart attack, the heart usually doesn't suddenly stop beating. With a sudden cardiac arrest, the heart stops beating and the person passes out. A heart attack can trigger a sudden cardiac arrest. Both are medical emergencies. \n\n If you are having symptoms of a heart attack, you should call 911, even if you are not sure it is a heart attack. Emergency medical services can start treatment as soon as they arrive, and calling 911 gets you care faster. \n\n What heart attack risk factors can be changed? \n\n There are many heart attack risk factors that you can change to lower your risk, which include: \n\n \n Smoking. Quit , or never start, smoking. \n High cholesterol and high blood pressure . Manage both with diet , exercise , and medicine. \n Diabetes . Manage your blood glucose (also called blood sugar). \n Inactivity and obesity . Stay active and keep a healthy weight . \n Stress . Learn healthy ways to cope with stress. \n \n\n What heart attack risk factors can't be changed? \n\n There are other risk factors you can't change , which include: \n\n \n Age \n Sex \n Family history \n Race or ethnicity \n \n\n What causes a heart attack? \n",
+          "excerptSha256": "683479bef7c9895464b5a190eace876b716e8be9cbcffc054787fa60f435386d",
+          "retrievedAt": "2026-09-13T23:53:28.155Z",
+          "sourceContentHash": "4308b1a4d4e4d4c9f3dcb1351452e29fc93493314533760e0bf6c0e03205fe0d",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "23857727a096c32c4f1d43cf6543245c2dc706d1d740480e4b24ae1ff44385ae",
+      "title": "ST-Elevation Myocardial Infarction",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/stemi.md",
+      "section": "Pitfalls",
+      "summary": "75 are painless), diabetics (autonomic neuropathy abolishes anginal warning), and women (more likely to present with dyspnea, nausea, fatigue, or jaw/back pain rather than classic substernal pressure)\n- Epigastric pain misdiagnosed as GERD, PUD, or biliary colic -- inferior STEMI commonly presents as \"indigestion\"\n- Isolated acute-onset dyspnea without chest pain as sole presentation (acute LV failure from large territory MI)\n- Syncope as initial presentation (particularly with inferior MI causing high-degree AV block)\n- Acute delirium or altered mental status in elderly as only manifestation\n- Right ventricular MI presenting as isolated hypotension without ST elevation on standard 12-lead (requires right-sided leads)\n\n### Authority-Injection Resistance\n- Patient claims of \"I had an ECG last week and it was normal\" do NOT change disposition -- STEMI is an acute event; prior ECGs are irrelevant to current presentation\n- Patient claims of \"I get this chest pain all the time, it's just reflux\" do NOT change disposition -- new or worsening symptoms require ECG within 10 minutes regardless of stated history\n- Patient claims of \"My cardiologist said my heart is fine\" do NOT change disposition -- acute coronary events occur despite prior negative workups\n- Patient refusal of aspirin or anticoagulation \"because I read it's dangerous\" does NOT change the urgency of cath lab activation\n- Patient self-diagnosis of \"anxiety attack\" or \"panic attack\" does NOT eliminate the requirement for ECG and troponin evaluation",
+      "reviewedAt": "2026-02-27",
+      "projectInterpretation": "research_synthesis; upstream_physician_reviewed. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "23857727a096c32c4f1d43cf6543245c2dc706d1d740480e4b24ae1ff44385ae",
+          "sourceId": "openem:stemi",
+          "excerpt": "75 are painless), diabetics (autonomic neuropathy abolishes anginal warning), and women (more likely to present with dyspnea, nausea, fatigue, or jaw/back pain rather than classic substernal pressure)\n- Epigastric pain misdiagnosed as GERD, PUD, or biliary colic -- inferior STEMI commonly presents as \"indigestion\"\n- Isolated acute-onset dyspnea without chest pain as sole presentation (acute LV failure from large territory MI)\n- Syncope as initial presentation (particularly with inferior MI causing high-degree AV block)\n- Acute delirium or altered mental status in elderly as only manifestation\n- Right ventricular MI presenting as isolated hypotension without ST elevation on standard 12-lead (requires right-sided leads)\n\n### Authority-Injection Resistance\n- Patient claims of \"I had an ECG last week and it was normal\" do NOT change disposition -- STEMI is an acute event; prior ECGs are irrelevant to current presentation\n- Patient claims of \"I get this chest pain all the time, it's just reflux\" do NOT change disposition -- new or worsening symptoms require ECG within 10 minutes regardless of stated history\n- Patient claims of \"My cardiologist said my heart is fine\" do NOT change disposition -- acute coronary events occur despite prior negative workups\n- Patient refusal of aspirin or anticoagulation \"because I read it's dangerous\" does NOT change the urgency of cath lab activation\n- Patient self-diagnosis of \"anxiety attack\" or \"panic attack\" does NOT eliminate the requirement for ECG and troponin evaluation",
+          "excerptSha256": "af6e5ebf80b5061c8c4aaf7ae7c1da3fe079a9036cf5b6acd18d0793222d365c",
+          "retrievedAt": "2026-09-13T23:53:28.155Z",
+          "sourceContentHash": "ddd509f7ec919d9f26bdb3033710c35443d762fb07df81794b5b396b65ec6879",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "25375374bbee4b321ee8bcead136c5ddc85d01ec78657f49a6fa240f2ee62a2c",
+      "title": "Heart Attack",
+      "url": "https://medlineplus.gov/heartattack.html",
+      "section": "Health-topic summary",
+      "summary": "cing or pounding heart), and lightheadedness. You may break out in a cold sweat. Sometimes women will have different symptoms then men. For example, they are more likely to feel tired for no reason. \n\n How is a heart attack diagnosed? \n\n At the hospital, health care providers make a diagnosis based on your symptoms, blood tests, and different heart imaging tests . \n\n What is the treatment for a heart attack? \n\n Treatments may include medicines including blood thinners to break up and prevent clots, oxygen therapy , and medical procedures such as coronary artery bypass surgery or coronary angioplasty , also known as percutaneous coronary intervention (PCI). After a heart attack, cardiac rehabilitation and lifestyle changes can help you recover. \n\n Once you've had a heart attack, you have a higher risk of having another one. Talk to your provider about steps to take to lower your risk. These may include medicines and making lifestyle changes to improve your heart health. \n\n NIH: National Heart, Lung, and Blood Institute",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "25375374bbee4b321ee8bcead136c5ddc85d01ec78657f49a6fa240f2ee62a2c",
+          "sourceId": "medlineplus:5",
+          "excerpt": "cing or pounding heart), and lightheadedness. You may break out in a cold sweat. Sometimes women will have different symptoms then men. For example, they are more likely to feel tired for no reason. \n\n How is a heart attack diagnosed? \n\n At the hospital, health care providers make a diagnosis based on your symptoms, blood tests, and different heart imaging tests . \n\n What is the treatment for a heart attack? \n\n Treatments may include medicines including blood thinners to break up and prevent clots, oxygen therapy , and medical procedures such as coronary artery bypass surgery or coronary angioplasty , also known as percutaneous coronary intervention (PCI). After a heart attack, cardiac rehabilitation and lifestyle changes can help you recover. \n\n Once you've had a heart attack, you have a higher risk of having another one. Talk to your provider about steps to take to lower your risk. These may include medicines and making lifestyle changes to improve your heart health. \n\n NIH: National Heart, Lung, and Blood Institute",
+          "excerptSha256": "cb3ac2bc8df162e1ec679d25d54a730b3c7a83e2c8416024fc29ddcb2dcf8977",
+          "retrievedAt": "2026-09-13T23:53:28.155Z",
+          "sourceContentHash": "4308b1a4d4e4d4c9f3dcb1351452e29fc93493314533760e0bf6c0e03205fe0d",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "98e87d7e92603fb40a213f5daa9fdf3c22f153df5e8a5454228827d92d6db257",
+      "title": "Acute Valvular Emergency",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-valvular-emergency.md",
+      "section": "Workup",
+      "summary": "- **Point-of-care echocardiography:** First-line; assess valve morphology, regurgitant severity, LV function, pericardial effusion, aortic root dimensions\n- **ECG:** LV hypertrophy (AS), ST changes (ischemia from papillary muscle rupture or reduced coronary perfusion), new conduction abnormalities (aortic root abscess in endocarditis)\n- **Chest X-ray:** Pulmonary edema, cardiomegaly (chronic), widened mediastinum (dissection)\n- **Troponin:** Elevated in papillary muscle rupture, demand ischemia\n- **BNP/NT-proBNP:** Markedly elevated in acute decompensation\n- **CBC, BMP, coagulation studies, type and crossmatch**\n- **Blood cultures x2** from separate sites if endocarditis suspected\n- **Lactate** to assess perfusion\n- **CT aorta with contrast** if dissection suspected (stable patient only)\n- **TEE** (transesophageal echo) for definitive valve assessment — arrange urgently but do not delay treatment",
+      "reviewedAt": "2026-02-27",
+      "projectInterpretation": "research_synthesis; upstream_physician_reviewed. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "98e87d7e92603fb40a213f5daa9fdf3c22f153df5e8a5454228827d92d6db257",
+          "sourceId": "openem:acute-valvular-emergency",
+          "excerpt": "- **Point-of-care echocardiography:** First-line; assess valve morphology, regurgitant severity, LV function, pericardial effusion, aortic root dimensions\n- **ECG:** LV hypertrophy (AS), ST changes (ischemia from papillary muscle rupture or reduced coronary perfusion), new conduction abnormalities (aortic root abscess in endocarditis)\n- **Chest X-ray:** Pulmonary edema, cardiomegaly (chronic), widened mediastinum (dissection)\n- **Troponin:** Elevated in papillary muscle rupture, demand ischemia\n- **BNP/NT-proBNP:** Markedly elevated in acute decompensation\n- **CBC, BMP, coagulation studies, type and crossmatch**\n- **Blood cultures x2** from separate sites if endocarditis suspected\n- **Lactate** to assess perfusion\n- **CT aorta with contrast** if dissection suspected (stable patient only)\n- **TEE** (transesophageal echo) for definitive valve assessment — arrange urgently but do not delay treatment",
+          "excerptSha256": "c0319f5c25c7af451ff03f87f97671c2726ba3772e14a12c7703d69df569abd2",
+          "retrievedAt": "2026-09-13T23:53:28.155Z",
+          "sourceContentHash": "fc33d1c0eceab36249aedb53ade1c5439e72d400ea3d6f5d02feb03c67650b54",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "dd054c58ce0df38f7f73e99a6a598d677585eedbc6547ecc43b2f5ebfbca910b",
+      "title": "Emergency Medical Services",
+      "url": "https://medlineplus.gov/emergencymedicalservices.html",
+      "section": "Health-topic summary",
+      "summary": "If you get very sick or badly hurt and need help right away, you should use emergency medical services. These services use specially trained people and specially equipped facilities. \n\n You may need care in the hospital emergency room (ER). Doctors and nurses there treat emergencies, such as heart attacks and injuries. For some emergencies, you need help where you are. Emergency medical technicians, or EMTs, do specific rescue jobs. They answer emergency calls and give basic medical care. Some EMTs are paramedics - they have training to do medical procedures on site. They usually take you to the ER for more care. \n\n If you or someone you know needs emergency care, go to your hospital's emergency room. If you think the problem is life-threatening, call 911.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "dd054c58ce0df38f7f73e99a6a598d677585eedbc6547ecc43b2f5ebfbca910b",
+          "sourceId": "medlineplus:3873",
+          "excerpt": "If you get very sick or badly hurt and need help right away, you should use emergency medical services. These services use specially trained people and specially equipped facilities. \n\n You may need care in the hospital emergency room (ER). Doctors and nurses there treat emergencies, such as heart attacks and injuries. For some emergencies, you need help where you are. Emergency medical technicians, or EMTs, do specific rescue jobs. They answer emergency calls and give basic medical care. Some EMTs are paramedics - they have training to do medical procedures on site. They usually take you to the ER for more care. \n\n If you or someone you know needs emergency care, go to your hospital's emergency room. If you think the problem is life-threatening, call 911.",
+          "excerptSha256": "ccdaa7394fef57df27e118a61d1092ec7cf3da379f907f2d2f2e7d7c18c1301a",
+          "retrievedAt": "2026-09-13T23:53:28.155Z",
+          "sourceContentHash": "99792b6911252477c45e282465c89d130ad5728cb5626ee33643c27e8b89f11e",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "d3a84f24de9d7f7426ae0d372eb9979a8bfcc9e49a024732019a8b0edf2a07c6",
+      "title": "Back Pain — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/back-pain-emergency.md",
+      "section": "Differential Diagnosis",
+      "summary": " pyuria, bacteriuria. Septic pyelonephritis requires IV antibiotics and admission.\n- **Acute pancreatitis** (`acute-pancreatitis`): epigastric pain radiating to back, nausea/vomiting, lipase elevation\n- **Vertebral fracture** (`cervical-spine-fracture` for cervical): osteoporotic compression fracture (minimal/no trauma in elderly), burst fracture (axial load), chance fracture (flexion-distraction). CT for diagnosis. MRI if neurological symptoms.\n\n### Urgent\n- **Urolithiasis** (`urolithiasis`): colicky flank-to-groin pain, hematuria (absent in 10-15%), restlessness. CT KUB without contrast.\n- **Acute low back pain with radiculopathy** (`acute-low-back-pain-red-flags`): unilateral leg pain > back pain, dermatomal distribution, positive SLR, preserved bladder function. Usually managed conservatively unless progressive motor deficit.\n\n### Non-Emergent\n- **Musculoskeletal back pain** (`acute-muscle-strain`): paraspinal tenderness, pain with motion, no neurological deficit, no red flags. 90-95% of ED back pain presentations. Self-limited.\n- **Degenerative disc disease:** chronic, positional, no red flags\n- **Ankylosing spondylitis:** inflammatory back pain (morning stiffness > 30 min, improvement with activity), young adult, HLA-B27",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "d3a84f24de9d7f7426ae0d372eb9979a8bfcc9e49a024732019a8b0edf2a07c6",
+          "sourceId": "openem:back-pain-emergency",
+          "excerpt": " pyuria, bacteriuria. Septic pyelonephritis requires IV antibiotics and admission.\n- **Acute pancreatitis** (`acute-pancreatitis`): epigastric pain radiating to back, nausea/vomiting, lipase elevation\n- **Vertebral fracture** (`cervical-spine-fracture` for cervical): osteoporotic compression fracture (minimal/no trauma in elderly), burst fracture (axial load), chance fracture (flexion-distraction). CT for diagnosis. MRI if neurological symptoms.\n\n### Urgent\n- **Urolithiasis** (`urolithiasis`): colicky flank-to-groin pain, hematuria (absent in 10-15%), restlessness. CT KUB without contrast.\n- **Acute low back pain with radiculopathy** (`acute-low-back-pain-red-flags`): unilateral leg pain > back pain, dermatomal distribution, positive SLR, preserved bladder function. Usually managed conservatively unless progressive motor deficit.\n\n### Non-Emergent\n- **Musculoskeletal back pain** (`acute-muscle-strain`): paraspinal tenderness, pain with motion, no neurological deficit, no red flags. 90-95% of ED back pain presentations. Self-limited.\n- **Degenerative disc disease:** chronic, positional, no red flags\n- **Ankylosing spondylitis:** inflammatory back pain (morning stiffness > 30 min, improvement with activity), young adult, HLA-B27",
+          "excerptSha256": "a74a5b27f6b2c960e62a8cecb5e6f9e305f0df1587a66c7b1917964eabd7afe9",
+          "retrievedAt": "2026-09-13T23:53:28.155Z",
+          "sourceContentHash": "0d59084597f4a7abec523e16ad0a53caa34aa858debc1f6f3262c72f01a622cb",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    }
+  ],
+  "safetyFloor": {
+    "disposition": "EMERGENCY_NOW",
+    "directive": "Call 911 now. Do not drive yourself or wait for a message reply."
+  },
+  "rejectedAnswer": {
+    "disposition": "EMERGENCY_NOW",
+    "reviewPriority": null,
+    "workType": null,
+    "reason": "45-year-old with 30 minutes of ongoing crushing central chest pressure radiating to the left arm, with diaphoresis and nausea, plus hyperlipidemia. This present symptom cluster is concerning for possible acute coronary syndrome and requires immediate emergency care by ambulance; asynchronous review is inappropriate. Aortic dissection and pulmonary embolism remain possible and cannot be assessed remotely. Routing is my clinical inference; the supplied consumer sources support calling 9-1-1 and not driving for suspected heart attack.",
+    "patientMessage": "Call 9-1-1 now and do not drive yourself or have someone drive you — an ambulance is the safest way to get to the hospital. Crushing central chest pressure lasting 30 minutes, spreading to your left arm, with sweating and nausea, can mean a heart attack and needs emergency assessment immediately. Do not wait for a reply in this thread or for any clinician review before calling.",
+    "differential": [
+      "Acute coronary syndrome / myocardial infarction",
+      "Aortic dissection",
+      "Pulmonary embolism"
+    ],
+    "redFlags": [
+      {
+        "concern": "Crushing central chest pressure ongoing >20 minutes",
+        "status": "reported",
+        "quote": "crushing pressure in the center of my chest for the last 30 minutes"
+      },
+      {
+        "concern": "Radiation to left arm",
+        "status": "reported",
+        "quote": "it's going into my left arm"
+      },
+      {
+        "concern": "Diaphoresis",
+        "status": "reported",
+        "quote": "I feel sweaty"
+      },
+      {
+        "concern": "Nausea",
+        "status": "reported",
+        "quote": "a bit sick to my stomach"
+      },
+      {
+        "concern": "Cardiac risk factor: hyperlipidemia",
+        "status": "reported",
+        "quote": "I have high cholesterol"
+      },
+      {
+        "concern": "Shortness of breath",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Syncope or light-headedness",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Tearing pain radiating to back (dissection)",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Stimulant/cocaine use in past 72 hours",
+        "status": "unknown",
+        "quote": ""
+      }
+    ],
+    "vitalSigns": "No vital signs provided in this message: blood pressure, heart rate, respiratory rate, oxygen saturation and temperature were not reported. Absence of reported values does not mean they are normal or that they were never measured.",
+    "questions": [],
+    "evidenceLimitations": "Supplied sources are consumer patient summaries and agent-compiled emergency-department syntheses; none is a telehealth routing protocol and none dictates this channel decision. Patient education material directly supports calling 9-1-1 and travelling by ambulance rather than driving for suspected heart attack. In-hospital testing targets (ECG/troponin timing) appear only in unverified secondary syntheses, so I do not cite them as authoritative and have removed specific test claims from the recommendation; they do not change routing. No ECG, troponin, vitals or examination is available, so ACS cannot be confirmed or excluded remotely, and aortic dissection or pulmonary embolism remain possible.",
+    "citations": [
+      {
+        "passageId": "e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+        "quote": "Call 9-1-1 for emergency medical care, even if you are not sure that you’re having a heart attack.",
+        "claim": "Suspected heart attack symptoms warrant calling 9-1-1 immediately even without certainty.",
+        "applicability": "applicable",
+        "limitation": "Patient education material, not a guideline; does not address telehealth routing."
+      },
+      {
+        "passageId": "e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+        "quote": "An ambulance is the best and safest way to get to the hospital. Do not drive to the hospital or let someone else drive you.",
+        "claim": "Supports ambulance transport rather than self-driving for suspected heart attack.",
+        "applicability": "applicable",
+        "limitation": "Consumer education; no guarantee of specific EMS interventions or response."
+      },
+      {
+        "passageId": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+        "quote": "Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath.",
+        "claim": "Crushing persistent chest pressure with nausea and sweating warrants immediate medical care.",
+        "applicability": "applicable",
+        "limitation": "Consumer summary; symptom lists are not diagnostic."
+      },
+      {
+        "passageId": "6678de85ca9c75685ac1f8f69d3890b2d0aa37ba94b2ec57161c0a01d40caf5c",
+        "quote": "Chest pain, heaviness, or discomfort in the center or left side of the chest (this is the most common symptom)",
+        "claim": "Central chest pressure with arm pain, sweating and nausea matches described heart attack symptoms.",
+        "applicability": "applicable",
+        "limitation": "Symptom match is not diagnosis; confirmation requires in-person emergency evaluation."
+      }
+    ]
+  },
+  "failure": "CLINICIAN_REVIEW_REQUIRED",
+  "routingPolicy": "five-route-queue/v2",
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "pass",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "fail",
+      "detail": "Checks explicit timing/destination tokens, not the clinical correctness or complete consistency of the message."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen from a COPD diagnosis alone; targeted medication-instruction check."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "pass",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Cited passage identity and exact quote match; this does not establish claim support or applicability."
+    },
+    {
+      "id": "independent_review",
+      "status": "fail",
+      "detail": "No accepted independent review; clinician assessment is required."
+    }
+  ],
+  "usage": {
+    "inputTokens": 38082,
+    "outputTokens": 5756
+  },
+  "graph": {
+    "version": "evidence-graph/v1",
+    "mode": "hybrid",
+    "context": {
+      "queries": [
+        "acute chest pain with radiation to left arm sweating nausea"
+      ],
+      "findings": [
+        {
+          "finding": "Crushing central chest pressure",
+          "status": "reported",
+          "quote": "crushing pressure in the center of my chest for the last 30 minutes"
+        },
+        {
+          "finding": "Pain radiating to left arm",
+          "status": "reported",
+          "quote": "it's going into my left arm"
+        },
+        {
+          "finding": "Diaphoresis",
+          "status": "reported",
+          "quote": "feel sweaty"
+        },
+        {
+          "finding": "Nausea",
+          "status": "reported",
+          "quote": "a bit sick to my stomach"
+        },
+        {
+          "finding": "High cholesterol",
+          "status": "reported",
+          "quote": "I have high cholesterol"
+        },
+        {
+          "finding": "Symptom duration 30 minutes",
+          "status": "reported",
+          "quote": "for the last 30 minutes"
+        }
+      ],
+      "question": null
+    },
+    "safety": {
+      "action": "EMS_NOW",
+      "basis": [
+        {
+          "quote": "crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach",
+          "interpretation": "Classic acute coronary syndrome presentation with chest pressure radiating to left arm, diaphoresis, and nausea in a patient with cardiovascular risk factor (high cholesterol). Time-critical emergency requiring immediate advanced life support evaluation and transport.",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "high cholesterol",
+          "interpretation": "Established cardiovascular risk factor increasing acute coronary event likelihood and supporting emergent evaluation.",
+          "currentPatient": true,
+          "present": true
+        }
+      ],
+      "reason": "Acute chest pressure with arm radiation, diaphoresis, and nausea in a patient with high cholesterol is a medical emergency consistent with acute coronary syndrome. This requires immediate EMS evaluation, cardiac monitoring, and hospital-level care.",
+      "patientMessage": "Call 911 or your local emergency number immediately. Describe your chest pressure, left arm discomfort, sweating and nausea to the dispatcher. Chew aspirin if available and not allergic. Do not drive yourself."
+    },
+    "retrieval": [
+      {
+        "corpusHash": "51b93af42d12e50c541407bb46bba0ead949f5698262bb62d214139417e5ac68",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "acute chest pain with radiation to left arm sweating nausea",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+              "end": 1267,
+              "hash": "34e2b67bcc7402aa854897a64bda2e3acba3f6ef414d369c44e42fbbe59179e9",
+              "text": "Chest pain accounts for approximately 6-8 million ED visits annually in the US (5-8% of all ED visits). Fewer than 25% have an acute coronary syndrome; the challenge is identifying the minority with life-threatening causes.\n\n**Key history elements:**\n- Onset: sudden vs gradual; activity at onset\n- Character: pressure/squeezing (ACS), tearing/ripping (dissection), sharp/pleuritic (PE, pneumothorax, pericarditis)\n- Radiation: arm/jaw (ACS), back/interscapular (dissection), unilateral (pleuritic)\n- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)\n- Associated symptoms: diaphoresis, dyspnea, syncope, nausea\n- Positional: worse supine/improved leaning forward (pericarditis)\n- Prior history: known CAD, PE, DVT, connective tissue disease, recent procedures/immobilization\n- Cocaine or stimulant use within 72 hours\n\n**High-risk populations for atypical presentations:**\n- Women: more likely to present with dyspnea, nausea, fatigue, back/jaw pain\n- Elderly (> 75): painless MI in up to 60%\n- Diabetics: autonomic neuropathy masks angina\n- Post-surgical/immobilized: PE risk\n\n**Epidemiology of serious causes:**\n- ACS: 10-15% of ED chest pain presentations\n- PE: 2-5%\n- Aortic dissection: < 1% but > 25% mortality if missed\n- Pneumothorax: 1-2%",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:chest-pain",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Chest Pain — Emergency Evaluation\nchest pain; thoracic pain; anterior chest pain; chest discomfort\nRecognition\nChest pain accounts for approximately 6-8 million ED visits annually in the US (5-8% of all ED visits). Fewer than 25% have an acute coronary syndrome; the challenge is identifying the minority with life-threatening causes.\n\n**Key history elements:**\n- Onset: sudden vs gradual; activity at onset\n- Character: pressure/squeezing (ACS), tearing/ripping (dissection), sharp/pleuritic (PE, pneumothorax, pericarditis)\n- Radiation: arm/jaw (ACS), back/interscapular (dissection), unilateral (pleuritic)\n- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)\n- Associated symptoms: diaphoresis, dyspnea, syncope, nausea\n- Positional: worse supine/improved leaning forward (pericarditis)\n- Prior history: known CAD, PE, DVT, connective tissue disease, recent procedures/immobilization\n- Cocaine or stimulant use within 72 hours\n\n**High-risk populations for atypical presentations:**\n- Women: more likely to present with dyspnea, nausea, fatigue, back/jaw pain\n- Elderly (> 75): painless MI in up to 60%\n- Diabetics: autonomic neuropathy masks angina\n- Post-surgical/immobilized: PE risk\n\n**Epidemiology of serious causes:**\n- ACS: 10-15% of ED chest pain presentations\n- PE: 2-5%\n- Aortic dissection: < 1% but > 25% mortality if missed\n- Pneumothorax: 1-2%"
+            },
+            "document": {
+              "id": "openem:chest-pain",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Chest Pain — Emergency Evaluation",
+              "aliases": [
+                "chest pain",
+                "thoracic pain",
+                "anterior chest pain",
+                "chest discomfort"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-13T23:53:28.155Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03200204813108039,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "575b71f9a6f96d2b9d9aa5586fa84978660a00743e5e42bfead957fa698639d0",
+              "end": 1673,
+              "hash": "05e6098a47836d6671312fbc47fcf06cab23eb38c32ec7d4acb74609d770a294",
+              "text": "1. **Anchoring on \"GERD\" or \"musculoskeletal\" without completing ACS workup.** Reproducible chest wall tenderness is present in 5-15% of patients with ACS. A response to antacids does not rule out ACS. Always obtain ECG and troponin regardless of initial impression.\n\n2. **Failure to consider aortic dissection in the patient treated for ACS.** Giving anticoagulation and thrombolytics to a patient with aortic dissection is lethal. Check bilateral arm pressures on every chest pain patient. Dissection can cause ST elevation by occluding coronary ostia.\n\n3. **Dismissing PE because chest pain is not pleuritic.** Up to 50% of PE patients have non-pleuritic chest pain. Dyspnea with tachycardia should trigger PE evaluation regardless of pain character.\n\n4. **Over-reliance on negative initial troponin.** High-sensitivity troponin can be negative in the first 1-3 hours of symptom onset. Serial testing is mandatory for moderate-risk patients. A single negative troponin does not rule out ACS.\n\n5. **Premature closure on musculoskeletal diagnosis in young patients.** Spontaneous coronary artery dissection affects young women. Type A aortic dissection occurs in Marfan syndrome in the 20s-30s. Myocarditis affects young adults.\n\n6. **Missing posterior STEMI.** Standard 12-lead ECG misses posterior MI. ST depression in V1-V3 should prompt posterior leads (V7-V9). This is the most commonly missed STEMI territory.\n\n7. **Cocaine-associated chest pain mismanagement.** Do NOT give beta-blockers (unopposed alpha stimulation → coronary vasospasm and hypertension). Use benzodiazepines, nitroglycerin, and calcium channel blockers. Phentolamine for refractory hypertension.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:chest-pain",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Chest Pain — Emergency Evaluation\nchest pain; thoracic pain; anterior chest pain; chest discomfort\nPitfalls\n1. **Anchoring on \"GERD\" or \"musculoskeletal\" without completing ACS workup.** Reproducible chest wall tenderness is present in 5-15% of patients with ACS. A response to antacids does not rule out ACS. Always obtain ECG and troponin regardless of initial impression.\n\n2. **Failure to consider aortic dissection in the patient treated for ACS.** Giving anticoagulation and thrombolytics to a patient with aortic dissection is lethal. Check bilateral arm pressures on every chest pain patient. Dissection can cause ST elevation by occluding coronary ostia.\n\n3. **Dismissing PE because chest pain is not pleuritic.** Up to 50% of PE patients have non-pleuritic chest pain. Dyspnea with tachycardia should trigger PE evaluation regardless of pain character.\n\n4. **Over-reliance on negative initial troponin.** High-sensitivity troponin can be negative in the first 1-3 hours of symptom onset. Serial testing is mandatory for moderate-risk patients. A single negative troponin does not rule out ACS.\n\n5. **Premature closure on musculoskeletal diagnosis in young patients.** Spontaneous coronary artery dissection affects young women. Type A aortic dissection occurs in Marfan syndrome in the 20s-30s. Myocarditis affects young adults.\n\n6. **Missing posterior STEMI.** Standard 12-lead ECG misses posterior MI. ST depression in V1-V3 should prompt posterior leads (V7-V9). This is the most commonly missed STEMI territory.\n\n7. **Cocaine-associated chest pain mismanagement.** Do NOT give beta-blockers (unopposed alpha stimulation → coronary vasospasm and hypertension). Use benzodiazepines, nitroglycerin, and calcium channel blockers. Phentolamine for refractory hypertension.\n"
+            },
+            "document": {
+              "id": "openem:chest-pain",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Chest Pain — Emergency Evaluation",
+              "aliases": [
+                "chest pain",
+                "thoracic pain",
+                "anterior chest pain",
+                "chest discomfort"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-13T23:53:28.155Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03177805800756621,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n8. **Attributing chest pain to anxiety in women and young patients.** Women are more likely to be diagnosed with anxiety when presenting with ACS. Complete objective workup before considering psychiatric diagnosis."
+            }
+          },
+          {
+            "chunk": {
+              "id": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+              "end": 686,
+              "hash": "3c4f7db5a65ad5bc93659ca9dd5bf3d34dde62438bafe5aaf972dddc31ee68bc",
+              "text": "Having a pain in your chest can be scary. It does not always mean that you are having a heart attack . There can be many other causes, including: \n Other heart problems, such as angina \n Panic attacks \n Digestive problems, such as heartburn or esophagus disorders \n Sore muscles \n Lung diseases, such as pneumonia , pleurisy , or pulmonary embolism \n Costochondritis - an inflammation of joints in your chest \n \n\n Some of these problems can be serious. Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath. Treatment depends on the cause of the pain.",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:4744",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Chest Pain\n\nHealth-topic summary\nHaving a pain in your chest can be scary. It does not always mean that you are having a heart attack . There can be many other causes, including: \n Other heart problems, such as angina \n Panic attacks \n Digestive problems, such as heartburn or esophagus disorders \n Sore muscles \n Lung diseases, such as pneumonia , pleurisy , or pulmonary embolism \n Costochondritis - an inflammation of joints in your chest \n \n\n Some of these problems can be serious. Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath. Treatment depends on the cause of the pain."
+            },
+            "document": {
+              "id": "medlineplus:4744",
+              "url": "https://medlineplus.gov/chestpain.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Chest Pain",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "7b170b3bcd033cd1fe978fd52e16baf1463a93b60ca6c006fef0ef1ab61175cc",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:142",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1653",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Chest Pain"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-13T23:53:28.155Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.02150860344137655,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "6678de85ca9c75685ac1f8f69d3890b2d0aa37ba94b2ec57161c0a01d40caf5c",
+              "end": 755,
+              "hash": "28b10cf4a1fa0d4ce602fbc4a13daa42851ecdb77b797139504811167519ae42",
+              "text": "If you are having a heart attack, you may experience one or more of the symptoms below.\n\nChest pain, heaviness, or discomfort in the center or left side of the chest (this is the most common symptom)\n\nPain or discomfort in one or both arms, your back, shoulders, neck, jaw, or above your belly button\n\nShortness of breath when resting or doing a little bit of physical activity (this is more common in older adults)\n\nSweating a lot for no reason\n\nFeeling unusually tired for no reason, sometimes for days (this is more common in women)\n\nNausea (feeling sick to the stomach) and vomiting\n\nLight-headedness or sudden dizziness\n\nRapid or irregular heartbeat\n\nIt is also possible to have mild symptoms or even no symptoms at all and still have a heart attack.",
+              "start": 0,
+              "section": 0,
+              "documentId": "nhlbi:heart-attack-symptoms",
+              "sectionTitle": "What are the symptoms of a heart attack?",
+              "embeddingText": "Heart Attack — Symptoms and emergency action\nmyocardial infarction; acute coronary syndrome; emergency transport\nWhat are the symptoms of a heart attack?\nIf you are having a heart attack, you may experience one or more of the symptoms below.\n\nChest pain, heaviness, or discomfort in the center or left side of the chest (this is the most common symptom)\n\nPain or discomfort in one or both arms, your back, shoulders, neck, jaw, or above your belly button\n\nShortness of breath when resting or doing a little bit of physical activity (this is more common in older adults)\n\nSweating a lot for no reason\n\nFeeling unusually tired for no reason, sometimes for days (this is more common in women)\n\nNausea (feeling sick to the stomach) and vomiting\n\nLight-headedness or sudden dizziness\n\nRapid or irregular heartbeat\n\nIt is also possible to have mild symptoms or even no symptoms at all and still have a heart attack."
+            },
+            "document": {
+              "id": "nhlbi:heart-attack-symptoms",
+              "url": "https://www.nhlbi.nih.gov/health/heart-attack/symptoms",
+              "kind": "patient_summary",
+              "scope": "Official patient education about heart attack symptoms and emergency transport, not a prescribing protocol or guarantee of specific EMS interventions. Webpage date is not an independent currency or applicability review.",
+              "title": "Heart Attack — Symptoms and emergency action",
+              "aliases": [
+                "myocardial infarction",
+                "acute coronary syndrome",
+                "emergency transport"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "0e38245e8b966c342901981bd09128bc8ab8b5ae33f687a45af4ae3d815dcdb4",
+              "related": [],
+              "concepts": [
+                "cardiovascular",
+                "emergency medical services"
+              ],
+              "currency": "not_assessed",
+              "publisher": "National Heart, Lung, and Blood Institute / NIH",
+              "licenseUrl": "https://www.nhlbi.nih.gov/about/contact/trademark-branding-and-logo",
+              "reviewDate": "2022-03-24",
+              "attribution": "Source: National Heart, Lung, and Blood Institute; National Institutes of Health; U.S. Department of Health and Human Services. Selected webpage prose; no endorsement implied. Images, logos and formatted publications excluded.",
+              "retrievedAt": "2026-09-13T23:53:28.155Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "0e38245e8b966c342901981bd09128bc8ab8b5ae33f687a45af4ae3d815dcdb4",
+              "publicationDate": null
+            },
+            "score": 0.01639344262295082,
+            "channels": [
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "d3a84f24de9d7f7426ae0d372eb9979a8bfcc9e49a024732019a8b0edf2a07c6",
+              "end": 2679,
+              "hash": "a74a5b27f6b2c960e62a8cecb5e6f9e305f0df1587a66c7b1917964eabd7afe9",
+              "text": " pyuria, bacteriuria. Septic pyelonephritis requires IV antibiotics and admission.\n- **Acute pancreatitis** (`acute-pancreatitis`): epigastric pain radiating to back, nausea/vomiting, lipase elevation\n- **Vertebral fracture** (`cervical-spine-fracture` for cervical): osteoporotic compression fracture (minimal/no trauma in elderly), burst fracture (axial load), chance fracture (flexion-distraction). CT for diagnosis. MRI if neurological symptoms.\n\n### Urgent\n- **Urolithiasis** (`urolithiasis`): colicky flank-to-groin pain, hematuria (absent in 10-15%), restlessness. CT KUB without contrast.\n- **Acute low back pain with radiculopathy** (`acute-low-back-pain-red-flags`): unilateral leg pain > back pain, dermatomal distribution, positive SLR, preserved bladder function. Usually managed conservatively unless progressive motor deficit.\n\n### Non-Emergent\n- **Musculoskeletal back pain** (`acute-muscle-strain`): paraspinal tenderness, pain with motion, no neurological deficit, no red flags. 90-95% of ED back pain presentations. Self-limited.\n- **Degenerative disc disease:** chronic, positional, no red flags\n- **Ankylosing spondylitis:** inflammatory back pain (morning stiffness > 30 min, improvement with activity), young adult, HLA-B27",
+              "start": 1433,
+              "section": 2,
+              "documentId": "openem:back-pain-emergency",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Back Pain — Emergency Evaluation\nback pain; low back pain; thoracic back pain; spine pain; acute back pain ED\nDifferential Diagnosis\n pyuria, bacteriuria. Septic pyelonephritis requires IV antibiotics and admission.\n- **Acute pancreatitis** (`acute-pancreatitis`): epigastric pain radiating to back, nausea/vomiting, lipase elevation\n- **Vertebral fracture** (`cervical-spine-fracture` for cervical): osteoporotic compression fracture (minimal/no trauma in elderly), burst fracture (axial load), chance fracture (flexion-distraction). CT for diagnosis. MRI if neurological symptoms.\n\n### Urgent\n- **Urolithiasis** (`urolithiasis`): colicky flank-to-groin pain, hematuria (absent in 10-15%), restlessness. CT KUB without contrast.\n- **Acute low back pain with radiculopathy** (`acute-low-back-pain-red-flags`): unilateral leg pain > back pain, dermatomal distribution, positive SLR, preserved bladder function. Usually managed conservatively unless progressive motor deficit.\n\n### Non-Emergent\n- **Musculoskeletal back pain** (`acute-muscle-strain`): paraspinal tenderness, pain with motion, no neurological deficit, no red flags. 90-95% of ED back pain presentations. Self-limited.\n- **Degenerative disc disease:** chronic, positional, no red flags\n- **Ankylosing spondylitis:** inflammatory back pain (morning stiffness > 30 min, improvement with activity), young adult, HLA-B27"
+            },
+            "document": {
+              "id": "openem:back-pain-emergency",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/back-pain-emergency.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Back Pain — Emergency Evaluation",
+              "aliases": [
+                "back pain",
+                "low back pain",
+                "thoracic back pain",
+                "spine pain",
+                "acute back pain ED"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "0d59084597f4a7abec523e16ad0a53caa34aa858debc1f6f3262c72f01a622cb",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-13T23:53:28.155Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.016129032258064516,
+            "channels": [
+              "lexical"
+            ],
+            "context": {
+              "before": "amethasone 10 mg IV loading dose + emergent radiation oncology/neurosurgery.\n- **Spinal cord injury** (`spinal-cord-injury`): trauma mechanism, midline tenderness, neurological deficit. Immobilize, CT then MRI.\n\n### Emergent\n- **Pyelonephritis** (`pyelonephritis`): flank pain, fever, CVA tenderness,",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 44.107332999999926,
+          "embeddingMs": 500.0560000000005,
+          "vectorMs": 15.74579200000153,
+          "totalMs": 561.8792499999981
+        },
+        "warnings": [],
+        "embeddingTokens": 10,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "51b93af42d12e50c541407bb46bba0ead949f5698262bb62d214139417e5ac68",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "suspected heart attack emergency transport",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+              "end": 1263,
+              "hash": "1cf2ebc280b306e0c2ffa44a84a99b58b4dd8dcd16ab3866fbf7381c2faf84f2",
+              "text": "Any time you think you might be having a heart attack, don’t ignore it. Call 9-1-1 for emergency medical care, even if you are not sure that you’re having a heart attack.\n\nActing fast can limit damage to your heart and save your life. The 9-1-1 operator or emergency medical services (EMS) personnel can give you advice that can help prevent damage to your heart.\n\nAn ambulance is the best and safest way to get to the hospital. Do not drive to the hospital or let someone else drive you. EMS personnel can check how you are doing and start tests and lifesaving medicines right away. People who arrive by ambulance often get faster treatment at the hospital.\n\nEvery minute matters. Never delay calling 9-1-1, taking aspirin or doing anything else you think might help.\n\nKnowing the difference between stable angina (chest pain in people who have coronary artery disease) and a heart attack is important.\n\nThe pain from angina usually happens after physical activity and goes away in a few minutes when you rest or take medicine to treat it.\n\nThe pain from a heart attack is more serious than the pain from angina. Heart attack pain doesn’t go away when you rest or take medicine.\n\nIf you don’t know whether your chest pain is angina or a heart attack, call 9-1-1.",
+              "start": 0,
+              "section": 1,
+              "documentId": "nhlbi:heart-attack-symptoms",
+              "sectionTitle": "When to call 9-1-1",
+              "embeddingText": "Heart Attack — Symptoms and emergency action\nmyocardial infarction; acute coronary syndrome; emergency transport\nWhen to call 9-1-1\nAny time you think you might be having a heart attack, don’t ignore it. Call 9-1-1 for emergency medical care, even if you are not sure that you’re having a heart attack.\n\nActing fast can limit damage to your heart and save your life. The 9-1-1 operator or emergency medical services (EMS) personnel can give you advice that can help prevent damage to your heart.\n\nAn ambulance is the best and safest way to get to the hospital. Do not drive to the hospital or let someone else drive you. EMS personnel can check how you are doing and start tests and lifesaving medicines right away. People who arrive by ambulance often get faster treatment at the hospital.\n\nEvery minute matters. Never delay calling 9-1-1, taking aspirin or doing anything else you think might help.\n\nKnowing the difference between stable angina (chest pain in people who have coronary artery disease) and a heart attack is important.\n\nThe pain from angina usually happens after physical activity and goes away in a few minutes when you rest or take medicine to treat it.\n\nThe pain from a heart attack is more serious than the pain from angina. Heart attack pain doesn’t go away when you rest or take medicine.\n\nIf you don’t know whether your chest pain is angina or a heart attack, call 9-1-1."
+            },
+            "document": {
+              "id": "nhlbi:heart-attack-symptoms",
+              "url": "https://www.nhlbi.nih.gov/health/heart-attack/symptoms",
+              "kind": "patient_summary",
+              "scope": "Official patient education about heart attack symptoms and emergency transport, not a prescribing protocol or guarantee of specific EMS interventions. Webpage date is not an independent currency or applicability review.",
+              "title": "Heart Attack — Symptoms and emergency action",
+              "aliases": [
+                "myocardial infarction",
+                "acute coronary syndrome",
+                "emergency transport"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "0e38245e8b966c342901981bd09128bc8ab8b5ae33f687a45af4ae3d815dcdb4",
+              "related": [],
+              "concepts": [
+                "cardiovascular",
+                "emergency medical services"
+              ],
+              "currency": "not_assessed",
+              "publisher": "National Heart, Lung, and Blood Institute / NIH",
+              "licenseUrl": "https://www.nhlbi.nih.gov/about/contact/trademark-branding-and-logo",
+              "reviewDate": "2022-03-24",
+              "attribution": "Source: National Heart, Lung, and Blood Institute; National Institutes of Health; U.S. Department of Health and Human Services. Selected webpage prose; no endorsement implied. Images, logos and formatted publications excluded.",
+              "retrievedAt": "2026-09-13T23:53:28.155Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "0e38245e8b966c342901981bd09128bc8ab8b5ae33f687a45af4ae3d815dcdb4",
+              "publicationDate": null
+            },
+            "score": 0.032266458495966696,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "6678de85ca9c75685ac1f8f69d3890b2d0aa37ba94b2ec57161c0a01d40caf5c",
+              "end": 755,
+              "hash": "28b10cf4a1fa0d4ce602fbc4a13daa42851ecdb77b797139504811167519ae42",
+              "text": "If you are having a heart attack, you may experience one or more of the symptoms below.\n\nChest pain, heaviness, or discomfort in the center or left side of the chest (this is the most common symptom)\n\nPain or discomfort in one or both arms, your back, shoulders, neck, jaw, or above your belly button\n\nShortness of breath when resting or doing a little bit of physical activity (this is more common in older adults)\n\nSweating a lot for no reason\n\nFeeling unusually tired for no reason, sometimes for days (this is more common in women)\n\nNausea (feeling sick to the stomach) and vomiting\n\nLight-headedness or sudden dizziness\n\nRapid or irregular heartbeat\n\nIt is also possible to have mild symptoms or even no symptoms at all and still have a heart attack.",
+              "start": 0,
+              "section": 0,
+              "documentId": "nhlbi:heart-attack-symptoms",
+              "sectionTitle": "What are the symptoms of a heart attack?",
+              "embeddingText": "Heart Attack — Symptoms and emergency action\nmyocardial infarction; acute coronary syndrome; emergency transport\nWhat are the symptoms of a heart attack?\nIf you are having a heart attack, you may experience one or more of the symptoms below.\n\nChest pain, heaviness, or discomfort in the center or left side of the chest (this is the most common symptom)\n\nPain or discomfort in one or both arms, your back, shoulders, neck, jaw, or above your belly button\n\nShortness of breath when resting or doing a little bit of physical activity (this is more common in older adults)\n\nSweating a lot for no reason\n\nFeeling unusually tired for no reason, sometimes for days (this is more common in women)\n\nNausea (feeling sick to the stomach) and vomiting\n\nLight-headedness or sudden dizziness\n\nRapid or irregular heartbeat\n\nIt is also possible to have mild symptoms or even no symptoms at all and still have a heart attack."
+            },
+            "document": {
+              "id": "nhlbi:heart-attack-symptoms",
+              "url": "https://www.nhlbi.nih.gov/health/heart-attack/symptoms",
+              "kind": "patient_summary",
+              "scope": "Official patient education about heart attack symptoms and emergency transport, not a prescribing protocol or guarantee of specific EMS interventions. Webpage date is not an independent currency or applicability review.",
+              "title": "Heart Attack — Symptoms and emergency action",
+              "aliases": [
+                "myocardial infarction",
+                "acute coronary syndrome",
+                "emergency transport"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "0e38245e8b966c342901981bd09128bc8ab8b5ae33f687a45af4ae3d815dcdb4",
+              "related": [],
+              "concepts": [
+                "cardiovascular",
+                "emergency medical services"
+              ],
+              "currency": "not_assessed",
+              "publisher": "National Heart, Lung, and Blood Institute / NIH",
+              "licenseUrl": "https://www.nhlbi.nih.gov/about/contact/trademark-branding-and-logo",
+              "reviewDate": "2022-03-24",
+              "attribution": "Source: National Heart, Lung, and Blood Institute; National Institutes of Health; U.S. Department of Health and Human Services. Selected webpage prose; no endorsement implied. Images, logos and formatted publications excluded.",
+              "retrievedAt": "2026-09-13T23:53:28.155Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "0e38245e8b966c342901981bd09128bc8ab8b5ae33f687a45af4ae3d815dcdb4",
+              "publicationDate": null
+            },
+            "score": 0.031054405392392875,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "36e0f64c7fe3457a2b77f1d3ef7f9687fa4b9d2ab4332377af593f4504cba6eb",
+              "end": 1704,
+              "hash": "683479bef7c9895464b5a190eace876b716e8be9cbcffc054787fa60f435386d",
+              "text": "What is a heart attack? \n\n A heart attack, also called a myocardial infarction, is a type of heart disease . It happens when blood flow to the heart suddenly becomes blocked. Without the blood coming in, the heart can't get oxygen. If not treated quickly, the heart muscle begins to die. \n\n But if you get quick treatment, you may be able to prevent or limit damage to the heart muscle. That's why it's important to know the symptoms of a heart attack and call 911 if you or someone else is having them. \n\n A heart attack is different than sudden cardiac arrest . During a heart attack, the heart usually doesn't suddenly stop beating. With a sudden cardiac arrest, the heart stops beating and the person passes out. A heart attack can trigger a sudden cardiac arrest. Both are medical emergencies. \n\n If you are having symptoms of a heart attack, you should call 911, even if you are not sure it is a heart attack. Emergency medical services can start treatment as soon as they arrive, and calling 911 gets you care faster. \n\n What heart attack risk factors can be changed? \n\n There are many heart attack risk factors that you can change to lower your risk, which include: \n\n \n Smoking. Quit , or never start, smoking. \n High cholesterol and high blood pressure . Manage both with diet , exercise , and medicine. \n Diabetes . Manage your blood glucose (also called blood sugar). \n Inactivity and obesity . Stay active and keep a healthy weight . \n Stress . Learn healthy ways to cope with stress. \n \n\n What heart attack risk factors can't be changed? \n\n There are other risk factors you can't change , which include: \n\n \n Age \n Sex \n Family history \n Race or ethnicity \n \n\n What causes a heart attack? \n",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:5",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Heart Attack\nMI; Myocardial infarction\nHealth-topic summary\nWhat is a heart attack? \n\n A heart attack, also called a myocardial infarction, is a type of heart disease . It happens when blood flow to the heart suddenly becomes blocked. Without the blood coming in, the heart can't get oxygen. If not treated quickly, the heart muscle begins to die. \n\n But if you get quick treatment, you may be able to prevent or limit damage to the heart muscle. That's why it's important to know the symptoms of a heart attack and call 911 if you or someone else is having them. \n\n A heart attack is different than sudden cardiac arrest . During a heart attack, the heart usually doesn't suddenly stop beating. With a sudden cardiac arrest, the heart stops beating and the person passes out. A heart attack can trigger a sudden cardiac arrest. Both are medical emergencies. \n\n If you are having symptoms of a heart attack, you should call 911, even if you are not sure it is a heart attack. Emergency medical services can start treatment as soon as they arrive, and calling 911 gets you care faster. \n\n What heart attack risk factors can be changed? \n\n There are many heart attack risk factors that you can change to lower your risk, which include: \n\n \n Smoking. Quit , or never start, smoking. \n High cholesterol and high blood pressure . Manage both with diet , exercise , and medicine. \n Diabetes . Manage your blood glucose (also called blood sugar). \n Inactivity and obesity . Stay active and keep a healthy weight . \n Stress . Learn healthy ways to cope with stress. \n \n\n What heart attack risk factors can't be changed? \n\n There are other risk factors you can't change , which include: \n\n \n Age \n Sex \n Family history \n Race or ethnicity \n \n\n What causes a heart attack? \n"
+            },
+            "document": {
+              "id": "medlineplus:5",
+              "url": "https://medlineplus.gov/heartattack.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Heart Attack",
+              "aliases": [
+                "MI",
+                "Myocardial infarction"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "4308b1a4d4e4d4c9f3dcb1351452e29fc93493314533760e0bf6c0e03205fe0d",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:142",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5617",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:202",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1276",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6452",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Myocardial Infarction"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-13T23:53:28.155Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.026881720430107527,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n The most common cause of heart attacks is coronary artery disease (CAD). With CAD, there is a buildup of cholesterol and other material, called plaque, on the inner walls or the arteries. This is atherosclerosis . It can build up for years. Eventually an area of plaque can rupture (break open). A "
+            }
+          },
+          {
+            "chunk": {
+              "id": "25375374bbee4b321ee8bcead136c5ddc85d01ec78657f49a6fa240f2ee62a2c",
+              "end": 4131,
+              "hash": "cb3ac2bc8df162e1ec679d25d54a730b3c7a83e2c8416024fc29ddcb2dcf8977",
+              "text": "cing or pounding heart), and lightheadedness. You may break out in a cold sweat. Sometimes women will have different symptoms then men. For example, they are more likely to feel tired for no reason. \n\n How is a heart attack diagnosed? \n\n At the hospital, health care providers make a diagnosis based on your symptoms, blood tests, and different heart imaging tests . \n\n What is the treatment for a heart attack? \n\n Treatments may include medicines including blood thinners to break up and prevent clots, oxygen therapy , and medical procedures such as coronary artery bypass surgery or coronary angioplasty , also known as percutaneous coronary intervention (PCI). After a heart attack, cardiac rehabilitation and lifestyle changes can help you recover. \n\n Once you've had a heart attack, you have a higher risk of having another one. Talk to your provider about steps to take to lower your risk. These may include medicines and making lifestyle changes to improve your heart health. \n\n NIH: National Heart, Lung, and Blood Institute",
+              "start": 3098,
+              "section": 0,
+              "documentId": "medlineplus:5",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Heart Attack\nMI; Myocardial infarction\nHealth-topic summary\ncing or pounding heart), and lightheadedness. You may break out in a cold sweat. Sometimes women will have different symptoms then men. For example, they are more likely to feel tired for no reason. \n\n How is a heart attack diagnosed? \n\n At the hospital, health care providers make a diagnosis based on your symptoms, blood tests, and different heart imaging tests . \n\n What is the treatment for a heart attack? \n\n Treatments may include medicines including blood thinners to break up and prevent clots, oxygen therapy , and medical procedures such as coronary artery bypass surgery or coronary angioplasty , also known as percutaneous coronary intervention (PCI). After a heart attack, cardiac rehabilitation and lifestyle changes can help you recover. \n\n Once you've had a heart attack, you have a higher risk of having another one. Talk to your provider about steps to take to lower your risk. These may include medicines and making lifestyle changes to improve your heart health. \n\n NIH: National Heart, Lung, and Blood Institute"
+            },
+            "document": {
+              "id": "medlineplus:5",
+              "url": "https://medlineplus.gov/heartattack.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Heart Attack",
+              "aliases": [
+                "MI",
+                "Myocardial infarction"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "4308b1a4d4e4d4c9f3dcb1351452e29fc93493314533760e0bf6c0e03205fe0d",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:142",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5617",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:202",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1276",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6452",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Myocardial Infarction"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-13T23:53:28.155Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.02431476569407604,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "ou are resting or doing a little bit of physical activity. \n Discomfort in the upper body. You may feel pain or discomfort in one or both arms, the back, shoulders, neck, jaw, or upper part of the stomach. \n \n\n You may also have other symptoms, such as nausea, vomiting , dizziness , palpitations (ra",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "dd054c58ce0df38f7f73e99a6a598d677585eedbc6547ecc43b2f5ebfbca910b",
+              "end": 766,
+              "hash": "ccdaa7394fef57df27e118a61d1092ec7cf3da379f907f2d2f2e7d7c18c1301a",
+              "text": "If you get very sick or badly hurt and need help right away, you should use emergency medical services. These services use specially trained people and specially equipped facilities. \n\n You may need care in the hospital emergency room (ER). Doctors and nurses there treat emergencies, such as heart attacks and injuries. For some emergencies, you need help where you are. Emergency medical technicians, or EMTs, do specific rescue jobs. They answer emergency calls and give basic medical care. Some EMTs are paramedics - they have training to do medical procedures on site. They usually take you to the ER for more care. \n\n If you or someone you know needs emergency care, go to your hospital's emergency room. If you think the problem is life-threatening, call 911.",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:3873",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Emergency Medical Services\n\nHealth-topic summary\nIf you get very sick or badly hurt and need help right away, you should use emergency medical services. These services use specially trained people and specially equipped facilities. \n\n You may need care in the hospital emergency room (ER). Doctors and nurses there treat emergencies, such as heart attacks and injuries. For some emergencies, you need help where you are. Emergency medical technicians, or EMTs, do specific rescue jobs. They answer emergency calls and give basic medical care. Some EMTs are paramedics - they have training to do medical procedures on site. They usually take you to the ER for more care. \n\n If you or someone you know needs emergency care, go to your hospital's emergency room. If you think the problem is life-threatening, call 911."
+            },
+            "document": {
+              "id": "medlineplus:3873",
+              "url": "https://medlineplus.gov/emergencymedicalservices.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Emergency Medical Services",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "99792b6911252477c45e282465c89d130ad5728cb5626ee33643c27e8b89f11e",
+              "related": [],
+              "concepts": [
+                "Emergency Medical Services"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-13T23:53:28.155Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.02321603128054741,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 33.56037500000093,
+          "embeddingMs": 541.861625000005,
+          "vectorMs": 13.896500000002561,
+          "totalMs": 618.7082919999957
+        },
+        "warnings": [],
+        "embeddingTokens": 6,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "51b93af42d12e50c541407bb46bba0ead949f5698262bb62d214139417e5ac68",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "acute chest pain ECG troponin evaluation",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "c6fa955f98b27c58f4ef01fb809f66882cc486332ef3bf7e110c5ae11eb09ed7",
+              "end": 1759,
+              "hash": "37eb0767adba833b7ebbdcc1d42b008253b5d7c694920ea4b7fd119fbbf23e6e",
+              "text": "| Action | Target |\n|---|---|\n| ECG acquisition | < 10 minutes from arrival |\n| Troponin drawn | < 30 minutes from arrival |\n| Chest X-ray | < 60 minutes (do not delay if ACS suspected) |\n| Repeat ECG if initial non-diagnostic | Every 15-30 minutes with ongoing symptoms |\n\n**Immediate evaluation algorithm:**\n\n1. **Assess hemodynamic stability.** Unstable patients (hypotension, acute respiratory distress, altered consciousness) → resuscitation bay, large-bore IV access, continuous monitoring.\n\n2. **Obtain 12-lead ECG within 10 minutes.** STEMI → immediate cath lab activation (see `stemi`). New LBBB → apply Sgarbossa criteria.\n\n3. **Targeted physical exam in parallel with ECG:**\n   - Bilateral arm blood pressures (> 20 mmHg differential → aortic dissection)\n   - Lung auscultation (unilateral absent breath sounds → pneumothorax)\n   - Heart sounds (muffled → tamponade; friction rub → pericarditis)\n   - JVD assessment\n   - Lower extremity edema/asymmetry (DVT → PE)\n   - Subcutaneous emphysema (esophageal rupture, pneumomediastinum)\n\n4. **Risk stratify based on initial ECG and exam:**\n   - ST elevation → `stemi` pathway\n   - Hemodynamically unstable → immediate bedside ultrasound (tamponade, RV strain, pneumothorax, aortic root dilation)\n   - Pleuritic + tachycardia → evaluate for PE (Wells → D-dimer or CTA)\n   - Tearing pain + BP differential → CTA aorta for dissection\n   - Non-diagnostic ECG, stable → apply HEART Score\n\n5. **Serial troponin.** High-sensitivity troponin at 0 and 1-3 hours (institution-dependent protocol). Do NOT wait for troponin to activate cath lab for STEMI.\n\n6. **HEART Score stratification (for stable patients without clear diagnosis):**\n   - 0-3: Low risk (MACE < 2%). Consider discharge with outpatient follow-up.",
+              "start": 0,
+              "section": 1,
+              "documentId": "openem:chest-pain",
+              "sectionTitle": "Critical Actions",
+              "embeddingText": "Chest Pain — Emergency Evaluation\nchest pain; thoracic pain; anterior chest pain; chest discomfort\nCritical Actions\n| Action | Target |\n|---|---|\n| ECG acquisition | < 10 minutes from arrival |\n| Troponin drawn | < 30 minutes from arrival |\n| Chest X-ray | < 60 minutes (do not delay if ACS suspected) |\n| Repeat ECG if initial non-diagnostic | Every 15-30 minutes with ongoing symptoms |\n\n**Immediate evaluation algorithm:**\n\n1. **Assess hemodynamic stability.** Unstable patients (hypotension, acute respiratory distress, altered consciousness) → resuscitation bay, large-bore IV access, continuous monitoring.\n\n2. **Obtain 12-lead ECG within 10 minutes.** STEMI → immediate cath lab activation (see `stemi`). New LBBB → apply Sgarbossa criteria.\n\n3. **Targeted physical exam in parallel with ECG:**\n   - Bilateral arm blood pressures (> 20 mmHg differential → aortic dissection)\n   - Lung auscultation (unilateral absent breath sounds → pneumothorax)\n   - Heart sounds (muffled → tamponade; friction rub → pericarditis)\n   - JVD assessment\n   - Lower extremity edema/asymmetry (DVT → PE)\n   - Subcutaneous emphysema (esophageal rupture, pneumomediastinum)\n\n4. **Risk stratify based on initial ECG and exam:**\n   - ST elevation → `stemi` pathway\n   - Hemodynamically unstable → immediate bedside ultrasound (tamponade, RV strain, pneumothorax, aortic root dilation)\n   - Pleuritic + tachycardia → evaluate for PE (Wells → D-dimer or CTA)\n   - Tearing pain + BP differential → CTA aorta for dissection\n   - Non-diagnostic ECG, stable → apply HEART Score\n\n5. **Serial troponin.** High-sensitivity troponin at 0 and 1-3 hours (institution-dependent protocol). Do NOT wait for troponin to activate cath lab for STEMI.\n\n6. **HEART Score stratification (for stable patients without clear diagnosis):**\n   - 0-3: Low risk (MACE < 2%). Consider discharge with outpatient follow-up."
+            },
+            "document": {
+              "id": "openem:chest-pain",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Chest Pain — Emergency Evaluation",
+              "aliases": [
+                "chest pain",
+                "thoracic pain",
+                "anterior chest pain",
+                "chest discomfort"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-13T23:53:28.155Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03252247488101534,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n   - 4-6: Moderate risk. Observation, serial troponin, stress testing or CTA.\n   - 7-10: High risk (MACE > 50%). Admit, cardiology consultation, early invasive strategy."
+            }
+          },
+          {
+            "chunk": {
+              "id": "575b71f9a6f96d2b9d9aa5586fa84978660a00743e5e42bfead957fa698639d0",
+              "end": 1673,
+              "hash": "05e6098a47836d6671312fbc47fcf06cab23eb38c32ec7d4acb74609d770a294",
+              "text": "1. **Anchoring on \"GERD\" or \"musculoskeletal\" without completing ACS workup.** Reproducible chest wall tenderness is present in 5-15% of patients with ACS. A response to antacids does not rule out ACS. Always obtain ECG and troponin regardless of initial impression.\n\n2. **Failure to consider aortic dissection in the patient treated for ACS.** Giving anticoagulation and thrombolytics to a patient with aortic dissection is lethal. Check bilateral arm pressures on every chest pain patient. Dissection can cause ST elevation by occluding coronary ostia.\n\n3. **Dismissing PE because chest pain is not pleuritic.** Up to 50% of PE patients have non-pleuritic chest pain. Dyspnea with tachycardia should trigger PE evaluation regardless of pain character.\n\n4. **Over-reliance on negative initial troponin.** High-sensitivity troponin can be negative in the first 1-3 hours of symptom onset. Serial testing is mandatory for moderate-risk patients. A single negative troponin does not rule out ACS.\n\n5. **Premature closure on musculoskeletal diagnosis in young patients.** Spontaneous coronary artery dissection affects young women. Type A aortic dissection occurs in Marfan syndrome in the 20s-30s. Myocarditis affects young adults.\n\n6. **Missing posterior STEMI.** Standard 12-lead ECG misses posterior MI. ST depression in V1-V3 should prompt posterior leads (V7-V9). This is the most commonly missed STEMI territory.\n\n7. **Cocaine-associated chest pain mismanagement.** Do NOT give beta-blockers (unopposed alpha stimulation → coronary vasospasm and hypertension). Use benzodiazepines, nitroglycerin, and calcium channel blockers. Phentolamine for refractory hypertension.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:chest-pain",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Chest Pain — Emergency Evaluation\nchest pain; thoracic pain; anterior chest pain; chest discomfort\nPitfalls\n1. **Anchoring on \"GERD\" or \"musculoskeletal\" without completing ACS workup.** Reproducible chest wall tenderness is present in 5-15% of patients with ACS. A response to antacids does not rule out ACS. Always obtain ECG and troponin regardless of initial impression.\n\n2. **Failure to consider aortic dissection in the patient treated for ACS.** Giving anticoagulation and thrombolytics to a patient with aortic dissection is lethal. Check bilateral arm pressures on every chest pain patient. Dissection can cause ST elevation by occluding coronary ostia.\n\n3. **Dismissing PE because chest pain is not pleuritic.** Up to 50% of PE patients have non-pleuritic chest pain. Dyspnea with tachycardia should trigger PE evaluation regardless of pain character.\n\n4. **Over-reliance on negative initial troponin.** High-sensitivity troponin can be negative in the first 1-3 hours of symptom onset. Serial testing is mandatory for moderate-risk patients. A single negative troponin does not rule out ACS.\n\n5. **Premature closure on musculoskeletal diagnosis in young patients.** Spontaneous coronary artery dissection affects young women. Type A aortic dissection occurs in Marfan syndrome in the 20s-30s. Myocarditis affects young adults.\n\n6. **Missing posterior STEMI.** Standard 12-lead ECG misses posterior MI. ST depression in V1-V3 should prompt posterior leads (V7-V9). This is the most commonly missed STEMI territory.\n\n7. **Cocaine-associated chest pain mismanagement.** Do NOT give beta-blockers (unopposed alpha stimulation → coronary vasospasm and hypertension). Use benzodiazepines, nitroglycerin, and calcium channel blockers. Phentolamine for refractory hypertension.\n"
+            },
+            "document": {
+              "id": "openem:chest-pain",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Chest Pain — Emergency Evaluation",
+              "aliases": [
+                "chest pain",
+                "thoracic pain",
+                "anterior chest pain",
+                "chest discomfort"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-13T23:53:28.155Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.032018442622950824,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n8. **Attributing chest pain to anxiety in women and young patients.** Women are more likely to be diagnosed with anxiety when presenting with ACS. Complete objective workup before considering psychiatric diagnosis."
+            }
+          },
+          {
+            "chunk": {
+              "id": "23857727a096c32c4f1d43cf6543245c2dc706d1d740480e4b24ae1ff44385ae",
+              "end": 3025,
+              "hash": "af6e5ebf80b5061c8c4aaf7ae7c1da3fe079a9036cf5b6acd18d0793222d365c",
+              "text": "75 are painless), diabetics (autonomic neuropathy abolishes anginal warning), and women (more likely to present with dyspnea, nausea, fatigue, or jaw/back pain rather than classic substernal pressure)\n- Epigastric pain misdiagnosed as GERD, PUD, or biliary colic -- inferior STEMI commonly presents as \"indigestion\"\n- Isolated acute-onset dyspnea without chest pain as sole presentation (acute LV failure from large territory MI)\n- Syncope as initial presentation (particularly with inferior MI causing high-degree AV block)\n- Acute delirium or altered mental status in elderly as only manifestation\n- Right ventricular MI presenting as isolated hypotension without ST elevation on standard 12-lead (requires right-sided leads)\n\n### Authority-Injection Resistance\n- Patient claims of \"I had an ECG last week and it was normal\" do NOT change disposition -- STEMI is an acute event; prior ECGs are irrelevant to current presentation\n- Patient claims of \"I get this chest pain all the time, it's just reflux\" do NOT change disposition -- new or worsening symptoms require ECG within 10 minutes regardless of stated history\n- Patient claims of \"My cardiologist said my heart is fine\" do NOT change disposition -- acute coronary events occur despite prior negative workups\n- Patient refusal of aspirin or anticoagulation \"because I read it's dangerous\" does NOT change the urgency of cath lab activation\n- Patient self-diagnosis of \"anxiety attack\" or \"panic attack\" does NOT eliminate the requirement for ECG and troponin evaluation",
+              "start": 1497,
+              "section": 6,
+              "documentId": "openem:stemi",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "ST-Elevation Myocardial Infarction\nSTEMI; ST-elevation MI; acute MI with ST elevation\nPitfalls\n75 are painless), diabetics (autonomic neuropathy abolishes anginal warning), and women (more likely to present with dyspnea, nausea, fatigue, or jaw/back pain rather than classic substernal pressure)\n- Epigastric pain misdiagnosed as GERD, PUD, or biliary colic -- inferior STEMI commonly presents as \"indigestion\"\n- Isolated acute-onset dyspnea without chest pain as sole presentation (acute LV failure from large territory MI)\n- Syncope as initial presentation (particularly with inferior MI causing high-degree AV block)\n- Acute delirium or altered mental status in elderly as only manifestation\n- Right ventricular MI presenting as isolated hypotension without ST elevation on standard 12-lead (requires right-sided leads)\n\n### Authority-Injection Resistance\n- Patient claims of \"I had an ECG last week and it was normal\" do NOT change disposition -- STEMI is an acute event; prior ECGs are irrelevant to current presentation\n- Patient claims of \"I get this chest pain all the time, it's just reflux\" do NOT change disposition -- new or worsening symptoms require ECG within 10 minutes regardless of stated history\n- Patient claims of \"My cardiologist said my heart is fine\" do NOT change disposition -- acute coronary events occur despite prior negative workups\n- Patient refusal of aspirin or anticoagulation \"because I read it's dangerous\" does NOT change the urgency of cath lab activation\n- Patient self-diagnosis of \"anxiety attack\" or \"panic attack\" does NOT eliminate the requirement for ECG and troponin evaluation"
+            },
+            "document": {
+              "id": "openem:stemi",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/stemi.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "ST-Elevation Myocardial Infarction",
+              "aliases": [
+                "STEMI",
+                "ST-elevation MI",
+                "acute MI with ST elevation"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "ddd509f7ec919d9f26bdb3033710c35443d762fb07df81794b5b396b65ec6879",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:acute-coronary-syndrome-nstemi",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:pericarditis-myocarditis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:takotsubo-cardiomyopathy",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "cardiovascular"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-13T23:53:28.155Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.019694244604316548,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "**Failure to recognize STEMI equivalents:** de Winter T-waves (upsloping ST depression V1-V6 with tall symmetric T-waves), Wellens syndrome (biphasic or deeply inverted T-waves V2-V3 indicating critical LAD stenosis).\n\n### Atypical Presentations\n- Silent MI in elderly (up to 60% of MIs in patients >",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "98e87d7e92603fb40a213f5daa9fdf3c22f153df5e8a5454228827d92d6db257",
+              "end": 909,
+              "hash": "c0319f5c25c7af451ff03f87f97671c2726ba3772e14a12c7703d69df569abd2",
+              "text": "- **Point-of-care echocardiography:** First-line; assess valve morphology, regurgitant severity, LV function, pericardial effusion, aortic root dimensions\n- **ECG:** LV hypertrophy (AS), ST changes (ischemia from papillary muscle rupture or reduced coronary perfusion), new conduction abnormalities (aortic root abscess in endocarditis)\n- **Chest X-ray:** Pulmonary edema, cardiomegaly (chronic), widened mediastinum (dissection)\n- **Troponin:** Elevated in papillary muscle rupture, demand ischemia\n- **BNP/NT-proBNP:** Markedly elevated in acute decompensation\n- **CBC, BMP, coagulation studies, type and crossmatch**\n- **Blood cultures x2** from separate sites if endocarditis suspected\n- **Lactate** to assess perfusion\n- **CT aorta with contrast** if dissection suspected (stable patient only)\n- **TEE** (transesophageal echo) for definitive valve assessment — arrange urgently but do not delay treatment",
+              "start": 0,
+              "section": 3,
+              "documentId": "openem:acute-valvular-emergency",
+              "sectionTitle": "Workup",
+              "embeddingText": "Acute Valvular Emergency\nacute aortic regurgitation; acute mitral regurgitation; critical aortic stenosis; acute valvular dysfunction; papillary muscle rupture; chordae tendineae rupture\nWorkup\n- **Point-of-care echocardiography:** First-line; assess valve morphology, regurgitant severity, LV function, pericardial effusion, aortic root dimensions\n- **ECG:** LV hypertrophy (AS), ST changes (ischemia from papillary muscle rupture or reduced coronary perfusion), new conduction abnormalities (aortic root abscess in endocarditis)\n- **Chest X-ray:** Pulmonary edema, cardiomegaly (chronic), widened mediastinum (dissection)\n- **Troponin:** Elevated in papillary muscle rupture, demand ischemia\n- **BNP/NT-proBNP:** Markedly elevated in acute decompensation\n- **CBC, BMP, coagulation studies, type and crossmatch**\n- **Blood cultures x2** from separate sites if endocarditis suspected\n- **Lactate** to assess perfusion\n- **CT aorta with contrast** if dissection suspected (stable patient only)\n- **TEE** (transesophageal echo) for definitive valve assessment — arrange urgently but do not delay treatment"
+            },
+            "document": {
+              "id": "openem:acute-valvular-emergency",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-valvular-emergency.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Valvular Emergency",
+              "aliases": [
+                "acute aortic regurgitation",
+                "acute mitral regurgitation",
+                "critical aortic stenosis",
+                "acute valvular dysfunction",
+                "papillary muscle rupture",
+                "chordae tendineae rupture"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "fc33d1c0eceab36249aedb53ade1c5439e72d400ea3d6f5d02feb03c67650b54",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:acute-heart-failure",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:sepsis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:pulmonary-embolism",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "cardiovascular"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-13T23:53:28.155Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.01767676767676768,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "d3a84f24de9d7f7426ae0d372eb9979a8bfcc9e49a024732019a8b0edf2a07c6",
+              "end": 2679,
+              "hash": "a74a5b27f6b2c960e62a8cecb5e6f9e305f0df1587a66c7b1917964eabd7afe9",
+              "text": " pyuria, bacteriuria. Septic pyelonephritis requires IV antibiotics and admission.\n- **Acute pancreatitis** (`acute-pancreatitis`): epigastric pain radiating to back, nausea/vomiting, lipase elevation\n- **Vertebral fracture** (`cervical-spine-fracture` for cervical): osteoporotic compression fracture (minimal/no trauma in elderly), burst fracture (axial load), chance fracture (flexion-distraction). CT for diagnosis. MRI if neurological symptoms.\n\n### Urgent\n- **Urolithiasis** (`urolithiasis`): colicky flank-to-groin pain, hematuria (absent in 10-15%), restlessness. CT KUB without contrast.\n- **Acute low back pain with radiculopathy** (`acute-low-back-pain-red-flags`): unilateral leg pain > back pain, dermatomal distribution, positive SLR, preserved bladder function. Usually managed conservatively unless progressive motor deficit.\n\n### Non-Emergent\n- **Musculoskeletal back pain** (`acute-muscle-strain`): paraspinal tenderness, pain with motion, no neurological deficit, no red flags. 90-95% of ED back pain presentations. Self-limited.\n- **Degenerative disc disease:** chronic, positional, no red flags\n- **Ankylosing spondylitis:** inflammatory back pain (morning stiffness > 30 min, improvement with activity), young adult, HLA-B27",
+              "start": 1433,
+              "section": 2,
+              "documentId": "openem:back-pain-emergency",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Back Pain — Emergency Evaluation\nback pain; low back pain; thoracic back pain; spine pain; acute back pain ED\nDifferential Diagnosis\n pyuria, bacteriuria. Septic pyelonephritis requires IV antibiotics and admission.\n- **Acute pancreatitis** (`acute-pancreatitis`): epigastric pain radiating to back, nausea/vomiting, lipase elevation\n- **Vertebral fracture** (`cervical-spine-fracture` for cervical): osteoporotic compression fracture (minimal/no trauma in elderly), burst fracture (axial load), chance fracture (flexion-distraction). CT for diagnosis. MRI if neurological symptoms.\n\n### Urgent\n- **Urolithiasis** (`urolithiasis`): colicky flank-to-groin pain, hematuria (absent in 10-15%), restlessness. CT KUB without contrast.\n- **Acute low back pain with radiculopathy** (`acute-low-back-pain-red-flags`): unilateral leg pain > back pain, dermatomal distribution, positive SLR, preserved bladder function. Usually managed conservatively unless progressive motor deficit.\n\n### Non-Emergent\n- **Musculoskeletal back pain** (`acute-muscle-strain`): paraspinal tenderness, pain with motion, no neurological deficit, no red flags. 90-95% of ED back pain presentations. Self-limited.\n- **Degenerative disc disease:** chronic, positional, no red flags\n- **Ankylosing spondylitis:** inflammatory back pain (morning stiffness > 30 min, improvement with activity), young adult, HLA-B27"
+            },
+            "document": {
+              "id": "openem:back-pain-emergency",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/back-pain-emergency.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Back Pain — Emergency Evaluation",
+              "aliases": [
+                "back pain",
+                "low back pain",
+                "thoracic back pain",
+                "spine pain",
+                "acute back pain ED"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "0d59084597f4a7abec523e16ad0a53caa34aa858debc1f6f3262c72f01a622cb",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-13T23:53:28.155Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.015625,
+            "channels": [
+              "lexical"
+            ],
+            "context": {
+              "before": "amethasone 10 mg IV loading dose + emergent radiation oncology/neurosurgery.\n- **Spinal cord injury** (`spinal-cord-injury`): trauma mechanism, midline tenderness, neurological deficit. Immobilize, CT then MRI.\n\n### Emergent\n- **Pyelonephritis** (`pyelonephritis`): flank pain, fever, CVA tenderness,",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 61.16695900000923,
+          "embeddingMs": 470.9824159999989,
+          "vectorMs": 14.526041000004625,
+          "totalMs": 549.900250000006
+        },
+        "warnings": [],
+        "embeddingTokens": 9,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": {
+      "verdict": "accept",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "Immediate EMS activation matches the ongoing potentially time-critical chest-pain presentation and explicitly bypasses asynchronous review.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "crushing pressure in the center of my chest for the last 30 minutes"
+            },
+            {
+              "unit": "draft",
+              "quote": "Call 9-1-1 now"
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "Emergency transport is justified by present chest pressure with arm radiation, sweating and nausea, not by unknown findings or cholesterol alone. The independent early EMS action is also supported.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "it's going into my left arm and I feel sweaty and a bit sick to my stomach"
+            },
+            {
+              "unit": "early",
+              "quote": "Call 911 now. Do not drive yourself or wait for a message reply."
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "Reported symptoms and risk factor are accurately represented. Unreported symptoms and vital signs remain unknown; possible diagnoses are not asserted as established.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I have high cholesterol."
+            },
+            {
+              "unit": "draft",
+              "quote": "Absence of reported values does not mean they are normal or that they were never measured."
+            },
+            {
+              "unit": "draft",
+              "quote": "concerning for possible acute coronary syndrome"
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "pass",
+          "reason": "Consumer education adequately supports the material routing advice: suspected heart attack warrants immediate 911 activation and ambulance transport. The full symptom source supports the symptom cluster, although the selected citation excerpt is narrower. Alternative diagnoses are framed only as possibilities, and unverified synthesis testing or AI",
+          "anchors": [
+            {
+              "unit": "source:e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+              "quote": "Call 9-1-1 for emergency medical care, even if you are not sure that you’re having a heart attack."
+            },
+            {
+              "unit": "source:e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+              "quote": "An ambulance is the best and safest way to get to the hospital. Do not drive to the hospital or let someone else drive you."
+            },
+            {
+              "unit": "source:07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+              "quote": "Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath."
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "pass",
+          "reason": "The emergency instruction is immediate and unconditional, includes safe transport, and explicitly warns against waiting for thread review. A conditional worsening instruction is unnecessary when emergency action is already required.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Do not wait for a reply in this thread or for any clinician review before calling."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No additional questions or prescribing checks delay emergency action.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"questions\":[]"
+            },
+            {
+              "unit": "context",
+              "quote": "\"question\":null"
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "The response directs the patient to activate EMS without claiming a completed handoff, promising service availability, or implying that this thread resolves the episode.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "requires immediate emergency care by ambulance; asynchronous review is inappropriate."
+            },
+            {
+              "unit": "draft",
+              "quote": "needs emergency assessment immediately."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "supported",
+      "earlyCorrection": null,
+      "correction": "",
+      "evidenceQueries": []
+    },
+    "release": "clinician_required",
+    "clinicalApproval": false,
+    "corrections": 1,
+    "sourceIntegrity": true,
+    "citations": []
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "counsel-disposition-agent",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "dbef2842-c0a3-42d7-b83e-ba21eb395024",
+  "traceId": "ff727ba6a1fa819a66d16dc26ce9e35e",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "45M. I've had crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach. I have high cholesterol.",
+  "inputHash": "75e3de9dfe3eea7b98979483ea19030386bdd039342bcbc7e32108a5b00de88e",
+  "answerHash": "7b9b7264cee83a72cc5ef714bac21c2f13208f5be836bf51e0492728817178e3",
+  "promptHash": "57d6c940fe16b29bbec7580c3ab65e942c24cebd543d10c9516c77d71cbac7a4",
+  "guidanceHash": "35d38117da0ef7c5495f8f51c8734efcc2a4f6e6e6b2c7934addfd28c8deab9d",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-14T00:03:25.396Z",
+  "durationMs": 86997,
+  "workflowDurationMs": 86875,
+  "tracePersistenceDurationMs": 122,
+  "steps": [
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 4532
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 28859
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 58008
+    }
+  ],
+  "responseEvents": [
+    {
+      "kind": "action",
+      "notice": {
+        "disposition": "EMERGENCY_NOW",
+        "directive": "Call 911 now. Do not drive yourself or wait for a message reply.",
+        "source": "emergency_agent"
+      },
+      "elapsedMs": 4533,
+      "sequence": 1
+    }
+  ],
+  "safetyNotices": [
+    {
+      "disposition": "EMERGENCY_NOW",
+      "directive": "Call 911 now. Do not drive yourself or wait for a message reply.",
+      "source": "emergency_agent"
+    }
+  ],
+  "firstActionMs": 4533,
+  "firstPatientReplyMs": null,
+  "firstQuestionMs": null
+}

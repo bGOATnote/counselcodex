@@ -1,0 +1,2442 @@
+{
+  "status": "review_required",
+  "answer": null,
+  "origin": "validation_safeguard",
+  "modelCalls": 6,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "upper right abdominal pain fatty meals",
+          "right upper quadrant pain fever jaundice biliary",
+          "intermittent colicky pain postprandial RUQ imaging"
+        ],
+        "findings": [
+          {
+            "finding": "Upper right abdominal pain, intermittent, postprandial (after fatty meals)",
+            "status": "reported",
+            "quote": "pain in my upper right belly that comes and goes, usually after a fatty meal"
+          },
+          {
+            "finding": "Fever",
+            "status": "denied",
+            "quote": "No fever"
+          },
+          {
+            "finding": "Jaundice (yellowing of skin or eyes)",
+            "status": "denied",
+            "quote": "no yellowing of my skin or eyes"
+          },
+          {
+            "finding": "Duration of pain",
+            "status": "reported",
+            "quote": "a few weeks"
+          },
+          {
+            "finding": "Associated nausea, vomiting, or radiation of pain",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "finding": "Severity and impact on function",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "question": {
+          "text": "When the pain occurs, do you have nausea, vomiting, or does the pain travel to your back or right shoulder?",
+          "why": "These features help distinguish biliary colic or cholecystitis from other causes of RUQ pain and guide urgency of imaging.",
+          "quote": "upper right belly pain"
+        }
+      },
+      "usage": {
+        "inputTokens": 1080,
+        "outputTokens": 311
+      },
+      "failure": null,
+      "firstTextDeltaMs": 606,
+      "streamProgress": {
+        "lastTextDeltaMs": 2857,
+        "textDeltaCount": 86,
+        "textCharacters": 1119
+      },
+      "transportTimings": {
+        "startResolvedMs": 2,
+        "objectResolvedMs": 2866,
+        "usageResolvedMs": 2867,
+        "finishReasonResolvedMs": 2867,
+        "streamEndMs": 2867
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 2867
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "routine",
+        "workType": "clinical_review",
+        "reason": "Several weeks of intermittent post-fatty-meal right upper quadrant pain with fever and jaundice denied suggests a non-emergent biliary pattern, but a clinician task remains: assessment and arranging ultrasound/labs for possible gallstone disease. No reported features of acute cholecystitis, cholangitis or peritonitis to require emergency or same-day in-person care.",
+        "patientMessage": "I recommend a Counsel clinician review this in this thread today (standard priority) to assess your recurring right-upper-belly pain and decide about gallbladder imaging and blood tests. Your pattern — episodic pain after fatty meals, without fever or yellowing — fits a non-emergency picture. Seek emergency care now if pain becomes severe and constant for hours, or you develop fever, vomiting you can't stop, yellow skin or eyes, or a rigid, very tender abdomen.",
+        "differential": [
+          "Biliary colic from gallstones (episodic postprandial RUQ pain)",
+          "Peptic ulcer disease or reflux-related upper abdominal pain",
+          "Acute cholecystitis if an episode becomes prolonged or febrile — not reported now"
+        ],
+        "redFlags": [
+          {
+            "concern": "Fever",
+            "status": "denied",
+            "quote": "No fever"
+          },
+          {
+            "concern": "Jaundice",
+            "status": "denied",
+            "quote": "no yellowing of my skin or eyes"
+          },
+          {
+            "concern": "Nausea, vomiting, or radiation to back/shoulder",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Prolonged attack lasting more than 6 hours",
+            "status": "unknown",
+            "quote": "pain in my upper right belly that comes and goes"
+          },
+          {
+            "concern": "Severity or functional impact",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported: no temperature, heart rate, blood pressure or other measurement stated; whether any were measured is unknown. Absence of subjective fever is not a measured temperature.",
+        "questions": [],
+        "evidenceLimitations": "Sources are agent-compiled emergency-department reference syntheses and a consumer health summary, not telehealth routing guidance; currency not assessed. Episode duration, nausea/vomiting, radiation and severity were not reported, so distinguishing simple biliary colic from evolving cholecystitis remains uncertain.",
+        "transportIntent": null,
+        "citations": [
+          {
+            "passageId": "4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+            "quote": "- Episodic RUQ or epigastric pain, often postprandial (fatty meals)",
+            "claim": "Episodic right-upper-quadrant pain after fatty meals is a described biliary colic presentation.",
+            "applicability": "applicable",
+            "limitation": "Descriptive recognition text; does not confirm this patient's diagnosis."
+          },
+          {
+            "passageId": "4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+            "quote": "- Duration: 30 minutes to 6 hours (pain lasting > 6 hours suggests acute cholecystitis)",
+            "claim": "Pain lasting beyond about 6 hours, or with fever, suggests acute cholecystitis rather than biliary colic.",
+            "applicability": "uncertain",
+            "limitation": "This patient's individual attack duration and any measured temperature are unreported."
+          },
+          {
+            "passageId": "f2d4f8eabd9f7286fd1f55ce50b3fb003e3fdb732e0bbd28862c99b5867d6045",
+            "quote": "- **Biliary colic** (`biliary-colic`): episodic RUQ pain, post-prandial, resolves within 6 hours, no fever/leukocytosis",
+            "claim": "Post-prandial episodic RUQ pain without fever is categorized as a non-emergent presentation in this reference.",
+            "applicability": "uncertain",
+            "limitation": "Emergency-department synthesis; leukocytosis and exam findings are unavailable remotely."
+          },
+          {
+            "passageId": "5f603bba7f6b0eb9a01750a48493f3afd222bb9432c7569aa1a0be2f48f5b0e8",
+            "quote": "Your abdomen is stiff, hard and tender to touch",
+            "claim": "Consumer guidance advises immediate medical help for a stiff, hard, tender abdomen.",
+            "applicability": "applicable",
+            "limitation": "General consumer advice, not specific to biliary disease."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 16290,
+        "outputTokens": 1399
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1514,
+      "streamProgress": {
+        "lastTextDeltaMs": 22687,
+        "textDeltaCount": 360,
+        "textCharacters": 3542
+      },
+      "transportTimings": {
+        "startResolvedMs": 1,
+        "objectResolvedMs": 22695,
+        "usageResolvedMs": 22697,
+        "finishReasonResolvedMs": 22697,
+        "streamEndMs": 22698
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 22698,
+      "rawOutput": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "routine",
+        "workType": "clinical_review",
+        "reason": "Several weeks of intermittent post-fatty-meal right upper quadrant pain with fever and jaundice denied suggests a non-emergent biliary pattern, but a clinician task remains: assessment and arranging ultrasound/labs for possible gallstone disease. No reported features of acute cholecystitis, cholangitis or peritonitis to require emergency or same-day in-person care.",
+        "patientMessage": "I recommend a Counsel clinician review this in this thread today (standard priority) to assess your recurring right-upper-belly pain and decide about gallbladder imaging and blood tests. Your pattern — episodic pain after fatty meals, without fever or yellowing — fits a non-emergency picture. Seek emergency care now if pain becomes severe and constant for hours, or you develop fever, vomiting you can't stop, yellow skin or eyes, or a rigid, very tender abdomen.",
+        "differential": [
+          "Biliary colic from gallstones (episodic postprandial RUQ pain)",
+          "Peptic ulcer disease or reflux-related upper abdominal pain",
+          "Acute cholecystitis if an episode becomes prolonged or febrile — not reported now"
+        ],
+        "redFlags": [
+          {
+            "concern": "Fever",
+            "status": "denied",
+            "quote": "No fever"
+          },
+          {
+            "concern": "Jaundice",
+            "status": "denied",
+            "quote": "no yellowing of my skin or eyes"
+          },
+          {
+            "concern": "Nausea, vomiting, or radiation to back/shoulder",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Prolonged attack lasting more than 6 hours",
+            "status": "unknown",
+            "quote": "pain in my upper right belly that comes and goes"
+          },
+          {
+            "concern": "Severity or functional impact",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported: no temperature, heart rate, blood pressure or other measurement stated; whether any were measured is unknown. Absence of subjective fever is not a measured temperature.",
+        "questions": [],
+        "evidenceLimitations": "Sources are agent-compiled emergency-department reference syntheses and a consumer health summary, not telehealth routing guidance; currency not assessed. Episode duration, nausea/vomiting, radiation and severity were not reported, so distinguishing simple biliary colic from evolving cholecystitis remains uncertain.",
+        "transportIntent": null,
+        "citations": [
+          {
+            "passageId": "4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+            "claim": "Episodic right-upper-quadrant pain after fatty meals is a described biliary colic presentation.",
+            "applicability": "applicable",
+            "limitation": "Descriptive recognition text; does not confirm this patient's diagnosis.",
+            "quoteId": "q1"
+          },
+          {
+            "passageId": "4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+            "claim": "Pain lasting beyond about 6 hours, or with fever, suggests acute cholecystitis rather than biliary colic.",
+            "applicability": "uncertain",
+            "limitation": "This patient's individual attack duration and any measured temperature are unreported.",
+            "quoteId": "q3"
+          },
+          {
+            "passageId": "f2d4f8eabd9f7286fd1f55ce50b3fb003e3fdb732e0bbd28862c99b5867d6045",
+            "claim": "Post-prandial episodic RUQ pain without fever is categorized as a non-emergent presentation in this reference.",
+            "applicability": "uncertain",
+            "limitation": "Emergency-department synthesis; leukocytosis and exam findings are unavailable remotely.",
+            "quoteId": "q16"
+          },
+          {
+            "passageId": "5f603bba7f6b0eb9a01750a48493f3afd222bb9432c7569aa1a0be2f48f5b0e8",
+            "claim": "Consumer guidance advises immediate medical help for a stiff, hard, tender abdomen.",
+            "applicability": "applicable",
+            "limitation": "General consumer advice, not specific to biliary disease.",
+            "quoteId": "q11"
+          }
+        ]
+      }
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "action": "STANDARD_ASYNC",
+        "basis": [
+          {
+            "quote": "pain in my upper right belly that comes and goes, usually after a fatty meal",
+            "interpretation": "Recurrent epigastric or right upper quadrant pain triggered by fat intake suggests possible biliary colic or cholecystitis; timing and association with meals is clinically relevant.",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "For a few weeks",
+            "interpretation": "Symptom duration of several weeks indicates subacute or chronic process rather than acute emergency, allowing async assessment.",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "No fever, no yellowing of my skin or eyes",
+            "interpretation": "Absence of fever and jaundice reduces immediate concern for acute cholecystitis or biliary obstruction, though these findings are not reported measurements and do not exclude serious pathology.",
+            "currentPatient": true,
+            "present": false
+          }
+        ],
+        "actionBasis": null,
+        "reason": "Right upper quadrant pain with fatty-meal trigger requires clinician evaluation and likely imaging, but absence of fever and jaundice and weeks-long stable course do not establish time-critical urgency.",
+        "patientMessage": "",
+        "physicalRequirement": null,
+        "activeEms": null
+      },
+      "usage": {
+        "inputTokens": 3433,
+        "outputTokens": 268
+      },
+      "failure": null,
+      "firstTextDeltaMs": 996,
+      "streamProgress": {
+        "lastTextDeltaMs": 3618,
+        "textDeltaCount": 10,
+        "textCharacters": 1178
+      },
+      "transportTimings": {
+        "startResolvedMs": 2,
+        "objectResolvedMs": 3618,
+        "usageResolvedMs": 3629,
+        "finishReasonResolvedMs": 3629,
+        "streamEndMs": 3629
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 3629
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "revise",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Recurring meal-associated RUQ pain warrants clinician assessment and consideration of investigation. Recommended review today can appropriately start in messaging; the reported facts do not establish a mandatory immediate physical encounter. Episode duration and severity remain unknown, rather than reassuring findings.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "For a few weeks I've had pain in my upper right belly that comes and goes, usually after a fatty meal."
+              },
+              {
+                "unit": "draft",
+                "quote": "I recommend a Counsel clinician review this in this thread today (standard priority) to assess your recurring right-upper-belly pain and decide about gallbladder imaging and blood tests."
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "Standard async assessment is proportionate to recurrent unexplained RUQ pain requiring diagnostic evaluation. The draft does not impose an unnecessary physical setting or emergency transport burden.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"disposition\":\"ASYNC_PHYSICIAN\",\"reviewPriority\":\"routine\",\"workType\":\"clinical_review\""
+              },
+              {
+                "unit": "patient",
+                "quote": "For a few weeks I've had pain in my upper right belly that comes and goes"
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "fail",
+            "reason": "The blanket assertion about absent reported features is used to clear urgent conditions despite unknown attack duration, severity and examination findings. Replace it with the specific fever and jaundice denials and preserve the other findings as unknown; the correctly qualified evidenceLimitations field does not cure this reasoning statement.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "No reported features of acute cholecystitis, cholangitis or peritonitis to require emergency or same-day in-person care."
+              },
+              {
+                "unit": "draft",
+                "quote": "Episode duration, nausea/vomiting, radiation and severity were not reported, so distinguishing simple biliary colic from evolving cholecystitis remains uncertain."
+              },
+              {
+                "unit": "patient",
+                "quote": "No fever, no yellowing of my skin or eyes."
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "The sources support the possible biliary pattern, clinician evaluation of persistent abdominal symptoms, and escalation for prolonged pain or inflammatory/obstructive features. The diagnosis is presented as a possibility and source limitations are disclosed. Source presentation criteria must not be treated as established patient findings.",
+            "anchors": [
+              {
+                "unit": "source:4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+                "quote": "- Episodic RUQ or epigastric pain, often postprandial (fatty meals)"
+              },
+              {
+                "unit": "source:4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+                "quote": "- Duration: 30 minutes to 6 hours (pain lasting > 6 hours suggests acute cholecystitis)"
+              },
+              {
+                "unit": "source:5f603bba7f6b0eb9a01750a48493f3afd222bb9432c7569aa1a0be2f48f5b0e8",
+                "quote": "Call your health care provider if mild pain lasts a week or more or if you have pain with other symptoms."
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "Important changes trigger immediate emergency care independently of messaging availability. No exhaustive additional warning list is necessary.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Seek emergency care now if pain becomes severe and constant for hours, or you develop fever, vomiting you can't stop, yellow skin or eyes, or a rigid, very tender abdomen."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No question was issued and the recommended assessment is not held pending answers or measurements.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              },
+              {
+                "unit": "draft",
+                "quote": "I recommend a Counsel clinician review this in this thread today (standard priority)"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "fail",
+            "reason": "Counsel review is appropriately recommended rather than promised, but the necessary clinician assessment has no access fallback if review in this thread cannot be obtained. With service availability unconnected, the patient needs an alternative route to clinician assessment rather than indefinite waiting.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I recommend a Counsel clinician review this in this thread today (standard priority) to assess your recurring right-upper-belly pain and decide about gallbladder imaging and blood tests."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "ownershipTaskReview": [],
+        "correction": "Retain Standard async routing. In reason, replace the blanket absence-of-acute-features statement with the reported fever/jaundice denials and explicitly unknown duration, severity and examination findings. In patientMessage, add an actionable alternative clinician-access route if Counsel review is unavailable, without promising acceptance or requiring emergency attendance solely because messaging is unavailable. Preserve the existing independent emergency escalation advice.",
+        "repairTargets": [
+          "reason",
+          "patientMessage"
+        ],
+        "evidenceQueries": []
+      },
+      "usage": {
+        "inputTokens": 9442,
+        "outputTokens": 1432
+      },
+      "failure": null,
+      "firstTextDeltaMs": 5640,
+      "streamProgress": {
+        "lastTextDeltaMs": 24945,
+        "textDeltaCount": 1347,
+        "textCharacters": 6047
+      },
+      "transportTimings": {
+        "startResolvedMs": 1,
+        "objectResolvedMs": 24946,
+        "usageResolvedMs": 25107,
+        "finishReasonResolvedMs": 25107,
+        "streamEndMs": 25107
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 4918,
+        "cacheCreationInputTokens": 4521
+      },
+      "durationMs": 25107,
+      "reviewInputBinding": {
+        "patientHash": "0c8fd0a89a9a929960050e132ef1aa7383aab56efa5ba0f4cbfc0bab379d80a7",
+        "draftHash": "bd5e640665197b0fbc462a8e1fccf0ec5e2d1fb4e5b4f1c89063dbb4cc2a346f",
+        "packetHash": "394f74f60f4b0b937edf637d7f539a6f25652563cb5c93ad103b7aff7b165396"
+      },
+      "rawOutput": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "revise",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Recurring meal-associated RUQ pain warrants clinician assessment and consideration of investigation. Recommended review today can appropriately start in messaging; the reported facts do not establish a mandatory immediate physical encounter. Episode duration and severity remain unknown, rather than reassuring findings.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "For a few weeks I've had pain in my upper right belly that comes and goes, usually after a fatty meal."
+              },
+              {
+                "unit": "draft",
+                "quote": "I recommend a Counsel clinician review this in this thread today (standard priority) to assess your recurring right-upper-belly pain and decide about gallbladder imaging and blood tests."
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "Standard async assessment is proportionate to recurrent unexplained RUQ pain requiring diagnostic evaluation. The draft does not impose an unnecessary physical setting or emergency transport burden.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"disposition\":\"ASYNC_PHYSICIAN\",\"reviewPriority\":\"routine\",\"workType\":\"clinical_review\""
+              },
+              {
+                "unit": "patient",
+                "quote": "For a few weeks I've had pain in my upper right belly that comes and goes"
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "fail",
+            "reason": "The blanket assertion about absent reported features is used to clear urgent conditions despite unknown attack duration, severity and examination findings. Replace it with the specific fever and jaundice denials and preserve the other findings as unknown; the correctly qualified evidenceLimitations field does not cure this reasoning statement.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "No reported features of acute cholecystitis, cholangitis or peritonitis to require emergency or same-day in-person care."
+              },
+              {
+                "unit": "draft",
+                "quote": "Episode duration, nausea/vomiting, radiation and severity were not reported, so distinguishing simple biliary colic from evolving cholecystitis remains uncertain."
+              },
+              {
+                "unit": "patient",
+                "quote": "No fever, no yellowing of my skin or eyes."
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "The sources support the possible biliary pattern, clinician evaluation of persistent abdominal symptoms, and escalation for prolonged pain or inflammatory/obstructive features. The diagnosis is presented as a possibility and source limitations are disclosed. Source presentation criteria must not be treated as established patient findings.",
+            "anchors": [
+              {
+                "unit": "source:4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+                "quote": "- Episodic RUQ or epigastric pain, often postprandial (fatty meals)"
+              },
+              {
+                "unit": "source:4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+                "quote": "- Duration: 30 minutes to 6 hours (pain lasting > 6 hours suggests acute cholecystitis)"
+              },
+              {
+                "unit": "source:5f603bba7f6b0eb9a01750a48493f3afd222bb9432c7569aa1a0be2f48f5b0e8",
+                "quote": "Call your health care provider if mild pain lasts a week or more or if you have pain with other symptoms."
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "Important changes trigger immediate emergency care independently of messaging availability. No exhaustive additional warning list is necessary.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Seek emergency care now if pain becomes severe and constant for hours, or you develop fever, vomiting you can't stop, yellow skin or eyes, or a rigid, very tender abdomen."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No question was issued and the recommended assessment is not held pending answers or measurements.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              },
+              {
+                "unit": "draft",
+                "quote": "I recommend a Counsel clinician review this in this thread today (standard priority)"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "fail",
+            "reason": "Counsel review is appropriately recommended rather than promised, but the necessary clinician assessment has no access fallback if review in this thread cannot be obtained. With service availability unconnected, the patient needs an alternative route to clinician assessment rather than indefinite waiting.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I recommend a Counsel clinician review this in this thread today (standard priority) to assess your recurring right-upper-belly pain and decide about gallbladder imaging and blood tests."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "ownershipTaskReview": [],
+        "correction": "Retain Standard async routing. In reason, replace the blanket absence-of-acute-features statement with the reported fever/jaundice denials and explicitly unknown duration, severity and examination findings. In patientMessage, add an actionable alternative clinician-access route if Counsel review is unavailable, without promising acceptance or requiring emergency attendance solely because messaging is unavailable. Preserve the existing independent emergency escalation advice.",
+        "repairTargets": [
+          "reason",
+          "patientMessage"
+        ],
+        "evidenceQueries": []
+      }
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "baseDraftHash": "bd5e640665197b0fbc462a8e1fccf0ec5e2d1fb4e5b4f1c89063dbb4cc2a346f",
+        "evidenceHash": "4337a5e2d6d3f122f92b21061b756efdfef888f1dcb9fbfa9e2eb6cd70edff4f",
+        "edits": [
+          {
+            "field": "reason",
+            "value": "Several weeks of intermittent right upper quadrant pain after fatty meals, with fever and yellowing of skin/eyes denied by the patient, fits a possible biliary pattern needing clinician assessment and consideration of ultrasound/labs. Attack duration, severity, nausea/vomiting, radiation and examination findings are unreported and therefore unknown; on the reported facts nothing establishes a need for emergency or same-day in-person care today."
+          },
+          {
+            "field": "patientMessage",
+            "value": "I recommend a Counsel clinician review this in this thread today (standard priority) to assess your recurring right-upper-belly pain and decide about gallbladder imaging and blood tests. Your pattern — episodic pain after fatty meals, with no fever or yellowing — fits a non-emergency picture. If that review isn't available today, contact your GP or a local urgent/primary care service for the same assessment. Seek emergency care now if pain becomes severe and constant for hours, or you develop fever, vomiting you can't stop, yellow skin or eyes, or a rigid, very tender abdomen."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 19857,
+        "outputTokens": 494
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1932,
+      "streamProgress": {
+        "lastTextDeltaMs": 6977,
+        "textDeltaCount": 88,
+        "textCharacters": 1275
+      },
+      "transportTimings": {
+        "startResolvedMs": 2,
+        "objectResolvedMs": 7041,
+        "usageResolvedMs": 7054,
+        "finishReasonResolvedMs": 7054,
+        "streamEndMs": 7055
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 7055,
+      "repairInputBinding": {
+        "baseDraftHash": "bd5e640665197b0fbc462a8e1fccf0ec5e2d1fb4e5b4f1c89063dbb4cc2a346f",
+        "evidenceHash": "4337a5e2d6d3f122f92b21061b756efdfef888f1dcb9fbfa9e2eb6cd70edff4f",
+        "allowedFields": [
+          "reason",
+          "patientMessage"
+        ]
+      }
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "accept",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Recurring meal-related right-upper-abdominal pain warrants clinician assessment and consideration of investigation. Review can reasonably start in messaging on these reported facts; no reported feature establishes an immediate physical-care requirement. The draft leaves attack duration and severity unknown and provides escalation instructions.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "For a few weeks I've had pain in my upper right belly that comes and goes, usually after a fatty meal."
+              },
+              {
+                "unit": "draft",
+                "quote": "I recommend a Counsel clinician review this in this thread today (standard priority) to assess your recurring right-upper-belly pain and decide about gallbladder imaging and blood tests."
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "Standard clinician review is proportionate to recurrent unexplained pain requiring assessment and possible investigation. The draft does not impose emergency attendance or mandatory same-day testing for the current presentation; emergency care is conditional on concerning changes.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"reviewPriority\":\"routine\",\"workType\":\"clinical_review\""
+              },
+              {
+                "unit": "patient",
+                "quote": "No fever, no yellowing of my skin or eyes."
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "The symptom pattern and denials match the original report. The differential remains tentative, and unreported severity, duration, examination findings and measurements are explicitly unknown rather than invented.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Attack duration, severity, nausea/vomiting, radiation and examination findings are unreported and therefore unknown"
+              },
+              {
+                "unit": "draft",
+                "quote": "No vital signs reported: no temperature, heart rate, blood pressure or other measurement stated; whether any were measured is unknown."
+              },
+              {
+                "unit": "patient",
+                "quote": "No fever, no yellowing of my skin or eyes."
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "The supplied passages support a possible biliary pattern, clinician assessment for persistent abdominal symptoms, and escalation for prolonged pain or concerning associated features. The draft acknowledges source limitations and does not claim a confirmed diagnosis or established normal examination.",
+            "anchors": [
+              {
+                "unit": "source:4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+                "quote": "- Episodic RUQ or epigastric pain, often postprandial (fatty meals)"
+              },
+              {
+                "unit": "source:4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+                "quote": "- Duration: 30 minutes to 6 hours (pain lasting > 6 hours suggests acute cholecystitis)"
+              },
+              {
+                "unit": "source:5f603bba7f6b0eb9a01750a48493f3afd222bb9432c7569aa1a0be2f48f5b0e8",
+                "quote": "Call your health care provider if mild pain lasts a week or more or if you have pain with other symptoms."
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "The draft gives actionable emergency instructions for important changes, independently of messaging availability, and a separate access fallback for the recommended clinician assessment.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Seek emergency care now if pain becomes severe and constant for hours, or you develop fever, vomiting you can't stop, yellow skin or eyes, or a rigid, very tender abdomen."
+              },
+              {
+                "unit": "draft",
+                "quote": "If that review isn't available today, contact your GP or a local urgent/primary care service for the same assessment."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No issued question or answer-dependent delay is present. Clinician review is recommended today without requiring further answers first.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              },
+              {
+                "unit": "draft",
+                "quote": "I recommend a Counsel clinician review this in this thread today (standard priority)"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "Counsel clinician ownership is recommended, not represented as accepted or guaranteed. The explicit access fallback avoids reliance on an unavailable response guarantee. Timing and destination are present despite the application phrase-check finding.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I recommend a Counsel clinician review this in this thread today (standard priority) to assess your recurring right-upper-belly pain and decide about gallbladder imaging and blood tests."
+              },
+              {
+                "unit": "draft",
+                "quote": "If that review isn't available today, contact your GP or a local urgent/primary care service for the same assessment."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "ownershipTaskReview": [],
+        "correction": "No material repair required.",
+        "repairTargets": [],
+        "evidenceQueries": []
+      },
+      "usage": {
+        "inputTokens": 9472,
+        "outputTokens": 1347
+      },
+      "failure": null,
+      "firstTextDeltaMs": 2453,
+      "streamProgress": {
+        "lastTextDeltaMs": 19894,
+        "textDeltaCount": 1298,
+        "textCharacters": 5791
+      },
+      "transportTimings": {
+        "startResolvedMs": 2,
+        "objectResolvedMs": 20033,
+        "usageResolvedMs": 20179,
+        "finishReasonResolvedMs": 20179,
+        "streamEndMs": 20180
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 4918,
+        "cacheCreationInputTokens": 4551
+      },
+      "durationMs": 20180,
+      "reviewInputBinding": {
+        "patientHash": "0c8fd0a89a9a929960050e132ef1aa7383aab56efa5ba0f4cbfc0bab379d80a7",
+        "draftHash": "9dd5b710dc2716e27bd1e8c2e2465bf6515772f567480988610a4e874fac8df6",
+        "packetHash": "7862eb633cc88ab48d2a56ec2465e16ffe5dff871b8cbb4a8ce58eeac72b791a"
+      },
+      "rawOutput": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "accept",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Recurring meal-related right-upper-abdominal pain warrants clinician assessment and consideration of investigation. Review can reasonably start in messaging on these reported facts; no reported feature establishes an immediate physical-care requirement. The draft leaves attack duration and severity unknown and provides escalation instructions.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "For a few weeks I've had pain in my upper right belly that comes and goes, usually after a fatty meal."
+              },
+              {
+                "unit": "draft",
+                "quote": "I recommend a Counsel clinician review this in this thread today (standard priority) to assess your recurring right-upper-belly pain and decide about gallbladder imaging and blood tests."
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "Standard clinician review is proportionate to recurrent unexplained pain requiring assessment and possible investigation. The draft does not impose emergency attendance or mandatory same-day testing for the current presentation; emergency care is conditional on concerning changes.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"reviewPriority\":\"routine\",\"workType\":\"clinical_review\""
+              },
+              {
+                "unit": "patient",
+                "quote": "No fever, no yellowing of my skin or eyes."
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "The symptom pattern and denials match the original report. The differential remains tentative, and unreported severity, duration, examination findings and measurements are explicitly unknown rather than invented.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Attack duration, severity, nausea/vomiting, radiation and examination findings are unreported and therefore unknown"
+              },
+              {
+                "unit": "draft",
+                "quote": "No vital signs reported: no temperature, heart rate, blood pressure or other measurement stated; whether any were measured is unknown."
+              },
+              {
+                "unit": "patient",
+                "quote": "No fever, no yellowing of my skin or eyes."
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "The supplied passages support a possible biliary pattern, clinician assessment for persistent abdominal symptoms, and escalation for prolonged pain or concerning associated features. The draft acknowledges source limitations and does not claim a confirmed diagnosis or established normal examination.",
+            "anchors": [
+              {
+                "unit": "source:4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+                "quote": "- Episodic RUQ or epigastric pain, often postprandial (fatty meals)"
+              },
+              {
+                "unit": "source:4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+                "quote": "- Duration: 30 minutes to 6 hours (pain lasting > 6 hours suggests acute cholecystitis)"
+              },
+              {
+                "unit": "source:5f603bba7f6b0eb9a01750a48493f3afd222bb9432c7569aa1a0be2f48f5b0e8",
+                "quote": "Call your health care provider if mild pain lasts a week or more or if you have pain with other symptoms."
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "The draft gives actionable emergency instructions for important changes, independently of messaging availability, and a separate access fallback for the recommended clinician assessment.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Seek emergency care now if pain becomes severe and constant for hours, or you develop fever, vomiting you can't stop, yellow skin or eyes, or a rigid, very tender abdomen."
+              },
+              {
+                "unit": "draft",
+                "quote": "If that review isn't available today, contact your GP or a local urgent/primary care service for the same assessment."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No issued question or answer-dependent delay is present. Clinician review is recommended today without requiring further answers first.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              },
+              {
+                "unit": "draft",
+                "quote": "I recommend a Counsel clinician review this in this thread today (standard priority)"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "Counsel clinician ownership is recommended, not represented as accepted or guaranteed. The explicit access fallback avoids reliance on an unavailable response guarantee. Timing and destination are present despite the application phrase-check finding.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I recommend a Counsel clinician review this in this thread today (standard priority) to assess your recurring right-upper-belly pain and decide about gallbladder imaging and blood tests."
+              },
+              {
+                "unit": "draft",
+                "quote": "If that review isn't available today, contact your GP or a local urgent/primary care service for the same assessment."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "ownershipTaskReview": [],
+        "correction": "No material repair required.",
+        "repairTargets": [],
+        "evidenceQueries": []
+      }
+    }
+  ],
+  "guidance": [
+    {
+      "id": "f2d4f8eabd9f7286fd1f55ce50b3fb003e3fdb732e0bbd28862c99b5867d6045",
+      "title": "Acute Abdominal Pain — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/abdominal-pain-acute.md",
+      "section": "Differential Diagnosis",
+      "summary": " distension, obstipation, \"coffee-bean\" sign on X-ray\n- **Intussusception** (`intussusception`): pediatric: intermittent colicky abdominal pain, \"currant jelly\" stool, palpable mass, target sign on US\n- **Fournier gangrene** (`fourniers-gangrene`): perineal pain, crepitus, rapidly progressive infection, sepsis. Surgical emergency.\n- **SBP** (`spontaneous-bacterial-peritonitis`): ascitic patient (cirrhosis) with fever, abdominal pain, AMS. Diagnostic paracentesis: PMN > 250/mm3.\n- **Mesenteric venous thrombosis** (`acute-mesenteric-venous-thrombosis`): subacute abdominal pain, hypercoagulable state, CT with portal/mesenteric vein thrombus\n\n### Urgent\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, low-grade fever, leukocytosis. CT for complications (abscess, perforation, fistula).\n- **Pyelonephritis** (`pyelonephritis`): flank pain, fever, pyuria, CVA tenderness\n- **Urolithiasis** (`urolithiasis`): colicky flank-to-groin pain, hematuria, restless patient. CT KUB without contrast.\n- **Ischemic colitis** (`ischemic-colitis`): elderly, post-prandial pain, bloody diarrhea, watershed area\n- **Ogilvie syndrome** (`ogilvie-syndrome`): acute colonic pseudo-obstruction, massive distension, cecal diameter > 12 cm → risk of perforation\n\n### Non-Emergent\n- **Biliary colic** (`biliary-colic`): episodic RUQ pain, post-prandial, resolves within 6 hours, no fever/leukocytosis\n- **Viral gastroenteritis** (`viral-gastroenteritis`): nausea, vomiting, diarrhea, diffuse cramping, no peritoneal signs",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "f2d4f8eabd9f7286fd1f55ce50b3fb003e3fdb732e0bbd28862c99b5867d6045",
+          "sourceId": "openem:abdominal-pain-acute",
+          "excerpt": " distension, obstipation, \"coffee-bean\" sign on X-ray\n- **Intussusception** (`intussusception`): pediatric: intermittent colicky abdominal pain, \"currant jelly\" stool, palpable mass, target sign on US\n- **Fournier gangrene** (`fourniers-gangrene`): perineal pain, crepitus, rapidly progressive infection, sepsis. Surgical emergency.\n- **SBP** (`spontaneous-bacterial-peritonitis`): ascitic patient (cirrhosis) with fever, abdominal pain, AMS. Diagnostic paracentesis: PMN > 250/mm3.\n- **Mesenteric venous thrombosis** (`acute-mesenteric-venous-thrombosis`): subacute abdominal pain, hypercoagulable state, CT with portal/mesenteric vein thrombus\n\n### Urgent\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, low-grade fever, leukocytosis. CT for complications (abscess, perforation, fistula).\n- **Pyelonephritis** (`pyelonephritis`): flank pain, fever, pyuria, CVA tenderness\n- **Urolithiasis** (`urolithiasis`): colicky flank-to-groin pain, hematuria, restless patient. CT KUB without contrast.\n- **Ischemic colitis** (`ischemic-colitis`): elderly, post-prandial pain, bloody diarrhea, watershed area\n- **Ogilvie syndrome** (`ogilvie-syndrome`): acute colonic pseudo-obstruction, massive distension, cecal diameter > 12 cm → risk of perforation\n\n### Non-Emergent\n- **Biliary colic** (`biliary-colic`): episodic RUQ pain, post-prandial, resolves within 6 hours, no fever/leukocytosis\n- **Viral gastroenteritis** (`viral-gastroenteritis`): nausea, vomiting, diarrhea, diffuse cramping, no peritoneal signs",
+          "excerptSha256": "a276256a3dec563e58e8be2b62883284a2f5b530e5ba35c752ab94fcca5d8fee",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "9cb6684b0a99102c2dc98efa6f7dd4eeeeddf9fe489650c307623700acca9f2e",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "f1914e24674441dae71ea035696ebddf8f652f76ed8593e6053cad0878bfa43e",
+      "title": "Acute Abdominal Pain — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/abdominal-pain-acute.md",
+      "section": "Differential Diagnosis",
+      "summary": "in (mimics surgical abdomen), Kussmaul breathing, fruity odor, glucose > 250, anion gap acidosis\n- **Acute hepatic failure** (`acute-hepatic-failure`): RUQ pain, jaundice, coagulopathy, encephalopathy\n- **Toxic megacolon** (`toxic-megacolon`): IBD or C. diff with distension > 6 cm, systemic toxicity\n\n### Emergent\n- **Acute appendicitis** (`acute-appendicitis`): periumbilical → RLQ migration, anorexia, low-grade fever, McBurney point tenderness, Rovsing sign. CT sensitivity 98%.\n- **Acute cholecystitis** (`acute-cholecystitis`): RUQ pain, Murphy sign, post-prandial, fever, leukocytosis. US: gallstones + wall thickening + pericholecystic fluid.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds AMS + hypotension. ERCP emergently.\n- **Incarcerated hernia** (`incarcerated-hernia`): painful, non-reducible bulge at inguinal, femoral, or umbilical site. Risk of strangulation.\n- **Ovarian torsion** (`ovarian-torsion`): sudden unilateral pelvic pain, nausea/vomiting, ovarian mass on US with absent Doppler flow. Do NOT rely on Doppler alone (sensitivity 60-70%).\n- **Testicular torsion** (`testicular-torsion`): acute testicular pain (may refer to abdomen), absent cremasteric reflex, high-riding testis. < 6 hours for salvage.\n- **Splenic/liver laceration** (`splenic-laceration`, `liver-laceration`): post-trauma, LUQ/RUQ pain, hypotension, free fluid on FAST\n- **Sigmoid/small bowel volvulus** (`sigmoid-volvulus`, `small-bowel-volvulus`): elderly/debilitated (sigmoid), distension, obstipation, \"coffee-bean\" sign on X-ray\n- **Intussusception** (`intussusception`): pediatric: intermittent colicky abdominal pain, \"currant jelly\" stool, palpable mass, target sign on US",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "f1914e24674441dae71ea035696ebddf8f652f76ed8593e6053cad0878bfa43e",
+          "sourceId": "openem:abdominal-pain-acute",
+          "excerpt": "in (mimics surgical abdomen), Kussmaul breathing, fruity odor, glucose > 250, anion gap acidosis\n- **Acute hepatic failure** (`acute-hepatic-failure`): RUQ pain, jaundice, coagulopathy, encephalopathy\n- **Toxic megacolon** (`toxic-megacolon`): IBD or C. diff with distension > 6 cm, systemic toxicity\n\n### Emergent\n- **Acute appendicitis** (`acute-appendicitis`): periumbilical → RLQ migration, anorexia, low-grade fever, McBurney point tenderness, Rovsing sign. CT sensitivity 98%.\n- **Acute cholecystitis** (`acute-cholecystitis`): RUQ pain, Murphy sign, post-prandial, fever, leukocytosis. US: gallstones + wall thickening + pericholecystic fluid.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds AMS + hypotension. ERCP emergently.\n- **Incarcerated hernia** (`incarcerated-hernia`): painful, non-reducible bulge at inguinal, femoral, or umbilical site. Risk of strangulation.\n- **Ovarian torsion** (`ovarian-torsion`): sudden unilateral pelvic pain, nausea/vomiting, ovarian mass on US with absent Doppler flow. Do NOT rely on Doppler alone (sensitivity 60-70%).\n- **Testicular torsion** (`testicular-torsion`): acute testicular pain (may refer to abdomen), absent cremasteric reflex, high-riding testis. < 6 hours for salvage.\n- **Splenic/liver laceration** (`splenic-laceration`, `liver-laceration`): post-trauma, LUQ/RUQ pain, hypotension, free fluid on FAST\n- **Sigmoid/small bowel volvulus** (`sigmoid-volvulus`, `small-bowel-volvulus`): elderly/debilitated (sigmoid), distension, obstipation, \"coffee-bean\" sign on X-ray\n- **Intussusception** (`intussusception`): pediatric: intermittent colicky abdominal pain, \"currant jelly\" stool, palpable mass, target sign on US",
+          "excerptSha256": "3b0c0c6c1489226aa2cda77c6d1a5b24056f54542a609f3c505befe3cd51e3cd",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "9cb6684b0a99102c2dc98efa6f7dd4eeeeddf9fe489650c307623700acca9f2e",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "25f162107a2a29b61d2123d03b1e598b4fe14093e7a13bcd91574005437de732",
+      "title": "Fever — Undifferentiated Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/fever-undifferentiated.md",
+      "section": "Differential Diagnosis",
+      "summary": " rash, hypotension, multiorgan involvement, recent wound or tampon use\n\n### Emergent\n- **Pneumonia** (`pneumonia`): cough, dyspnea, crackles, infiltrate on CXR. CURB-65 or PSI for risk stratification.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, RUQ pain, jaundice). ERCP emergently.\n- **Pyelonephritis** (`pyelonephritis`): fever, flank pain, CVA tenderness, pyuria/bacteriuria\n- **Appendicitis** (`acute-appendicitis`): fever, RLQ pain, anorexia, leukocytosis\n- **Cholecystitis** (`acute-cholecystitis`): fever, RUQ pain, Murphy sign\n- **Epidural abscess** (`spinal-epidural-abscess`): fever, back pain, neurological deficit (late). IVDU, immunocompromised.\n- **Deep neck space infections** (`retropharyngeal-abscess`, `peritonsillar-abscess`): fever, odynophagia, trismus, neck swelling, drooling\n- **Infective endocarditis** (`infective-endocarditis`): fever + new murmur + risk factors (IVDU, prosthetic valve, dental procedure). Modified Duke criteria.\n- **Hepatic abscess** (`hepatic-abscess`): fever, RUQ pain, diabetes, recent biliary procedure\n- **Empyema** (`empyema`): fever persisting despite pneumonia treatment, pleural effusion\n- **HSV encephalitis** (`hsv-encephalitis`): fever, AMS, temporal lobe seizures\n- **Serotonin syndrome** (`serotonin-syndrome`): fever, clonus, hyperreflexia, agitation, serotonergic drug exposure\n- **NMS** (`neuroleptic-malignant-syndrome`): fever, rigidity, AMS, autonomic instability, antipsychotic exposure\n\n### Urgent\n- **Cellulitis/abscess** (`cellulitis-abscess`): localized erythema, warmth, swelling, fluctuance (abscess). I&D for abscess.\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, fever, leukocytosis\n- **DVT** (`deep-vein-thrombosis`): low-grade fever in up to 30% of DVT",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "25f162107a2a29b61d2123d03b1e598b4fe14093e7a13bcd91574005437de732",
+          "sourceId": "openem:fever-undifferentiated",
+          "excerpt": " rash, hypotension, multiorgan involvement, recent wound or tampon use\n\n### Emergent\n- **Pneumonia** (`pneumonia`): cough, dyspnea, crackles, infiltrate on CXR. CURB-65 or PSI for risk stratification.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, RUQ pain, jaundice). ERCP emergently.\n- **Pyelonephritis** (`pyelonephritis`): fever, flank pain, CVA tenderness, pyuria/bacteriuria\n- **Appendicitis** (`acute-appendicitis`): fever, RLQ pain, anorexia, leukocytosis\n- **Cholecystitis** (`acute-cholecystitis`): fever, RUQ pain, Murphy sign\n- **Epidural abscess** (`spinal-epidural-abscess`): fever, back pain, neurological deficit (late). IVDU, immunocompromised.\n- **Deep neck space infections** (`retropharyngeal-abscess`, `peritonsillar-abscess`): fever, odynophagia, trismus, neck swelling, drooling\n- **Infective endocarditis** (`infective-endocarditis`): fever + new murmur + risk factors (IVDU, prosthetic valve, dental procedure). Modified Duke criteria.\n- **Hepatic abscess** (`hepatic-abscess`): fever, RUQ pain, diabetes, recent biliary procedure\n- **Empyema** (`empyema`): fever persisting despite pneumonia treatment, pleural effusion\n- **HSV encephalitis** (`hsv-encephalitis`): fever, AMS, temporal lobe seizures\n- **Serotonin syndrome** (`serotonin-syndrome`): fever, clonus, hyperreflexia, agitation, serotonergic drug exposure\n- **NMS** (`neuroleptic-malignant-syndrome`): fever, rigidity, AMS, autonomic instability, antipsychotic exposure\n\n### Urgent\n- **Cellulitis/abscess** (`cellulitis-abscess`): localized erythema, warmth, swelling, fluctuance (abscess). I&D for abscess.\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, fever, leukocytosis\n- **DVT** (`deep-vein-thrombosis`): low-grade fever in up to 30% of DVT",
+          "excerptSha256": "ae6332cd460ed50e470acc44bb59d416b7b9d8e078845fae1b8b49050f5b12b2",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "e1bf2b16d1434f21bb7eaff7396986181063b7bdd4e2f10118b783fc9d692ef0",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+      "title": "Biliary Colic",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/biliary-colic.md",
+      "section": "Recognition",
+      "summary": "**Presentation:**\n- Episodic RUQ or epigastric pain, often postprandial (fatty meals)\n- Pain is steady (not truly colicky despite the name), builds over 15-30 minutes\n- Duration: 30 minutes to 6 hours (pain lasting > 6 hours suggests acute cholecystitis)\n- Radiation to right scapula or right shoulder (referred from diaphragmatic irritation)\n- Associated nausea, vomiting\n- Pain resolves spontaneously or with analgesics\n- Intervals between attacks: days to months\n\n**Key distinction from acute cholecystitis:**\n- Biliary colic: pain < 6 hours, no fever, no leukocytosis, negative Murphy sign, normal gallbladder wall on US\n- Acute cholecystitis: pain > 6 hours, fever, leukocytosis, positive Murphy sign, gallbladder wall thickening/pericholecystic fluid\n\n**Risk factors (4 F's mnemonic — limited; actual risk factors broader):**\n- Female sex, fertile age, family history, obesity\n- Rapid weight loss, TPN, pregnancy, fibrate or OCPs use\n- Native American, Hispanic descent\n\n**Exam findings:**\n- Mild RUQ tenderness during acute episode\n- Negative Murphy sign (deep inspiration during RUQ palpation does not arrest breathing)\n- No peritoneal signs\n- Afebrile, non-toxic appearing",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+          "sourceId": "openem:biliary-colic",
+          "excerpt": "**Presentation:**\n- Episodic RUQ or epigastric pain, often postprandial (fatty meals)\n- Pain is steady (not truly colicky despite the name), builds over 15-30 minutes\n- Duration: 30 minutes to 6 hours (pain lasting > 6 hours suggests acute cholecystitis)\n- Radiation to right scapula or right shoulder (referred from diaphragmatic irritation)\n- Associated nausea, vomiting\n- Pain resolves spontaneously or with analgesics\n- Intervals between attacks: days to months\n\n**Key distinction from acute cholecystitis:**\n- Biliary colic: pain < 6 hours, no fever, no leukocytosis, negative Murphy sign, normal gallbladder wall on US\n- Acute cholecystitis: pain > 6 hours, fever, leukocytosis, positive Murphy sign, gallbladder wall thickening/pericholecystic fluid\n\n**Risk factors (4 F's mnemonic — limited; actual risk factors broader):**\n- Female sex, fertile age, family history, obesity\n- Rapid weight loss, TPN, pregnancy, fibrate or OCPs use\n- Native American, Hispanic descent\n\n**Exam findings:**\n- Mild RUQ tenderness during acute episode\n- Negative Murphy sign (deep inspiration during RUQ palpation does not arrest breathing)\n- No peritoneal signs\n- Afebrile, non-toxic appearing",
+          "excerptSha256": "2701b70345a38084e1d5d3e2574705d640c046616a92a796b4768896f98beaf0",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "9bde7f1c67658fa06993afea6ffeae54eff5134e93f5825bfe775fe0517fc1c5",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "b7aff3421e3a5ef9142b9713d65e033ca2b36cc2e31fab285f6fc007d73afb5a",
+      "title": "Biliary Colic",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/biliary-colic.md",
+      "section": "Differential Diagnosis",
+      "summary": "- **Acute cholecystitis** — pain > 6 hours, fever, leukocytosis, positive Murphy sign, GB wall thickening > 3 mm on US\n- **Choledocholithiasis** — jaundice, elevated bilirubin/ALP/GGT, CBD dilation > 6 mm on US\n- **Gallstone pancreatitis** — epigastric pain radiating to back, lipase > 3x ULN\n- **Acute cholangitis** — Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds hypotension, AMS\n- **Peptic ulcer disease** — epigastric burning pain, relationship to meals; EGD diagnostic\n- **GERD/esophagitis** — retrosternal burning, relief with antacids\n- **Hepatitis** — elevated transaminases, viral serologies\n- **Right lower lobe pneumonia** — cough, fever, referred RUQ pain; CXR diagnostic\n- **STEMI (inferior)** — ECG changes; epigastric pain mimics biliary colic\n- **Fitz-Hugh-Curtis syndrome** — perihepatitis from PID; young female with RUQ pain",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "b7aff3421e3a5ef9142b9713d65e033ca2b36cc2e31fab285f6fc007d73afb5a",
+          "sourceId": "openem:biliary-colic",
+          "excerpt": "- **Acute cholecystitis** — pain > 6 hours, fever, leukocytosis, positive Murphy sign, GB wall thickening > 3 mm on US\n- **Choledocholithiasis** — jaundice, elevated bilirubin/ALP/GGT, CBD dilation > 6 mm on US\n- **Gallstone pancreatitis** — epigastric pain radiating to back, lipase > 3x ULN\n- **Acute cholangitis** — Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds hypotension, AMS\n- **Peptic ulcer disease** — epigastric burning pain, relationship to meals; EGD diagnostic\n- **GERD/esophagitis** — retrosternal burning, relief with antacids\n- **Hepatitis** — elevated transaminases, viral serologies\n- **Right lower lobe pneumonia** — cough, fever, referred RUQ pain; CXR diagnostic\n- **STEMI (inferior)** — ECG changes; epigastric pain mimics biliary colic\n- **Fitz-Hugh-Curtis syndrome** — perihepatitis from PID; young female with RUQ pain",
+          "excerptSha256": "18c9447ef201829226d1ceaad4dbb99ba8178eaa8ac18d0acd26153493b93a29",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "9bde7f1c67658fa06993afea6ffeae54eff5134e93f5825bfe775fe0517fc1c5",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "5f603bba7f6b0eb9a01750a48493f3afd222bb9432c7569aa1a0be2f48f5b0e8",
+      "title": "Abdominal Pain",
+      "url": "https://medlineplus.gov/abdominalpain.html",
+      "section": "Health-topic summary",
+      "summary": "Your abdomen extends from below your chest to your groin. Some people call it the stomach, but your abdomen contains many other important organs. Pain in the abdomen can come from any one of them. The pain may start somewhere else, such as your chest. Severe pain doesn't always mean a serious problem. Nor does mild pain mean a problem is not serious. \n\n Call your health care provider if mild pain lasts a week or more or if you have pain with other symptoms. Get medical help immediately if: \n You have abdominal pain that is sudden and sharp \n You also have pain in your chest, neck or shoulder \n You're vomiting blood or have blood in your stool \n Your abdomen is stiff, hard and tender to touch \n You can't move your bowels, especially if you're also vomiting",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "5f603bba7f6b0eb9a01750a48493f3afd222bb9432c7569aa1a0be2f48f5b0e8",
+          "sourceId": "medlineplus:3061",
+          "excerpt": "Your abdomen extends from below your chest to your groin. Some people call it the stomach, but your abdomen contains many other important organs. Pain in the abdomen can come from any one of them. The pain may start somewhere else, such as your chest. Severe pain doesn't always mean a serious problem. Nor does mild pain mean a problem is not serious. \n\n Call your health care provider if mild pain lasts a week or more or if you have pain with other symptoms. Get medical help immediately if: \n You have abdominal pain that is sudden and sharp \n You also have pain in your chest, neck or shoulder \n You're vomiting blood or have blood in your stool \n Your abdomen is stiff, hard and tender to touch \n You can't move your bowels, especially if you're also vomiting",
+          "excerptSha256": "de650c6b9db2e50059e340ffa5c4bdec1c6b2e5e597ce67c8ea46d4a5e2bd0e6",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "f80a45f5587bf26e88dc6fa8420c3c39564543d662093dbd1b3c323bf92d1386",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "c66f23de73ec574df5a7754ce1d9f7f9ec495389e1bfe8440a8fc027b7eee514",
+      "title": "Acute Cholecystitis",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-cholecystitis.md",
+      "section": "Differential Diagnosis",
+      "summary": "| Condition | Distinguishing Features |\n|---|---|\n| **Biliary colic** | Episodic, colicky RUQ pain lasting < 6 hours; resolves spontaneously; no fever, no leukocytosis, no gallbladder wall thickening; negative Murphy sign |\n| **Ascending cholangitis** | Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds hypotension and altered mental status; CBD dilation on ultrasound; conjugated hyperbilirubinemia and elevated ALP/GGT prominent; jaundice more common than in cholecystitis |\n| **Acute pancreatitis** | Epigastric pain radiating to back; lipase > 3x upper limit of normal; may coexist with cholecystitis (gallstone pancreatitis) |\n| **Peptic ulcer disease / perforation** | Epigastric pain; free air on upright CXR or CT if perforated; no gallbladder wall thickening |\n| **Acute hepatitis** | Transaminases > 1,000 IU/L (much higher than cholecystitis); hepatomegaly; risk factors (viral exposure, alcohol, medications) |\n| **Acute appendicitis (high-riding cecum)** | RLQ pain typical, but can present as RUQ pain with retrocecal or subhepatic appendix; CT distinguishes |\n| **Right lower lobe pneumonia** | Referred RUQ pain from diaphragmatic irritation; cough, pleuritic component; CXR abnormal |\n| **Fitz-Hugh-Curtis syndrome** | Perihepatitis from PID; young women; RUQ pain with elevated ESR; cervical motion tenderness on pelvic exam |\n| **Renal colic (right)** | Flank pain radiating to groin; hematuria; no gallbladder findings on ultrasound; CT KUB shows ureteral stone |",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "c66f23de73ec574df5a7754ce1d9f7f9ec495389e1bfe8440a8fc027b7eee514",
+          "sourceId": "openem:acute-cholecystitis",
+          "excerpt": "| Condition | Distinguishing Features |\n|---|---|\n| **Biliary colic** | Episodic, colicky RUQ pain lasting < 6 hours; resolves spontaneously; no fever, no leukocytosis, no gallbladder wall thickening; negative Murphy sign |\n| **Ascending cholangitis** | Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds hypotension and altered mental status; CBD dilation on ultrasound; conjugated hyperbilirubinemia and elevated ALP/GGT prominent; jaundice more common than in cholecystitis |\n| **Acute pancreatitis** | Epigastric pain radiating to back; lipase > 3x upper limit of normal; may coexist with cholecystitis (gallstone pancreatitis) |\n| **Peptic ulcer disease / perforation** | Epigastric pain; free air on upright CXR or CT if perforated; no gallbladder wall thickening |\n| **Acute hepatitis** | Transaminases > 1,000 IU/L (much higher than cholecystitis); hepatomegaly; risk factors (viral exposure, alcohol, medications) |\n| **Acute appendicitis (high-riding cecum)** | RLQ pain typical, but can present as RUQ pain with retrocecal or subhepatic appendix; CT distinguishes |\n| **Right lower lobe pneumonia** | Referred RUQ pain from diaphragmatic irritation; cough, pleuritic component; CXR abnormal |\n| **Fitz-Hugh-Curtis syndrome** | Perihepatitis from PID; young women; RUQ pain with elevated ESR; cervical motion tenderness on pelvic exam |\n| **Renal colic (right)** | Flank pain radiating to groin; hematuria; no gallbladder findings on ultrasound; CT KUB shows ureteral stone |",
+          "excerptSha256": "d76a7f67963c4235d4d29297f21ca0d4e620d37ac7db5ba267e9f9fd846d578a",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "260d280bb805f687c169a80b2b48ae3ec5c381bc71a11307013aadf45d0fd8f4",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    }
+  ],
+  "safetyFloor": null,
+  "rejectedAnswer": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "reviewPriority": "routine",
+    "workType": "clinical_review",
+    "reason": "Several weeks of intermittent right upper quadrant pain after fatty meals, with fever and yellowing of skin/eyes denied by the patient, fits a possible biliary pattern needing clinician assessment and consideration of ultrasound/labs. Attack duration, severity, nausea/vomiting, radiation and examination findings are unreported and therefore unknown; on the reported facts nothing establishes a need for emergency or same-day in-person care today.",
+    "patientMessage": "I recommend a Counsel clinician review this in this thread today (standard priority) to assess your recurring right-upper-belly pain and decide about gallbladder imaging and blood tests. Your pattern — episodic pain after fatty meals, with no fever or yellowing — fits a non-emergency picture. If that review isn't available today, contact your GP or a local urgent/primary care service for the same assessment. Seek emergency care now if pain becomes severe and constant for hours, or you develop fever, vomiting you can't stop, yellow skin or eyes, or a rigid, very tender abdomen.",
+    "differential": [
+      "Biliary colic from gallstones (episodic postprandial RUQ pain)",
+      "Peptic ulcer disease or reflux-related upper abdominal pain",
+      "Acute cholecystitis if an episode becomes prolonged or febrile — not reported now"
+    ],
+    "redFlags": [
+      {
+        "concern": "Fever",
+        "status": "denied",
+        "quote": "No fever"
+      },
+      {
+        "concern": "Jaundice",
+        "status": "denied",
+        "quote": "no yellowing of my skin or eyes"
+      },
+      {
+        "concern": "Nausea, vomiting, or radiation to back/shoulder",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Prolonged attack lasting more than 6 hours",
+        "status": "unknown",
+        "quote": "pain in my upper right belly that comes and goes"
+      },
+      {
+        "concern": "Severity or functional impact",
+        "status": "unknown",
+        "quote": ""
+      }
+    ],
+    "vitalSigns": "No vital signs reported: no temperature, heart rate, blood pressure or other measurement stated; whether any were measured is unknown. Absence of subjective fever is not a measured temperature.",
+    "questions": [],
+    "evidenceLimitations": "Sources are agent-compiled emergency-department reference syntheses and a consumer health summary, not telehealth routing guidance; currency not assessed. Episode duration, nausea/vomiting, radiation and severity were not reported, so distinguishing simple biliary colic from evolving cholecystitis remains uncertain.",
+    "transportIntent": null,
+    "citations": [
+      {
+        "passageId": "4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+        "quote": "- Episodic RUQ or epigastric pain, often postprandial (fatty meals)",
+        "claim": "Episodic right-upper-quadrant pain after fatty meals is a described biliary colic presentation.",
+        "applicability": "applicable",
+        "limitation": "Descriptive recognition text; does not confirm this patient's diagnosis."
+      },
+      {
+        "passageId": "4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+        "quote": "- Duration: 30 minutes to 6 hours (pain lasting > 6 hours suggests acute cholecystitis)",
+        "claim": "Pain lasting beyond about 6 hours, or with fever, suggests acute cholecystitis rather than biliary colic.",
+        "applicability": "uncertain",
+        "limitation": "This patient's individual attack duration and any measured temperature are unreported."
+      },
+      {
+        "passageId": "f2d4f8eabd9f7286fd1f55ce50b3fb003e3fdb732e0bbd28862c99b5867d6045",
+        "quote": "- **Biliary colic** (`biliary-colic`): episodic RUQ pain, post-prandial, resolves within 6 hours, no fever/leukocytosis",
+        "claim": "Post-prandial episodic RUQ pain without fever is categorized as a non-emergent presentation in this reference.",
+        "applicability": "uncertain",
+        "limitation": "Emergency-department synthesis; leukocytosis and exam findings are unavailable remotely."
+      },
+      {
+        "passageId": "5f603bba7f6b0eb9a01750a48493f3afd222bb9432c7569aa1a0be2f48f5b0e8",
+        "quote": "Your abdomen is stiff, hard and tender to touch",
+        "claim": "Consumer guidance advises immediate medical help for a stiff, hard, tender abdomen.",
+        "applicability": "applicable",
+        "limitation": "General consumer advice, not specific to biliary disease."
+      }
+    ]
+  },
+  "failure": "CLINICIAN_REVIEW_REQUIRED",
+  "routingPolicy": "five-route-queue/v2",
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "pass",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "fail",
+      "detail": "Checks explicit timing/destination tokens or exact independently reviewed emergency-transport binding; not clinical validation or verification of EMS activation."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen; a prescription/plan mention alone is not authority for a new instruction. Targeted prose finding, not prescribing validation."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "pass",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "emergency_transport",
+      "status": "not_assessed",
+      "detail": "LEGACY_TEXT_CONTRACT: typed transport intent and independent review are bound to patient and draft quotations; this is not externally verified EMS activation or clinical validation."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Cited passage identity and exact quote match; this does not establish claim support or applicability."
+    },
+    {
+      "id": "independent_review",
+      "status": "pass",
+      "detail": "Cross-vendor reviewer accepted this draft against seven criteria; application contract and care-reconciliation gates are separate. Not physician calibration or clinical approval."
+    },
+    {
+      "id": "care_reconciliation",
+      "status": "not_assessed",
+      "detail": "No reduction of already-issued care setting or emergency transport was requested."
+    }
+  ],
+  "usage": {
+    "inputTokens": 59574,
+    "outputTokens": 5251
+  },
+  "graph": {
+    "version": "evidence-graph/v23",
+    "mode": "hybrid",
+    "clinicalPolicyVersion": "disposition-clinical-policy/v2",
+    "context": {
+      "queries": [
+        "upper right abdominal pain fatty meals",
+        "right upper quadrant pain fever jaundice biliary",
+        "intermittent colicky pain postprandial RUQ imaging"
+      ],
+      "findings": [
+        {
+          "finding": "Upper right abdominal pain, intermittent, postprandial (after fatty meals)",
+          "status": "reported",
+          "quote": "pain in my upper right belly that comes and goes, usually after a fatty meal"
+        },
+        {
+          "finding": "Fever",
+          "status": "denied",
+          "quote": "No fever"
+        },
+        {
+          "finding": "Jaundice (yellowing of skin or eyes)",
+          "status": "denied",
+          "quote": "no yellowing of my skin or eyes"
+        },
+        {
+          "finding": "Duration of pain",
+          "status": "reported",
+          "quote": "a few weeks"
+        },
+        {
+          "finding": "Associated nausea, vomiting, or radiation of pain",
+          "status": "unknown",
+          "quote": ""
+        },
+        {
+          "finding": "Severity and impact on function",
+          "status": "unknown",
+          "quote": ""
+        }
+      ],
+      "question": {
+        "text": "When the pain occurs, do you have nausea, vomiting, or does the pain travel to your back or right shoulder?",
+        "why": "These features help distinguish biliary colic or cholecystitis from other causes of RUQ pain and guide urgency of imaging.",
+        "quote": "upper right belly pain"
+      }
+    },
+    "contextAdmission": {
+      "clinicalContextAccepted": true,
+      "querySource": "accepted_context",
+      "queries": [
+        "upper right abdominal pain fatty meals",
+        "right upper quadrant pain fever jaundice biliary",
+        "intermittent colicky pain postprandial RUQ imaging"
+      ],
+      "clinicalValidation": false
+    },
+    "safety": {
+      "action": "STANDARD_ASYNC",
+      "basis": [
+        {
+          "quote": "pain in my upper right belly that comes and goes, usually after a fatty meal",
+          "interpretation": "Recurrent epigastric or right upper quadrant pain triggered by fat intake suggests possible biliary colic or cholecystitis; timing and association with meals is clinically relevant.",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "For a few weeks",
+          "interpretation": "Symptom duration of several weeks indicates subacute or chronic process rather than acute emergency, allowing async assessment.",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "No fever, no yellowing of my skin or eyes",
+          "interpretation": "Absence of fever and jaundice reduces immediate concern for acute cholecystitis or biliary obstruction, though these findings are not reported measurements and do not exclude serious pathology.",
+          "currentPatient": true,
+          "present": false
+        }
+      ],
+      "actionBasis": null,
+      "reason": "Right upper quadrant pain with fatty-meal trigger requires clinician evaluation and likely imaging, but absence of fever and jaundice and weeks-long stable course do not establish time-critical urgency.",
+      "patientMessage": "",
+      "physicalRequirement": null,
+      "activeEms": null
+    },
+    "safetyAdmission": {
+      "status": "not_requested",
+      "code": "NO_EARLY_ACTION",
+      "proposedAction": "STANDARD_ASYNC",
+      "basisMode": null,
+      "supportingBasisIndices": [],
+      "contextualBasisIndices": [],
+      "clinicalValidation": false
+    },
+    "questionPublication": {
+      "status": "rejected_question_contract",
+      "blocksRouting": false
+    },
+    "transportAdmission": {
+      "status": "legacy",
+      "code": "LEGACY_TEXT_CONTRACT",
+      "clinicalValidation": false
+    },
+    "ownershipLanguageReview": {
+      "raw": {
+        "id": "no_unconfirmed_handoff",
+        "status": "pass",
+        "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+      },
+      "findings": [],
+      "status": "not_flagged",
+      "reviewedDraftHash": "9dd5b710dc2716e27bd1e8c2e2465bf6515772f567480988610a4e874fac8df6",
+      "taskReviews": [],
+      "clinicalApproval": false
+    },
+    "repair": {
+      "protocol": "field-local-repair/v2",
+      "baseDraftHash": "bd5e640665197b0fbc462a8e1fccf0ec5e2d1fb4e5b4f1c89063dbb4cc2a346f",
+      "evidenceHash": "4337a5e2d6d3f122f92b21061b756efdfef888f1dcb9fbfa9e2eb6cd70edff4f",
+      "allowedFields": [
+        "reason",
+        "patientMessage"
+      ],
+      "changedFields": [
+        "reason",
+        "patientMessage"
+      ],
+      "noopFields": [],
+      "resultDraftHash": "9dd5b710dc2716e27bd1e8c2e2465bf6515772f567480988610a4e874fac8df6",
+      "status": "applied",
+      "failure": null
+    },
+    "retrieval": [
+      {
+        "corpusHash": "af7e4a8c239c4b084525aba008d56ce833b3a08144cea6237319bf996aa30dbd",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "upper right abdominal pain fatty meals",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "f2d4f8eabd9f7286fd1f55ce50b3fb003e3fdb732e0bbd28862c99b5867d6045",
+              "end": 4638,
+              "hash": "a276256a3dec563e58e8be2b62883284a2f5b530e5ba35c752ab94fcca5d8fee",
+              "text": " distension, obstipation, \"coffee-bean\" sign on X-ray\n- **Intussusception** (`intussusception`): pediatric: intermittent colicky abdominal pain, \"currant jelly\" stool, palpable mass, target sign on US\n- **Fournier gangrene** (`fourniers-gangrene`): perineal pain, crepitus, rapidly progressive infection, sepsis. Surgical emergency.\n- **SBP** (`spontaneous-bacterial-peritonitis`): ascitic patient (cirrhosis) with fever, abdominal pain, AMS. Diagnostic paracentesis: PMN > 250/mm3.\n- **Mesenteric venous thrombosis** (`acute-mesenteric-venous-thrombosis`): subacute abdominal pain, hypercoagulable state, CT with portal/mesenteric vein thrombus\n\n### Urgent\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, low-grade fever, leukocytosis. CT for complications (abscess, perforation, fistula).\n- **Pyelonephritis** (`pyelonephritis`): flank pain, fever, pyuria, CVA tenderness\n- **Urolithiasis** (`urolithiasis`): colicky flank-to-groin pain, hematuria, restless patient. CT KUB without contrast.\n- **Ischemic colitis** (`ischemic-colitis`): elderly, post-prandial pain, bloody diarrhea, watershed area\n- **Ogilvie syndrome** (`ogilvie-syndrome`): acute colonic pseudo-obstruction, massive distension, cecal diameter > 12 cm → risk of perforation\n\n### Non-Emergent\n- **Biliary colic** (`biliary-colic`): episodic RUQ pain, post-prandial, resolves within 6 hours, no fever/leukocytosis\n- **Viral gastroenteritis** (`viral-gastroenteritis`): nausea, vomiting, diarrhea, diffuse cramping, no peritoneal signs",
+              "start": 3127,
+              "section": 2,
+              "documentId": "openem:abdominal-pain-acute",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Acute Abdominal Pain — Emergency Evaluation\nabdominal pain; belly pain; stomach pain; acute abdomen; surgical abdomen\nDifferential Diagnosis\n distension, obstipation, \"coffee-bean\" sign on X-ray\n- **Intussusception** (`intussusception`): pediatric: intermittent colicky abdominal pain, \"currant jelly\" stool, palpable mass, target sign on US\n- **Fournier gangrene** (`fourniers-gangrene`): perineal pain, crepitus, rapidly progressive infection, sepsis. Surgical emergency.\n- **SBP** (`spontaneous-bacterial-peritonitis`): ascitic patient (cirrhosis) with fever, abdominal pain, AMS. Diagnostic paracentesis: PMN > 250/mm3.\n- **Mesenteric venous thrombosis** (`acute-mesenteric-venous-thrombosis`): subacute abdominal pain, hypercoagulable state, CT with portal/mesenteric vein thrombus\n\n### Urgent\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, low-grade fever, leukocytosis. CT for complications (abscess, perforation, fistula).\n- **Pyelonephritis** (`pyelonephritis`): flank pain, fever, pyuria, CVA tenderness\n- **Urolithiasis** (`urolithiasis`): colicky flank-to-groin pain, hematuria, restless patient. CT KUB without contrast.\n- **Ischemic colitis** (`ischemic-colitis`): elderly, post-prandial pain, bloody diarrhea, watershed area\n- **Ogilvie syndrome** (`ogilvie-syndrome`): acute colonic pseudo-obstruction, massive distension, cecal diameter > 12 cm → risk of perforation\n\n### Non-Emergent\n- **Biliary colic** (`biliary-colic`): episodic RUQ pain, post-prandial, resolves within 6 hours, no fever/leukocytosis\n- **Viral gastroenteritis** (`viral-gastroenteritis`): nausea, vomiting, diarrhea, diffuse cramping, no peritoneal signs"
+            },
+            "document": {
+              "id": "openem:abdominal-pain-acute",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/abdominal-pain-acute.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Abdominal Pain — Emergency Evaluation",
+              "aliases": [
+                "abdominal pain",
+                "belly pain",
+                "stomach pain",
+                "acute abdomen",
+                "surgical abdomen"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "9cb6684b0a99102c2dc98efa6f7dd4eeeeddf9fe489650c307623700acca9f2e",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03128054740957967,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "ric reflex, high-riding testis. < 6 hours for salvage.\n- **Splenic/liver laceration** (`splenic-laceration`, `liver-laceration`): post-trauma, LUQ/RUQ pain, hypotension, free fluid on FAST\n- **Sigmoid/small bowel volvulus** (`sigmoid-volvulus`, `small-bowel-volvulus`): elderly/debilitated (sigmoid),",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "f1914e24674441dae71ea035696ebddf8f652f76ed8593e6053cad0878bfa43e",
+              "end": 3327,
+              "hash": "3b0c0c6c1489226aa2cda77c6d1a5b24056f54542a609f3c505befe3cd51e3cd",
+              "text": "in (mimics surgical abdomen), Kussmaul breathing, fruity odor, glucose > 250, anion gap acidosis\n- **Acute hepatic failure** (`acute-hepatic-failure`): RUQ pain, jaundice, coagulopathy, encephalopathy\n- **Toxic megacolon** (`toxic-megacolon`): IBD or C. diff with distension > 6 cm, systemic toxicity\n\n### Emergent\n- **Acute appendicitis** (`acute-appendicitis`): periumbilical → RLQ migration, anorexia, low-grade fever, McBurney point tenderness, Rovsing sign. CT sensitivity 98%.\n- **Acute cholecystitis** (`acute-cholecystitis`): RUQ pain, Murphy sign, post-prandial, fever, leukocytosis. US: gallstones + wall thickening + pericholecystic fluid.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds AMS + hypotension. ERCP emergently.\n- **Incarcerated hernia** (`incarcerated-hernia`): painful, non-reducible bulge at inguinal, femoral, or umbilical site. Risk of strangulation.\n- **Ovarian torsion** (`ovarian-torsion`): sudden unilateral pelvic pain, nausea/vomiting, ovarian mass on US with absent Doppler flow. Do NOT rely on Doppler alone (sensitivity 60-70%).\n- **Testicular torsion** (`testicular-torsion`): acute testicular pain (may refer to abdomen), absent cremasteric reflex, high-riding testis. < 6 hours for salvage.\n- **Splenic/liver laceration** (`splenic-laceration`, `liver-laceration`): post-trauma, LUQ/RUQ pain, hypotension, free fluid on FAST\n- **Sigmoid/small bowel volvulus** (`sigmoid-volvulus`, `small-bowel-volvulus`): elderly/debilitated (sigmoid), distension, obstipation, \"coffee-bean\" sign on X-ray\n- **Intussusception** (`intussusception`): pediatric: intermittent colicky abdominal pain, \"currant jelly\" stool, palpable mass, target sign on US",
+              "start": 1580,
+              "section": 2,
+              "documentId": "openem:abdominal-pain-acute",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Acute Abdominal Pain — Emergency Evaluation\nabdominal pain; belly pain; stomach pain; acute abdomen; surgical abdomen\nDifferential Diagnosis\nin (mimics surgical abdomen), Kussmaul breathing, fruity odor, glucose > 250, anion gap acidosis\n- **Acute hepatic failure** (`acute-hepatic-failure`): RUQ pain, jaundice, coagulopathy, encephalopathy\n- **Toxic megacolon** (`toxic-megacolon`): IBD or C. diff with distension > 6 cm, systemic toxicity\n\n### Emergent\n- **Acute appendicitis** (`acute-appendicitis`): periumbilical → RLQ migration, anorexia, low-grade fever, McBurney point tenderness, Rovsing sign. CT sensitivity 98%.\n- **Acute cholecystitis** (`acute-cholecystitis`): RUQ pain, Murphy sign, post-prandial, fever, leukocytosis. US: gallstones + wall thickening + pericholecystic fluid.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds AMS + hypotension. ERCP emergently.\n- **Incarcerated hernia** (`incarcerated-hernia`): painful, non-reducible bulge at inguinal, femoral, or umbilical site. Risk of strangulation.\n- **Ovarian torsion** (`ovarian-torsion`): sudden unilateral pelvic pain, nausea/vomiting, ovarian mass on US with absent Doppler flow. Do NOT rely on Doppler alone (sensitivity 60-70%).\n- **Testicular torsion** (`testicular-torsion`): acute testicular pain (may refer to abdomen), absent cremasteric reflex, high-riding testis. < 6 hours for salvage.\n- **Splenic/liver laceration** (`splenic-laceration`, `liver-laceration`): post-trauma, LUQ/RUQ pain, hypotension, free fluid on FAST\n- **Sigmoid/small bowel volvulus** (`sigmoid-volvulus`, `small-bowel-volvulus`): elderly/debilitated (sigmoid), distension, obstipation, \"coffee-bean\" sign on X-ray\n- **Intussusception** (`intussusception`): pediatric: intermittent colicky abdominal pain, \"currant jelly\" stool, palpable mass, target sign on US"
+            },
+            "document": {
+              "id": "openem:abdominal-pain-acute",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/abdominal-pain-acute.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Abdominal Pain — Emergency Evaluation",
+              "aliases": [
+                "abdominal pain",
+                "belly pain",
+                "stomach pain",
+                "acute abdomen",
+                "surgical abdomen"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "9cb6684b0a99102c2dc98efa6f7dd4eeeeddf9fe489650c307623700acca9f2e",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03055037313432836,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "urce (perforation, cholangitis, abscess, SBP) + SIRS + organ dysfunction\n- **Aortic dissection** (`aortic-dissection`): tearing pain radiating to back, BP differential, can mimic renal colic or mesenteric ischemia via branch vessel compromise\n- **DKA** (`diabetic-ketoacidosis`): diffuse abdominal pa",
+              "after": "\n- **Fournier gangrene** (`fourniers-gangrene`): perineal pain, crepitus, rapidly progressive infection, sepsis. Surgical emergency.\n- **SBP** (`spontaneous-bacterial-peritonitis`): ascitic patient (cirrhosis) with fever, abdominal pain, AMS. Diagnostic paracentesis: PMN > 250/mm3.\n- **Mesenteric ve"
+            }
+          },
+          {
+            "chunk": {
+              "id": "4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+              "end": 1181,
+              "hash": "2701b70345a38084e1d5d3e2574705d640c046616a92a796b4768896f98beaf0",
+              "text": "**Presentation:**\n- Episodic RUQ or epigastric pain, often postprandial (fatty meals)\n- Pain is steady (not truly colicky despite the name), builds over 15-30 minutes\n- Duration: 30 minutes to 6 hours (pain lasting > 6 hours suggests acute cholecystitis)\n- Radiation to right scapula or right shoulder (referred from diaphragmatic irritation)\n- Associated nausea, vomiting\n- Pain resolves spontaneously or with analgesics\n- Intervals between attacks: days to months\n\n**Key distinction from acute cholecystitis:**\n- Biliary colic: pain < 6 hours, no fever, no leukocytosis, negative Murphy sign, normal gallbladder wall on US\n- Acute cholecystitis: pain > 6 hours, fever, leukocytosis, positive Murphy sign, gallbladder wall thickening/pericholecystic fluid\n\n**Risk factors (4 F's mnemonic — limited; actual risk factors broader):**\n- Female sex, fertile age, family history, obesity\n- Rapid weight loss, TPN, pregnancy, fibrate or OCPs use\n- Native American, Hispanic descent\n\n**Exam findings:**\n- Mild RUQ tenderness during acute episode\n- Negative Murphy sign (deep inspiration during RUQ palpation does not arrest breathing)\n- No peritoneal signs\n- Afebrile, non-toxic appearing",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:biliary-colic",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Biliary Colic\ngallstone pain; symptomatic cholelithiasis; gallbladder colic\nRecognition\n**Presentation:**\n- Episodic RUQ or epigastric pain, often postprandial (fatty meals)\n- Pain is steady (not truly colicky despite the name), builds over 15-30 minutes\n- Duration: 30 minutes to 6 hours (pain lasting > 6 hours suggests acute cholecystitis)\n- Radiation to right scapula or right shoulder (referred from diaphragmatic irritation)\n- Associated nausea, vomiting\n- Pain resolves spontaneously or with analgesics\n- Intervals between attacks: days to months\n\n**Key distinction from acute cholecystitis:**\n- Biliary colic: pain < 6 hours, no fever, no leukocytosis, negative Murphy sign, normal gallbladder wall on US\n- Acute cholecystitis: pain > 6 hours, fever, leukocytosis, positive Murphy sign, gallbladder wall thickening/pericholecystic fluid\n\n**Risk factors (4 F's mnemonic — limited; actual risk factors broader):**\n- Female sex, fertile age, family history, obesity\n- Rapid weight loss, TPN, pregnancy, fibrate or OCPs use\n- Native American, Hispanic descent\n\n**Exam findings:**\n- Mild RUQ tenderness during acute episode\n- Negative Murphy sign (deep inspiration during RUQ palpation does not arrest breathing)\n- No peritoneal signs\n- Afebrile, non-toxic appearing"
+            },
+            "document": {
+              "id": "openem:biliary-colic",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/biliary-colic.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Biliary Colic",
+              "aliases": [
+                "gallstone pain",
+                "symptomatic cholelithiasis",
+                "gallbladder colic"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "9bde7f1c67658fa06993afea6ffeae54eff5134e93f5825bfe775fe0517fc1c5",
+              "related": [],
+              "concepts": [
+                "gastrointestinal"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.023856129190115,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "b7aff3421e3a5ef9142b9713d65e033ca2b36cc2e31fab285f6fc007d73afb5a",
+              "end": 861,
+              "hash": "18c9447ef201829226d1ceaad4dbb99ba8178eaa8ac18d0acd26153493b93a29",
+              "text": "- **Acute cholecystitis** — pain > 6 hours, fever, leukocytosis, positive Murphy sign, GB wall thickening > 3 mm on US\n- **Choledocholithiasis** — jaundice, elevated bilirubin/ALP/GGT, CBD dilation > 6 mm on US\n- **Gallstone pancreatitis** — epigastric pain radiating to back, lipase > 3x ULN\n- **Acute cholangitis** — Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds hypotension, AMS\n- **Peptic ulcer disease** — epigastric burning pain, relationship to meals; EGD diagnostic\n- **GERD/esophagitis** — retrosternal burning, relief with antacids\n- **Hepatitis** — elevated transaminases, viral serologies\n- **Right lower lobe pneumonia** — cough, fever, referred RUQ pain; CXR diagnostic\n- **STEMI (inferior)** — ECG changes; epigastric pain mimics biliary colic\n- **Fitz-Hugh-Curtis syndrome** — perihepatitis from PID; young female with RUQ pain",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:biliary-colic",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Biliary Colic\ngallstone pain; symptomatic cholelithiasis; gallbladder colic\nDifferential Diagnosis\n- **Acute cholecystitis** — pain > 6 hours, fever, leukocytosis, positive Murphy sign, GB wall thickening > 3 mm on US\n- **Choledocholithiasis** — jaundice, elevated bilirubin/ALP/GGT, CBD dilation > 6 mm on US\n- **Gallstone pancreatitis** — epigastric pain radiating to back, lipase > 3x ULN\n- **Acute cholangitis** — Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds hypotension, AMS\n- **Peptic ulcer disease** — epigastric burning pain, relationship to meals; EGD diagnostic\n- **GERD/esophagitis** — retrosternal burning, relief with antacids\n- **Hepatitis** — elevated transaminases, viral serologies\n- **Right lower lobe pneumonia** — cough, fever, referred RUQ pain; CXR diagnostic\n- **STEMI (inferior)** — ECG changes; epigastric pain mimics biliary colic\n- **Fitz-Hugh-Curtis syndrome** — perihepatitis from PID; young female with RUQ pain"
+            },
+            "document": {
+              "id": "openem:biliary-colic",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/biliary-colic.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Biliary Colic",
+              "aliases": [
+                "gallstone pain",
+                "symptomatic cholelithiasis",
+                "gallbladder colic"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "9bde7f1c67658fa06993afea6ffeae54eff5134e93f5825bfe775fe0517fc1c5",
+              "related": [],
+              "concepts": [
+                "gastrointestinal"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.023323276862381063,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "5f603bba7f6b0eb9a01750a48493f3afd222bb9432c7569aa1a0be2f48f5b0e8",
+              "end": 765,
+              "hash": "de650c6b9db2e50059e340ffa5c4bdec1c6b2e5e597ce67c8ea46d4a5e2bd0e6",
+              "text": "Your abdomen extends from below your chest to your groin. Some people call it the stomach, but your abdomen contains many other important organs. Pain in the abdomen can come from any one of them. The pain may start somewhere else, such as your chest. Severe pain doesn't always mean a serious problem. Nor does mild pain mean a problem is not serious. \n\n Call your health care provider if mild pain lasts a week or more or if you have pain with other symptoms. Get medical help immediately if: \n You have abdominal pain that is sudden and sharp \n You also have pain in your chest, neck or shoulder \n You're vomiting blood or have blood in your stool \n Your abdomen is stiff, hard and tender to touch \n You can't move your bowels, especially if you're also vomiting",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:3061",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Abdominal Pain\nBellyache\nHealth-topic summary\nYour abdomen extends from below your chest to your groin. Some people call it the stomach, but your abdomen contains many other important organs. Pain in the abdomen can come from any one of them. The pain may start somewhere else, such as your chest. Severe pain doesn't always mean a serious problem. Nor does mild pain mean a problem is not serious. \n\n Call your health care provider if mild pain lasts a week or more or if you have pain with other symptoms. Get medical help immediately if: \n You have abdominal pain that is sudden and sharp \n You also have pain in your chest, neck or shoulder \n You're vomiting blood or have blood in your stool \n Your abdomen is stiff, hard and tender to touch \n You can't move your bowels, especially if you're also vomiting"
+            },
+            "document": {
+              "id": "medlineplus:3061",
+              "url": "https://medlineplus.gov/abdominalpain.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Abdominal Pain",
+              "aliases": [
+                "Bellyache"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "f80a45f5587bf26e88dc6fa8420c3c39564543d662093dbd1b3c323bf92d1386",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4293",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:351",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4486",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Abdominal Pain"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.02228122835372893,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 21.407583999913186,
+          "embeddingMs": 428.2796249999665,
+          "vectorMs": 15.08945900015533,
+          "totalMs": 509.6327919999603
+        },
+        "warnings": [],
+        "embeddingTokens": 6,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "af7e4a8c239c4b084525aba008d56ce833b3a08144cea6237319bf996aa30dbd",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "right upper quadrant pain fever jaundice biliary",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "f1914e24674441dae71ea035696ebddf8f652f76ed8593e6053cad0878bfa43e",
+              "end": 3327,
+              "hash": "3b0c0c6c1489226aa2cda77c6d1a5b24056f54542a609f3c505befe3cd51e3cd",
+              "text": "in (mimics surgical abdomen), Kussmaul breathing, fruity odor, glucose > 250, anion gap acidosis\n- **Acute hepatic failure** (`acute-hepatic-failure`): RUQ pain, jaundice, coagulopathy, encephalopathy\n- **Toxic megacolon** (`toxic-megacolon`): IBD or C. diff with distension > 6 cm, systemic toxicity\n\n### Emergent\n- **Acute appendicitis** (`acute-appendicitis`): periumbilical → RLQ migration, anorexia, low-grade fever, McBurney point tenderness, Rovsing sign. CT sensitivity 98%.\n- **Acute cholecystitis** (`acute-cholecystitis`): RUQ pain, Murphy sign, post-prandial, fever, leukocytosis. US: gallstones + wall thickening + pericholecystic fluid.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds AMS + hypotension. ERCP emergently.\n- **Incarcerated hernia** (`incarcerated-hernia`): painful, non-reducible bulge at inguinal, femoral, or umbilical site. Risk of strangulation.\n- **Ovarian torsion** (`ovarian-torsion`): sudden unilateral pelvic pain, nausea/vomiting, ovarian mass on US with absent Doppler flow. Do NOT rely on Doppler alone (sensitivity 60-70%).\n- **Testicular torsion** (`testicular-torsion`): acute testicular pain (may refer to abdomen), absent cremasteric reflex, high-riding testis. < 6 hours for salvage.\n- **Splenic/liver laceration** (`splenic-laceration`, `liver-laceration`): post-trauma, LUQ/RUQ pain, hypotension, free fluid on FAST\n- **Sigmoid/small bowel volvulus** (`sigmoid-volvulus`, `small-bowel-volvulus`): elderly/debilitated (sigmoid), distension, obstipation, \"coffee-bean\" sign on X-ray\n- **Intussusception** (`intussusception`): pediatric: intermittent colicky abdominal pain, \"currant jelly\" stool, palpable mass, target sign on US",
+              "start": 1580,
+              "section": 2,
+              "documentId": "openem:abdominal-pain-acute",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Acute Abdominal Pain — Emergency Evaluation\nabdominal pain; belly pain; stomach pain; acute abdomen; surgical abdomen\nDifferential Diagnosis\nin (mimics surgical abdomen), Kussmaul breathing, fruity odor, glucose > 250, anion gap acidosis\n- **Acute hepatic failure** (`acute-hepatic-failure`): RUQ pain, jaundice, coagulopathy, encephalopathy\n- **Toxic megacolon** (`toxic-megacolon`): IBD or C. diff with distension > 6 cm, systemic toxicity\n\n### Emergent\n- **Acute appendicitis** (`acute-appendicitis`): periumbilical → RLQ migration, anorexia, low-grade fever, McBurney point tenderness, Rovsing sign. CT sensitivity 98%.\n- **Acute cholecystitis** (`acute-cholecystitis`): RUQ pain, Murphy sign, post-prandial, fever, leukocytosis. US: gallstones + wall thickening + pericholecystic fluid.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds AMS + hypotension. ERCP emergently.\n- **Incarcerated hernia** (`incarcerated-hernia`): painful, non-reducible bulge at inguinal, femoral, or umbilical site. Risk of strangulation.\n- **Ovarian torsion** (`ovarian-torsion`): sudden unilateral pelvic pain, nausea/vomiting, ovarian mass on US with absent Doppler flow. Do NOT rely on Doppler alone (sensitivity 60-70%).\n- **Testicular torsion** (`testicular-torsion`): acute testicular pain (may refer to abdomen), absent cremasteric reflex, high-riding testis. < 6 hours for salvage.\n- **Splenic/liver laceration** (`splenic-laceration`, `liver-laceration`): post-trauma, LUQ/RUQ pain, hypotension, free fluid on FAST\n- **Sigmoid/small bowel volvulus** (`sigmoid-volvulus`, `small-bowel-volvulus`): elderly/debilitated (sigmoid), distension, obstipation, \"coffee-bean\" sign on X-ray\n- **Intussusception** (`intussusception`): pediatric: intermittent colicky abdominal pain, \"currant jelly\" stool, palpable mass, target sign on US"
+            },
+            "document": {
+              "id": "openem:abdominal-pain-acute",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/abdominal-pain-acute.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Abdominal Pain — Emergency Evaluation",
+              "aliases": [
+                "abdominal pain",
+                "belly pain",
+                "stomach pain",
+                "acute abdomen",
+                "surgical abdomen"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "9cb6684b0a99102c2dc98efa6f7dd4eeeeddf9fe489650c307623700acca9f2e",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.027313266443701224,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "urce (perforation, cholangitis, abscess, SBP) + SIRS + organ dysfunction\n- **Aortic dissection** (`aortic-dissection`): tearing pain radiating to back, BP differential, can mimic renal colic or mesenteric ischemia via branch vessel compromise\n- **DKA** (`diabetic-ketoacidosis`): diffuse abdominal pa",
+              "after": "\n- **Fournier gangrene** (`fourniers-gangrene`): perineal pain, crepitus, rapidly progressive infection, sepsis. Surgical emergency.\n- **SBP** (`spontaneous-bacterial-peritonitis`): ascitic patient (cirrhosis) with fever, abdominal pain, AMS. Diagnostic paracentesis: PMN > 250/mm3.\n- **Mesenteric ve"
+            }
+          },
+          {
+            "chunk": {
+              "id": "25f162107a2a29b61d2123d03b1e598b4fe14093e7a13bcd91574005437de732",
+              "end": 3325,
+              "hash": "ae6332cd460ed50e470acc44bb59d416b7b9d8e078845fae1b8b49050f5b12b2",
+              "text": " rash, hypotension, multiorgan involvement, recent wound or tampon use\n\n### Emergent\n- **Pneumonia** (`pneumonia`): cough, dyspnea, crackles, infiltrate on CXR. CURB-65 or PSI for risk stratification.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, RUQ pain, jaundice). ERCP emergently.\n- **Pyelonephritis** (`pyelonephritis`): fever, flank pain, CVA tenderness, pyuria/bacteriuria\n- **Appendicitis** (`acute-appendicitis`): fever, RLQ pain, anorexia, leukocytosis\n- **Cholecystitis** (`acute-cholecystitis`): fever, RUQ pain, Murphy sign\n- **Epidural abscess** (`spinal-epidural-abscess`): fever, back pain, neurological deficit (late). IVDU, immunocompromised.\n- **Deep neck space infections** (`retropharyngeal-abscess`, `peritonsillar-abscess`): fever, odynophagia, trismus, neck swelling, drooling\n- **Infective endocarditis** (`infective-endocarditis`): fever + new murmur + risk factors (IVDU, prosthetic valve, dental procedure). Modified Duke criteria.\n- **Hepatic abscess** (`hepatic-abscess`): fever, RUQ pain, diabetes, recent biliary procedure\n- **Empyema** (`empyema`): fever persisting despite pneumonia treatment, pleural effusion\n- **HSV encephalitis** (`hsv-encephalitis`): fever, AMS, temporal lobe seizures\n- **Serotonin syndrome** (`serotonin-syndrome`): fever, clonus, hyperreflexia, agitation, serotonergic drug exposure\n- **NMS** (`neuroleptic-malignant-syndrome`): fever, rigidity, AMS, autonomic instability, antipsychotic exposure\n\n### Urgent\n- **Cellulitis/abscess** (`cellulitis-abscess`): localized erythema, warmth, swelling, fluctuance (abscess). I&D for abscess.\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, fever, leukocytosis\n- **DVT** (`deep-vein-thrombosis`): low-grade fever in up to 30% of DVT",
+              "start": 1552,
+              "section": 2,
+              "documentId": "openem:fever-undifferentiated",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Fever — Undifferentiated Emergency Evaluation\nfever; pyrexia; febrile; undifferentiated fever; fever of unknown source\nDifferential Diagnosis\n rash, hypotension, multiorgan involvement, recent wound or tampon use\n\n### Emergent\n- **Pneumonia** (`pneumonia`): cough, dyspnea, crackles, infiltrate on CXR. CURB-65 or PSI for risk stratification.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, RUQ pain, jaundice). ERCP emergently.\n- **Pyelonephritis** (`pyelonephritis`): fever, flank pain, CVA tenderness, pyuria/bacteriuria\n- **Appendicitis** (`acute-appendicitis`): fever, RLQ pain, anorexia, leukocytosis\n- **Cholecystitis** (`acute-cholecystitis`): fever, RUQ pain, Murphy sign\n- **Epidural abscess** (`spinal-epidural-abscess`): fever, back pain, neurological deficit (late). IVDU, immunocompromised.\n- **Deep neck space infections** (`retropharyngeal-abscess`, `peritonsillar-abscess`): fever, odynophagia, trismus, neck swelling, drooling\n- **Infective endocarditis** (`infective-endocarditis`): fever + new murmur + risk factors (IVDU, prosthetic valve, dental procedure). Modified Duke criteria.\n- **Hepatic abscess** (`hepatic-abscess`): fever, RUQ pain, diabetes, recent biliary procedure\n- **Empyema** (`empyema`): fever persisting despite pneumonia treatment, pleural effusion\n- **HSV encephalitis** (`hsv-encephalitis`): fever, AMS, temporal lobe seizures\n- **Serotonin syndrome** (`serotonin-syndrome`): fever, clonus, hyperreflexia, agitation, serotonergic drug exposure\n- **NMS** (`neuroleptic-malignant-syndrome`): fever, rigidity, AMS, autonomic instability, antipsychotic exposure\n\n### Urgent\n- **Cellulitis/abscess** (`cellulitis-abscess`): localized erythema, warmth, swelling, fluctuance (abscess). I&D for abscess.\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, fever, leukocytosis\n- **DVT** (`deep-vein-thrombosis`): low-grade fever in up to 30% of DVT"
+            },
+            "document": {
+              "id": "openem:fever-undifferentiated",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/fever-undifferentiated.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Fever — Undifferentiated Emergency Evaluation",
+              "aliases": [
+                "fever",
+                "pyrexia",
+                "febrile",
+                "undifferentiated fever",
+                "fever of unknown source"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "e1bf2b16d1434f21bb7eaff7396986181063b7bdd4e2f10118b783fc9d692ef0",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.026597524255603883,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": " **Thyroid storm** (`thyroid-storm`): fever, tachycardia out of proportion, AMS, known hyperthyroidism. Burch-Wartofsky score >= 45.\n- **Heat stroke** (`heat-stroke`): core temp > 40°C, CNS dysfunction, exertional or classic\n- **Toxic shock syndrome** (`toxic-shock-syndrome`): fever, diffuse macular",
+              "after": "\n- **Kawasaki disease** (`kawasaki-disease`): pediatric, fever >= 5 days, conjunctivitis, rash, mucous membrane changes, extremity changes, lymphadenopathy\n- **Drug hypersensitivity reaction** (`drug-hypersensitivity-reaction`): fever, rash, eosinophilia, recent new medication"
+            }
+          },
+          {
+            "chunk": {
+              "id": "f2d4f8eabd9f7286fd1f55ce50b3fb003e3fdb732e0bbd28862c99b5867d6045",
+              "end": 4638,
+              "hash": "a276256a3dec563e58e8be2b62883284a2f5b530e5ba35c752ab94fcca5d8fee",
+              "text": " distension, obstipation, \"coffee-bean\" sign on X-ray\n- **Intussusception** (`intussusception`): pediatric: intermittent colicky abdominal pain, \"currant jelly\" stool, palpable mass, target sign on US\n- **Fournier gangrene** (`fourniers-gangrene`): perineal pain, crepitus, rapidly progressive infection, sepsis. Surgical emergency.\n- **SBP** (`spontaneous-bacterial-peritonitis`): ascitic patient (cirrhosis) with fever, abdominal pain, AMS. Diagnostic paracentesis: PMN > 250/mm3.\n- **Mesenteric venous thrombosis** (`acute-mesenteric-venous-thrombosis`): subacute abdominal pain, hypercoagulable state, CT with portal/mesenteric vein thrombus\n\n### Urgent\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, low-grade fever, leukocytosis. CT for complications (abscess, perforation, fistula).\n- **Pyelonephritis** (`pyelonephritis`): flank pain, fever, pyuria, CVA tenderness\n- **Urolithiasis** (`urolithiasis`): colicky flank-to-groin pain, hematuria, restless patient. CT KUB without contrast.\n- **Ischemic colitis** (`ischemic-colitis`): elderly, post-prandial pain, bloody diarrhea, watershed area\n- **Ogilvie syndrome** (`ogilvie-syndrome`): acute colonic pseudo-obstruction, massive distension, cecal diameter > 12 cm → risk of perforation\n\n### Non-Emergent\n- **Biliary colic** (`biliary-colic`): episodic RUQ pain, post-prandial, resolves within 6 hours, no fever/leukocytosis\n- **Viral gastroenteritis** (`viral-gastroenteritis`): nausea, vomiting, diarrhea, diffuse cramping, no peritoneal signs",
+              "start": 3127,
+              "section": 2,
+              "documentId": "openem:abdominal-pain-acute",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Acute Abdominal Pain — Emergency Evaluation\nabdominal pain; belly pain; stomach pain; acute abdomen; surgical abdomen\nDifferential Diagnosis\n distension, obstipation, \"coffee-bean\" sign on X-ray\n- **Intussusception** (`intussusception`): pediatric: intermittent colicky abdominal pain, \"currant jelly\" stool, palpable mass, target sign on US\n- **Fournier gangrene** (`fourniers-gangrene`): perineal pain, crepitus, rapidly progressive infection, sepsis. Surgical emergency.\n- **SBP** (`spontaneous-bacterial-peritonitis`): ascitic patient (cirrhosis) with fever, abdominal pain, AMS. Diagnostic paracentesis: PMN > 250/mm3.\n- **Mesenteric venous thrombosis** (`acute-mesenteric-venous-thrombosis`): subacute abdominal pain, hypercoagulable state, CT with portal/mesenteric vein thrombus\n\n### Urgent\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, low-grade fever, leukocytosis. CT for complications (abscess, perforation, fistula).\n- **Pyelonephritis** (`pyelonephritis`): flank pain, fever, pyuria, CVA tenderness\n- **Urolithiasis** (`urolithiasis`): colicky flank-to-groin pain, hematuria, restless patient. CT KUB without contrast.\n- **Ischemic colitis** (`ischemic-colitis`): elderly, post-prandial pain, bloody diarrhea, watershed area\n- **Ogilvie syndrome** (`ogilvie-syndrome`): acute colonic pseudo-obstruction, massive distension, cecal diameter > 12 cm → risk of perforation\n\n### Non-Emergent\n- **Biliary colic** (`biliary-colic`): episodic RUQ pain, post-prandial, resolves within 6 hours, no fever/leukocytosis\n- **Viral gastroenteritis** (`viral-gastroenteritis`): nausea, vomiting, diarrhea, diffuse cramping, no peritoneal signs"
+            },
+            "document": {
+              "id": "openem:abdominal-pain-acute",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/abdominal-pain-acute.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Abdominal Pain — Emergency Evaluation",
+              "aliases": [
+                "abdominal pain",
+                "belly pain",
+                "stomach pain",
+                "acute abdomen",
+                "surgical abdomen"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "9cb6684b0a99102c2dc98efa6f7dd4eeeeddf9fe489650c307623700acca9f2e",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.025603392041748205,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "ric reflex, high-riding testis. < 6 hours for salvage.\n- **Splenic/liver laceration** (`splenic-laceration`, `liver-laceration`): post-trauma, LUQ/RUQ pain, hypotension, free fluid on FAST\n- **Sigmoid/small bowel volvulus** (`sigmoid-volvulus`, `small-bowel-volvulus`): elderly/debilitated (sigmoid),",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "b7aff3421e3a5ef9142b9713d65e033ca2b36cc2e31fab285f6fc007d73afb5a",
+              "end": 861,
+              "hash": "18c9447ef201829226d1ceaad4dbb99ba8178eaa8ac18d0acd26153493b93a29",
+              "text": "- **Acute cholecystitis** — pain > 6 hours, fever, leukocytosis, positive Murphy sign, GB wall thickening > 3 mm on US\n- **Choledocholithiasis** — jaundice, elevated bilirubin/ALP/GGT, CBD dilation > 6 mm on US\n- **Gallstone pancreatitis** — epigastric pain radiating to back, lipase > 3x ULN\n- **Acute cholangitis** — Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds hypotension, AMS\n- **Peptic ulcer disease** — epigastric burning pain, relationship to meals; EGD diagnostic\n- **GERD/esophagitis** — retrosternal burning, relief with antacids\n- **Hepatitis** — elevated transaminases, viral serologies\n- **Right lower lobe pneumonia** — cough, fever, referred RUQ pain; CXR diagnostic\n- **STEMI (inferior)** — ECG changes; epigastric pain mimics biliary colic\n- **Fitz-Hugh-Curtis syndrome** — perihepatitis from PID; young female with RUQ pain",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:biliary-colic",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Biliary Colic\ngallstone pain; symptomatic cholelithiasis; gallbladder colic\nDifferential Diagnosis\n- **Acute cholecystitis** — pain > 6 hours, fever, leukocytosis, positive Murphy sign, GB wall thickening > 3 mm on US\n- **Choledocholithiasis** — jaundice, elevated bilirubin/ALP/GGT, CBD dilation > 6 mm on US\n- **Gallstone pancreatitis** — epigastric pain radiating to back, lipase > 3x ULN\n- **Acute cholangitis** — Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds hypotension, AMS\n- **Peptic ulcer disease** — epigastric burning pain, relationship to meals; EGD diagnostic\n- **GERD/esophagitis** — retrosternal burning, relief with antacids\n- **Hepatitis** — elevated transaminases, viral serologies\n- **Right lower lobe pneumonia** — cough, fever, referred RUQ pain; CXR diagnostic\n- **STEMI (inferior)** — ECG changes; epigastric pain mimics biliary colic\n- **Fitz-Hugh-Curtis syndrome** — perihepatitis from PID; young female with RUQ pain"
+            },
+            "document": {
+              "id": "openem:biliary-colic",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/biliary-colic.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Biliary Colic",
+              "aliases": [
+                "gallstone pain",
+                "symptomatic cholelithiasis",
+                "gallbladder colic"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "9bde7f1c67658fa06993afea6ffeae54eff5134e93f5825bfe775fe0517fc1c5",
+              "related": [],
+              "concepts": [
+                "gastrointestinal"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.02445795875198308,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+              "end": 1181,
+              "hash": "2701b70345a38084e1d5d3e2574705d640c046616a92a796b4768896f98beaf0",
+              "text": "**Presentation:**\n- Episodic RUQ or epigastric pain, often postprandial (fatty meals)\n- Pain is steady (not truly colicky despite the name), builds over 15-30 minutes\n- Duration: 30 minutes to 6 hours (pain lasting > 6 hours suggests acute cholecystitis)\n- Radiation to right scapula or right shoulder (referred from diaphragmatic irritation)\n- Associated nausea, vomiting\n- Pain resolves spontaneously or with analgesics\n- Intervals between attacks: days to months\n\n**Key distinction from acute cholecystitis:**\n- Biliary colic: pain < 6 hours, no fever, no leukocytosis, negative Murphy sign, normal gallbladder wall on US\n- Acute cholecystitis: pain > 6 hours, fever, leukocytosis, positive Murphy sign, gallbladder wall thickening/pericholecystic fluid\n\n**Risk factors (4 F's mnemonic — limited; actual risk factors broader):**\n- Female sex, fertile age, family history, obesity\n- Rapid weight loss, TPN, pregnancy, fibrate or OCPs use\n- Native American, Hispanic descent\n\n**Exam findings:**\n- Mild RUQ tenderness during acute episode\n- Negative Murphy sign (deep inspiration during RUQ palpation does not arrest breathing)\n- No peritoneal signs\n- Afebrile, non-toxic appearing",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:biliary-colic",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Biliary Colic\ngallstone pain; symptomatic cholelithiasis; gallbladder colic\nRecognition\n**Presentation:**\n- Episodic RUQ or epigastric pain, often postprandial (fatty meals)\n- Pain is steady (not truly colicky despite the name), builds over 15-30 minutes\n- Duration: 30 minutes to 6 hours (pain lasting > 6 hours suggests acute cholecystitis)\n- Radiation to right scapula or right shoulder (referred from diaphragmatic irritation)\n- Associated nausea, vomiting\n- Pain resolves spontaneously or with analgesics\n- Intervals between attacks: days to months\n\n**Key distinction from acute cholecystitis:**\n- Biliary colic: pain < 6 hours, no fever, no leukocytosis, negative Murphy sign, normal gallbladder wall on US\n- Acute cholecystitis: pain > 6 hours, fever, leukocytosis, positive Murphy sign, gallbladder wall thickening/pericholecystic fluid\n\n**Risk factors (4 F's mnemonic — limited; actual risk factors broader):**\n- Female sex, fertile age, family history, obesity\n- Rapid weight loss, TPN, pregnancy, fibrate or OCPs use\n- Native American, Hispanic descent\n\n**Exam findings:**\n- Mild RUQ tenderness during acute episode\n- Negative Murphy sign (deep inspiration during RUQ palpation does not arrest breathing)\n- No peritoneal signs\n- Afebrile, non-toxic appearing"
+            },
+            "document": {
+              "id": "openem:biliary-colic",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/biliary-colic.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Biliary Colic",
+              "aliases": [
+                "gallstone pain",
+                "symptomatic cholelithiasis",
+                "gallbladder colic"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "9bde7f1c67658fa06993afea6ffeae54eff5134e93f5825bfe775fe0517fc1c5",
+              "related": [],
+              "concepts": [
+                "gastrointestinal"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.022866022866022864,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 44.16404199996032,
+          "embeddingMs": 672.7686669998802,
+          "vectorMs": 9.496957999886945,
+          "totalMs": 749.7665419999976
+        },
+        "warnings": [],
+        "embeddingTokens": 10,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "af7e4a8c239c4b084525aba008d56ce833b3a08144cea6237319bf996aa30dbd",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "intermittent colicky pain postprandial RUQ imaging",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "f2d4f8eabd9f7286fd1f55ce50b3fb003e3fdb732e0bbd28862c99b5867d6045",
+              "end": 4638,
+              "hash": "a276256a3dec563e58e8be2b62883284a2f5b530e5ba35c752ab94fcca5d8fee",
+              "text": " distension, obstipation, \"coffee-bean\" sign on X-ray\n- **Intussusception** (`intussusception`): pediatric: intermittent colicky abdominal pain, \"currant jelly\" stool, palpable mass, target sign on US\n- **Fournier gangrene** (`fourniers-gangrene`): perineal pain, crepitus, rapidly progressive infection, sepsis. Surgical emergency.\n- **SBP** (`spontaneous-bacterial-peritonitis`): ascitic patient (cirrhosis) with fever, abdominal pain, AMS. Diagnostic paracentesis: PMN > 250/mm3.\n- **Mesenteric venous thrombosis** (`acute-mesenteric-venous-thrombosis`): subacute abdominal pain, hypercoagulable state, CT with portal/mesenteric vein thrombus\n\n### Urgent\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, low-grade fever, leukocytosis. CT for complications (abscess, perforation, fistula).\n- **Pyelonephritis** (`pyelonephritis`): flank pain, fever, pyuria, CVA tenderness\n- **Urolithiasis** (`urolithiasis`): colicky flank-to-groin pain, hematuria, restless patient. CT KUB without contrast.\n- **Ischemic colitis** (`ischemic-colitis`): elderly, post-prandial pain, bloody diarrhea, watershed area\n- **Ogilvie syndrome** (`ogilvie-syndrome`): acute colonic pseudo-obstruction, massive distension, cecal diameter > 12 cm → risk of perforation\n\n### Non-Emergent\n- **Biliary colic** (`biliary-colic`): episodic RUQ pain, post-prandial, resolves within 6 hours, no fever/leukocytosis\n- **Viral gastroenteritis** (`viral-gastroenteritis`): nausea, vomiting, diarrhea, diffuse cramping, no peritoneal signs",
+              "start": 3127,
+              "section": 2,
+              "documentId": "openem:abdominal-pain-acute",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Acute Abdominal Pain — Emergency Evaluation\nabdominal pain; belly pain; stomach pain; acute abdomen; surgical abdomen\nDifferential Diagnosis\n distension, obstipation, \"coffee-bean\" sign on X-ray\n- **Intussusception** (`intussusception`): pediatric: intermittent colicky abdominal pain, \"currant jelly\" stool, palpable mass, target sign on US\n- **Fournier gangrene** (`fourniers-gangrene`): perineal pain, crepitus, rapidly progressive infection, sepsis. Surgical emergency.\n- **SBP** (`spontaneous-bacterial-peritonitis`): ascitic patient (cirrhosis) with fever, abdominal pain, AMS. Diagnostic paracentesis: PMN > 250/mm3.\n- **Mesenteric venous thrombosis** (`acute-mesenteric-venous-thrombosis`): subacute abdominal pain, hypercoagulable state, CT with portal/mesenteric vein thrombus\n\n### Urgent\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, low-grade fever, leukocytosis. CT for complications (abscess, perforation, fistula).\n- **Pyelonephritis** (`pyelonephritis`): flank pain, fever, pyuria, CVA tenderness\n- **Urolithiasis** (`urolithiasis`): colicky flank-to-groin pain, hematuria, restless patient. CT KUB without contrast.\n- **Ischemic colitis** (`ischemic-colitis`): elderly, post-prandial pain, bloody diarrhea, watershed area\n- **Ogilvie syndrome** (`ogilvie-syndrome`): acute colonic pseudo-obstruction, massive distension, cecal diameter > 12 cm → risk of perforation\n\n### Non-Emergent\n- **Biliary colic** (`biliary-colic`): episodic RUQ pain, post-prandial, resolves within 6 hours, no fever/leukocytosis\n- **Viral gastroenteritis** (`viral-gastroenteritis`): nausea, vomiting, diarrhea, diffuse cramping, no peritoneal signs"
+            },
+            "document": {
+              "id": "openem:abdominal-pain-acute",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/abdominal-pain-acute.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Abdominal Pain — Emergency Evaluation",
+              "aliases": [
+                "abdominal pain",
+                "belly pain",
+                "stomach pain",
+                "acute abdomen",
+                "surgical abdomen"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "9cb6684b0a99102c2dc98efa6f7dd4eeeeddf9fe489650c307623700acca9f2e",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.029083245521601686,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "ric reflex, high-riding testis. < 6 hours for salvage.\n- **Splenic/liver laceration** (`splenic-laceration`, `liver-laceration`): post-trauma, LUQ/RUQ pain, hypotension, free fluid on FAST\n- **Sigmoid/small bowel volvulus** (`sigmoid-volvulus`, `small-bowel-volvulus`): elderly/debilitated (sigmoid),",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "f1914e24674441dae71ea035696ebddf8f652f76ed8593e6053cad0878bfa43e",
+              "end": 3327,
+              "hash": "3b0c0c6c1489226aa2cda77c6d1a5b24056f54542a609f3c505befe3cd51e3cd",
+              "text": "in (mimics surgical abdomen), Kussmaul breathing, fruity odor, glucose > 250, anion gap acidosis\n- **Acute hepatic failure** (`acute-hepatic-failure`): RUQ pain, jaundice, coagulopathy, encephalopathy\n- **Toxic megacolon** (`toxic-megacolon`): IBD or C. diff with distension > 6 cm, systemic toxicity\n\n### Emergent\n- **Acute appendicitis** (`acute-appendicitis`): periumbilical → RLQ migration, anorexia, low-grade fever, McBurney point tenderness, Rovsing sign. CT sensitivity 98%.\n- **Acute cholecystitis** (`acute-cholecystitis`): RUQ pain, Murphy sign, post-prandial, fever, leukocytosis. US: gallstones + wall thickening + pericholecystic fluid.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds AMS + hypotension. ERCP emergently.\n- **Incarcerated hernia** (`incarcerated-hernia`): painful, non-reducible bulge at inguinal, femoral, or umbilical site. Risk of strangulation.\n- **Ovarian torsion** (`ovarian-torsion`): sudden unilateral pelvic pain, nausea/vomiting, ovarian mass on US with absent Doppler flow. Do NOT rely on Doppler alone (sensitivity 60-70%).\n- **Testicular torsion** (`testicular-torsion`): acute testicular pain (may refer to abdomen), absent cremasteric reflex, high-riding testis. < 6 hours for salvage.\n- **Splenic/liver laceration** (`splenic-laceration`, `liver-laceration`): post-trauma, LUQ/RUQ pain, hypotension, free fluid on FAST\n- **Sigmoid/small bowel volvulus** (`sigmoid-volvulus`, `small-bowel-volvulus`): elderly/debilitated (sigmoid), distension, obstipation, \"coffee-bean\" sign on X-ray\n- **Intussusception** (`intussusception`): pediatric: intermittent colicky abdominal pain, \"currant jelly\" stool, palpable mass, target sign on US",
+              "start": 1580,
+              "section": 2,
+              "documentId": "openem:abdominal-pain-acute",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Acute Abdominal Pain — Emergency Evaluation\nabdominal pain; belly pain; stomach pain; acute abdomen; surgical abdomen\nDifferential Diagnosis\nin (mimics surgical abdomen), Kussmaul breathing, fruity odor, glucose > 250, anion gap acidosis\n- **Acute hepatic failure** (`acute-hepatic-failure`): RUQ pain, jaundice, coagulopathy, encephalopathy\n- **Toxic megacolon** (`toxic-megacolon`): IBD or C. diff with distension > 6 cm, systemic toxicity\n\n### Emergent\n- **Acute appendicitis** (`acute-appendicitis`): periumbilical → RLQ migration, anorexia, low-grade fever, McBurney point tenderness, Rovsing sign. CT sensitivity 98%.\n- **Acute cholecystitis** (`acute-cholecystitis`): RUQ pain, Murphy sign, post-prandial, fever, leukocytosis. US: gallstones + wall thickening + pericholecystic fluid.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds AMS + hypotension. ERCP emergently.\n- **Incarcerated hernia** (`incarcerated-hernia`): painful, non-reducible bulge at inguinal, femoral, or umbilical site. Risk of strangulation.\n- **Ovarian torsion** (`ovarian-torsion`): sudden unilateral pelvic pain, nausea/vomiting, ovarian mass on US with absent Doppler flow. Do NOT rely on Doppler alone (sensitivity 60-70%).\n- **Testicular torsion** (`testicular-torsion`): acute testicular pain (may refer to abdomen), absent cremasteric reflex, high-riding testis. < 6 hours for salvage.\n- **Splenic/liver laceration** (`splenic-laceration`, `liver-laceration`): post-trauma, LUQ/RUQ pain, hypotension, free fluid on FAST\n- **Sigmoid/small bowel volvulus** (`sigmoid-volvulus`, `small-bowel-volvulus`): elderly/debilitated (sigmoid), distension, obstipation, \"coffee-bean\" sign on X-ray\n- **Intussusception** (`intussusception`): pediatric: intermittent colicky abdominal pain, \"currant jelly\" stool, palpable mass, target sign on US"
+            },
+            "document": {
+              "id": "openem:abdominal-pain-acute",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/abdominal-pain-acute.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Abdominal Pain — Emergency Evaluation",
+              "aliases": [
+                "abdominal pain",
+                "belly pain",
+                "stomach pain",
+                "acute abdomen",
+                "surgical abdomen"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "9cb6684b0a99102c2dc98efa6f7dd4eeeeddf9fe489650c307623700acca9f2e",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.028381642512077296,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "urce (perforation, cholangitis, abscess, SBP) + SIRS + organ dysfunction\n- **Aortic dissection** (`aortic-dissection`): tearing pain radiating to back, BP differential, can mimic renal colic or mesenteric ischemia via branch vessel compromise\n- **DKA** (`diabetic-ketoacidosis`): diffuse abdominal pa",
+              "after": "\n- **Fournier gangrene** (`fourniers-gangrene`): perineal pain, crepitus, rapidly progressive infection, sepsis. Surgical emergency.\n- **SBP** (`spontaneous-bacterial-peritonitis`): ascitic patient (cirrhosis) with fever, abdominal pain, AMS. Diagnostic paracentesis: PMN > 250/mm3.\n- **Mesenteric ve"
+            }
+          },
+          {
+            "chunk": {
+              "id": "4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+              "end": 1181,
+              "hash": "2701b70345a38084e1d5d3e2574705d640c046616a92a796b4768896f98beaf0",
+              "text": "**Presentation:**\n- Episodic RUQ or epigastric pain, often postprandial (fatty meals)\n- Pain is steady (not truly colicky despite the name), builds over 15-30 minutes\n- Duration: 30 minutes to 6 hours (pain lasting > 6 hours suggests acute cholecystitis)\n- Radiation to right scapula or right shoulder (referred from diaphragmatic irritation)\n- Associated nausea, vomiting\n- Pain resolves spontaneously or with analgesics\n- Intervals between attacks: days to months\n\n**Key distinction from acute cholecystitis:**\n- Biliary colic: pain < 6 hours, no fever, no leukocytosis, negative Murphy sign, normal gallbladder wall on US\n- Acute cholecystitis: pain > 6 hours, fever, leukocytosis, positive Murphy sign, gallbladder wall thickening/pericholecystic fluid\n\n**Risk factors (4 F's mnemonic — limited; actual risk factors broader):**\n- Female sex, fertile age, family history, obesity\n- Rapid weight loss, TPN, pregnancy, fibrate or OCPs use\n- Native American, Hispanic descent\n\n**Exam findings:**\n- Mild RUQ tenderness during acute episode\n- Negative Murphy sign (deep inspiration during RUQ palpation does not arrest breathing)\n- No peritoneal signs\n- Afebrile, non-toxic appearing",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:biliary-colic",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Biliary Colic\ngallstone pain; symptomatic cholelithiasis; gallbladder colic\nRecognition\n**Presentation:**\n- Episodic RUQ or epigastric pain, often postprandial (fatty meals)\n- Pain is steady (not truly colicky despite the name), builds over 15-30 minutes\n- Duration: 30 minutes to 6 hours (pain lasting > 6 hours suggests acute cholecystitis)\n- Radiation to right scapula or right shoulder (referred from diaphragmatic irritation)\n- Associated nausea, vomiting\n- Pain resolves spontaneously or with analgesics\n- Intervals between attacks: days to months\n\n**Key distinction from acute cholecystitis:**\n- Biliary colic: pain < 6 hours, no fever, no leukocytosis, negative Murphy sign, normal gallbladder wall on US\n- Acute cholecystitis: pain > 6 hours, fever, leukocytosis, positive Murphy sign, gallbladder wall thickening/pericholecystic fluid\n\n**Risk factors (4 F's mnemonic — limited; actual risk factors broader):**\n- Female sex, fertile age, family history, obesity\n- Rapid weight loss, TPN, pregnancy, fibrate or OCPs use\n- Native American, Hispanic descent\n\n**Exam findings:**\n- Mild RUQ tenderness during acute episode\n- Negative Murphy sign (deep inspiration during RUQ palpation does not arrest breathing)\n- No peritoneal signs\n- Afebrile, non-toxic appearing"
+            },
+            "document": {
+              "id": "openem:biliary-colic",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/biliary-colic.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Biliary Colic",
+              "aliases": [
+                "gallstone pain",
+                "symptomatic cholelithiasis",
+                "gallbladder colic"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "9bde7f1c67658fa06993afea6ffeae54eff5134e93f5825bfe775fe0517fc1c5",
+              "related": [],
+              "concepts": [
+                "gastrointestinal"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.024267458370982316,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "b7aff3421e3a5ef9142b9713d65e033ca2b36cc2e31fab285f6fc007d73afb5a",
+              "end": 861,
+              "hash": "18c9447ef201829226d1ceaad4dbb99ba8178eaa8ac18d0acd26153493b93a29",
+              "text": "- **Acute cholecystitis** — pain > 6 hours, fever, leukocytosis, positive Murphy sign, GB wall thickening > 3 mm on US\n- **Choledocholithiasis** — jaundice, elevated bilirubin/ALP/GGT, CBD dilation > 6 mm on US\n- **Gallstone pancreatitis** — epigastric pain radiating to back, lipase > 3x ULN\n- **Acute cholangitis** — Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds hypotension, AMS\n- **Peptic ulcer disease** — epigastric burning pain, relationship to meals; EGD diagnostic\n- **GERD/esophagitis** — retrosternal burning, relief with antacids\n- **Hepatitis** — elevated transaminases, viral serologies\n- **Right lower lobe pneumonia** — cough, fever, referred RUQ pain; CXR diagnostic\n- **STEMI (inferior)** — ECG changes; epigastric pain mimics biliary colic\n- **Fitz-Hugh-Curtis syndrome** — perihepatitis from PID; young female with RUQ pain",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:biliary-colic",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Biliary Colic\ngallstone pain; symptomatic cholelithiasis; gallbladder colic\nDifferential Diagnosis\n- **Acute cholecystitis** — pain > 6 hours, fever, leukocytosis, positive Murphy sign, GB wall thickening > 3 mm on US\n- **Choledocholithiasis** — jaundice, elevated bilirubin/ALP/GGT, CBD dilation > 6 mm on US\n- **Gallstone pancreatitis** — epigastric pain radiating to back, lipase > 3x ULN\n- **Acute cholangitis** — Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds hypotension, AMS\n- **Peptic ulcer disease** — epigastric burning pain, relationship to meals; EGD diagnostic\n- **GERD/esophagitis** — retrosternal burning, relief with antacids\n- **Hepatitis** — elevated transaminases, viral serologies\n- **Right lower lobe pneumonia** — cough, fever, referred RUQ pain; CXR diagnostic\n- **STEMI (inferior)** — ECG changes; epigastric pain mimics biliary colic\n- **Fitz-Hugh-Curtis syndrome** — perihepatitis from PID; young female with RUQ pain"
+            },
+            "document": {
+              "id": "openem:biliary-colic",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/biliary-colic.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Biliary Colic",
+              "aliases": [
+                "gallstone pain",
+                "symptomatic cholelithiasis",
+                "gallbladder colic"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "9bde7f1c67658fa06993afea6ffeae54eff5134e93f5825bfe775fe0517fc1c5",
+              "related": [],
+              "concepts": [
+                "gastrointestinal"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.023506603659275413,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "c66f23de73ec574df5a7754ce1d9f7f9ec495389e1bfe8440a8fc027b7eee514",
+              "end": 1498,
+              "hash": "d76a7f67963c4235d4d29297f21ca0d4e620d37ac7db5ba267e9f9fd846d578a",
+              "text": "| Condition | Distinguishing Features |\n|---|---|\n| **Biliary colic** | Episodic, colicky RUQ pain lasting < 6 hours; resolves spontaneously; no fever, no leukocytosis, no gallbladder wall thickening; negative Murphy sign |\n| **Ascending cholangitis** | Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds hypotension and altered mental status; CBD dilation on ultrasound; conjugated hyperbilirubinemia and elevated ALP/GGT prominent; jaundice more common than in cholecystitis |\n| **Acute pancreatitis** | Epigastric pain radiating to back; lipase > 3x upper limit of normal; may coexist with cholecystitis (gallstone pancreatitis) |\n| **Peptic ulcer disease / perforation** | Epigastric pain; free air on upright CXR or CT if perforated; no gallbladder wall thickening |\n| **Acute hepatitis** | Transaminases > 1,000 IU/L (much higher than cholecystitis); hepatomegaly; risk factors (viral exposure, alcohol, medications) |\n| **Acute appendicitis (high-riding cecum)** | RLQ pain typical, but can present as RUQ pain with retrocecal or subhepatic appendix; CT distinguishes |\n| **Right lower lobe pneumonia** | Referred RUQ pain from diaphragmatic irritation; cough, pleuritic component; CXR abnormal |\n| **Fitz-Hugh-Curtis syndrome** | Perihepatitis from PID; young women; RUQ pain with elevated ESR; cervical motion tenderness on pelvic exam |\n| **Renal colic (right)** | Flank pain radiating to groin; hematuria; no gallbladder findings on ultrasound; CT KUB shows ureteral stone |",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:acute-cholecystitis",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Acute Cholecystitis\ncholecystitis; gallbladder inflammation; acute calculous cholecystitis; acalculous cholecystitis; emphysematous cholecystitis\nDifferential Diagnosis\n| Condition | Distinguishing Features |\n|---|---|\n| **Biliary colic** | Episodic, colicky RUQ pain lasting < 6 hours; resolves spontaneously; no fever, no leukocytosis, no gallbladder wall thickening; negative Murphy sign |\n| **Ascending cholangitis** | Charcot triad (fever, jaundice, RUQ pain); Reynolds pentad adds hypotension and altered mental status; CBD dilation on ultrasound; conjugated hyperbilirubinemia and elevated ALP/GGT prominent; jaundice more common than in cholecystitis |\n| **Acute pancreatitis** | Epigastric pain radiating to back; lipase > 3x upper limit of normal; may coexist with cholecystitis (gallstone pancreatitis) |\n| **Peptic ulcer disease / perforation** | Epigastric pain; free air on upright CXR or CT if perforated; no gallbladder wall thickening |\n| **Acute hepatitis** | Transaminases > 1,000 IU/L (much higher than cholecystitis); hepatomegaly; risk factors (viral exposure, alcohol, medications) |\n| **Acute appendicitis (high-riding cecum)** | RLQ pain typical, but can present as RUQ pain with retrocecal or subhepatic appendix; CT distinguishes |\n| **Right lower lobe pneumonia** | Referred RUQ pain from diaphragmatic irritation; cough, pleuritic component; CXR abnormal |\n| **Fitz-Hugh-Curtis syndrome** | Perihepatitis from PID; young women; RUQ pain with elevated ESR; cervical motion tenderness on pelvic exam |\n| **Renal colic (right)** | Flank pain radiating to groin; hematuria; no gallbladder findings on ultrasound; CT KUB shows ureteral stone |"
+            },
+            "document": {
+              "id": "openem:acute-cholecystitis",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-cholecystitis.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Cholecystitis",
+              "aliases": [
+                "cholecystitis",
+                "gallbladder inflammation",
+                "acute calculous cholecystitis",
+                "acalculous cholecystitis",
+                "emphysematous cholecystitis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "260d280bb805f687c169a80b2b48ae3ec5c381bc71a11307013aadf45d0fd8f4",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:acute-pancreatitis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:acute-coronary-syndrome-nstemi",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:perforated-peptic-ulcer",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "gastrointestinal"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-19"
+            },
+            "score": 0.022727272727272728,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 64.44179200008512,
+          "embeddingMs": 719.011959000025,
+          "vectorMs": 8.756874999962747,
+          "totalMs": 796.4339590000454
+        },
+        "warnings": [],
+        "embeddingTokens": 13,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "accept",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "Recurring meal-related right-upper-abdominal pain warrants clinician assessment and consideration of investigation. Review can reasonably start in messaging on these reported facts; no reported feature establishes an immediate physical-care requirement. The draft leaves attack duration and severity unknown and provides escalation instructions.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "For a few weeks I've had pain in my upper right belly that comes and goes, usually after a fatty meal."
+            },
+            {
+              "unit": "draft",
+              "quote": "I recommend a Counsel clinician review this in this thread today (standard priority) to assess your recurring right-upper-belly pain and decide about gallbladder imaging and blood tests."
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "Standard clinician review is proportionate to recurrent unexplained pain requiring assessment and possible investigation. The draft does not impose emergency attendance or mandatory same-day testing for the current presentation; emergency care is conditional on concerning changes.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"reviewPriority\":\"routine\",\"workType\":\"clinical_review\""
+            },
+            {
+              "unit": "patient",
+              "quote": "No fever, no yellowing of my skin or eyes."
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "The symptom pattern and denials match the original report. The differential remains tentative, and unreported severity, duration, examination findings and measurements are explicitly unknown rather than invented.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Attack duration, severity, nausea/vomiting, radiation and examination findings are unreported and therefore unknown"
+            },
+            {
+              "unit": "draft",
+              "quote": "No vital signs reported: no temperature, heart rate, blood pressure or other measurement stated; whether any were measured is unknown."
+            },
+            {
+              "unit": "patient",
+              "quote": "No fever, no yellowing of my skin or eyes."
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "pass",
+          "reason": "The supplied passages support a possible biliary pattern, clinician assessment for persistent abdominal symptoms, and escalation for prolonged pain or concerning associated features. The draft acknowledges source limitations and does not claim a confirmed diagnosis or established normal examination.",
+          "anchors": [
+            {
+              "unit": "source:4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+              "quote": "- Episodic RUQ or epigastric pain, often postprandial (fatty meals)"
+            },
+            {
+              "unit": "source:4be827b99b57f1b7accbda6d78bf5e592f5ffbb612369028dd6e9c9430a26ac5",
+              "quote": "- Duration: 30 minutes to 6 hours (pain lasting > 6 hours suggests acute cholecystitis)"
+            },
+            {
+              "unit": "source:5f603bba7f6b0eb9a01750a48493f3afd222bb9432c7569aa1a0be2f48f5b0e8",
+              "quote": "Call your health care provider if mild pain lasts a week or more or if you have pain with other symptoms."
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "pass",
+          "reason": "The draft gives actionable emergency instructions for important changes, independently of messaging availability, and a separate access fallback for the recommended clinician assessment.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Seek emergency care now if pain becomes severe and constant for hours, or you develop fever, vomiting you can't stop, yellow skin or eyes, or a rigid, very tender abdomen."
+            },
+            {
+              "unit": "draft",
+              "quote": "If that review isn't available today, contact your GP or a local urgent/primary care service for the same assessment."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No issued question or answer-dependent delay is present. Clinician review is recommended today without requiring further answers first.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"questions\":[]"
+            },
+            {
+              "unit": "draft",
+              "quote": "I recommend a Counsel clinician review this in this thread today (standard priority)"
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "Counsel clinician ownership is recommended, not represented as accepted or guaranteed. The explicit access fallback avoids reliance on an unavailable response guarantee. Timing and destination are present despite the application phrase-check finding.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "I recommend a Counsel clinician review this in this thread today (standard priority) to assess your recurring right-upper-belly pain and decide about gallbladder imaging and blood tests."
+            },
+            {
+              "unit": "draft",
+              "quote": "If that review isn't available today, contact your GP or a local urgent/primary care service for the same assessment."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "none",
+      "earlyCorrection": null,
+      "ownershipTaskReview": [],
+      "correction": "No material repair required.",
+      "repairTargets": [],
+      "evidenceQueries": []
+    },
+    "release": "clinician_required",
+    "clinicalApproval": false,
+    "corrections": 1,
+    "careCorrectionReleased": false,
+    "sourceIntegrity": true,
+    "citations": []
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "clinical-evidence-graph",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "c9f9cae1-ad94-4193-8ad4-1bb40001e1e5",
+  "traceId": "1b0f636aa4166e2f59f7596487a68367",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "50M. For a few weeks I've had pain in my upper right belly that comes and goes, usually after a fatty meal. No fever, no yellowing of my skin or eyes.",
+  "inputHash": "0c8fd0a89a9a929960050e132ef1aa7383aab56efa5ba0f4cbfc0bab379d80a7",
+  "answerHash": null,
+  "promptHash": "009cfb6ba558b03e2105bb91d6e3fc7d6db06f1ae34ab1e44cf8de17ce1d2e79",
+  "guidanceHash": "2265620f9ab9d3bcfc8f92d3901c42d1e6fa1547bf28c9c51317d9294e2aac25",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-15T00:15:16.172Z",
+  "durationMs": 78775,
+  "workflowDurationMs": 78754,
+  "tracePersistenceDurationMs": 21,
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 0
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 3635
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 26380
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 52361
+    }
+  ],
+  "responseEvents": [],
+  "safetyNotices": [],
+  "firstActionMs": null,
+  "firstPatientReplyMs": null,
+  "firstQuestionMs": null
+}

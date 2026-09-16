@@ -1,0 +1,1435 @@
+{
+  "status": "complete",
+  "answer": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "reviewPriority": "priority",
+    "workType": "medication_request",
+    "reason": "Active attack with usual, unchanged migraine features and rescue medication exhausted; time-sensitive prescribing review can start in messaging, and no reported red-flag features require a physical encounter today.",
+    "patientMessage": "I recommend a priority message review with a Counsel clinician in this thread today about a sumatriptan refill, since your headache matches your usual migraine and you have no rescue medication left. A clinician should review your medication history and suitability before deciding whether to prescribe; clinician availability isn't confirmed, so if review isn't obtained today, seek another same-day prescribing service rather than waiting. If this headache becomes the worst of your life or peaks suddenly within seconds, or you develop new weakness, numbness or speech trouble, call 911.",
+    "differential": [
+      "Recurrence of known migraine with typical one-sided throbbing and photophobia",
+      "Medication-overuse headache pattern — not reported, would alter review",
+      "Secondary headache — no reported features of this"
+    ],
+    "redFlags": [
+      {
+        "concern": "Thunderclap or worst-ever headache",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Focal neurological deficit or speech difficulty",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Change from usual headache pattern",
+        "status": "denied",
+        "quote": "same one-sided throbbing and light sensitivity I always get"
+      },
+      {
+        "concern": "Fever, neck stiffness",
+        "status": "unknown",
+        "quote": ""
+      }
+    ],
+    "vitalSigns": "No vital signs reported; blood pressure, pulse and temperature not provided and whether any measurement occurred is unknown.",
+    "questions": [],
+    "evidenceLimitations": "Sources are emergency-department reference syntheses, not telehealth prescribing guidance, so they support only the red-flag safety-net advice, not the refill route. Absence of reported red flags means unknown, not excluded; no examination or measurements are available.",
+    "evidence": [
+      {
+        "sourceId": "ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+        "claim": "A worst-ever headache requires evaluation for subarachnoid hemorrhage regardless of other features, supporting the emergency safety-net advice."
+      },
+      {
+        "sourceId": "ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+        "claim": "Neurological deficit or dysfunction is a listed headache red flag warranting urgent assessment."
+      },
+      {
+        "sourceId": "7408fb0ff3fc2f3710ff81646d2e5720a318f0bc05ca1f025cd52bdd709cee56",
+        "claim": "Sudden headache reaching maximal intensity within seconds is the classic thunderclap pattern of concern."
+      }
+    ]
+  },
+  "origin": "agent",
+  "modelCalls": 6,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "migraine throbbing photophobia refill pattern",
+          "medication rebound overuse headache frequency",
+          "acute headache red flags focal neuro"
+        ],
+        "findings": [
+          {
+            "finding": "Patient reports migraine with typical features including unilateral throbbing and photophobia",
+            "status": "reported",
+            "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get"
+          },
+          {
+            "finding": "Sumatriptan is out of stock or unavailable",
+            "status": "reported",
+            "quote": "I'm out of sumatriptan and would like a refill"
+          },
+          {
+            "finding": "Patient characterizes current episode as consistent with usual pattern",
+            "status": "reported",
+            "quote": "same one...I always get"
+          }
+        ],
+        "question": null
+      },
+      "usage": {
+        "inputTokens": 1034,
+        "outputTokens": 163
+      },
+      "failure": "CONTEXT_CONTRACT_FAILED",
+      "firstTextDeltaMs": 946,
+      "streamProgress": {
+        "lastTextDeltaMs": 2220,
+        "textDeltaCount": 50,
+        "textCharacters": 693
+      },
+      "durationMs": 2236
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "priority",
+        "workType": "medication_request",
+        "reason": "Active attack with usual, unchanged migraine features and rescue medication exhausted; time-sensitive prescribing review can start in messaging without a physical visit today.",
+        "patientMessage": "I recommend a priority message review with a Counsel clinician in this thread today about a sumatriptan refill, since your headache matches your usual migraine and you have no rescue medication left. The clinician will check your medication history before prescribing. If this headache becomes the worst ever, comes on suddenly like a thunderclap, or you develop new weakness, numbness or speech trouble, call 911.",
+        "differential": [
+          "Recurrence of known migraine with typical one-sided throbbing and photophobia",
+          "Medication-overuse or changing headache pattern — not reported, would alter review",
+          "Secondary headache — no reported features of this"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thunderclap or worst-ever headache",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Focal neurological deficit or speech difficulty",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Change from usual headache pattern",
+            "status": "denied",
+            "quote": "same one-sided throbbing and light sensitivity I always get"
+          },
+          {
+            "concern": "Fever, neck stiffness",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported; blood pressure, pulse and temperature not provided and whether any measurement occurred is unknown.",
+        "questions": [],
+        "evidenceLimitations": "No sources were supplied, so routing rests on the patient's reported history alone. Absence of reported red flags means unknown, not excluded; no examination or measurements are available.",
+        "transportIntent": null,
+        "citations": []
+      },
+      "usage": {
+        "inputTokens": 5249,
+        "outputTokens": 591
+      },
+      "failure": null,
+      "firstTextDeltaMs": 2039,
+      "streamProgress": {
+        "lastTextDeltaMs": 9695,
+        "textDeltaCount": 130,
+        "textCharacters": 1741
+      },
+      "durationMs": 9706,
+      "rawOutput": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "priority",
+        "workType": "medication_request",
+        "reason": "Active attack with usual, unchanged migraine features and rescue medication exhausted; time-sensitive prescribing review can start in messaging without a physical visit today.",
+        "patientMessage": "I recommend a priority message review with a Counsel clinician in this thread today about a sumatriptan refill, since your headache matches your usual migraine and you have no rescue medication left. The clinician will check your medication history before prescribing. If this headache becomes the worst ever, comes on suddenly like a thunderclap, or you develop new weakness, numbness or speech trouble, call 911.",
+        "differential": [
+          "Recurrence of known migraine with typical one-sided throbbing and photophobia",
+          "Medication-overuse or changing headache pattern — not reported, would alter review",
+          "Secondary headache — no reported features of this"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thunderclap or worst-ever headache",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Focal neurological deficit or speech difficulty",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Change from usual headache pattern",
+            "status": "denied",
+            "quote": "same one-sided throbbing and light sensitivity I always get"
+          },
+          {
+            "concern": "Fever, neck stiffness",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported; blood pressure, pulse and temperature not provided and whether any measurement occurred is unknown.",
+        "questions": [],
+        "evidenceLimitations": "No sources were supplied, so routing rests on the patient's reported history alone. Absence of reported red flags means unknown, not excluded; no examination or measurements are available.",
+        "transportIntent": null,
+        "citations": []
+      }
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "action": "PRIORITY_ASYNC",
+        "basis": [
+          {
+            "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get",
+            "interpretation": "Patient reports onset of her usual migraine pattern with characteristic features (unilateral throbbing, photophobia); acute active symptom requiring assessment",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "I'm out of sumatriptan and would like a refill",
+            "interpretation": "Patient's rescue medication access is depleted and she needs urgent prescribing review to restore treatment capability for active migraine",
+            "currentPatient": true,
+            "present": true
+          }
+        ],
+        "actionBasis": null,
+        "reason": "Active usual migraine with exhausted rescue medication requires time-sensitive remote clinician assessment for prescribing and potential alternative therapy.",
+        "patientMessage": "",
+        "physicalRequirement": null
+      },
+      "usage": {
+        "inputTokens": 2467,
+        "outputTokens": 187
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1707,
+      "streamProgress": {
+        "lastTextDeltaMs": 3522,
+        "textDeltaCount": 7,
+        "textCharacters": 855
+      },
+      "durationMs": 3547
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "revise",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "An active usual migraine with sumatriptan exhausted warrants priority prescribing review. The recommended messaging review today meets that clinical requirement; reported facts do not independently require a physical encounter.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "My usual migraine started this morning"
+              },
+              {
+                "unit": "patient",
+                "quote": "I'm out of sumatriptan and would like a refill."
+              },
+              {
+                "unit": "draft",
+                "quote": "I recommend a priority message review with a Counsel clinician in this thread today"
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "Priority medication review is proportionate to the active attack and exhausted treatment access. Emergency advice is conditional on new concerning symptoms, not an unnecessary current emergency referral.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"reviewPriority\":\"priority\",\"workType\":\"medication_request\""
+              },
+              {
+                "unit": "patient",
+                "quote": "I'm out of sumatriptan"
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "The migraine characterization follows the patient's usual-pattern report, and unreported red flags and measurements are explicitly treated as unknown.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "same one-sided throbbing and light sensitivity I always get"
+              },
+              {
+                "unit": "draft",
+                "quote": "Absence of reported red flags means unknown, not excluded"
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "fail",
+            "reason": "The routing is supported by project policy, but no supplied clinical evidence supports the material headache emergency and transport advice. This evidence gap cannot receive a support pass.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "No sources were supplied"
+              },
+              {
+                "unit": "draft",
+                "quote": "If this headache becomes the worst ever, comes on suddenly like a thunderclap, or you develop new weakness, numbness or speech trouble, call 911."
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "The draft provides immediate action for important acute headache or neurological changes without delaying current prescribing review.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "If this headache becomes the worst ever, comes on suddenly like a thunderclap, or you develop new weakness, numbness or speech trouble, call 911."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No issued question or requirement to answer questions delays the recommended review.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "fail",
+            "reason": "Counsel ownership is appropriately recommended, but clinician availability is unconfirmed and no actionable fallback is given if today's review cannot be obtained. The future-tense prescribing workflow should remain a recommendation rather than imply secured review or prescribing.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I recommend a priority message review with a Counsel clinician in this thread today about a sumatriptan refill"
+              },
+              {
+                "unit": "draft",
+                "quote": "The clinician will check your medication history before prescribing."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "ownershipTaskReview": [],
+        "correction": "Acknowledge that clinician availability is not confirmed and advise seeking another same-day prescribing service if Counsel review cannot be obtained today, without waiting indefinitely in this thread. Say a clinician should review medication history and suitability before deciding whether to prescribe. Supply clinical evidence for the headache emergency safety-net advice.",
+        "evidenceQueries": [
+          "Acute headache thunderclap worst-ever headache focal neurological deficits emergency assessment ambulance guidance"
+        ]
+      },
+      "usage": {
+        "inputTokens": 3771,
+        "outputTokens": 1006
+      },
+      "failure": null,
+      "firstTextDeltaMs": 6962,
+      "streamProgress": {
+        "lastTextDeltaMs": 23356,
+        "textDeltaCount": 910,
+        "textCharacters": 4211
+      },
+      "durationMs": 24261
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "priority",
+        "workType": "medication_request",
+        "reason": "Active attack with usual, unchanged migraine features and rescue medication exhausted; time-sensitive prescribing review can start in messaging, and no reported red-flag features require a physical encounter today.",
+        "patientMessage": "I recommend a priority message review with a Counsel clinician in this thread today about a sumatriptan refill, since your headache matches your usual migraine and you have no rescue medication left. A clinician should review your medication history and suitability before deciding whether to prescribe; clinician availability isn't confirmed, so if review isn't obtained today, seek another same-day prescribing service rather than waiting. If this headache becomes the worst of your life or peaks suddenly within seconds, or you develop new weakness, numbness or speech trouble, call 911.",
+        "differential": [
+          "Recurrence of known migraine with typical one-sided throbbing and photophobia",
+          "Medication-overuse headache pattern — not reported, would alter review",
+          "Secondary headache — no reported features of this"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thunderclap or worst-ever headache",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Focal neurological deficit or speech difficulty",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Change from usual headache pattern",
+            "status": "denied",
+            "quote": "same one-sided throbbing and light sensitivity I always get"
+          },
+          {
+            "concern": "Fever, neck stiffness",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported; blood pressure, pulse and temperature not provided and whether any measurement occurred is unknown.",
+        "questions": [],
+        "evidenceLimitations": "Sources are emergency-department reference syntheses, not telehealth prescribing guidance, so they support only the red-flag safety-net advice, not the refill route. Absence of reported red flags means unknown, not excluded; no examination or measurements are available.",
+        "transportIntent": null,
+        "citations": [
+          {
+            "passageId": "ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+            "quote": "\"Worst headache of life\" mandates subarachnoid hemorrhage evaluation regardless of other features.",
+            "claim": "A worst-ever headache requires evaluation for subarachnoid hemorrhage regardless of other features, supporting the emergency safety-net advice.",
+            "applicability": "applicable",
+            "limitation": "ED reference synthesis; applies to new symptoms, not the current typical attack."
+          },
+          {
+            "passageId": "ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+            "quote": "- **N** — Neurological deficit or dysfunction (confusion, seizure, papilledema, focal deficit)",
+            "claim": "Neurological deficit or dysfunction is a listed headache red flag warranting urgent assessment.",
+            "applicability": "applicable",
+            "limitation": "Mnemonic screening list, not a telehealth escalation protocol."
+          },
+          {
+            "passageId": "7408fb0ff3fc2f3710ff81646d2e5720a318f0bc05ca1f025cd52bdd709cee56",
+            "quote": "- \"Worst headache of my life\" — sudden onset, maximal intensity within seconds to one minute (thunderclap headache)",
+            "claim": "Sudden headache reaching maximal intensity within seconds is the classic thunderclap pattern of concern.",
+            "applicability": "applicable",
+            "limitation": "Describes SAH presentation generally; not reported by this patient."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 14287,
+        "outputTokens": 1113
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1795,
+      "streamProgress": {
+        "lastTextDeltaMs": 17069,
+        "textDeltaCount": 254,
+        "textCharacters": 3032
+      },
+      "durationMs": 17153,
+      "rawOutput": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "priority",
+        "workType": "medication_request",
+        "reason": "Active attack with usual, unchanged migraine features and rescue medication exhausted; time-sensitive prescribing review can start in messaging, and no reported red-flag features require a physical encounter today.",
+        "patientMessage": "I recommend a priority message review with a Counsel clinician in this thread today about a sumatriptan refill, since your headache matches your usual migraine and you have no rescue medication left. A clinician should review your medication history and suitability before deciding whether to prescribe; clinician availability isn't confirmed, so if review isn't obtained today, seek another same-day prescribing service rather than waiting. If this headache becomes the worst of your life or peaks suddenly within seconds, or you develop new weakness, numbness or speech trouble, call 911.",
+        "differential": [
+          "Recurrence of known migraine with typical one-sided throbbing and photophobia",
+          "Medication-overuse headache pattern — not reported, would alter review",
+          "Secondary headache — no reported features of this"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thunderclap or worst-ever headache",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Focal neurological deficit or speech difficulty",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Change from usual headache pattern",
+            "status": "denied",
+            "quote": "same one-sided throbbing and light sensitivity I always get"
+          },
+          {
+            "concern": "Fever, neck stiffness",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported; blood pressure, pulse and temperature not provided and whether any measurement occurred is unknown.",
+        "questions": [],
+        "evidenceLimitations": "Sources are emergency-department reference syntheses, not telehealth prescribing guidance, so they support only the red-flag safety-net advice, not the refill route. Absence of reported red flags means unknown, not excluded; no examination or measurements are available.",
+        "transportIntent": null,
+        "citations": [
+          {
+            "passageId": "ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+            "claim": "A worst-ever headache requires evaluation for subarachnoid hemorrhage regardless of other features, supporting the emergency safety-net advice.",
+            "applicability": "applicable",
+            "limitation": "ED reference synthesis; applies to new symptoms, not the current typical attack.",
+            "quoteId": "q3"
+          },
+          {
+            "passageId": "ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+            "claim": "Neurological deficit or dysfunction is a listed headache red flag warranting urgent assessment.",
+            "applicability": "applicable",
+            "limitation": "Mnemonic screening list, not a telehealth escalation protocol.",
+            "quoteId": "q6"
+          },
+          {
+            "passageId": "7408fb0ff3fc2f3710ff81646d2e5720a318f0bc05ca1f025cd52bdd709cee56",
+            "claim": "Sudden headache reaching maximal intensity within seconds is the classic thunderclap pattern of concern.",
+            "applicability": "applicable",
+            "limitation": "Describes SAH presentation generally; not reported by this patient.",
+            "quoteId": "q1"
+          }
+        ]
+      }
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "accept",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "The active usual migraine with exhausted sumatriptan requires timely prescribing review, which can start in messaging. Priority review today and an alternative same-day prescribing fallback meet that need without assuming confirmed availability.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I'm out of sumatriptan and would like a refill."
+              },
+              {
+                "unit": "draft",
+                "quote": "clinician availability isn't confirmed, so if review isn't obtained today, seek another same-day prescribing service rather than waiting."
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "Priority messaging is proportionate to an active attack without the usual rescue medication. No unnecessary physical encounter or current emergency transport is required.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get."
+              },
+              {
+                "unit": "draft",
+                "quote": "I recommend a priority message review with a Counsel clinician in this thread today about a sumatriptan refill"
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "The draft grounds the attack pattern and medication need in the patient's report and explicitly treats unreported red flags and measurements as unknown.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Absence of reported red flags means unknown, not excluded"
+              },
+              {
+                "unit": "draft",
+                "quote": "No vital signs reported; blood pressure, pulse and temperature not provided and whether any measurement occurred is unknown."
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "The refill route follows project policy, not an asserted publisher recommendation. The supplied headache red-flag evidence supports the conditional emergency advice; no dosing or unsupported prescribing promise is given.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "A clinician should review your medication history and suitability before deciding whether to prescribe"
+              },
+              {
+                "unit": "source:ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+                "quote": "\"Worst headache of life\" mandates subarachnoid hemorrhage evaluation regardless of other features."
+              },
+              {
+                "unit": "source:ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+                "quote": "- **N** — Neurological deficit or dysfunction (confusion, seizure, papilledema, focal deficit)"
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "Important changes trigger an explicit immediate emergency action, while unavailable prescribing review has a same-day fallback.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "If this headache becomes the worst of your life or peaks suddenly within seconds, or you develop new weakness, numbness or speech trouble, call 911."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No question was issued and no answer is required before starting the recommended review.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "Counsel clinician review is recommended rather than promised. Availability is expressly unconfirmed, with an actionable fallback and no fabricated prescription or accepted handoff.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I recommend a priority message review with a Counsel clinician in this thread today about a sumatriptan refill"
+              },
+              {
+                "unit": "draft",
+                "quote": "clinician availability isn't confirmed, so if review isn't obtained today, seek another same-day prescribing service rather than waiting."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "ownershipTaskReview": [],
+        "correction": "No changes required.",
+        "evidenceQueries": []
+      },
+      "usage": {
+        "inputTokens": 6606,
+        "outputTokens": 970
+      },
+      "failure": null,
+      "firstTextDeltaMs": 2127,
+      "streamProgress": {
+        "lastTextDeltaMs": 20286,
+        "textDeltaCount": 963,
+        "textCharacters": 4177
+      },
+      "durationMs": 20494
+    }
+  ],
+  "guidance": [
+    {
+      "id": "ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+      "title": "Acute Headache — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/headache-acute.md",
+      "section": "Recognition",
+      "summary": "Headache accounts for 2-4% of ED visits. The vast majority (> 90%) are benign primary headache disorders (tension, migraine, cluster). The critical task is identifying the 1-5% with secondary, life-threatening causes. \"Worst headache of life\" mandates subarachnoid hemorrhage evaluation regardless of other features.\n\n**SNOOP red flag mnemonic:**\n- **S** — Systemic symptoms (fever, weight loss, HIV, cancer, pregnancy) or Systemic disease\n- **N** — Neurological deficit or dysfunction (confusion, seizure, papilledema, focal deficit)\n- **O** — Onset sudden (thunderclap: maximal intensity within seconds)\n- **O** — Older age (new headache onset > 50)\n- **P** — Pattern change (prior headache history with fundamentally different character), Positional (worse upright → low CSF pressure; worse supine → elevated ICP), Precipitated by Valsalva/exertion/sexual activity\n\n**Key history elements:**\n- Onset: thunderclap (SAH, CVT, RCVS, pituitary apoplexy, cervical artery dissection) vs gradual\n- Location: unilateral (migraine, cluster, temporal arteritis) vs bilateral vs occipital (posterior fossa lesion)\n- Character and severity: in the patient's context, not absolute scale\n- Associated symptoms: visual changes (temporal arteritis, AACG, migraine aura), nausea/vomiting (raised ICP, migraine), photophobia (SAH, meningitis), neck stiffness (SAH, meningitis)\n- Prior headache history: \"Is this headache different from your usual headaches?\"\n- Triggers: exertion, sex, Valsalva, head position change\n- Medications: anticoagulants, oral contraceptives, immunosuppressants\n- Recent trauma: even minor, especially in elderly or anticoagulated (subdural)\n- Pregnancy/postpartum: eclampsia, CVT, postpartum preeclampsia, PRES",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+          "sourceId": "openem:headache-acute",
+          "excerpt": "Headache accounts for 2-4% of ED visits. The vast majority (> 90%) are benign primary headache disorders (tension, migraine, cluster). The critical task is identifying the 1-5% with secondary, life-threatening causes. \"Worst headache of life\" mandates subarachnoid hemorrhage evaluation regardless of other features.\n\n**SNOOP red flag mnemonic:**\n- **S** — Systemic symptoms (fever, weight loss, HIV, cancer, pregnancy) or Systemic disease\n- **N** — Neurological deficit or dysfunction (confusion, seizure, papilledema, focal deficit)\n- **O** — Onset sudden (thunderclap: maximal intensity within seconds)\n- **O** — Older age (new headache onset > 50)\n- **P** — Pattern change (prior headache history with fundamentally different character), Positional (worse upright → low CSF pressure; worse supine → elevated ICP), Precipitated by Valsalva/exertion/sexual activity\n\n**Key history elements:**\n- Onset: thunderclap (SAH, CVT, RCVS, pituitary apoplexy, cervical artery dissection) vs gradual\n- Location: unilateral (migraine, cluster, temporal arteritis) vs bilateral vs occipital (posterior fossa lesion)\n- Character and severity: in the patient's context, not absolute scale\n- Associated symptoms: visual changes (temporal arteritis, AACG, migraine aura), nausea/vomiting (raised ICP, migraine), photophobia (SAH, meningitis), neck stiffness (SAH, meningitis)\n- Prior headache history: \"Is this headache different from your usual headaches?\"\n- Triggers: exertion, sex, Valsalva, head position change\n- Medications: anticoagulants, oral contraceptives, immunosuppressants\n- Recent trauma: even minor, especially in elderly or anticoagulated (subdural)\n- Pregnancy/postpartum: eclampsia, CVT, postpartum preeclampsia, PRES",
+          "excerptSha256": "98d4caf8e68381d6507fdebc4e3d9b6319cb2f3bc97e33070c12baf880ca1eb8",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "2a2d4d32c73f49ed333e23133c9fd5670dc6a30439200b209be9d475c1b23957",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "3643b0452daec5eed3b84cc0fc477f3a43e0d339bd8a1eb9bf908557efcd2d2d",
+      "title": "Acute Headache — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/headache-acute.md",
+      "section": "Differential Diagnosis",
+      "summary": "### Life-Threatening\n- **Subarachnoid hemorrhage** (`subarachnoid-hemorrhage`): thunderclap headache, nuchal rigidity, vomiting, photophobia, third nerve palsy (posterior communicating artery aneurysm). 12% mortality before reaching hospital. SAH rebleed mortality 40-60%.\n- **Hemorrhagic stroke** (`hemorrhagic-stroke`): sudden headache with focal deficit, hypertension, progression to obtundation\n- **Bacterial meningitis** (`bacterial-meningitis`): fever, headache, nuchal rigidity, photophobia. Classic triad (fever, neck stiffness, AMS) present < 50%. Jolt accentuation test may add sensitivity.\n- **HSV encephalitis** (`hsv-encephalitis`): headache with behavioral changes, temporal lobe seizures, fever. MRI temporal lobe signal change. Acyclovir 10 mg/kg IV empirically.\n- **Epidural hematoma** (`epidural-hematoma`): post-trauma lucid interval then rapid deterioration, temporal bone fracture, lens-shaped hematoma on CT\n- **Subdural hematoma** (`subdural-hematoma`): chronic headache in elderly or anticoagulated, crescent-shaped hematoma on CT. Minor or forgotten trauma.\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with headache + papilledema + encephalopathy → PRES (posterior reversible encephalopathy syndrome)\n- **CO poisoning** (`carbon-monoxide-poisoning`): headache is most common symptom. Multiple household members. Winter, enclosed space, generator use.\n- **Cavernous sinus thrombosis** (`cavernous-sinus-thrombosis`): headache, proptosis, cranial nerve palsies (III, IV, V1, VI), chemosis. Recent sinusitis or facial infection.\n\n### Emergent\n- **Temporal arteritis** (`temporal-arteritis`): age > 50, new headache, jaw claudication, scalp tenderness, PMR symptoms, ESR > 50. Untreated → permanent vision loss.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "3643b0452daec5eed3b84cc0fc477f3a43e0d339bd8a1eb9bf908557efcd2d2d",
+          "sourceId": "openem:headache-acute",
+          "excerpt": "### Life-Threatening\n- **Subarachnoid hemorrhage** (`subarachnoid-hemorrhage`): thunderclap headache, nuchal rigidity, vomiting, photophobia, third nerve palsy (posterior communicating artery aneurysm). 12% mortality before reaching hospital. SAH rebleed mortality 40-60%.\n- **Hemorrhagic stroke** (`hemorrhagic-stroke`): sudden headache with focal deficit, hypertension, progression to obtundation\n- **Bacterial meningitis** (`bacterial-meningitis`): fever, headache, nuchal rigidity, photophobia. Classic triad (fever, neck stiffness, AMS) present < 50%. Jolt accentuation test may add sensitivity.\n- **HSV encephalitis** (`hsv-encephalitis`): headache with behavioral changes, temporal lobe seizures, fever. MRI temporal lobe signal change. Acyclovir 10 mg/kg IV empirically.\n- **Epidural hematoma** (`epidural-hematoma`): post-trauma lucid interval then rapid deterioration, temporal bone fracture, lens-shaped hematoma on CT\n- **Subdural hematoma** (`subdural-hematoma`): chronic headache in elderly or anticoagulated, crescent-shaped hematoma on CT. Minor or forgotten trauma.\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with headache + papilledema + encephalopathy → PRES (posterior reversible encephalopathy syndrome)\n- **CO poisoning** (`carbon-monoxide-poisoning`): headache is most common symptom. Multiple household members. Winter, enclosed space, generator use.\n- **Cavernous sinus thrombosis** (`cavernous-sinus-thrombosis`): headache, proptosis, cranial nerve palsies (III, IV, V1, VI), chemosis. Recent sinusitis or facial infection.\n\n### Emergent\n- **Temporal arteritis** (`temporal-arteritis`): age > 50, new headache, jaw claudication, scalp tenderness, PMR symptoms, ESR > 50. Untreated → permanent vision loss.",
+          "excerptSha256": "5476538c70d80a8bbe5b4aa09dda918c93bc6e323aa0f0566e3447b739bfd908",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "2a2d4d32c73f49ed333e23133c9fd5670dc6a30439200b209be9d475c1b23957",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "8eaed8d2eee1564e232115089079cf7441442e2b7cc4a4f56e264564cd90b537",
+      "title": "Tension-Type Headache",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/tension-headache.md",
+      "section": "Critical Actions",
+      "summary": "Outpatient management — primary headache disorder not requiring emergency intervention.\n\n1. Apply \"SNOOP4\" red flag screen to every headache presentation before attributing to TTH:\n   - **S**ystemic symptoms (fever, weight loss, HIV/malignancy)\n   - **N**eurological deficits (focal signs, altered consciousness)\n   - **O**nset sudden (thunderclap — must evaluate for SAH)\n   - **O**nset after age 50 (new headache — evaluate for temporal arteritis, malignancy)\n   - **P**ositional (worse lying flat = ↑ICP; worse upright = CSF leak)\n   - **P**rogressive headache pattern (worsening over weeks)\n   - **P**apilledema\n   - **P**recipitated by Valsalva (cough, sneeze, exertion — suggests ICP or vascular)\n2. For confirmed TTH with prior established pattern: treat with simple analgesics and address precipitating factors.\n3. For new-onset thunderclap headache: CT head immediately, then LP (>12 hours after onset for xanthochromia) if CT negative. Do not attribute to TTH without excluding SAH.\n4. Arrange primary care follow-up for headache diary, identification of triggers, and preventive therapy if episodic headaches occur ≥4 days/month.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "8eaed8d2eee1564e232115089079cf7441442e2b7cc4a4f56e264564cd90b537",
+          "sourceId": "openem:tension-headache",
+          "excerpt": "Outpatient management — primary headache disorder not requiring emergency intervention.\n\n1. Apply \"SNOOP4\" red flag screen to every headache presentation before attributing to TTH:\n   - **S**ystemic symptoms (fever, weight loss, HIV/malignancy)\n   - **N**eurological deficits (focal signs, altered consciousness)\n   - **O**nset sudden (thunderclap — must evaluate for SAH)\n   - **O**nset after age 50 (new headache — evaluate for temporal arteritis, malignancy)\n   - **P**ositional (worse lying flat = ↑ICP; worse upright = CSF leak)\n   - **P**rogressive headache pattern (worsening over weeks)\n   - **P**apilledema\n   - **P**recipitated by Valsalva (cough, sneeze, exertion — suggests ICP or vascular)\n2. For confirmed TTH with prior established pattern: treat with simple analgesics and address precipitating factors.\n3. For new-onset thunderclap headache: CT head immediately, then LP (>12 hours after onset for xanthochromia) if CT negative. Do not attribute to TTH without excluding SAH.\n4. Arrange primary care follow-up for headache diary, identification of triggers, and preventive therapy if episodic headaches occur ≥4 days/month.",
+          "excerptSha256": "c81d0f7281affe2612bf995d390db91397567e76146d07a0cd231bf92ee2e315",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "73653a341b4841d483b11a9308969e558e9256b1f9e82f7deba1b96982b273cc",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "771a3d8c99470f1195d621a3d6af24660a6b41b5096168977d3ff1b85b2e5410",
+      "title": "Tension-Type Headache",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/tension-headache.md",
+      "section": "Pitfalls",
+      "summary": "1. **Under-escalation: attributing a first thunderclap headache to tension headache.** Thunderclap headache (peak intensity <60 seconds) is SAH until proven otherwise. CT head within 6 hours has >97% sensitivity; LP >12 hours after onset provides definitive exclusion. A patient with classic BPPV, known anxiety, or chronic TTH who presents with a thunderclap event requires SAH exclusion regardless of history. The error of \"sentinel bleed attributed to TTH\" is one of the most litigation-generating missed diagnoses in emergency medicine.\n\n2. **Over-escalation: neuroimaging for stable, typical TTH with established pattern.** Neuroimaging in patients with stable headaches meeting primary headache criteria and a normal neurological exam has a yield of <1% for clinically significant findings and does not reduce re-presentation or anxiety in the long term. Choosing Wisely guidelines explicitly caution against this practice.\n\n3. **Failing to diagnose medication-overuse headache.** Patients with chronic daily headache who use NSAIDs, triptans, or opioids >10-15 days/month have medication-overuse headache as a perpetuating factor. Prescribing more analgesics worsens the condition. The key question: \"How many days per month do you take pain medication for your headaches?\" Withdrawal and preventive therapy are the treatment.\n\n4. **Prescribing opioids for TTH.** Opioids are inferior to NSAIDs for acute headache, accelerate the transition to chronic daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "771a3d8c99470f1195d621a3d6af24660a6b41b5096168977d3ff1b85b2e5410",
+          "sourceId": "openem:tension-headache",
+          "excerpt": "1. **Under-escalation: attributing a first thunderclap headache to tension headache.** Thunderclap headache (peak intensity <60 seconds) is SAH until proven otherwise. CT head within 6 hours has >97% sensitivity; LP >12 hours after onset provides definitive exclusion. A patient with classic BPPV, known anxiety, or chronic TTH who presents with a thunderclap event requires SAH exclusion regardless of history. The error of \"sentinel bleed attributed to TTH\" is one of the most litigation-generating missed diagnoses in emergency medicine.\n\n2. **Over-escalation: neuroimaging for stable, typical TTH with established pattern.** Neuroimaging in patients with stable headaches meeting primary headache criteria and a normal neurological exam has a yield of <1% for clinically significant findings and does not reduce re-presentation or anxiety in the long term. Choosing Wisely guidelines explicitly caution against this practice.\n\n3. **Failing to diagnose medication-overuse headache.** Patients with chronic daily headache who use NSAIDs, triptans, or opioids >10-15 days/month have medication-overuse headache as a perpetuating factor. Prescribing more analgesics worsens the condition. The key question: \"How many days per month do you take pain medication for your headaches?\" Withdrawal and preventive therapy are the treatment.\n\n4. **Prescribing opioids for TTH.** Opioids are inferior to NSAIDs for acute headache, accelerate the transition to chronic daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n",
+          "excerptSha256": "872a177f1596724b35cbf8a301442bf03a03e28de73f3450a71bad9ccc673f94",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "73653a341b4841d483b11a9308969e558e9256b1f9e82f7deba1b96982b273cc",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "7408fb0ff3fc2f3710ff81646d2e5720a318f0bc05ca1f025cd52bdd709cee56",
+      "title": "Subarachnoid Hemorrhage",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/subarachnoid-hemorrhage.md",
+      "section": "Recognition",
+      "summary": "**Classic presentation:**\n- \"Worst headache of my life\" — sudden onset, maximal intensity within seconds to one minute (thunderclap headache)\n- Nausea, vomiting, photophobia\n- Neck stiffness/meningismus (may take hours to develop)\n- Brief loss of consciousness at onset (up to 50% of cases)\n\n**Associated findings:**\n- Focal neurological deficits (cranial nerve III palsy — posterior communicating artery aneurysm)\n- Seizure at onset (6-16%)\n- Retinal/subhyaloid hemorrhages (Terson syndrome)\n- Fever (chemical meningitis from subarachnoid blood)\n\n**Atypical presentations (missed SAH):**\n- Headache that has improved by ED arrival (\"sentinel headache\" from minor leak)\n- Isolated neck pain or stiffness\n- Syncope without headache\n- Acute confusional state\n- Headache with exertion, Valsalva, or coitus\n\n**Hunt-Hess grading:**\n- Grade I: Asymptomatic or mild headache\n- Grade II: Moderate-severe headache, nuchal rigidity, cranial nerve palsy\n- Grade III: Drowsiness, confusion, mild focal deficit\n- Grade IV: Stupor, moderate-severe hemiparesis\n- Grade V: Coma, decerebrate posturing\n\n**Ottawa SAH Rule (sensitivity ~100% for ruling out SAH in alert patients):**\nAny ONE of the following in patients >= 15 years with new severe headache reaching max intensity within 1 hour:\n- Age >= 40 years\n- Neck pain or stiffness\n- Witnessed loss of consciousness\n- Onset during exertion\n- Thunderclap headache (instant peak)\n- Limited neck flexion on exam",
+      "reviewedAt": "2026-02-27",
+      "projectInterpretation": "research_synthesis; upstream_physician_reviewed. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "7408fb0ff3fc2f3710ff81646d2e5720a318f0bc05ca1f025cd52bdd709cee56",
+          "sourceId": "openem:subarachnoid-hemorrhage",
+          "excerpt": "**Classic presentation:**\n- \"Worst headache of my life\" — sudden onset, maximal intensity within seconds to one minute (thunderclap headache)\n- Nausea, vomiting, photophobia\n- Neck stiffness/meningismus (may take hours to develop)\n- Brief loss of consciousness at onset (up to 50% of cases)\n\n**Associated findings:**\n- Focal neurological deficits (cranial nerve III palsy — posterior communicating artery aneurysm)\n- Seizure at onset (6-16%)\n- Retinal/subhyaloid hemorrhages (Terson syndrome)\n- Fever (chemical meningitis from subarachnoid blood)\n\n**Atypical presentations (missed SAH):**\n- Headache that has improved by ED arrival (\"sentinel headache\" from minor leak)\n- Isolated neck pain or stiffness\n- Syncope without headache\n- Acute confusional state\n- Headache with exertion, Valsalva, or coitus\n\n**Hunt-Hess grading:**\n- Grade I: Asymptomatic or mild headache\n- Grade II: Moderate-severe headache, nuchal rigidity, cranial nerve palsy\n- Grade III: Drowsiness, confusion, mild focal deficit\n- Grade IV: Stupor, moderate-severe hemiparesis\n- Grade V: Coma, decerebrate posturing\n\n**Ottawa SAH Rule (sensitivity ~100% for ruling out SAH in alert patients):**\nAny ONE of the following in patients >= 15 years with new severe headache reaching max intensity within 1 hour:\n- Age >= 40 years\n- Neck pain or stiffness\n- Witnessed loss of consciousness\n- Onset during exertion\n- Thunderclap headache (instant peak)\n- Limited neck flexion on exam",
+          "excerptSha256": "3ae1746cfc87fb69650763fed75cf181607c1175e9d4b14f19d2307620baf99c",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "5e5a8cc8de44304b0dd81ddcf09340f7137cabe4a411c35eb53feb66edfcf1ad",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    }
+  ],
+  "safetyFloor": null,
+  "failure": null,
+  "routingPolicy": "five-route-queue/v2",
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "pass",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "pass",
+      "detail": "Checks explicit timing/destination tokens or exact independently reviewed emergency-transport binding; not clinical validation or verification of EMS activation."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen from a COPD diagnosis alone; targeted medication-instruction check."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "pass",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "emergency_transport",
+      "status": "not_assessed",
+      "detail": "LEGACY_TEXT_CONTRACT: typed transport intent and independent review are bound to patient and draft quotations; this is not externally verified EMS activation or clinical validation."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Cited passage identity and exact quote match; this does not establish claim support or applicability."
+    },
+    {
+      "id": "independent_review",
+      "status": "pass",
+      "detail": "Cross-vendor reviewer accepted this draft against seven criteria; application contract and care-reconciliation gates are separate. Not physician calibration or clinical approval."
+    },
+    {
+      "id": "care_reconciliation",
+      "status": "not_assessed",
+      "detail": "No reduction of already-issued care setting or emergency transport was requested."
+    }
+  ],
+  "usage": {
+    "inputTokens": 33414,
+    "outputTokens": 4030
+  },
+  "graph": {
+    "version": "evidence-graph/v12",
+    "mode": "hybrid",
+    "clinicalPolicyVersion": "disposition-clinical-policy/v1",
+    "context": null,
+    "safety": {
+      "action": "PRIORITY_ASYNC",
+      "basis": [
+        {
+          "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get",
+          "interpretation": "Patient reports onset of her usual migraine pattern with characteristic features (unilateral throbbing, photophobia); acute active symptom requiring assessment",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "I'm out of sumatriptan and would like a refill",
+          "interpretation": "Patient's rescue medication access is depleted and she needs urgent prescribing review to restore treatment capability for active migraine",
+          "currentPatient": true,
+          "present": true
+        }
+      ],
+      "actionBasis": null,
+      "reason": "Active usual migraine with exhausted rescue medication requires time-sensitive remote clinician assessment for prescribing and potential alternative therapy.",
+      "patientMessage": "",
+      "physicalRequirement": null
+    },
+    "safetyAdmission": {
+      "status": "not_requested",
+      "code": "NO_EARLY_ACTION",
+      "proposedAction": "PRIORITY_ASYNC",
+      "basisMode": null,
+      "supportingBasisIndices": [],
+      "contextualBasisIndices": [],
+      "clinicalValidation": false
+    },
+    "questionPublication": {
+      "status": "not_proposed",
+      "blocksRouting": false
+    },
+    "transportAdmission": {
+      "status": "legacy",
+      "code": "LEGACY_TEXT_CONTRACT",
+      "clinicalValidation": false
+    },
+    "ownershipLanguageReview": {
+      "raw": {
+        "id": "no_unconfirmed_handoff",
+        "status": "pass",
+        "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+      },
+      "findings": [],
+      "status": "not_flagged",
+      "reviewedDraftHash": "2dedca19875716a830d2ec73f69317c30ec7de672be5d101bc0d6861ca61adc5",
+      "taskReviews": [],
+      "clinicalApproval": false
+    },
+    "retrieval": [
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "Acute headache thunderclap worst-ever headache focal neurological deficits emergency assessment ambulance guidance",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+              "end": 1722,
+              "hash": "98d4caf8e68381d6507fdebc4e3d9b6319cb2f3bc97e33070c12baf880ca1eb8",
+              "text": "Headache accounts for 2-4% of ED visits. The vast majority (> 90%) are benign primary headache disorders (tension, migraine, cluster). The critical task is identifying the 1-5% with secondary, life-threatening causes. \"Worst headache of life\" mandates subarachnoid hemorrhage evaluation regardless of other features.\n\n**SNOOP red flag mnemonic:**\n- **S** — Systemic symptoms (fever, weight loss, HIV, cancer, pregnancy) or Systemic disease\n- **N** — Neurological deficit or dysfunction (confusion, seizure, papilledema, focal deficit)\n- **O** — Onset sudden (thunderclap: maximal intensity within seconds)\n- **O** — Older age (new headache onset > 50)\n- **P** — Pattern change (prior headache history with fundamentally different character), Positional (worse upright → low CSF pressure; worse supine → elevated ICP), Precipitated by Valsalva/exertion/sexual activity\n\n**Key history elements:**\n- Onset: thunderclap (SAH, CVT, RCVS, pituitary apoplexy, cervical artery dissection) vs gradual\n- Location: unilateral (migraine, cluster, temporal arteritis) vs bilateral vs occipital (posterior fossa lesion)\n- Character and severity: in the patient's context, not absolute scale\n- Associated symptoms: visual changes (temporal arteritis, AACG, migraine aura), nausea/vomiting (raised ICP, migraine), photophobia (SAH, meningitis), neck stiffness (SAH, meningitis)\n- Prior headache history: \"Is this headache different from your usual headaches?\"\n- Triggers: exertion, sex, Valsalva, head position change\n- Medications: anticoagulants, oral contraceptives, immunosuppressants\n- Recent trauma: even minor, especially in elderly or anticoagulated (subdural)\n- Pregnancy/postpartum: eclampsia, CVT, postpartum preeclampsia, PRES",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:headache-acute",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Acute Headache — Emergency Evaluation\nheadache; cephalgia; head pain; worst headache of life; thunderclap headache\nRecognition\nHeadache accounts for 2-4% of ED visits. The vast majority (> 90%) are benign primary headache disorders (tension, migraine, cluster). The critical task is identifying the 1-5% with secondary, life-threatening causes. \"Worst headache of life\" mandates subarachnoid hemorrhage evaluation regardless of other features.\n\n**SNOOP red flag mnemonic:**\n- **S** — Systemic symptoms (fever, weight loss, HIV, cancer, pregnancy) or Systemic disease\n- **N** — Neurological deficit or dysfunction (confusion, seizure, papilledema, focal deficit)\n- **O** — Onset sudden (thunderclap: maximal intensity within seconds)\n- **O** — Older age (new headache onset > 50)\n- **P** — Pattern change (prior headache history with fundamentally different character), Positional (worse upright → low CSF pressure; worse supine → elevated ICP), Precipitated by Valsalva/exertion/sexual activity\n\n**Key history elements:**\n- Onset: thunderclap (SAH, CVT, RCVS, pituitary apoplexy, cervical artery dissection) vs gradual\n- Location: unilateral (migraine, cluster, temporal arteritis) vs bilateral vs occipital (posterior fossa lesion)\n- Character and severity: in the patient's context, not absolute scale\n- Associated symptoms: visual changes (temporal arteritis, AACG, migraine aura), nausea/vomiting (raised ICP, migraine), photophobia (SAH, meningitis), neck stiffness (SAH, meningitis)\n- Prior headache history: \"Is this headache different from your usual headaches?\"\n- Triggers: exertion, sex, Valsalva, head position change\n- Medications: anticoagulants, oral contraceptives, immunosuppressants\n- Recent trauma: even minor, especially in elderly or anticoagulated (subdural)\n- Pregnancy/postpartum: eclampsia, CVT, postpartum preeclampsia, PRES"
+            },
+            "document": {
+              "id": "openem:headache-acute",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/headache-acute.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Headache — Emergency Evaluation",
+              "aliases": [
+                "headache",
+                "cephalgia",
+                "head pain",
+                "worst headache of life",
+                "thunderclap headache"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "2a2d4d32c73f49ed333e23133c9fd5670dc6a30439200b209be9d475c1b23957",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03177805800756621,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "3643b0452daec5eed3b84cc0fc477f3a43e0d339bd8a1eb9bf908557efcd2d2d",
+              "end": 1755,
+              "hash": "5476538c70d80a8bbe5b4aa09dda918c93bc6e323aa0f0566e3447b739bfd908",
+              "text": "### Life-Threatening\n- **Subarachnoid hemorrhage** (`subarachnoid-hemorrhage`): thunderclap headache, nuchal rigidity, vomiting, photophobia, third nerve palsy (posterior communicating artery aneurysm). 12% mortality before reaching hospital. SAH rebleed mortality 40-60%.\n- **Hemorrhagic stroke** (`hemorrhagic-stroke`): sudden headache with focal deficit, hypertension, progression to obtundation\n- **Bacterial meningitis** (`bacterial-meningitis`): fever, headache, nuchal rigidity, photophobia. Classic triad (fever, neck stiffness, AMS) present < 50%. Jolt accentuation test may add sensitivity.\n- **HSV encephalitis** (`hsv-encephalitis`): headache with behavioral changes, temporal lobe seizures, fever. MRI temporal lobe signal change. Acyclovir 10 mg/kg IV empirically.\n- **Epidural hematoma** (`epidural-hematoma`): post-trauma lucid interval then rapid deterioration, temporal bone fracture, lens-shaped hematoma on CT\n- **Subdural hematoma** (`subdural-hematoma`): chronic headache in elderly or anticoagulated, crescent-shaped hematoma on CT. Minor or forgotten trauma.\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with headache + papilledema + encephalopathy → PRES (posterior reversible encephalopathy syndrome)\n- **CO poisoning** (`carbon-monoxide-poisoning`): headache is most common symptom. Multiple household members. Winter, enclosed space, generator use.\n- **Cavernous sinus thrombosis** (`cavernous-sinus-thrombosis`): headache, proptosis, cranial nerve palsies (III, IV, V1, VI), chemosis. Recent sinusitis or facial infection.\n\n### Emergent\n- **Temporal arteritis** (`temporal-arteritis`): age > 50, new headache, jaw claudication, scalp tenderness, PMR symptoms, ESR > 50. Untreated → permanent vision loss.",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:headache-acute",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Acute Headache — Emergency Evaluation\nheadache; cephalgia; head pain; worst headache of life; thunderclap headache\nDifferential Diagnosis\n### Life-Threatening\n- **Subarachnoid hemorrhage** (`subarachnoid-hemorrhage`): thunderclap headache, nuchal rigidity, vomiting, photophobia, third nerve palsy (posterior communicating artery aneurysm). 12% mortality before reaching hospital. SAH rebleed mortality 40-60%.\n- **Hemorrhagic stroke** (`hemorrhagic-stroke`): sudden headache with focal deficit, hypertension, progression to obtundation\n- **Bacterial meningitis** (`bacterial-meningitis`): fever, headache, nuchal rigidity, photophobia. Classic triad (fever, neck stiffness, AMS) present < 50%. Jolt accentuation test may add sensitivity.\n- **HSV encephalitis** (`hsv-encephalitis`): headache with behavioral changes, temporal lobe seizures, fever. MRI temporal lobe signal change. Acyclovir 10 mg/kg IV empirically.\n- **Epidural hematoma** (`epidural-hematoma`): post-trauma lucid interval then rapid deterioration, temporal bone fracture, lens-shaped hematoma on CT\n- **Subdural hematoma** (`subdural-hematoma`): chronic headache in elderly or anticoagulated, crescent-shaped hematoma on CT. Minor or forgotten trauma.\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with headache + papilledema + encephalopathy → PRES (posterior reversible encephalopathy syndrome)\n- **CO poisoning** (`carbon-monoxide-poisoning`): headache is most common symptom. Multiple household members. Winter, enclosed space, generator use.\n- **Cavernous sinus thrombosis** (`cavernous-sinus-thrombosis`): headache, proptosis, cranial nerve palsies (III, IV, V1, VI), chemosis. Recent sinusitis or facial infection.\n\n### Emergent\n- **Temporal arteritis** (`temporal-arteritis`): age > 50, new headache, jaw claudication, scalp tenderness, PMR symptoms, ESR > 50. Untreated → permanent vision loss."
+            },
+            "document": {
+              "id": "openem:headache-acute",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/headache-acute.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Headache — Emergency Evaluation",
+              "aliases": [
+                "headache",
+                "cephalgia",
+                "head pain",
+                "worst headache of life",
+                "thunderclap headache"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "2a2d4d32c73f49ed333e23133c9fd5670dc6a30439200b209be9d475c1b23957",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03149801587301587,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- **Acute angle-closure glaucoma** (`acute-angle-closure-glaucoma`): severe unilateral eye/brow/forehead pain, red eye, fixed mid-dilated pupil, nausea, halos\n- **Spinal epidural abscess** (`spinal-epidural-abscess`): headache with fever, back pain, progressive neurological deficit. IV drug use, re"
+            }
+          },
+          {
+            "chunk": {
+              "id": "8eaed8d2eee1564e232115089079cf7441442e2b7cc4a4f56e264564cd90b537",
+              "end": 1140,
+              "hash": "c81d0f7281affe2612bf995d390db91397567e76146d07a0cd231bf92ee2e315",
+              "text": "Outpatient management — primary headache disorder not requiring emergency intervention.\n\n1. Apply \"SNOOP4\" red flag screen to every headache presentation before attributing to TTH:\n   - **S**ystemic symptoms (fever, weight loss, HIV/malignancy)\n   - **N**eurological deficits (focal signs, altered consciousness)\n   - **O**nset sudden (thunderclap — must evaluate for SAH)\n   - **O**nset after age 50 (new headache — evaluate for temporal arteritis, malignancy)\n   - **P**ositional (worse lying flat = ↑ICP; worse upright = CSF leak)\n   - **P**rogressive headache pattern (worsening over weeks)\n   - **P**apilledema\n   - **P**recipitated by Valsalva (cough, sneeze, exertion — suggests ICP or vascular)\n2. For confirmed TTH with prior established pattern: treat with simple analgesics and address precipitating factors.\n3. For new-onset thunderclap headache: CT head immediately, then LP (>12 hours after onset for xanthochromia) if CT negative. Do not attribute to TTH without excluding SAH.\n4. Arrange primary care follow-up for headache diary, identification of triggers, and preventive therapy if episodic headaches occur ≥4 days/month.",
+              "start": 0,
+              "section": 1,
+              "documentId": "openem:tension-headache",
+              "sectionTitle": "Critical Actions",
+              "embeddingText": "Tension-Type Headache\ntension headache; TTH; muscle contraction headache; episodic tension-type headache; chronic tension-type headache\nCritical Actions\nOutpatient management — primary headache disorder not requiring emergency intervention.\n\n1. Apply \"SNOOP4\" red flag screen to every headache presentation before attributing to TTH:\n   - **S**ystemic symptoms (fever, weight loss, HIV/malignancy)\n   - **N**eurological deficits (focal signs, altered consciousness)\n   - **O**nset sudden (thunderclap — must evaluate for SAH)\n   - **O**nset after age 50 (new headache — evaluate for temporal arteritis, malignancy)\n   - **P**ositional (worse lying flat = ↑ICP; worse upright = CSF leak)\n   - **P**rogressive headache pattern (worsening over weeks)\n   - **P**apilledema\n   - **P**recipitated by Valsalva (cough, sneeze, exertion — suggests ICP or vascular)\n2. For confirmed TTH with prior established pattern: treat with simple analgesics and address precipitating factors.\n3. For new-onset thunderclap headache: CT head immediately, then LP (>12 hours after onset for xanthochromia) if CT negative. Do not attribute to TTH without excluding SAH.\n4. Arrange primary care follow-up for headache diary, identification of triggers, and preventive therapy if episodic headaches occur ≥4 days/month."
+            },
+            "document": {
+              "id": "openem:tension-headache",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/tension-headache.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Tension-Type Headache",
+              "aliases": [
+                "tension headache",
+                "TTH",
+                "muscle contraction headache",
+                "episodic tension-type headache",
+                "chronic tension-type headache"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "73653a341b4841d483b11a9308969e558e9256b1f9e82f7deba1b96982b273cc",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:subarachnoid-hemorrhage",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "neurological"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-23"
+            },
+            "score": 0.025978407557354925,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "771a3d8c99470f1195d621a3d6af24660a6b41b5096168977d3ff1b85b2e5410",
+              "end": 1658,
+              "hash": "872a177f1596724b35cbf8a301442bf03a03e28de73f3450a71bad9ccc673f94",
+              "text": "1. **Under-escalation: attributing a first thunderclap headache to tension headache.** Thunderclap headache (peak intensity <60 seconds) is SAH until proven otherwise. CT head within 6 hours has >97% sensitivity; LP >12 hours after onset provides definitive exclusion. A patient with classic BPPV, known anxiety, or chronic TTH who presents with a thunderclap event requires SAH exclusion regardless of history. The error of \"sentinel bleed attributed to TTH\" is one of the most litigation-generating missed diagnoses in emergency medicine.\n\n2. **Over-escalation: neuroimaging for stable, typical TTH with established pattern.** Neuroimaging in patients with stable headaches meeting primary headache criteria and a normal neurological exam has a yield of <1% for clinically significant findings and does not reduce re-presentation or anxiety in the long term. Choosing Wisely guidelines explicitly caution against this practice.\n\n3. **Failing to diagnose medication-overuse headache.** Patients with chronic daily headache who use NSAIDs, triptans, or opioids >10-15 days/month have medication-overuse headache as a perpetuating factor. Prescribing more analgesics worsens the condition. The key question: \"How many days per month do you take pain medication for your headaches?\" Withdrawal and preventive therapy are the treatment.\n\n4. **Prescribing opioids for TTH.** Opioids are inferior to NSAIDs for acute headache, accelerate the transition to chronic daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:tension-headache",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Tension-Type Headache\ntension headache; TTH; muscle contraction headache; episodic tension-type headache; chronic tension-type headache\nPitfalls\n1. **Under-escalation: attributing a first thunderclap headache to tension headache.** Thunderclap headache (peak intensity <60 seconds) is SAH until proven otherwise. CT head within 6 hours has >97% sensitivity; LP >12 hours after onset provides definitive exclusion. A patient with classic BPPV, known anxiety, or chronic TTH who presents with a thunderclap event requires SAH exclusion regardless of history. The error of \"sentinel bleed attributed to TTH\" is one of the most litigation-generating missed diagnoses in emergency medicine.\n\n2. **Over-escalation: neuroimaging for stable, typical TTH with established pattern.** Neuroimaging in patients with stable headaches meeting primary headache criteria and a normal neurological exam has a yield of <1% for clinically significant findings and does not reduce re-presentation or anxiety in the long term. Choosing Wisely guidelines explicitly caution against this practice.\n\n3. **Failing to diagnose medication-overuse headache.** Patients with chronic daily headache who use NSAIDs, triptans, or opioids >10-15 days/month have medication-overuse headache as a perpetuating factor. Prescribing more analgesics worsens the condition. The key question: \"How many days per month do you take pain medication for your headaches?\" Withdrawal and preventive therapy are the treatment.\n\n4. **Prescribing opioids for TTH.** Opioids are inferior to NSAIDs for acute headache, accelerate the transition to chronic daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n"
+            },
+            "document": {
+              "id": "openem:tension-headache",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/tension-headache.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Tension-Type Headache",
+              "aliases": [
+                "tension headache",
+                "TTH",
+                "muscle contraction headache",
+                "episodic tension-type headache",
+                "chronic tension-type headache"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "73653a341b4841d483b11a9308969e558e9256b1f9e82f7deba1b96982b273cc",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:subarachnoid-hemorrhage",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "neurological"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-23"
+            },
+            "score": 0.024758454106280192,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n5. **Missing temporal arteritis in patients >50 years with new headache.** New headache after age 50 is temporal arteritis until proven otherwise (ESR, CRP, temporal artery biopsy). Giant cell arteritis causes permanent vision loss in 15-20% of untreated cases. Empiric steroids while awaiting biops"
+            }
+          },
+          {
+            "chunk": {
+              "id": "7408fb0ff3fc2f3710ff81646d2e5720a318f0bc05ca1f025cd52bdd709cee56",
+              "end": 1445,
+              "hash": "3ae1746cfc87fb69650763fed75cf181607c1175e9d4b14f19d2307620baf99c",
+              "text": "**Classic presentation:**\n- \"Worst headache of my life\" — sudden onset, maximal intensity within seconds to one minute (thunderclap headache)\n- Nausea, vomiting, photophobia\n- Neck stiffness/meningismus (may take hours to develop)\n- Brief loss of consciousness at onset (up to 50% of cases)\n\n**Associated findings:**\n- Focal neurological deficits (cranial nerve III palsy — posterior communicating artery aneurysm)\n- Seizure at onset (6-16%)\n- Retinal/subhyaloid hemorrhages (Terson syndrome)\n- Fever (chemical meningitis from subarachnoid blood)\n\n**Atypical presentations (missed SAH):**\n- Headache that has improved by ED arrival (\"sentinel headache\" from minor leak)\n- Isolated neck pain or stiffness\n- Syncope without headache\n- Acute confusional state\n- Headache with exertion, Valsalva, or coitus\n\n**Hunt-Hess grading:**\n- Grade I: Asymptomatic or mild headache\n- Grade II: Moderate-severe headache, nuchal rigidity, cranial nerve palsy\n- Grade III: Drowsiness, confusion, mild focal deficit\n- Grade IV: Stupor, moderate-severe hemiparesis\n- Grade V: Coma, decerebrate posturing\n\n**Ottawa SAH Rule (sensitivity ~100% for ruling out SAH in alert patients):**\nAny ONE of the following in patients >= 15 years with new severe headache reaching max intensity within 1 hour:\n- Age >= 40 years\n- Neck pain or stiffness\n- Witnessed loss of consciousness\n- Onset during exertion\n- Thunderclap headache (instant peak)\n- Limited neck flexion on exam",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:subarachnoid-hemorrhage",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Subarachnoid Hemorrhage\nSAH; aneurysmal SAH; aSAH; thunderclap headache; ruptured cerebral aneurysm\nRecognition\n**Classic presentation:**\n- \"Worst headache of my life\" — sudden onset, maximal intensity within seconds to one minute (thunderclap headache)\n- Nausea, vomiting, photophobia\n- Neck stiffness/meningismus (may take hours to develop)\n- Brief loss of consciousness at onset (up to 50% of cases)\n\n**Associated findings:**\n- Focal neurological deficits (cranial nerve III palsy — posterior communicating artery aneurysm)\n- Seizure at onset (6-16%)\n- Retinal/subhyaloid hemorrhages (Terson syndrome)\n- Fever (chemical meningitis from subarachnoid blood)\n\n**Atypical presentations (missed SAH):**\n- Headache that has improved by ED arrival (\"sentinel headache\" from minor leak)\n- Isolated neck pain or stiffness\n- Syncope without headache\n- Acute confusional state\n- Headache with exertion, Valsalva, or coitus\n\n**Hunt-Hess grading:**\n- Grade I: Asymptomatic or mild headache\n- Grade II: Moderate-severe headache, nuchal rigidity, cranial nerve palsy\n- Grade III: Drowsiness, confusion, mild focal deficit\n- Grade IV: Stupor, moderate-severe hemiparesis\n- Grade V: Coma, decerebrate posturing\n\n**Ottawa SAH Rule (sensitivity ~100% for ruling out SAH in alert patients):**\nAny ONE of the following in patients >= 15 years with new severe headache reaching max intensity within 1 hour:\n- Age >= 40 years\n- Neck pain or stiffness\n- Witnessed loss of consciousness\n- Onset during exertion\n- Thunderclap headache (instant peak)\n- Limited neck flexion on exam"
+            },
+            "document": {
+              "id": "openem:subarachnoid-hemorrhage",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/subarachnoid-hemorrhage.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Subarachnoid Hemorrhage",
+              "aliases": [
+                "SAH",
+                "aneurysmal SAH",
+                "aSAH",
+                "thunderclap headache",
+                "ruptured cerebral aneurysm"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "5e5a8cc8de44304b0dd81ddcf09340f7137cabe4a411c35eb53feb66edfcf1ad",
+              "related": [],
+              "concepts": [
+                "neurological"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-28"
+            },
+            "score": 0.02459499263622975,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 35.37020800000755,
+          "embeddingMs": 758.2995419999934,
+          "vectorMs": 27.231124999991152,
+          "totalMs": 822.7782920000027
+        },
+        "warnings": [],
+        "embeddingTokens": 16,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "accept",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "The active usual migraine with exhausted sumatriptan requires timely prescribing review, which can start in messaging. Priority review today and an alternative same-day prescribing fallback meet that need without assuming confirmed availability.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I'm out of sumatriptan and would like a refill."
+            },
+            {
+              "unit": "draft",
+              "quote": "clinician availability isn't confirmed, so if review isn't obtained today, seek another same-day prescribing service rather than waiting."
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "Priority messaging is proportionate to an active attack without the usual rescue medication. No unnecessary physical encounter or current emergency transport is required.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get."
+            },
+            {
+              "unit": "draft",
+              "quote": "I recommend a priority message review with a Counsel clinician in this thread today about a sumatriptan refill"
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "The draft grounds the attack pattern and medication need in the patient's report and explicitly treats unreported red flags and measurements as unknown.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Absence of reported red flags means unknown, not excluded"
+            },
+            {
+              "unit": "draft",
+              "quote": "No vital signs reported; blood pressure, pulse and temperature not provided and whether any measurement occurred is unknown."
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "pass",
+          "reason": "The refill route follows project policy, not an asserted publisher recommendation. The supplied headache red-flag evidence supports the conditional emergency advice; no dosing or unsupported prescribing promise is given.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "A clinician should review your medication history and suitability before deciding whether to prescribe"
+            },
+            {
+              "unit": "source:ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+              "quote": "\"Worst headache of life\" mandates subarachnoid hemorrhage evaluation regardless of other features."
+            },
+            {
+              "unit": "source:ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+              "quote": "- **N** — Neurological deficit or dysfunction (confusion, seizure, papilledema, focal deficit)"
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "pass",
+          "reason": "Important changes trigger an explicit immediate emergency action, while unavailable prescribing review has a same-day fallback.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "If this headache becomes the worst of your life or peaks suddenly within seconds, or you develop new weakness, numbness or speech trouble, call 911."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No question was issued and no answer is required before starting the recommended review.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"questions\":[]"
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "Counsel clinician review is recommended rather than promised. Availability is expressly unconfirmed, with an actionable fallback and no fabricated prescription or accepted handoff.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "I recommend a priority message review with a Counsel clinician in this thread today about a sumatriptan refill"
+            },
+            {
+              "unit": "draft",
+              "quote": "clinician availability isn't confirmed, so if review isn't obtained today, seek another same-day prescribing service rather than waiting."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "none",
+      "earlyCorrection": null,
+      "ownershipTaskReview": [],
+      "correction": "No changes required.",
+      "evidenceQueries": []
+    },
+    "release": "model_reviewed",
+    "clinicalApproval": false,
+    "corrections": 1,
+    "careCorrectionReleased": false,
+    "sourceIntegrity": true,
+    "citations": [
+      {
+        "passageId": "ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+        "quote": "\"Worst headache of life\" mandates subarachnoid hemorrhage evaluation regardless of other features.",
+        "claim": "A worst-ever headache requires evaluation for subarachnoid hemorrhage regardless of other features, supporting the emergency safety-net advice.",
+        "applicability": "applicable",
+        "limitation": "ED reference synthesis; applies to new symptoms, not the current typical attack."
+      },
+      {
+        "passageId": "ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+        "quote": "- **N** — Neurological deficit or dysfunction (confusion, seizure, papilledema, focal deficit)",
+        "claim": "Neurological deficit or dysfunction is a listed headache red flag warranting urgent assessment.",
+        "applicability": "applicable",
+        "limitation": "Mnemonic screening list, not a telehealth escalation protocol."
+      },
+      {
+        "passageId": "7408fb0ff3fc2f3710ff81646d2e5720a318f0bc05ca1f025cd52bdd709cee56",
+        "quote": "- \"Worst headache of my life\" — sudden onset, maximal intensity within seconds to one minute (thunderclap headache)",
+        "claim": "Sudden headache reaching maximal intensity within seconds is the classic thunderclap pattern of concern.",
+        "applicability": "applicable",
+        "limitation": "Describes SAH presentation generally; not reported by this patient."
+      }
+    ]
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "clinical-evidence-graph",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "c1840ed3-74fe-4f8a-8ce1-83b508874003",
+  "traceId": "b3f7a31c9c94f59490caf355f8807dee",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "40F. My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get. I'm out of sumatriptan and would like a refill.",
+  "inputHash": "0ede5c086d3ea812a589febf64e2b33fcde3c4795b2b686a9b02453986a0b81e",
+  "answerHash": "888fc5aaa78e9c3c4478f6c1bc82a8d075699fe4d409df09d2dfbad630770506",
+  "promptHash": "b4482d54c0f38038e079c05ae823bc3c57a553435e651e3413a6429b99f66ed9",
+  "guidanceHash": "6eac0ddb4f12334235e8feb7e92c1382bd6082b9a34d2ad0c537528e36a9f589",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-14T06:53:59.455Z",
+  "durationMs": 74863,
+  "workflowDurationMs": 74740,
+  "tracePersistenceDurationMs": 123,
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 0
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 3554
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 11958
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 62766
+    }
+  ],
+  "responseEvents": [
+    {
+      "kind": "patient_reply",
+      "disposition": "ASYNC_PHYSICIAN",
+      "text": "I recommend a priority message review with a Counsel clinician in this thread today about a sumatriptan refill, since your headache matches your usual migraine and you have no rescue medication left. A clinician should review your medication history and suitability before deciding whether to prescribe; clinician availability isn't confirmed, so if review isn't obtained today, seek another same-day prescribing service rather than waiting. If this headache becomes the worst of your life or peaks suddenly within seconds, or you develop new weakness, numbness or speech trouble, call 911.",
+      "elapsedMs": 74726,
+      "sequence": 1
+    }
+  ],
+  "safetyNotices": [],
+  "firstActionMs": null,
+  "firstPatientReplyMs": 74726,
+  "firstQuestionMs": null
+}

@@ -1,0 +1,1722 @@
+{
+  "status": "review_required",
+  "answer": {
+    "disposition": "EMERGENCY_NOW",
+    "reviewPriority": null,
+    "workType": null,
+    "reason": "The care instruction is retained; the complete explanation still needs clinician review.",
+    "patientMessage": "Seek emergency department assessment now. Do not wait for a message reply; call 911 if you cannot travel safely.",
+    "differential": [],
+    "redFlags": [],
+    "vitalSigns": "The automated assessment has not established the vital-sign context.",
+    "questions": [],
+    "evidence": [],
+    "evidenceLimitations": "No model-reviewed clinical explanation has been released. The draft and review outcome are retained for clinician assessment."
+  },
+  "origin": "validation_safeguard",
+  "failure": "CLINICIAN_REVIEW_REQUIRED",
+  "safetyFloor": {
+    "disposition": "EMERGENCY_NOW",
+    "directive": "Seek emergency department assessment now. Do not wait for a message reply; call 911 if you cannot travel safely."
+  },
+  "rejectedAnswer": {
+    "disposition": "SAME_DAY_IN_PERSON",
+    "reviewPriority": null,
+    "workType": null,
+    "reason": "A 6-month-old with reported fever, fussiness, reduced feeding and fewer wet diapers today needs hands-on hydration and source assessment today, including weight, perfusion check and possible urine testing that messaging cannot provide.",
+    "patientMessage": "Please have your baby seen in person today — an urgent care, pediatric clinic or emergency department. Fewer wet diapers plus poor feeding in a 6-month-old with fever needs hands-on checks for dehydration and the source of infection. Go to the emergency department right away if she becomes limp or hard to wake, breathes fast or with effort, develops a rash that doesn't fade with pressure, or stops feeding entirely.",
+    "differential": [
+      "Viral illness with reduced intake and early dehydration",
+      "Occult bacterial infection such as urinary tract infection"
+    ],
+    "redFlags": [
+      {
+        "concern": "Decreased urine output",
+        "status": "reported",
+        "quote": "fewer wet diapers today than normal"
+      },
+      {
+        "concern": "Poor feeding",
+        "status": "reported",
+        "quote": "doesn't seem interested in feeding"
+      },
+      {
+        "concern": "Fussiness",
+        "status": "reported",
+        "quote": "she's fussy"
+      },
+      {
+        "concern": "Lethargy or difficulty waking",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Rash",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Breathing difficulty",
+        "status": "unknown",
+        "quote": ""
+      }
+    ],
+    "vitalSigns": "Fever reported as 100.9 with route and device unstated; heart rate, breathing rate and perfusion not reported.",
+    "questions": [],
+    "evidenceLimitations": "Symptom duration, rash, vomiting/diarrhea and overall alertness were not reported, so severity rests on the parent's description alone.",
+    "transportIntent": null,
+    "citations": [
+      {
+        "passageId": "d1ccc5fb485f8145523b32a3d134b362bc286eb6e4bb2a3e0b3783565092e7e3",
+        "quote": "- **Ill-appearing (high risk):** lethargy, poor tone, weak cry, inconsolable, poor feeding, mottled/pale/cyanotic, poor perfusion (cap refill > 3 sec)",
+        "claim": "Poor feeding is listed among ill-appearing features that mark higher risk in a febrile infant, supporting hands-on assessment today.",
+        "applicability": "uncertain",
+        "limitation": "ED reference synthesis, not a telehealth protocol; appearance was not directly observed here."
+      }
+    ]
+  },
+  "modelCalls": 3,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "6-month-old fever 100.9 fussy decreased urine output feeding difficulty",
+          "infant fever dehydration signs poor intake",
+          "6-month-old with fever and reduced wet diapers urgency assessment"
+        ],
+        "findings": [
+          {
+            "finding": "Fever",
+            "status": "reported",
+            "quote": "fever of 100.9"
+          },
+          {
+            "finding": "Fussiness",
+            "status": "reported",
+            "quote": "she's fussy"
+          },
+          {
+            "finding": "Decreased urine output",
+            "status": "reported",
+            "quote": "fewer wet diapers today than normal"
+          },
+          {
+            "finding": "Reduced oral intake",
+            "status": "reported",
+            "quote": "doesn't seem interested in feeding"
+          },
+          {
+            "finding": "Duration of symptoms",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "finding": "Associated vomiting, diarrhea, or rash",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "question": {
+          "text": "How long has your baby had the fever, and has she vomited, had diarrhea, or developed any rash?",
+          "why": "Duration helps assess acuity and infection type; vomiting and diarrhea increase dehydration risk, and rash can indicate serious infection requiring urgent evaluation.",
+          "quote": "fever of 100.9"
+        }
+      },
+      "usage": {
+        "inputTokens": 1083,
+        "outputTokens": 302
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1124,
+      "streamProgress": {
+        "lastTextDeltaMs": 3182,
+        "textDeltaCount": 80,
+        "textCharacters": 1059
+      },
+      "transportTimings": {
+        "startResolvedMs": 2,
+        "objectResolvedMs": 3208,
+        "usageResolvedMs": 3216,
+        "finishReasonResolvedMs": 3216,
+        "streamEndMs": 3217
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 3217
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "SAME_DAY_IN_PERSON",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "A 6-month-old with reported fever, fussiness, reduced feeding and fewer wet diapers today needs hands-on hydration and source assessment today, including weight, perfusion check and possible urine testing that messaging cannot provide.",
+        "patientMessage": "Please have your baby seen in person today — an urgent care, pediatric clinic or emergency department. Fewer wet diapers plus poor feeding in a 6-month-old with fever needs hands-on checks for dehydration and the source of infection. Go to the emergency department right away if she becomes limp or hard to wake, breathes fast or with effort, develops a rash that doesn't fade with pressure, or stops feeding entirely.",
+        "differential": [
+          "Viral illness with reduced intake and early dehydration",
+          "Occult bacterial infection such as urinary tract infection"
+        ],
+        "redFlags": [
+          {
+            "concern": "Decreased urine output",
+            "status": "reported",
+            "quote": "fewer wet diapers today than normal"
+          },
+          {
+            "concern": "Poor feeding",
+            "status": "reported",
+            "quote": "doesn't seem interested in feeding"
+          },
+          {
+            "concern": "Fussiness",
+            "status": "reported",
+            "quote": "she's fussy"
+          },
+          {
+            "concern": "Lethargy or difficulty waking",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Rash",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Breathing difficulty",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "Fever reported as 100.9 with route and device unstated; heart rate, breathing rate and perfusion not reported.",
+        "questions": [],
+        "evidenceLimitations": "Symptom duration, rash, vomiting/diarrhea and overall alertness were not reported, so severity rests on the parent's description alone.",
+        "transportIntent": null,
+        "citations": [
+          {
+            "passageId": "d1ccc5fb485f8145523b32a3d134b362bc286eb6e4bb2a3e0b3783565092e7e3",
+            "quote": "- **Ill-appearing (high risk):** lethargy, poor tone, weak cry, inconsolable, poor feeding, mottled/pale/cyanotic, poor perfusion (cap refill > 3 sec)",
+            "claim": "Poor feeding is listed among ill-appearing features that mark higher risk in a febrile infant, supporting hands-on assessment today.",
+            "applicability": "uncertain",
+            "limitation": "ED reference synthesis, not a telehealth protocol; appearance was not directly observed here."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 19499,
+        "outputTokens": 900
+      },
+      "failure": null,
+      "firstTextDeltaMs": 3412,
+      "streamProgress": {
+        "lastTextDeltaMs": 14298,
+        "textDeltaCount": 186,
+        "textCharacters": 2072
+      },
+      "transportTimings": {
+        "startResolvedMs": 2,
+        "objectResolvedMs": 14306,
+        "usageResolvedMs": 14323,
+        "finishReasonResolvedMs": 14323,
+        "streamEndMs": 14326
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 14326,
+      "rawOutput": {
+        "disposition": "SAME_DAY_IN_PERSON",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "A 6-month-old with reported fever, fussiness, reduced feeding and fewer wet diapers today needs hands-on hydration and source assessment today, including weight, perfusion check and possible urine testing that messaging cannot provide.",
+        "patientMessage": "Please have your baby seen in person today — an urgent care, pediatric clinic or emergency department. Fewer wet diapers plus poor feeding in a 6-month-old with fever needs hands-on checks for dehydration and the source of infection. Go to the emergency department right away if she becomes limp or hard to wake, breathes fast or with effort, develops a rash that doesn't fade with pressure, or stops feeding entirely.",
+        "differential": [
+          "Viral illness with reduced intake and early dehydration",
+          "Occult bacterial infection such as urinary tract infection"
+        ],
+        "redFlags": [
+          {
+            "concern": "Decreased urine output",
+            "status": "reported",
+            "quote": "fewer wet diapers today than normal"
+          },
+          {
+            "concern": "Poor feeding",
+            "status": "reported",
+            "quote": "doesn't seem interested in feeding"
+          },
+          {
+            "concern": "Fussiness",
+            "status": "reported",
+            "quote": "she's fussy"
+          },
+          {
+            "concern": "Lethargy or difficulty waking",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Rash",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Breathing difficulty",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "Fever reported as 100.9 with route and device unstated; heart rate, breathing rate and perfusion not reported.",
+        "questions": [],
+        "evidenceLimitations": "Symptom duration, rash, vomiting/diarrhea and overall alertness were not reported, so severity rests on the parent's description alone.",
+        "transportIntent": null,
+        "citations": [
+          {
+            "passageId": "d1ccc5fb485f8145523b32a3d134b362bc286eb6e4bb2a3e0b3783565092e7e3",
+            "claim": "Poor feeding is listed among ill-appearing features that mark higher risk in a febrile infant, supporting hands-on assessment today.",
+            "applicability": "uncertain",
+            "limitation": "ED reference synthesis, not a telehealth protocol; appearance was not directly observed here.",
+            "quoteId": "q22"
+          }
+        ]
+      }
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "action": "ED_NOW",
+        "basis": [
+          {
+            "quote": "My 6-month-old has a fever of 100.9",
+            "interpretation": "Fever in an infant age 6 months reported by parent; in this age group even modest fever can indicate serious bacterial infection and warrants urgent evaluation.",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "she's fussy",
+            "interpretation": "Irritability and behavioral change in an infant; nonspecific but consistent with systemic illness when accompanied by fever.",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "she's had fewer wet diapers today than normal",
+            "interpretation": "Reduced urine output in an infant; suggests possible dehydration or systemic compromise.",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "she doesn't seem interested in feeding",
+            "interpretation": "Feeding refusal or decreased intake in an infant with fever; indicates altered behavior and potential functional decline.",
+            "currentPatient": true,
+            "present": true
+          }
+        ],
+        "actionBasis": {
+          "indices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "sufficient": true
+        },
+        "reason": "Fever in a 6-month-old with reduced intake, decreased urine output and behavioral change requires immediate emergency-department evaluation to assess for serious bacterial infection and dehydration.",
+        "patientMessage": "",
+        "physicalRequirement": null,
+        "activeEms": null
+      },
+      "usage": {
+        "inputTokens": 3436,
+        "outputTokens": 298
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1361,
+      "streamProgress": {
+        "lastTextDeltaMs": 3814,
+        "textDeltaCount": 94,
+        "textCharacters": 1259
+      },
+      "transportTimings": {
+        "startResolvedMs": 2,
+        "objectResolvedMs": 3924,
+        "usageResolvedMs": 3946,
+        "finishReasonResolvedMs": 3946,
+        "streamEndMs": 3947
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 3947
+    }
+  ],
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "pass",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "pass",
+      "detail": "Checks explicit timing/destination tokens or exact independently reviewed emergency-transport binding; not clinical validation or verification of EMS activation."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen; a prescription/plan mention alone is not authority for a new instruction. Targeted prose finding, not prescribing validation."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "pass",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "transport_intent",
+      "status": "pass",
+      "detail": "Typed intent matches a bounded immediate directive. No independent review or external EMS activation is asserted."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Citation quotation and selected passage identity are checked; clinical support is not established."
+    },
+    {
+      "id": "evidence_packet",
+      "status": "pass",
+      "detail": "A nonempty integrity-valid evidence packet is required for a completed response. Missing evidence never cancels an issued action."
+    },
+    {
+      "id": "independent_review",
+      "status": "not_assessed",
+      "detail": "No model judge runs on gates-release. Clinical correctness and claim support remain unassessed."
+    },
+    {
+      "id": "care_reconciliation",
+      "status": "fail",
+      "detail": "An issued emergency/in-person instruction cannot be silently reduced. Disagreement is retained for clinician review."
+    }
+  ],
+  "guidance": [
+    {
+      "id": "8b4d15b2dbe09b7d3b0d11137a216a47cb22daa61aa97cbfd037158142b1c39b",
+      "title": "Pediatric Fever — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/pediatric-fever-evaluation.md",
+      "section": "Pitfalls",
+      "summary": "1. **Discharging a febrile neonate (< 28 days) without full workup.** No clinical assessment, no blood test, and no decision rule can reliably exclude SBI in neonates. Every neonate with T >= 38.0°C requires full sepsis workup, empiric antibiotics, and admission. This is an absolute rule.\n\n2. **Using bag urine specimen to make decisions.** Bag urine specimens have a contamination rate of up to 60%. A positive bag specimen is meaningless. All infants < 24 months requiring urinalysis need catheterized or suprapubic aspiration specimens.\n\n3. **Assuming fever height correlates with illness severity.** While fever > 40°C is associated with slightly higher SBI risk in some studies, many children with 40.5°C fevers have benign viral illness, and neonates with serious bacterial infections may have only 38.1°C. Clinical appearance is more important than temperature magnitude.\n\n4. **Missing Kawasaki disease.** Fever > 5 days without source in a child 6 months - 5 years should trigger Kawasaki evaluation. Incomplete Kawasaki (fewer than 4/5 criteria) is common and easily missed. Untreated Kawasaki causes coronary artery aneurysms in 25% of cases. Echocardiography is indicated.\n\n5. **Failing to consider HSV in neonates.** HSV encephalitis/disseminated HSV in neonates has > 50% mortality if untreated. Acyclovir must be added if: vesicular rash, seizure, CSF pleocytosis, elevated transaminases, coagulopathy, or no clear bacterial source for sepsis picture. Do NOT wait for PCR results to start acyclovir.\n\n6. **Anchoring on \"teething fever.\"** Teething may cause low-grade temperature elevation (< 38.3°C) but does NOT cause true fever (>= 38.5°C). Attributing fever to teething is dangerous and delays evaluation of actual infections.\n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "8b4d15b2dbe09b7d3b0d11137a216a47cb22daa61aa97cbfd037158142b1c39b",
+          "sourceId": "openem:pediatric-fever-evaluation",
+          "excerpt": "1. **Discharging a febrile neonate (< 28 days) without full workup.** No clinical assessment, no blood test, and no decision rule can reliably exclude SBI in neonates. Every neonate with T >= 38.0°C requires full sepsis workup, empiric antibiotics, and admission. This is an absolute rule.\n\n2. **Using bag urine specimen to make decisions.** Bag urine specimens have a contamination rate of up to 60%. A positive bag specimen is meaningless. All infants < 24 months requiring urinalysis need catheterized or suprapubic aspiration specimens.\n\n3. **Assuming fever height correlates with illness severity.** While fever > 40°C is associated with slightly higher SBI risk in some studies, many children with 40.5°C fevers have benign viral illness, and neonates with serious bacterial infections may have only 38.1°C. Clinical appearance is more important than temperature magnitude.\n\n4. **Missing Kawasaki disease.** Fever > 5 days without source in a child 6 months - 5 years should trigger Kawasaki evaluation. Incomplete Kawasaki (fewer than 4/5 criteria) is common and easily missed. Untreated Kawasaki causes coronary artery aneurysms in 25% of cases. Echocardiography is indicated.\n\n5. **Failing to consider HSV in neonates.** HSV encephalitis/disseminated HSV in neonates has > 50% mortality if untreated. Acyclovir must be added if: vesicular rash, seizure, CSF pleocytosis, elevated transaminases, coagulopathy, or no clear bacterial source for sepsis picture. Do NOT wait for PCR results to start acyclovir.\n\n6. **Anchoring on \"teething fever.\"** Teething may cause low-grade temperature elevation (< 38.3°C) but does NOT cause true fever (>= 38.5°C). Attributing fever to teething is dangerous and delays evaluation of actual infections.\n",
+          "excerptSha256": "38f15dfd11af4e4663945d49f5a4e06f66ad39d013a2f0de2d00da2c5e5a5ec1",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "5b64e4bca2b5e75e47107a98006305890f216138bd9fea5947543f40d33a4dce",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "d1ccc5fb485f8145523b32a3d134b362bc286eb6e4bb2a3e0b3783565092e7e3",
+      "title": "Pediatric Fever — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/pediatric-fever-evaluation.md",
+      "section": "Recognition",
+      "summary": "Fever in children is the single most common chief complaint in pediatric emergency medicine. The approach is fundamentally stratified by age, because the risk of serious bacterial infection (SBI) and the ability to clinically assess illness severity vary dramatically across age groups.\n\n**Definition of fever:**\n- Rectal temperature >= 38.0°C (100.4°F) — this is the standard for infants\n- Axillary, temporal, and tympanic temperatures are less reliable in infants and should NOT be used to make disposition decisions in neonates\n\n**Age-stratified SBI risk:**\n- **< 28 days (neonate):** SBI rate 10-12%. This is the highest-risk group. ALL febrile neonates require full sepsis workup and empiric antibiotics regardless of appearance. HSV risk. Group B strep, E. coli, Listeria.\n- **29-60 days:** SBI rate 5-8%. Well-appearing infants can be risk-stratified using validated criteria (AAP 2021 guideline, Rochester, Step-by-Step).\n- **61-90 days:** SBI rate 3-5%. Lower risk if well-appearing with normal inflammatory markers and urinalysis.\n- **3-36 months:** SBI rate 1-3% (lower with HiB and pneumococcal vaccination). UTI is the most common occult SBI. Bacteremia rare in vaccinated children.\n- **> 36 months:** Clinical assessment more reliable. Approach similar to adults with age-appropriate differential.\n\n**Clinical appearance assessment (most important for children > 28 days):**\n- **Well-appearing (low risk):** alert, interactive, making eye contact, strong cry, consolable, feeding well, good color, normal activity\n- **Ill-appearing (high risk):** lethargy, poor tone, weak cry, inconsolable, poor feeding, mottled/pale/cyanotic, poor perfusion (cap refill > 3 sec)",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "d1ccc5fb485f8145523b32a3d134b362bc286eb6e4bb2a3e0b3783565092e7e3",
+          "sourceId": "openem:pediatric-fever-evaluation",
+          "excerpt": "Fever in children is the single most common chief complaint in pediatric emergency medicine. The approach is fundamentally stratified by age, because the risk of serious bacterial infection (SBI) and the ability to clinically assess illness severity vary dramatically across age groups.\n\n**Definition of fever:**\n- Rectal temperature >= 38.0°C (100.4°F) — this is the standard for infants\n- Axillary, temporal, and tympanic temperatures are less reliable in infants and should NOT be used to make disposition decisions in neonates\n\n**Age-stratified SBI risk:**\n- **< 28 days (neonate):** SBI rate 10-12%. This is the highest-risk group. ALL febrile neonates require full sepsis workup and empiric antibiotics regardless of appearance. HSV risk. Group B strep, E. coli, Listeria.\n- **29-60 days:** SBI rate 5-8%. Well-appearing infants can be risk-stratified using validated criteria (AAP 2021 guideline, Rochester, Step-by-Step).\n- **61-90 days:** SBI rate 3-5%. Lower risk if well-appearing with normal inflammatory markers and urinalysis.\n- **3-36 months:** SBI rate 1-3% (lower with HiB and pneumococcal vaccination). UTI is the most common occult SBI. Bacteremia rare in vaccinated children.\n- **> 36 months:** Clinical assessment more reliable. Approach similar to adults with age-appropriate differential.\n\n**Clinical appearance assessment (most important for children > 28 days):**\n- **Well-appearing (low risk):** alert, interactive, making eye contact, strong cry, consolable, feeding well, good color, normal activity\n- **Ill-appearing (high risk):** lethargy, poor tone, weak cry, inconsolable, poor feeding, mottled/pale/cyanotic, poor perfusion (cap refill > 3 sec)",
+          "excerptSha256": "e8a1e6f99580567443282775730c106ef8160b94d1bdda3d77d08e66a91cdd3d",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "5b64e4bca2b5e75e47107a98006305890f216138bd9fea5947543f40d33a4dce",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "1458a3be4621e4dbd1eb1187efe4dc192bd74482e0a2c61ac930edd8c99e27f3",
+      "title": "Pediatric Fever — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/pediatric-fever-evaluation.md",
+      "section": "Critical Actions",
+      "summary": "| Action | Target |\n|---|---|\n| Rectal temperature measurement | < 5 minutes |\n| Assess clinical appearance (ill vs well) | < 10 minutes |\n| Full sepsis workup if < 28 days | < 30 minutes |\n| Empiric antibiotics if < 28 days with fever | < 60 minutes |\n| Urinalysis (catheterized) if < 24 months with no source | < 30 minutes |\n\n**Age-stratified evaluation algorithm:**\n\n### Neonates (0-28 days)\n\nALL febrile neonates require:\n1. Complete blood count with differential\n2. Blood culture\n3. Urinalysis + urine culture (catheterized specimen — bag specimens have unacceptable contamination rates)\n4. Lumbar puncture (CSF cell count, protein, glucose, gram stain, culture, HSV PCR)\n5. CXR if respiratory symptoms\n6. Empiric antibiotics: ampicillin 50 mg/kg IV + gentamicin 4-5 mg/kg IV (or cefotaxime 50 mg/kg IV where available)\n7. Add acyclovir 20 mg/kg IV if any concern for HSV (seizure, vesicular rash, maternal HSV history, CSF pleocytosis, elevated AST/ALT, sepsis picture without clear bacterial source)\n8. **Admit all febrile neonates.** No exceptions.\n\n**HSV risk factors in neonates:**\n- Maternal genital HSV (especially primary infection at delivery)\n- Vesicular skin lesions\n- Seizure\n- CSF pleocytosis with negative gram stain\n- Elevated transaminases\n- Coagulopathy/DIC without clear cause\n\n### Young Infants (29-60 days)\n\n**AAP 2021 Guideline for well-appearing febrile infants 8-60 days:**\n- **Inflammatory markers:** WBC, procalcitonin (PCT), CRP, urinalysis\n- **Low-risk criteria:** Well-appearing + normal urinalysis + normal inflammatory markers (WBC 5,000-15,000, ANC < 4,000, PCT < 0.5 ng/mL)",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "1458a3be4621e4dbd1eb1187efe4dc192bd74482e0a2c61ac930edd8c99e27f3",
+          "sourceId": "openem:pediatric-fever-evaluation",
+          "excerpt": "| Action | Target |\n|---|---|\n| Rectal temperature measurement | < 5 minutes |\n| Assess clinical appearance (ill vs well) | < 10 minutes |\n| Full sepsis workup if < 28 days | < 30 minutes |\n| Empiric antibiotics if < 28 days with fever | < 60 minutes |\n| Urinalysis (catheterized) if < 24 months with no source | < 30 minutes |\n\n**Age-stratified evaluation algorithm:**\n\n### Neonates (0-28 days)\n\nALL febrile neonates require:\n1. Complete blood count with differential\n2. Blood culture\n3. Urinalysis + urine culture (catheterized specimen — bag specimens have unacceptable contamination rates)\n4. Lumbar puncture (CSF cell count, protein, glucose, gram stain, culture, HSV PCR)\n5. CXR if respiratory symptoms\n6. Empiric antibiotics: ampicillin 50 mg/kg IV + gentamicin 4-5 mg/kg IV (or cefotaxime 50 mg/kg IV where available)\n7. Add acyclovir 20 mg/kg IV if any concern for HSV (seizure, vesicular rash, maternal HSV history, CSF pleocytosis, elevated AST/ALT, sepsis picture without clear bacterial source)\n8. **Admit all febrile neonates.** No exceptions.\n\n**HSV risk factors in neonates:**\n- Maternal genital HSV (especially primary infection at delivery)\n- Vesicular skin lesions\n- Seizure\n- CSF pleocytosis with negative gram stain\n- Elevated transaminases\n- Coagulopathy/DIC without clear cause\n\n### Young Infants (29-60 days)\n\n**AAP 2021 Guideline for well-appearing febrile infants 8-60 days:**\n- **Inflammatory markers:** WBC, procalcitonin (PCT), CRP, urinalysis\n- **Low-risk criteria:** Well-appearing + normal urinalysis + normal inflammatory markers (WBC 5,000-15,000, ANC < 4,000, PCT < 0.5 ng/mL)",
+          "excerptSha256": "5f02f82b46126bafd387184fda0e77be3c8e28692f5571eab252bb7c07880e57",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "5b64e4bca2b5e75e47107a98006305890f216138bd9fea5947543f40d33a4dce",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "25f162107a2a29b61d2123d03b1e598b4fe14093e7a13bcd91574005437de732",
+      "title": "Fever — Undifferentiated Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/fever-undifferentiated.md",
+      "section": "Differential Diagnosis",
+      "summary": " rash, hypotension, multiorgan involvement, recent wound or tampon use\n\n### Emergent\n- **Pneumonia** (`pneumonia`): cough, dyspnea, crackles, infiltrate on CXR. CURB-65 or PSI for risk stratification.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, RUQ pain, jaundice). ERCP emergently.\n- **Pyelonephritis** (`pyelonephritis`): fever, flank pain, CVA tenderness, pyuria/bacteriuria\n- **Appendicitis** (`acute-appendicitis`): fever, RLQ pain, anorexia, leukocytosis\n- **Cholecystitis** (`acute-cholecystitis`): fever, RUQ pain, Murphy sign\n- **Epidural abscess** (`spinal-epidural-abscess`): fever, back pain, neurological deficit (late). IVDU, immunocompromised.\n- **Deep neck space infections** (`retropharyngeal-abscess`, `peritonsillar-abscess`): fever, odynophagia, trismus, neck swelling, drooling\n- **Infective endocarditis** (`infective-endocarditis`): fever + new murmur + risk factors (IVDU, prosthetic valve, dental procedure). Modified Duke criteria.\n- **Hepatic abscess** (`hepatic-abscess`): fever, RUQ pain, diabetes, recent biliary procedure\n- **Empyema** (`empyema`): fever persisting despite pneumonia treatment, pleural effusion\n- **HSV encephalitis** (`hsv-encephalitis`): fever, AMS, temporal lobe seizures\n- **Serotonin syndrome** (`serotonin-syndrome`): fever, clonus, hyperreflexia, agitation, serotonergic drug exposure\n- **NMS** (`neuroleptic-malignant-syndrome`): fever, rigidity, AMS, autonomic instability, antipsychotic exposure\n\n### Urgent\n- **Cellulitis/abscess** (`cellulitis-abscess`): localized erythema, warmth, swelling, fluctuance (abscess). I&D for abscess.\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, fever, leukocytosis\n- **DVT** (`deep-vein-thrombosis`): low-grade fever in up to 30% of DVT",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "25f162107a2a29b61d2123d03b1e598b4fe14093e7a13bcd91574005437de732",
+          "sourceId": "openem:fever-undifferentiated",
+          "excerpt": " rash, hypotension, multiorgan involvement, recent wound or tampon use\n\n### Emergent\n- **Pneumonia** (`pneumonia`): cough, dyspnea, crackles, infiltrate on CXR. CURB-65 or PSI for risk stratification.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, RUQ pain, jaundice). ERCP emergently.\n- **Pyelonephritis** (`pyelonephritis`): fever, flank pain, CVA tenderness, pyuria/bacteriuria\n- **Appendicitis** (`acute-appendicitis`): fever, RLQ pain, anorexia, leukocytosis\n- **Cholecystitis** (`acute-cholecystitis`): fever, RUQ pain, Murphy sign\n- **Epidural abscess** (`spinal-epidural-abscess`): fever, back pain, neurological deficit (late). IVDU, immunocompromised.\n- **Deep neck space infections** (`retropharyngeal-abscess`, `peritonsillar-abscess`): fever, odynophagia, trismus, neck swelling, drooling\n- **Infective endocarditis** (`infective-endocarditis`): fever + new murmur + risk factors (IVDU, prosthetic valve, dental procedure). Modified Duke criteria.\n- **Hepatic abscess** (`hepatic-abscess`): fever, RUQ pain, diabetes, recent biliary procedure\n- **Empyema** (`empyema`): fever persisting despite pneumonia treatment, pleural effusion\n- **HSV encephalitis** (`hsv-encephalitis`): fever, AMS, temporal lobe seizures\n- **Serotonin syndrome** (`serotonin-syndrome`): fever, clonus, hyperreflexia, agitation, serotonergic drug exposure\n- **NMS** (`neuroleptic-malignant-syndrome`): fever, rigidity, AMS, autonomic instability, antipsychotic exposure\n\n### Urgent\n- **Cellulitis/abscess** (`cellulitis-abscess`): localized erythema, warmth, swelling, fluctuance (abscess). I&D for abscess.\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, fever, leukocytosis\n- **DVT** (`deep-vein-thrombosis`): low-grade fever in up to 30% of DVT",
+          "excerptSha256": "ae6332cd460ed50e470acc44bb59d416b7b9d8e078845fae1b8b49050f5b12b2",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "e1bf2b16d1434f21bb7eaff7396986181063b7bdd4e2f10118b783fc9d692ef0",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "bd459e63670c5f13b386f2897c3be0134758526c549327a8e85094d1ce9ba4b9",
+      "title": "Fever — Undifferentiated Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/fever-undifferentiated.md",
+      "section": "Recognition",
+      "summary": "Fever is defined as temperature >= 38.0°C (100.4°F). In the ED, the primary goal is identifying patients with life-threatening infections (sepsis, meningitis, necrotizing soft tissue infection) and those in high-risk categories requiring empiric treatment. Approximately 5% of febrile ED patients have bacteremia; the challenge is identifying them.\n\n**Non-infectious causes of fever (must keep on differential):**\n- Drug fever (antibiotics, anticonvulsants, common cause in hospitalized patients)\n- Malignant hyperthermia (post-anesthetic exposure, volatile agents, succinylcholine)\n- Neuroleptic malignant syndrome (antipsychotic exposure, rigidity, autonomic instability)\n- Serotonin syndrome (serotonergic drug interaction, clonus, hyperreflexia)\n- Thyroid storm (thyrotoxicosis, tachycardia, AMS)\n- Heat stroke (environmental exposure, core temp > 40°C)\n- Drug reaction (SJS/TEN, DRESS)\n- Malignancy (lymphoma, leukemia, renal cell carcinoma)\n- Adrenal crisis (may present with hypothermia but can be febrile)\n- DVT/PE (low-grade fever in up to 14% of PE)\n- Transfusion reaction\n\n**Hypothermia as \"sepsis equivalent\":**\nTemperature < 36°C (96.8°F) with infection is an ominous sign indicating overwhelming sepsis with hemodynamic failure. Elderly and immunosuppressed patients frequently present hypothermic rather than febrile.\n\n**Key history elements:**\n- Duration and pattern of fever\n- Associated localizing symptoms: cough (pneumonia), dysuria (UTI), headache/neck stiffness (meningitis), abdominal pain (intra-abdominal infection), skin changes (cellulitis, NSTI)\n- Immune status: HIV, transplant, chemotherapy, steroids, biologics, splenectomy, diabetes\n- Recent travel (malaria, dengue, typhoid)\n- Recent procedures, hospitalizations, antibiotics (C. diff, resistant organisms)",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "bd459e63670c5f13b386f2897c3be0134758526c549327a8e85094d1ce9ba4b9",
+          "sourceId": "openem:fever-undifferentiated",
+          "excerpt": "Fever is defined as temperature >= 38.0°C (100.4°F). In the ED, the primary goal is identifying patients with life-threatening infections (sepsis, meningitis, necrotizing soft tissue infection) and those in high-risk categories requiring empiric treatment. Approximately 5% of febrile ED patients have bacteremia; the challenge is identifying them.\n\n**Non-infectious causes of fever (must keep on differential):**\n- Drug fever (antibiotics, anticonvulsants, common cause in hospitalized patients)\n- Malignant hyperthermia (post-anesthetic exposure, volatile agents, succinylcholine)\n- Neuroleptic malignant syndrome (antipsychotic exposure, rigidity, autonomic instability)\n- Serotonin syndrome (serotonergic drug interaction, clonus, hyperreflexia)\n- Thyroid storm (thyrotoxicosis, tachycardia, AMS)\n- Heat stroke (environmental exposure, core temp > 40°C)\n- Drug reaction (SJS/TEN, DRESS)\n- Malignancy (lymphoma, leukemia, renal cell carcinoma)\n- Adrenal crisis (may present with hypothermia but can be febrile)\n- DVT/PE (low-grade fever in up to 14% of PE)\n- Transfusion reaction\n\n**Hypothermia as \"sepsis equivalent\":**\nTemperature < 36°C (96.8°F) with infection is an ominous sign indicating overwhelming sepsis with hemodynamic failure. Elderly and immunosuppressed patients frequently present hypothermic rather than febrile.\n\n**Key history elements:**\n- Duration and pattern of fever\n- Associated localizing symptoms: cough (pneumonia), dysuria (UTI), headache/neck stiffness (meningitis), abdominal pain (intra-abdominal infection), skin changes (cellulitis, NSTI)\n- Immune status: HIV, transplant, chemotherapy, steroids, biologics, splenectomy, diabetes\n- Recent travel (malaria, dengue, typhoid)\n- Recent procedures, hospitalizations, antibiotics (C. diff, resistant organisms)",
+          "excerptSha256": "7555ee164860a94e6da01ac02d3bd9594a04e0a05feb054861ce95555ff35533",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "e1bf2b16d1434f21bb7eaff7396986181063b7bdd4e2f10118b783fc9d692ef0",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "bb470fefafa7ce54b81d120f83b8ff571068a23ef83bf8c668edcbec64b9fa92",
+      "title": "Febrile Seizure",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/febrile-seizure.md",
+      "section": "Critical Actions",
+      "summary": "1. **ABCs** — maintain airway, position lateral (recovery position), suction if needed. Do NOT place anything in the mouth.\n2. **Actively seizing > 5 minutes — treat as status epilepticus:**\n   - Midazolam 0.2 mg/kg IM (max 5 mg) or 0.2 mg/kg intranasal (max 5 mg)\n   - Diazepam 0.5 mg/kg rectal (max 20 mg)\n   - Lorazepam 0.1 mg/kg IV (max 4 mg) if IV access established\n3. **Identify the fever source** — thorough exam for meningitis, UTI, otitis media, pneumonia, bacteremia. The seizure is not the diagnosis; the fever source is.\n4. **Assess for meningitis** — in children < 12 months, meningeal signs are unreliable. Low threshold for LP in: < 12 months (especially if unimmunized or on antibiotics), complex febrile seizure, prolonged post-ictal state, meningeal signs, petechial rash, toxic-appearing.\n5. **Check glucose** — dextrose 10% (D10) 5 mL/kg IV if hypoglycemic (< 60 mg/dL in children).\n6. **Treat fever** — acetaminophen 15 mg/kg PO/PR or ibuprofen 10 mg/kg PO. Antipyretics do not prevent febrile seizure recurrence but treat discomfort.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "bb470fefafa7ce54b81d120f83b8ff571068a23ef83bf8c668edcbec64b9fa92",
+          "sourceId": "openem:febrile-seizure",
+          "excerpt": "1. **ABCs** — maintain airway, position lateral (recovery position), suction if needed. Do NOT place anything in the mouth.\n2. **Actively seizing > 5 minutes — treat as status epilepticus:**\n   - Midazolam 0.2 mg/kg IM (max 5 mg) or 0.2 mg/kg intranasal (max 5 mg)\n   - Diazepam 0.5 mg/kg rectal (max 20 mg)\n   - Lorazepam 0.1 mg/kg IV (max 4 mg) if IV access established\n3. **Identify the fever source** — thorough exam for meningitis, UTI, otitis media, pneumonia, bacteremia. The seizure is not the diagnosis; the fever source is.\n4. **Assess for meningitis** — in children < 12 months, meningeal signs are unreliable. Low threshold for LP in: < 12 months (especially if unimmunized or on antibiotics), complex febrile seizure, prolonged post-ictal state, meningeal signs, petechial rash, toxic-appearing.\n5. **Check glucose** — dextrose 10% (D10) 5 mL/kg IV if hypoglycemic (< 60 mg/dL in children).\n6. **Treat fever** — acetaminophen 15 mg/kg PO/PR or ibuprofen 10 mg/kg PO. Antipyretics do not prevent febrile seizure recurrence but treat discomfort.",
+          "excerptSha256": "01890edd73f7d9c8616e81178652f17794e22b62c0673a91045a821a04985550",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "3f928203b5b42c6e82b35a787655c33d56826ed821396af3aca5eeeede4ebcf9",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "bca0ce61c216fbfce128742e67d4ecc4dac4e0c0915aa01daee0c7e1fa62f23c",
+      "title": "Bronchiolitis",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/bronchiolitis.md",
+      "section": "Recognition",
+      "summary": "to tachypnea, wheezing, crackles, increased work of breathing\n- Subcostal and intercostal retractions, nasal flaring, accessory muscle use\n- Feeding difficulty (cannot coordinate suck-swallow-breathe)\n- Irritability alternating with lethargy in severe cases\n- Hypoxemia (SpO2 < 90-92%) in moderate-severe disease\n- Fever typically low-grade (38-39 degrees C); high fever (> 39.5 degrees C) should prompt evaluation for secondary bacterial infection\n\n**Apnea Risk:**\n- Infants < 2 months, especially former premature infants (< 37 weeks GA)\n- Apnea may be the presenting sign BEFORE other respiratory symptoms develop\n- Central apnea mechanism (not obstructive)\n- Risk highest in first 48-72 hours of illness",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "bca0ce61c216fbfce128742e67d4ecc4dac4e0c0915aa01daee0c7e1fa62f23c",
+          "sourceId": "openem:bronchiolitis",
+          "excerpt": "to tachypnea, wheezing, crackles, increased work of breathing\n- Subcostal and intercostal retractions, nasal flaring, accessory muscle use\n- Feeding difficulty (cannot coordinate suck-swallow-breathe)\n- Irritability alternating with lethargy in severe cases\n- Hypoxemia (SpO2 < 90-92%) in moderate-severe disease\n- Fever typically low-grade (38-39 degrees C); high fever (> 39.5 degrees C) should prompt evaluation for secondary bacterial infection\n\n**Apnea Risk:**\n- Infants < 2 months, especially former premature infants (< 37 weeks GA)\n- Apnea may be the presenting sign BEFORE other respiratory symptoms develop\n- Central apnea mechanism (not obstructive)\n- Risk highest in first 48-72 hours of illness",
+          "excerptSha256": "911d1a4a3e9b665b5f4f2b820cea42d24a8333b1acfe0cfa05000d592a705acc",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "869eaa2c635be5a5dd0430815b98e05cb2c2f409a27d70d5195fe011622343ad",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "635f785859a498f6f454a902b86be9bcf98885c43a1f297107e296cd7dc8ecde",
+      "title": "Neonatal Emergencies",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/neonatal-emergencies.md",
+      "section": "Recognition",
+      "summary": "### The Febrile Neonate (< 28 Days Old)\n- **Any fever >= 38.0 degrees C (100.4 degrees F) in a neonate < 28 days is a medical emergency** until proven otherwise\n- Neonates are immunocompromised: immature complement, low immunoglobulin, impaired neutrophil function\n- Serious bacterial infection (SBI) prevalence: 10-15% in febrile neonates < 28 days\n- Pathogens: Group B Streptococcus (GBS), E. coli, Listeria monocytogenes, HSV, enterovirus\n\n### Signs of the Sick Neonate\n- Fever or hypothermia (< 36.0 degrees C)\n- Lethargy, poor feeding, weak cry\n- Tachypnea (RR > 60), grunting, nasal flaring, retractions\n- Tachycardia (HR > 180) or bradycardia (HR < 100)\n- Cyanosis (central — lips, tongue; not just acrocyanosis)\n- Mottled or gray skin color\n- Bulging fontanelle\n- Seizures (subtle: lip smacking, bicycling, apnea; overt: tonic-clonic)\n- Capillary refill > 3 seconds\n- Abdominal distension, bilious vomiting\n\n### Neonatal HSV — High Index of Suspicion\nThree presentations:\n1. **Skin-eyes-mouth (SEM):** Vesicular lesions, conjunctivitis, oral ulcers. Best prognosis if treated early.\n2. **CNS disease:** Seizures, lethargy, CSF pleocytosis. Mortality 4% with treatment; 50% without.\n3. **Disseminated:** Hepatitis, DIC, pneumonitis, shock. Mimics bacterial sepsis. Mortality 30% with treatment.\n\n**Triggers for acyclovir:** Vesicular lesions anywhere, seizures, elevated AST/ALT, CSF pleocytosis with negative Gram stain, maternal HSV history, clinical deterioration on antibiotics\n\n### Congenital Heart Disease (CHD) Presenting in the Neonate\n- **Ductal-dependent lesions** present when the ductus arteriosus closes (typically 24-72 hours of life, up to 2 weeks):",
+      "reviewedAt": "2026-02-27",
+      "projectInterpretation": "research_synthesis; upstream_physician_reviewed. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "635f785859a498f6f454a902b86be9bcf98885c43a1f297107e296cd7dc8ecde",
+          "sourceId": "openem:neonatal-emergencies",
+          "excerpt": "### The Febrile Neonate (< 28 Days Old)\n- **Any fever >= 38.0 degrees C (100.4 degrees F) in a neonate < 28 days is a medical emergency** until proven otherwise\n- Neonates are immunocompromised: immature complement, low immunoglobulin, impaired neutrophil function\n- Serious bacterial infection (SBI) prevalence: 10-15% in febrile neonates < 28 days\n- Pathogens: Group B Streptococcus (GBS), E. coli, Listeria monocytogenes, HSV, enterovirus\n\n### Signs of the Sick Neonate\n- Fever or hypothermia (< 36.0 degrees C)\n- Lethargy, poor feeding, weak cry\n- Tachypnea (RR > 60), grunting, nasal flaring, retractions\n- Tachycardia (HR > 180) or bradycardia (HR < 100)\n- Cyanosis (central — lips, tongue; not just acrocyanosis)\n- Mottled or gray skin color\n- Bulging fontanelle\n- Seizures (subtle: lip smacking, bicycling, apnea; overt: tonic-clonic)\n- Capillary refill > 3 seconds\n- Abdominal distension, bilious vomiting\n\n### Neonatal HSV — High Index of Suspicion\nThree presentations:\n1. **Skin-eyes-mouth (SEM):** Vesicular lesions, conjunctivitis, oral ulcers. Best prognosis if treated early.\n2. **CNS disease:** Seizures, lethargy, CSF pleocytosis. Mortality 4% with treatment; 50% without.\n3. **Disseminated:** Hepatitis, DIC, pneumonitis, shock. Mimics bacterial sepsis. Mortality 30% with treatment.\n\n**Triggers for acyclovir:** Vesicular lesions anywhere, seizures, elevated AST/ALT, CSF pleocytosis with negative Gram stain, maternal HSV history, clinical deterioration on antibiotics\n\n### Congenital Heart Disease (CHD) Presenting in the Neonate\n- **Ductal-dependent lesions** present when the ductus arteriosus closes (typically 24-72 hours of life, up to 2 weeks):",
+          "excerptSha256": "2bf4e524ffefb2838425fc13aaa86e99525aca8e98af5a3fd355cae84c409cf8",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "b11f459d6ab02cbb20dbaf1ba81c5b5e8588f938436b8f41c186e8466ae840c5",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    }
+  ],
+  "routingPolicy": "five-route-queue/v2",
+  "usage": {
+    "inputTokens": 24018,
+    "outputTokens": 1500
+  },
+  "graph": {
+    "version": "evidence-graph/v25",
+    "mode": "gates-release",
+    "frozenPacketHash": "66028c664a6e55503be5159a3166ead5fe54ab90ce58bb05d3bc48bd2cf1c655",
+    "gatesAdmission": {
+      "policy": "gates-release/v1",
+      "packetHash": "66028c664a6e55503be5159a3166ead5fe54ab90ce58bb05d3bc48bd2cf1c655",
+      "draftHash": "88fab5fbb50300ad89486baa9a6fc3301b52c8b2135ef2bb00c77a5ee0fd19f8",
+      "contractOk": true,
+      "packetOk": true,
+      "lowerThanEarly": true,
+      "aborted": false,
+      "released": false
+    },
+    "clinicalPolicyVersion": "disposition-clinical-policy/v2",
+    "context": {
+      "queries": [
+        "6-month-old fever 100.9 fussy decreased urine output feeding difficulty",
+        "infant fever dehydration signs poor intake",
+        "6-month-old with fever and reduced wet diapers urgency assessment"
+      ],
+      "findings": [
+        {
+          "finding": "Fever",
+          "status": "reported",
+          "quote": "fever of 100.9"
+        },
+        {
+          "finding": "Fussiness",
+          "status": "reported",
+          "quote": "she's fussy"
+        },
+        {
+          "finding": "Decreased urine output",
+          "status": "reported",
+          "quote": "fewer wet diapers today than normal"
+        },
+        {
+          "finding": "Reduced oral intake",
+          "status": "reported",
+          "quote": "doesn't seem interested in feeding"
+        },
+        {
+          "finding": "Duration of symptoms",
+          "status": "unknown",
+          "quote": ""
+        },
+        {
+          "finding": "Associated vomiting, diarrhea, or rash",
+          "status": "unknown",
+          "quote": ""
+        }
+      ],
+      "question": {
+        "text": "How long has your baby had the fever, and has she vomited, had diarrhea, or developed any rash?",
+        "why": "Duration helps assess acuity and infection type; vomiting and diarrhea increase dehydration risk, and rash can indicate serious infection requiring urgent evaluation.",
+        "quote": "fever of 100.9"
+      }
+    },
+    "contextAdmission": {
+      "clinicalContextAccepted": true,
+      "querySource": "accepted_context",
+      "queries": [
+        "6-month-old fever 100.9 fussy decreased urine output feeding difficulty",
+        "infant fever dehydration signs poor intake",
+        "6-month-old with fever and reduced wet diapers urgency assessment"
+      ],
+      "clinicalValidation": false
+    },
+    "safety": {
+      "action": "ED_NOW",
+      "basis": [
+        {
+          "quote": "My 6-month-old has a fever of 100.9",
+          "interpretation": "Fever in an infant age 6 months reported by parent; in this age group even modest fever can indicate serious bacterial infection and warrants urgent evaluation.",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "she's fussy",
+          "interpretation": "Irritability and behavioral change in an infant; nonspecific but consistent with systemic illness when accompanied by fever.",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "she's had fewer wet diapers today than normal",
+          "interpretation": "Reduced urine output in an infant; suggests possible dehydration or systemic compromise.",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "she doesn't seem interested in feeding",
+          "interpretation": "Feeding refusal or decreased intake in an infant with fever; indicates altered behavior and potential functional decline.",
+          "currentPatient": true,
+          "present": true
+        }
+      ],
+      "actionBasis": {
+        "indices": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "sufficient": true
+      },
+      "reason": "Fever in a 6-month-old with reduced intake, decreased urine output and behavioral change requires immediate emergency-department evaluation to assess for serious bacterial infection and dehydration.",
+      "patientMessage": "",
+      "physicalRequirement": null,
+      "activeEms": null
+    },
+    "safetyAdmission": {
+      "status": "admitted",
+      "code": "ACTION_ADMITTED",
+      "proposedAction": "ED_NOW",
+      "basisMode": "explicit",
+      "supportingBasisIndices": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "contextualBasisIndices": [],
+      "clinicalValidation": false
+    },
+    "questionPublication": {
+      "status": "suppressed_emergency",
+      "blocksRouting": false
+    },
+    "retrieval": [
+      {
+        "corpusHash": "af7e4a8c239c4b084525aba008d56ce833b3a08144cea6237319bf996aa30dbd",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "6-month-old fever 100.9 fussy decreased urine output feeding difficulty",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "8b4d15b2dbe09b7d3b0d11137a216a47cb22daa61aa97cbfd037158142b1c39b",
+              "end": 1746,
+              "hash": "38f15dfd11af4e4663945d49f5a4e06f66ad39d013a2f0de2d00da2c5e5a5ec1",
+              "text": "1. **Discharging a febrile neonate (< 28 days) without full workup.** No clinical assessment, no blood test, and no decision rule can reliably exclude SBI in neonates. Every neonate with T >= 38.0°C requires full sepsis workup, empiric antibiotics, and admission. This is an absolute rule.\n\n2. **Using bag urine specimen to make decisions.** Bag urine specimens have a contamination rate of up to 60%. A positive bag specimen is meaningless. All infants < 24 months requiring urinalysis need catheterized or suprapubic aspiration specimens.\n\n3. **Assuming fever height correlates with illness severity.** While fever > 40°C is associated with slightly higher SBI risk in some studies, many children with 40.5°C fevers have benign viral illness, and neonates with serious bacterial infections may have only 38.1°C. Clinical appearance is more important than temperature magnitude.\n\n4. **Missing Kawasaki disease.** Fever > 5 days without source in a child 6 months - 5 years should trigger Kawasaki evaluation. Incomplete Kawasaki (fewer than 4/5 criteria) is common and easily missed. Untreated Kawasaki causes coronary artery aneurysms in 25% of cases. Echocardiography is indicated.\n\n5. **Failing to consider HSV in neonates.** HSV encephalitis/disseminated HSV in neonates has > 50% mortality if untreated. Acyclovir must be added if: vesicular rash, seizure, CSF pleocytosis, elevated transaminases, coagulopathy, or no clear bacterial source for sepsis picture. Do NOT wait for PCR results to start acyclovir.\n\n6. **Anchoring on \"teething fever.\"** Teething may cause low-grade temperature elevation (< 38.3°C) but does NOT cause true fever (>= 38.5°C). Attributing fever to teething is dangerous and delays evaluation of actual infections.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:pediatric-fever-evaluation",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Pediatric Fever — Emergency Evaluation\npediatric fever; fever in children; febrile child; febrile infant; neonatal fever; fever infant\nPitfalls\n1. **Discharging a febrile neonate (< 28 days) without full workup.** No clinical assessment, no blood test, and no decision rule can reliably exclude SBI in neonates. Every neonate with T >= 38.0°C requires full sepsis workup, empiric antibiotics, and admission. This is an absolute rule.\n\n2. **Using bag urine specimen to make decisions.** Bag urine specimens have a contamination rate of up to 60%. A positive bag specimen is meaningless. All infants < 24 months requiring urinalysis need catheterized or suprapubic aspiration specimens.\n\n3. **Assuming fever height correlates with illness severity.** While fever > 40°C is associated with slightly higher SBI risk in some studies, many children with 40.5°C fevers have benign viral illness, and neonates with serious bacterial infections may have only 38.1°C. Clinical appearance is more important than temperature magnitude.\n\n4. **Missing Kawasaki disease.** Fever > 5 days without source in a child 6 months - 5 years should trigger Kawasaki evaluation. Incomplete Kawasaki (fewer than 4/5 criteria) is common and easily missed. Untreated Kawasaki causes coronary artery aneurysms in 25% of cases. Echocardiography is indicated.\n\n5. **Failing to consider HSV in neonates.** HSV encephalitis/disseminated HSV in neonates has > 50% mortality if untreated. Acyclovir must be added if: vesicular rash, seizure, CSF pleocytosis, elevated transaminases, coagulopathy, or no clear bacterial source for sepsis picture. Do NOT wait for PCR results to start acyclovir.\n\n6. **Anchoring on \"teething fever.\"** Teething may cause low-grade temperature elevation (< 38.3°C) but does NOT cause true fever (>= 38.5°C). Attributing fever to teething is dangerous and delays evaluation of actual infections.\n"
+            },
+            "document": {
+              "id": "openem:pediatric-fever-evaluation",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/pediatric-fever-evaluation.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Pediatric Fever — Emergency Evaluation",
+              "aliases": [
+                "pediatric fever",
+                "fever in children",
+                "febrile child",
+                "febrile infant",
+                "neonatal fever",
+                "fever infant"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "5b64e4bca2b5e75e47107a98006305890f216138bd9fea5947543f40d33a4dce",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.032266458495966696,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n7. **Skipping LP because \"the baby looks fine.\"** Well-appearing neonates have bacterial meningitis. Clinical appearance alone cannot exclude meningitis in infants < 60 days. LP is a critical part of the workup in this age group. Performing LP is uncomfortable but safe; missing meningitis is catast"
+            }
+          },
+          {
+            "chunk": {
+              "id": "d1ccc5fb485f8145523b32a3d134b362bc286eb6e4bb2a3e0b3783565092e7e3",
+              "end": 1678,
+              "hash": "e8a1e6f99580567443282775730c106ef8160b94d1bdda3d77d08e66a91cdd3d",
+              "text": "Fever in children is the single most common chief complaint in pediatric emergency medicine. The approach is fundamentally stratified by age, because the risk of serious bacterial infection (SBI) and the ability to clinically assess illness severity vary dramatically across age groups.\n\n**Definition of fever:**\n- Rectal temperature >= 38.0°C (100.4°F) — this is the standard for infants\n- Axillary, temporal, and tympanic temperatures are less reliable in infants and should NOT be used to make disposition decisions in neonates\n\n**Age-stratified SBI risk:**\n- **< 28 days (neonate):** SBI rate 10-12%. This is the highest-risk group. ALL febrile neonates require full sepsis workup and empiric antibiotics regardless of appearance. HSV risk. Group B strep, E. coli, Listeria.\n- **29-60 days:** SBI rate 5-8%. Well-appearing infants can be risk-stratified using validated criteria (AAP 2021 guideline, Rochester, Step-by-Step).\n- **61-90 days:** SBI rate 3-5%. Lower risk if well-appearing with normal inflammatory markers and urinalysis.\n- **3-36 months:** SBI rate 1-3% (lower with HiB and pneumococcal vaccination). UTI is the most common occult SBI. Bacteremia rare in vaccinated children.\n- **> 36 months:** Clinical assessment more reliable. Approach similar to adults with age-appropriate differential.\n\n**Clinical appearance assessment (most important for children > 28 days):**\n- **Well-appearing (low risk):** alert, interactive, making eye contact, strong cry, consolable, feeding well, good color, normal activity\n- **Ill-appearing (high risk):** lethargy, poor tone, weak cry, inconsolable, poor feeding, mottled/pale/cyanotic, poor perfusion (cap refill > 3 sec)",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:pediatric-fever-evaluation",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Pediatric Fever — Emergency Evaluation\npediatric fever; fever in children; febrile child; febrile infant; neonatal fever; fever infant\nRecognition\nFever in children is the single most common chief complaint in pediatric emergency medicine. The approach is fundamentally stratified by age, because the risk of serious bacterial infection (SBI) and the ability to clinically assess illness severity vary dramatically across age groups.\n\n**Definition of fever:**\n- Rectal temperature >= 38.0°C (100.4°F) — this is the standard for infants\n- Axillary, temporal, and tympanic temperatures are less reliable in infants and should NOT be used to make disposition decisions in neonates\n\n**Age-stratified SBI risk:**\n- **< 28 days (neonate):** SBI rate 10-12%. This is the highest-risk group. ALL febrile neonates require full sepsis workup and empiric antibiotics regardless of appearance. HSV risk. Group B strep, E. coli, Listeria.\n- **29-60 days:** SBI rate 5-8%. Well-appearing infants can be risk-stratified using validated criteria (AAP 2021 guideline, Rochester, Step-by-Step).\n- **61-90 days:** SBI rate 3-5%. Lower risk if well-appearing with normal inflammatory markers and urinalysis.\n- **3-36 months:** SBI rate 1-3% (lower with HiB and pneumococcal vaccination). UTI is the most common occult SBI. Bacteremia rare in vaccinated children.\n- **> 36 months:** Clinical assessment more reliable. Approach similar to adults with age-appropriate differential.\n\n**Clinical appearance assessment (most important for children > 28 days):**\n- **Well-appearing (low risk):** alert, interactive, making eye contact, strong cry, consolable, feeding well, good color, normal activity\n- **Ill-appearing (high risk):** lethargy, poor tone, weak cry, inconsolable, poor feeding, mottled/pale/cyanotic, poor perfusion (cap refill > 3 sec)"
+            },
+            "document": {
+              "id": "openem:pediatric-fever-evaluation",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/pediatric-fever-evaluation.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Pediatric Fever — Emergency Evaluation",
+              "aliases": [
+                "pediatric fever",
+                "fever in children",
+                "febrile child",
+                "febrile infant",
+                "neonatal fever",
+                "fever infant"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "5b64e4bca2b5e75e47107a98006305890f216138bd9fea5947543f40d33a4dce",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.031054405392392875,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- **\"Toxic\" appearance:** implies sepsis/severe infection regardless of age — full workup, empiric antibiotics, and admission\n\n**Paradoxical irritability:** infant is more irritable when held or moved (suggests meningeal irritation). Distinguishable from normal fussiness where holding soothes the c"
+            }
+          },
+          {
+            "chunk": {
+              "id": "25f162107a2a29b61d2123d03b1e598b4fe14093e7a13bcd91574005437de732",
+              "end": 3325,
+              "hash": "ae6332cd460ed50e470acc44bb59d416b7b9d8e078845fae1b8b49050f5b12b2",
+              "text": " rash, hypotension, multiorgan involvement, recent wound or tampon use\n\n### Emergent\n- **Pneumonia** (`pneumonia`): cough, dyspnea, crackles, infiltrate on CXR. CURB-65 or PSI for risk stratification.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, RUQ pain, jaundice). ERCP emergently.\n- **Pyelonephritis** (`pyelonephritis`): fever, flank pain, CVA tenderness, pyuria/bacteriuria\n- **Appendicitis** (`acute-appendicitis`): fever, RLQ pain, anorexia, leukocytosis\n- **Cholecystitis** (`acute-cholecystitis`): fever, RUQ pain, Murphy sign\n- **Epidural abscess** (`spinal-epidural-abscess`): fever, back pain, neurological deficit (late). IVDU, immunocompromised.\n- **Deep neck space infections** (`retropharyngeal-abscess`, `peritonsillar-abscess`): fever, odynophagia, trismus, neck swelling, drooling\n- **Infective endocarditis** (`infective-endocarditis`): fever + new murmur + risk factors (IVDU, prosthetic valve, dental procedure). Modified Duke criteria.\n- **Hepatic abscess** (`hepatic-abscess`): fever, RUQ pain, diabetes, recent biliary procedure\n- **Empyema** (`empyema`): fever persisting despite pneumonia treatment, pleural effusion\n- **HSV encephalitis** (`hsv-encephalitis`): fever, AMS, temporal lobe seizures\n- **Serotonin syndrome** (`serotonin-syndrome`): fever, clonus, hyperreflexia, agitation, serotonergic drug exposure\n- **NMS** (`neuroleptic-malignant-syndrome`): fever, rigidity, AMS, autonomic instability, antipsychotic exposure\n\n### Urgent\n- **Cellulitis/abscess** (`cellulitis-abscess`): localized erythema, warmth, swelling, fluctuance (abscess). I&D for abscess.\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, fever, leukocytosis\n- **DVT** (`deep-vein-thrombosis`): low-grade fever in up to 30% of DVT",
+              "start": 1552,
+              "section": 2,
+              "documentId": "openem:fever-undifferentiated",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Fever — Undifferentiated Emergency Evaluation\nfever; pyrexia; febrile; undifferentiated fever; fever of unknown source\nDifferential Diagnosis\n rash, hypotension, multiorgan involvement, recent wound or tampon use\n\n### Emergent\n- **Pneumonia** (`pneumonia`): cough, dyspnea, crackles, infiltrate on CXR. CURB-65 or PSI for risk stratification.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, RUQ pain, jaundice). ERCP emergently.\n- **Pyelonephritis** (`pyelonephritis`): fever, flank pain, CVA tenderness, pyuria/bacteriuria\n- **Appendicitis** (`acute-appendicitis`): fever, RLQ pain, anorexia, leukocytosis\n- **Cholecystitis** (`acute-cholecystitis`): fever, RUQ pain, Murphy sign\n- **Epidural abscess** (`spinal-epidural-abscess`): fever, back pain, neurological deficit (late). IVDU, immunocompromised.\n- **Deep neck space infections** (`retropharyngeal-abscess`, `peritonsillar-abscess`): fever, odynophagia, trismus, neck swelling, drooling\n- **Infective endocarditis** (`infective-endocarditis`): fever + new murmur + risk factors (IVDU, prosthetic valve, dental procedure). Modified Duke criteria.\n- **Hepatic abscess** (`hepatic-abscess`): fever, RUQ pain, diabetes, recent biliary procedure\n- **Empyema** (`empyema`): fever persisting despite pneumonia treatment, pleural effusion\n- **HSV encephalitis** (`hsv-encephalitis`): fever, AMS, temporal lobe seizures\n- **Serotonin syndrome** (`serotonin-syndrome`): fever, clonus, hyperreflexia, agitation, serotonergic drug exposure\n- **NMS** (`neuroleptic-malignant-syndrome`): fever, rigidity, AMS, autonomic instability, antipsychotic exposure\n\n### Urgent\n- **Cellulitis/abscess** (`cellulitis-abscess`): localized erythema, warmth, swelling, fluctuance (abscess). I&D for abscess.\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, fever, leukocytosis\n- **DVT** (`deep-vein-thrombosis`): low-grade fever in up to 30% of DVT"
+            },
+            "document": {
+              "id": "openem:fever-undifferentiated",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/fever-undifferentiated.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Fever — Undifferentiated Emergency Evaluation",
+              "aliases": [
+                "fever",
+                "pyrexia",
+                "febrile",
+                "undifferentiated fever",
+                "fever of unknown source"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "e1bf2b16d1434f21bb7eaff7396986181063b7bdd4e2f10118b783fc9d692ef0",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.028125,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": " **Thyroid storm** (`thyroid-storm`): fever, tachycardia out of proportion, AMS, known hyperthyroidism. Burch-Wartofsky score >= 45.\n- **Heat stroke** (`heat-stroke`): core temp > 40°C, CNS dysfunction, exertional or classic\n- **Toxic shock syndrome** (`toxic-shock-syndrome`): fever, diffuse macular",
+              "after": "\n- **Kawasaki disease** (`kawasaki-disease`): pediatric, fever >= 5 days, conjunctivitis, rash, mucous membrane changes, extremity changes, lymphadenopathy\n- **Drug hypersensitivity reaction** (`drug-hypersensitivity-reaction`): fever, rash, eosinophilia, recent new medication"
+            }
+          },
+          {
+            "chunk": {
+              "id": "bd459e63670c5f13b386f2897c3be0134758526c549327a8e85094d1ce9ba4b9",
+              "end": 1789,
+              "hash": "7555ee164860a94e6da01ac02d3bd9594a04e0a05feb054861ce95555ff35533",
+              "text": "Fever is defined as temperature >= 38.0°C (100.4°F). In the ED, the primary goal is identifying patients with life-threatening infections (sepsis, meningitis, necrotizing soft tissue infection) and those in high-risk categories requiring empiric treatment. Approximately 5% of febrile ED patients have bacteremia; the challenge is identifying them.\n\n**Non-infectious causes of fever (must keep on differential):**\n- Drug fever (antibiotics, anticonvulsants, common cause in hospitalized patients)\n- Malignant hyperthermia (post-anesthetic exposure, volatile agents, succinylcholine)\n- Neuroleptic malignant syndrome (antipsychotic exposure, rigidity, autonomic instability)\n- Serotonin syndrome (serotonergic drug interaction, clonus, hyperreflexia)\n- Thyroid storm (thyrotoxicosis, tachycardia, AMS)\n- Heat stroke (environmental exposure, core temp > 40°C)\n- Drug reaction (SJS/TEN, DRESS)\n- Malignancy (lymphoma, leukemia, renal cell carcinoma)\n- Adrenal crisis (may present with hypothermia but can be febrile)\n- DVT/PE (low-grade fever in up to 14% of PE)\n- Transfusion reaction\n\n**Hypothermia as \"sepsis equivalent\":**\nTemperature < 36°C (96.8°F) with infection is an ominous sign indicating overwhelming sepsis with hemodynamic failure. Elderly and immunosuppressed patients frequently present hypothermic rather than febrile.\n\n**Key history elements:**\n- Duration and pattern of fever\n- Associated localizing symptoms: cough (pneumonia), dysuria (UTI), headache/neck stiffness (meningitis), abdominal pain (intra-abdominal infection), skin changes (cellulitis, NSTI)\n- Immune status: HIV, transplant, chemotherapy, steroids, biologics, splenectomy, diabetes\n- Recent travel (malaria, dengue, typhoid)\n- Recent procedures, hospitalizations, antibiotics (C. diff, resistant organisms)",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:fever-undifferentiated",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Fever — Undifferentiated Emergency Evaluation\nfever; pyrexia; febrile; undifferentiated fever; fever of unknown source\nRecognition\nFever is defined as temperature >= 38.0°C (100.4°F). In the ED, the primary goal is identifying patients with life-threatening infections (sepsis, meningitis, necrotizing soft tissue infection) and those in high-risk categories requiring empiric treatment. Approximately 5% of febrile ED patients have bacteremia; the challenge is identifying them.\n\n**Non-infectious causes of fever (must keep on differential):**\n- Drug fever (antibiotics, anticonvulsants, common cause in hospitalized patients)\n- Malignant hyperthermia (post-anesthetic exposure, volatile agents, succinylcholine)\n- Neuroleptic malignant syndrome (antipsychotic exposure, rigidity, autonomic instability)\n- Serotonin syndrome (serotonergic drug interaction, clonus, hyperreflexia)\n- Thyroid storm (thyrotoxicosis, tachycardia, AMS)\n- Heat stroke (environmental exposure, core temp > 40°C)\n- Drug reaction (SJS/TEN, DRESS)\n- Malignancy (lymphoma, leukemia, renal cell carcinoma)\n- Adrenal crisis (may present with hypothermia but can be febrile)\n- DVT/PE (low-grade fever in up to 14% of PE)\n- Transfusion reaction\n\n**Hypothermia as \"sepsis equivalent\":**\nTemperature < 36°C (96.8°F) with infection is an ominous sign indicating overwhelming sepsis with hemodynamic failure. Elderly and immunosuppressed patients frequently present hypothermic rather than febrile.\n\n**Key history elements:**\n- Duration and pattern of fever\n- Associated localizing symptoms: cough (pneumonia), dysuria (UTI), headache/neck stiffness (meningitis), abdominal pain (intra-abdominal infection), skin changes (cellulitis, NSTI)\n- Immune status: HIV, transplant, chemotherapy, steroids, biologics, splenectomy, diabetes\n- Recent travel (malaria, dengue, typhoid)\n- Recent procedures, hospitalizations, antibiotics (C. diff, resistant organisms)"
+            },
+            "document": {
+              "id": "openem:fever-undifferentiated",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/fever-undifferentiated.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Fever — Undifferentiated Emergency Evaluation",
+              "aliases": [
+                "fever",
+                "pyrexia",
+                "febrile",
+                "undifferentiated fever",
+                "fever of unknown source"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "e1bf2b16d1434f21bb7eaff7396986181063b7bdd4e2f10118b783fc9d692ef0",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.025035205758097326,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- Indwelling devices: central lines, prosthetic valves/joints, vascular grafts\n- IVDU: endocarditis, epidural abscess, septic arthritis, osteomyelitis\n- Medications: antipsychotics (NMS), serotonergic drugs, new medications (drug fever)\n- Animal/insect exposures: tick-borne illness, animal bites"
+            }
+          },
+          {
+            "chunk": {
+              "id": "bb470fefafa7ce54b81d120f83b8ff571068a23ef83bf8c668edcbec64b9fa92",
+              "end": 1056,
+              "hash": "01890edd73f7d9c8616e81178652f17794e22b62c0673a91045a821a04985550",
+              "text": "1. **ABCs** — maintain airway, position lateral (recovery position), suction if needed. Do NOT place anything in the mouth.\n2. **Actively seizing > 5 minutes — treat as status epilepticus:**\n   - Midazolam 0.2 mg/kg IM (max 5 mg) or 0.2 mg/kg intranasal (max 5 mg)\n   - Diazepam 0.5 mg/kg rectal (max 20 mg)\n   - Lorazepam 0.1 mg/kg IV (max 4 mg) if IV access established\n3. **Identify the fever source** — thorough exam for meningitis, UTI, otitis media, pneumonia, bacteremia. The seizure is not the diagnosis; the fever source is.\n4. **Assess for meningitis** — in children < 12 months, meningeal signs are unreliable. Low threshold for LP in: < 12 months (especially if unimmunized or on antibiotics), complex febrile seizure, prolonged post-ictal state, meningeal signs, petechial rash, toxic-appearing.\n5. **Check glucose** — dextrose 10% (D10) 5 mL/kg IV if hypoglycemic (< 60 mg/dL in children).\n6. **Treat fever** — acetaminophen 15 mg/kg PO/PR or ibuprofen 10 mg/kg PO. Antipyretics do not prevent febrile seizure recurrence but treat discomfort.",
+              "start": 0,
+              "section": 1,
+              "documentId": "openem:febrile-seizure",
+              "sectionTitle": "Critical Actions",
+              "embeddingText": "Febrile Seizure\nfebrile convulsion; fever seizure; fever fit; febrile fit\nCritical Actions\n1. **ABCs** — maintain airway, position lateral (recovery position), suction if needed. Do NOT place anything in the mouth.\n2. **Actively seizing > 5 minutes — treat as status epilepticus:**\n   - Midazolam 0.2 mg/kg IM (max 5 mg) or 0.2 mg/kg intranasal (max 5 mg)\n   - Diazepam 0.5 mg/kg rectal (max 20 mg)\n   - Lorazepam 0.1 mg/kg IV (max 4 mg) if IV access established\n3. **Identify the fever source** — thorough exam for meningitis, UTI, otitis media, pneumonia, bacteremia. The seizure is not the diagnosis; the fever source is.\n4. **Assess for meningitis** — in children < 12 months, meningeal signs are unreliable. Low threshold for LP in: < 12 months (especially if unimmunized or on antibiotics), complex febrile seizure, prolonged post-ictal state, meningeal signs, petechial rash, toxic-appearing.\n5. **Check glucose** — dextrose 10% (D10) 5 mL/kg IV if hypoglycemic (< 60 mg/dL in children).\n6. **Treat fever** — acetaminophen 15 mg/kg PO/PR or ibuprofen 10 mg/kg PO. Antipyretics do not prevent febrile seizure recurrence but treat discomfort."
+            },
+            "document": {
+              "id": "openem:febrile-seizure",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/febrile-seizure.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Febrile Seizure",
+              "aliases": [
+                "febrile convulsion",
+                "fever seizure",
+                "fever fit",
+                "febrile fit"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "3f928203b5b42c6e82b35a787655c33d56826ed821396af3aca5eeeede4ebcf9",
+              "related": [],
+              "concepts": [
+                "pediatric"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.022073984232868403,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 35.1356660000165,
+          "embeddingMs": 625.0687920000055,
+          "vectorMs": 8.53241700003855,
+          "totalMs": 718.4905830000062
+        },
+        "warnings": [],
+        "embeddingTokens": 15,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "af7e4a8c239c4b084525aba008d56ce833b3a08144cea6237319bf996aa30dbd",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "infant fever dehydration signs poor intake",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "d1ccc5fb485f8145523b32a3d134b362bc286eb6e4bb2a3e0b3783565092e7e3",
+              "end": 1678,
+              "hash": "e8a1e6f99580567443282775730c106ef8160b94d1bdda3d77d08e66a91cdd3d",
+              "text": "Fever in children is the single most common chief complaint in pediatric emergency medicine. The approach is fundamentally stratified by age, because the risk of serious bacterial infection (SBI) and the ability to clinically assess illness severity vary dramatically across age groups.\n\n**Definition of fever:**\n- Rectal temperature >= 38.0°C (100.4°F) — this is the standard for infants\n- Axillary, temporal, and tympanic temperatures are less reliable in infants and should NOT be used to make disposition decisions in neonates\n\n**Age-stratified SBI risk:**\n- **< 28 days (neonate):** SBI rate 10-12%. This is the highest-risk group. ALL febrile neonates require full sepsis workup and empiric antibiotics regardless of appearance. HSV risk. Group B strep, E. coli, Listeria.\n- **29-60 days:** SBI rate 5-8%. Well-appearing infants can be risk-stratified using validated criteria (AAP 2021 guideline, Rochester, Step-by-Step).\n- **61-90 days:** SBI rate 3-5%. Lower risk if well-appearing with normal inflammatory markers and urinalysis.\n- **3-36 months:** SBI rate 1-3% (lower with HiB and pneumococcal vaccination). UTI is the most common occult SBI. Bacteremia rare in vaccinated children.\n- **> 36 months:** Clinical assessment more reliable. Approach similar to adults with age-appropriate differential.\n\n**Clinical appearance assessment (most important for children > 28 days):**\n- **Well-appearing (low risk):** alert, interactive, making eye contact, strong cry, consolable, feeding well, good color, normal activity\n- **Ill-appearing (high risk):** lethargy, poor tone, weak cry, inconsolable, poor feeding, mottled/pale/cyanotic, poor perfusion (cap refill > 3 sec)",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:pediatric-fever-evaluation",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Pediatric Fever — Emergency Evaluation\npediatric fever; fever in children; febrile child; febrile infant; neonatal fever; fever infant\nRecognition\nFever in children is the single most common chief complaint in pediatric emergency medicine. The approach is fundamentally stratified by age, because the risk of serious bacterial infection (SBI) and the ability to clinically assess illness severity vary dramatically across age groups.\n\n**Definition of fever:**\n- Rectal temperature >= 38.0°C (100.4°F) — this is the standard for infants\n- Axillary, temporal, and tympanic temperatures are less reliable in infants and should NOT be used to make disposition decisions in neonates\n\n**Age-stratified SBI risk:**\n- **< 28 days (neonate):** SBI rate 10-12%. This is the highest-risk group. ALL febrile neonates require full sepsis workup and empiric antibiotics regardless of appearance. HSV risk. Group B strep, E. coli, Listeria.\n- **29-60 days:** SBI rate 5-8%. Well-appearing infants can be risk-stratified using validated criteria (AAP 2021 guideline, Rochester, Step-by-Step).\n- **61-90 days:** SBI rate 3-5%. Lower risk if well-appearing with normal inflammatory markers and urinalysis.\n- **3-36 months:** SBI rate 1-3% (lower with HiB and pneumococcal vaccination). UTI is the most common occult SBI. Bacteremia rare in vaccinated children.\n- **> 36 months:** Clinical assessment more reliable. Approach similar to adults with age-appropriate differential.\n\n**Clinical appearance assessment (most important for children > 28 days):**\n- **Well-appearing (low risk):** alert, interactive, making eye contact, strong cry, consolable, feeding well, good color, normal activity\n- **Ill-appearing (high risk):** lethargy, poor tone, weak cry, inconsolable, poor feeding, mottled/pale/cyanotic, poor perfusion (cap refill > 3 sec)"
+            },
+            "document": {
+              "id": "openem:pediatric-fever-evaluation",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/pediatric-fever-evaluation.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Pediatric Fever — Emergency Evaluation",
+              "aliases": [
+                "pediatric fever",
+                "fever in children",
+                "febrile child",
+                "febrile infant",
+                "neonatal fever",
+                "fever infant"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "5b64e4bca2b5e75e47107a98006305890f216138bd9fea5947543f40d33a4dce",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.0315136476426799,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- **\"Toxic\" appearance:** implies sepsis/severe infection regardless of age — full workup, empiric antibiotics, and admission\n\n**Paradoxical irritability:** infant is more irritable when held or moved (suggests meningeal irritation). Distinguishable from normal fussiness where holding soothes the c"
+            }
+          },
+          {
+            "chunk": {
+              "id": "8b4d15b2dbe09b7d3b0d11137a216a47cb22daa61aa97cbfd037158142b1c39b",
+              "end": 1746,
+              "hash": "38f15dfd11af4e4663945d49f5a4e06f66ad39d013a2f0de2d00da2c5e5a5ec1",
+              "text": "1. **Discharging a febrile neonate (< 28 days) without full workup.** No clinical assessment, no blood test, and no decision rule can reliably exclude SBI in neonates. Every neonate with T >= 38.0°C requires full sepsis workup, empiric antibiotics, and admission. This is an absolute rule.\n\n2. **Using bag urine specimen to make decisions.** Bag urine specimens have a contamination rate of up to 60%. A positive bag specimen is meaningless. All infants < 24 months requiring urinalysis need catheterized or suprapubic aspiration specimens.\n\n3. **Assuming fever height correlates with illness severity.** While fever > 40°C is associated with slightly higher SBI risk in some studies, many children with 40.5°C fevers have benign viral illness, and neonates with serious bacterial infections may have only 38.1°C. Clinical appearance is more important than temperature magnitude.\n\n4. **Missing Kawasaki disease.** Fever > 5 days without source in a child 6 months - 5 years should trigger Kawasaki evaluation. Incomplete Kawasaki (fewer than 4/5 criteria) is common and easily missed. Untreated Kawasaki causes coronary artery aneurysms in 25% of cases. Echocardiography is indicated.\n\n5. **Failing to consider HSV in neonates.** HSV encephalitis/disseminated HSV in neonates has > 50% mortality if untreated. Acyclovir must be added if: vesicular rash, seizure, CSF pleocytosis, elevated transaminases, coagulopathy, or no clear bacterial source for sepsis picture. Do NOT wait for PCR results to start acyclovir.\n\n6. **Anchoring on \"teething fever.\"** Teething may cause low-grade temperature elevation (< 38.3°C) but does NOT cause true fever (>= 38.5°C). Attributing fever to teething is dangerous and delays evaluation of actual infections.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:pediatric-fever-evaluation",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Pediatric Fever — Emergency Evaluation\npediatric fever; fever in children; febrile child; febrile infant; neonatal fever; fever infant\nPitfalls\n1. **Discharging a febrile neonate (< 28 days) without full workup.** No clinical assessment, no blood test, and no decision rule can reliably exclude SBI in neonates. Every neonate with T >= 38.0°C requires full sepsis workup, empiric antibiotics, and admission. This is an absolute rule.\n\n2. **Using bag urine specimen to make decisions.** Bag urine specimens have a contamination rate of up to 60%. A positive bag specimen is meaningless. All infants < 24 months requiring urinalysis need catheterized or suprapubic aspiration specimens.\n\n3. **Assuming fever height correlates with illness severity.** While fever > 40°C is associated with slightly higher SBI risk in some studies, many children with 40.5°C fevers have benign viral illness, and neonates with serious bacterial infections may have only 38.1°C. Clinical appearance is more important than temperature magnitude.\n\n4. **Missing Kawasaki disease.** Fever > 5 days without source in a child 6 months - 5 years should trigger Kawasaki evaluation. Incomplete Kawasaki (fewer than 4/5 criteria) is common and easily missed. Untreated Kawasaki causes coronary artery aneurysms in 25% of cases. Echocardiography is indicated.\n\n5. **Failing to consider HSV in neonates.** HSV encephalitis/disseminated HSV in neonates has > 50% mortality if untreated. Acyclovir must be added if: vesicular rash, seizure, CSF pleocytosis, elevated transaminases, coagulopathy, or no clear bacterial source for sepsis picture. Do NOT wait for PCR results to start acyclovir.\n\n6. **Anchoring on \"teething fever.\"** Teething may cause low-grade temperature elevation (< 38.3°C) but does NOT cause true fever (>= 38.5°C). Attributing fever to teething is dangerous and delays evaluation of actual infections.\n"
+            },
+            "document": {
+              "id": "openem:pediatric-fever-evaluation",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/pediatric-fever-evaluation.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Pediatric Fever — Emergency Evaluation",
+              "aliases": [
+                "pediatric fever",
+                "fever in children",
+                "febrile child",
+                "febrile infant",
+                "neonatal fever",
+                "fever infant"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "5b64e4bca2b5e75e47107a98006305890f216138bd9fea5947543f40d33a4dce",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03149801587301587,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n7. **Skipping LP because \"the baby looks fine.\"** Well-appearing neonates have bacterial meningitis. Clinical appearance alone cannot exclude meningitis in infants < 60 days. LP is a critical part of the workup in this age group. Performing LP is uncomfortable but safe; missing meningitis is catast"
+            }
+          },
+          {
+            "chunk": {
+              "id": "bd459e63670c5f13b386f2897c3be0134758526c549327a8e85094d1ce9ba4b9",
+              "end": 1789,
+              "hash": "7555ee164860a94e6da01ac02d3bd9594a04e0a05feb054861ce95555ff35533",
+              "text": "Fever is defined as temperature >= 38.0°C (100.4°F). In the ED, the primary goal is identifying patients with life-threatening infections (sepsis, meningitis, necrotizing soft tissue infection) and those in high-risk categories requiring empiric treatment. Approximately 5% of febrile ED patients have bacteremia; the challenge is identifying them.\n\n**Non-infectious causes of fever (must keep on differential):**\n- Drug fever (antibiotics, anticonvulsants, common cause in hospitalized patients)\n- Malignant hyperthermia (post-anesthetic exposure, volatile agents, succinylcholine)\n- Neuroleptic malignant syndrome (antipsychotic exposure, rigidity, autonomic instability)\n- Serotonin syndrome (serotonergic drug interaction, clonus, hyperreflexia)\n- Thyroid storm (thyrotoxicosis, tachycardia, AMS)\n- Heat stroke (environmental exposure, core temp > 40°C)\n- Drug reaction (SJS/TEN, DRESS)\n- Malignancy (lymphoma, leukemia, renal cell carcinoma)\n- Adrenal crisis (may present with hypothermia but can be febrile)\n- DVT/PE (low-grade fever in up to 14% of PE)\n- Transfusion reaction\n\n**Hypothermia as \"sepsis equivalent\":**\nTemperature < 36°C (96.8°F) with infection is an ominous sign indicating overwhelming sepsis with hemodynamic failure. Elderly and immunosuppressed patients frequently present hypothermic rather than febrile.\n\n**Key history elements:**\n- Duration and pattern of fever\n- Associated localizing symptoms: cough (pneumonia), dysuria (UTI), headache/neck stiffness (meningitis), abdominal pain (intra-abdominal infection), skin changes (cellulitis, NSTI)\n- Immune status: HIV, transplant, chemotherapy, steroids, biologics, splenectomy, diabetes\n- Recent travel (malaria, dengue, typhoid)\n- Recent procedures, hospitalizations, antibiotics (C. diff, resistant organisms)",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:fever-undifferentiated",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Fever — Undifferentiated Emergency Evaluation\nfever; pyrexia; febrile; undifferentiated fever; fever of unknown source\nRecognition\nFever is defined as temperature >= 38.0°C (100.4°F). In the ED, the primary goal is identifying patients with life-threatening infections (sepsis, meningitis, necrotizing soft tissue infection) and those in high-risk categories requiring empiric treatment. Approximately 5% of febrile ED patients have bacteremia; the challenge is identifying them.\n\n**Non-infectious causes of fever (must keep on differential):**\n- Drug fever (antibiotics, anticonvulsants, common cause in hospitalized patients)\n- Malignant hyperthermia (post-anesthetic exposure, volatile agents, succinylcholine)\n- Neuroleptic malignant syndrome (antipsychotic exposure, rigidity, autonomic instability)\n- Serotonin syndrome (serotonergic drug interaction, clonus, hyperreflexia)\n- Thyroid storm (thyrotoxicosis, tachycardia, AMS)\n- Heat stroke (environmental exposure, core temp > 40°C)\n- Drug reaction (SJS/TEN, DRESS)\n- Malignancy (lymphoma, leukemia, renal cell carcinoma)\n- Adrenal crisis (may present with hypothermia but can be febrile)\n- DVT/PE (low-grade fever in up to 14% of PE)\n- Transfusion reaction\n\n**Hypothermia as \"sepsis equivalent\":**\nTemperature < 36°C (96.8°F) with infection is an ominous sign indicating overwhelming sepsis with hemodynamic failure. Elderly and immunosuppressed patients frequently present hypothermic rather than febrile.\n\n**Key history elements:**\n- Duration and pattern of fever\n- Associated localizing symptoms: cough (pneumonia), dysuria (UTI), headache/neck stiffness (meningitis), abdominal pain (intra-abdominal infection), skin changes (cellulitis, NSTI)\n- Immune status: HIV, transplant, chemotherapy, steroids, biologics, splenectomy, diabetes\n- Recent travel (malaria, dengue, typhoid)\n- Recent procedures, hospitalizations, antibiotics (C. diff, resistant organisms)"
+            },
+            "document": {
+              "id": "openem:fever-undifferentiated",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/fever-undifferentiated.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Fever — Undifferentiated Emergency Evaluation",
+              "aliases": [
+                "fever",
+                "pyrexia",
+                "febrile",
+                "undifferentiated fever",
+                "fever of unknown source"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "e1bf2b16d1434f21bb7eaff7396986181063b7bdd4e2f10118b783fc9d692ef0",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.025332691999358666,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- Indwelling devices: central lines, prosthetic valves/joints, vascular grafts\n- IVDU: endocarditis, epidural abscess, septic arthritis, osteomyelitis\n- Medications: antipsychotics (NMS), serotonergic drugs, new medications (drug fever)\n- Animal/insect exposures: tick-borne illness, animal bites"
+            }
+          },
+          {
+            "chunk": {
+              "id": "25f162107a2a29b61d2123d03b1e598b4fe14093e7a13bcd91574005437de732",
+              "end": 3325,
+              "hash": "ae6332cd460ed50e470acc44bb59d416b7b9d8e078845fae1b8b49050f5b12b2",
+              "text": " rash, hypotension, multiorgan involvement, recent wound or tampon use\n\n### Emergent\n- **Pneumonia** (`pneumonia`): cough, dyspnea, crackles, infiltrate on CXR. CURB-65 or PSI for risk stratification.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, RUQ pain, jaundice). ERCP emergently.\n- **Pyelonephritis** (`pyelonephritis`): fever, flank pain, CVA tenderness, pyuria/bacteriuria\n- **Appendicitis** (`acute-appendicitis`): fever, RLQ pain, anorexia, leukocytosis\n- **Cholecystitis** (`acute-cholecystitis`): fever, RUQ pain, Murphy sign\n- **Epidural abscess** (`spinal-epidural-abscess`): fever, back pain, neurological deficit (late). IVDU, immunocompromised.\n- **Deep neck space infections** (`retropharyngeal-abscess`, `peritonsillar-abscess`): fever, odynophagia, trismus, neck swelling, drooling\n- **Infective endocarditis** (`infective-endocarditis`): fever + new murmur + risk factors (IVDU, prosthetic valve, dental procedure). Modified Duke criteria.\n- **Hepatic abscess** (`hepatic-abscess`): fever, RUQ pain, diabetes, recent biliary procedure\n- **Empyema** (`empyema`): fever persisting despite pneumonia treatment, pleural effusion\n- **HSV encephalitis** (`hsv-encephalitis`): fever, AMS, temporal lobe seizures\n- **Serotonin syndrome** (`serotonin-syndrome`): fever, clonus, hyperreflexia, agitation, serotonergic drug exposure\n- **NMS** (`neuroleptic-malignant-syndrome`): fever, rigidity, AMS, autonomic instability, antipsychotic exposure\n\n### Urgent\n- **Cellulitis/abscess** (`cellulitis-abscess`): localized erythema, warmth, swelling, fluctuance (abscess). I&D for abscess.\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, fever, leukocytosis\n- **DVT** (`deep-vein-thrombosis`): low-grade fever in up to 30% of DVT",
+              "start": 1552,
+              "section": 2,
+              "documentId": "openem:fever-undifferentiated",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Fever — Undifferentiated Emergency Evaluation\nfever; pyrexia; febrile; undifferentiated fever; fever of unknown source\nDifferential Diagnosis\n rash, hypotension, multiorgan involvement, recent wound or tampon use\n\n### Emergent\n- **Pneumonia** (`pneumonia`): cough, dyspnea, crackles, infiltrate on CXR. CURB-65 or PSI for risk stratification.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, RUQ pain, jaundice). ERCP emergently.\n- **Pyelonephritis** (`pyelonephritis`): fever, flank pain, CVA tenderness, pyuria/bacteriuria\n- **Appendicitis** (`acute-appendicitis`): fever, RLQ pain, anorexia, leukocytosis\n- **Cholecystitis** (`acute-cholecystitis`): fever, RUQ pain, Murphy sign\n- **Epidural abscess** (`spinal-epidural-abscess`): fever, back pain, neurological deficit (late). IVDU, immunocompromised.\n- **Deep neck space infections** (`retropharyngeal-abscess`, `peritonsillar-abscess`): fever, odynophagia, trismus, neck swelling, drooling\n- **Infective endocarditis** (`infective-endocarditis`): fever + new murmur + risk factors (IVDU, prosthetic valve, dental procedure). Modified Duke criteria.\n- **Hepatic abscess** (`hepatic-abscess`): fever, RUQ pain, diabetes, recent biliary procedure\n- **Empyema** (`empyema`): fever persisting despite pneumonia treatment, pleural effusion\n- **HSV encephalitis** (`hsv-encephalitis`): fever, AMS, temporal lobe seizures\n- **Serotonin syndrome** (`serotonin-syndrome`): fever, clonus, hyperreflexia, agitation, serotonergic drug exposure\n- **NMS** (`neuroleptic-malignant-syndrome`): fever, rigidity, AMS, autonomic instability, antipsychotic exposure\n\n### Urgent\n- **Cellulitis/abscess** (`cellulitis-abscess`): localized erythema, warmth, swelling, fluctuance (abscess). I&D for abscess.\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, fever, leukocytosis\n- **DVT** (`deep-vein-thrombosis`): low-grade fever in up to 30% of DVT"
+            },
+            "document": {
+              "id": "openem:fever-undifferentiated",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/fever-undifferentiated.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Fever — Undifferentiated Emergency Evaluation",
+              "aliases": [
+                "fever",
+                "pyrexia",
+                "febrile",
+                "undifferentiated fever",
+                "fever of unknown source"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "e1bf2b16d1434f21bb7eaff7396986181063b7bdd4e2f10118b783fc9d692ef0",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.025278219395866455,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": " **Thyroid storm** (`thyroid-storm`): fever, tachycardia out of proportion, AMS, known hyperthyroidism. Burch-Wartofsky score >= 45.\n- **Heat stroke** (`heat-stroke`): core temp > 40°C, CNS dysfunction, exertional or classic\n- **Toxic shock syndrome** (`toxic-shock-syndrome`): fever, diffuse macular",
+              "after": "\n- **Kawasaki disease** (`kawasaki-disease`): pediatric, fever >= 5 days, conjunctivitis, rash, mucous membrane changes, extremity changes, lymphadenopathy\n- **Drug hypersensitivity reaction** (`drug-hypersensitivity-reaction`): fever, rash, eosinophilia, recent new medication"
+            }
+          },
+          {
+            "chunk": {
+              "id": "bca0ce61c216fbfce128742e67d4ecc4dac4e0c0915aa01daee0c7e1fa62f23c",
+              "end": 2288,
+              "hash": "911d1a4a3e9b665b5f4f2b820cea42d24a8333b1acfe0cfa05000d592a705acc",
+              "text": "to tachypnea, wheezing, crackles, increased work of breathing\n- Subcostal and intercostal retractions, nasal flaring, accessory muscle use\n- Feeding difficulty (cannot coordinate suck-swallow-breathe)\n- Irritability alternating with lethargy in severe cases\n- Hypoxemia (SpO2 < 90-92%) in moderate-severe disease\n- Fever typically low-grade (38-39 degrees C); high fever (> 39.5 degrees C) should prompt evaluation for secondary bacterial infection\n\n**Apnea Risk:**\n- Infants < 2 months, especially former premature infants (< 37 weeks GA)\n- Apnea may be the presenting sign BEFORE other respiratory symptoms develop\n- Central apnea mechanism (not obstructive)\n- Risk highest in first 48-72 hours of illness",
+              "start": 1581,
+              "section": 0,
+              "documentId": "openem:bronchiolitis",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Bronchiolitis\nacute bronchiolitis; RSV bronchiolitis; viral bronchiolitis; infant wheezing\nRecognition\nto tachypnea, wheezing, crackles, increased work of breathing\n- Subcostal and intercostal retractions, nasal flaring, accessory muscle use\n- Feeding difficulty (cannot coordinate suck-swallow-breathe)\n- Irritability alternating with lethargy in severe cases\n- Hypoxemia (SpO2 < 90-92%) in moderate-severe disease\n- Fever typically low-grade (38-39 degrees C); high fever (> 39.5 degrees C) should prompt evaluation for secondary bacterial infection\n\n**Apnea Risk:**\n- Infants < 2 months, especially former premature infants (< 37 weeks GA)\n- Apnea may be the presenting sign BEFORE other respiratory symptoms develop\n- Central apnea mechanism (not obstructive)\n- Risk highest in first 48-72 hours of illness"
+            },
+            "document": {
+              "id": "openem:bronchiolitis",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/bronchiolitis.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Bronchiolitis",
+              "aliases": [
+                "acute bronchiolitis",
+                "RSV bronchiolitis",
+                "viral bronchiolitis",
+                "infant wheezing"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "869eaa2c635be5a5dd0430815b98e05cb2c2f409a27d70d5195fe011622343ad",
+              "related": [],
+              "concepts": [
+                "pediatric"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-19"
+            },
+            "score": 0.020620581304006284,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "nodeficiency (congenital or acquired)\n- Neuromuscular disorders impairing cough clearance\n- Down syndrome (smaller airways, immune differences)\n- Exposure to tobacco smoke, crowded household, daycare attendance\n\n**Presentation:**\n- 2-4 day prodrome of rhinorrhea, cough, low-grade fever\n- Progresses ",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 52.681167000031564,
+          "embeddingMs": 700.2857080000103,
+          "vectorMs": 8.328291999991052,
+          "totalMs": 794.8397090000217
+        },
+        "warnings": [],
+        "embeddingTokens": 7,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "af7e4a8c239c4b084525aba008d56ce833b3a08144cea6237319bf996aa30dbd",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "6-month-old with fever and reduced wet diapers urgency assessment",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "8b4d15b2dbe09b7d3b0d11137a216a47cb22daa61aa97cbfd037158142b1c39b",
+              "end": 1746,
+              "hash": "38f15dfd11af4e4663945d49f5a4e06f66ad39d013a2f0de2d00da2c5e5a5ec1",
+              "text": "1. **Discharging a febrile neonate (< 28 days) without full workup.** No clinical assessment, no blood test, and no decision rule can reliably exclude SBI in neonates. Every neonate with T >= 38.0°C requires full sepsis workup, empiric antibiotics, and admission. This is an absolute rule.\n\n2. **Using bag urine specimen to make decisions.** Bag urine specimens have a contamination rate of up to 60%. A positive bag specimen is meaningless. All infants < 24 months requiring urinalysis need catheterized or suprapubic aspiration specimens.\n\n3. **Assuming fever height correlates with illness severity.** While fever > 40°C is associated with slightly higher SBI risk in some studies, many children with 40.5°C fevers have benign viral illness, and neonates with serious bacterial infections may have only 38.1°C. Clinical appearance is more important than temperature magnitude.\n\n4. **Missing Kawasaki disease.** Fever > 5 days without source in a child 6 months - 5 years should trigger Kawasaki evaluation. Incomplete Kawasaki (fewer than 4/5 criteria) is common and easily missed. Untreated Kawasaki causes coronary artery aneurysms in 25% of cases. Echocardiography is indicated.\n\n5. **Failing to consider HSV in neonates.** HSV encephalitis/disseminated HSV in neonates has > 50% mortality if untreated. Acyclovir must be added if: vesicular rash, seizure, CSF pleocytosis, elevated transaminases, coagulopathy, or no clear bacterial source for sepsis picture. Do NOT wait for PCR results to start acyclovir.\n\n6. **Anchoring on \"teething fever.\"** Teething may cause low-grade temperature elevation (< 38.3°C) but does NOT cause true fever (>= 38.5°C). Attributing fever to teething is dangerous and delays evaluation of actual infections.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:pediatric-fever-evaluation",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Pediatric Fever — Emergency Evaluation\npediatric fever; fever in children; febrile child; febrile infant; neonatal fever; fever infant\nPitfalls\n1. **Discharging a febrile neonate (< 28 days) without full workup.** No clinical assessment, no blood test, and no decision rule can reliably exclude SBI in neonates. Every neonate with T >= 38.0°C requires full sepsis workup, empiric antibiotics, and admission. This is an absolute rule.\n\n2. **Using bag urine specimen to make decisions.** Bag urine specimens have a contamination rate of up to 60%. A positive bag specimen is meaningless. All infants < 24 months requiring urinalysis need catheterized or suprapubic aspiration specimens.\n\n3. **Assuming fever height correlates with illness severity.** While fever > 40°C is associated with slightly higher SBI risk in some studies, many children with 40.5°C fevers have benign viral illness, and neonates with serious bacterial infections may have only 38.1°C. Clinical appearance is more important than temperature magnitude.\n\n4. **Missing Kawasaki disease.** Fever > 5 days without source in a child 6 months - 5 years should trigger Kawasaki evaluation. Incomplete Kawasaki (fewer than 4/5 criteria) is common and easily missed. Untreated Kawasaki causes coronary artery aneurysms in 25% of cases. Echocardiography is indicated.\n\n5. **Failing to consider HSV in neonates.** HSV encephalitis/disseminated HSV in neonates has > 50% mortality if untreated. Acyclovir must be added if: vesicular rash, seizure, CSF pleocytosis, elevated transaminases, coagulopathy, or no clear bacterial source for sepsis picture. Do NOT wait for PCR results to start acyclovir.\n\n6. **Anchoring on \"teething fever.\"** Teething may cause low-grade temperature elevation (< 38.3°C) but does NOT cause true fever (>= 38.5°C). Attributing fever to teething is dangerous and delays evaluation of actual infections.\n"
+            },
+            "document": {
+              "id": "openem:pediatric-fever-evaluation",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/pediatric-fever-evaluation.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Pediatric Fever — Emergency Evaluation",
+              "aliases": [
+                "pediatric fever",
+                "fever in children",
+                "febrile child",
+                "febrile infant",
+                "neonatal fever",
+                "fever infant"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "5b64e4bca2b5e75e47107a98006305890f216138bd9fea5947543f40d33a4dce",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03177805800756621,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n7. **Skipping LP because \"the baby looks fine.\"** Well-appearing neonates have bacterial meningitis. Clinical appearance alone cannot exclude meningitis in infants < 60 days. LP is a critical part of the workup in this age group. Performing LP is uncomfortable but safe; missing meningitis is catast"
+            }
+          },
+          {
+            "chunk": {
+              "id": "1458a3be4621e4dbd1eb1187efe4dc192bd74482e0a2c61ac930edd8c99e27f3",
+              "end": 1611,
+              "hash": "5f02f82b46126bafd387184fda0e77be3c8e28692f5571eab252bb7c07880e57",
+              "text": "| Action | Target |\n|---|---|\n| Rectal temperature measurement | < 5 minutes |\n| Assess clinical appearance (ill vs well) | < 10 minutes |\n| Full sepsis workup if < 28 days | < 30 minutes |\n| Empiric antibiotics if < 28 days with fever | < 60 minutes |\n| Urinalysis (catheterized) if < 24 months with no source | < 30 minutes |\n\n**Age-stratified evaluation algorithm:**\n\n### Neonates (0-28 days)\n\nALL febrile neonates require:\n1. Complete blood count with differential\n2. Blood culture\n3. Urinalysis + urine culture (catheterized specimen — bag specimens have unacceptable contamination rates)\n4. Lumbar puncture (CSF cell count, protein, glucose, gram stain, culture, HSV PCR)\n5. CXR if respiratory symptoms\n6. Empiric antibiotics: ampicillin 50 mg/kg IV + gentamicin 4-5 mg/kg IV (or cefotaxime 50 mg/kg IV where available)\n7. Add acyclovir 20 mg/kg IV if any concern for HSV (seizure, vesicular rash, maternal HSV history, CSF pleocytosis, elevated AST/ALT, sepsis picture without clear bacterial source)\n8. **Admit all febrile neonates.** No exceptions.\n\n**HSV risk factors in neonates:**\n- Maternal genital HSV (especially primary infection at delivery)\n- Vesicular skin lesions\n- Seizure\n- CSF pleocytosis with negative gram stain\n- Elevated transaminases\n- Coagulopathy/DIC without clear cause\n\n### Young Infants (29-60 days)\n\n**AAP 2021 Guideline for well-appearing febrile infants 8-60 days:**\n- **Inflammatory markers:** WBC, procalcitonin (PCT), CRP, urinalysis\n- **Low-risk criteria:** Well-appearing + normal urinalysis + normal inflammatory markers (WBC 5,000-15,000, ANC < 4,000, PCT < 0.5 ng/mL)",
+              "start": 0,
+              "section": 1,
+              "documentId": "openem:pediatric-fever-evaluation",
+              "sectionTitle": "Critical Actions",
+              "embeddingText": "Pediatric Fever — Emergency Evaluation\npediatric fever; fever in children; febrile child; febrile infant; neonatal fever; fever infant\nCritical Actions\n| Action | Target |\n|---|---|\n| Rectal temperature measurement | < 5 minutes |\n| Assess clinical appearance (ill vs well) | < 10 minutes |\n| Full sepsis workup if < 28 days | < 30 minutes |\n| Empiric antibiotics if < 28 days with fever | < 60 minutes |\n| Urinalysis (catheterized) if < 24 months with no source | < 30 minutes |\n\n**Age-stratified evaluation algorithm:**\n\n### Neonates (0-28 days)\n\nALL febrile neonates require:\n1. Complete blood count with differential\n2. Blood culture\n3. Urinalysis + urine culture (catheterized specimen — bag specimens have unacceptable contamination rates)\n4. Lumbar puncture (CSF cell count, protein, glucose, gram stain, culture, HSV PCR)\n5. CXR if respiratory symptoms\n6. Empiric antibiotics: ampicillin 50 mg/kg IV + gentamicin 4-5 mg/kg IV (or cefotaxime 50 mg/kg IV where available)\n7. Add acyclovir 20 mg/kg IV if any concern for HSV (seizure, vesicular rash, maternal HSV history, CSF pleocytosis, elevated AST/ALT, sepsis picture without clear bacterial source)\n8. **Admit all febrile neonates.** No exceptions.\n\n**HSV risk factors in neonates:**\n- Maternal genital HSV (especially primary infection at delivery)\n- Vesicular skin lesions\n- Seizure\n- CSF pleocytosis with negative gram stain\n- Elevated transaminases\n- Coagulopathy/DIC without clear cause\n\n### Young Infants (29-60 days)\n\n**AAP 2021 Guideline for well-appearing febrile infants 8-60 days:**\n- **Inflammatory markers:** WBC, procalcitonin (PCT), CRP, urinalysis\n- **Low-risk criteria:** Well-appearing + normal urinalysis + normal inflammatory markers (WBC 5,000-15,000, ANC < 4,000, PCT < 0.5 ng/mL)"
+            },
+            "document": {
+              "id": "openem:pediatric-fever-evaluation",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/pediatric-fever-evaluation.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Pediatric Fever — Emergency Evaluation",
+              "aliases": [
+                "pediatric fever",
+                "fever in children",
+                "febrile child",
+                "febrile infant",
+                "neonatal fever",
+                "fever infant"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "5b64e4bca2b5e75e47107a98006305890f216138bd9fea5947543f40d33a4dce",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.030886196246139225,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- **29-60 days, well-appearing, low-risk by labs:** Observation without antibiotics may be appropriate IF reliable follow-up in 24 hours. LP should be performed (AAP recommends LP for all 22-28 day olds; for 29-60 days, LP may be deferred if all other markers are low-risk, but must be performed bef"
+            }
+          },
+          {
+            "chunk": {
+              "id": "25f162107a2a29b61d2123d03b1e598b4fe14093e7a13bcd91574005437de732",
+              "end": 3325,
+              "hash": "ae6332cd460ed50e470acc44bb59d416b7b9d8e078845fae1b8b49050f5b12b2",
+              "text": " rash, hypotension, multiorgan involvement, recent wound or tampon use\n\n### Emergent\n- **Pneumonia** (`pneumonia`): cough, dyspnea, crackles, infiltrate on CXR. CURB-65 or PSI for risk stratification.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, RUQ pain, jaundice). ERCP emergently.\n- **Pyelonephritis** (`pyelonephritis`): fever, flank pain, CVA tenderness, pyuria/bacteriuria\n- **Appendicitis** (`acute-appendicitis`): fever, RLQ pain, anorexia, leukocytosis\n- **Cholecystitis** (`acute-cholecystitis`): fever, RUQ pain, Murphy sign\n- **Epidural abscess** (`spinal-epidural-abscess`): fever, back pain, neurological deficit (late). IVDU, immunocompromised.\n- **Deep neck space infections** (`retropharyngeal-abscess`, `peritonsillar-abscess`): fever, odynophagia, trismus, neck swelling, drooling\n- **Infective endocarditis** (`infective-endocarditis`): fever + new murmur + risk factors (IVDU, prosthetic valve, dental procedure). Modified Duke criteria.\n- **Hepatic abscess** (`hepatic-abscess`): fever, RUQ pain, diabetes, recent biliary procedure\n- **Empyema** (`empyema`): fever persisting despite pneumonia treatment, pleural effusion\n- **HSV encephalitis** (`hsv-encephalitis`): fever, AMS, temporal lobe seizures\n- **Serotonin syndrome** (`serotonin-syndrome`): fever, clonus, hyperreflexia, agitation, serotonergic drug exposure\n- **NMS** (`neuroleptic-malignant-syndrome`): fever, rigidity, AMS, autonomic instability, antipsychotic exposure\n\n### Urgent\n- **Cellulitis/abscess** (`cellulitis-abscess`): localized erythema, warmth, swelling, fluctuance (abscess). I&D for abscess.\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, fever, leukocytosis\n- **DVT** (`deep-vein-thrombosis`): low-grade fever in up to 30% of DVT",
+              "start": 1552,
+              "section": 2,
+              "documentId": "openem:fever-undifferentiated",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Fever — Undifferentiated Emergency Evaluation\nfever; pyrexia; febrile; undifferentiated fever; fever of unknown source\nDifferential Diagnosis\n rash, hypotension, multiorgan involvement, recent wound or tampon use\n\n### Emergent\n- **Pneumonia** (`pneumonia`): cough, dyspnea, crackles, infiltrate on CXR. CURB-65 or PSI for risk stratification.\n- **Ascending cholangitis** (`ascending-cholangitis`): Charcot triad (fever, RUQ pain, jaundice). ERCP emergently.\n- **Pyelonephritis** (`pyelonephritis`): fever, flank pain, CVA tenderness, pyuria/bacteriuria\n- **Appendicitis** (`acute-appendicitis`): fever, RLQ pain, anorexia, leukocytosis\n- **Cholecystitis** (`acute-cholecystitis`): fever, RUQ pain, Murphy sign\n- **Epidural abscess** (`spinal-epidural-abscess`): fever, back pain, neurological deficit (late). IVDU, immunocompromised.\n- **Deep neck space infections** (`retropharyngeal-abscess`, `peritonsillar-abscess`): fever, odynophagia, trismus, neck swelling, drooling\n- **Infective endocarditis** (`infective-endocarditis`): fever + new murmur + risk factors (IVDU, prosthetic valve, dental procedure). Modified Duke criteria.\n- **Hepatic abscess** (`hepatic-abscess`): fever, RUQ pain, diabetes, recent biliary procedure\n- **Empyema** (`empyema`): fever persisting despite pneumonia treatment, pleural effusion\n- **HSV encephalitis** (`hsv-encephalitis`): fever, AMS, temporal lobe seizures\n- **Serotonin syndrome** (`serotonin-syndrome`): fever, clonus, hyperreflexia, agitation, serotonergic drug exposure\n- **NMS** (`neuroleptic-malignant-syndrome`): fever, rigidity, AMS, autonomic instability, antipsychotic exposure\n\n### Urgent\n- **Cellulitis/abscess** (`cellulitis-abscess`): localized erythema, warmth, swelling, fluctuance (abscess). I&D for abscess.\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, fever, leukocytosis\n- **DVT** (`deep-vein-thrombosis`): low-grade fever in up to 30% of DVT"
+            },
+            "document": {
+              "id": "openem:fever-undifferentiated",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/fever-undifferentiated.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Fever — Undifferentiated Emergency Evaluation",
+              "aliases": [
+                "fever",
+                "pyrexia",
+                "febrile",
+                "undifferentiated fever",
+                "fever of unknown source"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "e1bf2b16d1434f21bb7eaff7396986181063b7bdd4e2f10118b783fc9d692ef0",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.028531243721117136,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": " **Thyroid storm** (`thyroid-storm`): fever, tachycardia out of proportion, AMS, known hyperthyroidism. Burch-Wartofsky score >= 45.\n- **Heat stroke** (`heat-stroke`): core temp > 40°C, CNS dysfunction, exertional or classic\n- **Toxic shock syndrome** (`toxic-shock-syndrome`): fever, diffuse macular",
+              "after": "\n- **Kawasaki disease** (`kawasaki-disease`): pediatric, fever >= 5 days, conjunctivitis, rash, mucous membrane changes, extremity changes, lymphadenopathy\n- **Drug hypersensitivity reaction** (`drug-hypersensitivity-reaction`): fever, rash, eosinophilia, recent new medication"
+            }
+          },
+          {
+            "chunk": {
+              "id": "bd459e63670c5f13b386f2897c3be0134758526c549327a8e85094d1ce9ba4b9",
+              "end": 1789,
+              "hash": "7555ee164860a94e6da01ac02d3bd9594a04e0a05feb054861ce95555ff35533",
+              "text": "Fever is defined as temperature >= 38.0°C (100.4°F). In the ED, the primary goal is identifying patients with life-threatening infections (sepsis, meningitis, necrotizing soft tissue infection) and those in high-risk categories requiring empiric treatment. Approximately 5% of febrile ED patients have bacteremia; the challenge is identifying them.\n\n**Non-infectious causes of fever (must keep on differential):**\n- Drug fever (antibiotics, anticonvulsants, common cause in hospitalized patients)\n- Malignant hyperthermia (post-anesthetic exposure, volatile agents, succinylcholine)\n- Neuroleptic malignant syndrome (antipsychotic exposure, rigidity, autonomic instability)\n- Serotonin syndrome (serotonergic drug interaction, clonus, hyperreflexia)\n- Thyroid storm (thyrotoxicosis, tachycardia, AMS)\n- Heat stroke (environmental exposure, core temp > 40°C)\n- Drug reaction (SJS/TEN, DRESS)\n- Malignancy (lymphoma, leukemia, renal cell carcinoma)\n- Adrenal crisis (may present with hypothermia but can be febrile)\n- DVT/PE (low-grade fever in up to 14% of PE)\n- Transfusion reaction\n\n**Hypothermia as \"sepsis equivalent\":**\nTemperature < 36°C (96.8°F) with infection is an ominous sign indicating overwhelming sepsis with hemodynamic failure. Elderly and immunosuppressed patients frequently present hypothermic rather than febrile.\n\n**Key history elements:**\n- Duration and pattern of fever\n- Associated localizing symptoms: cough (pneumonia), dysuria (UTI), headache/neck stiffness (meningitis), abdominal pain (intra-abdominal infection), skin changes (cellulitis, NSTI)\n- Immune status: HIV, transplant, chemotherapy, steroids, biologics, splenectomy, diabetes\n- Recent travel (malaria, dengue, typhoid)\n- Recent procedures, hospitalizations, antibiotics (C. diff, resistant organisms)",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:fever-undifferentiated",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Fever — Undifferentiated Emergency Evaluation\nfever; pyrexia; febrile; undifferentiated fever; fever of unknown source\nRecognition\nFever is defined as temperature >= 38.0°C (100.4°F). In the ED, the primary goal is identifying patients with life-threatening infections (sepsis, meningitis, necrotizing soft tissue infection) and those in high-risk categories requiring empiric treatment. Approximately 5% of febrile ED patients have bacteremia; the challenge is identifying them.\n\n**Non-infectious causes of fever (must keep on differential):**\n- Drug fever (antibiotics, anticonvulsants, common cause in hospitalized patients)\n- Malignant hyperthermia (post-anesthetic exposure, volatile agents, succinylcholine)\n- Neuroleptic malignant syndrome (antipsychotic exposure, rigidity, autonomic instability)\n- Serotonin syndrome (serotonergic drug interaction, clonus, hyperreflexia)\n- Thyroid storm (thyrotoxicosis, tachycardia, AMS)\n- Heat stroke (environmental exposure, core temp > 40°C)\n- Drug reaction (SJS/TEN, DRESS)\n- Malignancy (lymphoma, leukemia, renal cell carcinoma)\n- Adrenal crisis (may present with hypothermia but can be febrile)\n- DVT/PE (low-grade fever in up to 14% of PE)\n- Transfusion reaction\n\n**Hypothermia as \"sepsis equivalent\":**\nTemperature < 36°C (96.8°F) with infection is an ominous sign indicating overwhelming sepsis with hemodynamic failure. Elderly and immunosuppressed patients frequently present hypothermic rather than febrile.\n\n**Key history elements:**\n- Duration and pattern of fever\n- Associated localizing symptoms: cough (pneumonia), dysuria (UTI), headache/neck stiffness (meningitis), abdominal pain (intra-abdominal infection), skin changes (cellulitis, NSTI)\n- Immune status: HIV, transplant, chemotherapy, steroids, biologics, splenectomy, diabetes\n- Recent travel (malaria, dengue, typhoid)\n- Recent procedures, hospitalizations, antibiotics (C. diff, resistant organisms)"
+            },
+            "document": {
+              "id": "openem:fever-undifferentiated",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/fever-undifferentiated.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Fever — Undifferentiated Emergency Evaluation",
+              "aliases": [
+                "fever",
+                "pyrexia",
+                "febrile",
+                "undifferentiated fever",
+                "fever of unknown source"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "e1bf2b16d1434f21bb7eaff7396986181063b7bdd4e2f10118b783fc9d692ef0",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.025974025974025976,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- Indwelling devices: central lines, prosthetic valves/joints, vascular grafts\n- IVDU: endocarditis, epidural abscess, septic arthritis, osteomyelitis\n- Medications: antipsychotics (NMS), serotonergic drugs, new medications (drug fever)\n- Animal/insect exposures: tick-borne illness, animal bites"
+            }
+          },
+          {
+            "chunk": {
+              "id": "635f785859a498f6f454a902b86be9bcf98885c43a1f297107e296cd7dc8ecde",
+              "end": 1671,
+              "hash": "2bf4e524ffefb2838425fc13aaa86e99525aca8e98af5a3fd355cae84c409cf8",
+              "text": "### The Febrile Neonate (< 28 Days Old)\n- **Any fever >= 38.0 degrees C (100.4 degrees F) in a neonate < 28 days is a medical emergency** until proven otherwise\n- Neonates are immunocompromised: immature complement, low immunoglobulin, impaired neutrophil function\n- Serious bacterial infection (SBI) prevalence: 10-15% in febrile neonates < 28 days\n- Pathogens: Group B Streptococcus (GBS), E. coli, Listeria monocytogenes, HSV, enterovirus\n\n### Signs of the Sick Neonate\n- Fever or hypothermia (< 36.0 degrees C)\n- Lethargy, poor feeding, weak cry\n- Tachypnea (RR > 60), grunting, nasal flaring, retractions\n- Tachycardia (HR > 180) or bradycardia (HR < 100)\n- Cyanosis (central — lips, tongue; not just acrocyanosis)\n- Mottled or gray skin color\n- Bulging fontanelle\n- Seizures (subtle: lip smacking, bicycling, apnea; overt: tonic-clonic)\n- Capillary refill > 3 seconds\n- Abdominal distension, bilious vomiting\n\n### Neonatal HSV — High Index of Suspicion\nThree presentations:\n1. **Skin-eyes-mouth (SEM):** Vesicular lesions, conjunctivitis, oral ulcers. Best prognosis if treated early.\n2. **CNS disease:** Seizures, lethargy, CSF pleocytosis. Mortality 4% with treatment; 50% without.\n3. **Disseminated:** Hepatitis, DIC, pneumonitis, shock. Mimics bacterial sepsis. Mortality 30% with treatment.\n\n**Triggers for acyclovir:** Vesicular lesions anywhere, seizures, elevated AST/ALT, CSF pleocytosis with negative Gram stain, maternal HSV history, clinical deterioration on antibiotics\n\n### Congenital Heart Disease (CHD) Presenting in the Neonate\n- **Ductal-dependent lesions** present when the ductus arteriosus closes (typically 24-72 hours of life, up to 2 weeks):",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:neonatal-emergencies",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Neonatal Emergencies\nsick neonate; febrile neonate; neonatal sepsis; neonatal fever; febrile newborn; neonatal herpes; neonatal HSV; ductal-dependent lesion; neonatal cyanosis; neonatal hypoglycemia\nRecognition\n### The Febrile Neonate (< 28 Days Old)\n- **Any fever >= 38.0 degrees C (100.4 degrees F) in a neonate < 28 days is a medical emergency** until proven otherwise\n- Neonates are immunocompromised: immature complement, low immunoglobulin, impaired neutrophil function\n- Serious bacterial infection (SBI) prevalence: 10-15% in febrile neonates < 28 days\n- Pathogens: Group B Streptococcus (GBS), E. coli, Listeria monocytogenes, HSV, enterovirus\n\n### Signs of the Sick Neonate\n- Fever or hypothermia (< 36.0 degrees C)\n- Lethargy, poor feeding, weak cry\n- Tachypnea (RR > 60), grunting, nasal flaring, retractions\n- Tachycardia (HR > 180) or bradycardia (HR < 100)\n- Cyanosis (central — lips, tongue; not just acrocyanosis)\n- Mottled or gray skin color\n- Bulging fontanelle\n- Seizures (subtle: lip smacking, bicycling, apnea; overt: tonic-clonic)\n- Capillary refill > 3 seconds\n- Abdominal distension, bilious vomiting\n\n### Neonatal HSV — High Index of Suspicion\nThree presentations:\n1. **Skin-eyes-mouth (SEM):** Vesicular lesions, conjunctivitis, oral ulcers. Best prognosis if treated early.\n2. **CNS disease:** Seizures, lethargy, CSF pleocytosis. Mortality 4% with treatment; 50% without.\n3. **Disseminated:** Hepatitis, DIC, pneumonitis, shock. Mimics bacterial sepsis. Mortality 30% with treatment.\n\n**Triggers for acyclovir:** Vesicular lesions anywhere, seizures, elevated AST/ALT, CSF pleocytosis with negative Gram stain, maternal HSV history, clinical deterioration on antibiotics\n\n### Congenital Heart Disease (CHD) Presenting in the Neonate\n- **Ductal-dependent lesions** present when the ductus arteriosus closes (typically 24-72 hours of life, up to 2 weeks):"
+            },
+            "document": {
+              "id": "openem:neonatal-emergencies",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/neonatal-emergencies.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Neonatal Emergencies",
+              "aliases": [
+                "sick neonate",
+                "febrile neonate",
+                "neonatal sepsis",
+                "neonatal fever",
+                "febrile newborn",
+                "neonatal herpes",
+                "neonatal HSV",
+                "ductal-dependent lesion",
+                "neonatal cyanosis",
+                "neonatal hypoglycemia"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "b11f459d6ab02cbb20dbaf1ba81c5b5e8588f938436b8f41c186e8466ae840c5",
+              "related": [],
+              "concepts": [
+                "pediatric"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-28"
+            },
+            "score": 0.020920920920920922,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n  - **Ductal-dependent pulmonary blood flow:** Pulmonary atresia, critical pulmonary stenosis, tricuspid atresia, tetralogy of Fallot (severe) — present with cyanosis\n  - **Ductal-dependent systemic blood flow:** Hypoplastic left heart syndrome (HLHS), critical coarctation of the aorta, interrupted"
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 83.14462500001537,
+          "embeddingMs": 611.211042000039,
+          "vectorMs": 10.81291700003203,
+          "totalMs": 709.4488750000019
+        },
+        "warnings": [],
+        "embeddingTokens": 11,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": null,
+    "release": "clinician_required",
+    "clinicalApproval": false,
+    "corrections": 0,
+    "careCorrectionReleased": false,
+    "sourceIntegrity": true,
+    "citations": []
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "clinical-evidence-graph",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "528e1553-6662-4bdd-b4ce-29ebad57389c",
+  "traceId": "27f423112b249e1779d20dddf5de97af",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "My 6-month-old has a fever of 100.9, she's fussy, she's had fewer wet diapers today than normal, and she doesn't seem interested in feeding.",
+  "inputHash": "a7b869d7bf10801b9aa8086aa0fe9a52adcf2a0fecbdfe85df6423501c3c4fc7",
+  "answerHash": "bef215e0b2a74ccbaa5e2c4b68349ff96893c6a35e1c3f1a38c8fb99a4c0f03a",
+  "promptHash": "adb8c2cea95f09d101fe0e8ec7c3366e110a78501306053ef0df01a637cf8338",
+  "guidanceHash": "2265620f9ab9d3bcfc8f92d3901c42d1e6fa1547bf28c9c51317d9294e2aac25",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-15T05:41:09.734Z",
+  "durationMs": 18420,
+  "workflowDurationMs": 18381,
+  "tracePersistenceDurationMs": 39,
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 0
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 3957
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 18360
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 8
+    }
+  ],
+  "responseEvents": [
+    {
+      "kind": "action",
+      "notice": {
+        "disposition": "EMERGENCY_NOW",
+        "directive": "Seek emergency department assessment now. Do not wait for a message reply; call 911 if you cannot travel safely.",
+        "source": "emergency_agent"
+      },
+      "elapsedMs": 3958,
+      "sequence": 1
+    }
+  ],
+  "safetyNotices": [
+    {
+      "disposition": "EMERGENCY_NOW",
+      "directive": "Seek emergency department assessment now. Do not wait for a message reply; call 911 if you cannot travel safely.",
+      "source": "emergency_agent"
+    }
+  ],
+  "firstActionMs": 3958,
+  "firstPatientReplyMs": null,
+  "firstQuestionMs": null
+}

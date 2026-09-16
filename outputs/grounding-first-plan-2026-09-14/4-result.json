@@ -1,0 +1,143 @@
+{
+  "id": "C30",
+  "arm": "grounding_first",
+  "role": "judge",
+  "execution": {
+    "output": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "revise",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "Home care with conditional same-day assessment meets the reported need: an itchy blistering rash with limited local spread after poison ivy exposure. No reported feature establishes a necessary immediate clinician task or physical-care requirement.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "Itchy blistery rash on both forearms, spreading a bit within that area. No fever, no trouble breathing."
+            },
+            {
+              "unit": "draft",
+              "quote": "You can manage this at home for now with over-the-counter itch relief"
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "The draft uses the least burdensome adequate pathway. Same-day clinician assessment is conditional on concerning changes, not an unnecessary current requirement.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "If the rash spreads to your face, eyes or genitals, becomes painful, warm or pus-filled, you develop a fever, or itching becomes unmanageable, seek a clinician assessment that day, including urgent care if messaging isn't available."
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "fail",
+          "reason": "The categorical statement that the local spread is not infection exceeds the patient report. Pain and warmth are unknown, as the draft itself acknowledges. A likely poison ivy presentation supports self-care but does not establish exclusion of infection.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "the rash appearing to creep within that area is typical of poison ivy and not infection."
+            },
+            {
+              "unit": "draft",
+              "quote": "Superimposed skin infection (not reported; pain/warmth unknown)"
+            },
+            {
+              "unit": "patient",
+              "quote": "Itchy blistery rash on both forearms, spreading a bit within that area."
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "fail",
+          "reason": "The source supports delayed apparent spread in poison ivy, not a rule that such spread excludes infection in this patient. The categorical exclusion is unsupported; the general OTC home-care recommendation is supported.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "the rash appearing to creep within that area is typical of poison ivy and not infection."
+            },
+            {
+              "unit": "source:54b1cac37c35633e762fe8713099e013781a0205524f34a7527be46f4c761a70",
+              "quote": "- Classic misconception: fluid in blisters does NOT spread the rash — the rash appears to \"spread\" due to delayed sensitization in lower-exposure areas"
+            },
+            {
+              "unit": "source:aa002ceebadc425d3c4415a54e0a899f36ea7c83091fba1af786ae6bd921e862",
+              "quote": "If you develop a rash, ask your pharmacist about over-the-counter medicines. For severe rashes, see your doctor."
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "pass",
+          "reason": "Relevant sensitive-site involvement, infection symptoms and uncontrolled itching trigger same-day assessment. Messaging unavailability changes the access option rather than being a prerequisite for escalation.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "If the rash spreads to your face, eyes or genitals, becomes painful, warm or pus-filled, you develop a fever, or itching becomes unmanageable, seek a clinician assessment that day, including urgent care if messaging isn't available."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No issued question is supplied, and the draft provides guidance without requiring answers first.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"questions\":[]"
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "Self-care requires no current clinician ownership. The conditional assessment recommendation does not promise acceptance, coordination or service availability.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "seek a clinician assessment that day, including urgent care if messaging isn't available."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "none",
+      "earlyCorrection": null,
+      "ownershipTaskReview": [],
+      "correction": "In patientMessage, replace the categorical infection exclusion with: “A poison ivy rash can appear to spread within the exposed area; this alone does not mean infection.” Preserve the self-care route and existing conditional safety net.",
+      "repairTargets": [
+        "patientMessage"
+      ],
+      "evidenceQueries": []
+    },
+    "usage": {
+      "inputTokens": 8926,
+      "outputTokens": 1137
+    },
+    "failure": null,
+    "firstTextDeltaMs": 2969,
+    "streamProgress": {
+      "lastTextDeltaMs": 19194,
+      "textDeltaCount": 1107,
+      "textCharacters": 4957
+    },
+    "transportTimings": {
+      "startResolvedMs": 1,
+      "objectResolvedMs": 19203,
+      "usageResolvedMs": 19339,
+      "finishReasonResolvedMs": 19339,
+      "streamEndMs": 19340
+    },
+    "cacheUsage": {
+      "cachedInputTokens": 4202,
+      "cacheCreationInputTokens": 4721
+    },
+    "durationMs": 19340
+  },
+  "estimatedUSD": 0.14611,
+  "accountedUSD": 0.54115
+}

@@ -1,0 +1,1031 @@
+{
+  "schema": "early-escalation-debugging/v1",
+  "date": "2026-09-13",
+  "baseCommit": "1f5f702446ca25301cad62148cac0fd354e07449",
+  "candidate": "adaptive-disposition/v42",
+  "purpose": "All eleven live GUI debugging attempts, across successive prompt/code revisions. Not a fixed-version clinical benchmark, not a physician-adjudicated holdout, and not proof of component lift.",
+  "priorPhysicianReview": "The clinician-engineer reviewed all 50 v41 responses with 49 agreements and a qualified C25 disagreement. That review remains attributable to v41 and is not assigned automatically to these v42 outputs.",
+  "pricing": {
+    "basis": "Existing repository estimator assumption; USD per million input/output tokens: Haiku 1/5, Opus 5/25. Not a verified invoice; cached-token pricing differences are not modeled.",
+    "knownUsageSubtotalUsd": 1.029137,
+    "unknownUsageCalls": 1,
+    "totalSpendUsd": null
+  },
+  "verification": {
+    "initialScreenAuthoredTests": 52,
+    "reconciliationMechanismTests": 12,
+    "allSoftwareTests": 544,
+    "lint": "pass",
+    "typecheck": "pass",
+    "guiProductionBuild": "pass",
+    "mastraProductionBuild": "pass",
+    "backgroundIndependentReview": "Existing pilot allocation exhausted; no new Astra judgments claimed.",
+    "browserTiming": "Browser receipt observed in the rendered GUI; includes HTTP overhead, not browser paint measurement."
+  },
+  "runs": [
+    {
+      "runId": "f207a247-1715-49c8-9bd3-f9a1e2ea3e17",
+      "completedAt": "2026-09-13T20:43:58.571Z",
+      "input": "42F. I flew back from Europe two days ago and now my left calf is painful, swollen, and warm compared to the other one.",
+      "inputHash": "c27abf9be2123439aafceef82f8551fc2a42ef214a47a5a9182f9f1b29252f94",
+      "promptHash": "0ea4950507fad7cadfbc4797e0ffa4f2e807aac7c9c0df9da5e846bacb76940e",
+      "rawArtifact": {
+        "path": "apps/evaluation/.local/disposition-agent-v3/runs/f207a247-1715-49c8-9bd3-f9a1e2ea3e17.json",
+        "sha256": "45b25bb9279b8909cc7baf48b7ebf1f1c730df35a6d9ab21ee653250233ca807"
+      },
+      "status": "review_required",
+      "failure": "ROUTING_DISAGREEMENT_UNRESOLVED",
+      "modelCalls": 3,
+      "durationMs": 29916,
+      "firstActionMs": 3627,
+      "firstPatientReplyMs": null,
+      "answer": null,
+      "reconciliation": {
+        "policy": "issued-care-reconciliation/v1",
+        "status": "unresolved",
+        "from": {
+          "disposition": "EMERGENCY_NOW",
+          "directive": "Seek emergency department assessment now. Call 911 if travel is unsafe or symptoms are severe. Do not wait for a reply or further measurements."
+        },
+        "to": {
+          "disposition": "SAME_DAY_IN_PERSON",
+          "directive": "Arrange an in-person assessment today. Do not wait for an asynchronous reply. If you cannot arrange this, seek an urgent in-person service today.\n\nYour one-sided painful, swollen, warm calf soon after a long flight could be a blood clot, which needs an in-person exam and a leg ultrasound or blood test today. Do not massage the leg. If you develop chest pain, breathlessness, coughing blood or fainting, call 911 immediately rather than waiting."
+        },
+        "reason": "The independent assessment differs from earlier advice. The disagreement has not been resolved; clinician review is required before reducing urgency."
+      },
+      "events": [
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "EMERGENCY_NOW",
+            "directive": "Seek emergency department assessment now. Call 911 if travel is unsafe or symptoms are severe. Do not wait for a reply or further measurements.",
+            "source": "emergency_agent"
+          },
+          "elapsedMs": 3627,
+          "sequence": 1
+        }
+      ],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "durationMs": 3606,
+          "failure": null,
+          "usage": {
+            "inputTokens": 2817,
+            "outputTokens": 82
+          },
+          "estimatedUsd": 0.003227
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "durationMs": 13261,
+          "failure": null,
+          "usage": {
+            "inputTokens": 10618,
+            "outputTokens": 975
+          },
+          "estimatedUsd": 0.077465
+        },
+        {
+          "role": "reconciliation",
+          "model": "anthropic/claude-opus-5",
+          "durationMs": 10723,
+          "failure": "MODEL_OR_SCHEMA_FAILURE",
+          "usage": {
+            "inputTokens": null,
+            "outputTokens": null
+          },
+          "reviewOutput": null,
+          "estimatedUsd": null
+        }
+      ],
+      "failedChecks": [
+        {
+          "id": "issued_care_reconciliation",
+          "status": "fail",
+          "detail": "Disagreement is unresolved. The independently proposed answer is retained, not rewritten to agree with intake."
+        }
+      ],
+      "scenario": "C25: initial reconciliation prototype",
+      "browserObservedFinishedMs": 29940
+    },
+    {
+      "runId": "8fd8b13e-8a04-4b45-bda4-643fd0a73ce1",
+      "completedAt": "2026-09-13T20:47:50.087Z",
+      "input": "42F. I flew back from Europe two days ago and now my left calf is painful, swollen, and warm compared to the other one.",
+      "inputHash": "c27abf9be2123439aafceef82f8551fc2a42ef214a47a5a9182f9f1b29252f94",
+      "promptHash": "adb77bfa1aa9e6c7d984fc08a1af804dbe90e3695669dfd17494296d59db95e7",
+      "rawArtifact": {
+        "path": "apps/evaluation/.local/disposition-agent-v3/runs/8fd8b13e-8a04-4b45-bda4-643fd0a73ce1.json",
+        "sha256": "203a8134df8d744c434e634d18d686cd3445c59e1ba0882949f369922616958e"
+      },
+      "status": "complete",
+      "failure": null,
+      "modelCalls": 3,
+      "durationMs": 25705,
+      "firstActionMs": 3636,
+      "firstPatientReplyMs": 25653,
+      "answer": {
+        "disposition": "SAME_DAY_IN_PERSON",
+        "reviewPriority": null,
+        "patientMessage": "Arrange an in-person assessment today. Do not wait for an asynchronous reply. If you cannot arrange this, seek an urgent in-person service today.\n\nA newly painful, swollen, warm calf on one side after a long flight can mean a clot in a leg vein, which needs an in-person exam and a leg ultrasound today. If you develop chest pain, shortness of breath, coughing blood, fainting, or the leg turns pale, blue or numb, call 911 immediately.",
+        "reason": "Painful, swollen, warm left calf beginning two days after a long-haul flight suggests possible deep vein thrombosis, which needs same-day in-person examination and diagnostic testing (such as ultrasound and blood tests) that cannot be done in this thread."
+      },
+      "reconciliation": {
+        "policy": "issued-care-reconciliation/v1",
+        "status": "revised",
+        "from": {
+          "disposition": "EMERGENCY_NOW",
+          "directive": "Seek emergency department assessment now. Call 911 if travel is unsafe or symptoms are severe. Do not wait for a reply or further measurements."
+        },
+        "to": {
+          "disposition": "SAME_DAY_IN_PERSON",
+          "directive": "Arrange an in-person assessment today. Do not wait for an asynchronous reply. If you cannot arrange this, seek an urgent in-person service today.\n\nA newly painful, swollen, warm calf on one side after a long flight can mean a clot in a leg vein, which needs an in-person exam and a leg ultrasound today. If you develop chest pain, shortness of breath, coughing blood, fainting, or the leg turns pale, blue or numb, call 911 immediately."
+        },
+        "reason": "Isolated unilateral calf pain, swelling and warmth two days after long-haul flight is suspected DVT without any reported PE or limb-threatening features, so same-day in-person exam with ultrasound is clinically adequate; the final response addresses the escalation trigger by directing assessment today (with an urgent in-person fallback if unavailable) and giving explicit 911 criteria for chest pain, breathlessness, hemoptysis, fainting or a pale/blue/numb limb. PE and limb ischemia remain unknown rather than excluded, which the safety-netting covers."
+      },
+      "events": [
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "EMERGENCY_NOW",
+            "directive": "Seek emergency department assessment now. Call 911 if travel is unsafe or symptoms are severe. Do not wait for a reply or further measurements.",
+            "source": "emergency_agent"
+          },
+          "elapsedMs": 3636,
+          "sequence": 1
+        },
+        {
+          "kind": "care_revision",
+          "reconciliation": {
+            "policy": "issued-care-reconciliation/v1",
+            "status": "revised",
+            "from": {
+              "disposition": "EMERGENCY_NOW",
+              "directive": "Seek emergency department assessment now. Call 911 if travel is unsafe or symptoms are severe. Do not wait for a reply or further measurements."
+            },
+            "to": {
+              "disposition": "SAME_DAY_IN_PERSON",
+              "directive": "Arrange an in-person assessment today. Do not wait for an asynchronous reply. If you cannot arrange this, seek an urgent in-person service today.\n\nA newly painful, swollen, warm calf on one side after a long flight can mean a clot in a leg vein, which needs an in-person exam and a leg ultrasound today. If you develop chest pain, shortness of breath, coughing blood, fainting, or the leg turns pale, blue or numb, call 911 immediately."
+            },
+            "reason": "Isolated unilateral calf pain, swelling and warmth two days after long-haul flight is suspected DVT without any reported PE or limb-threatening features, so same-day in-person exam with ultrasound is clinically adequate; the final response addresses the escalation trigger by directing assessment today (with an urgent in-person fallback if unavailable) and giving explicit 911 criteria for chest pain, breathlessness, hemoptysis, fainting or a pale/blue/numb limb. PE and limb ischemia remain unknown rather than excluded, which the safety-netting covers."
+          },
+          "elapsedMs": 25648,
+          "sequence": 2
+        },
+        {
+          "kind": "patient_reply",
+          "disposition": "SAME_DAY_IN_PERSON",
+          "text": "Arrange an in-person assessment today. Do not wait for an asynchronous reply. If you cannot arrange this, seek an urgent in-person service today.\n\nA newly painful, swollen, warm calf on one side after a long flight can mean a clot in a leg vein, which needs an in-person exam and a leg ultrasound today. If you develop chest pain, shortness of breath, coughing blood, fainting, or the leg turns pale, blue or numb, call 911 immediately.",
+          "elapsedMs": 25653,
+          "sequence": 3
+        }
+      ],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "durationMs": 3615,
+          "failure": null,
+          "usage": {
+            "inputTokens": 2817,
+            "outputTokens": 81
+          },
+          "estimatedUsd": 0.003222
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "durationMs": 12880,
+          "failure": null,
+          "usage": {
+            "inputTokens": 10622,
+            "outputTokens": 922
+          },
+          "estimatedUsd": 0.07616
+        },
+        {
+          "role": "reconciliation",
+          "model": "anthropic/claude-opus-5",
+          "durationMs": 7340,
+          "failure": null,
+          "usage": {
+            "inputTokens": 6033,
+            "outputTokens": 479
+          },
+          "reviewOutput": {
+            "decision": "revise_to_final",
+            "reason": "Isolated unilateral calf pain, swelling and warmth two days after long-haul flight is suspected DVT without any reported PE or limb-threatening features, so same-day in-person exam with ultrasound is clinically adequate; the final response addresses the escalation trigger by directing assessment today (with an urgent in-person fallback if unavailable) and giving explicit 911 criteria for chest pain, breathlessness, hemoptysis, fainting or a pale/blue/numb limb. PE and limb ischemia remain unknown rather than excluded, which the safety-netting covers.",
+            "patientQuotes": [
+              "I flew back from Europe two days ago and now my left calf is painful, swollen, and warm compared to the other one.",
+              "42F."
+            ],
+            "currentEmergencyExcludedByContext": false
+          },
+          "estimatedUsd": 0.04214
+        }
+      ],
+      "failedChecks": [],
+      "scenario": "C25: transport-envelope retest",
+      "browserObservedFinishedMs": 25730
+    },
+    {
+      "runId": "3ceedda4-18d7-4149-ae34-a4dac20eff8a",
+      "completedAt": "2026-09-13T20:49:00.955Z",
+      "input": "40F. My usual migraine started this morning — the same one-sided throbbing and light sensitivity I always get. I am out of sumatriptan and would like a refill. My father had slurred speech and a drooping face ten years ago. I do not have crushing chest pressure or left arm pain.",
+      "inputHash": "6d7c0adbf5c5c52ade96b69dbbd76619b270dad11cff1f8e63dcf2fec7fc1156",
+      "promptHash": "adb77bfa1aa9e6c7d984fc08a1af804dbe90e3695669dfd17494296d59db95e7",
+      "rawArtifact": {
+        "path": "apps/evaluation/.local/disposition-agent-v3/runs/3ceedda4-18d7-4149-ae34-a4dac20eff8a.json",
+        "sha256": "f0a58d1e4ab911236a7a923535d27ed66f7405f237598a2825338118e483fe9c"
+      },
+      "status": "complete",
+      "failure": null,
+      "modelCalls": 2,
+      "durationMs": 18483,
+      "firstActionMs": null,
+      "firstPatientReplyMs": 18440,
+      "answer": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "priority",
+        "patientMessage": "Priority review by the Counsel clinician in this thread is needed today. This recommendation does not confirm a clinician has accepted the request.\n\nYou describe an attack like your usual one-sided throbbing headache with light sensitivity, and you have run out of sumatriptan. A clinician can review your history, prior response and safety checks remotely. Seek emergency care right away if you develop sudden worst-ever headache, weakness, face droop, speech trouble, vision loss, fever with neck stiffness or confusion.",
+        "reason": "You report an active headache matching your usual one-sided throbbing, light-sensitive pattern with your sumatriptan supply exhausted, which merits prompt remote clinician review for refill eligibility, with no reported feature requiring hands-on assessment today."
+      },
+      "reconciliation": null,
+      "events": [
+        {
+          "kind": "opening",
+          "quote": "I am out of sumatriptan and would like a refill.",
+          "text": "A prescribing clinician needs to review this medication request. I’m also checking whether your symptoms require in-person care. The assessment is not complete.",
+          "elapsedMs": 1708,
+          "sequence": 1
+        },
+        {
+          "kind": "patient_reply",
+          "disposition": "ASYNC_PHYSICIAN",
+          "text": "Priority review by the Counsel clinician in this thread is needed today. This recommendation does not confirm a clinician has accepted the request.\n\nYou describe an attack like your usual one-sided throbbing headache with light sensitivity, and you have run out of sumatriptan. A clinician can review your history, prior response and safety checks remotely. Seek emergency care right away if you develop sudden worst-ever headache, weakness, face droop, speech trouble, vision loss, fever with neck stiffness or confusion.",
+          "elapsedMs": 18440,
+          "sequence": 2
+        }
+      ],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "durationMs": 1700,
+          "failure": null,
+          "usage": {
+            "inputTokens": 2915,
+            "outputTokens": 73
+          },
+          "estimatedUsd": 0.00328
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "durationMs": 14381,
+          "failure": null,
+          "usage": {
+            "inputTokens": 11046,
+            "outputTokens": 1054
+          },
+          "estimatedUsd": 0.08158
+        }
+      ],
+      "failedChecks": [],
+      "scenario": "Novel migraine with historical/negated emergency phrases",
+      "browserObservedFinishedMs": 18500
+    },
+    {
+      "runId": "2757e7a9-5c0e-4465-bcdf-3db26163ac7b",
+      "completedAt": "2026-09-13T20:50:06.802Z",
+      "input": "40F. My usual migraine started this morning — the same one-sided throbbing and light sensitivity I always get. I am out of sumatriptan and would like a refill. My father had slurred speech and a drooping face ten years ago. I do not have crushing chest pressure or left arm pain.\n\nAdditional patient information: I now have slurred speech and my face is drooping. My right arm suddenly feels weak. This started five minutes ago.",
+      "inputHash": "a6b3e39ce3dde6273d2273620a66e453cd4345e490d9acb8883840207309a999",
+      "promptHash": "adb77bfa1aa9e6c7d984fc08a1af804dbe90e3695669dfd17494296d59db95e7",
+      "rawArtifact": {
+        "path": "apps/evaluation/.local/disposition-agent-v3/runs/2757e7a9-5c0e-4465-bcdf-3db26163ac7b.json",
+        "sha256": "7638cc3fae862cdc3ddeb31c5a0c32711c975b7461ea935c33ad224d2444597a"
+      },
+      "status": "complete",
+      "failure": null,
+      "modelCalls": 2,
+      "durationMs": 27580,
+      "firstActionMs": 7,
+      "firstPatientReplyMs": 27533,
+      "answer": {
+        "disposition": "EMERGENCY_NOW",
+        "reviewPriority": null,
+        "patientMessage": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.\n\nCall 911 now. Your sudden slurred speech, drooping face and new right arm weakness that began five minutes ago are stroke warning signs, and treatment is time-critical. Note the exact time symptoms started for the emergency team. Do not drive yourself, and do not take any medication or wait to see if it passes. The sumatriptan refill can be addressed later.",
+        "reason": "Sudden slurred speech, facial droop and right arm weakness starting five minutes ago match stroke warning signs and require immediate emergency evaluation, which overrides the sumatriptan refill request."
+      },
+      "reconciliation": null,
+      "events": [
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "EMERGENCY_NOW",
+            "directive": "Resolved focal neurologic symptoms can still signal a TIA or stroke. Seek emergency assessment now; do not wait for an asynchronous reply. Do not wait for a message reply or vital-sign measurements.",
+            "source": "initial_screen"
+          },
+          "elapsedMs": 7,
+          "sequence": 1
+        },
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "EMERGENCY_NOW",
+            "directive": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.",
+            "source": "emergency_agent"
+          },
+          "elapsedMs": 3213,
+          "sequence": 2
+        },
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "EMERGENCY_NOW",
+            "directive": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.",
+            "source": "emergency_agent"
+          },
+          "elapsedMs": 27524,
+          "sequence": 3
+        },
+        {
+          "kind": "patient_reply",
+          "disposition": "EMERGENCY_NOW",
+          "text": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.\n\nCall 911 now. Your sudden slurred speech, drooping face and new right arm weakness that began five minutes ago are stroke warning signs, and treatment is time-critical. Note the exact time symptoms started for the emergency team. Do not drive yourself, and do not take any medication or wait to see if it passes. The sumatriptan refill can be addressed later.",
+          "elapsedMs": 27533,
+          "sequence": 4
+        }
+      ],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "durationMs": 3201,
+          "failure": null,
+          "usage": {
+            "inputTokens": 3004,
+            "outputTokens": 78
+          },
+          "estimatedUsd": 0.003394
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "durationMs": 22248,
+          "failure": null,
+          "usage": {
+            "inputTokens": 11098,
+            "outputTokens": 896
+          },
+          "estimatedUsd": 0.07789
+        }
+      ],
+      "failedChecks": [],
+      "scenario": "Migraine follow-up: new current stroke features",
+      "browserObservedFinishedMs": 27590
+    },
+    {
+      "runId": "145bfa39-b4fd-48bf-b392-62767e5f0261",
+      "completedAt": "2026-09-13T20:58:40.344Z",
+      "input": "42F. I flew back from Europe two days ago and now my left calf is painful, swollen, and warm compared to the other one.",
+      "inputHash": "c27abf9be2123439aafceef82f8551fc2a42ef214a47a5a9182f9f1b29252f94",
+      "promptHash": "23899885859ccfa88a273efab09b5d8fd2404418c307b62c0ca2ba41ce428000",
+      "rawArtifact": {
+        "path": "apps/evaluation/.local/disposition-agent-v3/runs/145bfa39-b4fd-48bf-b392-62767e5f0261.json",
+        "sha256": "fc945d20fd2f2d70cc70c92e1224a905ff1530021cb0e1ae997fb220df4bf596"
+      },
+      "status": "complete",
+      "failure": null,
+      "modelCalls": 2,
+      "durationMs": 19188,
+      "firstActionMs": 2287,
+      "firstPatientReplyMs": 19133,
+      "answer": {
+        "disposition": "SAME_DAY_IN_PERSON",
+        "reviewPriority": null,
+        "patientMessage": "Arrange an in-person assessment today. Do not wait for an asynchronous reply. If you cannot arrange this, seek an urgent in-person service today.\n\nYour one-sided painful, swollen, warm calf after a long flight needs hands-on assessment and leg ultrasound today to check for a clot. If you develop chest pain, sudden shortness of breath, coughing blood, fainting, or the leg turns cold, pale or blue, call 911 or go to the emergency department immediately.",
+        "reason": "A unilateral painful, swollen, warm left calf two days after long-haul air travel raises suspicion of deep vein thrombosis, which needs same-day in-person examination with compression ultrasound and blood testing that cannot be done in this thread."
+      },
+      "reconciliation": null,
+      "events": [
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "SAME_DAY_IN_PERSON",
+            "directive": "Arrange an in-person assessment today. Do not wait for an asynchronous reply. If you cannot arrange this, seek an urgent in-person service today.",
+            "source": "emergency_agent"
+          },
+          "elapsedMs": 2287,
+          "sequence": 1
+        },
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "SAME_DAY_IN_PERSON",
+            "directive": "Arrange an in-person assessment today. Do not wait for an asynchronous reply. If you cannot arrange this, seek an urgent in-person service today.",
+            "source": "emergency_agent"
+          },
+          "elapsedMs": 19122,
+          "sequence": 2
+        },
+        {
+          "kind": "patient_reply",
+          "disposition": "SAME_DAY_IN_PERSON",
+          "text": "Arrange an in-person assessment today. Do not wait for an asynchronous reply. If you cannot arrange this, seek an urgent in-person service today.\n\nYour one-sided painful, swollen, warm calf after a long flight needs hands-on assessment and leg ultrasound today to check for a clot. If you develop chest pain, sudden shortness of breath, coughing blood, fainting, or the leg turns cold, pale or blue, call 911 or go to the emergency department immediately.",
+          "elapsedMs": 19133,
+          "sequence": 3
+        }
+      ],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "durationMs": 2264,
+          "failure": null,
+          "usage": {
+            "inputTokens": 2948,
+            "outputTokens": 120
+          },
+          "estimatedUsd": 0.003548
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "durationMs": 14033,
+          "failure": null,
+          "usage": {
+            "inputTokens": 10638,
+            "outputTokens": 975
+          },
+          "estimatedUsd": 0.077565
+        }
+      ],
+      "failedChecks": [],
+      "scenario": "C25: fast intake distinction corrected",
+      "browserObservedFinishedMs": 19220
+    },
+    {
+      "runId": "2d6d8df2-326e-4dab-87d6-37d7cee57a71",
+      "completedAt": "2026-09-13T20:59:18.560Z",
+      "input": "42F. I flew back from Europe two days ago and now my left calf is painful, swollen, and warm compared to the other one.\n\nAdditional patient information: I now have slurred speech and my face is drooping. My right arm suddenly feels weak. This started five minutes ago.",
+      "inputHash": "aa8b2546aa70ed2fe0ee9ad1ac28c15193d37a11f28bd68b8c7194339fadc19b",
+      "promptHash": "23899885859ccfa88a273efab09b5d8fd2404418c307b62c0ca2ba41ce428000",
+      "rawArtifact": {
+        "path": "apps/evaluation/.local/disposition-agent-v3/runs/2d6d8df2-326e-4dab-87d6-37d7cee57a71.json",
+        "sha256": "1bb0e15c500c04c2986c92871817c1cfa81f81ef1b9f60dd548f1ea07122b3f4"
+      },
+      "status": "complete",
+      "failure": null,
+      "modelCalls": 2,
+      "durationMs": 23153,
+      "firstActionMs": 9,
+      "firstPatientReplyMs": 23099,
+      "answer": {
+        "disposition": "EMERGENCY_NOW",
+        "reviewPriority": null,
+        "patientMessage": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.\n\nCall 911 now — do not drive yourself. Your sudden face drooping, slurred speech and right arm weakness starting five minutes ago are emergency stroke warning signs, and your painful, swollen, warm calf after a long flight adds clot concern. Note the exact time symptoms began and tell the paramedics. Do not wait to see if it improves.",
+        "reason": "Sudden facial droop, slurred speech and right arm weakness beginning five minutes ago are time-critical stroke features, alongside a painful, swollen, warm left calf after recent long-haul air travel suggesting possible clot with embolic risk."
+      },
+      "reconciliation": null,
+      "events": [
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "EMERGENCY_NOW",
+            "directive": "Speech changes with facial drooping can signal a stroke or TIA. Call 911 now, even if the symptoms have stopped. Do not wait for a message reply or vital-sign measurements.",
+            "source": "initial_screen"
+          },
+          "elapsedMs": 9,
+          "sequence": 1
+        },
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "EMERGENCY_NOW",
+            "directive": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.",
+            "source": "emergency_agent"
+          },
+          "elapsedMs": 1558,
+          "sequence": 2
+        },
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "EMERGENCY_NOW",
+            "directive": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.",
+            "source": "emergency_agent"
+          },
+          "elapsedMs": 23085,
+          "sequence": 3
+        },
+        {
+          "kind": "patient_reply",
+          "disposition": "EMERGENCY_NOW",
+          "text": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.\n\nCall 911 now — do not drive yourself. Your sudden face drooping, slurred speech and right arm weakness starting five minutes ago are emergency stroke warning signs, and your painful, swollen, warm calf after a long flight adds clot concern. Note the exact time symptoms began and tell the paramedics. Do not wait to see if it improves.",
+          "elapsedMs": 23099,
+          "sequence": 4
+        }
+      ],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "durationMs": 1540,
+          "failure": null,
+          "usage": {
+            "inputTokens": 3037,
+            "outputTokens": 75
+          },
+          "estimatedUsd": 0.003412
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "durationMs": 18949,
+          "failure": null,
+          "usage": {
+            "inputTokens": 10886,
+            "outputTokens": 921
+          },
+          "estimatedUsd": 0.077455
+        }
+      ],
+      "failedChecks": [],
+      "scenario": "DVT follow-up: new current stroke features",
+      "browserObservedFinishedMs": 23170
+    },
+    {
+      "runId": "bf84d649-2b0d-40ba-acf9-b384fe8d7704",
+      "completedAt": "2026-09-13T21:02:36.892Z",
+      "input": "40F. My usual migraine started this morning — the same one-sided throbbing and light sensitivity I always get. I am out of sumatriptan and would like a refill. My father had slurred speech and a drooping face ten years ago. I do not have crushing chest pressure or left arm pain.",
+      "inputHash": "6d7c0adbf5c5c52ade96b69dbbd76619b270dad11cff1f8e63dcf2fec7fc1156",
+      "promptHash": "23899885859ccfa88a273efab09b5d8fd2404418c307b62c0ca2ba41ce428000",
+      "rawArtifact": {
+        "path": "apps/evaluation/.local/disposition-agent-v3/runs/bf84d649-2b0d-40ba-acf9-b384fe8d7704.json",
+        "sha256": "0776e944160226615ce4533370039be014ac66405d0d0f9b00c38d33fb39b24c"
+      },
+      "status": "complete",
+      "failure": null,
+      "modelCalls": 2,
+      "durationMs": 18349,
+      "firstActionMs": null,
+      "firstPatientReplyMs": 18297,
+      "answer": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "priority",
+        "patientMessage": "Priority review by the Counsel clinician in this thread is needed today. This recommendation does not confirm a clinician has accepted the request.\n\nYou describe a headache matching your familiar one-sided throbbing pattern with light sensitivity, and your sumatriptan has run out, so a clinician should review your history and refill eligibility promptly. If this headache becomes explosively sudden or worst-ever, or you develop face droop, slurred speech, weakness, vision loss, fever with neck stiffness or confusion, call 911 immediately.",
+        "reason": "You report an active headache this morning matching your familiar one-sided throbbing, light-sensitive pattern with your sumatriptan supply exhausted, which merits prompt remote clinician review for prescribing without any reported feature requiring hands-on assessment today."
+      },
+      "reconciliation": null,
+      "events": [
+        {
+          "kind": "opening",
+          "quote": "I am out of sumatriptan and would like a refill.",
+          "text": "A prescribing clinician needs to review this medication request. I’m also checking whether your symptoms require in-person care. The assessment is not complete.",
+          "elapsedMs": 2090,
+          "sequence": 1
+        },
+        {
+          "kind": "patient_reply",
+          "disposition": "ASYNC_PHYSICIAN",
+          "text": "Priority review by the Counsel clinician in this thread is needed today. This recommendation does not confirm a clinician has accepted the request.\n\nYou describe a headache matching your familiar one-sided throbbing pattern with light sensitivity, and your sumatriptan has run out, so a clinician should review your history and refill eligibility promptly. If this headache becomes explosively sudden or worst-ever, or you develop face droop, slurred speech, weakness, vision loss, fever with neck stiffness or confusion, call 911 immediately.",
+          "elapsedMs": 18297,
+          "sequence": 2
+        }
+      ],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "durationMs": 2070,
+          "failure": null,
+          "usage": {
+            "inputTokens": 3046,
+            "outputTokens": 73
+          },
+          "estimatedUsd": 0.003411
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "durationMs": 13969,
+          "failure": null,
+          "usage": {
+            "inputTokens": 10647,
+            "outputTokens": 997
+          },
+          "estimatedUsd": 0.07816
+        }
+      ],
+      "failedChecks": [],
+      "scenario": "Novel migraine repeat",
+      "browserObservedFinishedMs": 18380
+    },
+    {
+      "runId": "e5dbc5fb-864e-4582-94a6-468fd5d99ea3",
+      "completedAt": "2026-09-13T21:03:37.668Z",
+      "input": "42F. I flew back from Europe two days ago and now my left calf is painful, swollen, and warm compared to the other one. I now have new chest pain and shortness of breath.",
+      "inputHash": "63e6b8c86117e4536797c47586a9885c652256d7ad4c30f0428e6241421e33df",
+      "promptHash": "23899885859ccfa88a273efab09b5d8fd2404418c307b62c0ca2ba41ce428000",
+      "rawArtifact": {
+        "path": "apps/evaluation/.local/disposition-agent-v3/runs/e5dbc5fb-864e-4582-94a6-468fd5d99ea3.json",
+        "sha256": "ee01f95d2149a4e6a2f8d12e1863d6021ef033475acc696c7a983537e156643f"
+      },
+      "status": "review_required",
+      "failure": "ROUTING_DISAGREEMENT_UNRESOLVED",
+      "modelCalls": 3,
+      "durationMs": 22738,
+      "firstActionMs": 8,
+      "firstPatientReplyMs": null,
+      "answer": null,
+      "reconciliation": {
+        "policy": "issued-care-reconciliation/v1",
+        "status": "unresolved",
+        "from": {
+          "disposition": "EMERGENCY_NOW",
+          "directive": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements."
+        },
+        "to": {
+          "disposition": "EMERGENCY_NOW",
+          "directive": "Seek emergency department assessment now. Call 911 if travel is unsafe or symptoms are severe. Do not wait for a reply or further measurements.\n\nCall 911 or get to an emergency department now. A painful, swollen, warm calf after a long flight, plus new chest pain and breathlessness, can mean a clot in the leg that has travelled to the lungs. Do not drive yourself or wait. If you faint, cough blood, or breathing worsens, emergency help is even more urgent."
+        },
+        "reason": "No true disagreement in urgency: both the earlier directive and the proposed final response call for immediate emergency care. The final message is justified by reported unilateral painful, swollen, warm calf two days after long-haul flight with new chest pain and dyspnea (suspected PE from DVT), correctly notes vital signs were not provided and that care must not wait, and flags hemoptysis/syncope as unknown rather than denied."
+      },
+      "events": [
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "EMERGENCY_NOW",
+            "directive": "Sudden breathing difficulty with chest pain or coughing blood requires emergency evaluation now. Do not wait for a message reply or vital-sign measurements.",
+            "source": "initial_screen"
+          },
+          "elapsedMs": 8,
+          "sequence": 1
+        },
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "EMERGENCY_NOW",
+            "directive": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.",
+            "source": "emergency_agent"
+          },
+          "elapsedMs": 3242,
+          "sequence": 2
+        },
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "EMERGENCY_NOW",
+            "directive": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.",
+            "source": "emergency_agent"
+          },
+          "elapsedMs": 17023,
+          "sequence": 3
+        }
+      ],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "durationMs": 3228,
+          "failure": null,
+          "usage": {
+            "inputTokens": 2980,
+            "outputTokens": 78
+          },
+          "estimatedUsd": 0.00337
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "durationMs": 11597,
+          "failure": null,
+          "usage": {
+            "inputTokens": 11002,
+            "outputTokens": 876
+          },
+          "estimatedUsd": 0.07691
+        },
+        {
+          "role": "reconciliation",
+          "model": "anthropic/claude-opus-5",
+          "durationMs": 5652,
+          "failure": null,
+          "usage": {
+            "inputTokens": 6979,
+            "outputTokens": 324
+          },
+          "reviewOutput": {
+            "decision": "revise_to_final",
+            "reason": "No true disagreement in urgency: both the earlier directive and the proposed final response call for immediate emergency care. The final message is justified by reported unilateral painful, swollen, warm calf two days after long-haul flight with new chest pain and dyspnea (suspected PE from DVT), correctly notes vital signs were not provided and that care must not wait, and flags hemoptysis/syncope as unknown rather than denied.",
+            "patientQuotes": [
+              "I now have new chest pain and shortness of breath.",
+              "I flew back from Europe two days ago and now my left calf is painful, swollen, and warm compared to the other one."
+            ],
+            "currentEmergencyExcludedByContext": false
+          },
+          "estimatedUsd": 0.042995
+        }
+      ],
+      "failedChecks": [
+        {
+          "id": "issued_care_reconciliation",
+          "status": "fail",
+          "detail": "Disagreement is unresolved. The independently proposed answer is retained, not rewritten to agree with intake."
+        }
+      ],
+      "scenario": "DVT plus new chest pain and breathlessness",
+      "browserObservedFinishedMs": 22750
+    },
+    {
+      "runId": "ed753525-1c02-40b2-aa4e-78c4e10cf013",
+      "completedAt": "2026-09-13T21:08:22.040Z",
+      "input": "42F. I flew back from Europe two days ago and now my left calf is painful, swollen, and warm compared to the other one. I now have new chest pain and shortness of breath.",
+      "inputHash": "63e6b8c86117e4536797c47586a9885c652256d7ad4c30f0428e6241421e33df",
+      "promptHash": "7e98df1fe87961973547e05a8c1095e1853495fd65ff94cd315612b5e7e006ff",
+      "rawArtifact": {
+        "path": "apps/evaluation/.local/disposition-agent-v3/runs/ed753525-1c02-40b2-aa4e-78c4e10cf013.json",
+        "sha256": "77ab6eaf5158be68add05d8a3ff70f3b90a6536011989b6fedc991d098c7a392"
+      },
+      "status": "review_required",
+      "failure": "ROUTING_DISAGREEMENT_UNRESOLVED",
+      "modelCalls": 3,
+      "durationMs": 25883,
+      "firstActionMs": 21,
+      "firstPatientReplyMs": null,
+      "answer": null,
+      "reconciliation": {
+        "policy": "issued-care-reconciliation/v1",
+        "status": "unresolved",
+        "from": {
+          "disposition": "EMERGENCY_NOW",
+          "directive": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements."
+        },
+        "to": {
+          "disposition": "EMERGENCY_NOW",
+          "directive": "Seek emergency department assessment now. Call 911 if travel is unsafe or symptoms are severe. Do not wait for a reply or further measurements.\n\nCall 911 or go to the nearest emergency department now. Your painful, swollen, warm calf after a long flight, plus new chest pain and breathlessness, could mean a clot in your leg that has travelled to your lungs. Do not drive yourself or wait. If you faint, cough blood, or breathing worsens, call 911 immediately."
+        },
+        "reason": "Both assessments retain EMERGENCY_NOW, but the proposed final softens the earlier unconditional ambulance instruction to a conditional one ('Call 911 if travel is unsafe or symptoms are severe' / 'go to the nearest emergency department'). With active chest pain and shortness of breath plus unilateral calf findings after a long flight, suspected PE can deteriorate abruptly; nothing in the patient facts justifies removing unconditional 911 activation, and no safe alternative transport is established. The mixed wording risks self-transport delay."
+      },
+      "events": [
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "EMERGENCY_NOW",
+            "directive": "Sudden breathing difficulty with chest pain or coughing blood requires emergency evaluation now. Do not wait for a message reply or vital-sign measurements.",
+            "source": "initial_screen"
+          },
+          "elapsedMs": 21,
+          "sequence": 1
+        },
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "EMERGENCY_NOW",
+            "directive": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.",
+            "source": "emergency_agent"
+          },
+          "elapsedMs": 3546,
+          "sequence": 2
+        },
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "EMERGENCY_NOW",
+            "directive": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.",
+            "source": "emergency_agent"
+          },
+          "elapsedMs": 17221,
+          "sequence": 3
+        }
+      ],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "durationMs": 3519,
+          "failure": null,
+          "usage": {
+            "inputTokens": 2980,
+            "outputTokens": 78
+          },
+          "estimatedUsd": 0.00337
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "durationMs": 11712,
+          "failure": null,
+          "usage": {
+            "inputTokens": 10992,
+            "outputTokens": 891
+          },
+          "estimatedUsd": 0.077235
+        },
+        {
+          "role": "reconciliation",
+          "model": "anthropic/claude-opus-5",
+          "durationMs": 8587,
+          "failure": null,
+          "usage": {
+            "inputTokens": 7098,
+            "outputTokens": 568
+          },
+          "reviewOutput": {
+            "decision": "unresolved",
+            "reason": "Both assessments retain EMERGENCY_NOW, but the proposed final softens the earlier unconditional ambulance instruction to a conditional one ('Call 911 if travel is unsafe or symptoms are severe' / 'go to the nearest emergency department'). With active chest pain and shortness of breath plus unilateral calf findings after a long flight, suspected PE can deteriorate abruptly; nothing in the patient facts justifies removing unconditional 911 activation, and no safe alternative transport is established. The mixed wording risks self-transport delay.",
+            "patientQuotes": [
+              "I now have new chest pain and shortness of breath.",
+              "I flew back from Europe two days ago and now my left calf is painful, swollen, and warm compared to the other one."
+            ],
+            "currentEmergencyExcludedByContext": false
+          },
+          "estimatedUsd": 0.04969
+        }
+      ],
+      "failedChecks": [
+        {
+          "id": "issued_care_reconciliation",
+          "status": "fail",
+          "detail": "Disagreement is unresolved. The independently proposed answer is retained, not rewritten to agree with intake."
+        }
+      ],
+      "scenario": "Same PE-warning case: transport-review retest",
+      "browserObservedFinishedMs": 25910
+    },
+    {
+      "runId": "d3e22424-be35-4895-ae54-b4a6fec69d4d",
+      "completedAt": "2026-09-13T21:12:50.529Z",
+      "input": "42F. I flew back from Europe two days ago and now my left calf is painful, swollen, and warm compared to the other one. I now have new chest pain and shortness of breath.",
+      "inputHash": "63e6b8c86117e4536797c47586a9885c652256d7ad4c30f0428e6241421e33df",
+      "promptHash": "5df763b4a93e3e8a33bea4979892feba98a0f0f7aed48ec0b59cc9eea28b13d0",
+      "rawArtifact": {
+        "path": "apps/evaluation/.local/disposition-agent-v3/runs/d3e22424-be35-4895-ae54-b4a6fec69d4d.json",
+        "sha256": "441d0ab4f5cd3833c459c464fe12bec6b07ad1baf35131403b0c483d360779c6"
+      },
+      "status": "complete",
+      "failure": null,
+      "modelCalls": 2,
+      "durationMs": 17701,
+      "firstActionMs": 19,
+      "firstPatientReplyMs": 17650,
+      "answer": {
+        "disposition": "EMERGENCY_NOW",
+        "reviewPriority": null,
+        "patientMessage": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.\n\nCall 911 now. Your painful, swollen, warm left calf after a long flight, together with new chest pain and shortness of breath, can mean a clot has travelled to your lungs. This needs emergency assessment and imaging today. Do not drive yourself. If you faint, cough blood, or your breathing worsens while waiting, tell the dispatcher.",
+        "reason": "New chest pain and shortness of breath with a painful, swollen, warm left calf two days after a long flight suggests possible deep vein thrombosis with pulmonary embolism, which requires immediate emergency evaluation and ambulance transport."
+      },
+      "reconciliation": null,
+      "events": [
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "EMERGENCY_NOW",
+            "directive": "Sudden breathing difficulty with chest pain or coughing blood requires emergency evaluation now. Do not wait for a message reply or vital-sign measurements.",
+            "source": "initial_screen"
+          },
+          "elapsedMs": 19,
+          "sequence": 1
+        },
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "EMERGENCY_NOW",
+            "directive": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.",
+            "source": "emergency_agent"
+          },
+          "elapsedMs": 3607,
+          "sequence": 2
+        },
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "EMERGENCY_NOW",
+            "directive": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.",
+            "source": "emergency_agent"
+          },
+          "elapsedMs": 17631,
+          "sequence": 3
+        },
+        {
+          "kind": "patient_reply",
+          "disposition": "EMERGENCY_NOW",
+          "text": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.\n\nCall 911 now. Your painful, swollen, warm left calf after a long flight, together with new chest pain and shortness of breath, can mean a clot has travelled to your lungs. This needs emergency assessment and imaging today. Do not drive yourself. If you faint, cough blood, or your breathing worsens while waiting, tell the dispatcher.",
+          "elapsedMs": 17650,
+          "sequence": 4
+        }
+      ],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "durationMs": 3581,
+          "failure": null,
+          "usage": {
+            "inputTokens": 2980,
+            "outputTokens": 81
+          },
+          "estimatedUsd": 0.003385
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "durationMs": 11965,
+          "failure": null,
+          "usage": {
+            "inputTokens": 11157,
+            "outputTokens": 904
+          },
+          "estimatedUsd": 0.078385
+        }
+      ],
+      "failedChecks": [],
+      "scenario": "Same PE-warning case: final transport/rendering fix",
+      "browserObservedFinishedMs": 17730
+    },
+    {
+      "runId": "6ada4d19-4a2b-4484-94ca-e300941c96ef",
+      "completedAt": "2026-09-13T21:13:43.646Z",
+      "input": "42F. I flew back from Europe two days ago and now my left calf is painful, swollen, and warm compared to the other one.",
+      "inputHash": "c27abf9be2123439aafceef82f8551fc2a42ef214a47a5a9182f9f1b29252f94",
+      "promptHash": "5df763b4a93e3e8a33bea4979892feba98a0f0f7aed48ec0b59cc9eea28b13d0",
+      "rawArtifact": {
+        "path": "apps/evaluation/.local/disposition-agent-v3/runs/6ada4d19-4a2b-4484-94ca-e300941c96ef.json",
+        "sha256": "277a18c09a066f68a5abba4f472203e58d539c68a819a517fb4ef2ab6d38d9ea"
+      },
+      "status": "complete",
+      "failure": null,
+      "modelCalls": 2,
+      "durationMs": 22816,
+      "firstActionMs": 2064,
+      "firstPatientReplyMs": 22761,
+      "answer": {
+        "disposition": "SAME_DAY_IN_PERSON",
+        "reviewPriority": null,
+        "patientMessage": "Arrange an in-person assessment today. Do not wait for an asynchronous reply. If you cannot arrange this, seek an urgent in-person service today.\n\nYour one-sided painful, swollen, warm calf after a long flight could be a blood clot, which needs an examination and a leg ultrasound today. Please arrange in-person assessment now rather than waiting. If you develop chest pain, trouble breathing, coughing up blood, or fainting, call 911 immediately.",
+        "reason": "A newly painful, swollen, warm left calf two days after a long flight suggests possible deep vein thrombosis, which needs same-day in-person examination and leg ultrasound/blood testing that cannot be done in this thread."
+      },
+      "reconciliation": null,
+      "events": [
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "SAME_DAY_IN_PERSON",
+            "directive": "Arrange an in-person assessment today. Do not wait for an asynchronous reply. If you cannot arrange this, seek an urgent in-person service today.",
+            "source": "emergency_agent"
+          },
+          "elapsedMs": 2064,
+          "sequence": 1
+        },
+        {
+          "kind": "action",
+          "notice": {
+            "disposition": "SAME_DAY_IN_PERSON",
+            "directive": "Arrange an in-person assessment today. Do not wait for an asynchronous reply. If you cannot arrange this, seek an urgent in-person service today.",
+            "source": "emergency_agent"
+          },
+          "elapsedMs": 22749,
+          "sequence": 2
+        },
+        {
+          "kind": "patient_reply",
+          "disposition": "SAME_DAY_IN_PERSON",
+          "text": "Arrange an in-person assessment today. Do not wait for an asynchronous reply. If you cannot arrange this, seek an urgent in-person service today.\n\nYour one-sided painful, swollen, warm calf after a long flight could be a blood clot, which needs an examination and a leg ultrasound today. Please arrange in-person assessment now rather than waiting. If you develop chest pain, trouble breathing, coughing up blood, or fainting, call 911 immediately.",
+          "elapsedMs": 22761,
+          "sequence": 3
+        }
+      ],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "durationMs": 2053,
+          "failure": null,
+          "usage": {
+            "inputTokens": 2948,
+            "outputTokens": 130
+          },
+          "estimatedUsd": 0.003598
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "durationMs": 18951,
+          "failure": null,
+          "usage": {
+            "inputTokens": 10848,
+            "outputTokens": 962
+          },
+          "estimatedUsd": 0.07829
+        }
+      ],
+      "failedChecks": [],
+      "scenario": "C25: final isolated-leg-symptom retest",
+      "browserObservedFinishedMs": 22830
+    }
+  ]
+}

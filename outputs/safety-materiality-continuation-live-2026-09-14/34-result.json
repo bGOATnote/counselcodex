@@ -1,0 +1,138 @@
+{
+  "id": "sm1-executor-defect",
+  "role": "judge",
+  "arm": "candidate",
+  "execution": {
+    "output": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "revise",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "The reported prolonged crushing chest pressure with arm radiation, sweating and nausea requires immediate emergency assessment. Calling 911 now meets this requirement without awaiting messaging or measurements.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach"
+            },
+            {
+              "unit": "draft",
+              "quote": "Call 911 now. Do not drive yourself or wait for this thread."
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "Immediate EMS activation is proportionate to ongoing symptoms strongly concerning for acute coronary syndrome; a lower-intensity messaging pathway would not meet the time-critical assessment need.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "crushing pressure in the center of my chest for the last 30 minutes"
+            },
+            {
+              "unit": "draft",
+              "quote": "Call 911 now."
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "The symptom summary preserves the patient's reported findings, alternatives are not asserted as diagnoses, and vital-sign measurement status remains unknown.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "45M."
+            },
+            {
+              "unit": "patient",
+              "quote": "I have high cholesterol."
+            },
+            {
+              "unit": "draft",
+              "quote": "No vital signs reported: blood pressure, heart rate, respiratory rate, oxygen saturation and temperature were not provided, and whether any measurement occurred is unknown."
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "pass",
+          "reason": "Supplied passages support immediate emergency care and EMS activation for persistent chest discomfort, and emergency ECG/troponin evaluation. The infeasible dispatcher instruction is separately identified under safety_net.",
+          "anchors": [
+            {
+              "unit": "source:d7b0583624de341d300313fc3d298f799f19f6779b771da5e3caffae41194822",
+              "quote": "Get emergency help right away if you have chest pain or discomfort that does not go away or happens while you are resting. This may be a sign of a heart attack. Call 911."
+            },
+            {
+              "unit": "source:575b71f9a6f96d2b9d9aa5586fa84978660a00743e5e42bfead957fa698639d0",
+              "quote": "Always obtain ECG and troponin regardless of initial impression."
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "fail",
+          "reason": "An unresponsive patient cannot tell the dispatcher. Preserve the immediate 911 instruction but assign this contingency only to another person if present, without assuming a bystander exists.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "If you become unresponsive, tell the dispatcher."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No question was issued or required before emergency action; the draft explicitly prohibits waiting for the thread.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Do not drive yourself or wait for this thread."
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "Emergency services are the appropriate owner. The draft instructs activation without claiming dispatch, acceptance or a Counsel follow-up commitment.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Call 911 now."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "none",
+      "earlyCorrection": null,
+      "transportReview": {
+        "mode": "activate_ems",
+        "verdict": "supported",
+        "draftQuote": "Call 911 now. Do not drive yourself or wait for this thread.",
+        "activation": null
+      },
+      "ownershipTaskReview": [],
+      "correction": "Keep immediate EMS activation unchanged. Replace the infeasible final sentence with: “If someone is with you and you become unresponsive, they should immediately tell the dispatcher and follow their instructions.”",
+      "repairTargets": [
+        "patientMessage"
+      ],
+      "evidenceQueries": []
+    },
+    "usage": {
+      "inputTokens": 9647,
+      "outputTokens": 996
+    },
+    "failure": null,
+    "firstTextDeltaMs": 2412,
+    "streamProgress": {
+      "lastTextDeltaMs": 30513,
+      "textDeltaCount": 989,
+      "textCharacters": 4132
+    },
+    "durationMs": 30642
+  },
+  "estimatedUSD": 0.14627,
+  "accountedUSD": 1.6002969999999999
+}

@@ -1,0 +1,21 @@
+{
+  "protocol": "captured-estimate-pricing/v1",
+  "purpose": "Preserve the existing repository rates used for this GUI artifact report; not a fresh price verification or provider invoice.",
+  "sourceFile": "src/evaluation/clinical-study-budget.ts",
+  "sourceFileSha256": "1c727bf7e7820ec0df242ac8a33a79fc41670b590e292cb2f669a32bc81b3127",
+  "version": "clinical-study-pricing-2026-09-13/v1",
+  "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+  "judgeSource": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+  "models": {
+    "anthropic/claude-opus-5": { "input": 5, "output": 25 },
+    "anthropic/claude-haiku-4-5": { "input": 1, "output": 5 },
+    "openai/gpt-6-astra": { "input": 10, "output": 50 }
+  },
+  "unit": "USD_per_million_tokens",
+  "estimator": "Sum each recorded agent's inputTokens * input rate + outputTokens * output rate, divided by 1000000; include failed executions with usage. Unknown model/usage or an agent-call total that differs from modelCalls yields an unknown cost, not zero.",
+  "limitations": [
+    "Standard uncached token estimate, not provider invoice or confirmed account expenditure.",
+    "Cache writes/reads, embedding charges, and other provider-specific adjustments are not itemized in this report.",
+    "The separate fixed-packet study cost is not included in the GUI subtotal."
+  ]
+}

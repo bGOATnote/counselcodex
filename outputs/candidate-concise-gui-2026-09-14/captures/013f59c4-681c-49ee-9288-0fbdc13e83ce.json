@@ -1,0 +1,264 @@
+{
+  "protocol": "immutable-gui-capture/v1",
+  "label": "C30-baseline",
+  "runId": "013f59c4-681c-49ee-9288-0fbdc13e83ce",
+  "files": {
+    "run": {
+      "source": "apps/evaluation/.local/clinical-evidence-graph-v1/runs/013f59c4-681c-49ee-9288-0fbdc13e83ce.json",
+      "copied": "outputs/candidate-concise-gui-2026-09-14/runs/013f59c4-681c-49ee-9288-0fbdc13e83ce.json",
+      "sha256": "456fa5b20d43305ec94ece7b9f20374f85c5500ca51bb4338f8968a1f1886b4c",
+      "bytes": 182069
+    },
+    "events": {
+      "source": "apps/evaluation/.local/clinical-evidence-graph-v1/events/013f59c4-681c-49ee-9288-0fbdc13e83ce.jsonl",
+      "copied": "outputs/candidate-concise-gui-2026-09-14/events/013f59c4-681c-49ee-9288-0fbdc13e83ce.jsonl",
+      "sha256": "5d792a5975bbe9ba0e887494814cf4ddcf05bd9d40353bf56e79c3f6e063af28",
+      "bytes": 25050
+    }
+  },
+  "sourceCompletedAt": "2026-09-14T15:28:18.773Z",
+  "graphVersion": "evidence-graph/v15",
+  "runVersion": "disposition-agent/v3",
+  "clinicalPolicyVersion": "disposition-clinical-policy/v1",
+  "config": {
+    "models": {
+      "context": "anthropic/claude-haiku-4-5",
+      "safety": "anthropic/claude-haiku-4-5",
+      "disposition": "anthropic/claude-opus-5",
+      "judge": "openai/gpt-6-astra"
+    },
+    "factGraphMode": "off",
+    "judgeStyle": "concise"
+  },
+  "promptHash": "a6a85b8316e2a64cd1b6cddadf0111e223efe3bb92dc0d679a97be4976b341d7",
+  "inputHash": "9e1db2d0712a2fb3ee4a7542f19fb181102946b1ab059ac8f09063dde4b4b5bb",
+  "answerHash": "2f936c450bede8cf9e9a2772987fd88cfc42fc5508348ef7a2fe891d1708e05d",
+  "status": "complete",
+  "release": "model_reviewed",
+  "failure": null,
+  "disposition": "ASYNC_PHYSICIAN",
+  "reviewPriority": "routine",
+  "patientMessage": "I recommend a Counsel clinician review your rash in this message thread, with a same-day target during service hours. Your description fits a contact rash on both forearms, and a clinician can judge whether prescription treatment is needed. Call 911 for any throat tightness or trouble breathing. If Counsel review isn't available today and the rash worsens, spreads widely, involves your face, eyes or genitals, or develops fever, pus or increasing pain, contact your own clinician or an urgent care clinic instead of waiting.",
+  "reason": "Itchy blistery rash on both forearms after reported poison ivy exposure, with fever and trouble breathing denied by the patient; a clinician task remains (severity assessment and whether prescription treatment is warranted), but nothing reported establishes time-critical or in-person need.",
+  "earlyNotices": [],
+  "transportAdmission": {
+    "status": "legacy",
+    "code": "LEGACY_TEXT_CONTRACT",
+    "clinicalValidation": false
+  },
+  "careCorrectionReleased": false,
+  "finalJudge": {
+    "reviewScope": "draft-and-issued-question/v2",
+    "verdict": "accept",
+    "criteria": [
+      {
+        "id": "undertriage",
+        "verdict": "pass",
+        "reason": "Messaging can start severity assessment; no physical requirement established.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "I recommend a Counsel clinician review your rash in this message thread, with a same-day target during service hours."
+          }
+        ]
+      },
+      {
+        "id": "overtriage",
+        "verdict": "pass",
+        "reason": "Routine remote assessment imposes no unnecessary urgent-care burden.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "a clinician can judge whether prescription treatment is needed."
+          }
+        ]
+      },
+      {
+        "id": "patient_grounding",
+        "verdict": "pass",
+        "reason": "Reported distribution and denials preserved; measurements remain unknown.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Itchy blistery rash on both forearms after reported poison ivy exposure, with fever and trouble breathing denied by the patient"
+          },
+          {
+            "unit": "draft",
+            "quote": "whether any were measured is unknown."
+          }
+        ]
+      },
+      {
+        "id": "claim_support",
+        "verdict": "pass",
+        "reason": "Contact-rash inference and outpatient assessment fit supplied evidence.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Your description fits a contact rash on both forearms"
+          },
+          {
+            "unit": "source:aa002ceebadc425d3c4415a54e0a899f36ea7c83091fba1af786ae6bd921e862",
+            "quote": "If it gets on your skin, it causes a blistering skin rash ."
+          }
+        ]
+      },
+      {
+        "id": "safety_net",
+        "verdict": "pass",
+        "reason": "Airway emergencies and worsening rash receive actionable escalation.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Call 911 for any throat tightness or trouble breathing."
+          },
+          {
+            "unit": "draft",
+            "quote": "If Counsel review isn't available today and the rash worsens, spreads widely, involves your face, eyes or genitals, or develops fever, pus or increasing pain, contact your own clinician or an urgent care clinic instead of waiting."
+          }
+        ]
+      },
+      {
+        "id": "clarification_delay",
+        "verdict": "pass",
+        "reason": "No issued question or answer-dependent care delay.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "\"questions\":[]"
+          }
+        ]
+      },
+      {
+        "id": "ownership",
+        "verdict": "pass",
+        "reason": "Counsel review recommended without fabricated acceptance or guarantee.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "I recommend a Counsel clinician review your rash in this message thread, with a same-day target during service hours."
+          }
+        ]
+      }
+    ],
+    "earlyAction": "none",
+    "earlyCorrection": null,
+    "ownershipTaskReview": [],
+    "correction": "",
+    "evidenceQueries": []
+  },
+  "failedApplicationChecks": [],
+  "timing": {
+    "firstActionMs": null,
+    "firstQuestionMs": null,
+    "firstPatientReplyMs": 80245,
+    "finalMs": 80278,
+    "workflowMs": 80257,
+    "tracePersistenceMs": 20
+  },
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 0
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 3062
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 26528
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 53712
+    }
+  ],
+  "modelCalls": 6,
+  "repairs": 1,
+  "agentTimings": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "calls": 1,
+      "durationMs": 2153,
+      "firstTextDeltaMs": 1102,
+      "usage": {
+        "inputTokens": 1082,
+        "outputTokens": 166
+      },
+      "failure": null
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "calls": 1,
+      "durationMs": 21734,
+      "firstTextDeltaMs": 1462,
+      "usage": {
+        "inputTokens": 17186,
+        "outputTokens": 1290
+      },
+      "failure": null
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "calls": 1,
+      "durationMs": 3058,
+      "firstTextDeltaMs": 1338,
+      "usage": {
+        "inputTokens": 2515,
+        "outputTokens": 177
+      },
+      "failure": null
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "calls": 1,
+      "durationMs": 18315,
+      "firstTextDeltaMs": 4827,
+      "usage": {
+        "inputTokens": 8513,
+        "outputTokens": 846
+      },
+      "failure": null
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "calls": 1,
+      "durationMs": 19668,
+      "firstTextDeltaMs": 1800,
+      "usage": {
+        "inputTokens": 18191,
+        "outputTokens": 1316
+      },
+      "failure": null
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "calls": 1,
+      "durationMs": 15700,
+      "firstTextDeltaMs": 4430,
+      "usage": {
+        "inputTokens": 8537,
+        "outputTokens": 788
+      },
+      "failure": null
+    }
+  ],
+  "traceId": "e72302fcc57fbb295f12ab9a487b6e2b",
+  "tracePersisted": true,
+  "eventLogPersisted": true,
+  "estimatedUSD": 0.49954699999999996,
+  "pricingVersion": "clinical-study-pricing-2026-09-13/v1",
+  "clinicalApproval": false,
+  "limitation": "Exact runtime artifact capture, not an independent observation of browser rendering, patient receipt, clinical correctness or delivered care. All supplied attempts are retained, including failures. Cost is the standard token estimate, not an invoice; embedding and cache-specific charges are not included."
+}

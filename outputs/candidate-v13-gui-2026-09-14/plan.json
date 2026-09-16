@@ -1,0 +1,16 @@
+{
+  "version": "candidate-gui-verification/v1",
+  "graphVersion": "evidence-graph/v13",
+  "interface": "http://localhost:4120/candidate",
+  "scope": "Five consecutive live browser submissions. All attempts retained, including failed or incomplete runs. Development verification, not an efficacy trial or comparison with Counsel's deployed system.",
+  "planned": [
+    { "id": "C02", "kind": "original", "expected": "Emergency now; EMS activation" },
+    { "id": "C02-update", "kind": "patient_update", "message": "I have called 911 and the ambulance is on its way. The chest pressure is still there.", "expected": "Emergency care continues; no false downgrade or invented handoff" },
+    { "id": "C50", "kind": "original", "expected": "Priority async; no unsupported physical-care requirement" },
+    { "id": "C50-update", "kind": "patient_update", "message": "The headache is still exactly like my usual migraine. No new symptoms. I am asking only for a refill of my usual sumatriptan.", "expected": "Priority async; original symptoms retained" },
+    { "id": "C04", "kind": "original", "expected": "In-person today; emergency only with a defensible additional basis" }
+  ],
+  "checks": ["message identity", "early and final care", "revision and failure preservation", "query admission", "trace persistence and span types", "source availability", "browser receipt timing", "model-call cost estimate", "readable clinical-first layout"],
+  "clinicalAccuracyEstablished": false,
+  "latencySloEstablished": false
+}

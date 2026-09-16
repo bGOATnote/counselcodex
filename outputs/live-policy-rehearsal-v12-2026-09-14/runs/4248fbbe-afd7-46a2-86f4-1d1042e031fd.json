@@ -1,0 +1,1466 @@
+{
+  "status": "complete",
+  "answer": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "reviewPriority": "routine",
+    "workType": "clinical_review",
+    "reason": "The patient requests discussion of a cholesterol result and denies chest pain or trouble breathing; the crushing chest pain and sweating described were the father's symptoms five years ago, not this patient's. Lipid review and family-history risk discussion are clinician tasks without reported time-critical features.",
+    "patientMessage": "I recommend a standard message review with a Counsel clinician in this thread (same-day service-hours target) to go over your cholesterol result and what your father's heart attack means for your own risk. Nothing you report suggests an urgent problem now. If you ever think you might be having a heart attack — chest discomfort, shortness of breath, sweating for no reason — call 911 right away rather than waiting for a reply.",
+    "differential": [
+      "Lipid result interpretation with first-degree family history of heart attack",
+      "Cardiovascular risk assessment request, no current symptoms reported",
+      "No reported features of acute coronary syndrome in this patient"
+    ],
+    "redFlags": [
+      {
+        "concern": "Chest pain",
+        "status": "denied",
+        "quote": "I have no chest pain or trouble breathing"
+      },
+      {
+        "concern": "Shortness of breath",
+        "status": "denied",
+        "quote": "I have no chest pain or trouble breathing"
+      },
+      {
+        "concern": "Sweating in this patient",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Fainting, palpitations, exertional symptoms",
+        "status": "unknown",
+        "quote": ""
+      }
+    ],
+    "vitalSigns": "No vital signs reported; blood pressure, heart rate and whether any measurement was taken are unknown. Cholesterol values were not stated in the message.",
+    "questions": [],
+    "evidenceLimitations": "Cited sources are consumer patient education on heart attack symptoms and emergency transport; they support the safety-net wording but not lipid management or this patient's individual risk. Other symptoms and measurements were not reported, which means unknown rather than absent.",
+    "evidence": [
+      {
+        "sourceId": "e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+        "claim": "If you think you might be having a heart attack, call 911 even if unsure."
+      },
+      {
+        "sourceId": "6678de85ca9c75685ac1f8f69d3890b2d0aa37ba94b2ec57161c0a01d40caf5c",
+        "claim": "Heart attack symptoms may include chest discomfort, shortness of breath and unexplained sweating."
+      },
+      {
+        "sourceId": "00943c45f05d907fd25398cc1bad30ed1f1cf6d4e9e986cf1e7512cc2aea482b",
+        "claim": "Family history is listed among heart attack risk factors that cannot be changed."
+      }
+    ]
+  },
+  "origin": "agent",
+  "modelCalls": 6,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "cholesterol result interpretation clinical significance",
+          "family history coronary disease cardiovascular risk assessment",
+          "asymptomatic lipid screening primary prevention"
+        ],
+        "findings": [
+          {
+            "finding": "Father had myocardial infarction with crushing chest pain and diaphoresis five years ago",
+            "status": "reported",
+            "quote": "My father had crushing chest pain and sweating during his heart attack five years ago"
+          },
+          {
+            "finding": "Patient denies chest pain",
+            "status": "reported",
+            "quote": "I have no chest pain"
+          },
+          {
+            "finding": "Patient denies dyspnea",
+            "status": "reported",
+            "quote": "no trouble breathing"
+          },
+          {
+            "finding": "Cholesterol result obtained",
+            "status": "reported",
+            "quote": "I want to discuss my cholesterol result with a clinician"
+          },
+          {
+            "finding": "Specific cholesterol values",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "finding": "Patient's cardiovascular symptoms or prior diagnoses",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "question": {
+          "text": "What are your specific cholesterol values, and has a clinician measured them before or discussed your cardiovascular risk with you?",
+          "why": "The actual lipid panel values and whether this is a new or known result will determine whether discussion should focus on screening interpretation, risk stratification, or management given your family history.",
+          "quote": "I want to discuss my cholesterol result with a clinician"
+        }
+      },
+      "usage": {
+        "inputTokens": 1033,
+        "outputTokens": 322
+      },
+      "failure": "CONTEXT_CONTRACT_FAILED",
+      "firstTextDeltaMs": 1311,
+      "streamProgress": {
+        "lastTextDeltaMs": 3936,
+        "textDeltaCount": 102,
+        "textCharacters": 1381
+      },
+      "durationMs": 3974
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "routine",
+        "workType": "clinical_review",
+        "reason": "Patient requests discussion of a cholesterol result and explicitly denies chest pain or breathing difficulty; the described cardiac symptoms belong to his father five years ago, not this patient. Lipid review and family-history risk discussion are appropriate for non-urgent async clinician review.",
+        "patientMessage": "I recommend a standard (same-day service-hours target) message review with a Counsel clinician in this thread to go over your cholesterol result and what your father's heart attack means for your own risk. Nothing you describe suggests an urgent problem right now. If you develop chest pain, pressure, breathlessness, or fainting, call 911 rather than waiting for a reply.",
+        "differential": [
+          "Lipid result interpretation with family history of premature/first-degree coronary disease",
+          "Cardiovascular risk assessment request, no current symptoms reported",
+          "No evidence of acute coronary syndrome in this patient on reported facts"
+        ],
+        "redFlags": [
+          {
+            "concern": "Chest pain",
+            "status": "denied",
+            "quote": "I have no chest pain or trouble breathing"
+          },
+          {
+            "concern": "Shortness of breath",
+            "status": "denied",
+            "quote": "I have no chest pain or trouble breathing"
+          },
+          {
+            "concern": "Diaphoresis/sweating in this patient",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Syncope, palpitations, exertional symptoms",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported by the patient; blood pressure, heart rate and whether any measurement was taken are unknown. Cholesterol values were not stated in the message.",
+        "questions": [],
+        "evidenceLimitations": "No sources were retrieved, so this routing rests only on the patient's own report. The crushing chest pain and sweating described are the father's historical symptoms, not current findings in this patient; absence of other symptoms and of any measurements means risk is unassessed rather than normal.",
+        "transportIntent": null,
+        "citations": []
+      },
+      "usage": {
+        "inputTokens": 5256,
+        "outputTokens": 679
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1570,
+      "streamProgress": {
+        "lastTextDeltaMs": 10542,
+        "textDeltaCount": 153,
+        "textCharacters": 1989
+      },
+      "durationMs": 10568,
+      "rawOutput": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "routine",
+        "workType": "clinical_review",
+        "reason": "Patient requests discussion of a cholesterol result and explicitly denies chest pain or breathing difficulty; the described cardiac symptoms belong to his father five years ago, not this patient. Lipid review and family-history risk discussion are appropriate for non-urgent async clinician review.",
+        "patientMessage": "I recommend a standard (same-day service-hours target) message review with a Counsel clinician in this thread to go over your cholesterol result and what your father's heart attack means for your own risk. Nothing you describe suggests an urgent problem right now. If you develop chest pain, pressure, breathlessness, or fainting, call 911 rather than waiting for a reply.",
+        "differential": [
+          "Lipid result interpretation with family history of premature/first-degree coronary disease",
+          "Cardiovascular risk assessment request, no current symptoms reported",
+          "No evidence of acute coronary syndrome in this patient on reported facts"
+        ],
+        "redFlags": [
+          {
+            "concern": "Chest pain",
+            "status": "denied",
+            "quote": "I have no chest pain or trouble breathing"
+          },
+          {
+            "concern": "Shortness of breath",
+            "status": "denied",
+            "quote": "I have no chest pain or trouble breathing"
+          },
+          {
+            "concern": "Diaphoresis/sweating in this patient",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Syncope, palpitations, exertional symptoms",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported by the patient; blood pressure, heart rate and whether any measurement was taken are unknown. Cholesterol values were not stated in the message.",
+        "questions": [],
+        "evidenceLimitations": "No sources were retrieved, so this routing rests only on the patient's own report. The crushing chest pain and sweating described are the father's historical symptoms, not current findings in this patient; absence of other symptoms and of any measurements means risk is unassessed rather than normal.",
+        "transportIntent": null,
+        "citations": []
+      }
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "action": "STANDARD_ASYNC",
+        "basis": [
+          {
+            "quote": "My father had crushing chest pain and sweating during his heart attack five years ago",
+            "interpretation": "Patient reports father's historical heart attack presentation five years ago, not current patient symptoms",
+            "currentPatient": false,
+            "present": false
+          },
+          {
+            "quote": "I have no chest pain or trouble breathing",
+            "interpretation": "Patient explicitly denies current chest pain and dyspnea",
+            "currentPatient": true,
+            "present": false
+          },
+          {
+            "quote": "I want to discuss my cholesterol result with a clinician",
+            "interpretation": "Patient requests clinician discussion of cholesterol result; no acute symptom or time-critical finding reported",
+            "currentPatient": true,
+            "present": true
+          }
+        ],
+        "actionBasis": null,
+        "reason": "Patient denies acute cardiopulmonary symptoms and requests routine cholesterol discussion; no emergency or same-day physical requirement established.",
+        "patientMessage": "",
+        "physicalRequirement": null
+      },
+      "usage": {
+        "inputTokens": 2466,
+        "outputTokens": 200
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1178,
+      "streamProgress": {
+        "lastTextDeltaMs": 2892,
+        "textDeltaCount": 65,
+        "textCharacters": 932
+      },
+      "durationMs": 2898
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "revise",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Cholesterol interpretation requires clinician review, but the reported facts do not establish an urgent physical-care requirement. Standard async review meets that need.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I have no chest pain or trouble breathing. I want to discuss my cholesterol result with a clinician."
+              },
+              {
+                "unit": "draft",
+                "quote": "I recommend a standard (same-day service-hours target) message review with a Counsel clinician in this thread"
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "The current disposition imposes no unnecessary urgent assessment or transport. Historical symptoms in the patient's father are correctly excluded as an emergency trigger.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "My father had crushing chest pain and sweating during his heart attack five years ago."
+              },
+              {
+                "unit": "draft",
+                "quote": "\"disposition\":\"ASYNC_PHYSICIAN\",\"reviewPriority\":\"routine\""
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "fail",
+            "reason": "First-degree family history is established, but premature coronary disease and the patient's gender are not. The evidence-limitations statement also treats measurements as absent, whereas only their reporting is absent.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Lipid result interpretation with family history of premature/first-degree coronary disease"
+              },
+              {
+                "unit": "draft",
+                "quote": "the described cardiac symptoms belong to his father five years ago"
+              },
+              {
+                "unit": "draft",
+                "quote": "absence of other symptoms and of any measurements means risk is unassessed rather than normal."
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "fail",
+            "reason": "The async queue recommendation follows project policy, but no supplied clinical evidence supports the blanket emergency-transport threshold in the safety net. The draft explicitly acknowledges missing sources; that gap cannot be scored as supported.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "No sources were retrieved, so this routing rests only on the patient's own report."
+              },
+              {
+                "unit": "draft",
+                "quote": "If you develop chest pain, pressure, breathlessness, or fainting, call 911 rather than waiting for a reply."
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "The advice gives a clear immediate action for potentially serious new cardiac or respiratory symptoms and does not delay the currently indicated routine review. Evidence support for its transport wording is assessed separately.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "If you develop chest pain, pressure, breathlessness, or fainting, call 911 rather than waiting for a reply."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No issued question or answer-dependent delay is present.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "Counsel clinician review is recommended, not represented as accepted or guaranteed. The service-hours timing is explicitly a target.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I recommend a standard (same-day service-hours target) message review with a Counsel clinician in this thread to go over your cholesterol result"
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "ownershipTaskReview": [],
+        "correction": "Retain Standard async clinician review. Replace 'premature/first-degree' with 'first-degree' family history, use gender-neutral patient references, and state that other symptoms and measurements were not reported rather than absent. Supply applicable evidence for the emergency safety-net wording and align its ambulance threshold with that evidence.",
+        "evidenceQueries": [
+          "Heart attack warning symptoms emergency ambulance advice chest discomfort breathlessness fainting"
+        ]
+      },
+      "usage": {
+        "inputTokens": 3824,
+        "outputTokens": 1043
+      },
+      "failure": null,
+      "firstTextDeltaMs": 8443,
+      "streamProgress": {
+        "lastTextDeltaMs": 27128,
+        "textDeltaCount": 931,
+        "textCharacters": 4266
+      },
+      "durationMs": 27554
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "routine",
+        "workType": "clinical_review",
+        "reason": "The patient requests discussion of a cholesterol result and denies chest pain or trouble breathing; the crushing chest pain and sweating described were the father's symptoms five years ago, not this patient's. Lipid review and family-history risk discussion are clinician tasks without reported time-critical features.",
+        "patientMessage": "I recommend a standard message review with a Counsel clinician in this thread (same-day service-hours target) to go over your cholesterol result and what your father's heart attack means for your own risk. Nothing you report suggests an urgent problem now. If you ever think you might be having a heart attack — chest discomfort, shortness of breath, sweating for no reason — call 911 right away rather than waiting for a reply.",
+        "differential": [
+          "Lipid result interpretation with first-degree family history of heart attack",
+          "Cardiovascular risk assessment request, no current symptoms reported",
+          "No reported features of acute coronary syndrome in this patient"
+        ],
+        "redFlags": [
+          {
+            "concern": "Chest pain",
+            "status": "denied",
+            "quote": "I have no chest pain or trouble breathing"
+          },
+          {
+            "concern": "Shortness of breath",
+            "status": "denied",
+            "quote": "I have no chest pain or trouble breathing"
+          },
+          {
+            "concern": "Sweating in this patient",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Fainting, palpitations, exertional symptoms",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported; blood pressure, heart rate and whether any measurement was taken are unknown. Cholesterol values were not stated in the message.",
+        "questions": [],
+        "evidenceLimitations": "Cited sources are consumer patient education on heart attack symptoms and emergency transport; they support the safety-net wording but not lipid management or this patient's individual risk. Other symptoms and measurements were not reported, which means unknown rather than absent.",
+        "transportIntent": null,
+        "citations": [
+          {
+            "passageId": "e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+            "quote": "Call 9-1-1 for emergency medical care, even if you are not sure that you’re having a heart attack.",
+            "claim": "If you think you might be having a heart attack, call 911 even if unsure.",
+            "applicability": "applicable",
+            "limitation": "Consumer education on emergency action; not specific to this patient's current asymptomatic state."
+          },
+          {
+            "passageId": "6678de85ca9c75685ac1f8f69d3890b2d0aa37ba94b2ec57161c0a01d40caf5c",
+            "quote": "Chest pain, heaviness, or discomfort in the center or left side of the chest (this is the most common symptom)",
+            "claim": "Heart attack symptoms may include chest discomfort, shortness of breath and unexplained sweating.",
+            "applicability": "applicable",
+            "limitation": "Symptom list is general patient education, not diagnostic criteria."
+          },
+          {
+            "passageId": "00943c45f05d907fd25398cc1bad30ed1f1cf6d4e9e986cf1e7512cc2aea482b",
+            "quote": "Family history",
+            "claim": "Family history is listed among heart attack risk factors that cannot be changed.",
+            "applicability": "uncertain",
+            "limitation": "Source does not quantify risk for this patient; degree of relation and age at event not addressed."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 14011,
+        "outputTokens": 1067
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1679,
+      "streamProgress": {
+        "lastTextDeltaMs": 18856,
+        "textDeltaCount": 286,
+        "textCharacters": 2964
+      },
+      "durationMs": 18874,
+      "rawOutput": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "routine",
+        "workType": "clinical_review",
+        "reason": "The patient requests discussion of a cholesterol result and denies chest pain or trouble breathing; the crushing chest pain and sweating described were the father's symptoms five years ago, not this patient's. Lipid review and family-history risk discussion are clinician tasks without reported time-critical features.",
+        "patientMessage": "I recommend a standard message review with a Counsel clinician in this thread (same-day service-hours target) to go over your cholesterol result and what your father's heart attack means for your own risk. Nothing you report suggests an urgent problem now. If you ever think you might be having a heart attack — chest discomfort, shortness of breath, sweating for no reason — call 911 right away rather than waiting for a reply.",
+        "differential": [
+          "Lipid result interpretation with first-degree family history of heart attack",
+          "Cardiovascular risk assessment request, no current symptoms reported",
+          "No reported features of acute coronary syndrome in this patient"
+        ],
+        "redFlags": [
+          {
+            "concern": "Chest pain",
+            "status": "denied",
+            "quote": "I have no chest pain or trouble breathing"
+          },
+          {
+            "concern": "Shortness of breath",
+            "status": "denied",
+            "quote": "I have no chest pain or trouble breathing"
+          },
+          {
+            "concern": "Sweating in this patient",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Fainting, palpitations, exertional symptoms",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported; blood pressure, heart rate and whether any measurement was taken are unknown. Cholesterol values were not stated in the message.",
+        "questions": [],
+        "evidenceLimitations": "Cited sources are consumer patient education on heart attack symptoms and emergency transport; they support the safety-net wording but not lipid management or this patient's individual risk. Other symptoms and measurements were not reported, which means unknown rather than absent.",
+        "transportIntent": null,
+        "citations": [
+          {
+            "passageId": "e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+            "claim": "If you think you might be having a heart attack, call 911 even if unsure.",
+            "applicability": "applicable",
+            "limitation": "Consumer education on emergency action; not specific to this patient's current asymptomatic state.",
+            "quoteId": "q1"
+          },
+          {
+            "passageId": "6678de85ca9c75685ac1f8f69d3890b2d0aa37ba94b2ec57161c0a01d40caf5c",
+            "claim": "Heart attack symptoms may include chest discomfort, shortness of breath and unexplained sweating.",
+            "applicability": "applicable",
+            "limitation": "Symptom list is general patient education, not diagnostic criteria.",
+            "quoteId": "q1"
+          },
+          {
+            "passageId": "00943c45f05d907fd25398cc1bad30ed1f1cf6d4e9e986cf1e7512cc2aea482b",
+            "claim": "Family history is listed among heart attack risk factors that cannot be changed.",
+            "applicability": "uncertain",
+            "limitation": "Source does not quantify risk for this patient; degree of relation and age at event not addressed.",
+            "quoteId": "q4"
+          }
+        ]
+      }
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "accept",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Cholesterol interpretation and family-history discussion require clinician review, but reported facts do not establish urgent physical assessment or testing. Standard asynchronous review meets the current requirement without relying on a time-critical access prerequisite.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I have no chest pain or trouble breathing. I want to discuss my cholesterol result with a clinician."
+              },
+              {
+                "unit": "draft",
+                "quote": "I recommend a standard message review with a Counsel clinician in this thread (same-day service-hours target)"
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "Routine clinician messaging is proportionate to the requested result review. Emergency action is conditional on future suspected heart attack, not imposed for the father's historical symptoms.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "My father had crushing chest pain and sweating during his heart attack five years ago."
+              },
+              {
+                "unit": "draft",
+                "quote": "If you ever think you might be having a heart attack"
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "The draft correctly attributes historical symptoms to the father, preserves the patient's specific denials, and treats other symptoms and measurements as unknown.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "the crushing chest pain and sweating described were the father's symptoms five years ago, not this patient's"
+              },
+              {
+                "unit": "draft",
+                "quote": "Other symptoms and measurements were not reported, which means unknown rather than absent."
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "Sources support the conditional heart-attack safety net and relevance of family history. Routine queue timing is project policy, and the draft makes no unsupported lipid-treatment or individual-risk claim.",
+            "anchors": [
+              {
+                "unit": "source:e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+                "quote": "Call 9-1-1 for emergency medical care, even if you are not sure that you’re having a heart attack."
+              },
+              {
+                "unit": "source:6678de85ca9c75685ac1f8f69d3890b2d0aa37ba94b2ec57161c0a01d40caf5c",
+                "quote": "Sweating a lot for no reason"
+              },
+              {
+                "unit": "source:00943c45f05d907fd25398cc1bad30ed1f1cf6d4e9e986cf1e7512cc2aea482b",
+                "quote": "Family history"
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "The safety net identifies relevant warning symptoms and immediate action without delaying the current routine review.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "If you ever think you might be having a heart attack — chest discomfort, shortness of breath, sweating for no reason — call 911 right away rather than waiting for a reply."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No issued question or answer-dependent delay is present; the draft proceeds directly to the appropriate review recommendation.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "Counsel clinician ownership is explicitly recommended, with timing framed as a target rather than guaranteed acceptance or response. No completed handoff or future-task commitment is claimed.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I recommend a standard message review with a Counsel clinician in this thread (same-day service-hours target) to go over your cholesterol result and what your father's heart attack means for your own risk."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "ownershipTaskReview": [],
+        "correction": "",
+        "evidenceQueries": []
+      },
+      "usage": {
+        "inputTokens": 6446,
+        "outputTokens": 978
+      },
+      "failure": null,
+      "firstTextDeltaMs": 2103,
+      "streamProgress": {
+        "lastTextDeltaMs": 20656,
+        "textDeltaCount": 971,
+        "textCharacters": 4060
+      },
+      "durationMs": 20888
+    }
+  ],
+  "guidance": [
+    {
+      "id": "e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+      "title": "Heart Attack — Symptoms and emergency action",
+      "url": "https://www.nhlbi.nih.gov/health/heart-attack/symptoms",
+      "section": "When to call 9-1-1",
+      "summary": "Any time you think you might be having a heart attack, don’t ignore it. Call 9-1-1 for emergency medical care, even if you are not sure that you’re having a heart attack.\n\nActing fast can limit damage to your heart and save your life. The 9-1-1 operator or emergency medical services (EMS) personnel can give you advice that can help prevent damage to your heart.\n\nAn ambulance is the best and safest way to get to the hospital. Do not drive to the hospital or let someone else drive you. EMS personnel can check how you are doing and start tests and lifesaving medicines right away. People who arrive by ambulance often get faster treatment at the hospital.\n\nEvery minute matters. Never delay calling 9-1-1, taking aspirin or doing anything else you think might help.\n\nKnowing the difference between stable angina (chest pain in people who have coronary artery disease) and a heart attack is important.\n\nThe pain from angina usually happens after physical activity and goes away in a few minutes when you rest or take medicine to treat it.\n\nThe pain from a heart attack is more serious than the pain from angina. Heart attack pain doesn’t go away when you rest or take medicine.\n\nIf you don’t know whether your chest pain is angina or a heart attack, call 9-1-1.",
+      "reviewedAt": "2022-03-24",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Official patient education about heart attack symptoms and emergency transport, not a prescribing protocol or guarantee of specific EMS interventions. Webpage date is not an independent currency or applicability review.",
+      "retrievedPassages": [
+        {
+          "id": "e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+          "sourceId": "nhlbi:heart-attack-symptoms",
+          "excerpt": "Any time you think you might be having a heart attack, don’t ignore it. Call 9-1-1 for emergency medical care, even if you are not sure that you’re having a heart attack.\n\nActing fast can limit damage to your heart and save your life. The 9-1-1 operator or emergency medical services (EMS) personnel can give you advice that can help prevent damage to your heart.\n\nAn ambulance is the best and safest way to get to the hospital. Do not drive to the hospital or let someone else drive you. EMS personnel can check how you are doing and start tests and lifesaving medicines right away. People who arrive by ambulance often get faster treatment at the hospital.\n\nEvery minute matters. Never delay calling 9-1-1, taking aspirin or doing anything else you think might help.\n\nKnowing the difference between stable angina (chest pain in people who have coronary artery disease) and a heart attack is important.\n\nThe pain from angina usually happens after physical activity and goes away in a few minutes when you rest or take medicine to treat it.\n\nThe pain from a heart attack is more serious than the pain from angina. Heart attack pain doesn’t go away when you rest or take medicine.\n\nIf you don’t know whether your chest pain is angina or a heart attack, call 9-1-1.",
+          "excerptSha256": "1cf2ebc280b306e0c2ffa44a84a99b58b4dd8dcd16ab3866fbf7381c2faf84f2",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "0e38245e8b966c342901981bd09128bc8ab8b5ae33f687a45af4ae3d815dcdb4",
+          "kind": "patient_summary",
+          "limitations": "Official patient education about heart attack symptoms and emergency transport, not a prescribing protocol or guarantee of specific EMS interventions. Webpage date is not an independent currency or applicability review."
+        }
+      ]
+    },
+    {
+      "id": "6678de85ca9c75685ac1f8f69d3890b2d0aa37ba94b2ec57161c0a01d40caf5c",
+      "title": "Heart Attack — Symptoms and emergency action",
+      "url": "https://www.nhlbi.nih.gov/health/heart-attack/symptoms",
+      "section": "What are the symptoms of a heart attack?",
+      "summary": "If you are having a heart attack, you may experience one or more of the symptoms below.\n\nChest pain, heaviness, or discomfort in the center or left side of the chest (this is the most common symptom)\n\nPain or discomfort in one or both arms, your back, shoulders, neck, jaw, or above your belly button\n\nShortness of breath when resting or doing a little bit of physical activity (this is more common in older adults)\n\nSweating a lot for no reason\n\nFeeling unusually tired for no reason, sometimes for days (this is more common in women)\n\nNausea (feeling sick to the stomach) and vomiting\n\nLight-headedness or sudden dizziness\n\nRapid or irregular heartbeat\n\nIt is also possible to have mild symptoms or even no symptoms at all and still have a heart attack.",
+      "reviewedAt": "2022-03-24",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Official patient education about heart attack symptoms and emergency transport, not a prescribing protocol or guarantee of specific EMS interventions. Webpage date is not an independent currency or applicability review.",
+      "retrievedPassages": [
+        {
+          "id": "6678de85ca9c75685ac1f8f69d3890b2d0aa37ba94b2ec57161c0a01d40caf5c",
+          "sourceId": "nhlbi:heart-attack-symptoms",
+          "excerpt": "If you are having a heart attack, you may experience one or more of the symptoms below.\n\nChest pain, heaviness, or discomfort in the center or left side of the chest (this is the most common symptom)\n\nPain or discomfort in one or both arms, your back, shoulders, neck, jaw, or above your belly button\n\nShortness of breath when resting or doing a little bit of physical activity (this is more common in older adults)\n\nSweating a lot for no reason\n\nFeeling unusually tired for no reason, sometimes for days (this is more common in women)\n\nNausea (feeling sick to the stomach) and vomiting\n\nLight-headedness or sudden dizziness\n\nRapid or irregular heartbeat\n\nIt is also possible to have mild symptoms or even no symptoms at all and still have a heart attack.",
+          "excerptSha256": "28b10cf4a1fa0d4ce602fbc4a13daa42851ecdb77b797139504811167519ae42",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "0e38245e8b966c342901981bd09128bc8ab8b5ae33f687a45af4ae3d815dcdb4",
+          "kind": "patient_summary",
+          "limitations": "Official patient education about heart attack symptoms and emergency transport, not a prescribing protocol or guarantee of specific EMS interventions. Webpage date is not an independent currency or applicability review."
+        }
+      ]
+    },
+    {
+      "id": "c6fa955f98b27c58f4ef01fb809f66882cc486332ef3bf7e110c5ae11eb09ed7",
+      "title": "Chest Pain — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+      "section": "Critical Actions",
+      "summary": "| Action | Target |\n|---|---|\n| ECG acquisition | < 10 minutes from arrival |\n| Troponin drawn | < 30 minutes from arrival |\n| Chest X-ray | < 60 minutes (do not delay if ACS suspected) |\n| Repeat ECG if initial non-diagnostic | Every 15-30 minutes with ongoing symptoms |\n\n**Immediate evaluation algorithm:**\n\n1. **Assess hemodynamic stability.** Unstable patients (hypotension, acute respiratory distress, altered consciousness) → resuscitation bay, large-bore IV access, continuous monitoring.\n\n2. **Obtain 12-lead ECG within 10 minutes.** STEMI → immediate cath lab activation (see `stemi`). New LBBB → apply Sgarbossa criteria.\n\n3. **Targeted physical exam in parallel with ECG:**\n   - Bilateral arm blood pressures (> 20 mmHg differential → aortic dissection)\n   - Lung auscultation (unilateral absent breath sounds → pneumothorax)\n   - Heart sounds (muffled → tamponade; friction rub → pericarditis)\n   - JVD assessment\n   - Lower extremity edema/asymmetry (DVT → PE)\n   - Subcutaneous emphysema (esophageal rupture, pneumomediastinum)\n\n4. **Risk stratify based on initial ECG and exam:**\n   - ST elevation → `stemi` pathway\n   - Hemodynamically unstable → immediate bedside ultrasound (tamponade, RV strain, pneumothorax, aortic root dilation)\n   - Pleuritic + tachycardia → evaluate for PE (Wells → D-dimer or CTA)\n   - Tearing pain + BP differential → CTA aorta for dissection\n   - Non-diagnostic ECG, stable → apply HEART Score\n\n5. **Serial troponin.** High-sensitivity troponin at 0 and 1-3 hours (institution-dependent protocol). Do NOT wait for troponin to activate cath lab for STEMI.\n\n6. **HEART Score stratification (for stable patients without clear diagnosis):**\n   - 0-3: Low risk (MACE < 2%). Consider discharge with outpatient follow-up.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "c6fa955f98b27c58f4ef01fb809f66882cc486332ef3bf7e110c5ae11eb09ed7",
+          "sourceId": "openem:chest-pain",
+          "excerpt": "| Action | Target |\n|---|---|\n| ECG acquisition | < 10 minutes from arrival |\n| Troponin drawn | < 30 minutes from arrival |\n| Chest X-ray | < 60 minutes (do not delay if ACS suspected) |\n| Repeat ECG if initial non-diagnostic | Every 15-30 minutes with ongoing symptoms |\n\n**Immediate evaluation algorithm:**\n\n1. **Assess hemodynamic stability.** Unstable patients (hypotension, acute respiratory distress, altered consciousness) → resuscitation bay, large-bore IV access, continuous monitoring.\n\n2. **Obtain 12-lead ECG within 10 minutes.** STEMI → immediate cath lab activation (see `stemi`). New LBBB → apply Sgarbossa criteria.\n\n3. **Targeted physical exam in parallel with ECG:**\n   - Bilateral arm blood pressures (> 20 mmHg differential → aortic dissection)\n   - Lung auscultation (unilateral absent breath sounds → pneumothorax)\n   - Heart sounds (muffled → tamponade; friction rub → pericarditis)\n   - JVD assessment\n   - Lower extremity edema/asymmetry (DVT → PE)\n   - Subcutaneous emphysema (esophageal rupture, pneumomediastinum)\n\n4. **Risk stratify based on initial ECG and exam:**\n   - ST elevation → `stemi` pathway\n   - Hemodynamically unstable → immediate bedside ultrasound (tamponade, RV strain, pneumothorax, aortic root dilation)\n   - Pleuritic + tachycardia → evaluate for PE (Wells → D-dimer or CTA)\n   - Tearing pain + BP differential → CTA aorta for dissection\n   - Non-diagnostic ECG, stable → apply HEART Score\n\n5. **Serial troponin.** High-sensitivity troponin at 0 and 1-3 hours (institution-dependent protocol). Do NOT wait for troponin to activate cath lab for STEMI.\n\n6. **HEART Score stratification (for stable patients without clear diagnosis):**\n   - 0-3: Low risk (MACE < 2%). Consider discharge with outpatient follow-up.",
+          "excerptSha256": "37eb0767adba833b7ebbdcc1d42b008253b5d7c694920ea4b7fd119fbbf23e6e",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "c7ba4eb389a45bff3f916dd98f5da2f0fc7774ad5a3bccab8b03fdd8b3bac3f8",
+      "title": "Chest Pain — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+      "section": "Differential Diagnosis",
+      "summary": "### Life-Threatening (must rule out immediately)\n- **STEMI / ACS** (`stemi`, `acute-coronary-syndrome-nstemi`, `unstable-angina`): substernal pressure, diaphoresis, ECG changes, troponin elevation\n- **Aortic dissection** (`aortic-dissection`): sudden tearing pain radiating to back, BP differential, widened mediastinum, aortic regurgitation murmur\n- **Pulmonary embolism** (`pulmonary-embolism`): pleuritic pain, dyspnea, tachycardia, risk factors for VTE, right heart strain on ECG\n- **Tension pneumothorax** (`tension-pneumothorax`): unilateral absent breath sounds, tracheal deviation, hypotension, distended neck veins\n- **Cardiac tamponade** (`cardiac-tamponade`): Beck triad (hypotension, JVD, muffled heart sounds), pulsus paradoxus, electrical alternans\n- **Esophageal rupture** (`boerhaave-syndrome`): post-emetic severe chest/epigastric pain, subcutaneous emphysema, pneumomediastinum\n\n### Emergent\n- **Spontaneous pneumothorax** (`spontaneous-pneumothorax`): sudden pleuritic pain, decreased breath sounds, tall thin habitus or COPD\n- **Pericarditis/myocarditis** (`pericarditis-myocarditis`): sharp pleuritic pain worse supine and improved leaning forward, diffuse ST elevation with PR depression, friction rub\n- **Acute heart failure** (`acute-heart-failure`): dyspnea, orthopnea, bilateral crackles, peripheral edema, BNP elevation\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with end-organ damage\n- **Takotsubo cardiomyopathy** (`takotsubo-cardiomyopathy`): post-emotional/physical stress, mimics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "c7ba4eb389a45bff3f916dd98f5da2f0fc7774ad5a3bccab8b03fdd8b3bac3f8",
+          "sourceId": "openem:chest-pain",
+          "excerpt": "### Life-Threatening (must rule out immediately)\n- **STEMI / ACS** (`stemi`, `acute-coronary-syndrome-nstemi`, `unstable-angina`): substernal pressure, diaphoresis, ECG changes, troponin elevation\n- **Aortic dissection** (`aortic-dissection`): sudden tearing pain radiating to back, BP differential, widened mediastinum, aortic regurgitation murmur\n- **Pulmonary embolism** (`pulmonary-embolism`): pleuritic pain, dyspnea, tachycardia, risk factors for VTE, right heart strain on ECG\n- **Tension pneumothorax** (`tension-pneumothorax`): unilateral absent breath sounds, tracheal deviation, hypotension, distended neck veins\n- **Cardiac tamponade** (`cardiac-tamponade`): Beck triad (hypotension, JVD, muffled heart sounds), pulsus paradoxus, electrical alternans\n- **Esophageal rupture** (`boerhaave-syndrome`): post-emetic severe chest/epigastric pain, subcutaneous emphysema, pneumomediastinum\n\n### Emergent\n- **Spontaneous pneumothorax** (`spontaneous-pneumothorax`): sudden pleuritic pain, decreased breath sounds, tall thin habitus or COPD\n- **Pericarditis/myocarditis** (`pericarditis-myocarditis`): sharp pleuritic pain worse supine and improved leaning forward, diffuse ST elevation with PR depression, friction rub\n- **Acute heart failure** (`acute-heart-failure`): dyspnea, orthopnea, bilateral crackles, peripheral edema, BNP elevation\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with end-organ damage\n- **Takotsubo cardiomyopathy** (`takotsubo-cardiomyopathy`): post-emotional/physical stress, mimics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent",
+          "excerptSha256": "277d14d675086210c6a0d344a59daa5a674625c206bdfb1f9762430d7febbd9e",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "00943c45f05d907fd25398cc1bad30ed1f1cf6d4e9e986cf1e7512cc2aea482b",
+      "title": "Heart Attack",
+      "url": "https://medlineplus.gov/heartattack.html",
+      "section": "Health-topic summary",
+      "summary": "hat heart attack risk factors can't be changed? \n\n There are other risk factors you can't change , which include: \n\n \n Age \n Sex \n Family history \n Race or ethnicity \n \n\n What causes a heart attack? \n\n The most common cause of heart attacks is coronary artery disease (CAD). With CAD, there is a buildup of cholesterol and other material, called plaque, on the inner walls or the arteries. This is atherosclerosis . It can build up for years. Eventually an area of plaque can rupture (break open). A blood clot can form around the plaque and block the artery. \n\n A less common cause of heart attack is a severe spasm (tightening) of a coronary artery. The spasm cuts off blood flow through the artery. \n\n What are the symptoms of a heart attack? \n\n Heart attack symptoms can vary from mild to severe. The symptoms one person has may not be the same as someone else's. \n\n The most common symptoms include: \n\n \n Chest discomfort. It is often in the center or left side of the chest. It usually lasts more than a few minutes and may go away and come back. It can feel like pressure, squeezing, fullness, or pain . It also can feel like heartburn or indigestion. \n Shortness of breath . Sometimes this is your only symptom. You may get it before or during the chest discomfort. It can happen when you are resting or doing a little bit of physical activity. \n Discomfort in the upper body. You may feel pain or discomfort in one or both arms, the back, shoulders, neck, jaw, or upper part of the stomach. \n \n\n You may also have other symptoms, such as nausea, vomiting , dizziness , palpitations (racing or pounding heart), and lightheadedness. You may break out in a cold sweat. Sometimes women will have different symptoms then men. For example, they are more likely to feel tired for no reason. \n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "00943c45f05d907fd25398cc1bad30ed1f1cf6d4e9e986cf1e7512cc2aea482b",
+          "sourceId": "medlineplus:5",
+          "excerpt": "hat heart attack risk factors can't be changed? \n\n There are other risk factors you can't change , which include: \n\n \n Age \n Sex \n Family history \n Race or ethnicity \n \n\n What causes a heart attack? \n\n The most common cause of heart attacks is coronary artery disease (CAD). With CAD, there is a buildup of cholesterol and other material, called plaque, on the inner walls or the arteries. This is atherosclerosis . It can build up for years. Eventually an area of plaque can rupture (break open). A blood clot can form around the plaque and block the artery. \n\n A less common cause of heart attack is a severe spasm (tightening) of a coronary artery. The spasm cuts off blood flow through the artery. \n\n What are the symptoms of a heart attack? \n\n Heart attack symptoms can vary from mild to severe. The symptoms one person has may not be the same as someone else's. \n\n The most common symptoms include: \n\n \n Chest discomfort. It is often in the center or left side of the chest. It usually lasts more than a few minutes and may go away and come back. It can feel like pressure, squeezing, fullness, or pain . It also can feel like heartburn or indigestion. \n Shortness of breath . Sometimes this is your only symptom. You may get it before or during the chest discomfort. It can happen when you are resting or doing a little bit of physical activity. \n Discomfort in the upper body. You may feel pain or discomfort in one or both arms, the back, shoulders, neck, jaw, or upper part of the stomach. \n \n\n You may also have other symptoms, such as nausea, vomiting , dizziness , palpitations (racing or pounding heart), and lightheadedness. You may break out in a cold sweat. Sometimes women will have different symptoms then men. For example, they are more likely to feel tired for no reason. \n",
+          "excerptSha256": "cb8b22b41f2e70017a5f2cd0ba83c9214f59a910c0b45a9fb91f7e9706a16037",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "4308b1a4d4e4d4c9f3dcb1351452e29fc93493314533760e0bf6c0e03205fe0d",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    }
+  ],
+  "safetyFloor": null,
+  "failure": null,
+  "routingPolicy": "five-route-queue/v2",
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "pass",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "pass",
+      "detail": "Checks explicit timing/destination tokens or exact independently reviewed emergency-transport binding; not clinical validation or verification of EMS activation."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen from a COPD diagnosis alone; targeted medication-instruction check."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "pass",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "emergency_transport",
+      "status": "not_assessed",
+      "detail": "LEGACY_TEXT_CONTRACT: typed transport intent and independent review are bound to patient and draft quotations; this is not externally verified EMS activation or clinical validation."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Cited passage identity and exact quote match; this does not establish claim support or applicability."
+    },
+    {
+      "id": "independent_review",
+      "status": "pass",
+      "detail": "Cross-vendor reviewer accepted this draft against seven criteria; application contract and care-reconciliation gates are separate. Not physician calibration or clinical approval."
+    },
+    {
+      "id": "care_reconciliation",
+      "status": "not_assessed",
+      "detail": "No reduction of already-issued care setting or emergency transport was requested."
+    }
+  ],
+  "usage": {
+    "inputTokens": 33036,
+    "outputTokens": 4289
+  },
+  "graph": {
+    "version": "evidence-graph/v12",
+    "mode": "hybrid",
+    "clinicalPolicyVersion": "disposition-clinical-policy/v1",
+    "context": null,
+    "safety": {
+      "action": "STANDARD_ASYNC",
+      "basis": [
+        {
+          "quote": "My father had crushing chest pain and sweating during his heart attack five years ago",
+          "interpretation": "Patient reports father's historical heart attack presentation five years ago, not current patient symptoms",
+          "currentPatient": false,
+          "present": false
+        },
+        {
+          "quote": "I have no chest pain or trouble breathing",
+          "interpretation": "Patient explicitly denies current chest pain and dyspnea",
+          "currentPatient": true,
+          "present": false
+        },
+        {
+          "quote": "I want to discuss my cholesterol result with a clinician",
+          "interpretation": "Patient requests clinician discussion of cholesterol result; no acute symptom or time-critical finding reported",
+          "currentPatient": true,
+          "present": true
+        }
+      ],
+      "actionBasis": null,
+      "reason": "Patient denies acute cardiopulmonary symptoms and requests routine cholesterol discussion; no emergency or same-day physical requirement established.",
+      "patientMessage": "",
+      "physicalRequirement": null
+    },
+    "safetyAdmission": {
+      "status": "not_requested",
+      "code": "NO_EARLY_ACTION",
+      "proposedAction": "STANDARD_ASYNC",
+      "basisMode": null,
+      "supportingBasisIndices": [],
+      "contextualBasisIndices": [],
+      "clinicalValidation": false
+    },
+    "questionPublication": {
+      "status": "not_proposed",
+      "blocksRouting": false
+    },
+    "transportAdmission": {
+      "status": "legacy",
+      "code": "LEGACY_TEXT_CONTRACT",
+      "clinicalValidation": false
+    },
+    "ownershipLanguageReview": {
+      "raw": {
+        "id": "no_unconfirmed_handoff",
+        "status": "pass",
+        "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+      },
+      "findings": [],
+      "status": "not_flagged",
+      "reviewedDraftHash": "160c73166b45fc350d7c9c0776319e71f3d71bafd15e072da0eb16ef6bee8b7d",
+      "taskReviews": [],
+      "clinicalApproval": false
+    },
+    "retrieval": [
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "Heart attack warning symptoms emergency ambulance advice chest discomfort breathlessness fainting",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+              "end": 1263,
+              "hash": "1cf2ebc280b306e0c2ffa44a84a99b58b4dd8dcd16ab3866fbf7381c2faf84f2",
+              "text": "Any time you think you might be having a heart attack, don’t ignore it. Call 9-1-1 for emergency medical care, even if you are not sure that you’re having a heart attack.\n\nActing fast can limit damage to your heart and save your life. The 9-1-1 operator or emergency medical services (EMS) personnel can give you advice that can help prevent damage to your heart.\n\nAn ambulance is the best and safest way to get to the hospital. Do not drive to the hospital or let someone else drive you. EMS personnel can check how you are doing and start tests and lifesaving medicines right away. People who arrive by ambulance often get faster treatment at the hospital.\n\nEvery minute matters. Never delay calling 9-1-1, taking aspirin or doing anything else you think might help.\n\nKnowing the difference between stable angina (chest pain in people who have coronary artery disease) and a heart attack is important.\n\nThe pain from angina usually happens after physical activity and goes away in a few minutes when you rest or take medicine to treat it.\n\nThe pain from a heart attack is more serious than the pain from angina. Heart attack pain doesn’t go away when you rest or take medicine.\n\nIf you don’t know whether your chest pain is angina or a heart attack, call 9-1-1.",
+              "start": 0,
+              "section": 1,
+              "documentId": "nhlbi:heart-attack-symptoms",
+              "sectionTitle": "When to call 9-1-1",
+              "embeddingText": "Heart Attack — Symptoms and emergency action\nmyocardial infarction; acute coronary syndrome; emergency transport\nWhen to call 9-1-1\nAny time you think you might be having a heart attack, don’t ignore it. Call 9-1-1 for emergency medical care, even if you are not sure that you’re having a heart attack.\n\nActing fast can limit damage to your heart and save your life. The 9-1-1 operator or emergency medical services (EMS) personnel can give you advice that can help prevent damage to your heart.\n\nAn ambulance is the best and safest way to get to the hospital. Do not drive to the hospital or let someone else drive you. EMS personnel can check how you are doing and start tests and lifesaving medicines right away. People who arrive by ambulance often get faster treatment at the hospital.\n\nEvery minute matters. Never delay calling 9-1-1, taking aspirin or doing anything else you think might help.\n\nKnowing the difference between stable angina (chest pain in people who have coronary artery disease) and a heart attack is important.\n\nThe pain from angina usually happens after physical activity and goes away in a few minutes when you rest or take medicine to treat it.\n\nThe pain from a heart attack is more serious than the pain from angina. Heart attack pain doesn’t go away when you rest or take medicine.\n\nIf you don’t know whether your chest pain is angina or a heart attack, call 9-1-1."
+            },
+            "document": {
+              "id": "nhlbi:heart-attack-symptoms",
+              "url": "https://www.nhlbi.nih.gov/health/heart-attack/symptoms",
+              "kind": "patient_summary",
+              "scope": "Official patient education about heart attack symptoms and emergency transport, not a prescribing protocol or guarantee of specific EMS interventions. Webpage date is not an independent currency or applicability review.",
+              "title": "Heart Attack — Symptoms and emergency action",
+              "aliases": [
+                "myocardial infarction",
+                "acute coronary syndrome",
+                "emergency transport"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "0e38245e8b966c342901981bd09128bc8ab8b5ae33f687a45af4ae3d815dcdb4",
+              "related": [],
+              "concepts": [
+                "cardiovascular",
+                "emergency medical services"
+              ],
+              "currency": "not_assessed",
+              "publisher": "National Heart, Lung, and Blood Institute / NIH",
+              "licenseUrl": "https://www.nhlbi.nih.gov/about/contact/trademark-branding-and-logo",
+              "reviewDate": "2022-03-24",
+              "attribution": "Source: National Heart, Lung, and Blood Institute; National Institutes of Health; U.S. Department of Health and Human Services. Selected webpage prose; no endorsement implied. Images, logos and formatted publications excluded.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "0e38245e8b966c342901981bd09128bc8ab8b5ae33f687a45af4ae3d815dcdb4",
+              "publicationDate": null
+            },
+            "score": 0.03252247488101534,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "6678de85ca9c75685ac1f8f69d3890b2d0aa37ba94b2ec57161c0a01d40caf5c",
+              "end": 755,
+              "hash": "28b10cf4a1fa0d4ce602fbc4a13daa42851ecdb77b797139504811167519ae42",
+              "text": "If you are having a heart attack, you may experience one or more of the symptoms below.\n\nChest pain, heaviness, or discomfort in the center or left side of the chest (this is the most common symptom)\n\nPain or discomfort in one or both arms, your back, shoulders, neck, jaw, or above your belly button\n\nShortness of breath when resting or doing a little bit of physical activity (this is more common in older adults)\n\nSweating a lot for no reason\n\nFeeling unusually tired for no reason, sometimes for days (this is more common in women)\n\nNausea (feeling sick to the stomach) and vomiting\n\nLight-headedness or sudden dizziness\n\nRapid or irregular heartbeat\n\nIt is also possible to have mild symptoms or even no symptoms at all and still have a heart attack.",
+              "start": 0,
+              "section": 0,
+              "documentId": "nhlbi:heart-attack-symptoms",
+              "sectionTitle": "What are the symptoms of a heart attack?",
+              "embeddingText": "Heart Attack — Symptoms and emergency action\nmyocardial infarction; acute coronary syndrome; emergency transport\nWhat are the symptoms of a heart attack?\nIf you are having a heart attack, you may experience one or more of the symptoms below.\n\nChest pain, heaviness, or discomfort in the center or left side of the chest (this is the most common symptom)\n\nPain or discomfort in one or both arms, your back, shoulders, neck, jaw, or above your belly button\n\nShortness of breath when resting or doing a little bit of physical activity (this is more common in older adults)\n\nSweating a lot for no reason\n\nFeeling unusually tired for no reason, sometimes for days (this is more common in women)\n\nNausea (feeling sick to the stomach) and vomiting\n\nLight-headedness or sudden dizziness\n\nRapid or irregular heartbeat\n\nIt is also possible to have mild symptoms or even no symptoms at all and still have a heart attack."
+            },
+            "document": {
+              "id": "nhlbi:heart-attack-symptoms",
+              "url": "https://www.nhlbi.nih.gov/health/heart-attack/symptoms",
+              "kind": "patient_summary",
+              "scope": "Official patient education about heart attack symptoms and emergency transport, not a prescribing protocol or guarantee of specific EMS interventions. Webpage date is not an independent currency or applicability review.",
+              "title": "Heart Attack — Symptoms and emergency action",
+              "aliases": [
+                "myocardial infarction",
+                "acute coronary syndrome",
+                "emergency transport"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "0e38245e8b966c342901981bd09128bc8ab8b5ae33f687a45af4ae3d815dcdb4",
+              "related": [],
+              "concepts": [
+                "cardiovascular",
+                "emergency medical services"
+              ],
+              "currency": "not_assessed",
+              "publisher": "National Heart, Lung, and Blood Institute / NIH",
+              "licenseUrl": "https://www.nhlbi.nih.gov/about/contact/trademark-branding-and-logo",
+              "reviewDate": "2022-03-24",
+              "attribution": "Source: National Heart, Lung, and Blood Institute; National Institutes of Health; U.S. Department of Health and Human Services. Selected webpage prose; no endorsement implied. Images, logos and formatted publications excluded.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "0e38245e8b966c342901981bd09128bc8ab8b5ae33f687a45af4ae3d815dcdb4",
+              "publicationDate": null
+            },
+            "score": 0.031754032258064516,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "c6fa955f98b27c58f4ef01fb809f66882cc486332ef3bf7e110c5ae11eb09ed7",
+              "end": 1759,
+              "hash": "37eb0767adba833b7ebbdcc1d42b008253b5d7c694920ea4b7fd119fbbf23e6e",
+              "text": "| Action | Target |\n|---|---|\n| ECG acquisition | < 10 minutes from arrival |\n| Troponin drawn | < 30 minutes from arrival |\n| Chest X-ray | < 60 minutes (do not delay if ACS suspected) |\n| Repeat ECG if initial non-diagnostic | Every 15-30 minutes with ongoing symptoms |\n\n**Immediate evaluation algorithm:**\n\n1. **Assess hemodynamic stability.** Unstable patients (hypotension, acute respiratory distress, altered consciousness) → resuscitation bay, large-bore IV access, continuous monitoring.\n\n2. **Obtain 12-lead ECG within 10 minutes.** STEMI → immediate cath lab activation (see `stemi`). New LBBB → apply Sgarbossa criteria.\n\n3. **Targeted physical exam in parallel with ECG:**\n   - Bilateral arm blood pressures (> 20 mmHg differential → aortic dissection)\n   - Lung auscultation (unilateral absent breath sounds → pneumothorax)\n   - Heart sounds (muffled → tamponade; friction rub → pericarditis)\n   - JVD assessment\n   - Lower extremity edema/asymmetry (DVT → PE)\n   - Subcutaneous emphysema (esophageal rupture, pneumomediastinum)\n\n4. **Risk stratify based on initial ECG and exam:**\n   - ST elevation → `stemi` pathway\n   - Hemodynamically unstable → immediate bedside ultrasound (tamponade, RV strain, pneumothorax, aortic root dilation)\n   - Pleuritic + tachycardia → evaluate for PE (Wells → D-dimer or CTA)\n   - Tearing pain + BP differential → CTA aorta for dissection\n   - Non-diagnostic ECG, stable → apply HEART Score\n\n5. **Serial troponin.** High-sensitivity troponin at 0 and 1-3 hours (institution-dependent protocol). Do NOT wait for troponin to activate cath lab for STEMI.\n\n6. **HEART Score stratification (for stable patients without clear diagnosis):**\n   - 0-3: Low risk (MACE < 2%). Consider discharge with outpatient follow-up.",
+              "start": 0,
+              "section": 1,
+              "documentId": "openem:chest-pain",
+              "sectionTitle": "Critical Actions",
+              "embeddingText": "Chest Pain — Emergency Evaluation\nchest pain; thoracic pain; anterior chest pain; chest discomfort\nCritical Actions\n| Action | Target |\n|---|---|\n| ECG acquisition | < 10 minutes from arrival |\n| Troponin drawn | < 30 minutes from arrival |\n| Chest X-ray | < 60 minutes (do not delay if ACS suspected) |\n| Repeat ECG if initial non-diagnostic | Every 15-30 minutes with ongoing symptoms |\n\n**Immediate evaluation algorithm:**\n\n1. **Assess hemodynamic stability.** Unstable patients (hypotension, acute respiratory distress, altered consciousness) → resuscitation bay, large-bore IV access, continuous monitoring.\n\n2. **Obtain 12-lead ECG within 10 minutes.** STEMI → immediate cath lab activation (see `stemi`). New LBBB → apply Sgarbossa criteria.\n\n3. **Targeted physical exam in parallel with ECG:**\n   - Bilateral arm blood pressures (> 20 mmHg differential → aortic dissection)\n   - Lung auscultation (unilateral absent breath sounds → pneumothorax)\n   - Heart sounds (muffled → tamponade; friction rub → pericarditis)\n   - JVD assessment\n   - Lower extremity edema/asymmetry (DVT → PE)\n   - Subcutaneous emphysema (esophageal rupture, pneumomediastinum)\n\n4. **Risk stratify based on initial ECG and exam:**\n   - ST elevation → `stemi` pathway\n   - Hemodynamically unstable → immediate bedside ultrasound (tamponade, RV strain, pneumothorax, aortic root dilation)\n   - Pleuritic + tachycardia → evaluate for PE (Wells → D-dimer or CTA)\n   - Tearing pain + BP differential → CTA aorta for dissection\n   - Non-diagnostic ECG, stable → apply HEART Score\n\n5. **Serial troponin.** High-sensitivity troponin at 0 and 1-3 hours (institution-dependent protocol). Do NOT wait for troponin to activate cath lab for STEMI.\n\n6. **HEART Score stratification (for stable patients without clear diagnosis):**\n   - 0-3: Low risk (MACE < 2%). Consider discharge with outpatient follow-up."
+            },
+            "document": {
+              "id": "openem:chest-pain",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Chest Pain — Emergency Evaluation",
+              "aliases": [
+                "chest pain",
+                "thoracic pain",
+                "anterior chest pain",
+                "chest discomfort"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.02976190476190476,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n   - 4-6: Moderate risk. Observation, serial troponin, stress testing or CTA.\n   - 7-10: High risk (MACE > 50%). Admit, cardiology consultation, early invasive strategy."
+            }
+          },
+          {
+            "chunk": {
+              "id": "c7ba4eb389a45bff3f916dd98f5da2f0fc7774ad5a3bccab8b03fdd8b3bac3f8",
+              "end": 1730,
+              "hash": "277d14d675086210c6a0d344a59daa5a674625c206bdfb1f9762430d7febbd9e",
+              "text": "### Life-Threatening (must rule out immediately)\n- **STEMI / ACS** (`stemi`, `acute-coronary-syndrome-nstemi`, `unstable-angina`): substernal pressure, diaphoresis, ECG changes, troponin elevation\n- **Aortic dissection** (`aortic-dissection`): sudden tearing pain radiating to back, BP differential, widened mediastinum, aortic regurgitation murmur\n- **Pulmonary embolism** (`pulmonary-embolism`): pleuritic pain, dyspnea, tachycardia, risk factors for VTE, right heart strain on ECG\n- **Tension pneumothorax** (`tension-pneumothorax`): unilateral absent breath sounds, tracheal deviation, hypotension, distended neck veins\n- **Cardiac tamponade** (`cardiac-tamponade`): Beck triad (hypotension, JVD, muffled heart sounds), pulsus paradoxus, electrical alternans\n- **Esophageal rupture** (`boerhaave-syndrome`): post-emetic severe chest/epigastric pain, subcutaneous emphysema, pneumomediastinum\n\n### Emergent\n- **Spontaneous pneumothorax** (`spontaneous-pneumothorax`): sudden pleuritic pain, decreased breath sounds, tall thin habitus or COPD\n- **Pericarditis/myocarditis** (`pericarditis-myocarditis`): sharp pleuritic pain worse supine and improved leaning forward, diffuse ST elevation with PR depression, friction rub\n- **Acute heart failure** (`acute-heart-failure`): dyspnea, orthopnea, bilateral crackles, peripheral edema, BNP elevation\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with end-organ damage\n- **Takotsubo cardiomyopathy** (`takotsubo-cardiomyopathy`): post-emotional/physical stress, mimics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:chest-pain",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Chest Pain — Emergency Evaluation\nchest pain; thoracic pain; anterior chest pain; chest discomfort\nDifferential Diagnosis\n### Life-Threatening (must rule out immediately)\n- **STEMI / ACS** (`stemi`, `acute-coronary-syndrome-nstemi`, `unstable-angina`): substernal pressure, diaphoresis, ECG changes, troponin elevation\n- **Aortic dissection** (`aortic-dissection`): sudden tearing pain radiating to back, BP differential, widened mediastinum, aortic regurgitation murmur\n- **Pulmonary embolism** (`pulmonary-embolism`): pleuritic pain, dyspnea, tachycardia, risk factors for VTE, right heart strain on ECG\n- **Tension pneumothorax** (`tension-pneumothorax`): unilateral absent breath sounds, tracheal deviation, hypotension, distended neck veins\n- **Cardiac tamponade** (`cardiac-tamponade`): Beck triad (hypotension, JVD, muffled heart sounds), pulsus paradoxus, electrical alternans\n- **Esophageal rupture** (`boerhaave-syndrome`): post-emetic severe chest/epigastric pain, subcutaneous emphysema, pneumomediastinum\n\n### Emergent\n- **Spontaneous pneumothorax** (`spontaneous-pneumothorax`): sudden pleuritic pain, decreased breath sounds, tall thin habitus or COPD\n- **Pericarditis/myocarditis** (`pericarditis-myocarditis`): sharp pleuritic pain worse supine and improved leaning forward, diffuse ST elevation with PR depression, friction rub\n- **Acute heart failure** (`acute-heart-failure`): dyspnea, orthopnea, bilateral crackles, peripheral edema, BNP elevation\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with end-organ damage\n- **Takotsubo cardiomyopathy** (`takotsubo-cardiomyopathy`): post-emotional/physical stress, mimics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent"
+            },
+            "document": {
+              "id": "openem:chest-pain",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Chest Pain — Emergency Evaluation",
+              "aliases": [
+                "chest pain",
+                "thoracic pain",
+                "anterior chest pain",
+                "chest discomfort"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.02964426877470356,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- **Biliary disease** (`acute-cholecystitis`, `biliary-colic`): RUQ/epigastric pain, post-prandial, Murphy sign\n- **Acute pancreatitis** (`acute-pancreatitis`): epigastric pain radiating to back, nausea/vomiting, lipase elevation\n- **Pleural effusion** (`pleural-effusion-emergency`): dyspnea, decre"
+            }
+          },
+          {
+            "chunk": {
+              "id": "00943c45f05d907fd25398cc1bad30ed1f1cf6d4e9e986cf1e7512cc2aea482b",
+              "end": 3298,
+              "hash": "cb8b22b41f2e70017a5f2cd0ba83c9214f59a910c0b45a9fb91f7e9706a16037",
+              "text": "hat heart attack risk factors can't be changed? \n\n There are other risk factors you can't change , which include: \n\n \n Age \n Sex \n Family history \n Race or ethnicity \n \n\n What causes a heart attack? \n\n The most common cause of heart attacks is coronary artery disease (CAD). With CAD, there is a buildup of cholesterol and other material, called plaque, on the inner walls or the arteries. This is atherosclerosis . It can build up for years. Eventually an area of plaque can rupture (break open). A blood clot can form around the plaque and block the artery. \n\n A less common cause of heart attack is a severe spasm (tightening) of a coronary artery. The spasm cuts off blood flow through the artery. \n\n What are the symptoms of a heart attack? \n\n Heart attack symptoms can vary from mild to severe. The symptoms one person has may not be the same as someone else's. \n\n The most common symptoms include: \n\n \n Chest discomfort. It is often in the center or left side of the chest. It usually lasts more than a few minutes and may go away and come back. It can feel like pressure, squeezing, fullness, or pain . It also can feel like heartburn or indigestion. \n Shortness of breath . Sometimes this is your only symptom. You may get it before or during the chest discomfort. It can happen when you are resting or doing a little bit of physical activity. \n Discomfort in the upper body. You may feel pain or discomfort in one or both arms, the back, shoulders, neck, jaw, or upper part of the stomach. \n \n\n You may also have other symptoms, such as nausea, vomiting , dizziness , palpitations (racing or pounding heart), and lightheadedness. You may break out in a cold sweat. Sometimes women will have different symptoms then men. For example, they are more likely to feel tired for no reason. \n",
+              "start": 1504,
+              "section": 0,
+              "documentId": "medlineplus:5",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Heart Attack\nMI; Myocardial infarction\nHealth-topic summary\nhat heart attack risk factors can't be changed? \n\n There are other risk factors you can't change , which include: \n\n \n Age \n Sex \n Family history \n Race or ethnicity \n \n\n What causes a heart attack? \n\n The most common cause of heart attacks is coronary artery disease (CAD). With CAD, there is a buildup of cholesterol and other material, called plaque, on the inner walls or the arteries. This is atherosclerosis . It can build up for years. Eventually an area of plaque can rupture (break open). A blood clot can form around the plaque and block the artery. \n\n A less common cause of heart attack is a severe spasm (tightening) of a coronary artery. The spasm cuts off blood flow through the artery. \n\n What are the symptoms of a heart attack? \n\n Heart attack symptoms can vary from mild to severe. The symptoms one person has may not be the same as someone else's. \n\n The most common symptoms include: \n\n \n Chest discomfort. It is often in the center or left side of the chest. It usually lasts more than a few minutes and may go away and come back. It can feel like pressure, squeezing, fullness, or pain . It also can feel like heartburn or indigestion. \n Shortness of breath . Sometimes this is your only symptom. You may get it before or during the chest discomfort. It can happen when you are resting or doing a little bit of physical activity. \n Discomfort in the upper body. You may feel pain or discomfort in one or both arms, the back, shoulders, neck, jaw, or upper part of the stomach. \n \n\n You may also have other symptoms, such as nausea, vomiting , dizziness , palpitations (racing or pounding heart), and lightheadedness. You may break out in a cold sweat. Sometimes women will have different symptoms then men. For example, they are more likely to feel tired for no reason. \n"
+            },
+            "document": {
+              "id": "medlineplus:5",
+              "url": "https://medlineplus.gov/heartattack.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Heart Attack",
+              "aliases": [
+                "MI",
+                "Myocardial infarction"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "4308b1a4d4e4d4c9f3dcb1351452e29fc93493314533760e0bf6c0e03205fe0d",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:142",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5617",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:202",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1276",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6452",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Myocardial Infarction"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.029631255487269532,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "start, smoking. \n High cholesterol and high blood pressure . Manage both with diet , exercise , and medicine. \n Diabetes . Manage your blood glucose (also called blood sugar). \n Inactivity and obesity . Stay active and keep a healthy weight . \n Stress . Learn healthy ways to cope with stress. \n \n\n W",
+              "after": "\n How is a heart attack diagnosed? \n\n At the hospital, health care providers make a diagnosis based on your symptoms, blood tests, and different heart imaging tests . \n\n What is the treatment for a heart attack? \n\n Treatments may include medicines including blood thinners to break up and prevent clo"
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 49.93429200001992,
+          "embeddingMs": 679.6794999998529,
+          "vectorMs": 21.88675000006333,
+          "totalMs": 753.4019579999149
+        },
+        "warnings": [],
+        "embeddingTokens": 13,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "accept",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "Cholesterol interpretation and family-history discussion require clinician review, but reported facts do not establish urgent physical assessment or testing. Standard asynchronous review meets the current requirement without relying on a time-critical access prerequisite.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I have no chest pain or trouble breathing. I want to discuss my cholesterol result with a clinician."
+            },
+            {
+              "unit": "draft",
+              "quote": "I recommend a standard message review with a Counsel clinician in this thread (same-day service-hours target)"
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "Routine clinician messaging is proportionate to the requested result review. Emergency action is conditional on future suspected heart attack, not imposed for the father's historical symptoms.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "My father had crushing chest pain and sweating during his heart attack five years ago."
+            },
+            {
+              "unit": "draft",
+              "quote": "If you ever think you might be having a heart attack"
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "The draft correctly attributes historical symptoms to the father, preserves the patient's specific denials, and treats other symptoms and measurements as unknown.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "the crushing chest pain and sweating described were the father's symptoms five years ago, not this patient's"
+            },
+            {
+              "unit": "draft",
+              "quote": "Other symptoms and measurements were not reported, which means unknown rather than absent."
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "pass",
+          "reason": "Sources support the conditional heart-attack safety net and relevance of family history. Routine queue timing is project policy, and the draft makes no unsupported lipid-treatment or individual-risk claim.",
+          "anchors": [
+            {
+              "unit": "source:e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+              "quote": "Call 9-1-1 for emergency medical care, even if you are not sure that you’re having a heart attack."
+            },
+            {
+              "unit": "source:6678de85ca9c75685ac1f8f69d3890b2d0aa37ba94b2ec57161c0a01d40caf5c",
+              "quote": "Sweating a lot for no reason"
+            },
+            {
+              "unit": "source:00943c45f05d907fd25398cc1bad30ed1f1cf6d4e9e986cf1e7512cc2aea482b",
+              "quote": "Family history"
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "pass",
+          "reason": "The safety net identifies relevant warning symptoms and immediate action without delaying the current routine review.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "If you ever think you might be having a heart attack — chest discomfort, shortness of breath, sweating for no reason — call 911 right away rather than waiting for a reply."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No issued question or answer-dependent delay is present; the draft proceeds directly to the appropriate review recommendation.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"questions\":[]"
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "Counsel clinician ownership is explicitly recommended, with timing framed as a target rather than guaranteed acceptance or response. No completed handoff or future-task commitment is claimed.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "I recommend a standard message review with a Counsel clinician in this thread (same-day service-hours target) to go over your cholesterol result and what your father's heart attack means for your own risk."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "none",
+      "earlyCorrection": null,
+      "ownershipTaskReview": [],
+      "correction": "",
+      "evidenceQueries": []
+    },
+    "release": "model_reviewed",
+    "clinicalApproval": false,
+    "corrections": 1,
+    "careCorrectionReleased": false,
+    "sourceIntegrity": true,
+    "citations": [
+      {
+        "passageId": "e2cc996be2e489ce5c72a718353ae399831859741e216987f6d3b8350625b7d6",
+        "quote": "Call 9-1-1 for emergency medical care, even if you are not sure that you’re having a heart attack.",
+        "claim": "If you think you might be having a heart attack, call 911 even if unsure.",
+        "applicability": "applicable",
+        "limitation": "Consumer education on emergency action; not specific to this patient's current asymptomatic state."
+      },
+      {
+        "passageId": "6678de85ca9c75685ac1f8f69d3890b2d0aa37ba94b2ec57161c0a01d40caf5c",
+        "quote": "Chest pain, heaviness, or discomfort in the center or left side of the chest (this is the most common symptom)",
+        "claim": "Heart attack symptoms may include chest discomfort, shortness of breath and unexplained sweating.",
+        "applicability": "applicable",
+        "limitation": "Symptom list is general patient education, not diagnostic criteria."
+      },
+      {
+        "passageId": "00943c45f05d907fd25398cc1bad30ed1f1cf6d4e9e986cf1e7512cc2aea482b",
+        "quote": "Family history",
+        "claim": "Family history is listed among heart attack risk factors that cannot be changed.",
+        "applicability": "uncertain",
+        "limitation": "Source does not quantify risk for this patient; degree of relation and age at event not addressed."
+      }
+    ]
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "clinical-evidence-graph",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "4248fbbe-afd7-46a2-86f4-1d1042e031fd",
+  "traceId": "a131c7e96aa52ec247d553c0a7df2e13",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "My father had crushing chest pain and sweating during his heart attack five years ago. I have no chest pain or trouble breathing. I want to discuss my cholesterol result with a clinician.",
+  "inputHash": "3dc9d28bf786cb4815dadf12f256bc77efac524d6d11eae4a16500d6c19f2bb8",
+  "answerHash": "040f6eb0df0924a01b6b4631d48f4c8dd047b6d45bb49d2e2fe2a2b3be7b2eae",
+  "promptHash": "b4482d54c0f38038e079c05ae823bc3c57a553435e651e3413a6429b99f66ed9",
+  "guidanceHash": "6eac0ddb4f12334235e8feb7e92c1382bd6082b9a34d2ad0c537528e36a9f589",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-14T07:08:01.906Z",
+  "durationMs": 82807,
+  "workflowDurationMs": 82677,
+  "tracePersistenceDurationMs": 130,
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 1
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 2904
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 14557
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 68103
+    }
+  ],
+  "responseEvents": [
+    {
+      "kind": "patient_reply",
+      "disposition": "ASYNC_PHYSICIAN",
+      "text": "I recommend a standard message review with a Counsel clinician in this thread (same-day service-hours target) to go over your cholesterol result and what your father's heart attack means for your own risk. Nothing you report suggests an urgent problem now. If you ever think you might be having a heart attack — chest discomfort, shortness of breath, sweating for no reason — call 911 right away rather than waiting for a reply.",
+      "elapsedMs": 82659,
+      "sequence": 1
+    }
+  ],
+  "safetyNotices": [],
+  "firstActionMs": null,
+  "firstPatientReplyMs": 82659,
+  "firstQuestionMs": null
+}

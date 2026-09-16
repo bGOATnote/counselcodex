@@ -1,0 +1,951 @@
+{
+  "run": {
+    "key": "opusLow",
+    "path": "outputs/stripped-3bucket-opus-2026-09-15",
+    "provider": "anthropic",
+    "model": "claude-opus-5",
+    "effort": "low",
+    "taxonomy": "three_bucket"
+  },
+  "referenceId": "physician-adjudication-v3-2026-09-15",
+  "agree": 44,
+  "denominator": 50,
+  "missIds": [
+    "C07",
+    "C22",
+    "C32",
+    "C43",
+    "C47",
+    "C49"
+  ],
+  "previousV2": {
+    "agree": 42,
+    "denominator": 49
+  },
+  "revisedCommon49": {
+    "agree": 43,
+    "denominator": 49
+  },
+  "adjudicationGainsOnCommon49": [
+    "C34",
+    "C38"
+  ],
+  "adjudicationLossesOnCommon49": [
+    "C32"
+  ],
+  "newlyIncludedIds": [
+    "C25"
+  ],
+  "clinicianActionEndpoint": "Any clinician action now: ASYNC_PHYSICIAN or URGENT_ESCALATION.",
+  "clinicianActionConfusion": {
+    "TP": 40,
+    "TN": 6,
+    "FP": 1,
+    "FN": 3,
+    "AMBIGUOUS_ENDPOINT": 0
+  },
+  "urgencyMismatchWithBothPositiveIds": [
+    "C43",
+    "C49"
+  ],
+  "rows": [
+    {
+      "id": "C01",
+      "message": "Hi, I've had a runny nose and a mild sore throat for about 2 days. No fever, I'm still eating and drinking fine. Should I be worried?",
+      "inputSHA256": "0881f57f013ca6a7b53a322a424ca773d60e965cd13fcf66ab58c0dafde5bb2c",
+      "originalDisposition": "SELF_CARE",
+      "disposition": "SELF_CARE",
+      "rationale": "Mild, brief upper respiratory symptoms without fever or red flags; supportive home care and monitoring are appropriate.",
+      "acceptedBuckets": [
+        "SELF_CARE"
+      ],
+      "previousAcceptedBuckets": [
+        "SELF_CARE"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TN",
+      "amendmentId": null
+    },
+    {
+      "id": "C02",
+      "message": "45M. I've had crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach. I have high cholesterol.",
+      "inputSHA256": "75e3de9dfe3eea7b98979483ea19030386bdd039342bcbc7e32108a5b00de88e",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Classic acute coronary syndrome presentation: 30 min crushing chest pressure with left arm radiation, diaphoresis, nausea, and cardiac risk factor — call 911 now.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C03",
+      "message": "28F. It burns when I pee and I'm going a lot more often, started 2 days ago. No fever, no back pain. I'm not pregnant. I've had UTIs before.",
+      "inputSHA256": "9b51c9e5fee93ea7e8bebe97b91e7807416d2f06b7ec9c286a33a4fffc0dc7bb",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Classic uncomplicated lower UTI symptoms for 2 days with no fever, flank pain, or pregnancy; suitable for asynchronous review and likely antibiotic prescription rather than emergency care or self-care alone.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C04",
+      "message": "62F, I'm diabetic. I got a small cut on the bottom of my foot about 4 days ago and now the skin around it is red and a little swollen. No fever. It's tender when I press on it.",
+      "inputSHA256": "4d307ea5fff71d10992dfebb600c1d805c5bbc88fef2a39c94515cf4eb8855d1",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Diabetic foot wound with spreading redness, swelling, and tenderness — possible cellulitis/infection requiring same-day evaluation due to high risk of rapid progression and limb-threatening complications.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C05",
+      "message": "I've been feeling really hopeless for a few weeks now. Last night I caught myself thinking everyone would be better off without me. I don't know what to do.",
+      "inputSHA256": "6a9ad551d64efda6b5f6ee2d2dc58fba2c24f9a128c790fc9ead0dbf4e0eb2d7",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Passive suicidal ideation with hopelessness represents an acute safety risk requiring immediate crisis assessment, not asynchronous follow-up.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C06",
+      "message": "Could I get a refill on my losartan? I've been on 50mg once a day for about 2 years, my blood pressure is well controlled, last home reading was 122/78.",
+      "inputSHA256": "8c70d1536a066e9ee571355a02171145268c655586bf746bf45235924646cced",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Routine medication refill request for stable, well-controlled hypertension with no red-flag symptoms; requires prescriber action but not urgent.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C07",
+      "message": "My 3-year-old has had a fever up to 102F for 2 days. He's still drinking okay and pretty playful in between the fevers. No rash that I can see.",
+      "inputSHA256": "9ce2f33af6b7880c3936da3c07fe2302ecd75a53163af691a612511d30f9ee2d",
+      "originalDisposition": "SELF_CARE",
+      "disposition": "SELF_CARE",
+      "rationale": "Toddler with 2 days of moderate fever, well-hydrated, playful between fevers, no rash or red flags — supportive care and monitoring; seek care if fever >3-5 days, poor intake, lethargy, or new rash.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": false,
+      "previousAgrees": false,
+      "clinicianAction": "FN",
+      "amendmentId": null
+    },
+    {
+      "id": "C08",
+      "message": "35F. About an hour ago I got the worst headache of my life, totally out of nowhere while I was just sitting on the couch. It hit like a thunderclap. My neck feels a bit stiff now too.",
+      "inputSHA256": "30c31683c0c03b5a432fcd86d71ac7ae66522a79b2f948dad068a99f33c18447",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Thunderclap headache with neck stiffness — possible subarachnoid hemorrhage; needs emergency evaluation now.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C09",
+      "message": "30F, I'm 32 weeks pregnant. I've had a bad headache that won't go away, my vision is a little blurry, and my hands and face look puffy.",
+      "inputSHA256": "61e8b48550817a1bb7a8c62a53555d1466afb9671f864c747343faa96034cecd",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "32 weeks pregnant with persistent headache, visual changes, and edema — red flags for preeclampsia requiring immediate evaluation.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C10",
+      "message": "50M. For a few weeks I've had pain in my upper right belly that comes and goes, usually after a fatty meal. No fever, no yellowing of my skin or eyes.",
+      "inputSHA256": "0c8fd0a89a9a929960050e132ef1aa7383aab56efa5ba0f4cbfc0bab379d80a7",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Intermittent postprandial RUQ pain suggests possible biliary colic/gallstones; needs clinician evaluation and imaging, but no fever or jaundice indicates no emergency.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C11",
+      "message": "I have a small itchy red rash on my forearm since I did some gardening yesterday. It's not spreading and I'm breathing fine.",
+      "inputSHA256": "48dd949ddaddaf2ac622e1f2bdf4f3170b3bffc4a28a4ecedec67a87cd82c814",
+      "originalDisposition": "SELF_CARE",
+      "disposition": "SELF_CARE",
+      "rationale": "Localized, non-spreading contact dermatitis-type rash after gardening with no systemic or airway symptoms; manageable with OTC antihistamine/topical steroid and monitoring.",
+      "acceptedBuckets": [
+        "SELF_CARE"
+      ],
+      "previousAcceptedBuckets": [
+        "SELF_CARE"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TN",
+      "amendmentId": null
+    },
+    {
+      "id": "C12",
+      "message": "68F with COPD. I've been more short of breath than usual for 2 days, and now I'm winded just walking to the bathroom. My phlegm has turned green.",
+      "inputSHA256": "76698f74d90715201a8bf80ae633d162145a0fea59c2639871a02a6db86ce5c4",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "COPD patient with 2 days of worsening dyspnea, now breathless with minimal exertion plus purulent sputum — possible acute exacerbation with infection requiring same-day evaluation and oxygen/work-of-breathing assessment.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C13",
+      "message": "55M. My right hand has been numb and tingly for a few days, worse at night. No weakness anywhere, no face drooping, my speech is normal.",
+      "inputSHA256": "5111bddf95a14bd4755ec8ee19ce23d151627e377ead402a381fdaac0cec952b",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Several days of unilateral hand numbness/tingling worse at night suggests a peripheral nerve entrapment (e.g., carpal tunnel); no stroke red flags or weakness, so non-urgent clinician review and possible exam/testing is appropriate.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C14",
+      "message": "I ate shrimp about 20 minutes ago. Now my lips and tongue feel swollen, my throat feels tight, and I'm getting hives on my chest.",
+      "inputSHA256": "6be49bab48a7259e183e38b9035f1941f55f4185da5354e387f5332799c0b8f4",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Acute allergic reaction with lip/tongue swelling, throat tightness, and hives after shrimp — possible anaphylaxis; use epinephrine if available and call emergency services now.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C15",
+      "message": "I'd like to get tested for STIs. No symptoms, but I had a new partner recently and want to be safe.",
+      "inputSHA256": "fa387f9f80425cdbe67ae7870daa5be6eaec945e2203efb8129aaa514c37c934",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Asymptomatic STI screening request after new partner; needs clinician to order appropriate tests, but no urgent red flags.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C16",
+      "message": "My 6-month-old has a fever of 100.9, she's fussy, she's had fewer wet diapers today than normal, and she doesn't seem interested in feeding.",
+      "inputSHA256": "a7b869d7bf10801b9aa8086aa0fe9a52adcf2a0fecbdfe85df6423501c3c4fc7",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Infant under 1 year with fever plus reduced feeding and decreased wet diapers suggests dehydration and needs same-day in-person evaluation.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C17",
+      "message": "40M. I hurt my low back lifting something a week ago. Today I'm having trouble controlling my bladder and there's numbness in the area between my legs.",
+      "inputSHA256": "56059131a193e0c0c7c266211a06f34d8a8aa8fd0dcedfb685dbe6d0fd20310b",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Back injury with new urinary incontinence and saddle anesthesia suggests cauda equina syndrome — a surgical emergency requiring immediate evaluation.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C18",
+      "message": "Can I refill my albuterol inhaler? I use it maybe once a week, no bad attacks recently.",
+      "inputSHA256": "cbe6f232c4c0ff05b0f6fb8fb11faf709c394930b7337fe294ac7e88fd9f4c4c",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Routine medication refill request with stable, infrequent rescue inhaler use and no acute symptoms or red flags; can be handled asynchronously by the prescriber.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C19",
+      "message": "I've been dizzy on and off for a few days. The room spins when I roll over or turn my head in bed, but it settles. No chest pain, no weakness, no headache.",
+      "inputSHA256": "15d311ec2d50bccf3b68805cd6e6cf868456c13751d3a945e0d117acab84ebba",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Positional vertigo lasting days with no red flags (no chest pain, focal weakness, or headache) — suggests benign positional vertigo but warrants non-urgent clinician review for evaluation and possible repositioning maneuvers.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C20",
+      "message": "70M on warfarin. I fell and hit my head yesterday. Today I have a bad headache and I've thrown up twice.",
+      "inputSHA256": "e09d9675992313489d794903652b706fa594688c16e90f126cdf97c72231808b",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Anticoagulated patient with head injury, worsening headache and vomiting — possible intracranial hemorrhage requiring immediate emergency evaluation.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C21",
+      "message": "55F. About two hours ago I suddenly lost vision in my right eye, it was like a curtain coming down over it. No pain at all. It hasn't come back.",
+      "inputSHA256": "8be9a95c494050808daab2687661acab4bc1620fce2516ce0396e91e0ac7458d",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Sudden painless monocular vision loss with curtain-like descent suggests retinal detachment or retinal artery occlusion/TIA — requires immediate emergency eye and stroke evaluation.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C22",
+      "message": "24M. I rolled my ankle playing basketball last night. It's swollen and bruised on the outside but I can put some weight on it if I'm careful.",
+      "inputSHA256": "ef08088fc4e333c9dd43be7643e210f70dd338e5c97e2031b49de40568f6a71d",
+      "originalDisposition": "SELF_CARE",
+      "disposition": "SELF_CARE",
+      "rationale": "Likely simple lateral ankle sprain with preserved weight-bearing and no red flags; manage with rest, ice, compression, elevation and OTC analgesia, seeking care if unable to bear weight, worsening, or no improvement in several days.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": false,
+      "previousAgrees": false,
+      "clinicianAction": "FN",
+      "amendmentId": "C22"
+    },
+    {
+      "id": "C23",
+      "message": "60M. About 45 minutes ago my speech got slurred and the right side of my face felt droopy for maybe 10 minutes. It's back to normal now so I figured it was nothing, but wanted to check.",
+      "inputSHA256": "fafcc12a29fc8d5d9ca0b4cf6f77ed95ee50eaa5069ea54da237a99132d04b6b",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Transient slurred speech and unilateral facial droop indicate a likely TIA — high short-term stroke risk requiring immediate emergency evaluation (call 911) despite symptom resolution.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C24",
+      "message": "33F. Could I get a refill on my birth control? I've been on the same one for three years with no problems.",
+      "inputSHA256": "d55a83fd4485c96d802fee252c1315035d91a6de3746f69cbfa22877958d5051",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Routine contraceptive refill request with stable long-term use and no red flags; can be handled asynchronously by a clinician.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C25",
+      "message": "42F. I flew back from Europe two days ago and now my left calf is painful, swollen, and warm compared to the other one.",
+      "inputSHA256": "c27abf9be2123439aafceef82f8551fc2a42ef214a47a5a9182f9f1b29252f94",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Unilateral calf pain, swelling, and warmth after long-haul flight suggests possible DVT, which requires same-day evaluation and imaging due to risk of pulmonary embolism.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": null,
+      "agrees": true,
+      "previousAgrees": null,
+      "clinicianAction": "TP",
+      "amendmentId": "C25"
+    },
+    {
+      "id": "C26",
+      "message": "19M. Scratchy throat since yesterday, no fever, no trouble swallowing. Just annoying. Anything I can take?",
+      "inputSHA256": "56c55ebac2f50864a223aac7c816e482201f68f2a6e881e7caa28b716723d8c5",
+      "originalDisposition": "SELF_CARE",
+      "disposition": "SELF_CARE",
+      "rationale": "Mild, brief sore throat without fever, dysphagia, or other red flags; suitable for OTC analgesics, lozenges, saltwater gargles and monitoring.",
+      "acceptedBuckets": [
+        "SELF_CARE"
+      ],
+      "previousAcceptedBuckets": [
+        "SELF_CARE"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TN",
+      "amendmentId": null
+    },
+    {
+      "id": "C27",
+      "message": "70F. Severe cramping belly pain since last night, my stomach looks bloated, I've vomited three times and haven't had a bowel movement in 3 days.",
+      "inputSHA256": "7fd3e3d094520511017b904c89712d4982b1db54d03f1388e6965ecfba9e692a",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "70F with severe abdominal pain, distension, vomiting, and obstipation — concerning for bowel obstruction; needs emergency evaluation now.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C28",
+      "message": "29F, about 8 weeks pregnant. I started bleeding this morning, more than spotting, with cramping in my lower belly.",
+      "inputSHA256": "359f2fab19a3538ced37dd948c088b36327c94ca2b02e0924f0b9a535698e8d8",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "First-trimester pregnancy with heavier-than-spotting vaginal bleeding and cramping — possible miscarriage or ectopic pregnancy; needs same-day evaluation with exam, ultrasound, and hCG.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C29",
+      "message": "45F. I had my cholesterol checked last week at a lab. Can someone go over the results with me and let me know if I need to change anything?",
+      "inputSHA256": "b95fff4d36b2cca130c6400f9b6146cd1e157778dd32d39205f28f1273e28fc8",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Non-urgent request for lab result interpretation and possible treatment adjustment; requires clinician review but no red-flag symptoms.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C30",
+      "message": "36M. I got into poison ivy while clearing brush on Saturday. Itchy blistery rash on both forearms, spreading a bit within that area. No fever, no trouble breathing.",
+      "inputSHA256": "9e1db2d0712a2fb3ee4a7542f19fb181102946b1ab059ac8f09063dde4b4b5bb",
+      "originalDisposition": "SELF_CARE",
+      "disposition": "SELF_CARE",
+      "rationale": "Localized contact dermatitis from poison ivy without facial/genital involvement, systemic symptoms, or airway compromise; manage with OTC topical steroids, antihistamines, cool compresses, and seek care if it worsens or spreads widely.",
+      "acceptedBuckets": [
+        "SELF_CARE"
+      ],
+      "previousAcceptedBuckets": [
+        "SELF_CARE"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TN",
+      "amendmentId": null
+    },
+    {
+      "id": "C31",
+      "message": "50F. Bad headache since yesterday with a fever of 101.5, my neck is stiff and it hurts to look at bright light.",
+      "inputSHA256": "a9a3c4edc4414712dd96458ba9f9323cd2847a5c7d6fac4de29ad925d26091a1",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Fever, headache, neck stiffness, and photophobia suggest possible meningitis — needs immediate emergency evaluation.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C32",
+      "message": "My 8-year-old says her right ear has hurt since last night. No fever, she ate breakfast fine and went to school.",
+      "inputSHA256": "8a7e21b8bb719aae31ebc7cd0fa5444c07f396591dab97cf4145e4ce6e29fca1",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Likely otitis media/ear pain in a child; no fever or red flags (no swelling behind ear, no severe systemic symptoms), so non-urgent clinician review for possible exam or treatment is appropriate.",
+      "acceptedBuckets": [
+        "SELF_CARE"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": false,
+      "previousAgrees": true,
+      "clinicianAction": "FP",
+      "amendmentId": "C32"
+    },
+    {
+      "id": "C33",
+      "message": "65M, type 2 diabetes. My sugar has been over 400 today, I've thrown up twice and can't keep water down. I feel awful.",
+      "inputSHA256": "67199ed3cc826af5d9efc9f9b0d01af4927333824092cf8d77a87360572749b0",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Glucose >400 with vomiting and inability to tolerate fluids suggests possible DKA/hyperglycemic crisis requiring immediate same-day emergency evaluation.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C34",
+      "message": "27F. My seasonal allergies are back — sneezing, itchy eyes, stuffy nose. What over the counter option do you recommend?",
+      "inputSHA256": "6416cba039f20fbda8f35889bbc6afe941c08366d78db47d85b8af78f0f7e910",
+      "originalDisposition": "SELF_CARE",
+      "disposition": "SELF_CARE",
+      "rationale": "Mild seasonal allergy symptoms without red flags; OTC antihistamines (e.g., cetirizine/loratadine) and saline or intranasal steroid spray are appropriate self-management.",
+      "acceptedBuckets": [
+        "SELF_CARE"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": true,
+      "previousAgrees": false,
+      "clinicianAction": "TN",
+      "amendmentId": "C34"
+    },
+    {
+      "id": "C35",
+      "message": "58M. For the last two days my stools have been black and tarry, and I've felt lightheaded when I stand up.",
+      "inputSHA256": "2bc73c1bc3f8d0f68af8a2ce72d8c43a2b0ca3e53b069595817b6bb63f6863ed",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Melena with orthostatic lightheadedness suggests active upper GI bleeding with possible hemodynamic compromise — needs emergency evaluation now.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C36",
+      "message": "31F. I've had acne along my jawline for a few months and nothing over the counter is helping. Would like to talk about options.",
+      "inputSHA256": "dcf37634ddb7f2573b6d70b48977078123bd518b09ccf8f9477efb2b7f7c7ba0",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Chronic acne unresponsive to OTC care; needs clinician review for prescription options, non-urgent.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C37",
+      "message": "44M. Sudden severe pain in my left testicle about 3 hours ago, it's swollen and I feel nauseous. Pain isn't letting up.",
+      "inputSHA256": "f027f10005972e4982876d203afa4ce957017ef7095608e07a834c2614136ee1",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Acute testicular pain with swelling and nausea suggests possible testicular torsion — a time-sensitive surgical emergency requiring immediate evaluation.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C38",
+      "message": "22F. Following up on my ankle sprain from last week — it's improving. Just wondering how much ibuprofen I can safely take and for how long.",
+      "inputSHA256": "14187def66b19e9c60c11d8763664e2845e491d242f6f9350ef58ceb701de6fe",
+      "originalDisposition": "SELF_CARE",
+      "disposition": "SELF_CARE",
+      "rationale": "Improving minor sprain with a general OTC analgesic dosing question; no red flags, standard self-care guidance suffices.",
+      "acceptedBuckets": [
+        "SELF_CARE"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": true,
+      "previousAgrees": false,
+      "clinicianAction": "TN",
+      "amendmentId": "C38"
+    },
+    {
+      "id": "C39",
+      "message": "39F, two weeks postpartum. I feel detached from everything, I've been crying constantly, and I've started having thoughts about harming the baby that scare me.",
+      "inputSHA256": "287c89602206eb42a595f6b44131e711ec13c70886096b3eb4d0b61d7b66015f",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Postpartum thoughts of harming the infant with detachment and constant crying are red flags for severe postpartum depression/psychosis requiring same-day emergent psychiatric evaluation and infant safety planning.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C40",
+      "message": "47M. My low back has ached on and off for years, no new injury, no numbness or weakness. I'd like a referral for physical therapy.",
+      "inputSHA256": "c98118eb74b68b3c09ba946fe60e94131e57121d5614fb7e5c3a32d1c39c9701",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Chronic stable low back pain without red flags; needs a non-urgent PT referral order from the physician.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C41",
+      "message": "My 6-year-old has a fever of 103 and I just noticed purple spots on his legs that don't fade when I press on them. He seems very sleepy.",
+      "inputSHA256": "386d8473737fad7fb0929a5efde1525bd9492ef314203d263f7913e265e7b84d",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Fever with non-blanching purpuric rash and lethargy in a child — red flags for meningococcal sepsis; needs emergency evaluation now.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C42",
+      "message": "52F. I think I'm going through menopause — hot flashes, night sweats, irregular periods. I'd like to discuss what my options are.",
+      "inputSHA256": "531952a97636f0f397517c21b812c271fccae30e251a290c17b5422836749784",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Non-urgent menopause symptoms; needs clinician discussion of management options (e.g., hormone therapy) and evaluation of irregular bleeding.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C43",
+      "message": "34M. I've had a cough for about three weeks now with night sweats and I've lost maybe 10 pounds without trying. I moved here from a country where TB is common.",
+      "inputSHA256": "09068e1f6be344be3040d4eadc60eb24c36f9ae351e44d3b8b4cf5381af1f218",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Three weeks of cough with night sweats, unintentional weight loss, and TB-endemic exposure history warrants prompt clinician evaluation with TB testing and chest imaging, but no acute red flags (hemoptysis, respiratory distress) requiring same-day emergency care.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": false,
+      "previousAgrees": false,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C44",
+      "message": "68M. Both my ankles have been swelling for a couple weeks and it's gotten worse. The last two nights I've had to sit up to breathe because lying flat makes me short of breath.",
+      "inputSHA256": "adfcbb420c9dbbf1659cef5c2025e26f1b6d9330106a81ed3b041973f8c4dc36",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Bilateral ankle edema with worsening orthopnea/PND suggests decompensated heart failure — needs same-day evaluation.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C45",
+      "message": "25F. I got my STI panel results in the portal and I don't understand what one of the values means. Can someone explain?",
+      "inputSHA256": "e660f563712f02e5c16d7b6596cd72ef3770f3d74a7826d9ab2c8bd76745fab2",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Non-urgent request for interpretation of lab results; requires clinician review of the STI panel but no acute symptoms or red flags.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C46",
+      "message": "30M. Requesting a refill of my finasteride, 1mg daily. No side effects, been on it about a year.",
+      "inputSHA256": "1f95346e788fdf8d2ebc600ce3689b564692f648b01579d8c2bf809787e0b2b4",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Routine medication refill request with no side effects or red flags; can be handled asynchronously by prescriber.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C47",
+      "message": "45F. I've had trouble falling asleep for the last month or so. Work has been stressful. I'm functioning but tired all day.",
+      "inputSHA256": "eb18163721c69f2d876309e47f1b98b28dcd728022039e472662221b042b3057",
+      "originalDisposition": "SELF_CARE",
+      "disposition": "SELF_CARE",
+      "rationale": "Chronic mild insomnia tied to situational stress without red flags; sleep hygiene and stress-management measures are appropriate first-line self-care, with follow-up if symptoms persist or worsen.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": false,
+      "previousAgrees": false,
+      "clinicianAction": "FN",
+      "amendmentId": "C47"
+    },
+    {
+      "id": "C48",
+      "message": "71F. I fell in the kitchen this morning and my right hip hurts badly. I can't put any weight on that leg.",
+      "inputSHA256": "8ebe43a1771127a9297ad7e2266907fc00d253ca1b485a2c87cd21c15e6a4e25",
+      "originalDisposition": "URGENT_ESCALATION",
+      "disposition": "URGENT_ESCALATION",
+      "rationale": "Elderly patient with fall, severe hip pain, and inability to bear weight — concern for hip fracture requiring immediate evaluation and imaging.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C49",
+      "message": "28M. Sharp pain on the left side of my chest since yesterday, worse when I take a deep breath. I did a heavy chest workout two days ago. No shortness of breath, no leg swelling, I don't smoke.",
+      "inputSHA256": "e617eea8912e73574abfa54050b69052d9611a3bbca97f379454261cbeec9cab",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Young patient with reproducible pleuritic/musculoskeletal chest pain after heavy lifting, no dyspnea, leg swelling, or cardiac risk factors; needs clinician review to exclude PE/other causes but no same-day red flags.",
+      "acceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "previousAcceptedBuckets": [
+        "URGENT_ESCALATION"
+      ],
+      "agrees": false,
+      "previousAgrees": false,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    },
+    {
+      "id": "C50",
+      "message": "40F. My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get. I'm out of sumatriptan and would like a refill.",
+      "inputSHA256": "0ede5c086d3ea812a589febf64e2b33fcde3c4795b2b686a9b02453986a0b81e",
+      "originalDisposition": "ASYNC_PHYSICIAN",
+      "disposition": "ASYNC_PHYSICIAN",
+      "rationale": "Routine refill of sumatriptan for a typical, familiar migraine pattern with no red-flag features; can be handled asynchronously by prescriber.",
+      "acceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "previousAcceptedBuckets": [
+        "ASYNC_PHYSICIAN"
+      ],
+      "agrees": true,
+      "previousAgrees": true,
+      "clinicianAction": "TP",
+      "amendmentId": null
+    }
+  ]
+}

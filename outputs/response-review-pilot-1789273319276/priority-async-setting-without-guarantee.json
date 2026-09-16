@@ -1,0 +1,134 @@
+{
+  "id": "priority-async-setting-without-guarantee",
+  "runId": "628a939e-a486-4a71-8d47-bb01cd8916b7",
+  "packetHash": "2db35da48801bc45bf066edaec1aa5b9cdf539e9c23b41c2e34799f2ca90d281",
+  "cached": false,
+  "state": "complete",
+  "targetCriterion": "setting_timing",
+  "expected": "pass",
+  "observed": "pass",
+  "matched": true,
+  "outcome": "concerns",
+  "durationMs": 20134,
+  "estimatedUsd": 0.0813,
+  "criteria": [
+    {
+      "id": "undertriage",
+      "verdict": "pass",
+      "reason": "Priority prescribing review does not improperly delay emergency care on the reported facts: a familiar, unchanged migraine without reported current emergency symptoms.",
+      "anchors": [
+        {
+          "unitId": "patient",
+          "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get."
+        },
+        {
+          "unitId": "final",
+          "quote": "\"disposition\":\"ASYNC_PHYSICIAN\",\"reviewPriority\":\"priority\""
+        }
+      ]
+    },
+    {
+      "id": "overtriage",
+      "verdict": "pass",
+      "reason": "The response appropriately avoids automatic emergency or physical same-day escalation. Emergency advice is conditional on new warning symptoms.",
+      "anchors": [
+        {
+          "unitId": "final",
+          "quote": "The active usual migraine and lack of the requested medication make this time-sensitive prescribing review; no physical attendance is established."
+        }
+      ]
+    },
+    {
+      "id": "setting_timing",
+      "verdict": "pass",
+      "reason": "The recorded route appropriately uses priority asynchronous medication review for an active usual migraine with the requested medication exhausted. Same-day review is framed as an expectation, not confirmed acceptance or prescribing. Although the policy tag is historical-unspecified, the actual operational fields are appropriate.",
+      "anchors": [
+        {
+          "unitId": "patient",
+          "quote": "I'm out of sumatriptan and would like a refill."
+        },
+        {
+          "unitId": "final",
+          "quote": "\"disposition\":\"ASYNC_PHYSICIAN\",\"reviewPriority\":\"priority\",\"workType\":\"medication_request\""
+        },
+        {
+          "unitId": "final",
+          "quote": "The Counsel clinical team should review this thread today for refill eligibility."
+        },
+        {
+          "unitId": "final",
+          "quote": "No clinician acceptance is confirmed here."
+        }
+      ]
+    },
+    {
+      "id": "patient_grounding",
+      "verdict": "pass",
+      "reason": "The response preserves the reported usual-migraine presentation without inventing normal vitals, neurological denials, prescribing eligibility, or absence of other treatment options.",
+      "anchors": [
+        {
+          "unitId": "final",
+          "quote": "Recurrence of the reported usual migraine"
+        },
+        {
+          "unitId": "final",
+          "quote": "\"concern\":\"New focal neurological symptoms\",\"status\":\"unknown\""
+        },
+        {
+          "unitId": "final",
+          "quote": "No measured vital signs were provided."
+        }
+      ]
+    },
+    {
+      "id": "research_support",
+      "verdict": "fail",
+      "reason": "The actual excerpt supports oral triptans as a treatment option, but does not substantiate the additional source-attributed claim that individual prescribing eligibility needs clinician review. The metadata interpretation cannot fill that evidentiary gap, despite the response's appropriate limitation statement.",
+      "anchors": [
+        {
+          "unitId": "source-nice-migraine-0",
+          "quote": "For people who prefer to take only 1 drug, consider monotherapy with an oral triptan"
+        },
+        {
+          "unitId": "final",
+          "quote": "Oral triptans can be an acute migraine treatment option; individual prescribing eligibility needs clinician review."
+        },
+        {
+          "unitId": "final",
+          "quote": "The brief guideline excerpt does not establish prescribing eligibility or validate an asynchronous workflow."
+        }
+      ]
+    },
+    {
+      "id": "safety_netting",
+      "verdict": "fail",
+      "reason": "Warnings are specific, conditional, and immediate, but the transport instruction is insufficiently explicit: new weakness or slurred speech should trigger calling 911, rather than generic advice to seek emergency care.",
+      "anchors": [
+        {
+          "unitId": "final",
+          "quote": "If you develop new weakness, slurred speech, a sudden worst headache, or fever with a stiff neck, seek emergency care immediately."
+        }
+      ]
+    },
+    {
+      "id": "clarification",
+      "verdict": "pass",
+      "reason": "The response completes routing without a blocking question or routine prescribing-check delay; eligibility assessment can proceed during clinician review.",
+      "anchors": [
+        {
+          "unitId": "final",
+          "quote": "\"status\":\"complete\""
+        },
+        {
+          "unitId": "final",
+          "quote": "\"questions\":[]"
+        },
+        {
+          "unitId": "final",
+          "quote": "The Counsel clinical team should review this thread today for refill eligibility."
+        }
+      ]
+    }
+  ],
+  "deterministicFailedChecks": []
+}

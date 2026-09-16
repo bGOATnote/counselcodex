@@ -1,0 +1,144 @@
+{
+  "output": {
+    "reviewScope": "draft-and-issued-question/v2",
+    "verdict": "revise",
+    "criteria": [
+      {
+        "id": "undertriage",
+        "verdict": "fail",
+        "reason": "The current worst-ever headache requires immediate emergency assessment for a secondary cause, with examination and access to indicated imaging. Gradual onset and denied new weakness or speech difficulty do not clear that risk. Refill review today does not meet this requirement.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "My usual migraine came on gradually, not sudden, but this is the worst headache of my life."
+          },
+          {
+            "unit": "draft",
+            "quote": "time-sensitive prescribing review can start in messaging without a physical visit."
+          }
+        ]
+      },
+      {
+        "id": "overtriage",
+        "verdict": "pass",
+        "reason": "The proposed messaging pathway imposes no unnecessary current setting or transport burden; its defect is insufficient assessment of the reported worst-ever headache, not excessive urgency.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "I recommend a Counsel clinician review your refill request in this thread today"
+          }
+        ]
+      },
+      {
+        "id": "patient_grounding",
+        "verdict": "fail",
+        "reason": "The draft incorrectly marks worst-ever headache and change from usual pattern as denied. Familiar pain characteristics do not negate the explicitly reported exceptional severity. The narrative also presents the attack as unchanged without acknowledging that distinction.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "but this is the worst headache of my life"
+          },
+          {
+            "unit": "draft",
+            "quote": "\"concern\":\"Sudden or worst-ever headache\",\"status\":\"denied\""
+          },
+          {
+            "unit": "draft",
+            "quote": "\"concern\":\"Change from usual headache pattern\",\"status\":\"denied\""
+          }
+        ]
+      },
+      {
+        "id": "claim_support",
+        "verdict": "fail",
+        "reason": "The migraine summary supports gradual onset and familiar migraine features, but not using those features to dismiss the patient's worst-ever severity or conclude that physical assessment is unnecessary.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Less likely secondary headache given gradual onset typical of prior attacks"
+          },
+          {
+            "unit": "source:5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+            "quote": "An important part of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms."
+          }
+        ]
+      },
+      {
+        "id": "safety_net",
+        "verdict": "fail",
+        "reason": "Emergency action is deferred to future neurological symptoms or a sudden worst-ever headache, although worst-ever severity is already present. Requiring sudden onset leaves the current concern unaddressed.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Call 911 if you develop new weakness, trouble speaking, or a sudden worst-ever headache."
+          },
+          {
+            "unit": "patient",
+            "quote": "this is the worst headache of my life"
+          }
+        ]
+      },
+      {
+        "id": "clarification_delay",
+        "verdict": "pass",
+        "reason": "No question was issued and no answer-dependent hold is present. The inadequate current care timing is scored under undertriage.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "\"questions\":[]"
+          }
+        ]
+      },
+      {
+        "id": "ownership",
+        "verdict": "pass",
+        "reason": "Clinician review is explicitly recommended, not represented as accepted or guaranteed, and unavailable review has a fallback. The inappropriate clinical route is scored separately.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "I recommend a Counsel clinician review your refill request in this thread today"
+          },
+          {
+            "unit": "draft",
+            "quote": "If today's review can't be obtained, seek a same-day option for rescue treatment."
+          }
+        ]
+      }
+    ],
+    "earlyAction": "none",
+    "earlyCorrection": null,
+    "ownershipTaskReview": [],
+    "correction": "Change to EMERGENCY_NOW with immediate emergency-department assessment, null reviewPriority/workType, and appropriate safe-transport instructions; do not make care wait for messaging or a refill. Explain that worst-ever severity needs urgent exclusion of a secondary cause despite gradual onset and familiar migraine features. Distinguish denied sudden onset from present worst-ever severity, and acknowledge the severity change rather than marking the entire pattern unchanged. Remove the reassuring secondary-headache inference. Preserve the accurately reported neurological denials and unknown measurements. Update safety-net advice so it does not require new symptoms before acting.",
+    "repairTargets": [
+      "routing",
+      "patientMessage",
+      "reason",
+      "differential",
+      "redFlags"
+    ],
+    "evidenceQueries": []
+  },
+  "usage": {
+    "inputTokens": 10139,
+    "outputTokens": 1068
+  },
+  "failure": null,
+  "firstTextDeltaMs": 1657,
+  "streamProgress": {
+    "lastTextDeltaMs": 17807,
+    "textDeltaCount": 1061,
+    "textCharacters": 4840
+  },
+  "transportTimings": {
+    "startResolvedMs": 5,
+    "objectResolvedMs": 17886,
+    "usageResolvedMs": 18114,
+    "finishReasonResolvedMs": 18114,
+    "streamEndMs": 18115
+  },
+  "cacheUsage": {
+    "cachedInputTokens": 4918,
+    "cacheCreationInputTokens": 5218
+  },
+  "durationMs": 18115
+}

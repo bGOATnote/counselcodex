@@ -1,0 +1,274 @@
+{
+  "protocol": "immutable-gui-capture/v1",
+  "label": "C30-v16-retest",
+  "runId": "c6225e23-17de-4e45-a294-60db9c7663f6",
+  "files": {
+    "run": {
+      "source": "apps/evaluation/.local/clinical-evidence-graph-v1/runs/c6225e23-17de-4e45-a294-60db9c7663f6.json",
+      "copied": "outputs/candidate-concise-gui-2026-09-14/runs/c6225e23-17de-4e45-a294-60db9c7663f6.json",
+      "sha256": "e5deab38218c3ee91c66b0832e2def69ef20dcf843dbdfb83481daebc83a38f8",
+      "bytes": 182082
+    },
+    "events": {
+      "source": "apps/evaluation/.local/clinical-evidence-graph-v1/events/c6225e23-17de-4e45-a294-60db9c7663f6.jsonl",
+      "copied": "outputs/candidate-concise-gui-2026-09-14/events/c6225e23-17de-4e45-a294-60db9c7663f6.jsonl",
+      "sha256": "c7dd990244756d6b56a8451bdc2729e4e27f68859d10a56caac206c8c89ed520",
+      "bytes": 27052
+    }
+  },
+  "sourceCompletedAt": "2026-09-14T15:33:32.953Z",
+  "graphVersion": "evidence-graph/v16",
+  "runVersion": "disposition-agent/v3",
+  "clinicalPolicyVersion": "disposition-clinical-policy/v2",
+  "config": {
+    "models": {
+      "context": "anthropic/claude-haiku-4-5",
+      "safety": "anthropic/claude-haiku-4-5",
+      "disposition": "anthropic/claude-opus-5",
+      "judge": "openai/gpt-6-astra"
+    },
+    "factGraphMode": "off",
+    "judgeStyle": "concise"
+  },
+  "promptHash": "ebeef99601056bbe34ca68c7212ac55e7c07afdf1ef089377feb0e3c62e78567",
+  "inputHash": "9e1db2d0712a2fb3ee4a7542f19fb181102946b1ab059ac8f09063dde4b4b5bb",
+  "answerHash": null,
+  "status": "review_required",
+  "release": "clinician_required",
+  "failure": "CLINICIAN_REVIEW_REQUIRED",
+  "disposition": null,
+  "reviewPriority": null,
+  "patientMessage": null,
+  "reason": null,
+  "earlyNotices": [],
+  "transportAdmission": {
+    "status": "legacy",
+    "code": "LEGACY_TEXT_CONTRACT",
+    "clinicalValidation": false
+  },
+  "careCorrectionReleased": false,
+  "finalJudge": {
+    "reviewScope": "draft-and-issued-question/v2",
+    "verdict": "revise",
+    "criteria": [
+      {
+        "id": "undertriage",
+        "verdict": "pass",
+        "reason": "Reported forearm symptoms support self-care with escalation.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "Itchy blistery rash on both forearms, spreading a bit within that area. No fever, no trouble breathing."
+          }
+        ]
+      },
+      {
+        "id": "overtriage",
+        "verdict": "pass",
+        "reason": "Home care avoids unnecessary current clinical attendance.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "You can manage this at home for now with over-the-counter itch relief from your pharmacist, keeping the area clean."
+          }
+        ]
+      },
+      {
+        "id": "patient_grounding",
+        "verdict": "fail",
+        "reason": "The reason asserts forearm confinement although involvement elsewhere remains unconfirmed.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Itchy blistery rash confined to both forearms"
+          },
+          {
+            "unit": "patient",
+            "quote": "Itchy blistery rash on both forearms, spreading a bit within that area."
+          },
+          {
+            "unit": "draft",
+            "quote": "distribution elsewhere not reported"
+          }
+        ]
+      },
+      {
+        "id": "claim_support",
+        "verdict": "pass",
+        "reason": "Sources support OTC care, course, and infection escalation.",
+        "anchors": [
+          {
+            "unit": "source:aa002ceebadc425d3c4415a54e0a899f36ea7c83091fba1af786ae6bd921e862",
+            "quote": "If you develop a rash, ask your pharmacist about over-the-counter medicines."
+          },
+          {
+            "unit": "source:54b1cac37c35633e762fe8713099e013781a0205524f34a7527be46f4c761a70",
+            "quote": "- Duration without treatment: 1-3 weeks; systemic steroids shorten course significantly"
+          },
+          {
+            "unit": "source:128a1ffeae61a8181bac298c3a620b82917fc7e9a51d0590efa88efff90a3431",
+            "quote": "The blister looks infected - if it is draining pus, or the area around the blister is red, swollen, warm, or very painful"
+          }
+        ]
+      },
+      {
+        "id": "safety_net",
+        "verdict": "pass",
+        "reason": "Worsening triggers timely assessment with an access fallback.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "If you get a fever, or the rash becomes painful, warm or drains pus, or reaches your face, eyes or genitals, arrange clinician assessment today - message this thread for Counsel review, and if that can't be secured promptly go to an urgent care or in-person clinic rather than waiting for a reply."
+          }
+        ]
+      },
+      {
+        "id": "clarification_delay",
+        "verdict": "pass",
+        "reason": "Distribution question is relevant and did not block routing.",
+        "anchors": [
+          {
+            "unit": "issued_question",
+            "quote": "Besides your forearms, do you have any rash on your face, neck, genitals, or elsewhere on your body?"
+          }
+        ]
+      },
+      {
+        "id": "ownership",
+        "verdict": "pass",
+        "reason": "Conditional Counsel review includes fallback without promised acceptance.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "message this thread for Counsel review, and if that can't be secured promptly go to an urgent care or in-person clinic rather than waiting for a reply."
+          }
+        ]
+      }
+    ],
+    "earlyAction": "none",
+    "earlyCorrection": null,
+    "ownershipTaskReview": [],
+    "correction": "Replace “confined to both forearms” with “reported on both forearms, spreading a bit within that area; involvement elsewhere is unconfirmed.” Retain the self-care route and action-based safety net.",
+    "evidenceQueries": []
+  },
+  "failedApplicationChecks": [
+    {
+      "id": "independent_review",
+      "status": "fail",
+      "detail": "No accepted independent review; clinician assessment is required."
+    }
+  ],
+  "timing": {
+    "firstActionMs": null,
+    "firstQuestionMs": 6946,
+    "firstPatientReplyMs": null,
+    "finalMs": 88697,
+    "workflowMs": 88665,
+    "tracePersistenceMs": 32
+  },
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 0
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 6936
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 26621
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 62020
+    }
+  ],
+  "modelCalls": 6,
+  "repairs": 1,
+  "agentTimings": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "calls": 1,
+      "durationMs": 3729,
+      "firstTextDeltaMs": 1534,
+      "usage": {
+        "inputTokens": 1082,
+        "outputTokens": 303
+      },
+      "failure": null
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "calls": 1,
+      "durationMs": 21722,
+      "firstTextDeltaMs": 2030,
+      "usage": {
+        "inputTokens": 17238,
+        "outputTokens": 1465
+      },
+      "failure": null
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "calls": 1,
+      "durationMs": 6924,
+      "firstTextDeltaMs": 2039,
+      "usage": {
+        "inputTokens": 2713,
+        "outputTokens": 196
+      },
+      "failure": null
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "calls": 1,
+      "durationMs": 23155,
+      "firstTextDeltaMs": 4624,
+      "usage": {
+        "inputTokens": 8749,
+        "outputTokens": 1010
+      },
+      "failure": null
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "calls": 1,
+      "durationMs": 17740,
+      "firstTextDeltaMs": 1274,
+      "usage": {
+        "inputTokens": 18329,
+        "outputTokens": 1378
+      },
+      "failure": null
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "calls": 1,
+      "durationMs": 21091,
+      "firstTextDeltaMs": 4182,
+      "usage": {
+        "inputTokens": 8747,
+        "outputTokens": 1019
+      },
+      "failure": null
+    }
+  ],
+  "traceId": "ebb144c8b1f703815a8ca91c67481e24",
+  "tracePersisted": true,
+  "eventLogPersisted": true,
+  "estimatedUSD": 0.5316099999999999,
+  "pricingVersion": "clinical-study-pricing-2026-09-13/v1",
+  "clinicalApproval": false,
+  "limitation": "Exact runtime artifact capture, not an independent observation of browser rendering, patient receipt, clinical correctness or delivered care. All supplied attempts are retained, including failures. Cost is the standard token estimate, not an invoice; embedding and cache-specific charges are not included."
+}

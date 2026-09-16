@@ -1,0 +1,165 @@
+{
+  "createdAt": "2026-09-15T17:44:13.356800+00:00",
+  "scope": "Local offline continuation verification; no clinical approval",
+  "sourceCheckpoint": "561419f211490715db6a2fdcf6b476b7f870bd68",
+  "baselineBeforeContinuation": "dac1f48",
+  "checks": [
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "log": "lint.log",
+      "sha256": "764064842e62d98cc634fd5af48c76da624757433662a4f0cf97834af7cb4626",
+      "testExecutions": null
+    },
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "log": "typecheck.log",
+      "sha256": "d1c7a4b353947ed1326fa3b39791da3473c6f0822774d805de2ef791544537dc",
+      "testExecutions": null
+    },
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "log": "full-tests.log",
+      "sha256": "d30ece437c73f44320f7a73d8df41f22166a2c098f7561c69417b02d420f5c4b",
+      "testExecutions": {
+        "tests": 830,
+        "pass": 782,
+        "fail": 0,
+        "skipped": 48
+      }
+    },
+    {
+      "command": "node --experimental-strip-types --test tests/local-binding-fixtures.test.ts tests/local-mining-tasks.test.ts tests/local-offline.test.ts",
+      "exitCode": 0,
+      "log": "focused-local-tests.log",
+      "sha256": "e2bce3c6dd800629d96b1f193a12427dee38d669531dfebb08b5b9ce5e3a12a6",
+      "testExecutions": {
+        "tests": 12,
+        "pass": 12,
+        "fail": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "command": "npm run build",
+      "exitCode": 1,
+      "log": "build-initial.log",
+      "sha256": "a4955937d4ab5425b10db889fde89cec650fbd12864019d7dd457c6f67296f4a",
+      "testExecutions": null
+    },
+    {
+      "command": "npm run build:mastra",
+      "exitCode": 0,
+      "log": "mastra-build-retry.log",
+      "sha256": "8d5fda3caaf667baa6c51346e153115a78a8c0939772f57e4aada302f7c44578",
+      "testExecutions": null
+    },
+    {
+      "command": "npm run build:verify",
+      "exitCode": 0,
+      "log": "build-verify.log",
+      "sha256": "56ec3b4440657763f08716c20026ad835ed6c2e33f6dcacf4984a4e04f62cb1d",
+      "testExecutions": null
+    },
+    {
+      "command": "npm run test:unit",
+      "exitCode": 0,
+      "log": "unit-discovery.log",
+      "sha256": "d7ca658670249323a94c2efee8e5204f93891b8bc8c536637b8a0a9d4ee20882",
+      "testExecutions": {
+        "tests": 185,
+        "pass": 164,
+        "fail": 0,
+        "skipped": 21
+      }
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "log": "final-docs-lint.log",
+      "sha256": "764064842e62d98cc634fd5af48c76da624757433662a4f0cf97834af7cb4626",
+      "testExecutions": null
+    }
+  ],
+  "buildRecovery": "Initial candidate build and verification passed. Mastra dependency installation failed with sandbox DNS ENOTFOUND; network-enabled Mastra retry and both artifact verifiers passed. No aggregate npm run build rerun is claimed.",
+  "testDiscovery": "Full npm test passed before the 12-test default discovery wrapper. Focused 12 tests passed. Default unit suite passed again after wrapper; package files unchanged. Counts are test executions, not necessarily unique clinical assertions.",
+  "guiInteractionVerified": false,
+  "paidExperimentProviderCalls": 0,
+  "incidentalLocalArithmeticRequestsOutsideStudy": 1,
+  "priorSetupDispositionSmokeExcluded": true,
+  "studies": [
+    {
+      "directory": "outputs/local-nano-offline-v1-2026-09-15",
+      "requests": 24,
+      "rawResponses": 24,
+      "results": 24,
+      "validationRequests": 0,
+      "selectionArtifactPresent": false
+    },
+    {
+      "directory": "outputs/local-nano-offline-v2-2026-09-15",
+      "requests": 24,
+      "rawResponses": 24,
+      "results": 24,
+      "validationRequests": 0,
+      "selectionArtifactPresent": false
+    },
+    {
+      "directory": "outputs/local-nano-record-scope-2026-09-15",
+      "requests": 24,
+      "rawResponses": 24,
+      "results": 24,
+      "validationRequests": 0,
+      "selectionArtifactPresent": false
+    },
+    {
+      "directory": "outputs/local-cascade8b-offline-2026-09-15",
+      "requests": 24,
+      "rawResponses": 24,
+      "results": 24,
+      "validationRequests": 0,
+      "selectionArtifactPresent": false
+    },
+    {
+      "directory": "outputs/local-cascade8b-4096-2026-09-15",
+      "requests": 36,
+      "rawResponses": 36,
+      "results": 36,
+      "validationRequests": 0,
+      "selectionArtifactPresent": false
+    },
+    {
+      "directory": "outputs/local-nano-mining-2026-09-15",
+      "requests": 12,
+      "rawResponses": 12,
+      "results": 12,
+      "validationRequests": 0,
+      "selectionArtifactPresent": false
+    }
+  ],
+  "preservation": {
+    "protectedPathsUnchangedFromBaseline": [
+      "package.json",
+      "package-lock.json",
+      "src/disposition",
+      "src/evidence",
+      "data",
+      "apps/evaluation"
+    ],
+    "noDeletedOrModifiedHistoricalOutputs": true,
+    "goldUsedOnlyForDeterministicScoring": true
+  },
+  "sha256": {
+    "scripts/local-offline-study.ts": "7d86893106488a42db3dbb8f710d019c7000a38d0a09752f8f48a703eb8dde0d",
+    "src/evaluation/local-offline.ts": "9fd9fe948bcbf311b75bf94957bc5e76693f28d2d1b3c32f24c73330dab552d9",
+    "src/evaluation/local-binding-fixtures.ts": "06d6e94a44722104e445d2bb1bd35a9e7a325a1551b7793025b56f28854f1791",
+    "src/evaluation/local-mining-tasks.ts": "181bf67ea8b3548fabe0318bd56fad9b993460ef283f927974c6cff59704ac33",
+    "tests/local-offline-discovery.test.mjs": "0a31890b49b1b42f13c21c7d6c5a967ec3e5f60bf111d149214d5588b2605ae4",
+    "data/patient_messages.csv": "d17771ed706c6866d2b13f2d7f5344824acf51aaf281b8af6368637586d71a15",
+    "data/evaluation/physician-system-reference-v2.json": "19a37b5ab11f7ed4f266d0d4adb0bf8dd4ba977a6aed1af7c83e3b8bfc6c6598",
+    "outputs/local-offline-development-audit-2026-09-15.json": "0b6cd2a79ed13993e9d99f86476656823a7c1f1767a06a92b85105b114bebd2e",
+    "outputs/local-mining-engineering-review-2026-09-15.json": "da9b8834c08e2e057afc31548d6936de4632ee04453426096b5f4ddb0b57a9b4"
+  }
+}

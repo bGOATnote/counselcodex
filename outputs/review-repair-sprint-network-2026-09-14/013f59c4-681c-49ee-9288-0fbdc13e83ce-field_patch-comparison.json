@@ -1,0 +1,220 @@
+{
+  "id": "013f59c4-681c-49ee-9288-0fbdc13e83ce",
+  "arm": "field_patch",
+  "admission": {
+    "protocol": "field-local-repair/v1",
+    "baseDraftHash": "95b59b428a7d19c3e21e06f19450465dfc1a2672d32a687e30b4490e64c953fa",
+    "evidenceHash": "5ce80b2875982a677f12d10c856c4090824970cad3f9abe7e0989df9c0efc59e",
+    "allowedFields": [
+      "patientMessage"
+    ],
+    "changedFields": [
+      "patientMessage"
+    ],
+    "resultDraftHash": "2c86856d9cbea72f27950073f09019a38ec8f088b6bfbf6c0e4eb02506a0e656",
+    "status": "applied",
+    "failure": null
+  },
+  "draft": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "reviewPriority": "routine",
+    "workType": "clinical_review",
+    "reason": "Localized itchy blistery rash confined to both forearms after reported poison ivy exposure, with fever and breathing trouble denied; a clinician task remains (assessment of severity and whether prescription treatment is warranted) but nothing reported establishes time-critical or in-person need.",
+    "patientMessage": "I recommend a Counsel clinician review your rash in this message thread, with a same-day target during service hours. Your description fits a contact rash on both forearms after plant exposure. Seek same-day in-person care if you develop fever, spreading redness with warmth or increasing pain, pus, or rash on your face, eyes or genitals; call 911 for throat tightness or breathing difficulty. Do these regardless of whether you have a reply here. If messaging isn't available to you, contact another clinic or urgent care instead of waiting.",
+    "differential": [
+      "Allergic contact dermatitis from urushiol exposure",
+      "Irritant contact dermatitis from brush clearing",
+      "Secondary bacterial skin infection of excoriated blisters (not reported; would change urgency)"
+    ],
+    "redFlags": [
+      {
+        "concern": "Fever",
+        "status": "denied",
+        "quote": "No fever"
+      },
+      {
+        "concern": "Breathing difficulty / airway involvement",
+        "status": "denied",
+        "quote": "no trouble breathing"
+      },
+      {
+        "concern": "Face, eye, or genital involvement",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Mucosal erosions or skin sloughing",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Signs of skin infection (pus, warmth, increasing pain)",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Extent of body surface involved beyond forearms",
+        "status": "reported",
+        "quote": "Itchy blistery rash on both forearms"
+      }
+    ],
+    "vitalSigns": "No vital-sign values reported — temperature, heart rate, blood pressure, respiratory rate and oxygen saturation are all unreported; whether any were measured is unknown. Fever and breathing trouble were denied by symptom report only, which does not establish a measured temperature.",
+    "questions": [],
+    "evidenceLimitations": "The contact dermatitis and allergic reaction sources are agent-compiled emergency-department reference syntheses, not telehealth protocols or primary guidelines, and their currency is not assessed; the consumer summaries support general symptom and self-care scope only. Rash extent, distribution details and any facial/ocular/genital involvement were not described, so severity grading is uncertain.",
+    "transportIntent": null,
+    "citations": [
+      {
+        "passageId": "281fcb8b13d15310b926e00824884fc1c8e81c5b0dbd96d9ead1415805d2ed51",
+        "quote": "- Localized contact dermatitis without mucosal involvement, BSA <20%, no systemic symptoms: discharge with topical or systemic corticosteroids, allergen identification counseling, and return precautions",
+        "claim": "Localized contact dermatitis without mucosal involvement, limited body surface area and no systemic symptoms is generally managed with outpatient discharge, allergen counseling and return precautions rather than emergency care.",
+        "applicability": "uncertain",
+        "limitation": "ED-reference synthesis; exact body-surface-area percentage for this patient was not reported."
+      },
+      {
+        "passageId": "54b1cac37c35633e762fe8713099e013781a0205524f34a7527be46f4c761a70",
+        "quote": "- Classic misconception: fluid in blisters does NOT spread the rash — the rash appears to \"spread\" due to delayed sensitization in lower-exposure areas",
+        "claim": "Apparent spread of a poison ivy rash reflects delayed sensitization in lower-exposure areas rather than blister fluid spreading the rash.",
+        "applicability": "applicable",
+        "limitation": "Agent-compiled synthesis, not a primary guideline."
+      },
+      {
+        "passageId": "aa002ceebadc425d3c4415a54e0a899f36ea7c83091fba1af786ae6bd921e862",
+        "quote": "For severe rashes, see your doctor.",
+        "claim": "Severe poison ivy rashes warrant clinician evaluation.",
+        "applicability": "applicable",
+        "limitation": "Consumer summary; no severity threshold defined."
+      }
+    ]
+  },
+  "judge": {
+    "reviewScope": "draft-and-issued-question/v2",
+    "verdict": "revise",
+    "criteria": [
+      {
+        "id": "undertriage",
+        "verdict": "pass",
+        "reason": "The reported localized rash and limited spread do not establish a necessary emergency or same-day physical-care capability. Messaging does not delay any demonstrated urgent requirement.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "Itchy blistery rash on both forearms, spreading a bit within that area. No fever, no trouble breathing."
+          }
+        ]
+      },
+      {
+        "id": "overtriage",
+        "verdict": "fail",
+        "reason": "Required clinician review is justified only by the possibility of assessing severity or prescribing, not by a patient-grounded necessary task. Limited local evolution alone does not require review. Self-care guidance with escalation for severe, persistent or concerning changes is a feasible lower-burden pathway.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "a clinician task remains (assessment of severity and whether prescription treatment is warranted)"
+          },
+          {
+            "unit": "patient",
+            "quote": "Itchy blistery rash on both forearms, spreading a bit within that area."
+          },
+          {
+            "unit": "source:aa002ceebadc425d3c4415a54e0a899f36ea7c83091fba1af786ae6bd921e862",
+            "quote": "If you develop a rash, ask your pharmacist about over-the-counter medicines. For severe rashes, see your doctor."
+          }
+        ]
+      },
+      {
+        "id": "patient_grounding",
+        "verdict": "fail",
+        "reason": "The beyond-forearms extent flag incorrectly labels an unreported finding as reported. The limitation also says distribution was not described despite the explicit forearm distribution. Breathing difficulty was denied, but the combined airway-involvement denial is broader than that statement.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "{\"concern\":\"Extent of body surface involved beyond forearms\",\"status\":\"reported\",\"quote\":\"Itchy blistery rash on both forearms\"}"
+          },
+          {
+            "unit": "draft",
+            "quote": "Rash extent, distribution details and any facial/ocular/genital involvement were not described"
+          },
+          {
+            "unit": "draft",
+            "quote": "{\"concern\":\"Breathing difficulty / airway involvement\",\"status\":\"denied\",\"quote\":\"no trouble breathing\"}"
+          }
+        ]
+      },
+      {
+        "id": "claim_support",
+        "verdict": "pass",
+        "reason": "The contact-rash inference, delayed local evolution and action-based warnings are supported by the supplied passages. Source limitations are acknowledged; the unnecessary clinician-task rationale is a routing-policy defect rather than a false medical attribution.",
+        "anchors": [
+          {
+            "unit": "source:aa002ceebadc425d3c4415a54e0a899f36ea7c83091fba1af786ae6bd921e862",
+            "quote": "If it gets on your skin, it causes a blistering skin rash ."
+          },
+          {
+            "unit": "source:54b1cac37c35633e762fe8713099e013781a0205524f34a7527be46f4c761a70",
+            "quote": "- Classic misconception: fluid in blisters does NOT spread the rash — the rash appears to \"spread\" due to delayed sensitization in lower-exposure areas"
+          },
+          {
+            "unit": "source:d46557f47ba34dd42b5cf5c4e712d2156be42460ba119536215d1105ae7eb268",
+            "quote": "| Pre-anaphylactic | Rapidly spreading urticaria, progressive angioedema (tongue, uvula), throat tightness, voice change, early wheeze, lightheadedness | High — treat as anaphylaxis (see [anaphylaxis.md](anaphylaxis.md)) |"
+          }
+        ]
+      },
+      {
+        "id": "safety_net",
+        "verdict": "pass",
+        "reason": "Warnings specify same-day assessment for infection or sensitive-site changes and immediate emergency activation for airway symptoms, independently of messaging access.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Seek same-day in-person care if you develop fever, spreading redness with warmth or increasing pain, pus, or rash on your face, eyes or genitals; call 911 for throat tightness or breathing difficulty. Do these regardless of whether you have a reply here."
+          }
+        ]
+      },
+      {
+        "id": "clarification_delay",
+        "verdict": "pass",
+        "reason": "No issued question or answer-dependent delay is present.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "\"questions\":[]"
+          }
+        ]
+      },
+      {
+        "id": "ownership",
+        "verdict": "pass",
+        "reason": "Clinician review is explicitly recommended rather than claimed accepted or completed. The target is not a response guarantee, and an access fallback is provided.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "I recommend a Counsel clinician review your rash in this message thread, with a same-day target during service hours."
+          },
+          {
+            "unit": "draft",
+            "quote": "If messaging isn't available to you, contact another clinic or urgent care instead of waiting."
+          }
+        ]
+      }
+    ],
+    "earlyAction": "none",
+    "earlyCorrection": null,
+    "ownershipTaskReview": [],
+    "correction": "Change routing to SELF_CARE with null reviewPriority and workType. Replace the generic required-clinician-task rationale and corresponding review/access instructions with useful supported self-care guidance, retaining action-based warnings and advising clinician assessment if severe or persistent. In redFlags, mark extent beyond the forearms unknown and limit the denial to breathing difficulty. Revise evidenceLimitations to acknowledge the reported forearm distribution while preserving uncertainty about exact extent and unreported sensitive-site involvement.",
+    "repairTargets": [
+      "routing",
+      "patientMessage",
+      "reason",
+      "redFlags",
+      "evidenceLimitations"
+    ],
+    "evidenceQueries": []
+  },
+  "changedFields": [
+    "patientMessage"
+  ],
+  "sourceIdentity": true,
+  "repairMs": 9305,
+  "reviewMs": 34997,
+  "reviewExecuted": true,
+  "clinicalApproval": false
+}

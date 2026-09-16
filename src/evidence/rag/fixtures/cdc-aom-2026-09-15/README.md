@@ -1,0 +1,11 @@
+# Isolated CDC AOM source capture
+
+Source: CDC. This material is available free of charge on the [CDC pediatric outpatient care page](https://www.cdc.gov/antibiotic-use/hcp/clinical-care/pediatric-outpatient.html). Use of this material and links does not imply endorsement by CDC, ATSDR, HHS or the United States Government.
+
+The retained public HTML responses and capture metadata are hashed by `cdc-aom-candidate.ts`. Both requests returned HTTP 200 without redirects on September 15, 2026. The source's displayed and last-reviewed date is April 22, 2024. Other publishing/build timestamps remain in the raw HTML; they are not independently adjudicated clinical updates. The [agency reuse page](https://www.cdc.gov/other/agencymaterials.html), last reviewed May 1, 2023, is separately retained and pinned. Reachability and publisher dates are not currency or applicability certification.
+
+Only the complete acute otitis media **Diagnosis** and **Management** table cells enter the candidate, as one chunk. Table/list markup and entities are normalized; the original wording, diagnostic alternatives, effusion prerequisite, conditional watchful-waiting criteria, and all antibiotic-selection qualifiers remain intact. Reference marker 3 becomes `[3]`; the linked AAP guideline is not downloaded or reproduced. Other conditions, epidemiology/statistics, media, logos, navigation and linked publications are excluded. The raw HTML is retained for verification, not rendered as application content.
+
+This is a CDC clinician-facing summary (`clinical_review`), not the original AAP primary guideline. Agency prose is attributed under the CDC public-domain policy, subject to that policy's exclusions; linked third-party works and marks do not inherit that classification. No media or logos were fetched. No independent legal certification is claimed.
+
+This unpromoted candidate does not diagnose an individual earache, establish observation eligibility, mandate same-day care, or assign an async priority. It is not imported into live retrieval and has no embeddings or provider calls. `capture.mjs` is a manual, create-only capture utility, not a runtime dependency. Any future response/date/excerpt change requires a newly reviewed candidate; existing fixtures must not be overwritten.

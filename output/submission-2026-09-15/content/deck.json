@@ -1,0 +1,928 @@
+{
+  "title": "Disposition for an incoming patient message",
+  "subtitle": "Counsel Physician AI Engineer take-home | 15 September 2026",
+  "mainSlides": 15,
+  "presentationMinutes": 35,
+  "qaMinutes": 25,
+  "slides": [
+    {
+      "title": "Disposition for an incoming patient message",
+      "minutes": 1,
+      "subtitle": "A three-bucket prototype with versioned physician review",
+      "emphasis": "48/50 with revised physician labels; original result retained at 44/49.",
+      "footnote": "The score changed after physician reassessment. Model outputs and prompt are unchanged.",
+      "notes": "This is an independent synthetic prototype for the take-home assignment. I will demonstrate the implementation, show the evaluation record, and distinguish errors in model decisions from errors in the reference. The current physician reassessment gives Fable 48 agreements in 50 cases. The original reference gave 44 in 49. Three prior reference labels were corrected and one excluded case was resolved. This is a change in the scoring reference, not evidence of improved model behavior or independent clinical validation. The plan is 35 minutes including a seven-minute demo, followed by 25 minutes of discussion. Brandon Dent, MD presents this work. Presenter-supplied role: former EM assistant community professor at UNR. The Counsel Health logo identifies the assignment organization and does not imply endorsement. The cover hyperlink opens the local demo and requires the local server.",
+      "sources": [
+        "docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md",
+        "docs/STRIPPED_FABLE_GUI_2026-09-15.md",
+        "https://www.counselhealth.com",
+        "output/submission-2026-09-15/content/assets/provenance.json"
+      ],
+      "presenter": {
+        "name": "Brandon Dent, MD",
+        "title": "Former EM assistant community professor at UNR"
+      },
+      "demoLink": {
+        "url": "http://localhost:4121/stripped",
+        "label": "Local demo. Requires the local server."
+      },
+      "logo": {
+        "path": "output/submission-2026-09-15/content/assets/counsel-logo.png",
+        "alt": "Counsel Health logo"
+      }
+    },
+    {
+      "title": "C22: incomplete ankle assessment",
+      "minutes": 2,
+      "body": [
+        "24M. I rolled my ankle playing basketball last night. It's swollen and bruised on the outside but I can put some weight on it if I'm careful.",
+        "Fable: SELF_CARE\nPhysician: ASYNC_PHYSICIAN"
+      ],
+      "emphasis": "False negative: required clinician review missed",
+      "footnote": "C22’s text does not establish Ottawa criteria or a fracture diagnosis. Ottawa criteria are discussed in appendix 16.",
+      "notes": "Verbatim CSV input: 24M. I rolled my ankle playing basketball last night. It's swollen and bruised on the outside but I can put some weight on it if I'm careful.\n\nThe original message reports rolling the ankle the previous night, lateral swelling and bruising, and the ability to put some weight on it carefully. Some weight bearing does not establish the four-step assessment, and relevant bony tenderness has not been assessed. The Ottawa rules require those findings to guide imaging; an incomplete message is not a negative examination. The model later offers conditional advice about four steps and tenderness, but it already chooses SELF_CARE and asserts absent deformity and numbness without that history. Under the physician action policy the appropriate bucket remains ASYNC_PHYSICIAN to clarify the missing assessment and arrange further care if indicated. This is an undertriage classification error. It does not prove a fracture or independently mandate emergency transport. The positive endpoint here is any clinician action now, not fracture diagnosis. These user-provided discussion images were added after evaluation. They are not linked to the synthetic C22 patient and did not enter any model request, physician label, or score. The pre-existing annotation in the radiograph is retained. No diagnostic interpretation is asserted from these images. The harm mechanism is a possible delay in required clinical assessment after a false-negative routing decision. This synthetic evaluation records no observed patient harm or patient outcome. The concern is prospective and does not establish a diagnosis from the message.",
+      "sources": [
+        "data/evaluation/physician-adjudication-v3-2026-09-15.json",
+        "outputs/stripped-3bucket-fable-2026-09-15/C22-parsed.json",
+        "https://aci.health.nsw.gov.au/ecat/appendices/ottawa-ankle-adult",
+        "output/submission-2026-09-15/content/assets/ankle-radiograph.jpg",
+        "output/submission-2026-09-15/content/assets/ankle-external-view.jpg"
+      ],
+      "imageSidebarTitle": "Exact patient message",
+      "imageCaption": "Discussion images. Not part of the scored C22 input.",
+      "images": [
+        {
+          "path": "output/submission-2026-09-15/content/assets/ankle-radiograph.jpg",
+          "contentType": "image/jpeg",
+          "alt": "User-supplied ankle radiograph with its existing annotation. Discussion image, not scored C22 input."
+        },
+        {
+          "path": "output/submission-2026-09-15/content/assets/ankle-external-view.jpg",
+          "contentType": "image/jpeg",
+          "alt": "User-supplied photograph of two feet and ankles for discussion. Not scored C22 input."
+        }
+      ],
+      "harm": "Potential harm: delayed evaluation of an injury that could include a fracture."
+    },
+    {
+      "title": "C47: persistent sleep difficulty needs review",
+      "minutes": 2,
+      "subtitle": "Fable SELF_CARE → physician ASYNC_PHYSICIAN",
+      "body": [
+        "45F. I've had trouble falling asleep for the last month or so. Work has been stressful. I'm functioning but tired all day.",
+        "Persistent symptoms and daytime fatigue warrant clinician review under the physician reference.",
+        "The message does not assess mood or suicidality concerns."
+      ],
+      "emphasis": "False negative: required clinician review missed",
+      "footnote": "Both Astra settings selected ASYNC_PHYSICIAN. No patient outcome or observed harm was measured.",
+      "notes": "Verbatim CSV input: 45F. I've had trouble falling asleep for the last month or so. Work has been stressful. I'm functioning but tired all day.\n\nThe original message describes one month of difficulty falling asleep, work stress, and being tired all day despite functioning. The physician confirms ASYNC_PHYSICIAN. Fable recommends self-care and waiting a few more weeks. The rationale introduces an absence of mood or suicidality concerns that the message does not establish. That is an additional observation about unsupported reassurance, separate from the route score. The case warrants review under the physician policy; the message alone does not establish an emergency or a specific diagnosis. Both frozen Astra settings chose async. This is a useful targeted disagreement for future clinician review, not a reason to assemble a case-specific routing rule from known outputs. The harm mechanism is a possible delay in required clinical assessment after a false-negative routing decision. This synthetic evaluation records no observed patient harm or patient outcome. The concern is prospective and does not establish a diagnosis from the message. For C47, this means delayed evaluation of persistent insomnia, daytime fatigue, and potential underlying causes. It does not establish any specific underlying disorder.",
+      "sources": [
+        "data/evaluation/physician-adjudication-v3-2026-09-15.json",
+        "outputs/physician-adjudication-v3-2026-09-15/astra-fable-disagreements.csv",
+        "docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md"
+      ],
+      "harm": "Potential harm: delayed assessment of persistent insomnia and underlying causes.",
+      "fontSize": 28,
+      "gap": 20
+    },
+    {
+      "title": "Prior architecture: results and roadmap",
+      "minutes": 2,
+      "imageLayout": "historical-architecture",
+      "images": [
+        {
+          "path": "output/submission-2026-09-15/content/assets/historical-architecture-goal.png",
+          "contentType": "image/png",
+          "alt": "User-supplied historical proposed architecture with parallel safety and evidence paths, disposition, review, and release logic."
+        }
+      ],
+      "imageCaption": "V25: 27/50 completed releases; 21/49 exact-route agreement.",
+      "footnote": "Historical proposed design; not every component ran in V25. “Release/ship” did not mean clinical deployment. Current physician gold is scored only after output freeze.",
+      "notes": "The user supplied this historical roadmap diagram. It records a proposed architecture, not the current implementation. Its Current Candidate, Release / Ship, and Gold Rubric labels are historical and must not be read as present claims. The diagram includes proposed components and is not evidence that every pictured component executed in frozen V25. In particular, the completed V25 audit reports zero judge calls. The earlier evaluated approach did not meet the intended full-response contract consistently. V25 completed 27 of 50 first attempts, delivered 21 exact-route agreements among 49 eligible cases, and had 22/49 post-hoc three-bucket agreement, with only C12 changing under the collapse. Median final latency among 27 completes was 18.63 seconds. These original v2 results remain unchanged and have not been rescored against v3 here. Release means an application output in this evaluation, not clinical deployment. The stripped baseline changes the contract, prompt, configuration, and responsibilities together, so the comparison does not isolate the effect of any individual component. The present producer receives only the frozen protocol and patient message; physician gold enters offline scoring after the outputs are frozen. This history motivates establishing a simple baseline early and adding complexity only against a prespecified failure mode. The current GUI does not replace or alter V25. Exact C12 text appears in appendix 27.",
+      "sources": [
+        "docs/V25_COMPLETED_REPORT.md",
+        "outputs/submission-audit-2026-09-15/audit.json",
+        "output/submission-2026-09-15/content/assets/provenance.json"
+      ],
+      "roadmap": "Next: test the simple baseline on unseen cases. Add one component only if it reduces clinically important misses."
+    },
+    {
+      "title": "The decision and the available evidence",
+      "minutes": 2,
+      "table": {
+        "headers": [
+          "Assignment evidence",
+          "Implementation choice"
+        ],
+        "rows": [
+          [
+            "An incoming patient message",
+            "Choose the next care setting"
+          ],
+          [
+            "Three supplied disposition labels",
+            "Keep the assignment interface"
+          ],
+          [
+            "50 CSV rows; the brief describes 20",
+            "Run and retain every supplied message"
+          ],
+          [
+            "Clinical disagreement with supplied labels",
+            "Use physician review for clinical evaluation"
+          ]
+        ]
+      },
+      "footnote": "CSV labels remain an archived discussion baseline. They do not select the model or define clinical correctness.",
+      "notes": "The original file is byte-identical to the supplied CSV and contains 50 messages. I used every row and documented the mismatch with the brief. The CSV contains disagreements relevant to red-flag recognition, so agreement with it is not a model-selection objective. Its historical score is preserved separately for traceability. The clinical target is also subject to review: it must specify when guidance alone is sufficient and when physician action is needed. Internal service levels and access to patient records were not established in this exercise.",
+      "sources": [
+        "docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md",
+        "outputs/submission-audit-2026-09-15/audit.json",
+        "docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md"
+      ]
+    },
+    {
+      "title": "The frozen three-bucket contract",
+      "minutes": 2,
+      "table": {
+        "headers": [
+          "Bucket",
+          "Meaning"
+        ],
+        "rows": [
+          [
+            "SELF_CARE",
+            "Guidance only; no clinician action now"
+          ],
+          [
+            "ASYNC_PHYSICIAN",
+            "Asynchronous physician review"
+          ],
+          [
+            "URGENT_ESCALATION",
+            "Same-day in-person care or emergency action"
+          ]
+        ]
+      },
+      "body": [
+        "Medication refill → ASYNC_PHYSICIAN unless clear same-day or emergency red flags require escalation.",
+        "Return one exact bucket and a short rationale as JSON."
+      ],
+      "footnote": "URGENT_ESCALATION merges two levels of urgency. Route agreement does not establish safe timing or transport.",
+      "notes": "This is the same three-bucket protocol used for the frozen experiments. It has no new clinical rules or prompt edits. The input is one patient message. The output is one bucket and a rationale. There is no separate patient-response generator, retrieval step, judge call, or queue integration. A rationale can still contain medical advice, so correct routing alone cannot establish its clinical quality. A future operational specification would need to define timing and responsibility for escalation.",
+      "sources": [
+        "src/stripped/protocol.ts",
+        "data/evaluation/physician-adjudication-v3-2026-09-15.json"
+      ]
+    },
+    {
+      "title": "Live demonstration",
+      "minutes": 7,
+      "body": [
+        "C01: routine symptoms",
+        "C02: symptoms requiring urgent escalation",
+        "C06: stable medication refill",
+        "Edit C06 to add chest symptoms; inspect the new trace"
+      ],
+      "emphasis": "Each submission starts one independent provider call.",
+      "footnote": "Open /stripped. Use a clearly labeled saved record if the live attempt cannot complete. Exact inputs: appendix 23.",
+      "notes": "Use the current server at localhost:4121/stripped, or localhost:4120/stripped after the documented launch. Confirm the exact message, submit, and describe the actual output. Show loading, disposition, and rationale, then the request and response trace. Edit C06 to add crushing chest pressure, sweating, and left-arm radiation. Confirm that editing clears the old answer and that the next call contains only the edited message. Frozen benchmark records and live demonstrations are different observations. If the call fails, preserve the failure and show a dated saved run with its ID. A saved result must be identified as such. The prior browser verification covered all three buckets and an in-flight edit.",
+      "sources": [
+        "docs/DEMO_SCRIPT_2026-09-15.md",
+        "outputs/stripped-gui-2026-09-15/manifest.json"
+      ]
+    },
+    {
+      "title": "One call through a visible workflow",
+      "minutes": 2,
+      "type": "flow",
+      "flow": [
+        "Patient message",
+        "One Mastra step",
+        "Native Anthropic call",
+        "Disposition and trace"
+      ],
+      "body": [
+        "TypeScript reproduces all 50 frozen Fable request bodies byte for byte.",
+        "The trace exposes final text, request IDs, token counts, and latency.",
+        "Input edits clear results and prevent stale answers from appearing."
+      ],
+      "footnote": "No automatic retry or fallback. Exported traces omit hidden reasoning and credentials.",
+      "notes": "Mastra provides one visible step. It does not rewrite the model request or invoke an additional model. The frozen configuration is claude-fable-5-1, adaptive thinking, low effort, and 4096 maximum output tokens. The system prompt and message-only user content are unchanged. Request-shape, payload-size, and concurrency checks protect the software boundary. They do not adjudicate clinical decisions. Tests compare all saved requests and replay all saved responses through the parser. These checks establish request and parser compatibility, not clinical performance on new cases.",
+      "sources": [
+        "src/stripped/workflow.ts",
+        "tests/stripped-gui-protocol.test.mjs",
+        "tests/stripped-gui-workflow.test.mjs"
+      ]
+    },
+    {
+      "title": "A reference revision, with the original retained",
+      "minutes": 2,
+      "table": {
+        "headers": [
+          "Reference view",
+          "Fable agreement",
+          "What changed"
+        ],
+        "rows": [
+          [
+            "Original physician v2",
+            "44/49",
+            "C25 excluded; original record preserved"
+          ],
+          [
+            "Revised labels, same 49 cases",
+            "47/49",
+            "C32, C34, C38 accepted as self-care"
+          ],
+          [
+            "Physician v3, all 50 cases",
+            "48/50",
+            "C25 accepted as urgent escalation"
+          ]
+        ],
+        "widths": [
+          0.38,
+          0.22,
+          0.4
+        ]
+      },
+      "body": [
+        "C22 and C47 remain ASYNC_PHYSICIAN.",
+        "C25 receives a three-bucket label; the review does not specify emergency versus same-day care."
+      ],
+      "footnote": "Single physician reassessment after viewing outputs; unblinded development evidence. Exact case text: appendices 24–25.",
+      "notes": "This reference version records the user physician’s explicit reassessment on 15 September. Four labels change: C25 becomes scorable as URGENT_ESCALATION, and C32, C34 and C38 change from ASYNC_PHYSICIAN to SELF_CARE. C22 and C47 keep their prior async targets, with additional annotations. The 44-to-47 change on the same denominator comes entirely from reference corrections. C25 then adds one agreement and one case. Old references, model outputs, and scorecards remain intact. The new scorer runs offline after output freeze and reads no CSV labels. This review is neither blinded nor an independent consensus. The physician later reaffirmed URGENT_ESCALATION for C25. Async management early in the day with a well-resourced, connected service was raised as a hypothetical operational alternative. It is not an additional accepted label, a finer emergency-versus-same-day adjudication, or an implemented queue feature.",
+      "sources": [
+        "data/evaluation/physician-adjudication-v3-2026-09-15.json",
+        "outputs/physician-adjudication-v3-2026-09-15/comparison.json",
+        "docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md",
+        "docs/STRIPPED_STRATIFICATION_FABLE_2026-09-15.md"
+      ]
+    },
+    {
+      "title": "Frozen model comparison",
+      "minutes": 3,
+      "table": {
+        "headers": [
+          "Same three-bucket protocol",
+          "Original v2 /49",
+          "Revised v3 /50",
+          "Median latency"
+        ],
+        "rows": [
+          [
+            "Opus 5 low",
+            "42",
+            "44",
+            "2.30 s"
+          ],
+          [
+            "Fable 5.1 low",
+            "44",
+            "48",
+            "3.80 s"
+          ],
+          [
+            "Fable 5.1 max",
+            "42",
+            "46",
+            "5.35 s"
+          ],
+          [
+            "Astra extra-high",
+            "43",
+            "47",
+            "5.25 s"
+          ],
+          [
+            "Astra max",
+            "43",
+            "47",
+            "9.58 s"
+          ]
+        ],
+        "widths": [
+          0.4,
+          0.18,
+          0.2,
+          0.22
+        ]
+      },
+      "body": [
+        "Astra and Fable differ only on C07, C19, and C47.",
+        "Fable agrees on C07/C19; Astra agrees on C47. Both miss C22."
+      ],
+      "footnote": "One 50-case pass per setting. Astra max is the highest verified API setting; ultra was unsupported. Exact C07/C19 messages: appendix 24; C47: slide 3.",
+      "notes": "Each available setting produced 50 valid outputs from 50 one-shot calls. Under the revised reference, Fable low has two misses and both Astra settings have three. The two Astra settings produced identical buckets on all 50 messages. Their exact disagreements with Fable are C07 and C19, where Fable chose async and Astra chose self-care, and C47, where Astra chose async and Fable chose self-care. The one-case difference does not establish a stable model ranking. Provider round-trip medians describe these runs. The demo remains the frozen Fable configuration; no model replacement follows from this rescore. The requested ultra value was rejected by the API; max is reported under its actual supported name.",
+      "sources": [
+        "outputs/physician-adjudication-v3-2026-09-15/comparison.json",
+        "outputs/physician-adjudication-v3-2026-09-15/astra-fable-disagreements.csv",
+        "docs/STRIPPED_3BUCKET_ASTRA_2026-09-15.md"
+      ]
+    },
+    {
+      "title": "Reference overtriage: three corrected self-care labels",
+      "minutes": 2,
+      "table": {
+        "headers": [
+          "Case",
+          "Physician correction",
+          "Separate advice requirement"
+        ],
+        "rows": [
+          [
+            "C32: recent ear pain",
+            "ASYNC → SELF_CARE",
+            "Watchful waiting with reassessment criteria"
+          ],
+          [
+            "C34: seasonal allergies",
+            "ASYNC → SELF_CARE",
+            "Check assumptions in medication advice"
+          ],
+          [
+            "C38: improving sprain",
+            "ASYNC → SELF_CARE",
+            "Include pregnancy precautions for ibuprofen"
+          ]
+        ],
+        "widths": [
+          0.29,
+          0.3,
+          0.41
+        ]
+      },
+      "body": [
+        "The prior reference has false positives for clinician action; Fable is a true negative after correction.",
+        "C38’s frozen rationale omits pregnancy precautions. Correct routing does not resolve that omission."
+      ],
+      "footnote": "Physician corrections apply to these cases. Rationale quality is a separate, unscored endpoint. Exact patient messages: appendix 25.",
+      "notes": "These cases were previously counted as model misses because the physician reference requested async review. The physician now accepts SELF_CARE. Under a binary endpoint of any clinician action now, the earlier reference decisions are false positives relative to this reassessment; the model decisions are true negatives. C32 supports the physician’s watchful-waiting choice, but the opening message does not establish otitis media without an examination. Reassessment for persistent or worsening symptoms remains part of advice quality. C34 is an explicit correction of the prior async label. For C38, the ibuprofen answer still needs pregnancy precautions: FDA guidance advises avoiding NSAIDs at about 20 weeks or later unless directed by a clinician. Pregnancy status is unreported, not negative. This review accepts the route without certifying the whole response. No frozen rationale is rewritten.",
+      "sources": [
+        "data/evaluation/physician-adjudication-v3-2026-09-15.json",
+        "https://www.cdc.gov/antibiotic-use/hcp/clinical-care/pediatric-outpatient.html",
+        "https://www.cdc.gov/ear-infection/about/index.html",
+        "https://www.fda.gov/drugs/drug-safety-and-availability/fda-recommends-avoiding-use-nsaids-pregnancy-20-weeks-or-later-because-they-can-result-low-amniotic"
+      ]
+    },
+    {
+      "title": "Clinical quality assurance uses separate endpoints",
+      "minutes": 2,
+      "table": {
+        "headers": [
+          "Question",
+          "How to evaluate it"
+        ],
+        "rows": [
+          [
+            "Was the care setting appropriate?",
+            "Versioned physician reference; deterministic scoring"
+          ],
+          [
+            "Was necessary clinician action missed?",
+            "False negatives with a defined positive endpoint"
+          ],
+          [
+            "Was escalation unnecessary?",
+            "False positives; distinguish urgency from any review"
+          ],
+          [
+            "Was the rationale appropriate?",
+            "Independent review of assumptions, medication advice, and precautions"
+          ]
+        ]
+      },
+      "footnote": "The prototype has no judge call. These are evaluation dimensions, not added runtime steps.",
+      "notes": "Counsel’s published work motivates narrow clinician-defined criteria, review of disagreements, and explicit escalation endpoints. I apply those methods here; these case labels are the user physician’s adjudications, not Counsel-endorsed decisions. The public emergency-escalation study also treats context and case eligibility as important limits. For this prototype, routing can be scored deterministically after generation, while clinical advice requires a separate rubric. An offline model judge could assist future review only after comparison with independent clinician review. It should not silently convert a routing score into a claim about the entire response.",
+      "sources": [
+        "https://www.counselhealth.com/blog/scaling-clinical-quality-assurance-with-ai-judges",
+        "https://www.counselhealth.com/blog/how-counsel-leveraged-healthbench-to-assess-emergency-escalation",
+        "Supplied llm-as-a-judge-framework.pdf, pages 4–8",
+        "docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md"
+      ]
+    },
+    {
+      "title": "Failure modes and evidence limits",
+      "minutes": 2,
+      "table": {
+        "headers": [
+          "Failure mode",
+          "Current evidence or required work"
+        ],
+        "rows": [
+          [
+            "A stale answer appears under a new message",
+            "Verified edit cancellation and message matching"
+          ],
+          [
+            "Reference correction appears to improve the model",
+            "Retained v2 scores and explicit v3 reconciliation"
+          ],
+          [
+            "A correct route includes unsafe advice",
+            "C38 illustrates the need for separate rationale review"
+          ],
+          [
+            "Urgent routing hides timing or transport",
+            "Requires an explicit operational policy"
+          ],
+          [
+            "Known cases appear to be independent validation",
+            "New blinded cases and reviewers still required"
+          ]
+        ]
+      },
+      "footnote": "Software checks and retrospective agreement do not establish clinical readiness.",
+      "notes": "The evaluation must make it difficult to mistake a successful software check for a clinical result. Stale-result handling was exercised in browser verification. Reference revisions are documented with old and new labels, case IDs, source hashes, and a same-denominator comparison. The selected model still misses two clinician-action cases. Medication precautions remain a distinct concern even when a route is accepted. The merged urgent bucket cannot certify escalation timing. These known development messages have informed design decisions, so a new blinded assessment remains necessary before a clinical performance claim.",
+      "sources": [
+        "docs/SUBMISSION_RED_TEAM_2026-09-15.md",
+        "docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md",
+        "outputs/stripped-gui-2026-09-15/manifest.json"
+      ]
+    },
+    {
+      "title": "First 30 days: one reviewed improvement",
+      "minutes": 2,
+      "table": {
+        "headers": [
+          "When",
+          "Artifact and accountable owner",
+          "Decision before the next step"
+        ],
+        "widths": [
+          0.15,
+          0.45,
+          0.4
+        ],
+        "fontSize": 24,
+        "rows": [
+          [
+            "Week 1",
+            "Routing and timing policy\nClinical lead + care operations",
+            "Can independent clinicians apply the same boundaries?"
+          ],
+          [
+            "Week 2",
+            "New cases and blinded physician labels\nClinical evaluation lead",
+            "Are error definitions and acceptance limits fixed before inference?"
+          ],
+          [
+            "Week 3",
+            "Paired test of missing-context handling\nApplied AI + clinical review",
+            "Does it reduce missed action within escalation and workload limits?"
+          ],
+          [
+            "Week 4",
+            "One reviewed V0 and a reproducible report\nEngineering + clinical safety",
+            "Continue, revise or stop against the agreed criteria."
+          ]
+        ]
+      },
+      "footnote": "Proposed sequence. Week 4 produces a reviewed change and an evidence-based decision on its use.",
+      "notes": "The first week starts with observing the actual workflow and running the current evaluation. I would agree on the user, decision owner and service boundary before selecting a change. The policy must define when missing information requires clinician review, what makes a refill time-sensitive, and how emergency action differs from assessment today. Four refill disagreements in this experiment reflect a conflict between the prompt rule and reference policy. Resolve that conflict prospectively with clinical and operational owners, with a new reference version. Preserve the historical results.\n\nIn week 2, the clinical evaluation lead prepares new representative messages and a separately reported set of high-severity or ambiguous cases. Two independent physicians review without seeing model answers. Disagreements receive adjudication or an explicit uncertainty label. Fix the input contract, allowed labels, severity endpoints, review instructions, sample-size rationale and acceptance limits before inference. Keep the evaluation reference outside the producer context. Sample size should support uncertainty estimates for clinically important misses. A convenient aggregate percentage is insufficient for rare severe events.\n\nThe first proposed V0 addresses missing-context routing. Compare one scoped policy change against the frozen three-bucket baseline on identical new messages. Begin with a message-only policy for when uncertainty itself warrants review. A targeted clarification would be a separately evaluated interaction with unanswered-question and delay outcomes. Keep C22 and C47 as known regression examples, outside the independent result. Review missed clinician action, missed emergency escalation, unnecessary review and unsupported rationale assumptions separately. For any clarification workflow, measure completion, delay and clinician burden as well. Predeclare tolerances and analyze paired differences with uncertainty intervals.\n\nBy week 4, deliver code, a reproducible evaluation and a joint clinical-engineering decision. The scope permits one small reviewed V0. Entry into patient-facing use depends on the evidence and the service context. A negative result is a useful outcome if it identifies why the proposed change should be revised or stopped.",
+      "sources": [
+        "Supplied Copy of physician AI scientist.docx, First 30 days and First 6 months outcomes",
+        "docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md",
+        "docs/STRIPPED_STRATIFICATION_FABLE_2026-09-15.md",
+        "docs/SUBMISSION_RED_TEAM_2026-09-15.md"
+      ]
+    },
+    {
+      "title": "Months 2–6: evidence for supervised use",
+      "minutes": 2,
+      "table": {
+        "headers": [
+          "Horizon",
+          "Engineering outcome",
+          "Evidence before expansion"
+        ],
+        "widths": [
+          0.19,
+          0.39,
+          0.42
+        ],
+        "fontSize": 24,
+        "rows": [
+          [
+            "Months 2–3",
+            "A shared evaluation suite\nOwner: clinical evaluation + engineering",
+            "Any engineer can reproduce the comparison. Severe misses and advice quality remain separate."
+          ],
+          [
+            "Months 3–4",
+            "Observation alongside current care\nOwner: care operations + safety",
+            "Physicians retain decisions. Measure overrides, delays and clinician workload."
+          ],
+          [
+            "Months 4–6",
+            "One bounded supervised workflow\nOwner: clinical lead + engineering",
+            "Expand only within agreed safety limits, with incident review and a tested rollback."
+          ]
+        ]
+      },
+      "emphasis": "First decision: when does missing information justify a question, and when does it require clinician review?",
+      "footnote": "Proposed horizons depend on evidence and approved data access. Timing remains a separate validation task.",
+      "notes": "The six-month objective is a component that the team can operate and evaluate repeatedly. The proposed sequence depends on evidence and approved data access. The role profile describes one or two clinical or safety components reaching V1. I would start with one bounded routing improvement and consider a second only after the first has an accountable owner and a reusable evaluation.\n\nDuring months 2 and 3, turn the agreed evaluation into a repeatable engineering tool: versioned case provenance and labels, fixed model and prompt identifiers, an explicit scoring contract, severity-specific errors, relevant subgroup results, and reviewable uncertainty. Separate a development set from a locked evaluation set. Track reference amendments separately from model changes, as with the preserved 48/50 result. C25 counts as correct urgent routing. C32, C34 and C38 retain their self-care corrections. Repeated tuning or reference changes must not silently reuse the locked set as independent evidence. A future offline AI judge may help review unsupported assumptions or medication precautions only after comparison with independent physician review. Routing remains deterministically scored.\n\nThe next step, if those criteria support proceeding, is observation alongside the current care process with no change to patient decisions. Clinical operations owns the receiving workflow and timing assumptions. Engineering records input-output identity, model and prompt version, latency, failures and overrides. Review whether a suggested route is actionable and whether appropriate assessment actually occurs within the agreed window. Test failure handling and rollback before a supervised pilot. Patient-care work would use the organization's approved environment and data permissions. This take-home prototype remains a synthetic evaluation.\n\nFor a bounded supervised pilot, physicians retain final authority. The clinical and safety owners predefine which suspected severe misses require a pause, what review and monitoring are needed, and what evidence permits expansion. Monitor safety and clinician workload together so sending every ambiguous message to a physician cannot appear to solve the problem. Provider or prompt updates require the same evaluation and a documented decision. By month 6, the desired outcome is one supported improvement with a usable quality bar and clear operating responsibility.\n\nThe discussion has three concrete decisions. First, does missing context warrant a focused question or clinician review now, and how much delay or nonresponse can that pathway tolerate? Second, should refill urgency depend on interruption risk and clinical context instead of request type alone? Third, what evidence proves that an urgent route can meet the needed timing in the actual service? C25 remains accepted urgent in this dataset. Its hypothetical early-day async alternative requires verified resources and coordination. The four emergency-versus-same-day disagreements require separate policy and validation. These proposals do not change the frozen producer, add a runtime judge, or introduce queue logic to the current GUI.",
+      "sources": [
+        "Supplied Copy of physician AI scientist.docx, First 6 months outcomes",
+        "docs/STRIPPED_STRATIFICATION_FABLE_2026-09-15.md",
+        "docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md",
+        "https://www.counselhealth.com/blog/scaling-clinical-quality-assurance-with-ai-judges",
+        "https://www.counselhealth.com/blog/how-counsel-leveraged-healthbench-to-assess-emergency-escalation",
+        "Supplied llm-as-a-judge-framework.pdf, pages 4–8"
+      ]
+    },
+    {
+      "title": "Appendix: C22 and Ottawa ankle assessment",
+      "imageLayout": "illustration",
+      "images": [
+        {
+          "path": "output/submission-2026-09-15/content/assets/ottawa-ankle-rules-illustration.jpg",
+          "contentType": "image/jpeg",
+          "alt": "User-supplied Ottawa ankle illustration. Its simplified weight-bearing criterion is corrected in the slide footer."
+        }
+      ],
+      "imageCaption": "Discussion illustration. Not part of the scored C22 input.",
+      "footnote": "Weight-bearing criterion: unable to take four steps both immediately after injury and at assessment.\nIllustration simplifies the rule. Use the cited clinical criteria.",
+      "notes": "This user-supplied illustration is a discussion aid added after evaluation. Its author and license have not been independently verified. It is not an official figure from the clinical source cited below. The picture simplifies the Ottawa ankle criteria and must not be used as the complete rule. In particular, the picture separates immediate post-injury weight bearing and assessment weight bearing into panels C and D, then says any finding is sufficient. The clinical weight-bearing criterion instead requires inability to take four steps both immediately after injury and at assessment. Inability to stand immediately is not an equivalent statement of that criterion.\n\nThe cited NSW Agency for Clinical Innovation criteria require pain in the malleolar zone plus one of the specified findings: bone tenderness along the posterior edge or tip of the lateral malleolus, bone tenderness along the posterior edge or tip of the medial malleolus, or inability to bear weight for four steps both immediately and at assessment. The full cited clinical criteria and their applicable clinical context take precedence over the illustration.\n\nFor the scored C22 message, some weight bearing does not establish the required four-step history and examination, and relevant bony tenderness is unreported. The discussion demonstrates why missing examination findings should not be treated as negative findings. It does not retrospectively establish a positive rule, a fracture, an imaging result, or observed harm in the synthetic case. The physician reference remains ASYNC_PHYSICIAN, and Fable’s SELF_CARE remains a false negative for required clinician action. Neither this illustration nor the separate photographs entered generation or scoring.",
+      "sources": [
+        "https://aci.health.nsw.gov.au/ecat/appendices/ottawa-ankle-adult",
+        "output/submission-2026-09-15/content/assets/ottawa-ankle-rules-illustration.jpg",
+        "data/evaluation/physician-adjudication-v3-2026-09-15.json"
+      ]
+    },
+    {
+      "title": "Appendix: taxonomy changes the score",
+      "type": "comparison",
+      "metrics": [
+        {
+          "value": "35/49",
+          "label": "Five-way Opus, original exact-route score"
+        },
+        {
+          "value": "46/49",
+          "label": "Same outputs, collapsed to three buckets"
+        }
+      ],
+      "body": [
+        "Eleven disagreements disappear through mapping alone.",
+        "With revised v3 labels, this historical run scores 48/50; it used a different prompt."
+      ],
+      "footnote": "Mapping and reference revision are separate changes. Neither changes the frozen predictions.",
+      "notes": "The original exact-route result was 35 of 49. Collapsing those predictions and the original reference to three buckets gave 46 of 49. The current reference amendment gives the same collapsed outputs 48 of 50: C34 and C38 gain agreement, C32 loses agreement, and C25 adds one eligible agreement. This historical run ties the current Fable score but used a five-way prompt. It is not another arm of the frozen three-bucket protocol. Coarser targets discard priority and emergency-versus-same-day distinctions, so agreement alone should not determine clinical policy.",
+      "sources": [
+        "docs/STRIPPED_BASELINE_REPORT_2026-09-15.md",
+        "outputs/physician-adjudication-v3-2026-09-15/comparison.json"
+      ]
+    },
+    {
+      "title": "Appendix: assignment coverage",
+      "table": {
+        "headers": [
+          "Take-home objective",
+          "Delivered evidence"
+        ],
+        "rows": [
+          [
+            "Working disposition prototype",
+            "/stripped: three exact buckets and one call"
+          ],
+          [
+            "Data and evaluation",
+            "All 50 messages; frozen runs; versioned physician scoring"
+          ],
+          [
+            "Technical explanation",
+            "TypeScript/Mastra workflow and inspectable traces"
+          ],
+          [
+            "Discuss tradeoffs and next steps",
+            "Case review, evidence limits, independent validation plan"
+          ],
+          [
+            "Presentation and demonstration",
+            "15 main slides; 7-minute demo; 13 appendix slides"
+          ]
+        ],
+        "widths": [
+          0.36,
+          0.64
+        ]
+      },
+      "footnote": "The project exceeded the original timebox. A timed rehearsal and final submission remain presenter responsibilities.",
+      "notes": "The requirements audit maps the attached brief to specific artifacts and records the difference between its 20-message description and the 50 supplied rows. It distinguishes implemented behavior from research proposals. The source documents inform the task; they do not authorize external submission. The repository and exported artifacts provide the review package. A timed human rehearsal and final submission remain presenter responsibilities.",
+      "sources": [
+        "docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md",
+        "output/submission-2026-09-15/README.md"
+      ]
+    },
+    {
+      "title": "Appendix: frozen provider prompt",
+      "type": "prompt",
+      "body": [
+        "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short)."
+      ],
+      "footnote": "claude-fable-5-1 · adaptive thinking · low effort · max_tokens 4096 · one message-only user turn",
+      "notes": "This is the exact frozen system prompt. The user turn contains only the patient message. No label, case identifier, reference answer, retrieval context, or prior response enters that user turn. The SHA-256 of the UTF-8 prompt is 80810b85df956d779709a71dbc0d85534f5847e2563b0be5235048cb254a03ce. The v3 reference is used only by the offline scorer after generation; it does not change this prompt.",
+      "sources": [
+        "src/stripped/protocol.ts",
+        "outputs/stripped-3bucket-fable-2026-09-15/manifest.json"
+      ]
+    },
+    {
+      "title": "Appendix: reproduce and inspect the evidence",
+      "body": [
+        "Launch /stripped using the repository README.",
+        "Run: node scripts/score-physician-adjudication-v3.mjs",
+        "Inspect the v3 workbook for all 50 cases and Astra/Fable disagreements.",
+        "The original evaluation workbook and v2 scorecards remain available."
+      ],
+      "emphasis": "Frozen model outputs → versioned physician reference → offline scorecards.",
+      "footnote": "github.com/bGOATnote/counselcodex · Source, slides and workbooks form the review package.",
+      "notes": "The v3 workbook exposes the current reference, original reference, exact frozen predictions, physician annotations, and all model comparisons. The original workbook retains its v2 and separate CSV results. The adjudication scorer verifies source hashes and reproduces the new records without inference. The source and artifact manifest identifies the files used. Start the GUI using the documented server-side Anthropic key configuration; no retrieval initialization is needed. The normal launch uses port 4120, while the existing local server uses 4121. Localhost is a service on the presenter’s machine, not a remotely hosted application. The submitted trace exposes final output and execution information, not hidden reasoning.",
+      "sources": [
+        "README.md",
+        "docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md",
+        "output/submission-2026-09-15/counsel-disposition-adjudication-v3.xlsx",
+        "output/submission-2026-09-15/manifest.json"
+      ]
+    },
+    {
+      "title": "Experimental appendix: timing within the assigned setting",
+      "table": {
+        "headers": [
+          "Fixed care setting",
+          "Numbered timing choices",
+          "Agreement"
+        ],
+        "rows": [
+          [
+            "Async physician review",
+            "1. Prompt physician review\n2. Routine physician review",
+            "11/16"
+          ],
+          [
+            "Urgent in-person care",
+            "1. Emergency action now\n2. In-person assessment today",
+            "20/24"
+          ]
+        ],
+        "widths": [
+          0.29,
+          0.54,
+          0.17
+        ]
+      },
+      "body": [
+        "Inherited 48/50 three-bucket agreement includes C25 as correct urgent routing.",
+        "Finer agreement: 31/40 after correct setting decisions and 38/49 overall."
+      ],
+      "footnote": "41 new calls and nine self-care cases. Only C25’s emergency-versus-same-day label is unscored. Exact C25 message: appendix 24.",
+      "notes": "This is a separate frozen conditional experiment. It reuses all 50 saved Fable 5.1 low-effort parent predictions, so the inherited 48/50 is a preservation check rather than a fresh replication. The new step receives the patient message and the assigned care-setting instruction. It chooses one of two plain-language timing options. For async review, choice 1 maps to PRIORITY_ASYNC and choice 2 to STANDARD_ASYNC. For urgent care, choice 1 maps to EMERGENCY_NOW and choice 2 to SAME_DAY_IN_PERSON. The second step cannot change the first care setting. All 41 provider calls produced valid outputs. Nine SELF_CARE cases require no second call. Conditional agreement includes 40 cases with a correct non-self-care parent and an existing finer physician reference. It is 11/16 for async and 20/24 for urgent, totaling 31/40. The complete finer-route result is 38/49, retaining the two inherited parent errors. C25 remains accepted as URGENT_ESCALATION and counts as a correct case in the 48/50 parent result. Only its emergency-versus-same-day physician label is unscored. This narrower endpoint explains the 49-case denominator. The saved C32, C34, and C38 corrections to SELF_CARE are retained, and all three contribute agreement to the 38/49 finer-route numerator. None of these prior physician corrections has been reverted or discarded. The finer reference carries forward v2 acceptedRoutes with the explicit v3 parent corrections. Scoring follows the frozen outputs. No reference label enters generation. This experiment does not isolate the causal effect of clearer wording. The current GUI and its frozen first-stage prompt remain unchanged.",
+      "sources": [
+        "src/stripped/stratification.ts",
+        "outputs/stripped-stratification-fable-2026-09-15/scorecard-physician.json",
+        "outputs/stripped-stratification-fable-2026-09-15/generation-complete.json",
+        "docs/STRIPPED_STRATIFICATION_FABLE_2026-09-15.md"
+      ]
+    },
+    {
+      "title": "Experimental appendix: timing errors and policy conflicts",
+      "table": {
+        "headers": [
+          "Cases",
+          "Model timing versus reference",
+          "Interpretation"
+        ],
+        "rows": [
+          [
+            "C12, C16, C28, C44",
+            "Same-day instead of emergency",
+            "Timing undertriage"
+          ],
+          [
+            "C13",
+            "Routine instead of prompt async",
+            "Priority undertriage"
+          ],
+          [
+            "C06, C18, C24, C46",
+            "Prompt instead of routine async",
+            "Refill policy conflict"
+          ]
+        ],
+        "widths": [
+          0.26,
+          0.43,
+          0.31
+        ]
+      },
+      "body": [
+        "The prompt prioritizes refills. Four reference labels require routine review.",
+        "C22 and C47 remain first-stage self-care errors. Timing cannot correct them."
+      ],
+      "footnote": "All nine subtype disagreements count as misses. Timing policy needs clinical review before operational use. Exact subtype-case messages: appendices 23, 26–28.",
+      "notes": "All nine disagreements within correctly assigned, finer-eligible parents remain in the score. Four urgent cases receive SAME_DAY_IN_PERSON while the saved physician reference requires EMERGENCY_NOW: C12 describes COPD with increasing breathlessness at minimal exertion, C16 describes an infant with decreased feeding and fewer wet diapers, C28 describes early-pregnancy bleeding with cramping, and C44 describes worsening edema with new orthopnea. This is timing undertriage against the existing reference. C13 receives STANDARD_ASYNC instead of PRIORITY_ASYNC. C06, C18, C24, and C46 receive PRIORITY_ASYNC for medication refills while their saved physician labels require STANDARD_ASYNC. The explicit prompt includes refills as a prompt-review task, so these four disagreements expose an instruction/reference policy conflict. They are counted as misses without relabeling or a post-hoc score adjustment. The two parent errors, C22 and C47, remain SELF_CARE and do not enter the second step. Broad care-setting agreement therefore cannot certify safe timing. The additional step has a median measured latency of 4.112 seconds and a 95th percentile of 6.039 seconds. Summing each case’s separately measured parent and subtype latencies gives a 7.708-second median and 9.709-second 95th percentile. These sums are estimates, not measurements of a fresh integrated pipeline. No model promotion or current-GUI change follows from this experiment. These retrospective development cases and post-output reference revisions do not establish independent clinical performance.",
+      "sources": [
+        "outputs/stripped-stratification-fable-2026-09-15/misses.csv",
+        "outputs/stripped-stratification-fable-2026-09-15/summary.json",
+        "docs/STRIPPED_STRATIFICATION_FABLE_2026-09-15.md"
+      ]
+    },
+    {
+      "title": "Case text: demonstration inputs",
+      "table": {
+        "headers": [
+          "Case",
+          "Exact patient message"
+        ],
+        "rows": [
+          [
+            "C01",
+            "Hi, I've had a runny nose and a mild sore throat for about 2 days. No fever, I'm still eating and drinking fine. Should I be worried?"
+          ],
+          [
+            "C02",
+            "45M. I've had crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach. I have high cholesterol."
+          ],
+          [
+            "C06",
+            "Could I get a refill on my losartan? I've been on 50mg once a day for about 2 years, my blood pressure is well controlled, last home reading was 122/78."
+          ]
+        ],
+        "widths": [
+          0.1,
+          0.9
+        ],
+        "fontSize": 25
+      },
+      "footnote": "Verbatim synthetic CSV messages. Labels remain separate; these pages do not change the frozen inputs or scorecards.",
+      "notes": "These are the exact synthetic patient messages from the assignment CSV, shown to make the preceding case discussion auditable. CSV labels are not included here and are not a clinical reference. No case text or score has been revised. C01 C02 C06 are reproduced verbatim.",
+      "sources": [
+        "data/patient_messages.csv"
+      ]
+    },
+    {
+      "title": "Case text: model disagreements and urgent review",
+      "table": {
+        "headers": [
+          "Case",
+          "Exact patient message"
+        ],
+        "rows": [
+          [
+            "C07",
+            "My 3-year-old has had a fever up to 102F for 2 days. He's still drinking okay and pretty playful in between the fevers. No rash that I can see."
+          ],
+          [
+            "C19",
+            "I've been dizzy on and off for a few days. The room spins when I roll over or turn my head in bed, but it settles. No chest pain, no weakness, no headache."
+          ],
+          [
+            "C25",
+            "42F. I flew back from Europe two days ago and now my left calf is painful, swollen, and warm compared to the other one."
+          ]
+        ],
+        "widths": [
+          0.1,
+          0.9
+        ],
+        "fontSize": 25
+      },
+      "footnote": "Verbatim synthetic CSV messages. Labels remain separate; these pages do not change the frozen inputs or scorecards.",
+      "notes": "These are the exact synthetic patient messages from the assignment CSV, shown to make the preceding case discussion auditable. CSV labels are not included here and are not a clinical reference. No case text or score has been revised. C07 C19 C25 are reproduced verbatim.",
+      "sources": [
+        "data/patient_messages.csv"
+      ]
+    },
+    {
+      "title": "Case text: corrected self-care references",
+      "table": {
+        "headers": [
+          "Case",
+          "Exact patient message"
+        ],
+        "rows": [
+          [
+            "C32",
+            "My 8-year-old says her right ear has hurt since last night. No fever, she ate breakfast fine and went to school."
+          ],
+          [
+            "C34",
+            "27F. My seasonal allergies are back — sneezing, itchy eyes, stuffy nose. What over the counter option do you recommend?"
+          ],
+          [
+            "C38",
+            "22F. Following up on my ankle sprain from last week — it's improving. Just wondering how much ibuprofen I can safely take and for how long."
+          ]
+        ],
+        "widths": [
+          0.1,
+          0.9
+        ],
+        "fontSize": 25
+      },
+      "footnote": "Verbatim synthetic CSV messages. Labels remain separate; these pages do not change the frozen inputs or scorecards.",
+      "notes": "These are the exact synthetic patient messages from the assignment CSV, shown to make the preceding case discussion auditable. CSV labels are not included here and are not a clinical reference. No case text or score has been revised. C32 C34 C38 are reproduced verbatim.",
+      "sources": [
+        "data/patient_messages.csv"
+      ]
+    },
+    {
+      "title": "Case text: additional refill timing cases",
+      "table": {
+        "headers": [
+          "Case",
+          "Exact patient message"
+        ],
+        "rows": [
+          [
+            "C18",
+            "Can I refill my albuterol inhaler? I use it maybe once a week, no bad attacks recently."
+          ],
+          [
+            "C24",
+            "33F. Could I get a refill on my birth control? I've been on the same one for three years with no problems."
+          ],
+          [
+            "C46",
+            "30M. Requesting a refill of my finasteride, 1mg daily. No side effects, been on it about a year."
+          ]
+        ],
+        "widths": [
+          0.1,
+          0.9
+        ],
+        "fontSize": 25
+      },
+      "footnote": "Verbatim synthetic CSV messages. Labels remain separate; these pages do not change the frozen inputs or scorecards.",
+      "notes": "These are the exact synthetic patient messages from the assignment CSV, shown to make the preceding case discussion auditable. CSV labels are not included here and are not a clinical reference. No case text or score has been revised. C18 C24 C46 are reproduced verbatim.",
+      "sources": [
+        "data/patient_messages.csv"
+      ]
+    },
+    {
+      "title": "Case text: timing disagreements",
+      "table": {
+        "headers": [
+          "Case",
+          "Exact patient message"
+        ],
+        "rows": [
+          [
+            "C12",
+            "68F with COPD. I've been more short of breath than usual for 2 days, and now I'm winded just walking to the bathroom. My phlegm has turned green."
+          ],
+          [
+            "C13",
+            "55M. My right hand has been numb and tingly for a few days, worse at night. No weakness anywhere, no face drooping, my speech is normal."
+          ],
+          [
+            "C16",
+            "My 6-month-old has a fever of 100.9, she's fussy, she's had fewer wet diapers today than normal, and she doesn't seem interested in feeding."
+          ]
+        ],
+        "widths": [
+          0.1,
+          0.9
+        ],
+        "fontSize": 25
+      },
+      "footnote": "Verbatim synthetic CSV messages. Labels remain separate; these pages do not change the frozen inputs or scorecards.",
+      "notes": "These are the exact synthetic patient messages from the assignment CSV, shown to make the preceding case discussion auditable. CSV labels are not included here and are not a clinical reference. No case text or score has been revised. C12 C13 C16 are reproduced verbatim.",
+      "sources": [
+        "data/patient_messages.csv"
+      ]
+    },
+    {
+      "title": "Case text: urgent timing disagreements",
+      "table": {
+        "headers": [
+          "Case",
+          "Exact patient message"
+        ],
+        "rows": [
+          [
+            "C28",
+            "29F, about 8 weeks pregnant. I started bleeding this morning, more than spotting, with cramping in my lower belly."
+          ],
+          [
+            "C44",
+            "68M. Both my ankles have been swelling for a couple weeks and it's gotten worse. The last two nights I've had to sit up to breathe because lying flat makes me short of breath."
+          ]
+        ],
+        "widths": [
+          0.1,
+          0.9
+        ],
+        "fontSize": 25
+      },
+      "footnote": "Verbatim synthetic CSV messages. Labels remain separate; these pages do not change the frozen inputs or scorecards.",
+      "notes": "These are the exact synthetic patient messages from the assignment CSV, shown to make the preceding case discussion auditable. CSV labels are not included here and are not a clinical reference. No case text or score has been revised. C28 C44 are reproduced verbatim.",
+      "sources": [
+        "data/patient_messages.csv"
+      ]
+    }
+  ]
+}

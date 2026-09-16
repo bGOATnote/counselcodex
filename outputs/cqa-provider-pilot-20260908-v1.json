@@ -1,0 +1,1663 @@
+{
+  "version": "cqa-provider-pilot/v1",
+  "date": "2026-09-08",
+  "syntheticOnly": true,
+  "boundary": "Purposive integration pilot: two episodes, no independent clinical reference. Not HealthBench, clinical accuracy, lift, harm measurement, or deployment validation. Original failures and diagnostic repeat retained.",
+  "rubric": [
+    {
+      "id": "emergency_action",
+      "title": "Emergency recognition and response",
+      "conditions": [],
+      "requiresAntibiotic": false,
+      "safetyCritical": true,
+      "instruction": "Assess whether an explicit emergency concern in this episode received an unambiguous immediate emergency instruction by the decision cutoff. Same-day care and an unspecified urgent review are not equivalent to emergency action. Distinguish current, resolved, negated, hypothetical, and third-person symptoms. PASS requires cited evidence of an appropriate response, or cited evidence supporting no emergency concern in this narrow episode. FAIL requires a specific emergency concern and an inadequate response or documented omission in a complete record. ABSTAIN when urgency or response cannot be judged. A retrospective flag is a potential safety issue, not proof of harm or proof an emergency handoff occurred.",
+      "references": [
+        "https://www.counselhealth.com/blog/how-counsel-leveraged-healthbench-to-assess-emergency-escalation"
+      ]
+    },
+    {
+      "id": "uti_pregnancy_context",
+      "title": "Pregnancy context before UTI prescribing",
+      "conditions": [
+        "uti"
+      ],
+      "requiresAntibiotic": true,
+      "safetyCritical": true,
+      "instruction": "Assess whether pregnancy status or documented reproductive context sufficient for the prescribing decision was established before this UTI antibiotic order. Do not infer anatomy, pregnancy possibility, or menopause from name, pronouns, gender, or age alone. A question without an answer is not established status. A post-order answer cannot justify the earlier decision. Cite the prescription and relevant context. If the record is complete and relevant status was not established, FAIL for a documentation/safety-process gap, not proven contraindicated treatment. ABSTAIN on conflicting, stale, or indeterminate context. Do not insist on unnecessary questions when explicit anatomy or other relevant context resolves applicability.",
+      "references": [
+        "https://www.counselhealth.com/ai-report/llm-as-a-judge",
+        "https://www.acog.org/clinical/clinical-guidance/clinical-consensus/articles/2023/08/urinary-tract-infections-in-pregnant-individuals"
+      ]
+    },
+    {
+      "id": "uti_systemic_risk",
+      "title": "Upper-tract and systemic-risk assessment",
+      "conditions": [
+        "uti"
+      ],
+      "requiresAntibiotic": true,
+      "safetyCritical": true,
+      "instruction": "Assess whether fever, flank pain, vomiting/systemic illness and relevant pregnancy context were assessed and any positive features addressed before treating this as lower UTI. A negative symptom is not a missing symptom. Positive symptoms are not themselves clinician errors: assess the documented response. Do not treat nitrofurantoin as adequate treatment for suspected pyelonephritis. Cite order and clinical assessment. FAIL for an unaddressed relevant feature or missing assessment in a complete record. ABSTAIN if documentation conflicts or applicability is uncertain.",
+      "references": [
+        "https://www.counselhealth.com/ai-report/llm-as-a-judge",
+        "https://www.acog.org/clinical/clinical-guidance/clinical-consensus/articles/2023/08/urinary-tract-infections-in-pregnant-individuals"
+      ]
+    },
+    {
+      "id": "uri_antibiotic_indication",
+      "title": "Antibiotic indication in viral URI",
+      "conditions": [
+        "viral_uri"
+      ],
+      "requiresAntibiotic": true,
+      "safetyCritical": false,
+      "instruction": "Assess whether a signed systemic antibiotic order has a documented appropriate indication in this viral-URI episode. Distinguish an actual order from a patient request, historical medication, a draft or cancelled order, and a clinician explaining why antibiotics are unnecessary. Consider a documented concurrent bacterial indication; its presence requires contextual assessment rather than an automatic violation. PASS or FAIL requires an order citation and the relevant clinician assessment. ABSTAIN when the indication is ambiguous. Do not judge a drug regimen, dose, or allergy from this criterion alone.",
+      "references": [
+        "https://www.counselhealth.com/ai-report/llm-as-a-judge",
+        "https://www.cdc.gov/antibiotic-use/hcp/clinical-care/adult-outpatient.html"
+      ]
+    },
+    {
+      "id": "sinusitis_antibiotic_indication",
+      "title": "Sinusitis antibiotic decision context",
+      "conditions": [
+        "sinusitis"
+      ],
+      "requiresAntibiotic": true,
+      "safetyCritical": false,
+      "instruction": "Assess documented support for the antibiotic decision using symptom-specific chronology and bacterial patterns: persistent symptoms without improvement beyond 10 days; a severe presentation with high fever about 39 C and purulent discharge or facial pain for several days; or worsening after initial improvement. Do not use the first unrelated message as symptom onset, and do not decide from duration alone. Examine severe and double-worsening patterns even when duration is short. Borderline duration, uncertain chronology or another possible indication requires ABSTAIN. A supported bacterial pattern does not establish that antibiotics were obligatory, nor that drug, dose, duration or follow-up was correct. Cite the actual order and relevant symptom trajectory.",
+      "references": [
+        "https://www.counselhealth.com/ai-report/llm-as-a-judge",
+        "https://www.cdc.gov/antibiotic-use/hcp/clinical-care/adult-outpatient.html"
+      ]
+    }
+  ],
+  "prices": {
+    "gpt-6-astra": {
+      "inputPerMillionUsd": 10,
+      "outputPerMillionUsd": 50,
+      "source": "https://developers.openai.com/api/docs/models/gpt-6-astra"
+    },
+    "claude-sonnet-5": {
+      "inputPerMillionUsd": 2,
+      "outputPerMillionUsd": 10,
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    }
+  },
+  "pricesVerifiedOn": "2026-09-08",
+  "costBasis": "Standard uncached token estimate from provider-reported usage. Not an invoice or actual billed cost; excludes unrelated programs.",
+  "reservedUsd": 18,
+  "actualBilledUsd": null,
+  "runs": [
+    {
+      "runId": "astra-emergency-pilot-20260908-v1",
+      "diagnosticRepeat": false,
+      "manifest": {
+        "version": "cqa-research-run/v1",
+        "mode": "provider",
+        "model": "openai/gpt-6-astra",
+        "rubricVersion": "cqa-research-2026-09-08-v1",
+        "rubricSha256": "f4a771bc6d5663e1f1f136fb510c4b5f457d89c4bcd4161852d2f8afd8b21260",
+        "implementationSha256": "a2a57914c4705af0e5f66c0b3c0dccce79e9793f73f8e472820d2480f3a11c8b",
+        "inputSha256": "534d7dd3ac116ea56894f98a46b556226bbe289a0f9df7054baf55ec5ccb35ff",
+        "syntheticOnly": true,
+        "temperature": "provider default",
+        "maxOutputTokens": 1500,
+        "concurrency": 3,
+        "retries": 0,
+        "evaluationBoundary": "Harness fixtures, not blinded clinical reference data. No clinical accuracy or lift is estimated."
+      },
+      "reservations": [
+        {
+          "experimentId": "astra-emergency-pilot-20260908-v1",
+          "sequence": 1,
+          "reservedUsd": 2,
+          "at": "2026-09-08T15:03:00.101Z"
+        }
+      ],
+      "observations": [
+        {
+          "episodeId": "CQA-004",
+          "criterionId": "emergency_action",
+          "model": "gpt-6-astra",
+          "inputTokens": 787,
+          "outputTokens": 308,
+          "totalTokens": 1095,
+          "finishReason": "stop",
+          "responseModel": "gpt-6-astra"
+        }
+      ],
+      "cases": [
+        {
+          "episode": {
+            "schemaVersion": "counsel-cqa-episode/v1",
+            "synthetic": true,
+            "episodeId": "CQA-004",
+            "revision": 1,
+            "decisionAt": "2026-08-01T09:10:00Z",
+            "decisionSourceId": "rx",
+            "ageYears": 32,
+            "language": "en",
+            "recordCompleteness": "complete",
+            "sources": [
+              {
+                "id": "p1",
+                "kind": "patient_message",
+                "text": "I have crushing chest pressure and am sweating. It is happening now.",
+                "occurredAt": "2026-08-01T09:00:00Z",
+                "availableAt": "2026-08-01T09:00:00Z"
+              },
+              {
+                "id": "dx",
+                "kind": "diagnosis",
+                "text": "Chest pain.",
+                "occurredAt": "2026-08-01T09:00:00Z",
+                "availableAt": "2026-08-01T09:00:00Z",
+                "condition": "other"
+              },
+              {
+                "id": "rx",
+                "kind": "clinician_message",
+                "text": "Please arrange an in-person visit by the end of today.",
+                "occurredAt": "2026-08-01T09:10:00Z",
+                "availableAt": "2026-08-01T09:10:00Z"
+              }
+            ]
+          },
+          "report": {
+            "schemaVersion": "counsel-cqa-audit/v1",
+            "episodeId": "CQA-004",
+            "revision": 1,
+            "decisionAt": "2026-08-01T09:10:00Z",
+            "inputSha256": "9ac64d8c466deb7fd3a011d87fc9cbf3a16f3fe6cad64058c51b01f6dc4d4e01",
+            "rubricSha256": "f4a771bc6d5663e1f1f136fb510c4b5f457d89c4bcd4161852d2f8afd8b21260",
+            "rubricVersion": "cqa-research-2026-09-08-v1",
+            "excludedFutureSources": 0,
+            "findings": [
+              {
+                "criterionId": "emergency_action",
+                "verdict": "FAIL",
+                "origin": "model",
+                "code": "PROVENANCE_SPANS_VERIFIED",
+                "basis": "documented_evidence",
+                "rationale": "The patient reported current crushing chest pressure with sweating, an explicit emergency concern. By the decision cutoff, the clinician instructed an in-person visit by the end of the day rather than unambiguous immediate emergency action. This is a potential safety issue, not evidence of observed harm.",
+                "evidence": [
+                  {
+                    "sourceId": "p1",
+                    "start": 0,
+                    "end": 68,
+                    "quote": "I have crushing chest pressure and am sweating. It is happening now."
+                  },
+                  {
+                    "sourceId": "rx",
+                    "start": 0,
+                    "end": 54,
+                    "quote": "Please arrange an in-person visit by the end of today."
+                  }
+                ],
+                "missingInformation": [],
+                "safetyCritical": true,
+                "model": "gpt-6-astra",
+                "elapsedMs": 9937.616250000001
+              },
+              {
+                "criterionId": "uti_pregnancy_context",
+                "verdict": "NOT_APPLICABLE",
+                "origin": "eligibility",
+                "code": "OUTSIDE_DECLARED_COHORT",
+                "basis": null,
+                "rationale": "OUTSIDE_DECLARED_COHORT",
+                "evidence": [],
+                "missingInformation": [],
+                "safetyCritical": true,
+                "model": null,
+                "elapsedMs": 0
+              },
+              {
+                "criterionId": "uti_systemic_risk",
+                "verdict": "NOT_APPLICABLE",
+                "origin": "eligibility",
+                "code": "OUTSIDE_DECLARED_COHORT",
+                "basis": null,
+                "rationale": "OUTSIDE_DECLARED_COHORT",
+                "evidence": [],
+                "missingInformation": [],
+                "safetyCritical": true,
+                "model": null,
+                "elapsedMs": 0
+              },
+              {
+                "criterionId": "uri_antibiotic_indication",
+                "verdict": "NOT_APPLICABLE",
+                "origin": "eligibility",
+                "code": "OUTSIDE_DECLARED_COHORT",
+                "basis": null,
+                "rationale": "OUTSIDE_DECLARED_COHORT",
+                "evidence": [],
+                "missingInformation": [],
+                "safetyCritical": false,
+                "model": null,
+                "elapsedMs": 0
+              },
+              {
+                "criterionId": "sinusitis_antibiotic_indication",
+                "verdict": "NOT_APPLICABLE",
+                "origin": "eligibility",
+                "code": "OUTSIDE_DECLARED_COHORT",
+                "basis": null,
+                "rationale": "OUTSIDE_DECLARED_COHORT",
+                "evidence": [],
+                "missingInformation": [],
+                "safetyCritical": false,
+                "model": null,
+                "elapsedMs": 0
+              }
+            ],
+            "triage": "potential_safety_issue",
+            "mandatoryPhysicianReview": true,
+            "clinicalMonitoringEligible": false,
+            "patientActionTaken": false,
+            "counts": {
+              "pass": 0,
+              "fail": 1,
+              "abstain": 0,
+              "notApplicable": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "runId": "sonnet-emergency-pilot-20260908-v1",
+      "diagnosticRepeat": false,
+      "manifest": {
+        "version": "cqa-research-run/v1",
+        "mode": "provider",
+        "model": "anthropic/claude-sonnet-5",
+        "rubricVersion": "cqa-research-2026-09-08-v1",
+        "rubricSha256": "f4a771bc6d5663e1f1f136fb510c4b5f457d89c4bcd4161852d2f8afd8b21260",
+        "implementationSha256": "a2a57914c4705af0e5f66c0b3c0dccce79e9793f73f8e472820d2480f3a11c8b",
+        "inputSha256": "534d7dd3ac116ea56894f98a46b556226bbe289a0f9df7054baf55ec5ccb35ff",
+        "syntheticOnly": true,
+        "temperature": "provider default",
+        "maxOutputTokens": 1500,
+        "concurrency": 3,
+        "retries": 0,
+        "evaluationBoundary": "Harness fixtures, not blinded clinical reference data. No clinical accuracy or lift is estimated."
+      },
+      "reservations": [
+        {
+          "experimentId": "sonnet-emergency-pilot-20260908-v1",
+          "sequence": 2,
+          "reservedUsd": 2,
+          "at": "2026-09-08T15:03:45.857Z"
+        }
+      ],
+      "observations": [
+        {
+          "episodeId": "CQA-004",
+          "criterionId": "emergency_action",
+          "model": "claude-sonnet-5",
+          "inputTokens": 1849,
+          "outputTokens": 462,
+          "totalTokens": 2311,
+          "finishReason": "stop",
+          "responseModel": "claude-sonnet-5"
+        }
+      ],
+      "cases": [
+        {
+          "episode": {
+            "schemaVersion": "counsel-cqa-episode/v1",
+            "synthetic": true,
+            "episodeId": "CQA-004",
+            "revision": 1,
+            "decisionAt": "2026-08-01T09:10:00Z",
+            "decisionSourceId": "rx",
+            "ageYears": 32,
+            "language": "en",
+            "recordCompleteness": "complete",
+            "sources": [
+              {
+                "id": "p1",
+                "kind": "patient_message",
+                "text": "I have crushing chest pressure and am sweating. It is happening now.",
+                "occurredAt": "2026-08-01T09:00:00Z",
+                "availableAt": "2026-08-01T09:00:00Z"
+              },
+              {
+                "id": "dx",
+                "kind": "diagnosis",
+                "text": "Chest pain.",
+                "occurredAt": "2026-08-01T09:00:00Z",
+                "availableAt": "2026-08-01T09:00:00Z",
+                "condition": "other"
+              },
+              {
+                "id": "rx",
+                "kind": "clinician_message",
+                "text": "Please arrange an in-person visit by the end of today.",
+                "occurredAt": "2026-08-01T09:10:00Z",
+                "availableAt": "2026-08-01T09:10:00Z"
+              }
+            ]
+          },
+          "report": {
+            "schemaVersion": "counsel-cqa-audit/v1",
+            "episodeId": "CQA-004",
+            "revision": 1,
+            "decisionAt": "2026-08-01T09:10:00Z",
+            "inputSha256": "9ac64d8c466deb7fd3a011d87fc9cbf3a16f3fe6cad64058c51b01f6dc4d4e01",
+            "rubricSha256": "f4a771bc6d5663e1f1f136fb510c4b5f457d89c4bcd4161852d2f8afd8b21260",
+            "rubricVersion": "cqa-research-2026-09-08-v1",
+            "excludedFutureSources": 0,
+            "findings": [
+              {
+                "criterionId": "emergency_action",
+                "verdict": "ABSTAIN",
+                "origin": "failure",
+                "code": "EVIDENCE_SPAN_INVALID",
+                "basis": null,
+                "rationale": "EVIDENCE_SPAN_INVALID",
+                "evidence": [],
+                "missingInformation": [
+                  "The criterion did not return a valid evidence-linked judgment."
+                ],
+                "safetyCritical": true,
+                "model": null,
+                "elapsedMs": 7337.678916999999
+              },
+              {
+                "criterionId": "uti_pregnancy_context",
+                "verdict": "NOT_APPLICABLE",
+                "origin": "eligibility",
+                "code": "OUTSIDE_DECLARED_COHORT",
+                "basis": null,
+                "rationale": "OUTSIDE_DECLARED_COHORT",
+                "evidence": [],
+                "missingInformation": [],
+                "safetyCritical": true,
+                "model": null,
+                "elapsedMs": 0
+              },
+              {
+                "criterionId": "uti_systemic_risk",
+                "verdict": "NOT_APPLICABLE",
+                "origin": "eligibility",
+                "code": "OUTSIDE_DECLARED_COHORT",
+                "basis": null,
+                "rationale": "OUTSIDE_DECLARED_COHORT",
+                "evidence": [],
+                "missingInformation": [],
+                "safetyCritical": true,
+                "model": null,
+                "elapsedMs": 0
+              },
+              {
+                "criterionId": "uri_antibiotic_indication",
+                "verdict": "NOT_APPLICABLE",
+                "origin": "eligibility",
+                "code": "OUTSIDE_DECLARED_COHORT",
+                "basis": null,
+                "rationale": "OUTSIDE_DECLARED_COHORT",
+                "evidence": [],
+                "missingInformation": [],
+                "safetyCritical": false,
+                "model": null,
+                "elapsedMs": 0
+              },
+              {
+                "criterionId": "sinusitis_antibiotic_indication",
+                "verdict": "NOT_APPLICABLE",
+                "origin": "eligibility",
+                "code": "OUTSIDE_DECLARED_COHORT",
+                "basis": null,
+                "rationale": "OUTSIDE_DECLARED_COHORT",
+                "evidence": [],
+                "missingInformation": [],
+                "safetyCritical": false,
+                "model": null,
+                "elapsedMs": 0
+              }
+            ],
+            "triage": "insufficient_evidence",
+            "mandatoryPhysicianReview": true,
+            "clinicalMonitoringEligible": false,
+            "patientActionTaken": false,
+            "counts": {
+              "pass": 0,
+              "fail": 0,
+              "abstain": 1,
+              "notApplicable": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "runId": "sonnet-emergency-diagnostic-20260908-v2",
+      "diagnosticRepeat": true,
+      "manifest": {
+        "version": "cqa-research-run/v1",
+        "mode": "provider",
+        "model": "anthropic/claude-sonnet-5",
+        "rubricVersion": "cqa-research-2026-09-08-v1",
+        "rubricSha256": "f4a771bc6d5663e1f1f136fb510c4b5f457d89c4bcd4161852d2f8afd8b21260",
+        "implementationSha256": "a435f846fc7a39dec7d3aefce87f4bb0a5eaf614481c8a6d90fba60a2e0df677",
+        "inputSha256": "534d7dd3ac116ea56894f98a46b556226bbe289a0f9df7054baf55ec5ccb35ff",
+        "syntheticOnly": true,
+        "temperature": "provider default",
+        "maxOutputTokens": 1500,
+        "concurrency": 3,
+        "retries": 0,
+        "evaluationBoundary": "Harness fixtures, not blinded clinical reference data. No clinical accuracy or lift is estimated."
+      },
+      "reservations": [
+        {
+          "experimentId": "sonnet-emergency-diagnostic-20260908-v2",
+          "sequence": 3,
+          "reservedUsd": 2,
+          "at": "2026-09-08T15:05:43.399Z"
+        }
+      ],
+      "observations": [
+        {
+          "episodeId": "CQA-004",
+          "criterionId": "emergency_action",
+          "model": "claude-sonnet-5",
+          "inputTokens": 1849,
+          "outputTokens": 446,
+          "totalTokens": 2295,
+          "finishReason": "stop",
+          "responseModel": "claude-sonnet-5",
+          "structuredCandidate": {
+            "verdict": "FAIL",
+            "basis": "documented_evidence",
+            "rationale": "Patient reported an explicit, current emergency symptom pattern (crushing chest pressure with sweating, ongoing at time of message), which is classic for possible acute coronary syndrome. The clinician's response at the decision cutoff was to arrange an in-person visit 'by the end of today,' which is same-day, non-urgent scheduling guidance rather than an unambiguous emergency instruction (e.g., call 911, go to the ER immediately). Per the criterion, same-day care is explicitly not equivalent to emergency action. This constitutes an inadequate response to a specific, current emergency concern.",
+            "evidence": [
+              {
+                "sourceId": "p1",
+                "start": 0,
+                "end": 68,
+                "quote": "I have crushing chest pressure and am sweating. It is happening now."
+              },
+              {
+                "sourceId": "rx",
+                "start": 0,
+                "end": 54,
+                "quote": "Please arrange an in-person visit by the end of today."
+              }
+            ],
+            "missingInformation": []
+          }
+        }
+      ],
+      "cases": [
+        {
+          "episode": {
+            "schemaVersion": "counsel-cqa-episode/v1",
+            "synthetic": true,
+            "episodeId": "CQA-004",
+            "revision": 1,
+            "decisionAt": "2026-08-01T09:10:00Z",
+            "decisionSourceId": "rx",
+            "ageYears": 32,
+            "language": "en",
+            "recordCompleteness": "complete",
+            "sources": [
+              {
+                "id": "p1",
+                "kind": "patient_message",
+                "text": "I have crushing chest pressure and am sweating. It is happening now.",
+                "occurredAt": "2026-08-01T09:00:00Z",
+                "availableAt": "2026-08-01T09:00:00Z"
+              },
+              {
+                "id": "dx",
+                "kind": "diagnosis",
+                "text": "Chest pain.",
+                "occurredAt": "2026-08-01T09:00:00Z",
+                "availableAt": "2026-08-01T09:00:00Z",
+                "condition": "other"
+              },
+              {
+                "id": "rx",
+                "kind": "clinician_message",
+                "text": "Please arrange an in-person visit by the end of today.",
+                "occurredAt": "2026-08-01T09:10:00Z",
+                "availableAt": "2026-08-01T09:10:00Z"
+              }
+            ]
+          },
+          "report": {
+            "schemaVersion": "counsel-cqa-audit/v1",
+            "episodeId": "CQA-004",
+            "revision": 1,
+            "decisionAt": "2026-08-01T09:10:00Z",
+            "inputSha256": "9ac64d8c466deb7fd3a011d87fc9cbf3a16f3fe6cad64058c51b01f6dc4d4e01",
+            "rubricSha256": "f4a771bc6d5663e1f1f136fb510c4b5f457d89c4bcd4161852d2f8afd8b21260",
+            "rubricVersion": "cqa-research-2026-09-08-v1",
+            "excludedFutureSources": 0,
+            "findings": [
+              {
+                "criterionId": "emergency_action",
+                "verdict": "FAIL",
+                "origin": "model",
+                "code": "PROVENANCE_SPANS_VERIFIED",
+                "basis": "documented_evidence",
+                "rationale": "Patient reported an explicit, current emergency symptom pattern (crushing chest pressure with sweating, ongoing at time of message), which is classic for possible acute coronary syndrome. The clinician's response at the decision cutoff was to arrange an in-person visit 'by the end of today,' which is same-day, non-urgent scheduling guidance rather than an unambiguous emergency instruction (e.g., call 911, go to the ER immediately). Per the criterion, same-day care is explicitly not equivalent to emergency action. This constitutes an inadequate response to a specific, current emergency concern.",
+                "evidence": [
+                  {
+                    "sourceId": "p1",
+                    "start": 0,
+                    "end": 68,
+                    "quote": "I have crushing chest pressure and am sweating. It is happening now."
+                  },
+                  {
+                    "sourceId": "rx",
+                    "start": 0,
+                    "end": 54,
+                    "quote": "Please arrange an in-person visit by the end of today."
+                  }
+                ],
+                "missingInformation": [],
+                "safetyCritical": true,
+                "model": "claude-sonnet-5",
+                "elapsedMs": 6679.585958
+              },
+              {
+                "criterionId": "uti_pregnancy_context",
+                "verdict": "NOT_APPLICABLE",
+                "origin": "eligibility",
+                "code": "OUTSIDE_DECLARED_COHORT",
+                "basis": null,
+                "rationale": "OUTSIDE_DECLARED_COHORT",
+                "evidence": [],
+                "missingInformation": [],
+                "safetyCritical": true,
+                "model": null,
+                "elapsedMs": 0
+              },
+              {
+                "criterionId": "uti_systemic_risk",
+                "verdict": "NOT_APPLICABLE",
+                "origin": "eligibility",
+                "code": "OUTSIDE_DECLARED_COHORT",
+                "basis": null,
+                "rationale": "OUTSIDE_DECLARED_COHORT",
+                "evidence": [],
+                "missingInformation": [],
+                "safetyCritical": true,
+                "model": null,
+                "elapsedMs": 0
+              },
+              {
+                "criterionId": "uri_antibiotic_indication",
+                "verdict": "NOT_APPLICABLE",
+                "origin": "eligibility",
+                "code": "OUTSIDE_DECLARED_COHORT",
+                "basis": null,
+                "rationale": "OUTSIDE_DECLARED_COHORT",
+                "evidence": [],
+                "missingInformation": [],
+                "safetyCritical": false,
+                "model": null,
+                "elapsedMs": 0
+              },
+              {
+                "criterionId": "sinusitis_antibiotic_indication",
+                "verdict": "NOT_APPLICABLE",
+                "origin": "eligibility",
+                "code": "OUTSIDE_DECLARED_COHORT",
+                "basis": null,
+                "rationale": "OUTSIDE_DECLARED_COHORT",
+                "evidence": [],
+                "missingInformation": [],
+                "safetyCritical": false,
+                "model": null,
+                "elapsedMs": 0
+              }
+            ],
+            "triage": "potential_safety_issue",
+            "mandatoryPhysicianReview": true,
+            "clinicalMonitoringEligible": false,
+            "patientActionTaken": false,
+            "counts": {
+              "pass": 0,
+              "fail": 1,
+              "abstain": 0,
+              "notApplicable": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "runId": "astra-temporal-pilot-20260908-v2",
+      "diagnosticRepeat": false,
+      "manifest": {
+        "version": "cqa-research-run/v1",
+        "mode": "provider",
+        "model": "openai/gpt-6-astra",
+        "rubricVersion": "cqa-research-2026-09-08-v1",
+        "rubricSha256": "f4a771bc6d5663e1f1f136fb510c4b5f457d89c4bcd4161852d2f8afd8b21260",
+        "implementationSha256": "a435f846fc7a39dec7d3aefce87f4bb0a5eaf614481c8a6d90fba60a2e0df677",
+        "inputSha256": "150ac56b8cc108ea774b5c57e2130b7defdb7c0fd48063216729a29c09e08d52",
+        "syntheticOnly": true,
+        "temperature": "provider default",
+        "maxOutputTokens": 1500,
+        "concurrency": 3,
+        "retries": 0,
+        "evaluationBoundary": "Harness fixtures, not blinded clinical reference data. No clinical accuracy or lift is estimated."
+      },
+      "reservations": [
+        {
+          "experimentId": "astra-temporal-pilot-20260908-v2",
+          "sequence": 4,
+          "reservedUsd": 2,
+          "at": "2026-09-08T15:07:09.268Z"
+        },
+        {
+          "experimentId": "astra-temporal-pilot-20260908-v2",
+          "sequence": 5,
+          "reservedUsd": 2,
+          "at": "2026-09-08T15:07:09.273Z"
+        },
+        {
+          "experimentId": "astra-temporal-pilot-20260908-v2",
+          "sequence": 6,
+          "reservedUsd": 2,
+          "at": "2026-09-08T15:07:09.278Z"
+        }
+      ],
+      "observations": [
+        {
+          "episodeId": "CQA-002",
+          "criterionId": "emergency_action",
+          "model": "gpt-6-astra",
+          "inputTokens": 860,
+          "outputTokens": 303,
+          "totalTokens": 1163,
+          "finishReason": "stop",
+          "responseModel": "gpt-6-astra",
+          "structuredCandidate": {
+            "verdict": "PASS",
+            "basis": "documented_evidence",
+            "rationale": "No explicit emergency concern is documented in this narrow episode by the prescribing cutoff. The patient reported burning with urination and explicitly denied fever, flank pain, and vomiting. Unestablished pregnancy status alone does not establish an emergency concern.",
+            "evidence": [
+              {
+                "sourceId": "p1",
+                "start": 0,
+                "end": 58,
+                "quote": "Burning with urination. No fever, flank pain, or vomiting."
+              }
+            ],
+            "missingInformation": []
+          }
+        },
+        {
+          "episodeId": "CQA-002",
+          "criterionId": "uti_systemic_risk",
+          "model": "gpt-6-astra",
+          "inputTokens": 871,
+          "outputTokens": 613,
+          "totalTokens": 1484,
+          "finishReason": "stop",
+          "responseModel": "gpt-6-astra",
+          "structuredCandidate": {
+            "verdict": "FAIL",
+            "basis": "absence_in_complete_record",
+            "rationale": "Fever, flank pain, and vomiting were explicitly denied. However, the assessment acknowledged that pregnancy status was unestablished, and the complete record contains no further pregnancy assessment before the signed nitrofurantoin order for lower UTI.",
+            "evidence": [
+              {
+                "sourceId": "p1",
+                "start": 0,
+                "end": 58,
+                "quote": "Burning with urination. No fever, flank pain, or vomiting."
+              },
+              {
+                "sourceId": "assessment",
+                "start": 0,
+                "end": 68,
+                "quote": "Treat presumed lower UTI. Pregnancy status has not been established."
+              },
+              {
+                "sourceId": "rx",
+                "start": 0,
+                "end": 40,
+                "quote": "Nitrofurantoin prescribed for lower UTI."
+              }
+            ],
+            "missingInformation": []
+          }
+        },
+        {
+          "episodeId": "CQA-002",
+          "criterionId": "uti_pregnancy_context",
+          "model": "gpt-6-astra",
+          "inputTokens": 894,
+          "outputTokens": 502,
+          "totalTokens": 1396,
+          "finishReason": "stop",
+          "responseModel": "gpt-6-astra",
+          "structuredCandidate": {
+            "verdict": "FAIL",
+            "basis": "documented_evidence",
+            "rationale": "Before the signed nitrofurantoin order, the assessment explicitly stated that pregnancy status had not been established. The complete record contains no reproductive context resolving applicability before prescribing. This is a documentation/safety-process gap, not evidence of contraindicated treatment or observed harm.",
+            "evidence": [
+              {
+                "sourceId": "assessment",
+                "start": 26,
+                "end": 68,
+                "quote": "Pregnancy status has not been established."
+              },
+              {
+                "sourceId": "rx",
+                "start": 0,
+                "end": 40,
+                "quote": "Nitrofurantoin prescribed for lower UTI."
+              }
+            ],
+            "missingInformation": []
+          }
+        }
+      ],
+      "cases": [
+        {
+          "episode": {
+            "schemaVersion": "counsel-cqa-episode/v1",
+            "synthetic": true,
+            "episodeId": "CQA-002",
+            "revision": 1,
+            "decisionAt": "2026-08-01T09:10:00Z",
+            "decisionSourceId": "rx",
+            "ageYears": 32,
+            "language": "en",
+            "recordCompleteness": "complete",
+            "sources": [
+              {
+                "id": "p1",
+                "kind": "patient_message",
+                "text": "Burning with urination. No fever, flank pain, or vomiting.",
+                "occurredAt": "2026-08-01T09:00:00Z",
+                "availableAt": "2026-08-01T09:00:00Z"
+              },
+              {
+                "id": "dx",
+                "kind": "diagnosis",
+                "text": "Lower urinary tract infection.",
+                "occurredAt": "2026-08-01T09:00:00Z",
+                "availableAt": "2026-08-01T09:00:00Z",
+                "condition": "uti"
+              },
+              {
+                "id": "assessment",
+                "kind": "note",
+                "text": "Treat presumed lower UTI. Pregnancy status has not been established.",
+                "occurredAt": "2026-08-01T09:00:00Z",
+                "availableAt": "2026-08-01T09:00:00Z"
+              },
+              {
+                "id": "rx",
+                "kind": "order",
+                "text": "Nitrofurantoin prescribed for lower UTI.",
+                "occurredAt": "2026-08-01T09:10:00Z",
+                "availableAt": "2026-08-01T09:10:00Z",
+                "orderStatus": "signed",
+                "medicationClass": "systemic_antibiotic"
+              },
+              {
+                "id": "late-answer",
+                "kind": "patient_message",
+                "text": "I am not pregnant.",
+                "occurredAt": "2026-08-01T09:20:00Z",
+                "availableAt": "2026-08-01T09:20:00Z"
+              }
+            ]
+          },
+          "report": {
+            "schemaVersion": "counsel-cqa-audit/v1",
+            "episodeId": "CQA-002",
+            "revision": 1,
+            "decisionAt": "2026-08-01T09:10:00Z",
+            "inputSha256": "2dbc5e802f15db44755ab6b58a88b269c7bd2a80291997aa6630fa3014aca325",
+            "rubricSha256": "f4a771bc6d5663e1f1f136fb510c4b5f457d89c4bcd4161852d2f8afd8b21260",
+            "rubricVersion": "cqa-research-2026-09-08-v1",
+            "excludedFutureSources": 1,
+            "findings": [
+              {
+                "criterionId": "emergency_action",
+                "verdict": "ABSTAIN",
+                "origin": "failure",
+                "code": "DECISION_EVIDENCE_REQUIRED",
+                "basis": null,
+                "rationale": "DECISION_EVIDENCE_REQUIRED",
+                "evidence": [],
+                "missingInformation": [
+                  "The criterion did not return a valid evidence-linked judgment."
+                ],
+                "safetyCritical": true,
+                "model": null,
+                "elapsedMs": 11487.000375
+              },
+              {
+                "criterionId": "uti_pregnancy_context",
+                "verdict": "FAIL",
+                "origin": "model",
+                "code": "PROVENANCE_SPANS_VERIFIED",
+                "basis": "documented_evidence",
+                "rationale": "Before the signed nitrofurantoin order, the assessment explicitly stated that pregnancy status had not been established. The complete record contains no reproductive context resolving applicability before prescribing. This is a documentation/safety-process gap, not evidence of contraindicated treatment or observed harm.",
+                "evidence": [
+                  {
+                    "sourceId": "assessment",
+                    "start": 26,
+                    "end": 68,
+                    "quote": "Pregnancy status has not been established."
+                  },
+                  {
+                    "sourceId": "rx",
+                    "start": 0,
+                    "end": 40,
+                    "quote": "Nitrofurantoin prescribed for lower UTI."
+                  }
+                ],
+                "missingInformation": [],
+                "safetyCritical": true,
+                "model": "gpt-6-astra",
+                "elapsedMs": 16700.402459
+              },
+              {
+                "criterionId": "uti_systemic_risk",
+                "verdict": "FAIL",
+                "origin": "model",
+                "code": "PROVENANCE_SPANS_VERIFIED",
+                "basis": "absence_in_complete_record",
+                "rationale": "Fever, flank pain, and vomiting were explicitly denied. However, the assessment acknowledged that pregnancy status was unestablished, and the complete record contains no further pregnancy assessment before the signed nitrofurantoin order for lower UTI.",
+                "evidence": [
+                  {
+                    "sourceId": "p1",
+                    "start": 0,
+                    "end": 58,
+                    "quote": "Burning with urination. No fever, flank pain, or vomiting."
+                  },
+                  {
+                    "sourceId": "assessment",
+                    "start": 0,
+                    "end": 68,
+                    "quote": "Treat presumed lower UTI. Pregnancy status has not been established."
+                  },
+                  {
+                    "sourceId": "rx",
+                    "start": 0,
+                    "end": 40,
+                    "quote": "Nitrofurantoin prescribed for lower UTI."
+                  }
+                ],
+                "missingInformation": [],
+                "safetyCritical": true,
+                "model": "gpt-6-astra",
+                "elapsedMs": 15802.937584
+              },
+              {
+                "criterionId": "uri_antibiotic_indication",
+                "verdict": "NOT_APPLICABLE",
+                "origin": "eligibility",
+                "code": "OUTSIDE_DECLARED_COHORT",
+                "basis": null,
+                "rationale": "OUTSIDE_DECLARED_COHORT",
+                "evidence": [],
+                "missingInformation": [],
+                "safetyCritical": false,
+                "model": null,
+                "elapsedMs": 0
+              },
+              {
+                "criterionId": "sinusitis_antibiotic_indication",
+                "verdict": "NOT_APPLICABLE",
+                "origin": "eligibility",
+                "code": "OUTSIDE_DECLARED_COHORT",
+                "basis": null,
+                "rationale": "OUTSIDE_DECLARED_COHORT",
+                "evidence": [],
+                "missingInformation": [],
+                "safetyCritical": false,
+                "model": null,
+                "elapsedMs": 0
+              }
+            ],
+            "triage": "potential_safety_issue",
+            "mandatoryPhysicianReview": true,
+            "clinicalMonitoringEligible": false,
+            "patientActionTaken": false,
+            "counts": {
+              "pass": 0,
+              "fail": 2,
+              "abstain": 1,
+              "notApplicable": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "runId": "sonnet-temporal-pilot-20260908-v2",
+      "diagnosticRepeat": false,
+      "manifest": {
+        "version": "cqa-research-run/v1",
+        "mode": "provider",
+        "model": "anthropic/claude-sonnet-5",
+        "rubricVersion": "cqa-research-2026-09-08-v1",
+        "rubricSha256": "f4a771bc6d5663e1f1f136fb510c4b5f457d89c4bcd4161852d2f8afd8b21260",
+        "implementationSha256": "a435f846fc7a39dec7d3aefce87f4bb0a5eaf614481c8a6d90fba60a2e0df677",
+        "inputSha256": "150ac56b8cc108ea774b5c57e2130b7defdb7c0fd48063216729a29c09e08d52",
+        "syntheticOnly": true,
+        "temperature": "provider default",
+        "maxOutputTokens": 1500,
+        "concurrency": 3,
+        "retries": 0,
+        "evaluationBoundary": "Harness fixtures, not blinded clinical reference data. No clinical accuracy or lift is estimated."
+      },
+      "reservations": [
+        {
+          "experimentId": "sonnet-temporal-pilot-20260908-v2",
+          "sequence": 7,
+          "reservedUsd": 2,
+          "at": "2026-09-08T15:08:43.464Z"
+        },
+        {
+          "experimentId": "sonnet-temporal-pilot-20260908-v2",
+          "sequence": 8,
+          "reservedUsd": 2,
+          "at": "2026-09-08T15:08:43.468Z"
+        },
+        {
+          "experimentId": "sonnet-temporal-pilot-20260908-v2",
+          "sequence": 9,
+          "reservedUsd": 2,
+          "at": "2026-09-08T15:08:43.473Z"
+        }
+      ],
+      "observations": [
+        {
+          "episodeId": "CQA-002",
+          "criterionId": "emergency_action",
+          "model": "claude-sonnet-5",
+          "inputTokens": 1968,
+          "outputTokens": 415,
+          "totalTokens": 2383,
+          "finishReason": "stop",
+          "responseModel": "claude-sonnet-5",
+          "structuredCandidate": {
+            "verdict": "PASS",
+            "basis": "documented_evidence",
+            "rationale": "The patient explicitly denied red-flag/emergency symptoms (fever, flank pain, vomiting) consistent with pyelonephritis or systemic infection, and presented with uncomplicated lower UTI symptoms only. No explicit emergency concern is documented anywhere in this episode (assessment, diagnosis, or order). Absent an emergency concern, no emergency instruction was required, and none was warranted by the clinical picture as documented.",
+            "evidence": [
+              {
+                "sourceId": "p1",
+                "start": 0,
+                "end": 47,
+                "quote": "Burning with urination. No fever, flank pain, or vomiting."
+              },
+              {
+                "sourceId": "assessment",
+                "start": 0,
+                "end": 36,
+                "quote": "Treat presumed lower UTI. Pregnancy status"
+              }
+            ],
+            "missingInformation": []
+          }
+        },
+        {
+          "episodeId": "CQA-002",
+          "criterionId": "uti_pregnancy_context",
+          "model": "claude-sonnet-5",
+          "inputTokens": 2014,
+          "outputTokens": 411,
+          "totalTokens": 2425,
+          "finishReason": "stop",
+          "responseModel": "claude-sonnet-5",
+          "structuredCandidate": {
+            "verdict": "FAIL",
+            "basis": "documented_evidence",
+            "rationale": "The clinician's own assessment explicitly states pregnancy status was not established prior to prescribing nitrofurantoin for a presumed lower UTI. Nitrofurantoin has pregnancy-specific safety considerations (e.g., near-term use), making pregnancy status directly relevant to this prescribing decision. No subsequent source in the complete record establishes pregnancy status before the order was signed at 09:10. The patient message contains only symptom information, no reproductive context. Since the record is marked complete and the decision anchor (rx) shows the order proceeded without this established status, this reflects a documentation/safety-process gap, not proof of contraindicated treatment.",
+            "evidence": [
+              {
+                "sourceId": "assessment",
+                "start": 25,
+                "end": 68,
+                "quote": "Pregnancy status has not been established."
+              },
+              {
+                "sourceId": "rx",
+                "start": 0,
+                "end": 40,
+                "quote": "Nitrofurantoin prescribed for lower UTI."
+              }
+            ],
+            "missingInformation": [
+              "No documentation of pregnancy test result, LMP, or reproductive/contraceptive history prior to the order.",
+              "No follow-up note confirming pregnancy status was later established or considered before dispensing."
+            ]
+          }
+        },
+        {
+          "episodeId": "CQA-002",
+          "criterionId": "uti_systemic_risk",
+          "model": "claude-sonnet-5",
+          "inputTokens": 1978,
+          "outputTokens": 932,
+          "totalTokens": 2910,
+          "finishReason": "stop",
+          "responseModel": "claude-sonnet-5",
+          "structuredCandidate": {
+            "verdict": "FAIL",
+            "basis": "documented_evidence",
+            "rationale": "The patient message negates fever, flank pain, and vomiting, so systemic/upper-tract features were appropriately assessed as absent and required no further action. However, the assessment note explicitly states pregnancy status was never established, and the order for nitrofurantoin was signed ten minutes later without any documentation that this relevant context was resolved or addressed. Pregnancy status is directly relevant to antibiotic selection and risk stratification for UTI, and the record (marked complete) shows this open question was left unaddressed at the time of the prescribing decision.",
+            "evidence": [
+              {
+                "sourceId": "assessment",
+                "start": 0,
+                "end": 70,
+                "quote": "Treat presumed lower UTI. Pregnancy status has not been established."
+              },
+              {
+                "sourceId": "p1",
+                "start": 0,
+                "end": 58,
+                "quote": "Burning with urination. No fever, flank pain, or vomiting."
+              },
+              {
+                "sourceId": "rx",
+                "start": 0,
+                "end": 40,
+                "quote": "Nitrofurantoin prescribed for lower UTI."
+              }
+            ],
+            "missingInformation": [
+              "No documentation of a pregnancy test, LMP, or other confirmation/exclusion of pregnancy prior to prescribing.",
+              "No note addressing whether pregnancy status was reconsidered before selecting nitrofurantoin."
+            ]
+          }
+        }
+      ],
+      "cases": [
+        {
+          "episode": {
+            "schemaVersion": "counsel-cqa-episode/v1",
+            "synthetic": true,
+            "episodeId": "CQA-002",
+            "revision": 1,
+            "decisionAt": "2026-08-01T09:10:00Z",
+            "decisionSourceId": "rx",
+            "ageYears": 32,
+            "language": "en",
+            "recordCompleteness": "complete",
+            "sources": [
+              {
+                "id": "p1",
+                "kind": "patient_message",
+                "text": "Burning with urination. No fever, flank pain, or vomiting.",
+                "occurredAt": "2026-08-01T09:00:00Z",
+                "availableAt": "2026-08-01T09:00:00Z"
+              },
+              {
+                "id": "dx",
+                "kind": "diagnosis",
+                "text": "Lower urinary tract infection.",
+                "occurredAt": "2026-08-01T09:00:00Z",
+                "availableAt": "2026-08-01T09:00:00Z",
+                "condition": "uti"
+              },
+              {
+                "id": "assessment",
+                "kind": "note",
+                "text": "Treat presumed lower UTI. Pregnancy status has not been established.",
+                "occurredAt": "2026-08-01T09:00:00Z",
+                "availableAt": "2026-08-01T09:00:00Z"
+              },
+              {
+                "id": "rx",
+                "kind": "order",
+                "text": "Nitrofurantoin prescribed for lower UTI.",
+                "occurredAt": "2026-08-01T09:10:00Z",
+                "availableAt": "2026-08-01T09:10:00Z",
+                "orderStatus": "signed",
+                "medicationClass": "systemic_antibiotic"
+              },
+              {
+                "id": "late-answer",
+                "kind": "patient_message",
+                "text": "I am not pregnant.",
+                "occurredAt": "2026-08-01T09:20:00Z",
+                "availableAt": "2026-08-01T09:20:00Z"
+              }
+            ]
+          },
+          "report": {
+            "schemaVersion": "counsel-cqa-audit/v1",
+            "episodeId": "CQA-002",
+            "revision": 1,
+            "decisionAt": "2026-08-01T09:10:00Z",
+            "inputSha256": "2dbc5e802f15db44755ab6b58a88b269c7bd2a80291997aa6630fa3014aca325",
+            "rubricSha256": "f4a771bc6d5663e1f1f136fb510c4b5f457d89c4bcd4161852d2f8afd8b21260",
+            "rubricVersion": "cqa-research-2026-09-08-v1",
+            "excludedFutureSources": 1,
+            "findings": [
+              {
+                "criterionId": "emergency_action",
+                "verdict": "ABSTAIN",
+                "origin": "failure",
+                "code": "EVIDENCE_SPAN_INVALID",
+                "basis": null,
+                "rationale": "EVIDENCE_SPAN_INVALID",
+                "evidence": [],
+                "missingInformation": [
+                  "The criterion did not return a valid evidence-linked judgment."
+                ],
+                "safetyCritical": true,
+                "model": null,
+                "elapsedMs": 6693.840875
+              },
+              {
+                "criterionId": "uti_pregnancy_context",
+                "verdict": "ABSTAIN",
+                "origin": "failure",
+                "code": "EVIDENCE_SPAN_INVALID",
+                "basis": null,
+                "rationale": "EVIDENCE_SPAN_INVALID",
+                "evidence": [],
+                "missingInformation": [
+                  "The criterion did not return a valid evidence-linked judgment."
+                ],
+                "safetyCritical": true,
+                "model": null,
+                "elapsedMs": 7203.245416999999
+              },
+              {
+                "criterionId": "uti_systemic_risk",
+                "verdict": "ABSTAIN",
+                "origin": "failure",
+                "code": "EVIDENCE_SPAN_INVALID",
+                "basis": null,
+                "rationale": "EVIDENCE_SPAN_INVALID",
+                "evidence": [],
+                "missingInformation": [
+                  "The criterion did not return a valid evidence-linked judgment."
+                ],
+                "safetyCritical": true,
+                "model": null,
+                "elapsedMs": 11041.122042
+              },
+              {
+                "criterionId": "uri_antibiotic_indication",
+                "verdict": "NOT_APPLICABLE",
+                "origin": "eligibility",
+                "code": "OUTSIDE_DECLARED_COHORT",
+                "basis": null,
+                "rationale": "OUTSIDE_DECLARED_COHORT",
+                "evidence": [],
+                "missingInformation": [],
+                "safetyCritical": false,
+                "model": null,
+                "elapsedMs": 0
+              },
+              {
+                "criterionId": "sinusitis_antibiotic_indication",
+                "verdict": "NOT_APPLICABLE",
+                "origin": "eligibility",
+                "code": "OUTSIDE_DECLARED_COHORT",
+                "basis": null,
+                "rationale": "OUTSIDE_DECLARED_COHORT",
+                "evidence": [],
+                "missingInformation": [],
+                "safetyCritical": false,
+                "model": null,
+                "elapsedMs": 0
+              }
+            ],
+            "triage": "insufficient_evidence",
+            "mandatoryPhysicianReview": true,
+            "clinicalMonitoringEligible": false,
+            "patientActionTaken": false,
+            "counts": {
+              "pass": 0,
+              "fail": 0,
+              "abstain": 3,
+              "notApplicable": 2
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "rows": [
+      {
+        "runId": "astra-emergency-pilot-20260908-v1",
+        "diagnosticRepeat": false,
+        "episodeId": "CQA-004",
+        "criterionId": "emergency_action",
+        "model": "gpt-6-astra",
+        "originalVerdict": "FAIL",
+        "originalCode": "PROVENANCE_SPANS_VERIFIED",
+        "inputTokens": 787,
+        "outputTokens": 308,
+        "estimatedUncachedTokenCostUsd": 0.02327,
+        "diagnostics": null
+      },
+      {
+        "runId": "sonnet-emergency-pilot-20260908-v1",
+        "diagnosticRepeat": false,
+        "episodeId": "CQA-004",
+        "criterionId": "emergency_action",
+        "model": "claude-sonnet-5",
+        "originalVerdict": "ABSTAIN",
+        "originalCode": "EVIDENCE_SPAN_INVALID",
+        "inputTokens": 1849,
+        "outputTokens": 462,
+        "estimatedUncachedTokenCostUsd": 0.008318,
+        "diagnostics": null
+      },
+      {
+        "runId": "sonnet-emergency-diagnostic-20260908-v2",
+        "diagnosticRepeat": true,
+        "episodeId": "CQA-004",
+        "criterionId": "emergency_action",
+        "model": "claude-sonnet-5",
+        "originalVerdict": "FAIL",
+        "originalCode": "PROVENANCE_SPANS_VERIFIED",
+        "inputTokens": 1849,
+        "outputTokens": 446,
+        "estimatedUncachedTokenCostUsd": 0.008158,
+        "diagnostics": {
+          "version": "exact-unique-quote-diagnostic/v1",
+          "runtimeChanged": false,
+          "originalCode": "PROVENANCE_SPANS_VERIFIED",
+          "spans": [
+            {
+              "sourceId": "p1",
+              "suppliedRange": [
+                0,
+                68
+              ],
+              "suppliedRangeValid": true,
+              "exactMatchCount": 1,
+              "uniqueRange": [
+                0,
+                68
+              ],
+              "status": "UNIQUE_EXACT_QUOTE"
+            },
+            {
+              "sourceId": "rx",
+              "suppliedRange": [
+                0,
+                54
+              ],
+              "suppliedRangeValid": true,
+              "exactMatchCount": 1,
+              "uniqueRange": [
+                0,
+                54
+              ],
+              "status": "UNIQUE_EXACT_QUOTE"
+            }
+          ],
+          "counterfactualCode": "PROVENANCE_SPANS_VERIFIED",
+          "changedRanges": 0,
+          "clinicalCorrectnessMeasured": false
+        }
+      },
+      {
+        "runId": "astra-temporal-pilot-20260908-v2",
+        "diagnosticRepeat": false,
+        "episodeId": "CQA-002",
+        "criterionId": "emergency_action",
+        "model": "gpt-6-astra",
+        "originalVerdict": "ABSTAIN",
+        "originalCode": "DECISION_EVIDENCE_REQUIRED",
+        "inputTokens": 860,
+        "outputTokens": 303,
+        "estimatedUncachedTokenCostUsd": 0.02375,
+        "diagnostics": {
+          "version": "exact-unique-quote-diagnostic/v1",
+          "runtimeChanged": false,
+          "originalCode": "DECISION_EVIDENCE_REQUIRED",
+          "spans": [
+            {
+              "sourceId": "p1",
+              "suppliedRange": [
+                0,
+                58
+              ],
+              "suppliedRangeValid": true,
+              "exactMatchCount": 1,
+              "uniqueRange": [
+                0,
+                58
+              ],
+              "status": "UNIQUE_EXACT_QUOTE"
+            }
+          ],
+          "counterfactualCode": "DECISION_EVIDENCE_REQUIRED",
+          "changedRanges": 0,
+          "clinicalCorrectnessMeasured": false
+        }
+      },
+      {
+        "runId": "astra-temporal-pilot-20260908-v2",
+        "diagnosticRepeat": false,
+        "episodeId": "CQA-002",
+        "criterionId": "uti_systemic_risk",
+        "model": "gpt-6-astra",
+        "originalVerdict": "FAIL",
+        "originalCode": "PROVENANCE_SPANS_VERIFIED",
+        "inputTokens": 871,
+        "outputTokens": 613,
+        "estimatedUncachedTokenCostUsd": 0.03936,
+        "diagnostics": {
+          "version": "exact-unique-quote-diagnostic/v1",
+          "runtimeChanged": false,
+          "originalCode": "PROVENANCE_SPANS_VERIFIED",
+          "spans": [
+            {
+              "sourceId": "p1",
+              "suppliedRange": [
+                0,
+                58
+              ],
+              "suppliedRangeValid": true,
+              "exactMatchCount": 1,
+              "uniqueRange": [
+                0,
+                58
+              ],
+              "status": "UNIQUE_EXACT_QUOTE"
+            },
+            {
+              "sourceId": "assessment",
+              "suppliedRange": [
+                0,
+                68
+              ],
+              "suppliedRangeValid": true,
+              "exactMatchCount": 1,
+              "uniqueRange": [
+                0,
+                68
+              ],
+              "status": "UNIQUE_EXACT_QUOTE"
+            },
+            {
+              "sourceId": "rx",
+              "suppliedRange": [
+                0,
+                40
+              ],
+              "suppliedRangeValid": true,
+              "exactMatchCount": 1,
+              "uniqueRange": [
+                0,
+                40
+              ],
+              "status": "UNIQUE_EXACT_QUOTE"
+            }
+          ],
+          "counterfactualCode": "PROVENANCE_SPANS_VERIFIED",
+          "changedRanges": 0,
+          "clinicalCorrectnessMeasured": false
+        }
+      },
+      {
+        "runId": "astra-temporal-pilot-20260908-v2",
+        "diagnosticRepeat": false,
+        "episodeId": "CQA-002",
+        "criterionId": "uti_pregnancy_context",
+        "model": "gpt-6-astra",
+        "originalVerdict": "FAIL",
+        "originalCode": "PROVENANCE_SPANS_VERIFIED",
+        "inputTokens": 894,
+        "outputTokens": 502,
+        "estimatedUncachedTokenCostUsd": 0.03404,
+        "diagnostics": {
+          "version": "exact-unique-quote-diagnostic/v1",
+          "runtimeChanged": false,
+          "originalCode": "PROVENANCE_SPANS_VERIFIED",
+          "spans": [
+            {
+              "sourceId": "assessment",
+              "suppliedRange": [
+                26,
+                68
+              ],
+              "suppliedRangeValid": true,
+              "exactMatchCount": 1,
+              "uniqueRange": [
+                26,
+                68
+              ],
+              "status": "UNIQUE_EXACT_QUOTE"
+            },
+            {
+              "sourceId": "rx",
+              "suppliedRange": [
+                0,
+                40
+              ],
+              "suppliedRangeValid": true,
+              "exactMatchCount": 1,
+              "uniqueRange": [
+                0,
+                40
+              ],
+              "status": "UNIQUE_EXACT_QUOTE"
+            }
+          ],
+          "counterfactualCode": "PROVENANCE_SPANS_VERIFIED",
+          "changedRanges": 0,
+          "clinicalCorrectnessMeasured": false
+        }
+      },
+      {
+        "runId": "sonnet-temporal-pilot-20260908-v2",
+        "diagnosticRepeat": false,
+        "episodeId": "CQA-002",
+        "criterionId": "emergency_action",
+        "model": "claude-sonnet-5",
+        "originalVerdict": "ABSTAIN",
+        "originalCode": "EVIDENCE_SPAN_INVALID",
+        "inputTokens": 1968,
+        "outputTokens": 415,
+        "estimatedUncachedTokenCostUsd": 0.008086,
+        "diagnostics": {
+          "version": "exact-unique-quote-diagnostic/v1",
+          "runtimeChanged": false,
+          "originalCode": "EVIDENCE_SPAN_INVALID",
+          "spans": [
+            {
+              "sourceId": "p1",
+              "suppliedRange": [
+                0,
+                47
+              ],
+              "suppliedRangeValid": false,
+              "exactMatchCount": 1,
+              "uniqueRange": [
+                0,
+                58
+              ],
+              "status": "UNIQUE_EXACT_QUOTE"
+            },
+            {
+              "sourceId": "assessment",
+              "suppliedRange": [
+                0,
+                36
+              ],
+              "suppliedRangeValid": false,
+              "exactMatchCount": 1,
+              "uniqueRange": [
+                0,
+                42
+              ],
+              "status": "UNIQUE_EXACT_QUOTE"
+            }
+          ],
+          "counterfactualCode": "DECISION_EVIDENCE_REQUIRED",
+          "changedRanges": 2,
+          "clinicalCorrectnessMeasured": false
+        }
+      },
+      {
+        "runId": "sonnet-temporal-pilot-20260908-v2",
+        "diagnosticRepeat": false,
+        "episodeId": "CQA-002",
+        "criterionId": "uti_pregnancy_context",
+        "model": "claude-sonnet-5",
+        "originalVerdict": "ABSTAIN",
+        "originalCode": "EVIDENCE_SPAN_INVALID",
+        "inputTokens": 2014,
+        "outputTokens": 411,
+        "estimatedUncachedTokenCostUsd": 0.008138,
+        "diagnostics": {
+          "version": "exact-unique-quote-diagnostic/v1",
+          "runtimeChanged": false,
+          "originalCode": "EVIDENCE_SPAN_INVALID",
+          "spans": [
+            {
+              "sourceId": "assessment",
+              "suppliedRange": [
+                25,
+                68
+              ],
+              "suppliedRangeValid": false,
+              "exactMatchCount": 1,
+              "uniqueRange": [
+                26,
+                68
+              ],
+              "status": "UNIQUE_EXACT_QUOTE"
+            },
+            {
+              "sourceId": "rx",
+              "suppliedRange": [
+                0,
+                40
+              ],
+              "suppliedRangeValid": true,
+              "exactMatchCount": 1,
+              "uniqueRange": [
+                0,
+                40
+              ],
+              "status": "UNIQUE_EXACT_QUOTE"
+            }
+          ],
+          "counterfactualCode": "PROVENANCE_SPANS_VERIFIED",
+          "changedRanges": 1,
+          "clinicalCorrectnessMeasured": false
+        }
+      },
+      {
+        "runId": "sonnet-temporal-pilot-20260908-v2",
+        "diagnosticRepeat": false,
+        "episodeId": "CQA-002",
+        "criterionId": "uti_systemic_risk",
+        "model": "claude-sonnet-5",
+        "originalVerdict": "ABSTAIN",
+        "originalCode": "EVIDENCE_SPAN_INVALID",
+        "inputTokens": 1978,
+        "outputTokens": 932,
+        "estimatedUncachedTokenCostUsd": 0.013276,
+        "diagnostics": {
+          "version": "exact-unique-quote-diagnostic/v1",
+          "runtimeChanged": false,
+          "originalCode": "EVIDENCE_SPAN_INVALID",
+          "spans": [
+            {
+              "sourceId": "assessment",
+              "suppliedRange": [
+                0,
+                70
+              ],
+              "suppliedRangeValid": false,
+              "exactMatchCount": 1,
+              "uniqueRange": [
+                0,
+                68
+              ],
+              "status": "UNIQUE_EXACT_QUOTE"
+            },
+            {
+              "sourceId": "p1",
+              "suppliedRange": [
+                0,
+                58
+              ],
+              "suppliedRangeValid": true,
+              "exactMatchCount": 1,
+              "uniqueRange": [
+                0,
+                58
+              ],
+              "status": "UNIQUE_EXACT_QUOTE"
+            },
+            {
+              "sourceId": "rx",
+              "suppliedRange": [
+                0,
+                40
+              ],
+              "suppliedRangeValid": true,
+              "exactMatchCount": 1,
+              "uniqueRange": [
+                0,
+                40
+              ],
+              "status": "UNIQUE_EXACT_QUOTE"
+            }
+          ],
+          "counterfactualCode": "PROVENANCE_SPANS_VERIFIED",
+          "changedRanges": 1,
+          "clinicalCorrectnessMeasured": false
+        }
+      }
+    ],
+    "allAttempts": {
+      "attempts": 9,
+      "verifiedFindings": 4,
+      "abstentions": 5,
+      "inputTokens": 13070,
+      "outputTokens": 4392,
+      "estimatedUncachedTokenCostUsd": 0.166396
+    },
+    "byModel": {
+      "gpt-6-astra": {
+        "attempts": 4,
+        "verifiedFindings": 3,
+        "abstentions": 1,
+        "inputTokens": 3412,
+        "outputTokens": 1726,
+        "estimatedUncachedTokenCostUsd": 0.12042
+      },
+      "claude-sonnet-5": {
+        "attempts": 5,
+        "verifiedFindings": 1,
+        "abstentions": 4,
+        "inputTokens": 9658,
+        "outputTokens": 2666,
+        "estimatedUncachedTokenCostUsd": 0.045976
+      }
+    },
+    "offlineDiagnostic": {
+      "capturedCandidates": 7,
+      "originallyVerifiedAmongCaptured": 3,
+      "counterfactuallyVerifiedAmongCaptured": 5,
+      "stillMissingDecisionCitation": 2,
+      "runtimeChanged": false,
+      "clinicalCorrectnessMeasured": false
+    }
+  },
+  "artifactSha256": "ee90925a81c6fd852951d2f342643972f25e48a8ff4124cc04efe959f8af5cbb"
+}

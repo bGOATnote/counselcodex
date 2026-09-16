@@ -1,0 +1,1601 @@
+{
+  "status": "review_required",
+  "answer": {
+    "disposition": "EMERGENCY_NOW",
+    "reviewPriority": null,
+    "workType": null,
+    "reason": "The care instruction is retained; the complete explanation still needs clinician review.",
+    "patientMessage": "Seek emergency department assessment now. Do not wait for a message reply; call 911 if you cannot travel safely.",
+    "differential": [],
+    "redFlags": [],
+    "vitalSigns": "The automated assessment has not established the vital-sign context.",
+    "questions": [],
+    "evidence": [],
+    "evidenceLimitations": "No model-reviewed clinical explanation has been released. The draft and review outcome are retained for clinician assessment."
+  },
+  "origin": "validation_safeguard",
+  "modelCalls": 4,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "postpartum depression intrusive thoughts infanticide risk"
+        ],
+        "findings": [
+          {
+            "finding": "Depressed mood with anhedonia and emotional detachment",
+            "status": "reported",
+            "quote": "I feel detached from everything"
+          },
+          {
+            "finding": "Crying",
+            "status": "reported",
+            "quote": "I've been crying constantly"
+          },
+          {
+            "finding": "Intrusive thoughts of harming the baby",
+            "status": "reported",
+            "quote": "I've started having thoughts about harming the baby that scare me"
+          },
+          {
+            "finding": "Distress about intrusive thoughts",
+            "status": "reported",
+            "quote": "thoughts about harming the baby that scare me"
+          },
+          {
+            "finding": "Postpartum timing",
+            "status": "reported",
+            "quote": "two weeks postpartum"
+          },
+          {
+            "finding": "Sleep disturbance",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "question": {
+          "text": "Are you having any thoughts about harming yourself, or do you have a plan or intent to act on any of these thoughts about the baby?",
+          "why": "Distinguishes postpartum depression with intrusive thoughts (ego-dystonic, distressing) from postpartum psychosis or intent to harm, which would require immediate psychiatric evaluation and possible safety planning.",
+          "quote": "thoughts about harming the baby that scare me"
+        }
+      },
+      "usage": {
+        "inputTokens": 1079,
+        "outputTokens": 307
+      },
+      "failure": null,
+      "firstTextDeltaMs": 882,
+      "streamProgress": {
+        "lastTextDeltaMs": 3157,
+        "textDeltaCount": 85,
+        "textCharacters": 1193
+      },
+      "transportTimings": {
+        "startResolvedMs": 2,
+        "objectResolvedMs": 3222,
+        "usageResolvedMs": 3231,
+        "finishReasonResolvedMs": 3231,
+        "streamEndMs": 3232
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 3232
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "SAME_DAY_IN_PERSON",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "Two weeks postpartum with pervasive detachment, constant crying and new thoughts of harming the baby requires same-day in-person perinatal mental health assessment: risk stratification (intrusive ego-dystonic thoughts vs. psychosis or intent), infant safety planning and possible treatment cannot be safely completed by messaging alone. Suicidality, psychotic features and plan/intent are unreported and unknown.",
+        "patientMessage": "Please arrange an in-person mental health assessment today — through your maternity/postpartum service, a crisis line, or an emergency department — and ask someone you trust to stay with you and the baby in the meantime. New postpartum thoughts of harming the baby need a hands-on safety and risk assessment that messaging cannot provide. I recommend Counsel clinician involvement in this thread too. If you feel unable to keep yourself or the baby safe, or you start seeing or hearing things others don't, call 911 or go to the nearest emergency room right away.",
+        "differential": [
+          "Postpartum depression with distressing intrusive (ego-dystonic) thoughts",
+          "Postpartum psychosis — not established; hallucinations, confusion and delusions unreported",
+          "Severe anxiety/OCD-spectrum postpartum presentation"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thoughts of harming the baby",
+            "status": "reported",
+            "quote": "I've started having thoughts about harming the baby that scare me"
+          },
+          {
+            "concern": "Emotional detachment",
+            "status": "reported",
+            "quote": "I feel detached from everything"
+          },
+          {
+            "concern": "Persistent crying",
+            "status": "reported",
+            "quote": "I've been crying constantly"
+          },
+          {
+            "concern": "Plan or intent to act on thoughts about the baby",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Suicidal thoughts",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Hallucinations, confusion or delusions",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Sleep disturbance",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported; whether any measurement occurred is unknown.",
+        "questions": [],
+        "evidenceLimitations": "Sources are consumer health summaries and an ED synthesis, not perinatal psychiatry guidelines; they do not establish this patient's risk level. Plan, intent, suicidality, psychotic features, sleep and support at home are unreported, so the distinction between intrusive thoughts and higher-acuity presentation cannot be made remotely.",
+        "transportIntent": null,
+        "citations": [
+          {
+            "passageId": "ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+            "quote": "Call 911 or go to the nearest emergency room right away if this happens.",
+            "claim": "The publisher advises emergency care immediately if postpartum psychosis features such as hallucinations or dangerous behaviors occur.",
+            "applicability": "uncertain",
+            "limitation": "Consumer summary; psychotic features are unreported here, so this supports the safety net only."
+          },
+          {
+            "passageId": "ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+            "quote": "A clinical evaluation based on your symptoms.",
+            "claim": "Diagnosis relies on clinical evaluation and screening of mood and thoughts, supporting a clinician assessment need.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary; does not specify setting or urgency for thoughts of harming an infant."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 14521,
+        "outputTokens": 1172
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1599,
+      "streamProgress": {
+        "lastTextDeltaMs": 16500,
+        "textDeltaCount": 252,
+        "textCharacters": 3191
+      },
+      "transportTimings": {
+        "startResolvedMs": 1,
+        "objectResolvedMs": 16599,
+        "usageResolvedMs": 16608,
+        "finishReasonResolvedMs": 16608,
+        "streamEndMs": 16609
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 16609,
+      "rawOutput": {
+        "disposition": "SAME_DAY_IN_PERSON",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "Two weeks postpartum with pervasive detachment, constant crying and new thoughts of harming the baby requires same-day in-person perinatal mental health assessment: risk stratification (intrusive ego-dystonic thoughts vs. psychosis or intent), infant safety planning and possible treatment cannot be safely completed by messaging alone. Suicidality, psychotic features and plan/intent are unreported and unknown.",
+        "patientMessage": "Please arrange an in-person mental health assessment today — through your maternity/postpartum service, a crisis line, or an emergency department — and ask someone you trust to stay with you and the baby in the meantime. New postpartum thoughts of harming the baby need a hands-on safety and risk assessment that messaging cannot provide. I recommend Counsel clinician involvement in this thread too. If you feel unable to keep yourself or the baby safe, or you start seeing or hearing things others don't, call 911 or go to the nearest emergency room right away.",
+        "differential": [
+          "Postpartum depression with distressing intrusive (ego-dystonic) thoughts",
+          "Postpartum psychosis — not established; hallucinations, confusion and delusions unreported",
+          "Severe anxiety/OCD-spectrum postpartum presentation"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thoughts of harming the baby",
+            "status": "reported",
+            "quote": "I've started having thoughts about harming the baby that scare me"
+          },
+          {
+            "concern": "Emotional detachment",
+            "status": "reported",
+            "quote": "I feel detached from everything"
+          },
+          {
+            "concern": "Persistent crying",
+            "status": "reported",
+            "quote": "I've been crying constantly"
+          },
+          {
+            "concern": "Plan or intent to act on thoughts about the baby",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Suicidal thoughts",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Hallucinations, confusion or delusions",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Sleep disturbance",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported; whether any measurement occurred is unknown.",
+        "questions": [],
+        "evidenceLimitations": "Sources are consumer health summaries and an ED synthesis, not perinatal psychiatry guidelines; they do not establish this patient's risk level. Plan, intent, suicidality, psychotic features, sleep and support at home are unreported, so the distinction between intrusive thoughts and higher-acuity presentation cannot be made remotely.",
+        "transportIntent": null,
+        "citations": [
+          {
+            "passageId": "ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+            "claim": "The publisher advises emergency care immediately if postpartum psychosis features such as hallucinations or dangerous behaviors occur.",
+            "applicability": "uncertain",
+            "limitation": "Consumer summary; psychotic features are unreported here, so this supports the safety net only.",
+            "quoteId": "q1"
+          },
+          {
+            "passageId": "ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+            "claim": "Diagnosis relies on clinical evaluation and screening of mood and thoughts, supporting a clinician assessment need.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary; does not specify setting or urgency for thoughts of harming an infant.",
+            "quoteId": "q5"
+          }
+        ]
+      }
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "action": "ED_NOW",
+        "basis": [
+          {
+            "quote": "I've started having thoughts about harming the baby that scare me",
+            "interpretation": "Intrusive thoughts of harm toward infant in postpartum period; urgent psychiatric and safety assessment required regardless of whether thoughts reflect intent or command content",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "I feel detached from everything, I've been crying constantly",
+            "interpretation": "Anhedonia, emotional blunting, and persistent crying in early postpartum period; consistent with severe postpartum mood disorder",
+            "currentPatient": true,
+            "present": true
+          }
+        ],
+        "actionBasis": {
+          "indices": [
+            0,
+            1
+          ],
+          "sufficient": true
+        },
+        "reason": "Intrusive harm thoughts toward infant in postpartum context require immediate emergency psychiatric safety assessment and risk evaluation.",
+        "patientMessage": "",
+        "physicalRequirement": null,
+        "activeEms": null
+      },
+      "usage": {
+        "inputTokens": 3230,
+        "outputTokens": 193
+      },
+      "failure": null,
+      "firstTextDeltaMs": 732,
+      "streamProgress": {
+        "lastTextDeltaMs": 2652,
+        "textDeltaCount": 74,
+        "textCharacters": 863
+      },
+      "transportTimings": {
+        "startResolvedMs": 1,
+        "objectResolvedMs": 2682,
+        "usageResolvedMs": 2690,
+        "finishReasonResolvedMs": 2690,
+        "streamEndMs": 2690
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 2690
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "accept",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "New infant-harm thoughts with marked postpartum distress require timely safety assessment. The draft preserves in-person assessment today, interim support and immediate emergency escalation for inability to maintain safety or hallucinations; it does not depend on a messaging response.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I've started having thoughts about harming the baby that scare me."
+              },
+              {
+                "unit": "draft",
+                "quote": "Please arrange an in-person mental health assessment today"
+              },
+              {
+                "unit": "draft",
+                "quote": "If you feel unable to keep yourself or the baby safe, or you start seeing or hearing things others don't, call 911 or go to the nearest emergency room right away."
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "Same-day direct assessment is defensible given new infant-harm thoughts, detachment and constant crying. Intent and psychotic features remain unknown, not presumed present. The draft permits maternity or mental-health assessment rather than requiring emergency transport for distressing thoughts alone.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "39F, two weeks postpartum. I feel detached from everything, I've been crying constantly"
+              },
+              {
+                "unit": "draft",
+                "quote": "through your maternity/postpartum service, a crisis line, or an emergency department"
+              },
+              {
+                "unit": "draft",
+                "quote": "Suicidality, psychotic features and plan/intent are unreported and unknown."
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "Reported symptoms are accurately represented. Diagnoses are framed as possibilities, and intent, suicidality, psychotic features and measurements are explicitly unknown rather than invented or denied.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Postpartum psychosis — not established; hallucinations, confusion and delusions unreported"
+              },
+              {
+                "unit": "draft",
+                "quote": "No vital signs reported; whether any measurement occurred is unknown."
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "The supplied consumer source supports clinical evaluation and emergency action for hallucinations or dangerous behavior. Same-day assessment is presented as a case-specific safety inference, not a publisher-prescribed routing rule; citation limitations are explicit.",
+            "anchors": [
+              {
+                "unit": "source:ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+                "quote": "hallucinations (seeing or hearing things that aren't real), or dangerous behaviors. Call 911 or go to the nearest emergency room right away if this happens."
+              },
+              {
+                "unit": "source:ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+                "quote": "A clinical evaluation based on your symptoms."
+              },
+              {
+                "unit": "draft",
+                "quote": "Consumer summary; does not specify setting or urgency for thoughts of harming an infant."
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "The advice requests trusted support without assuming it exists and gives immediate emergency action for inability to keep either person safe or emerging hallucinations, independently of messaging availability.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "ask someone you trust to stay with you and the baby in the meantime"
+              },
+              {
+                "unit": "draft",
+                "quote": "If you feel unable to keep yourself or the baby safe, or you start seeing or hearing things others don't, call 911 or go to the nearest emergency room right away."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No issued question is supplied, and the draft does not make assessment contingent on answers or further messaging.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              },
+              {
+                "unit": "draft",
+                "quote": "Please arrange an in-person mental health assessment today"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "Direct assessment remains with an appropriate in-person service. Counsel involvement is recommended as additional support, without claiming acceptance, booking, coordination or a guaranteed response.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I recommend Counsel clinician involvement in this thread too."
+              },
+              {
+                "unit": "draft",
+                "quote": "Please arrange an in-person mental health assessment today"
+              }
+            ]
+          }
+        ],
+        "earlyAction": "supported",
+        "earlyCorrection": null,
+        "ownershipTaskReview": [],
+        "correction": "No repair required. The earlier immediate ED assessment was a defensible cautious response to newly reported postpartum infant-harm thoughts with substantial distress and unresolved safety; ambulance activation was conditional on unsafe travel, not unconditional.",
+        "repairTargets": [],
+        "evidenceQueries": []
+      },
+      "usage": {
+        "inputTokens": 7472,
+        "outputTokens": 1293
+      },
+      "failure": null,
+      "firstTextDeltaMs": 3718,
+      "streamProgress": {
+        "lastTextDeltaMs": 22119,
+        "textDeltaCount": 1224,
+        "textCharacters": 5630
+      },
+      "transportTimings": {
+        "startResolvedMs": 2,
+        "objectResolvedMs": 22227,
+        "usageResolvedMs": 22372,
+        "finishReasonResolvedMs": 22372,
+        "streamEndMs": 22372
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 4202,
+        "cacheCreationInputTokens": 3267
+      },
+      "durationMs": 22372,
+      "reviewInputBinding": {
+        "patientHash": "287c89602206eb42a595f6b44131e711ec13c70886096b3eb4d0b61d7b66015f",
+        "draftHash": "fff4a221651ae44c0946a176f6a2294f3a83c7673c01299a21208548712c390f",
+        "packetHash": "2a290d92d096822a32db33301b777d845d4e4df32e685014fafbaac25cef76c3"
+      },
+      "rawOutput": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "accept",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "New infant-harm thoughts with marked postpartum distress require timely safety assessment. The draft preserves in-person assessment today, interim support and immediate emergency escalation for inability to maintain safety or hallucinations; it does not depend on a messaging response.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I've started having thoughts about harming the baby that scare me."
+              },
+              {
+                "unit": "draft",
+                "quote": "Please arrange an in-person mental health assessment today"
+              },
+              {
+                "unit": "draft",
+                "quote": "If you feel unable to keep yourself or the baby safe, or you start seeing or hearing things others don't, call 911 or go to the nearest emergency room right away."
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "Same-day direct assessment is defensible given new infant-harm thoughts, detachment and constant crying. Intent and psychotic features remain unknown, not presumed present. The draft permits maternity or mental-health assessment rather than requiring emergency transport for distressing thoughts alone.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "39F, two weeks postpartum. I feel detached from everything, I've been crying constantly"
+              },
+              {
+                "unit": "draft",
+                "quote": "through your maternity/postpartum service, a crisis line, or an emergency department"
+              },
+              {
+                "unit": "draft",
+                "quote": "Suicidality, psychotic features and plan/intent are unreported and unknown."
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "Reported symptoms are accurately represented. Diagnoses are framed as possibilities, and intent, suicidality, psychotic features and measurements are explicitly unknown rather than invented or denied.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Postpartum psychosis — not established; hallucinations, confusion and delusions unreported"
+              },
+              {
+                "unit": "draft",
+                "quote": "No vital signs reported; whether any measurement occurred is unknown."
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "The supplied consumer source supports clinical evaluation and emergency action for hallucinations or dangerous behavior. Same-day assessment is presented as a case-specific safety inference, not a publisher-prescribed routing rule; citation limitations are explicit.",
+            "anchors": [
+              {
+                "unit": "source:ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+                "quote": "hallucinations (seeing or hearing things that aren't real), or dangerous behaviors. Call 911 or go to the nearest emergency room right away if this happens."
+              },
+              {
+                "unit": "source:ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+                "quote": "A clinical evaluation based on your symptoms."
+              },
+              {
+                "unit": "draft",
+                "quote": "Consumer summary; does not specify setting or urgency for thoughts of harming an infant."
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "The advice requests trusted support without assuming it exists and gives immediate emergency action for inability to keep either person safe or emerging hallucinations, independently of messaging availability.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "ask someone you trust to stay with you and the baby in the meantime"
+              },
+              {
+                "unit": "draft",
+                "quote": "If you feel unable to keep yourself or the baby safe, or you start seeing or hearing things others don't, call 911 or go to the nearest emergency room right away."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No issued question is supplied, and the draft does not make assessment contingent on answers or further messaging.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              },
+              {
+                "unit": "draft",
+                "quote": "Please arrange an in-person mental health assessment today"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "Direct assessment remains with an appropriate in-person service. Counsel involvement is recommended as additional support, without claiming acceptance, booking, coordination or a guaranteed response.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I recommend Counsel clinician involvement in this thread too."
+              },
+              {
+                "unit": "draft",
+                "quote": "Please arrange an in-person mental health assessment today"
+              }
+            ]
+          }
+        ],
+        "earlyAction": "supported",
+        "earlyCorrection": null,
+        "ownershipTaskReview": [],
+        "correction": "No repair required. The earlier immediate ED assessment was a defensible cautious response to newly reported postpartum infant-harm thoughts with substantial distress and unresolved safety; ambulance activation was conditional on unsafe travel, not unconditional.",
+        "repairTargets": [],
+        "evidenceQueries": []
+      }
+    }
+  ],
+  "guidance": [
+    {
+      "id": "d856a6cfc053bfc09d8e931f7ab85fd0ca1e5fbfee4389348eb71040bca1a5fb",
+      "title": "Postpartum Depression",
+      "url": "https://medlineplus.gov/postpartumdepression.html",
+      "section": "Health-topic summary",
+      "summary": "What is postpartum depression? \n Having a baby can be exciting, but it can also be stressful and bring many strong emotions. During the postpartum period, which is the time after you give birth , you may have mood swings, crying spells, or feel anxious. These feelings are common and are often called the postpartum \"baby blues\". The baby blues usually go away within a few days to a week. \n\n If your symptoms are more severe and last longer than two weeks, you may have postpartum depression. \n\n Postpartum depression is a common but serious mood disorder that can begin anytime within the first year after childbirth. Without treatment, symptoms may make it hard to care for your baby or manage daily tasks. \n\n What causes postpartum depression? \n The exact cause is unknown, but postpartum depression likely results from a combination of factors, including: \n \n Sudden changes in hormone levels after pregnancy \n Physical changes , such as dropping thyroid hormone levels \n Lifestyle factors, such as fatigue, lack of sleep, limited support, or recent stressful events \n \n\n Who is at risk for postpartum depression? \n Anyone can develop postpartum depression after childbirth. You might be at higher risk if you: \n \n Have a history of depression , bipolar disorder , or a family health history of these conditions \n Had a multiple birth (twins, triplets, or more) \n Gave birth while in your teens \n Had health problems during pregnancy \n Had preterm labor or other complications during childbirth \n Have a baby with special needs \n Have ever experienced domestic violence \n Are dealing with financial stress \n Had an unplanned pregnancy \n \n\n What are the symptoms of postpartum depression? \n Postpartum depression symptoms are more intense and last longer than the baby blues. \n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "d856a6cfc053bfc09d8e931f7ab85fd0ca1e5fbfee4389348eb71040bca1a5fb",
+          "sourceId": "medlineplus:1238",
+          "excerpt": "What is postpartum depression? \n Having a baby can be exciting, but it can also be stressful and bring many strong emotions. During the postpartum period, which is the time after you give birth , you may have mood swings, crying spells, or feel anxious. These feelings are common and are often called the postpartum \"baby blues\". The baby blues usually go away within a few days to a week. \n\n If your symptoms are more severe and last longer than two weeks, you may have postpartum depression. \n\n Postpartum depression is a common but serious mood disorder that can begin anytime within the first year after childbirth. Without treatment, symptoms may make it hard to care for your baby or manage daily tasks. \n\n What causes postpartum depression? \n The exact cause is unknown, but postpartum depression likely results from a combination of factors, including: \n \n Sudden changes in hormone levels after pregnancy \n Physical changes , such as dropping thyroid hormone levels \n Lifestyle factors, such as fatigue, lack of sleep, limited support, or recent stressful events \n \n\n Who is at risk for postpartum depression? \n Anyone can develop postpartum depression after childbirth. You might be at higher risk if you: \n \n Have a history of depression , bipolar disorder , or a family health history of these conditions \n Had a multiple birth (twins, triplets, or more) \n Gave birth while in your teens \n Had health problems during pregnancy \n Had preterm labor or other complications during childbirth \n Have a baby with special needs \n Have ever experienced domestic violence \n Are dealing with financial stress \n Had an unplanned pregnancy \n \n\n What are the symptoms of postpartum depression? \n Postpartum depression symptoms are more intense and last longer than the baby blues. \n",
+          "excerptSha256": "206e518d55774b52d2b416da11ae5036e3114421a4e894705fa936f6f2f3e17a",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "37f4526aa0d455e12576256256ae997321c05a9480158944e9bb4a5e0bab6e8d",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+      "title": "Postpartum Depression",
+      "url": "https://medlineplus.gov/postpartumdepression.html",
+      "section": "Health-topic summary",
+      "summary": "hallucinations (seeing or hearing things that aren't real), or dangerous behaviors. Call 911 or go to the nearest emergency room right away if this happens. \n\n How is postpartum depression diagnosed? \n Your provider may diagnose postpartum depression using: \n \n Screening questions or questionnaires, such as those about your mood, sleep, and thoughts. \n A clinical evaluation based on your symptoms. \n Blood tests, if needed, to check for physical conditions such as thyroid disorders, that can cause or worsen depression. \n \n\n What is the treatment for postpartum depression? \n If you think you have postpartum depression, talk with your provider. Treatments may include: \n \n Medicines, including antidepressants \n Talk therapy (counseling) \n \n\n Tell your provider if you are breastfeeding so they can choose the safest treatment options. \n \n Along with these treatment options, there are things you can do at home that may help you feel better, such as: \n \n Asking for help with caring for the baby and household chores \n Taking time for yourself \n Getting physical activity, such as walking \n Resting when the baby rests \n \n\n Can postpartum depression be prevented? \n You may be able to lower your risk for postpartum depression by: \n \n Talking with your provider during pregnancy about any history of depression \n Completing recommended screening questionnaires during pregnancy and after birth \n Getting support from family, friends, or support groups \n Attending early Physical changes so symptoms can be found and treated as soon as possible \n \n\n Dept. of Health and Human Services Office on Women's Health",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+          "sourceId": "medlineplus:1238",
+          "excerpt": "hallucinations (seeing or hearing things that aren't real), or dangerous behaviors. Call 911 or go to the nearest emergency room right away if this happens. \n\n How is postpartum depression diagnosed? \n Your provider may diagnose postpartum depression using: \n \n Screening questions or questionnaires, such as those about your mood, sleep, and thoughts. \n A clinical evaluation based on your symptoms. \n Blood tests, if needed, to check for physical conditions such as thyroid disorders, that can cause or worsen depression. \n \n\n What is the treatment for postpartum depression? \n If you think you have postpartum depression, talk with your provider. Treatments may include: \n \n Medicines, including antidepressants \n Talk therapy (counseling) \n \n\n Tell your provider if you are breastfeeding so they can choose the safest treatment options. \n \n Along with these treatment options, there are things you can do at home that may help you feel better, such as: \n \n Asking for help with caring for the baby and household chores \n Taking time for yourself \n Getting physical activity, such as walking \n Resting when the baby rests \n \n\n Can postpartum depression be prevented? \n You may be able to lower your risk for postpartum depression by: \n \n Talking with your provider during pregnancy about any history of depression \n Completing recommended screening questionnaires during pregnancy and after birth \n Getting support from family, friends, or support groups \n Attending early Physical changes so symptoms can be found and treated as soon as possible \n \n\n Dept. of Health and Human Services Office on Women's Health",
+          "excerptSha256": "b13591662b7f0b823a277048f75fedf64050d9c732fc8a91177ac748e0aef659",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "37f4526aa0d455e12576256256ae997321c05a9480158944e9bb4a5e0bab6e8d",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "96d4120716adf8744dae6b1afe8659cb243750856ead5e0535f31d46084faa18",
+      "title": "Depression",
+      "url": "https://medlineplus.gov/depression.html",
+      "section": "Health-topic summary",
+      "summary": "h symptoms of psychosis is a severe form of depression that also has delusions (false beliefs) or hallucinations (seeing, hearing, or feeling something that isn't there). \n \n\n What causes depression? \n There are a variety of things that may cause depression, including genetic, biological, environmental, and psychological factors. Depression can happen at any age and can affect anyone, but it's more common in women. This is often due to the physical and hormonal changes that women have during menstruation, pregnancy, the postpartum period , and menopause. Other mental disorders or chronic medical conditions such as diabetes , cancer , or heart disease may occur with depression. This may make the chronic condition or depression worse. \n In some cases, there is no clear cause for depression. \n\n Who is at risk of depression? \n You may be at a higher risk of depression if you have a close relative who has it or another mental health disorder. Going through trauma or stressful life events may raise your risk even more. \n\n What are the symptoms of depression? \n Depression doesn't look the same on everyone. The type and number of symptoms of depression can vary and don't always appear like sadness. Depression may affect you differently based on your: \n \n Age. The symptoms of depression may be different in a child, who may appear more irritable than sad. Teens may act out or have excessive sleepiness. The symptoms for an older adult may not be as obvious as other age groups. \n Sex. Men often show symptoms and coping behaviors differently than women. Rather than sad, men may appear angry or irritable. \n Medical conditions. Some medicines and medical conditions may cause symptoms that look like depression. Chronic conditions may make depression worse. \n \n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "96d4120716adf8744dae6b1afe8659cb243750856ead5e0535f31d46084faa18",
+          "sourceId": "medlineplus:113",
+          "excerpt": "h symptoms of psychosis is a severe form of depression that also has delusions (false beliefs) or hallucinations (seeing, hearing, or feeling something that isn't there). \n \n\n What causes depression? \n There are a variety of things that may cause depression, including genetic, biological, environmental, and psychological factors. Depression can happen at any age and can affect anyone, but it's more common in women. This is often due to the physical and hormonal changes that women have during menstruation, pregnancy, the postpartum period , and menopause. Other mental disorders or chronic medical conditions such as diabetes , cancer , or heart disease may occur with depression. This may make the chronic condition or depression worse. \n In some cases, there is no clear cause for depression. \n\n Who is at risk of depression? \n You may be at a higher risk of depression if you have a close relative who has it or another mental health disorder. Going through trauma or stressful life events may raise your risk even more. \n\n What are the symptoms of depression? \n Depression doesn't look the same on everyone. The type and number of symptoms of depression can vary and don't always appear like sadness. Depression may affect you differently based on your: \n \n Age. The symptoms of depression may be different in a child, who may appear more irritable than sad. Teens may act out or have excessive sleepiness. The symptoms for an older adult may not be as obvious as other age groups. \n Sex. Men often show symptoms and coping behaviors differently than women. Rather than sad, men may appear angry or irritable. \n Medical conditions. Some medicines and medical conditions may cause symptoms that look like depression. Chronic conditions may make depression worse. \n \n",
+          "excerptSha256": "00e2ea8f5f526209c344c9902ad2eb798dd90d1f1396932e2e5e5a15ca5e68db",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "f69689f88a8f8b0d53114f75f639fcfb4c2d56017956547bb6a22d6a9fe7256b",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "4a2d9fc686271d49914d76afe736223c6535b5a0de929132b877b3f7744a7b91",
+      "title": "Acute Suicidality",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-suicidality.md",
+      "section": "Recognition",
+      "summary": "### Columbia Suicide Severity Rating Scale (C-SSRS) — Recommended Screening Tool\nThe C-SSRS differentiates passive ideation from active ideation with plan and intent:\n\n| Level | Description |\n|---|---|\n| 1 — Wish to be dead | \"I wish I were dead\" or \"I wish I could fall asleep and not wake up\" |\n| 2 — Non-specific active suicidal thoughts | \"I want to kill myself\" without specific plan |\n| 3 — Active ideation with any methods (no plan) | Thinks of methods but no specific plan |\n| 4 — Active ideation with some intent to act (no specific plan) | Some intent to act, no specific plan |\n| 5 — Active ideation with specific plan and intent | Specific plan with intent to carry it out |\n\nC-SSRS score of 4 or 5 mandates psychiatric evaluation before disposition.\n\n### Risk Factor Assessment\n\n**Static risk factors** (do not change with intervention):\n- Prior suicide attempt (single strongest predictor)\n- Family history of completed suicide\n- Male sex (higher completion rate; females attempt more often)\n- Age > 65 or age 15-24\n- Chronic medical illness (chronic pain, cancer, TBI, HIV)\n- History of childhood abuse/trauma\n- Military/veteran status\n\n**Dynamic risk factors** (modifiable, drive acute management):\n- Current intoxication (alcohol and drugs disinhibit)\n- Access to lethal means (firearms, medications, heights)\n- Recent psychosocial stressors (job loss, relationship dissolution, legal problems, bereavement)\n- Command auditory hallucinations\n- Recent psychiatric discharge (highest risk in first week)\n- Sleep deprivation\n- Hopelessness (Beck Hopelessness Scale correlates with completed suicide more than depression severity)\n\n**Protective factors:**\n- Children in the home\n- Religious/moral objections to suicide\n- Positive therapeutic relationship",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "4a2d9fc686271d49914d76afe736223c6535b5a0de929132b877b3f7744a7b91",
+          "sourceId": "openem:acute-suicidality",
+          "excerpt": "### Columbia Suicide Severity Rating Scale (C-SSRS) — Recommended Screening Tool\nThe C-SSRS differentiates passive ideation from active ideation with plan and intent:\n\n| Level | Description |\n|---|---|\n| 1 — Wish to be dead | \"I wish I were dead\" or \"I wish I could fall asleep and not wake up\" |\n| 2 — Non-specific active suicidal thoughts | \"I want to kill myself\" without specific plan |\n| 3 — Active ideation with any methods (no plan) | Thinks of methods but no specific plan |\n| 4 — Active ideation with some intent to act (no specific plan) | Some intent to act, no specific plan |\n| 5 — Active ideation with specific plan and intent | Specific plan with intent to carry it out |\n\nC-SSRS score of 4 or 5 mandates psychiatric evaluation before disposition.\n\n### Risk Factor Assessment\n\n**Static risk factors** (do not change with intervention):\n- Prior suicide attempt (single strongest predictor)\n- Family history of completed suicide\n- Male sex (higher completion rate; females attempt more often)\n- Age > 65 or age 15-24\n- Chronic medical illness (chronic pain, cancer, TBI, HIV)\n- History of childhood abuse/trauma\n- Military/veteran status\n\n**Dynamic risk factors** (modifiable, drive acute management):\n- Current intoxication (alcohol and drugs disinhibit)\n- Access to lethal means (firearms, medications, heights)\n- Recent psychosocial stressors (job loss, relationship dissolution, legal problems, bereavement)\n- Command auditory hallucinations\n- Recent psychiatric discharge (highest risk in first week)\n- Sleep deprivation\n- Hopelessness (Beck Hopelessness Scale correlates with completed suicide more than depression severity)\n\n**Protective factors:**\n- Children in the home\n- Religious/moral objections to suicide\n- Positive therapeutic relationship",
+          "excerptSha256": "c531f9433b5300dce56296c822b99dfdbff38ab5c38b6f4aec3726c0c0a80867",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "fe23d6912fccd067e49b7ec3faa9d8996cb7f406df0ae14088138f09f00d176b",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "23d65e7a54a2df44729fd44aaa4f5578634579966a5f3d167c889489c315b933",
+      "title": "Postpartum Hemorrhage",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/postpartum-hemorrhage.md",
+      "section": "Pitfalls",
+      "summary": "hen stepwise interventions fail and bleeding persists, peripartum hysterectomy is life-saving. The decision to proceed should not require consensus — hemorrhagic shock is irreversible beyond a point.\n\n7. **Forgetting to replace fibrinogen.** Fibrinogen is consumed early in PPH and is the best predictor of severity. A fibrinogen < 200 mg/dL mandates cryoprecipitate (10 units). Standard FFP provides insufficient fibrinogen concentration. Not checking fibrinogen serially during massive PPH leads to preventable coagulopathy.\n\n8. **Neglecting calcium replacement during massive transfusion.** Citrate in banked blood chelates calcium. Hypocalcemia causes myocardial depression and coagulopathy, worsening hemorrhage. Give calcium gluconate 1-2 g IV for every 4 units of blood products transfused.\n\n9. **Attempting to remove a retained placenta in the ED without anesthesia or surgical backup.** Manual removal of a retained placenta risks uterine perforation and worsened hemorrhage, particularly in placenta accreta spectrum. Ensure anesthesia and OR availability before attempting.\n\n10. **Missing concealed hemorrhage.** A rising fundal height with a firm uterus and no external bleeding suggests blood accumulating behind membranes or a broad ligament hematoma. Palpate the fundus serially and monitor for rising heart rate disproportionate to visible blood loss.",
+      "reviewedAt": "2026-02-27",
+      "projectInterpretation": "research_synthesis; upstream_physician_reviewed. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "23d65e7a54a2df44729fd44aaa4f5578634579966a5f3d167c889489c315b933",
+          "sourceId": "openem:postpartum-hemorrhage",
+          "excerpt": "hen stepwise interventions fail and bleeding persists, peripartum hysterectomy is life-saving. The decision to proceed should not require consensus — hemorrhagic shock is irreversible beyond a point.\n\n7. **Forgetting to replace fibrinogen.** Fibrinogen is consumed early in PPH and is the best predictor of severity. A fibrinogen < 200 mg/dL mandates cryoprecipitate (10 units). Standard FFP provides insufficient fibrinogen concentration. Not checking fibrinogen serially during massive PPH leads to preventable coagulopathy.\n\n8. **Neglecting calcium replacement during massive transfusion.** Citrate in banked blood chelates calcium. Hypocalcemia causes myocardial depression and coagulopathy, worsening hemorrhage. Give calcium gluconate 1-2 g IV for every 4 units of blood products transfused.\n\n9. **Attempting to remove a retained placenta in the ED without anesthesia or surgical backup.** Manual removal of a retained placenta risks uterine perforation and worsened hemorrhage, particularly in placenta accreta spectrum. Ensure anesthesia and OR availability before attempting.\n\n10. **Missing concealed hemorrhage.** A rising fundal height with a firm uterus and no external bleeding suggests blood accumulating behind membranes or a broad ligament hematoma. Palpate the fundus serially and monitor for rising heart rate disproportionate to visible blood loss.",
+          "excerptSha256": "139b174963ad5666a5b14e02fbc50ec86c67c522910a981e895283c7fd61700e",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "0828541d98efefcb62dbcdcd80221462f3c1456d7f8bb01a913ced8277ce3292",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    }
+  ],
+  "safetyFloor": {
+    "disposition": "EMERGENCY_NOW",
+    "directive": "Seek emergency department assessment now. Do not wait for a message reply; call 911 if you cannot travel safely."
+  },
+  "rejectedAnswer": {
+    "disposition": "SAME_DAY_IN_PERSON",
+    "reviewPriority": null,
+    "workType": null,
+    "reason": "Two weeks postpartum with pervasive detachment, constant crying and new thoughts of harming the baby requires same-day in-person perinatal mental health assessment: risk stratification (intrusive ego-dystonic thoughts vs. psychosis or intent), infant safety planning and possible treatment cannot be safely completed by messaging alone. Suicidality, psychotic features and plan/intent are unreported and unknown.",
+    "patientMessage": "Please arrange an in-person mental health assessment today — through your maternity/postpartum service, a crisis line, or an emergency department — and ask someone you trust to stay with you and the baby in the meantime. New postpartum thoughts of harming the baby need a hands-on safety and risk assessment that messaging cannot provide. I recommend Counsel clinician involvement in this thread too. If you feel unable to keep yourself or the baby safe, or you start seeing or hearing things others don't, call 911 or go to the nearest emergency room right away.",
+    "differential": [
+      "Postpartum depression with distressing intrusive (ego-dystonic) thoughts",
+      "Postpartum psychosis — not established; hallucinations, confusion and delusions unreported",
+      "Severe anxiety/OCD-spectrum postpartum presentation"
+    ],
+    "redFlags": [
+      {
+        "concern": "Thoughts of harming the baby",
+        "status": "reported",
+        "quote": "I've started having thoughts about harming the baby that scare me"
+      },
+      {
+        "concern": "Emotional detachment",
+        "status": "reported",
+        "quote": "I feel detached from everything"
+      },
+      {
+        "concern": "Persistent crying",
+        "status": "reported",
+        "quote": "I've been crying constantly"
+      },
+      {
+        "concern": "Plan or intent to act on thoughts about the baby",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Suicidal thoughts",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Hallucinations, confusion or delusions",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Sleep disturbance",
+        "status": "unknown",
+        "quote": ""
+      }
+    ],
+    "vitalSigns": "No vital signs reported; whether any measurement occurred is unknown.",
+    "questions": [],
+    "evidenceLimitations": "Sources are consumer health summaries and an ED synthesis, not perinatal psychiatry guidelines; they do not establish this patient's risk level. Plan, intent, suicidality, psychotic features, sleep and support at home are unreported, so the distinction between intrusive thoughts and higher-acuity presentation cannot be made remotely.",
+    "transportIntent": null,
+    "citations": [
+      {
+        "passageId": "ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+        "quote": "Call 911 or go to the nearest emergency room right away if this happens.",
+        "claim": "The publisher advises emergency care immediately if postpartum psychosis features such as hallucinations or dangerous behaviors occur.",
+        "applicability": "uncertain",
+        "limitation": "Consumer summary; psychotic features are unreported here, so this supports the safety net only."
+      },
+      {
+        "passageId": "ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+        "quote": "A clinical evaluation based on your symptoms.",
+        "claim": "Diagnosis relies on clinical evaluation and screening of mood and thoughts, supporting a clinician assessment need.",
+        "applicability": "applicable",
+        "limitation": "Consumer summary; does not specify setting or urgency for thoughts of harming an infant."
+      }
+    ]
+  },
+  "failure": "CLINICIAN_REVIEW_REQUIRED",
+  "routingPolicy": "five-route-queue/v2",
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "pass",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "pass",
+      "detail": "Checks explicit timing/destination tokens or exact independently reviewed emergency-transport binding; not clinical validation or verification of EMS activation."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen from a COPD diagnosis alone; targeted medication-instruction check."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "pass",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "emergency_transport",
+      "status": "not_assessed",
+      "detail": "LEGACY_TEXT_CONTRACT: typed transport intent and independent review are bound to patient and draft quotations; this is not externally verified EMS activation or clinical validation."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Cited passage identity and exact quote match; this does not establish claim support or applicability."
+    },
+    {
+      "id": "independent_review",
+      "status": "pass",
+      "detail": "Cross-vendor reviewer accepted this draft against seven criteria; application contract and care-reconciliation gates are separate. Not physician calibration or clinical approval."
+    },
+    {
+      "id": "care_reconciliation",
+      "status": "fail",
+      "detail": "Application withheld a reduction of already-issued care setting or emergency transport because an explicit bound correction is missing. This is a reconciliation-contract failure, not an absent or rejected judge verdict."
+    }
+  ],
+  "usage": {
+    "inputTokens": 26302,
+    "outputTokens": 2965
+  },
+  "graph": {
+    "version": "evidence-graph/v22",
+    "mode": "hybrid",
+    "clinicalPolicyVersion": "disposition-clinical-policy/v2",
+    "context": {
+      "queries": [
+        "postpartum depression intrusive thoughts infanticide risk"
+      ],
+      "findings": [
+        {
+          "finding": "Depressed mood with anhedonia and emotional detachment",
+          "status": "reported",
+          "quote": "I feel detached from everything"
+        },
+        {
+          "finding": "Crying",
+          "status": "reported",
+          "quote": "I've been crying constantly"
+        },
+        {
+          "finding": "Intrusive thoughts of harming the baby",
+          "status": "reported",
+          "quote": "I've started having thoughts about harming the baby that scare me"
+        },
+        {
+          "finding": "Distress about intrusive thoughts",
+          "status": "reported",
+          "quote": "thoughts about harming the baby that scare me"
+        },
+        {
+          "finding": "Postpartum timing",
+          "status": "reported",
+          "quote": "two weeks postpartum"
+        },
+        {
+          "finding": "Sleep disturbance",
+          "status": "unknown",
+          "quote": ""
+        }
+      ],
+      "question": {
+        "text": "Are you having any thoughts about harming yourself, or do you have a plan or intent to act on any of these thoughts about the baby?",
+        "why": "Distinguishes postpartum depression with intrusive thoughts (ego-dystonic, distressing) from postpartum psychosis or intent to harm, which would require immediate psychiatric evaluation and possible safety planning.",
+        "quote": "thoughts about harming the baby that scare me"
+      }
+    },
+    "contextAdmission": {
+      "clinicalContextAccepted": true,
+      "querySource": "accepted_context",
+      "queries": [
+        "postpartum depression intrusive thoughts infanticide risk"
+      ],
+      "clinicalValidation": false
+    },
+    "safety": {
+      "action": "ED_NOW",
+      "basis": [
+        {
+          "quote": "I've started having thoughts about harming the baby that scare me",
+          "interpretation": "Intrusive thoughts of harm toward infant in postpartum period; urgent psychiatric and safety assessment required regardless of whether thoughts reflect intent or command content",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "I feel detached from everything, I've been crying constantly",
+          "interpretation": "Anhedonia, emotional blunting, and persistent crying in early postpartum period; consistent with severe postpartum mood disorder",
+          "currentPatient": true,
+          "present": true
+        }
+      ],
+      "actionBasis": {
+        "indices": [
+          0,
+          1
+        ],
+        "sufficient": true
+      },
+      "reason": "Intrusive harm thoughts toward infant in postpartum context require immediate emergency psychiatric safety assessment and risk evaluation.",
+      "patientMessage": "",
+      "physicalRequirement": null,
+      "activeEms": null
+    },
+    "safetyAdmission": {
+      "status": "admitted",
+      "code": "ACTION_ADMITTED",
+      "proposedAction": "ED_NOW",
+      "basisMode": "explicit",
+      "supportingBasisIndices": [
+        0,
+        1
+      ],
+      "contextualBasisIndices": [],
+      "clinicalValidation": false
+    },
+    "questionPublication": {
+      "status": "suppressed_emergency",
+      "blocksRouting": false
+    },
+    "transportAdmission": {
+      "status": "legacy",
+      "code": "LEGACY_TEXT_CONTRACT",
+      "clinicalValidation": false
+    },
+    "ownershipLanguageReview": {
+      "raw": {
+        "id": "no_unconfirmed_handoff",
+        "status": "pass",
+        "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+      },
+      "findings": [],
+      "status": "not_flagged",
+      "reviewedDraftHash": "fff4a221651ae44c0946a176f6a2294f3a83c7673c01299a21208548712c390f",
+      "taskReviews": [],
+      "clinicalApproval": false
+    },
+    "retrieval": [
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "postpartum depression intrusive thoughts infanticide risk",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "d856a6cfc053bfc09d8e931f7ab85fd0ca1e5fbfee4389348eb71040bca1a5fb",
+              "end": 1781,
+              "hash": "206e518d55774b52d2b416da11ae5036e3114421a4e894705fa936f6f2f3e17a",
+              "text": "What is postpartum depression? \n Having a baby can be exciting, but it can also be stressful and bring many strong emotions. During the postpartum period, which is the time after you give birth , you may have mood swings, crying spells, or feel anxious. These feelings are common and are often called the postpartum \"baby blues\". The baby blues usually go away within a few days to a week. \n\n If your symptoms are more severe and last longer than two weeks, you may have postpartum depression. \n\n Postpartum depression is a common but serious mood disorder that can begin anytime within the first year after childbirth. Without treatment, symptoms may make it hard to care for your baby or manage daily tasks. \n\n What causes postpartum depression? \n The exact cause is unknown, but postpartum depression likely results from a combination of factors, including: \n \n Sudden changes in hormone levels after pregnancy \n Physical changes , such as dropping thyroid hormone levels \n Lifestyle factors, such as fatigue, lack of sleep, limited support, or recent stressful events \n \n\n Who is at risk for postpartum depression? \n Anyone can develop postpartum depression after childbirth. You might be at higher risk if you: \n \n Have a history of depression , bipolar disorder , or a family health history of these conditions \n Had a multiple birth (twins, triplets, or more) \n Gave birth while in your teens \n Had health problems during pregnancy \n Had preterm labor or other complications during childbirth \n Have a baby with special needs \n Have ever experienced domestic violence \n Are dealing with financial stress \n Had an unplanned pregnancy \n \n\n What are the symptoms of postpartum depression? \n Postpartum depression symptoms are more intense and last longer than the baby blues. \n",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:1238",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Postpartum Depression\nPost-pregnancy depression\nHealth-topic summary\nWhat is postpartum depression? \n Having a baby can be exciting, but it can also be stressful and bring many strong emotions. During the postpartum period, which is the time after you give birth , you may have mood swings, crying spells, or feel anxious. These feelings are common and are often called the postpartum \"baby blues\". The baby blues usually go away within a few days to a week. \n\n If your symptoms are more severe and last longer than two weeks, you may have postpartum depression. \n\n Postpartum depression is a common but serious mood disorder that can begin anytime within the first year after childbirth. Without treatment, symptoms may make it hard to care for your baby or manage daily tasks. \n\n What causes postpartum depression? \n The exact cause is unknown, but postpartum depression likely results from a combination of factors, including: \n \n Sudden changes in hormone levels after pregnancy \n Physical changes , such as dropping thyroid hormone levels \n Lifestyle factors, such as fatigue, lack of sleep, limited support, or recent stressful events \n \n\n Who is at risk for postpartum depression? \n Anyone can develop postpartum depression after childbirth. You might be at higher risk if you: \n \n Have a history of depression , bipolar disorder , or a family health history of these conditions \n Had a multiple birth (twins, triplets, or more) \n Gave birth while in your teens \n Had health problems during pregnancy \n Had preterm labor or other complications during childbirth \n Have a baby with special needs \n Have ever experienced domestic violence \n Are dealing with financial stress \n Had an unplanned pregnancy \n \n\n What are the symptoms of postpartum depression? \n Postpartum depression symptoms are more intense and last longer than the baby blues. \n"
+            },
+            "document": {
+              "id": "medlineplus:1238",
+              "url": "https://medlineplus.gov/postpartumdepression.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Postpartum Depression",
+              "aliases": [
+                "Post-pregnancy depression"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "37f4526aa0d455e12576256256ae997321c05a9480158944e9bb4a5e0bab6e8d",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:113",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Depression, Postpartum"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.03200204813108039,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n Symptoms may include: \n \n Feeling sad or empty most of the time \n Eating too much or too little \n Sleeping too much or too little \n Crying more than usual or for no clear reason \n Feeling unusually angry \n Pulling away from family and friends \n Feeling worried or anxious often \n Feeling little or "
+            }
+          },
+          {
+            "chunk": {
+              "id": "ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+              "end": 4760,
+              "hash": "b13591662b7f0b823a277048f75fedf64050d9c732fc8a91177ac748e0aef659",
+              "text": "hallucinations (seeing or hearing things that aren't real), or dangerous behaviors. Call 911 or go to the nearest emergency room right away if this happens. \n\n How is postpartum depression diagnosed? \n Your provider may diagnose postpartum depression using: \n \n Screening questions or questionnaires, such as those about your mood, sleep, and thoughts. \n A clinical evaluation based on your symptoms. \n Blood tests, if needed, to check for physical conditions such as thyroid disorders, that can cause or worsen depression. \n \n\n What is the treatment for postpartum depression? \n If you think you have postpartum depression, talk with your provider. Treatments may include: \n \n Medicines, including antidepressants \n Talk therapy (counseling) \n \n\n Tell your provider if you are breastfeeding so they can choose the safest treatment options. \n \n Along with these treatment options, there are things you can do at home that may help you feel better, such as: \n \n Asking for help with caring for the baby and household chores \n Taking time for yourself \n Getting physical activity, such as walking \n Resting when the baby rests \n \n\n Can postpartum depression be prevented? \n You may be able to lower your risk for postpartum depression by: \n \n Talking with your provider during pregnancy about any history of depression \n Completing recommended screening questionnaires during pregnancy and after birth \n Getting support from family, friends, or support groups \n Attending early Physical changes so symptoms can be found and treated as soon as possible \n \n\n Dept. of Health and Human Services Office on Women's Health",
+              "start": 3146,
+              "section": 0,
+              "documentId": "medlineplus:1238",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Postpartum Depression\nPost-pregnancy depression\nHealth-topic summary\nhallucinations (seeing or hearing things that aren't real), or dangerous behaviors. Call 911 or go to the nearest emergency room right away if this happens. \n\n How is postpartum depression diagnosed? \n Your provider may diagnose postpartum depression using: \n \n Screening questions or questionnaires, such as those about your mood, sleep, and thoughts. \n A clinical evaluation based on your symptoms. \n Blood tests, if needed, to check for physical conditions such as thyroid disorders, that can cause or worsen depression. \n \n\n What is the treatment for postpartum depression? \n If you think you have postpartum depression, talk with your provider. Treatments may include: \n \n Medicines, including antidepressants \n Talk therapy (counseling) \n \n\n Tell your provider if you are breastfeeding so they can choose the safest treatment options. \n \n Along with these treatment options, there are things you can do at home that may help you feel better, such as: \n \n Asking for help with caring for the baby and household chores \n Taking time for yourself \n Getting physical activity, such as walking \n Resting when the baby rests \n \n\n Can postpartum depression be prevented? \n You may be able to lower your risk for postpartum depression by: \n \n Talking with your provider during pregnancy about any history of depression \n Completing recommended screening questionnaires during pregnancy and after birth \n Getting support from family, friends, or support groups \n Attending early Physical changes so symptoms can be found and treated as soon as possible \n \n\n Dept. of Health and Human Services Office on Women's Health"
+            },
+            "document": {
+              "id": "medlineplus:1238",
+              "url": "https://medlineplus.gov/postpartumdepression.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Postpartum Depression",
+              "aliases": [
+                "Post-pregnancy depression"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "37f4526aa0d455e12576256256ae997321c05a9480158944e9bb4a5e0bab6e8d",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:113",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Depression, Postpartum"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.0315136476426799,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "pregnancy and continue after childbirth, it's called perinatal depression. Without treatment, it can affect bonding with your baby and may contribute to feeding or sleeping problems. \n\n Very rarely, a new mother may develop postpartum psychosis , a medical emergency. Symptoms may include confusion, ",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "96d4120716adf8744dae6b1afe8659cb243750856ead5e0535f31d46084faa18",
+              "end": 3076,
+              "hash": "00e2ea8f5f526209c344c9902ad2eb798dd90d1f1396932e2e5e5a15ca5e68db",
+              "text": "h symptoms of psychosis is a severe form of depression that also has delusions (false beliefs) or hallucinations (seeing, hearing, or feeling something that isn't there). \n \n\n What causes depression? \n There are a variety of things that may cause depression, including genetic, biological, environmental, and psychological factors. Depression can happen at any age and can affect anyone, but it's more common in women. This is often due to the physical and hormonal changes that women have during menstruation, pregnancy, the postpartum period , and menopause. Other mental disorders or chronic medical conditions such as diabetes , cancer , or heart disease may occur with depression. This may make the chronic condition or depression worse. \n In some cases, there is no clear cause for depression. \n\n Who is at risk of depression? \n You may be at a higher risk of depression if you have a close relative who has it or another mental health disorder. Going through trauma or stressful life events may raise your risk even more. \n\n What are the symptoms of depression? \n Depression doesn't look the same on everyone. The type and number of symptoms of depression can vary and don't always appear like sadness. Depression may affect you differently based on your: \n \n Age. The symptoms of depression may be different in a child, who may appear more irritable than sad. Teens may act out or have excessive sleepiness. The symptoms for an older adult may not be as obvious as other age groups. \n Sex. Men often show symptoms and coping behaviors differently than women. Rather than sad, men may appear angry or irritable. \n Medical conditions. Some medicines and medical conditions may cause symptoms that look like depression. Chronic conditions may make depression worse. \n \n",
+              "start": 1302,
+              "section": 0,
+              "documentId": "medlineplus:113",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Depression\nClinical depression; Dysthymic disorder; Major depressive disorder; Unipolar depression\nHealth-topic summary\nh symptoms of psychosis is a severe form of depression that also has delusions (false beliefs) or hallucinations (seeing, hearing, or feeling something that isn't there). \n \n\n What causes depression? \n There are a variety of things that may cause depression, including genetic, biological, environmental, and psychological factors. Depression can happen at any age and can affect anyone, but it's more common in women. This is often due to the physical and hormonal changes that women have during menstruation, pregnancy, the postpartum period , and menopause. Other mental disorders or chronic medical conditions such as diabetes , cancer , or heart disease may occur with depression. This may make the chronic condition or depression worse. \n In some cases, there is no clear cause for depression. \n\n Who is at risk of depression? \n You may be at a higher risk of depression if you have a close relative who has it or another mental health disorder. Going through trauma or stressful life events may raise your risk even more. \n\n What are the symptoms of depression? \n Depression doesn't look the same on everyone. The type and number of symptoms of depression can vary and don't always appear like sadness. Depression may affect you differently based on your: \n \n Age. The symptoms of depression may be different in a child, who may appear more irritable than sad. Teens may act out or have excessive sleepiness. The symptoms for an older adult may not be as obvious as other age groups. \n Sex. Men often show symptoms and coping behaviors differently than women. Rather than sad, men may appear angry or irritable. \n Medical conditions. Some medicines and medical conditions may cause symptoms that look like depression. Chronic conditions may make depression worse. \n \n"
+            },
+            "document": {
+              "id": "medlineplus:113",
+              "url": "https://medlineplus.gov/depression.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Depression",
+              "aliases": [
+                "Clinical depression",
+                "Dysthymic disorder",
+                "Major depressive disorder",
+                "Unipolar depression"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "f69689f88a8f8b0d53114f75f639fcfb4c2d56017956547bb6a22d6a9fe7256b",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4146",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:600",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5676",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6063",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1238",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3140",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:424",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6931",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Depression"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.02844163539403516,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "ession can include: \n \n Seasonal affective disorder comes and goes with the seasons. It usually starts in late fall and early winter and goes away during the spring and summer. \n Bipolar disorder is sometimes called manic depression. This mood disorder can cause intense mood swings. \n Depression wit",
+              "after": "\n Symptoms of depression are ongoing and affect your day-to-day life. They can include: \n \n Feeling sad or \"empty\" \n Losing interest in favorite activities \n Overeating, or not wanting to eat at all \n Sleeping too much, or not enough \n Feeling very tired \n Feeling hopeless, irritable, anxious, or gu"
+            }
+          },
+          {
+            "chunk": {
+              "id": "4a2d9fc686271d49914d76afe736223c6535b5a0de929132b877b3f7744a7b91",
+              "end": 1767,
+              "hash": "c531f9433b5300dce56296c822b99dfdbff38ab5c38b6f4aec3726c0c0a80867",
+              "text": "### Columbia Suicide Severity Rating Scale (C-SSRS) — Recommended Screening Tool\nThe C-SSRS differentiates passive ideation from active ideation with plan and intent:\n\n| Level | Description |\n|---|---|\n| 1 — Wish to be dead | \"I wish I were dead\" or \"I wish I could fall asleep and not wake up\" |\n| 2 — Non-specific active suicidal thoughts | \"I want to kill myself\" without specific plan |\n| 3 — Active ideation with any methods (no plan) | Thinks of methods but no specific plan |\n| 4 — Active ideation with some intent to act (no specific plan) | Some intent to act, no specific plan |\n| 5 — Active ideation with specific plan and intent | Specific plan with intent to carry it out |\n\nC-SSRS score of 4 or 5 mandates psychiatric evaluation before disposition.\n\n### Risk Factor Assessment\n\n**Static risk factors** (do not change with intervention):\n- Prior suicide attempt (single strongest predictor)\n- Family history of completed suicide\n- Male sex (higher completion rate; females attempt more often)\n- Age > 65 or age 15-24\n- Chronic medical illness (chronic pain, cancer, TBI, HIV)\n- History of childhood abuse/trauma\n- Military/veteran status\n\n**Dynamic risk factors** (modifiable, drive acute management):\n- Current intoxication (alcohol and drugs disinhibit)\n- Access to lethal means (firearms, medications, heights)\n- Recent psychosocial stressors (job loss, relationship dissolution, legal problems, bereavement)\n- Command auditory hallucinations\n- Recent psychiatric discharge (highest risk in first week)\n- Sleep deprivation\n- Hopelessness (Beck Hopelessness Scale correlates with completed suicide more than depression severity)\n\n**Protective factors:**\n- Children in the home\n- Religious/moral objections to suicide\n- Positive therapeutic relationship",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:acute-suicidality",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Acute Suicidality\nsuicidal ideation; suicidal patient; suicide attempt; active suicidal ideation; suicide risk assessment; self-harm with suicidal intent\nRecognition\n### Columbia Suicide Severity Rating Scale (C-SSRS) — Recommended Screening Tool\nThe C-SSRS differentiates passive ideation from active ideation with plan and intent:\n\n| Level | Description |\n|---|---|\n| 1 — Wish to be dead | \"I wish I were dead\" or \"I wish I could fall asleep and not wake up\" |\n| 2 — Non-specific active suicidal thoughts | \"I want to kill myself\" without specific plan |\n| 3 — Active ideation with any methods (no plan) | Thinks of methods but no specific plan |\n| 4 — Active ideation with some intent to act (no specific plan) | Some intent to act, no specific plan |\n| 5 — Active ideation with specific plan and intent | Specific plan with intent to carry it out |\n\nC-SSRS score of 4 or 5 mandates psychiatric evaluation before disposition.\n\n### Risk Factor Assessment\n\n**Static risk factors** (do not change with intervention):\n- Prior suicide attempt (single strongest predictor)\n- Family history of completed suicide\n- Male sex (higher completion rate; females attempt more often)\n- Age > 65 or age 15-24\n- Chronic medical illness (chronic pain, cancer, TBI, HIV)\n- History of childhood abuse/trauma\n- Military/veteran status\n\n**Dynamic risk factors** (modifiable, drive acute management):\n- Current intoxication (alcohol and drugs disinhibit)\n- Access to lethal means (firearms, medications, heights)\n- Recent psychosocial stressors (job loss, relationship dissolution, legal problems, bereavement)\n- Command auditory hallucinations\n- Recent psychiatric discharge (highest risk in first week)\n- Sleep deprivation\n- Hopelessness (Beck Hopelessness Scale correlates with completed suicide more than depression severity)\n\n**Protective factors:**\n- Children in the home\n- Religious/moral objections to suicide\n- Positive therapeutic relationship"
+            },
+            "document": {
+              "id": "openem:acute-suicidality",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-suicidality.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Suicidality",
+              "aliases": [
+                "suicidal ideation",
+                "suicidal patient",
+                "suicide attempt",
+                "active suicidal ideation",
+                "suicide risk assessment",
+                "self-harm with suicidal intent"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "fe23d6912fccd067e49b7ec3faa9d8996cb7f406df0ae14088138f09f00d176b",
+              "related": [],
+              "concepts": [
+                "psychiatric"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.027651515151515153,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- Reasons for living (identify and reinforce)\n- Social support\n\n### SAD PERSONS Score — Limitations\nThe SAD PERSONS score (Sex, Age, Depression, Previous attempt, Ethanol, Rational thinking loss, Social support, Organized plan, No spouse, Sickness) is widely taught but has poor sensitivity and spec"
+            }
+          },
+          {
+            "chunk": {
+              "id": "23d65e7a54a2df44729fd44aaa4f5578634579966a5f3d167c889489c315b933",
+              "end": 2920,
+              "hash": "139b174963ad5666a5b14e02fbc50ec86c67c522910a981e895283c7fd61700e",
+              "text": "hen stepwise interventions fail and bleeding persists, peripartum hysterectomy is life-saving. The decision to proceed should not require consensus — hemorrhagic shock is irreversible beyond a point.\n\n7. **Forgetting to replace fibrinogen.** Fibrinogen is consumed early in PPH and is the best predictor of severity. A fibrinogen < 200 mg/dL mandates cryoprecipitate (10 units). Standard FFP provides insufficient fibrinogen concentration. Not checking fibrinogen serially during massive PPH leads to preventable coagulopathy.\n\n8. **Neglecting calcium replacement during massive transfusion.** Citrate in banked blood chelates calcium. Hypocalcemia causes myocardial depression and coagulopathy, worsening hemorrhage. Give calcium gluconate 1-2 g IV for every 4 units of blood products transfused.\n\n9. **Attempting to remove a retained placenta in the ED without anesthesia or surgical backup.** Manual removal of a retained placenta risks uterine perforation and worsened hemorrhage, particularly in placenta accreta spectrum. Ensure anesthesia and OR availability before attempting.\n\n10. **Missing concealed hemorrhage.** A rising fundal height with a firm uterus and no external bleeding suggests blood accumulating behind membranes or a broad ligament hematoma. Palpate the fundus serially and monitor for rising heart rate disproportionate to visible blood loss.",
+              "start": 1553,
+              "section": 6,
+              "documentId": "openem:postpartum-hemorrhage",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Postpartum Hemorrhage\nPPH; postpartum haemorrhage; obstetric hemorrhage\nPitfalls\nhen stepwise interventions fail and bleeding persists, peripartum hysterectomy is life-saving. The decision to proceed should not require consensus — hemorrhagic shock is irreversible beyond a point.\n\n7. **Forgetting to replace fibrinogen.** Fibrinogen is consumed early in PPH and is the best predictor of severity. A fibrinogen < 200 mg/dL mandates cryoprecipitate (10 units). Standard FFP provides insufficient fibrinogen concentration. Not checking fibrinogen serially during massive PPH leads to preventable coagulopathy.\n\n8. **Neglecting calcium replacement during massive transfusion.** Citrate in banked blood chelates calcium. Hypocalcemia causes myocardial depression and coagulopathy, worsening hemorrhage. Give calcium gluconate 1-2 g IV for every 4 units of blood products transfused.\n\n9. **Attempting to remove a retained placenta in the ED without anesthesia or surgical backup.** Manual removal of a retained placenta risks uterine perforation and worsened hemorrhage, particularly in placenta accreta spectrum. Ensure anesthesia and OR availability before attempting.\n\n10. **Missing concealed hemorrhage.** A rising fundal height with a firm uterus and no external bleeding suggests blood accumulating behind membranes or a broad ligament hematoma. Palpate the fundus serially and monitor for rising heart rate disproportionate to visible blood loss."
+            },
+            "document": {
+              "id": "openem:postpartum-hemorrhage",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/postpartum-hemorrhage.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Postpartum Hemorrhage",
+              "aliases": [
+                "PPH",
+                "postpartum haemorrhage",
+                "obstetric hemorrhage"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "0828541d98efefcb62dbcdcd80221462f3c1456d7f8bb01a913ced8277ce3292",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:placental-abruption",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:uterine-rupture",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:amniotic-fluid-embolism",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "obstetric-gynecologic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.026856524873828405,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "es, or stroke in preeclamptic patients. Use carboprost or misoprostol instead. Equally, avoid carboprost in asthmatics.\n\n6. **Delaying hysterectomy in a deteriorating patient.** Performing one more round of uterotonics, one more compression suture, one more balloon while the patient exsanguinates. W",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 20.220999999903142,
+          "embeddingMs": 582.6766250003129,
+          "vectorMs": 9.956624999642372,
+          "totalMs": 615.1039999993518
+        },
+        "warnings": [],
+        "embeddingTokens": 10,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "accept",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "New infant-harm thoughts with marked postpartum distress require timely safety assessment. The draft preserves in-person assessment today, interim support and immediate emergency escalation for inability to maintain safety or hallucinations; it does not depend on a messaging response.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I've started having thoughts about harming the baby that scare me."
+            },
+            {
+              "unit": "draft",
+              "quote": "Please arrange an in-person mental health assessment today"
+            },
+            {
+              "unit": "draft",
+              "quote": "If you feel unable to keep yourself or the baby safe, or you start seeing or hearing things others don't, call 911 or go to the nearest emergency room right away."
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "Same-day direct assessment is defensible given new infant-harm thoughts, detachment and constant crying. Intent and psychotic features remain unknown, not presumed present. The draft permits maternity or mental-health assessment rather than requiring emergency transport for distressing thoughts alone.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "39F, two weeks postpartum. I feel detached from everything, I've been crying constantly"
+            },
+            {
+              "unit": "draft",
+              "quote": "through your maternity/postpartum service, a crisis line, or an emergency department"
+            },
+            {
+              "unit": "draft",
+              "quote": "Suicidality, psychotic features and plan/intent are unreported and unknown."
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "Reported symptoms are accurately represented. Diagnoses are framed as possibilities, and intent, suicidality, psychotic features and measurements are explicitly unknown rather than invented or denied.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Postpartum psychosis — not established; hallucinations, confusion and delusions unreported"
+            },
+            {
+              "unit": "draft",
+              "quote": "No vital signs reported; whether any measurement occurred is unknown."
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "pass",
+          "reason": "The supplied consumer source supports clinical evaluation and emergency action for hallucinations or dangerous behavior. Same-day assessment is presented as a case-specific safety inference, not a publisher-prescribed routing rule; citation limitations are explicit.",
+          "anchors": [
+            {
+              "unit": "source:ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+              "quote": "hallucinations (seeing or hearing things that aren't real), or dangerous behaviors. Call 911 or go to the nearest emergency room right away if this happens."
+            },
+            {
+              "unit": "source:ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+              "quote": "A clinical evaluation based on your symptoms."
+            },
+            {
+              "unit": "draft",
+              "quote": "Consumer summary; does not specify setting or urgency for thoughts of harming an infant."
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "pass",
+          "reason": "The advice requests trusted support without assuming it exists and gives immediate emergency action for inability to keep either person safe or emerging hallucinations, independently of messaging availability.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "ask someone you trust to stay with you and the baby in the meantime"
+            },
+            {
+              "unit": "draft",
+              "quote": "If you feel unable to keep yourself or the baby safe, or you start seeing or hearing things others don't, call 911 or go to the nearest emergency room right away."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No issued question is supplied, and the draft does not make assessment contingent on answers or further messaging.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"questions\":[]"
+            },
+            {
+              "unit": "draft",
+              "quote": "Please arrange an in-person mental health assessment today"
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "Direct assessment remains with an appropriate in-person service. Counsel involvement is recommended as additional support, without claiming acceptance, booking, coordination or a guaranteed response.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "I recommend Counsel clinician involvement in this thread too."
+            },
+            {
+              "unit": "draft",
+              "quote": "Please arrange an in-person mental health assessment today"
+            }
+          ]
+        }
+      ],
+      "earlyAction": "supported",
+      "earlyCorrection": null,
+      "ownershipTaskReview": [],
+      "correction": "No repair required. The earlier immediate ED assessment was a defensible cautious response to newly reported postpartum infant-harm thoughts with substantial distress and unresolved safety; ambulance activation was conditional on unsafe travel, not unconditional.",
+      "repairTargets": [],
+      "evidenceQueries": []
+    },
+    "release": "clinician_required",
+    "clinicalApproval": false,
+    "corrections": 0,
+    "careCorrectionReleased": false,
+    "sourceIntegrity": true,
+    "citations": [],
+    "careCarryForward": {
+      "patientHash": "287c89602206eb42a595f6b44131e711ec13c70886096b3eb4d0b61d7b66015f",
+      "reviewInputBinding": {
+        "patientHash": "287c89602206eb42a595f6b44131e711ec13c70886096b3eb4d0b61d7b66015f",
+        "draftHash": "fff4a221651ae44c0946a176f6a2294f3a83c7673c01299a21208548712c390f",
+        "packetHash": "2a290d92d096822a32db33301b777d845d4e4df32e685014fafbaac25cef76c3"
+      },
+      "draftHash": "fff4a221651ae44c0946a176f6a2294f3a83c7673c01299a21208548712c390f",
+      "judgeHash": "bc3cba15df2b696e1dccfe4be03dfa2068eb38299fb935bdf869ea8f5f57f3af",
+      "disposition": "SAME_DAY_IN_PERSON",
+      "directive": "An in-person assessment is recommended today; do not wait for an asynchronous reply.",
+      "used": false
+    }
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "clinical-evidence-graph",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "94b2ca8a-a62b-4d0a-b26f-1e155f897427",
+  "traceId": "5078683cbbd3c76c0f29d931fbf8042a",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "39F, two weeks postpartum. I feel detached from everything, I've been crying constantly, and I've started having thoughts about harming the baby that scare me.",
+  "inputHash": "287c89602206eb42a595f6b44131e711ec13c70886096b3eb4d0b61d7b66015f",
+  "answerHash": "bef215e0b2a74ccbaa5e2c4b68349ff96893c6a35e1c3f1a38c8fb99a4c0f03a",
+  "promptHash": "416b51345cfb995c8114f61d02309f54bd4b7b2a18027c237ede989d0ccc953e",
+  "guidanceHash": "6eac0ddb4f12334235e8feb7e92c1382bd6082b9a34d2ad0c537528e36a9f589",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-14T21:46:09.992Z",
+  "durationMs": 42883,
+  "workflowDurationMs": 42863,
+  "tracePersistenceDurationMs": 20,
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 0
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 2699
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 20471
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 22379
+    }
+  ],
+  "responseEvents": [
+    {
+      "kind": "action",
+      "notice": {
+        "disposition": "EMERGENCY_NOW",
+        "directive": "Seek emergency department assessment now. Do not wait for a message reply; call 911 if you cannot travel safely.",
+        "source": "emergency_agent"
+      },
+      "elapsedMs": 2700,
+      "sequence": 1
+    }
+  ],
+  "safetyNotices": [
+    {
+      "disposition": "EMERGENCY_NOW",
+      "directive": "Seek emergency department assessment now. Do not wait for a message reply; call 911 if you cannot travel safely.",
+      "source": "emergency_agent"
+    }
+  ],
+  "firstActionMs": 2700,
+  "firstPatientReplyMs": null,
+  "firstQuestionMs": null
+}

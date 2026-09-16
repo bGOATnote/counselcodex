@@ -1,0 +1,246 @@
+{
+  "protocol": "immutable-gui-capture/v1",
+  "label": "C30-airway-positive-update",
+  "runId": "f4f9a7a9-a138-4845-898f-a4f119f05210",
+  "files": {
+    "run": {
+      "source": "apps/evaluation/.local/clinical-evidence-graph-v1/runs/f4f9a7a9-a138-4845-898f-a4f119f05210.json",
+      "copied": "outputs/candidate-concise-gui-2026-09-14/runs/f4f9a7a9-a138-4845-898f-a4f119f05210.json",
+      "sha256": "d759aecd594c1db69897209483c4f60eb57501b4f22a7a2b1823ec2ad6c7a26c",
+      "bytes": 173669
+    },
+    "events": {
+      "source": "apps/evaluation/.local/clinical-evidence-graph-v1/events/f4f9a7a9-a138-4845-898f-a4f119f05210.jsonl",
+      "copied": "outputs/candidate-concise-gui-2026-09-14/events/f4f9a7a9-a138-4845-898f-a4f119f05210.jsonl",
+      "sha256": "a009a38e39225fe080e4118009cb84da116afdac5f06e5137fc96a2a5f9034cc",
+      "bytes": 13708
+    }
+  },
+  "sourceCompletedAt": "2026-09-14T15:41:58.666Z",
+  "graphVersion": "evidence-graph/v17",
+  "runVersion": "disposition-agent/v3",
+  "clinicalPolicyVersion": "disposition-clinical-policy/v2",
+  "config": {
+    "models": {
+      "context": "anthropic/claude-haiku-4-5",
+      "safety": "anthropic/claude-haiku-4-5",
+      "disposition": "anthropic/claude-opus-5",
+      "judge": "openai/gpt-6-astra"
+    },
+    "factGraphMode": "off",
+    "judgeStyle": "concise"
+  },
+  "promptHash": "69892f68726e1db858c8cb2a8d0002913f1d9e04422f3e5e3606ca4c4686bdfe",
+  "inputHash": "99bc0b2986dd2970a7788085f8d8145f3cc90c735b5546db806a046cd32f5a99",
+  "answerHash": "647df678efdb85df159a8a0ad943d3ee8f3b69e3b717b78e89c459edcb8264e6",
+  "status": "complete",
+  "release": "model_reviewed",
+  "failure": null,
+  "disposition": "EMERGENCY_NOW",
+  "reviewPriority": null,
+  "patientMessage": "Call 911 now — do not drive yourself and do not wait for a reply here. Swelling of your lips and tongue with struggling to breathe can block your airway quickly, and that needs emergency treatment and monitoring immediately. Stay upright, unlock your door, and keep someone with you. Tell the dispatcher about the swelling and breathing trouble. I can follow up in this thread afterwards.",
+  "reason": "New lip and tongue swelling with reported difficulty breathing indicates possible airway-threatening angioedema/anaphylaxis requiring immediate emergency assessment; no EMS activation is reported by the patient.",
+  "earlyNotices": [
+    {
+      "disposition": "EMERGENCY_NOW",
+      "directive": "Call 911 now. Do not drive yourself or wait for a message reply.",
+      "source": "emergency_agent"
+    }
+  ],
+  "transportAdmission": {
+    "status": "admitted",
+    "code": "TRANSPORT_ADMITTED",
+    "clinicalValidation": false,
+    "binding": {
+      "mode": "activate_ems",
+      "activationQuote": null,
+      "directive": "Call 911 now — do not drive yourself and do not wait for a reply here. Swelling of your lips and tongue with struggling to breathe can block your airway quickly, and that needs emergency treatment and monitoring immediately. Stay upright, unlock your door, and keep someone with you. Tell the dispatcher about the swelling and breathing trouble. I can follow up in this thread afterwards.",
+      "review": "independent_model"
+    }
+  },
+  "careCorrectionReleased": false,
+  "finalJudge": {
+    "reviewScope": "draft-and-issued-question/v2",
+    "verdict": "accept",
+    "criteria": [
+      {
+        "id": "undertriage",
+        "verdict": "pass",
+        "reason": "Immediate EMS meets the reported airway emergency.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Call 911 now — do not drive yourself and do not wait for a reply here."
+          }
+        ]
+      },
+      {
+        "id": "overtriage",
+        "verdict": "pass",
+        "reason": "Current breathing difficulty and swelling justify EMS.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "Now my lips and tongue are swelling and I am struggling to breathe."
+          }
+        ]
+      },
+      {
+        "id": "patient_grounding",
+        "verdict": "pass",
+        "reason": "Current airway symptoms supersede earlier breathing denial.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "New lip and tongue swelling with reported difficulty breathing indicates possible airway-threatening angioedema/anaphylaxis requiring immediate emergency assessment; no EMS activation is reported by the patient."
+          }
+        ]
+      },
+      {
+        "id": "claim_support",
+        "verdict": "pass",
+        "reason": "Sources support immediate assessment for threatened airway.",
+        "anchors": [
+          {
+            "unit": "source:742641891f355c28b1d15a5696f20477f1611e194f861ab583dca769fd1ba3e4",
+            "quote": "- Stage 2: soft palate/tongue edema — prepare for intubation"
+          }
+        ]
+      },
+      {
+        "id": "safety_net",
+        "verdict": "pass",
+        "reason": "Emergency action proceeds now without messaging delay.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Call 911 now — do not drive yourself and do not wait for a reply here."
+          }
+        ]
+      },
+      {
+        "id": "clarification_delay",
+        "verdict": "pass",
+        "reason": "No questions delay the necessary emergency response.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "\"questions\":[]"
+          }
+        ]
+      },
+      {
+        "id": "ownership",
+        "verdict": "pass",
+        "reason": "Emergency services own immediate care; no acceptance promised.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Tell the dispatcher about the swelling and breathing trouble. I can follow up in this thread afterwards."
+          }
+        ]
+      }
+    ],
+    "earlyAction": "supported",
+    "earlyCorrection": null,
+    "transportReview": {
+      "mode": "activate_ems",
+      "verdict": "supported",
+      "draftQuote": "Call 911 now — do not drive yourself and do not wait for a reply here.",
+      "activation": null
+    },
+    "ownershipTaskReview": [],
+    "correction": "",
+    "evidenceQueries": []
+  },
+  "failedApplicationChecks": [],
+  "timing": {
+    "firstActionMs": 6940,
+    "firstQuestionMs": null,
+    "firstPatientReplyMs": 41249,
+    "finalMs": 41284,
+    "workflowMs": 41260,
+    "tracePersistenceMs": 24
+  },
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 0
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 6939
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 22458
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 18787
+    }
+  ],
+  "modelCalls": 4,
+  "repairs": 0,
+  "agentTimings": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "calls": 1,
+      "durationMs": 4624,
+      "firstTextDeltaMs": 1458,
+      "usage": {
+        "inputTokens": 1154,
+        "outputTokens": 236
+      },
+      "failure": null
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "calls": 1,
+      "durationMs": 17119,
+      "firstTextDeltaMs": 1623,
+      "usage": {
+        "inputTokens": 19566,
+        "outputTokens": 1058
+      },
+      "failure": null
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "calls": 1,
+      "durationMs": 6927,
+      "firstTextDeltaMs": 1385,
+      "usage": {
+        "inputTokens": 2785,
+        "outputTokens": 223
+      },
+      "failure": null
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "calls": 1,
+      "durationMs": 18774,
+      "firstTextDeltaMs": 6929,
+      "usage": {
+        "inputTokens": 9223,
+        "outputTokens": 781
+      },
+      "failure": null
+    }
+  ],
+  "traceId": "65e3311a8a015b32c52ef213ba539005",
+  "tracePersisted": true,
+  "eventLogPersisted": true,
+  "estimatedUSD": 0.26179399999999997,
+  "pricingVersion": "clinical-study-pricing-2026-09-13/v1",
+  "clinicalApproval": false,
+  "limitation": "Exact runtime artifact capture, not an independent observation of browser rendering, patient receipt, clinical correctness or delivered care. All supplied attempts are retained, including failures. Cost is the standard token estimate, not an invoice; embedding and cache-specific charges are not included."
+}

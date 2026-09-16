@@ -1,0 +1,68 @@
+diff --git a/src/disposition/contract.ts b/src/disposition/contract.ts
+--- a/src/disposition/contract.ts
++++ b/src/disposition/contract.ts
+@@ -65,5 +65,6 @@
+   evidenceRecord?: { recordHash?: string; libraryHash: string; recommendationHash: string; sourceId: string; status: string; reviewDue: string; population: string; applicability: string; passages: import("../evidence/library.ts").Passage[]; limitations: string[]; clinicianApproval: null };
+ };
+-export type Check = { id: string; status: "pass" | "fail" | "not_assessed"; detail: string };
++export type MechanicalVitalLocation = { field: "vitalSigns"; start: number; end: number; matchedText: string };
++export type Check = { id: string; status: "pass" | "fail" | "not_assessed"; detail: string; repairLocations?: MechanicalVitalLocation[] };
+ export type SafetyNotice = { disposition: "EMERGENCY_NOW" | "SAME_DAY_IN_PERSON"; directive: string; source: "initial_screen" | "emergency_agent"; elapsedMs?: number };
+ export type ResponseEvent =
+@@ -213,5 +214,10 @@
+   const vitalClaims = answer.disposition === "EMERGENCY_NOW" ? answer.vitalSigns.replace(/\b(?:none|no (?:readings|measurements|vitals)) (?:are )?(?:needed|required) (?:before (?:(?:seeking|obtaining|accessing) )?emergency (?:assessment|care)|to act on this)\b/gi, "[do not delay emergency care]") : answer.vitalSigns;
+   const unmeasuredVitalsDismissed = /(?:none|no (?:readings|measurements|vitals)) (?:are )?(?:needed|required)|(?:vitals|readings|measurements) (?:are )?(?:unnecessary|not needed)/i.test(vitalClaims);
+-  const unsupportedRinses = /(?<!avoid )(?<!no )\b(?:saline rinses|nasal irrigation|neti pots?)\b/i.test(directive.replace(/\b(?:do not|don't|avoid) (?:use |recommend )?(?:saline rinses|nasal irrigation|neti pots?)\b/gi, "[irrigation not advised]"));
++  // Original-field locations accompany a failed check; do not change its predicate.
++  const exemptVitalSpans = answer.disposition === "EMERGENCY_NOW" ? [...answer.vitalSigns.matchAll(/\b(?:none|no (?:readings|measurements|vitals)) (?:are )?(?:needed|required) (?:before (?:(?:seeking|obtaining|accessing) )?emergency (?:assessment|care)|to act on this)\b/gi)] : [];
++  const vitalRepairLocations: MechanicalVitalLocation[] = unmeasuredVitalsDismissed ? [...answer.vitalSigns.matchAll(/(?:none|no (?:readings|measurements|vitals)) (?:are )?(?:needed|required)|(?:vitals|readings|measurements) (?:are )?(?:unnecessary|not needed)/gi)]
++    .filter(match => !exemptVitalSpans.some(exempt => match.index! >= exempt.index! && match.index! + match[0].length <= exempt.index! + exempt[0].length))
++    .map(match => ({ field: "vitalSigns", start: match.index!, end: match.index! + match[0].length, matchedText: match[0] })) : [];
++  const unsupportedRinses = /(?<!avoid )(?<!no )\b(?:saline rinses|nasal irrigation|neti pots?)\b/i.test(directive.replace(/\b(?:do not|don't|avoid) (?:use |recommend )?(?:saline rinses|nasal irrigation|neti pots?)\b/gi, "[irrigation not advised]"));
+   const timingPresent = answer.disposition === "EMERGENCY_NOW"
+     ? boundEmergencyTransport(answer.emergencyTransport, directive, message) || /\b(now|immediately)\b/i.test(directive) && /\b(9[\s\p{Pd}]*1[\s\p{Pd}]*1|emergency (?:department|room|services)|labor.and.delivery)\b/iu.test(directive)
+@@ -245,5 +251,6 @@
+     check("no_nosebleed_positioning_in_penetration", !nosebleedPositioning, "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."),
+     check("worsening_not_deferred_ten_days", !deferredWorsening, "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."),
+-    check("unmeasured_vitals_not_dismissed", !unmeasuredVitalsDismissed, "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."),
++    { ...check("unmeasured_vitals_not_dismissed", !unmeasuredVitalsDismissed, "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."),
++      ...(unmeasuredVitalsDismissed ? { repairLocations: vitalRepairLocations } : {}) },
+     check("irrigation_support_missing", !unsupportedRinses, "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."),
+     { id: "research_support", status: answer.evidence.length ? "not_assessed" : "fail", detail: answer.evidence.length ? "Citations are present. Whether they support each claim and apply to this patient has NOT been graded." : "No retrieved research supports this answer. Evidence coverage is a known gap, not a pass." },
+diff --git a/src/disposition/graph-repair.ts b/src/disposition/graph-repair.ts
+--- a/src/disposition/graph-repair.ts
++++ b/src/disposition/graph-repair.ts
+@@ -5,5 +5,5 @@
+ import { sameRepairValue } from "./repair-values.ts";
+ 
+-export const REPAIR_PROTOCOL = "field-local-repair/v2";
++export const REPAIR_PROTOCOL = "field-local-repair/v3";
+ export const REPAIR_FIELDS = ["routing", "patientMessage", "reason", "differential", "redFlags", "vitalSigns", "questions", "evidenceLimitations", "citations"] as const;
+ export const repairFieldSchema = z.enum(REPAIR_FIELDS);
+@@ -58,7 +58,13 @@
+ 
+ /** Exact scope for mechanical failures; unknown defects never authorize all fields. */
+-export function nominateRepairFields(targets: RepairField[], findings: {id:string;detail:string}[], transportRejected: boolean): RepairField[] {
+-  const allowed = new Set<RepairField>(targets);
+-  for (const finding of findings) {
++export function nominateRepairFields(targets: RepairField[], findings: {id:string;detail:string;repairLocations?: {field:"vitalSigns";start:number;end:number;matchedText:string}[]}[], transportRejected: boolean, currentDraft?: {vitalSigns:string}): RepairField[] {
++  const allowed = new Set<RepairField>(targets);
++  for (const finding of findings) {
++    // Only an exact server-generated location on the actual current draft can
++    // nominate this field. A check ID or accepted judge verdict is insufficient.
++    if (finding.id === "unmeasured_vitals_not_dismissed" && finding.repairLocations?.some(location => location.field === "vitalSigns"
++      && typeof currentDraft?.vitalSigns === "string" && Number.isSafeInteger(location.start) && Number.isSafeInteger(location.end)
++      && location.start >= 0 && location.end > location.start && location.end <= currentDraft.vitalSigns.length
++      && typeof location.matchedText === "string" && currentDraft.vitalSigns.slice(location.start, location.end) === location.matchedText)) allowed.add("vitalSigns");
+     for (const match of finding.detail.matchAll(/"field":"([A-Za-z]+)"/g)) if (repairFieldSchema.safeParse(match[1]).success) allowed.add(match[1] as RepairField);
+     if (finding.id === "routing_fields") allowed.add("routing");
+diff --git a/src/disposition/clinical-graph.ts b/src/disposition/clinical-graph.ts
+--- a/src/disposition/clinical-graph.ts
++++ b/src/disposition/clinical-graph.ts
+@@ -503,5 +503,5 @@
+         const findings = contractFindings();
+         const transportFinding = assessEmergencyTransport(draft, s.message, judge);
+-        const allowed = nominateRepairFields(judge.repairTargets ?? [], findings, transportFinding.status === "rejected");
++        const allowed = nominateRepairFields(judge.repairTargets ?? [], findings, transportFinding.status === "rejected", draft);
+         const fieldPatch = config.repairMode !== "full_regeneration";
+         if (fieldPatch && !allowed.length) {

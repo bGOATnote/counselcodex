@@ -1,0 +1,258 @@
+{
+  "protocol": "immutable-gui-capture/v1",
+  "label": "C30-v17-retest",
+  "runId": "02156242-9b83-42ba-97ba-8669b9ae7a19",
+  "files": {
+    "run": {
+      "source": "apps/evaluation/.local/clinical-evidence-graph-v1/runs/02156242-9b83-42ba-97ba-8669b9ae7a19.json",
+      "copied": "outputs/candidate-concise-gui-2026-09-14/runs/02156242-9b83-42ba-97ba-8669b9ae7a19.json",
+      "sha256": "3a7aeb5cfe1d3b86ae9473a42739ebc6c2f26c4c4f7a292ee5d321a0b6eff1fc",
+      "bytes": 179041
+    },
+    "events": {
+      "source": "apps/evaluation/.local/clinical-evidence-graph-v1/events/02156242-9b83-42ba-97ba-8669b9ae7a19.jsonl",
+      "copied": "outputs/candidate-concise-gui-2026-09-14/events/02156242-9b83-42ba-97ba-8669b9ae7a19.jsonl",
+      "sha256": "a1ab026d20e38cdc50633c9012427f6437194c5ff99754e24066a1a04f8f748a",
+      "bytes": 21546
+    }
+  },
+  "sourceCompletedAt": "2026-09-14T15:38:38.059Z",
+  "graphVersion": "evidence-graph/v17",
+  "runVersion": "disposition-agent/v3",
+  "clinicalPolicyVersion": "disposition-clinical-policy/v2",
+  "config": {
+    "models": {
+      "context": "anthropic/claude-haiku-4-5",
+      "safety": "anthropic/claude-haiku-4-5",
+      "disposition": "anthropic/claude-opus-5",
+      "judge": "openai/gpt-6-astra"
+    },
+    "factGraphMode": "off",
+    "judgeStyle": "concise"
+  },
+  "promptHash": "69892f68726e1db858c8cb2a8d0002913f1d9e04422f3e5e3606ca4c4686bdfe",
+  "inputHash": "9e1db2d0712a2fb3ee4a7542f19fb181102946b1ab059ac8f09063dde4b4b5bb",
+  "answerHash": null,
+  "status": "review_required",
+  "release": "clinician_required",
+  "failure": "CLINICIAN_REVIEW_REQUIRED",
+  "disposition": null,
+  "reviewPriority": null,
+  "patientMessage": null,
+  "reason": null,
+  "earlyNotices": [],
+  "transportAdmission": {
+    "status": "legacy",
+    "code": "LEGACY_TEXT_CONTRACT",
+    "clinicalValidation": false
+  },
+  "careCorrectionReleased": false,
+  "finalJudge": {
+    "reviewScope": "draft-and-issued-question/v2",
+    "verdict": "revise",
+    "criteria": [
+      {
+        "id": "undertriage",
+        "verdict": "pass",
+        "reason": "Localized rash supports home care with escalation.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "Itchy blistery rash on both forearms, spreading a bit within that area. No fever, no trouble breathing."
+          }
+        ]
+      },
+      {
+        "id": "overtriage",
+        "verdict": "fail",
+        "reason": "Automatic 911 for any facial swelling is excessive; isolated dermatitis-related facial swelling can receive prompt clinician assessment.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "For facial or throat swelling or trouble breathing, call 911."
+          }
+        ]
+      },
+      {
+        "id": "patient_grounding",
+        "verdict": "pass",
+        "reason": "Exposure, distribution, and denials match patient report.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Itchy blistering rash reported on both forearms after poison ivy exposure, spreading within that area, with fever and trouble breathing denied"
+          }
+        ]
+      },
+      {
+        "id": "claim_support",
+        "verdict": "fail",
+        "reason": "Supplied airway passages do not support an ambulance threshold for all facial swelling in poison ivy dermatitis.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "For facial or throat swelling or trouble breathing, call 911."
+          }
+        ]
+      },
+      {
+        "id": "safety_net",
+        "verdict": "pass",
+        "reason": "Worsening triggers same-day care with access fallback.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "If the rash spreads well beyond your forearms, involves your face or genitals, becomes very painful, or shows pus, increasing redness or fever, get clinician assessment the same day — I recommend messaging a Counsel clinician here, and go to urgent care instead if same-day review isn't available."
+          }
+        ]
+      },
+      {
+        "id": "clarification_delay",
+        "verdict": "pass",
+        "reason": "No issued question delays home-care guidance.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "You can manage this at home for now"
+          }
+        ]
+      },
+      {
+        "id": "ownership",
+        "verdict": "pass",
+        "reason": "Clinician review recommended without promising service availability.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "I recommend messaging a Counsel clinician here, and go to urgent care instead if same-day review isn't available."
+          }
+        ]
+      }
+    ],
+    "earlyAction": "none",
+    "earlyCorrection": null,
+    "ownershipTaskReview": [],
+    "correction": "Retain SELF_CARE. Replace the blanket facial-swelling 911 trigger with airway-threatening features such as throat or tongue swelling or trouble breathing. Direct isolated facial rash or swelling without those features to prompt same-day clinician assessment, retaining the urgent-care fallback.",
+    "evidenceQueries": []
+  },
+  "failedApplicationChecks": [
+    {
+      "id": "independent_review",
+      "status": "fail",
+      "detail": "No accepted independent review; clinician assessment is required."
+    }
+  ],
+  "timing": {
+    "firstActionMs": null,
+    "firstQuestionMs": null,
+    "firstPatientReplyMs": null,
+    "finalMs": 80708,
+    "workflowMs": 80381,
+    "tracePersistenceMs": 327
+  },
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 1
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 6688
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 22847
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 57511
+    }
+  ],
+  "modelCalls": 6,
+  "repairs": 1,
+  "agentTimings": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "calls": 1,
+      "durationMs": 3002,
+      "firstTextDeltaMs": 1323,
+      "usage": {
+        "inputTokens": 1082,
+        "outputTokens": 199
+      },
+      "failure": null
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "calls": 1,
+      "durationMs": 18261,
+      "firstTextDeltaMs": 1519,
+      "usage": {
+        "inputTokens": 19194,
+        "outputTokens": 1084
+      },
+      "failure": null
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "calls": 1,
+      "durationMs": 6680,
+      "firstTextDeltaMs": 1806,
+      "usage": {
+        "inputTokens": 2713,
+        "outputTokens": 198
+      },
+      "failure": null
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "calls": 1,
+      "durationMs": 19861,
+      "firstTextDeltaMs": 5806,
+      "usage": {
+        "inputTokens": 8818,
+        "outputTokens": 769
+      },
+      "failure": null
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "calls": 1,
+      "durationMs": 14830,
+      "firstTextDeltaMs": 1146,
+      "usage": {
+        "inputTokens": 19868,
+        "outputTokens": 1043
+      },
+      "failure": null
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "calls": 1,
+      "durationMs": 22790,
+      "firstTextDeltaMs": 8809,
+      "usage": {
+        "inputTokens": 8799,
+        "outputTokens": 821
+      },
+      "failure": null
+    }
+  ],
+  "traceId": "3832ed5d93aea9f6ed4b750fb2cdf4f5",
+  "tracePersisted": true,
+  "eventLogPersisted": true,
+  "estimatedUSD": 0.509935,
+  "pricingVersion": "clinical-study-pricing-2026-09-13/v1",
+  "clinicalApproval": false,
+  "limitation": "Exact runtime artifact capture, not an independent observation of browser rendering, patient receipt, clinical correctness or delivered care. All supplied attempts are retained, including failures. Cost is the standard token estimate, not an invoice; embedding and cache-specific charges are not included."
+}

@@ -1,0 +1,1593 @@
+{
+  "version": "local-mining-engineering-review/v1",
+  "date": "2026-09-15",
+  "reviewer": {
+    "kind": "Codex engineering agent",
+    "independentOfLocalGeneration": true,
+    "blinded": false,
+    "priorFamiliarity": "Reviewer selected archived input excerpts earlier in this session and had seen prior engineering audits; this is not independent clinical validation.",
+    "humanReviewed": false,
+    "physicianAttestation": false
+  },
+  "scope": "All 24 planned mining/negative responses from two frozen local configurations. Only final outputs and exact frozen input fields informed semantic review; failed reasoning was not salvaged. No gold/expected routes/reports used for this review.",
+  "comparison": {
+    "identicalInputsAndPromptMessages": true,
+    "settingsConfound": "Cascade8B output cap 4096 versus Nano 2048; results compare the tested configurations, not isolated model effects."
+  },
+  "acceptance": {
+    "issue": "A specific defect supported by supplied patient/source/draft text; exact quotes alone are insufficient.",
+    "negative": "Literal spans valid, returned control supported, mutation demonstrably unsupported, and one interpretable claim change.",
+    "consequence": "Retention here means an agent-reviewed candidate in this review artifact only. No automatic gold/corpus/test admission or clinical approval."
+  },
+  "summaries": [
+    {
+      "configuration": "cascade8b",
+      "model": {
+        "name": "counsel-cascade-8b-q5",
+        "digest": "9f4b89cbee529c485cbd37415e3ca8b59578557253e0fdf5a4a043f388575fdd"
+      },
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096
+      },
+      "mining": {
+        "attempted": 8,
+        "completed": 3,
+        "lengthFailures": 5,
+        "literalValid": 3,
+        "proposedIssues": 3,
+        "textSupportedIssues": 2,
+        "tasksWithSupportedIssue": 2,
+        "falseAlarms": 1,
+        "ambiguous": 0,
+        "completedNoIssues": 1
+      },
+      "hardNegative": {
+        "attempted": 4,
+        "completed": 4,
+        "literalValid": 4,
+        "retainedAsReturned": 3,
+        "rejectedAsReturned": 1
+      }
+    },
+    {
+      "configuration": "nano",
+      "model": {
+        "name": "counsel-nano-q5",
+        "digest": "36896b6271148892f83130812cb14116beeb2a518f98a0a17b469250b84901c8"
+      },
+      "options": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 2048
+      },
+      "mining": {
+        "attempted": 8,
+        "completed": 1,
+        "lengthFailures": 7,
+        "literalValid": 1,
+        "proposedIssues": 1,
+        "textSupportedIssues": 0,
+        "tasksWithSupportedIssue": 0,
+        "falseAlarms": 0,
+        "ambiguous": 1,
+        "completedNoIssues": 0
+      },
+      "hardNegative": {
+        "attempted": 4,
+        "completed": 4,
+        "literalValid": 3,
+        "retainedAsReturned": 2,
+        "rejectedAsReturned": 2
+      }
+    }
+  ],
+  "uniqueRetainedPairs": 4,
+  "retainedPairObservations": 5,
+  "exactDuplicatePairObservations": 1,
+  "overlappingPairFamilies": [
+    "The two insomnia pairs use the same control/source with different mutations."
+  ],
+  "rows": [
+    {
+      "configuration": "cascade8b",
+      "model": {
+        "name": "counsel-cascade-8b-q5",
+        "digest": "9f4b89cbee529c485cbd37415e3ca8b59578557253e0fdf5a4a043f388575fdd"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096,
+        "think": true
+      },
+      "taskId": "mining-001",
+      "kind": "mine",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/plan.json",
+          "sha256": "ffa5153b58eceeb0bab358ea8b46a6574e831678017aee5a19cd54ff942b27fb"
+        },
+        "inputSha256": "0b7a1a8c8f8d273b938956b0a6fce086a03b7a5212b61a609e7a54e3621b9fc9",
+        "raw": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-001-raw.json",
+          "sha256": "2f3c329f1768cac6a762f79c531d1eca4fde6bba9f797bc835b753989090497f"
+        },
+        "result": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-001-result.json",
+          "sha256": "8a69eb125a4bfa8bf78f58e926b5ecd60e077ac70051657ff1bf4f6f9db422c3"
+        },
+        "request": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-001-request.json",
+          "sha256": "0236887181599b9b01a55f841496d34b2f1de6cf43b69a4dabfa8dc70322258c"
+        },
+        "promptSha256": "5a14871ff00b7f5bd7ab51352eb1877aeaeba0da11fd6a4a77bf5d3c4c1ee848"
+      },
+      "observedStatus": "ok",
+      "literalIntegrity": {
+        "valid": true,
+        "errors": []
+      },
+      "error": null,
+      "output": {
+        "issues": [
+          {
+            "draftQuote": "\"Fever duration 5 days or more (Kawasaki consideration)\"",
+            "explanation": "The draft concern specifies a 5-day fever threshold for Kawasaki consideration, but patient reports only 2 days of fever, creating a mismatch in time scope and unsupported application of the criterion without addressing duration discrepancy or source prerequisites for such a diagnosis hypothesis.",
+            "patientQuotes": [
+              "fever up to 102F for 2 days"
+            ],
+            "sourceQuotes": []
+          },
+          {
+            "draftQuote": "\"Fever duration 5 days or more (Kawasaki consideration)\"",
+            "explanation": "Draft raises Kawasaki concern without incorporating patient-reported absence of rash ('No rash that I can see'), ignoring a negative finding relevant to typical Kawasaki symptoms and potentially asserting eligibility based on incomplete grounding.",
+            "patientQuotes": [
+              "No rash that I can see."
+            ],
+            "sourceQuotes": []
+          }
+        ],
+        "limitations": "SourceText is null, preventing validation against source application rules or prerequisites. Analysis confined to supplied fields only; no external medical knowledge used."
+      },
+      "decision": "retain_one_narrow_hypothesis_reject_one_false_alarm",
+      "rationale": "Only the numeric mismatch is retained. The disease-specific rash claim is rejected.",
+      "review": {
+        "issues": [
+          {
+            "issueIndex": 0,
+            "proposal": {
+              "draftQuote": "\"Fever duration 5 days or more (Kawasaki consideration)\"",
+              "explanation": "The draft concern specifies a 5-day fever threshold for Kawasaki consideration, but patient reports only 2 days of fever, creating a mismatch in time scope and unsupported application of the criterion without addressing duration discrepancy or source prerequisites for such a diagnosis hypothesis.",
+              "patientQuotes": [
+                "fever up to 102F for 2 days"
+              ],
+              "sourceQuotes": []
+            },
+            "classification": "text_supported",
+            "decision": "retain_narrow_hypothesis",
+            "rationale": "The structured draft marks a duration of at least five days reported; the original patient reports two days. That numeric grounding mismatch is directly observable.",
+            "supportedScope": "Two reported days do not establish five or more reported days.",
+            "limitations": [
+              "No disease-specific diagnosis or prerequisite judgment is established."
+            ]
+          },
+          {
+            "issueIndex": 1,
+            "proposal": {
+              "draftQuote": "\"Fever duration 5 days or more (Kawasaki consideration)\"",
+              "explanation": "Draft raises Kawasaki concern without incorporating patient-reported absence of rash ('No rash that I can see'), ignoring a negative finding relevant to typical Kawasaki symptoms and potentially asserting eligibility based on incomplete grounding.",
+              "patientQuotes": [
+                "No rash that I can see."
+              ],
+              "sourceQuotes": []
+            },
+            "classification": "unsupported_false_alarm",
+            "decision": "reject_as_demonstrated_issue",
+            "rationale": "Neither sourceText nor the supplied finding establishes rash as a prerequisite for the duration concern. The model imports an unprovided clinical relationship and treats omission of rash from this one finding as an error.",
+            "supportedScope": null,
+            "limitations": [
+              "No conclusion about Kawasaki diagnosis or exclusion follows from this review."
+            ]
+          }
+        ]
+      },
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "cascade8b",
+      "model": {
+        "name": "counsel-cascade-8b-q5",
+        "digest": "9f4b89cbee529c485cbd37415e3ca8b59578557253e0fdf5a4a043f388575fdd"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096,
+        "think": true
+      },
+      "taskId": "mining-002",
+      "kind": "mine",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/plan.json",
+          "sha256": "ffa5153b58eceeb0bab358ea8b46a6574e831678017aee5a19cd54ff942b27fb"
+        },
+        "inputSha256": "52c8df3d05602e3c6e516740d7c22661474047e69323024e0b080d73edb640e9",
+        "raw": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-002-raw.json",
+          "sha256": "cdc1961cd72e05c874fbd2ee7b89871559d2b5eac7f421273bb33b11cb2f8bf6"
+        },
+        "result": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-002-result.json",
+          "sha256": "8864b1aa6b5e799c8a4f1b4e17b3e593e8ec3a62aeaa4f962a4905d1b22422cd"
+        },
+        "request": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-002-request.json",
+          "sha256": "48c2bea9c0ca1038923137bdcfdf3d1f904799da41174d4d71d53ccfdd588bb1"
+        },
+        "promptSha256": "b18b0301d472c732214e5282546ba46db5daae598d24d46193302e891cd843f4"
+      },
+      "observedStatus": "error",
+      "literalIntegrity": null,
+      "error": "LOCAL_INCOMPLETE:length",
+      "output": null,
+      "decision": "reject_incomplete",
+      "rationale": "Generation exhausted its output budget without a final answer. Retained as failure; reasoning was not salvaged.",
+      "review": null,
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "cascade8b",
+      "model": {
+        "name": "counsel-cascade-8b-q5",
+        "digest": "9f4b89cbee529c485cbd37415e3ca8b59578557253e0fdf5a4a043f388575fdd"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096,
+        "think": true
+      },
+      "taskId": "mining-003",
+      "kind": "mine",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/plan.json",
+          "sha256": "ffa5153b58eceeb0bab358ea8b46a6574e831678017aee5a19cd54ff942b27fb"
+        },
+        "inputSha256": "2ce2ee2512540b97c8aedcd20b49fd1df841b0548bb954fd84c726e3e448ff5a",
+        "raw": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-003-raw.json",
+          "sha256": "1abb64fedf7350646a12c9522b842d27aae1e49e354fbb74d719822e81b7425c"
+        },
+        "result": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-003-result.json",
+          "sha256": "e35b61e3cc57340e3dc0131b98e628b13ae1a0d3266e90e64a7a54e1c39ee180"
+        },
+        "request": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-003-request.json",
+          "sha256": "2f77e439fe7ec874b9b7b8b60136c3e40d372c20c6af9bbf5235fc3e1253c200"
+        },
+        "promptSha256": "5e1c8c65cf081aefd4ffd89cbe207dba5c1b867570f9bd3bb043a6f69b38e8e4"
+      },
+      "observedStatus": "ok",
+      "literalIntegrity": {
+        "valid": true,
+        "errors": []
+      },
+      "error": null,
+      "output": {
+        "issues": [
+          {
+            "draftQuote": "Bilateral nasal symptoms reported",
+            "explanation": "The term 'bilateral' implies symmetry affecting both sides, but the patient text does not specify laterality for any symptom. This introduces an unsupported fact about symptom distribution absent in the original report.",
+            "patientQuotes": [],
+            "sourceQuotes": []
+          }
+        ],
+        "limitations": "SourceText is null, preventing validation of source context or prerequisites. Patient quotes remain empty due to absence of supporting details for bilateral claims; no invented content used."
+      },
+      "decision": "retain_narrow_hypothesis",
+      "rationale": "Retain the unsupported laterality inference only.",
+      "review": {
+        "issues": [
+          {
+            "issueIndex": 0,
+            "proposal": {
+              "draftQuote": "Bilateral nasal symptoms reported",
+              "explanation": "The term 'bilateral' implies symmetry affecting both sides, but the patient text does not specify laterality for any symptom. This introduces an unsupported fact about symptom distribution absent in the original report.",
+              "patientQuotes": [],
+              "sourceQuotes": []
+            },
+            "classification": "text_supported",
+            "decision": "retain_narrow_hypothesis",
+            "rationale": "The patient lists sneezing, itchy eyes and a stuffy nose without stating one-sided or two-sided nasal involvement; the structured draft adds bilateral symptoms as reported.",
+            "supportedScope": "Bilateral nasal laterality is not reported in the supplied patient text.",
+            "limitations": [
+              "The explanation overstates bilateral as symmetry; only involvement of both sides is relevant.",
+              "No assertion that symptoms are actually unilateral."
+            ]
+          }
+        ]
+      },
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "cascade8b",
+      "model": {
+        "name": "counsel-cascade-8b-q5",
+        "digest": "9f4b89cbee529c485cbd37415e3ca8b59578557253e0fdf5a4a043f388575fdd"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096,
+        "think": true
+      },
+      "taskId": "mining-004",
+      "kind": "mine",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/plan.json",
+          "sha256": "ffa5153b58eceeb0bab358ea8b46a6574e831678017aee5a19cd54ff942b27fb"
+        },
+        "inputSha256": "ccc43b6d9cb84c4597044a3cfa6ae95bba2b07e6a032a54eaf98092adb6dc0f6",
+        "raw": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-004-raw.json",
+          "sha256": "57fbd14884378d48c1bfded9c54716a67fdcfbea621082cf42d9faf38aba9119"
+        },
+        "result": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-004-result.json",
+          "sha256": "6598525b99a8ca15bd277527b9b0d6c5371eaf6ccb6a25966faa94f0851f748b"
+        },
+        "request": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-004-request.json",
+          "sha256": "39e2678efca75dd336e362ad001c19753d1dab864c637b10b74fd8f26a76a7b4"
+        },
+        "promptSha256": "fa4326fd5672c21881918e3248533dd72a8a1bcd66861ccc5f9409a7f07da525"
+      },
+      "observedStatus": "error",
+      "literalIntegrity": null,
+      "error": "LOCAL_INCOMPLETE:length",
+      "output": null,
+      "decision": "reject_incomplete",
+      "rationale": "Generation exhausted its output budget without a final answer. Retained as failure; reasoning was not salvaged.",
+      "review": null,
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "cascade8b",
+      "model": {
+        "name": "counsel-cascade-8b-q5",
+        "digest": "9f4b89cbee529c485cbd37415e3ca8b59578557253e0fdf5a4a043f388575fdd"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096,
+        "think": true
+      },
+      "taskId": "mining-005",
+      "kind": "mine",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/plan.json",
+          "sha256": "ffa5153b58eceeb0bab358ea8b46a6574e831678017aee5a19cd54ff942b27fb"
+        },
+        "inputSha256": "df781aa9c17111ba5a77089efa41166a6bede60d432348fd0a2282afea4b3fea",
+        "raw": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-005-raw.json",
+          "sha256": "83555d8fdfa0f1258a1d3a55dfe9c250e7c38fbad7c1046427d28b916f6e5a09"
+        },
+        "result": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-005-result.json",
+          "sha256": "38ed02e904686881a773bc12bca513a4d169e1f0a0c760dafc8a7028c2d6512f"
+        },
+        "request": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-005-request.json",
+          "sha256": "079f345d342ef2e856ea72d4d02a356c540d105f1a1ff4434263928ee0ee6bdf"
+        },
+        "promptSha256": "dfd6a1d769efcdaa316888577f02244da675a3a00c7facabadb7310019cfb86c"
+      },
+      "observedStatus": "error",
+      "literalIntegrity": null,
+      "error": "LOCAL_INCOMPLETE:length",
+      "output": null,
+      "decision": "reject_incomplete",
+      "rationale": "Generation exhausted its output budget without a final answer. Retained as failure; reasoning was not salvaged.",
+      "review": null,
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "cascade8b",
+      "model": {
+        "name": "counsel-cascade-8b-q5",
+        "digest": "9f4b89cbee529c485cbd37415e3ca8b59578557253e0fdf5a4a043f388575fdd"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096,
+        "think": true
+      },
+      "taskId": "mining-006",
+      "kind": "mine",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/plan.json",
+          "sha256": "ffa5153b58eceeb0bab358ea8b46a6574e831678017aee5a19cd54ff942b27fb"
+        },
+        "inputSha256": "a26630ed31f4b05909c0bff228c9013e1b0fe48abeb78db4cc667eb4c9832cda",
+        "raw": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-006-raw.json",
+          "sha256": "85cba90b046fcfd2e110eb4455cf6dc4a5adf6c0a7aeec694e5f94657a1ccf38"
+        },
+        "result": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-006-result.json",
+          "sha256": "cf1685c3341b5ac0b084d138c0db4b1dde18e36205aeae743403f2314d2952c7"
+        },
+        "request": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-006-request.json",
+          "sha256": "acafcfc66075257063a99817b76e71771543219770413d066020bdf754ed240e"
+        },
+        "promptSha256": "f160d51d5cac1ecb76d32bb6e9e9b790c88e9d4e0eb3f489cb31e1a166846506"
+      },
+      "observedStatus": "error",
+      "literalIntegrity": null,
+      "error": "LOCAL_INCOMPLETE:length",
+      "output": null,
+      "decision": "reject_incomplete",
+      "rationale": "Generation exhausted its output budget without a final answer. Retained as failure; reasoning was not salvaged.",
+      "review": null,
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "cascade8b",
+      "model": {
+        "name": "counsel-cascade-8b-q5",
+        "digest": "9f4b89cbee529c485cbd37415e3ca8b59578557253e0fdf5a4a043f388575fdd"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096,
+        "think": true
+      },
+      "taskId": "mining-007",
+      "kind": "mine",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/plan.json",
+          "sha256": "ffa5153b58eceeb0bab358ea8b46a6574e831678017aee5a19cd54ff942b27fb"
+        },
+        "inputSha256": "203844c57486597c32f879b0a9ca396b7ca64c3ce23b508653df6dbc4a7d4b03",
+        "raw": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-007-raw.json",
+          "sha256": "7fe6966713a41ff11f792f85872f9b58983f57835928b54089c57bed9d9dd1ce"
+        },
+        "result": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-007-result.json",
+          "sha256": "b78351e68c2ad4f65813b4b714d3c87edd2dc43a53e35d1e13565b35f6e25c13"
+        },
+        "request": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-007-request.json",
+          "sha256": "0a69f0bd5b1e41547649fa7c6a36e397c34d2c5634047980bdfcf23b05540d3c"
+        },
+        "promptSha256": "f4ac8c8599a72f4f83c2a9c8b1528b0581c4aa8045621c46f47ac0649482f432"
+      },
+      "observedStatus": "ok",
+      "literalIntegrity": {
+        "valid": true,
+        "errors": []
+      },
+      "error": null,
+      "output": {
+        "issues": [],
+        "limitations": "SourceText field is null, preventing validation against source content or identification of source-application errors. Without source context, unsupported facts or prerequisite assertions cannot be evaluated."
+      },
+      "decision": "no_issues_not_clearance",
+      "rationale": "An empty issue list is not evidence that the draft is correct.",
+      "review": {
+        "issues": [],
+        "reviewObservation": "The draft tells the patient to notify the dispatcher after losing consciousness or stopping breathing, with no other actor identified. The empty issue list misses that internally infeasible instruction. No source is needed to identify the named actor/capability mismatch."
+      },
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "cascade8b",
+      "model": {
+        "name": "counsel-cascade-8b-q5",
+        "digest": "9f4b89cbee529c485cbd37415e3ca8b59578557253e0fdf5a4a043f388575fdd"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096,
+        "think": true
+      },
+      "taskId": "mining-008",
+      "kind": "mine",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/plan.json",
+          "sha256": "ffa5153b58eceeb0bab358ea8b46a6574e831678017aee5a19cd54ff942b27fb"
+        },
+        "inputSha256": "da0f15ea11eb9123fda78a8e5436671d8fcc71ff5542cae666014335ca62c630",
+        "raw": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-008-raw.json",
+          "sha256": "4d259a9bb267d46df1c773518a715e57f865862fd2000630c3f9354ec430ff60"
+        },
+        "result": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-008-result.json",
+          "sha256": "cf77f2fa0d936f0808c454965821d1f828cda08c6a1b2f6004a03b0d7fc9cdf1"
+        },
+        "request": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-008-request.json",
+          "sha256": "21e97b564e9a385f56cfc1d552a32f95fdd6bde81ac9212b5af7010bbdd07fcf"
+        },
+        "promptSha256": "41ad3c2fa8016b50a20acd593638fcb9388b91ec7532d2cc679a312efb383b58"
+      },
+      "observedStatus": "error",
+      "literalIntegrity": null,
+      "error": "LOCAL_INCOMPLETE:length",
+      "output": null,
+      "decision": "reject_incomplete",
+      "rationale": "Generation exhausted its output budget without a final answer. Retained as failure; reasoning was not salvaged.",
+      "review": null,
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "cascade8b",
+      "model": {
+        "name": "counsel-cascade-8b-q5",
+        "digest": "9f4b89cbee529c485cbd37415e3ca8b59578557253e0fdf5a4a043f388575fdd"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096,
+        "think": true
+      },
+      "taskId": "mining-009",
+      "kind": "hard_negative",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/plan.json",
+          "sha256": "ffa5153b58eceeb0bab358ea8b46a6574e831678017aee5a19cd54ff942b27fb"
+        },
+        "inputSha256": "898ecb20d6f6b6b7ca7bef78b40af66c0c4bf0b9eaef5db4faeb020e27aae421",
+        "raw": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-009-raw.json",
+          "sha256": "14de1421fd7f9cc9d7300f97318fd2cabace8686f62795fa9de4db2e66ef4802"
+        },
+        "result": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-009-result.json",
+          "sha256": "6fb87e1cb9902d0d42cffe55b1780d0fb2595e265144c1d668130a72f3131a67"
+        },
+        "request": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-009-request.json",
+          "sha256": "77fa1b0fb4f6d463f2a02e1bb7f7bc02a1166f52a1bea8ecf964a7921ac56061"
+        },
+        "promptSha256": "f177ee4955230c5f829322f92e74301078f21fac062a5b6b76c461de6680db6b"
+      },
+      "observedStatus": "ok",
+      "literalIntegrity": {
+        "valid": true,
+        "errors": []
+      },
+      "error": null,
+      "output": {
+        "controlClaim": "Crushing central chest pressure for 30 minutes spreading to your left arm with sweating and nausea can mean a heart attack",
+        "defectClaim": "Crushing central chest pressure for 30 minutes spreading to your left arm with sweating and nausea cannot mean a heart attack",
+        "explanation": "The polarity error introduced by changing 'can mean' to 'cannot mean' creates a defect. This reversal incorrectly negates the association between the described symptoms and a potential heart attack, contradicting established clinical correlations where such symptoms are classic indicators requiring urgent intervention. The patient's report aligns with these symptoms, making the defect claim medically unsound in context.",
+        "patientQuotes": [
+          "crushing pressure in the center of my chest",
+          "for the last 30 minutes",
+          "it's going into my left arm"
+        ],
+        "sourceQuotes": []
+      },
+      "decision": "reject_pair_as_returned",
+      "rationale": "The can-mean/cannot-mean heart-attack relationship is the changed proposition. sourceText is null; patient symptom reporting does not itself verify that medical association. The output explicitly relies on established clinical correlations outside the packet.",
+      "review": {
+        "usableAsReturned": false,
+        "controlSupport": "not_established",
+        "mutationSupport": "requires_external_medical_knowledge",
+        "singleInterpretableClaimChange": true,
+        "classification": "unverified_clinical_relation",
+        "rationale": "The can-mean/cannot-mean heart-attack relationship is the changed proposition. sourceText is null; patient symptom reporting does not itself verify that medical association. The output explicitly relies on established clinical correlations outside the packet.",
+        "proof": {
+          "sourceText": null
+        },
+        "narrowerHypothesis": null
+      },
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "cascade8b",
+      "model": {
+        "name": "counsel-cascade-8b-q5",
+        "digest": "9f4b89cbee529c485cbd37415e3ca8b59578557253e0fdf5a4a043f388575fdd"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096,
+        "think": true
+      },
+      "taskId": "mining-010",
+      "kind": "hard_negative",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/plan.json",
+          "sha256": "ffa5153b58eceeb0bab358ea8b46a6574e831678017aee5a19cd54ff942b27fb"
+        },
+        "inputSha256": "f21063ad811e70ea4e59500c59718fe4523b08cbb623d03656c63ed19bfb2339",
+        "raw": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-010-raw.json",
+          "sha256": "a4cd4819686c2c52901002b65d25683ab31371bfe1237e97aab6ef813ce0feb2"
+        },
+        "result": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-010-result.json",
+          "sha256": "b22030586aea6690edff33d4269c79dda534b74d9567d70d9d23dba7526dbe69"
+        },
+        "request": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-010-request.json",
+          "sha256": "a9b21344dc7562c3bb4c14dfcee84463a8549b42c2081be9bc6cea736a52a15a"
+        },
+        "promptSha256": "aa7ebdb70bfa94da933ce6aa62e2d743f14a80b5631da5c0a91d205876b9f527"
+      },
+      "observedStatus": "ok",
+      "literalIntegrity": {
+        "valid": true,
+        "errors": []
+      },
+      "error": null,
+      "output": {
+        "controlClaim": "No pain at all.",
+        "defectClaim": "Pain was present.",
+        "explanation": "Changing the polarity from absence to presence of pain introduces a demonstrable error. The patient explicitly states 'No pain at all', making the defectClaim contradictory and unsupported, thus creating a hard-negative by misrepresenting the symptom denial stated in the draft context without altering external factors or using outside knowledge.",
+        "patientQuotes": [
+          "About two hours ago I suddenly lost vision in my right eye, it was like a curtain coming down over it. No pain at all."
+        ],
+        "sourceQuotes": []
+      },
+      "decision": "retain_candidate_textual_pair",
+      "rationale": "The patient explicitly reports no pain. The control repeats that statement and the mutation asserts pain was present: one symptom-polarity change.",
+      "review": {
+        "usableAsReturned": true,
+        "controlSupport": "patient_text",
+        "mutationSupport": "direct_patient_contradiction",
+        "singleInterpretableClaimChange": true,
+        "classification": "candidate_patient_polarity_pair",
+        "rationale": "The patient explicitly reports no pain. The control repeats that statement and the mutation asserts pain was present: one symptom-polarity change.",
+        "proof": {
+          "patientQuote": "No pain at all."
+        },
+        "duplicateGroup": "pain-denial-presence",
+        "scope": "Symptom report only; no routing or diagnostic label."
+      },
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "cascade8b",
+      "model": {
+        "name": "counsel-cascade-8b-q5",
+        "digest": "9f4b89cbee529c485cbd37415e3ca8b59578557253e0fdf5a4a043f388575fdd"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096,
+        "think": true
+      },
+      "taskId": "mining-011",
+      "kind": "hard_negative",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/plan.json",
+          "sha256": "ffa5153b58eceeb0bab358ea8b46a6574e831678017aee5a19cd54ff942b27fb"
+        },
+        "inputSha256": "ee7e7c35c3487271c780f7e9e49d9c5d3abbc8449521e305ab4267d2a370ccfb",
+        "raw": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-011-raw.json",
+          "sha256": "7123e74d617480ecab5e3b24f96db5dfa3e68864c1338718bced18f1cd50a25f"
+        },
+        "result": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-011-result.json",
+          "sha256": "b1e8ef0a8d41e71119694820b2ec12c4cd8c23d6387c8091b6c953143c0330e8"
+        },
+        "request": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-011-request.json",
+          "sha256": "68c5831a34a50b3b4e2c6ec71267ba7af0bd6d929dc830eca47430e40fbc81ad"
+        },
+        "promptSha256": "c7b831c48751ecd8ac1922b85cff42cfd3c12d88b3c9012fe686e8f3f58ba70a"
+      },
+      "observedStatus": "ok",
+      "literalIntegrity": {
+        "valid": true,
+        "errors": []
+      },
+      "error": null,
+      "output": {
+        "controlClaim": "The compiled source's AOM diagnosis requires acute onset plus middle ear effusion and inflammation, which cannot be established from this message.",
+        "defectClaim": "The compiled source's AOM diagnosis requires acute onset plus middle ear inflammation only, which cannot be established from this message.",
+        "explanation": "The defectClaim introduces a scope error by omitting 'middle ear effusion' as a required component. The sourceText explicitly states that AOM diagnosis mandates all three criteria: acute onset, middle ear effusion, AND middle ear inflammation. Removing effusion misrepresents the diagnostic standard, creating a hard-negative because even if inflammation were inferred (which it isn't), the absence of effusion alone invalidates AOM per source guidelines. This change demonstrates how altering one element breaks compliance with trusted criteria without external knowledge.",
+        "patientQuotes": [
+          "her right ear has hurt since last night"
+        ],
+        "sourceQuotes": [
+          "AOM requires: (1) acute onset, (2) middle ear effusion, AND (3) middle ear inflammation."
+        ]
+      },
+      "decision": "retain_candidate_textual_pair",
+      "rationale": "The supplied source requires all three named criteria. The control retains them and the lack of confirming patient findings. The mutation removes effusion from that conjunction while preserving the limitation.",
+      "review": {
+        "usableAsReturned": true,
+        "controlSupport": "supplied_source_and_patient_text",
+        "mutationSupport": "explicit_source_contradiction",
+        "singleInterpretableClaimChange": true,
+        "classification": "candidate_prerequisite_omission_pair",
+        "rationale": "The supplied source requires all three named criteria. The control retains them and the lack of confirming patient findings. The mutation removes effusion from that conjunction while preserving the limitation.",
+        "proof": {
+          "sourceQuote": "AOM requires: (1) acute onset, (2) middle ear effusion, AND (3) middle ear inflammation.",
+          "patientQuote": "her right ear has hurt since last night"
+        },
+        "scope": "Fidelity to the supplied compiled source only. Its clinical authority and criteria are not independently validated; the model calling them trusted criteria is not adopted."
+      },
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "cascade8b",
+      "model": {
+        "name": "counsel-cascade-8b-q5",
+        "digest": "9f4b89cbee529c485cbd37415e3ca8b59578557253e0fdf5a4a043f388575fdd"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 4096,
+        "think": true
+      },
+      "taskId": "mining-012",
+      "kind": "hard_negative",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/plan.json",
+          "sha256": "ffa5153b58eceeb0bab358ea8b46a6574e831678017aee5a19cd54ff942b27fb"
+        },
+        "inputSha256": "a2fe9d5d4ee593e64507516e4c8dc0f998c256be039220085903fd74166cbc23",
+        "raw": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-012-raw.json",
+          "sha256": "dbe9c7895915602eea97362b1e0dc0654fbc6b579de1a26f875094d34b9ae3df"
+        },
+        "result": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-012-result.json",
+          "sha256": "fd971bd0657623df58f3dd6b37bb20f395eb6b5bc832271f5fa75634d9bff215"
+        },
+        "request": {
+          "path": "outputs/local-cascade8b-4096-2026-09-15/mining-012-request.json",
+          "sha256": "6f2b802bca25f0bd8f9a3b60c594c106c60a6bc5ff0d4a541219ecdc83e4e016"
+        },
+        "promptSha256": "e8aee3c88549c55db216c56036b95d4fdfe00f3eb195906489ff2a36da38f53e"
+      },
+      "observedStatus": "ok",
+      "literalIntegrity": {
+        "valid": true,
+        "errors": []
+      },
+      "error": null,
+      "output": {
+        "controlClaim": "Insomnia can cause daytime sleepiness and lack of energy, consistent with her reported all-day tiredness.",
+        "defectClaim": "Insomnia can cause daytime sleepiness and increased energy, consistent with her reported all-day tiredness.",
+        "explanation": "The change from 'lack of energy' to 'increased energy' introduces a polarity error. The source text explicitly states insomnia causes 'a lack of energy', contradicting the defectClaim. Additionally, the patient's report of being 'tired all day' aligns with deficiency, not increase, in energy, creating inconsistency and making this a hard-negative pair due to demonstrable contradiction within provided data alone without external knowledge.",
+        "patientQuotes": [
+          "I'm functioning but tired all day."
+        ],
+        "sourceQuotes": [
+          "Insomnia can cause daytime sleepiness and a lack of energy."
+        ]
+      },
+      "decision": "retain_candidate_textual_pair",
+      "rationale": "The source describes lack of energy and the patient reports tiredness. The control expresses that bounded consistency; substituting increased energy attributes an unprovided consequence to this source and no longer grounds the patient comparison.",
+      "review": {
+        "usableAsReturned": true,
+        "controlSupport": "supplied_source_and_patient_text",
+        "mutationSupport": "unsupported_source_attribution",
+        "singleInterpretableClaimChange": true,
+        "classification": "candidate_source_energy_pair",
+        "rationale": "The source describes lack of energy and the patient reports tiredness. The control expresses that bounded consistency; substituting increased energy attributes an unprovided consequence to this source and no longer grounds the patient comparison.",
+        "proof": {
+          "sourceQuote": "Insomnia can cause daytime sleepiness and a lack of energy.",
+          "patientQuote": "I'm functioning but tired all day."
+        },
+        "scope": "Source-specific support, not a universal claim that an individual with insomnia can never report increased energy.",
+        "overlappingFamily": "insomnia-source-relation"
+      },
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "nano",
+      "model": {
+        "name": "counsel-nano-q5",
+        "digest": "36896b6271148892f83130812cb14116beeb2a518f98a0a17b469250b84901c8"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 2048,
+        "think": true
+      },
+      "taskId": "mining-001",
+      "kind": "mine",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-nano-mining-2026-09-15/plan.json",
+          "sha256": "a90fa05739c9f36ad1866f8b1a682112b81c03eead002d61517be7af760ee641"
+        },
+        "inputSha256": "0b7a1a8c8f8d273b938956b0a6fce086a03b7a5212b61a609e7a54e3621b9fc9",
+        "raw": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-001-raw.json",
+          "sha256": "dd9011049bea0a90634b362f3138241d5efc9c9a4ba876d5c34b6563471f2fa9"
+        },
+        "result": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-001-result.json",
+          "sha256": "c0b675000c290c48b3f71bcf7c286805cd55a1b620bf830dc41bcfb8aa85b3e7"
+        },
+        "request": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-001-request.json",
+          "sha256": "0de1a2cf355814f32356b5b065888cea6d3964d79793dad8b52897cc12dc47bd"
+        },
+        "promptSha256": "5a14871ff00b7f5bd7ab51352eb1877aeaeba0da11fd6a4a77bf5d3c4c1ee848"
+      },
+      "observedStatus": "error",
+      "literalIntegrity": null,
+      "error": "LOCAL_INCOMPLETE:length",
+      "output": null,
+      "decision": "reject_incomplete",
+      "rationale": "Generation exhausted its output budget without a final answer. Retained as failure; reasoning was not salvaged.",
+      "review": null,
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "nano",
+      "model": {
+        "name": "counsel-nano-q5",
+        "digest": "36896b6271148892f83130812cb14116beeb2a518f98a0a17b469250b84901c8"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 2048,
+        "think": true
+      },
+      "taskId": "mining-002",
+      "kind": "mine",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-nano-mining-2026-09-15/plan.json",
+          "sha256": "a90fa05739c9f36ad1866f8b1a682112b81c03eead002d61517be7af760ee641"
+        },
+        "inputSha256": "52c8df3d05602e3c6e516740d7c22661474047e69323024e0b080d73edb640e9",
+        "raw": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-002-raw.json",
+          "sha256": "de5e2dd0ed1777d6bd3acb0e7506505c40ad4eb43906a7e975880982cce3b784"
+        },
+        "result": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-002-result.json",
+          "sha256": "67889167b5ca4e2061f452c45cabac19ed48c5b1be361879f07608c46de7083c"
+        },
+        "request": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-002-request.json",
+          "sha256": "6af7734a6b77190360b8a15c6b89769a34d9b380ef85c12e73415e1b3c2de7d7"
+        },
+        "promptSha256": "b18b0301d472c732214e5282546ba46db5daae598d24d46193302e891cd843f4"
+      },
+      "observedStatus": "error",
+      "literalIntegrity": null,
+      "error": "LOCAL_INCOMPLETE:length",
+      "output": null,
+      "decision": "reject_incomplete",
+      "rationale": "Generation exhausted its output budget without a final answer. Retained as failure; reasoning was not salvaged.",
+      "review": null,
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "nano",
+      "model": {
+        "name": "counsel-nano-q5",
+        "digest": "36896b6271148892f83130812cb14116beeb2a518f98a0a17b469250b84901c8"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 2048,
+        "think": true
+      },
+      "taskId": "mining-003",
+      "kind": "mine",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-nano-mining-2026-09-15/plan.json",
+          "sha256": "a90fa05739c9f36ad1866f8b1a682112b81c03eead002d61517be7af760ee641"
+        },
+        "inputSha256": "2ce2ee2512540b97c8aedcd20b49fd1df841b0548bb954fd84c726e3e448ff5a",
+        "raw": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-003-raw.json",
+          "sha256": "d1b5e9f75129b228cb26a6192c48d0cf392bacf4896278ae57a87fa8b892f7d8"
+        },
+        "result": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-003-result.json",
+          "sha256": "79262d347ef862cc9dd8f03cf3eec46fd8c9d01e009e65c0ffe2b5b82e22e719"
+        },
+        "request": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-003-request.json",
+          "sha256": "885b7e2f776287256d627a9911148c341e64ea35b56bc8f52c9ead17742d43f1"
+        },
+        "promptSha256": "5e1c8c65cf081aefd4ffd89cbe207dba5c1b867570f9bd3bb043a6f69b38e8e4"
+      },
+      "observedStatus": "error",
+      "literalIntegrity": null,
+      "error": "LOCAL_INCOMPLETE:length",
+      "output": null,
+      "decision": "reject_incomplete",
+      "rationale": "Generation exhausted its output budget without a final answer. Retained as failure; reasoning was not salvaged.",
+      "review": null,
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "nano",
+      "model": {
+        "name": "counsel-nano-q5",
+        "digest": "36896b6271148892f83130812cb14116beeb2a518f98a0a17b469250b84901c8"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 2048,
+        "think": true
+      },
+      "taskId": "mining-004",
+      "kind": "mine",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-nano-mining-2026-09-15/plan.json",
+          "sha256": "a90fa05739c9f36ad1866f8b1a682112b81c03eead002d61517be7af760ee641"
+        },
+        "inputSha256": "ccc43b6d9cb84c4597044a3cfa6ae95bba2b07e6a032a54eaf98092adb6dc0f6",
+        "raw": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-004-raw.json",
+          "sha256": "24c25d7058492827ca2255b60d513d12fdfc2062b1122783cdb5ab7e4d0fa9ab"
+        },
+        "result": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-004-result.json",
+          "sha256": "e205c7c3d0d030b2ffc0c7c506b2f553568d435dac16171327f59b607e750358"
+        },
+        "request": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-004-request.json",
+          "sha256": "e8cfa7ede8396d3e21889c3210b8314c3859831a920099ede54d3e19e9c28738"
+        },
+        "promptSha256": "fa4326fd5672c21881918e3248533dd72a8a1bcd66861ccc5f9409a7f07da525"
+      },
+      "observedStatus": "error",
+      "literalIntegrity": null,
+      "error": "LOCAL_INCOMPLETE:length",
+      "output": null,
+      "decision": "reject_incomplete",
+      "rationale": "Generation exhausted its output budget without a final answer. Retained as failure; reasoning was not salvaged.",
+      "review": null,
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "nano",
+      "model": {
+        "name": "counsel-nano-q5",
+        "digest": "36896b6271148892f83130812cb14116beeb2a518f98a0a17b469250b84901c8"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 2048,
+        "think": true
+      },
+      "taskId": "mining-005",
+      "kind": "mine",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-nano-mining-2026-09-15/plan.json",
+          "sha256": "a90fa05739c9f36ad1866f8b1a682112b81c03eead002d61517be7af760ee641"
+        },
+        "inputSha256": "df781aa9c17111ba5a77089efa41166a6bede60d432348fd0a2282afea4b3fea",
+        "raw": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-005-raw.json",
+          "sha256": "09d2e412b20b3d98574e459aa56fec7530559f37de682cd97ee7e2bcf56cd8d0"
+        },
+        "result": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-005-result.json",
+          "sha256": "b757d05386170c8254d72f37cf4e4d6c1781acf65e547a54d45f447a255dfb71"
+        },
+        "request": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-005-request.json",
+          "sha256": "4d8e7d5083e310e4fc694205010a4b70bd5bcf33c0ef827e5726f9a64bfd21df"
+        },
+        "promptSha256": "dfd6a1d769efcdaa316888577f02244da675a3a00c7facabadb7310019cfb86c"
+      },
+      "observedStatus": "error",
+      "literalIntegrity": null,
+      "error": "LOCAL_INCOMPLETE:length",
+      "output": null,
+      "decision": "reject_incomplete",
+      "rationale": "Generation exhausted its output budget without a final answer. Retained as failure; reasoning was not salvaged.",
+      "review": null,
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "nano",
+      "model": {
+        "name": "counsel-nano-q5",
+        "digest": "36896b6271148892f83130812cb14116beeb2a518f98a0a17b469250b84901c8"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 2048,
+        "think": true
+      },
+      "taskId": "mining-006",
+      "kind": "mine",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-nano-mining-2026-09-15/plan.json",
+          "sha256": "a90fa05739c9f36ad1866f8b1a682112b81c03eead002d61517be7af760ee641"
+        },
+        "inputSha256": "a26630ed31f4b05909c0bff228c9013e1b0fe48abeb78db4cc667eb4c9832cda",
+        "raw": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-006-raw.json",
+          "sha256": "95ad8f73c196211585bf6ddd2c28383ddc41ef82aa04303b4e412a077a060798"
+        },
+        "result": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-006-result.json",
+          "sha256": "666756dfbc3e181c7359d099e6bcaf3818c8e09fdb5ba74d0d8adef8497caa4d"
+        },
+        "request": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-006-request.json",
+          "sha256": "0464e9768990d81ffe0d67f2a2327fa752b672376370de3b8ac1a9cc7f84d316"
+        },
+        "promptSha256": "f160d51d5cac1ecb76d32bb6e9e9b790c88e9d4e0eb3f489cb31e1a166846506"
+      },
+      "observedStatus": "error",
+      "literalIntegrity": null,
+      "error": "LOCAL_INCOMPLETE:length",
+      "output": null,
+      "decision": "reject_incomplete",
+      "rationale": "Generation exhausted its output budget without a final answer. Retained as failure; reasoning was not salvaged.",
+      "review": null,
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "nano",
+      "model": {
+        "name": "counsel-nano-q5",
+        "digest": "36896b6271148892f83130812cb14116beeb2a518f98a0a17b469250b84901c8"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 2048,
+        "think": true
+      },
+      "taskId": "mining-007",
+      "kind": "mine",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-nano-mining-2026-09-15/plan.json",
+          "sha256": "a90fa05739c9f36ad1866f8b1a682112b81c03eead002d61517be7af760ee641"
+        },
+        "inputSha256": "203844c57486597c32f879b0a9ca396b7ca64c3ce23b508653df6dbc4a7d4b03",
+        "raw": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-007-raw.json",
+          "sha256": "e229b9d5ade7fd94b16746a42868d470fdb7e0e1142e3828153cc8cae2912c4e"
+        },
+        "result": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-007-result.json",
+          "sha256": "4fcc673ba74ed3a39c3af1a93c3d600fc2e4c0667093bd5f394c9bf752ac56f0"
+        },
+        "request": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-007-request.json",
+          "sha256": "2037eff46aa4f49d300fc49ef43893f9fd7c82d5c4ac525e680b1f43cb3aa8b3"
+        },
+        "promptSha256": "f4ac8c8599a72f4f83c2a9c8b1528b0581c4aa8045621c46f47ac0649482f432"
+      },
+      "observedStatus": "ok",
+      "literalIntegrity": {
+        "valid": true,
+        "errors": []
+      },
+      "error": null,
+      "output": {
+        "issues": [
+          {
+            "draftQuote": "Emergency responders will perform an ECG and start treatment.",
+            "patientQuotes": [
+              "crushing pressure in the center of my chest for the last 30 minutes"
+            ],
+            "sourceQuotes": [],
+            "explanation": "The draft states that emergency responders will perform an ECG and start treatment, implying a future clinical intervention that is not yet supported by the patient's current presentation or encounter context."
+          }
+        ],
+        "limitations": "Only patient and draft text were provided; sourceText was null, so no source quotes could be extracted."
+      },
+      "decision": "reject_ambiguous_issue",
+      "rationale": "Needs a protocol or a narrower operational invariant; not retained as a demonstrated issue.",
+      "review": {
+        "issues": [
+          {
+            "issueIndex": 0,
+            "proposal": {
+              "draftQuote": "Emergency responders will perform an ECG and start treatment.",
+              "patientQuotes": [
+                "crushing pressure in the center of my chest for the last 30 minutes"
+              ],
+              "sourceQuotes": [],
+              "explanation": "The draft states that emergency responders will perform an ECG and start treatment, implying a future clinical intervention that is not yet supported by the patient's current presentation or encounter context."
+            },
+            "classification": "ambiguous",
+            "decision": "reject_as_demonstrated_issue",
+            "rationale": "The supplied packet does not establish a responder protocol or actual future intervention. It also does not establish that describing an expected ECG/treatment is erroneous. The quoted symptoms alone cannot resolve this operational or clinical claim.",
+            "supportedScope": null,
+            "limitations": [
+              "Missing source text does not itself demonstrate a false claim.",
+              "The model does not identify the separate internally impossible instruction to notify a dispatcher after losing consciousness or stopping breathing."
+            ]
+          }
+        ]
+      },
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "nano",
+      "model": {
+        "name": "counsel-nano-q5",
+        "digest": "36896b6271148892f83130812cb14116beeb2a518f98a0a17b469250b84901c8"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 2048,
+        "think": true
+      },
+      "taskId": "mining-008",
+      "kind": "mine",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-nano-mining-2026-09-15/plan.json",
+          "sha256": "a90fa05739c9f36ad1866f8b1a682112b81c03eead002d61517be7af760ee641"
+        },
+        "inputSha256": "da0f15ea11eb9123fda78a8e5436671d8fcc71ff5542cae666014335ca62c630",
+        "raw": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-008-raw.json",
+          "sha256": "1b6474f187ead874fa2feb0cf95b19bc81f78e1f5bcf37291608f432b1cc632c"
+        },
+        "result": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-008-result.json",
+          "sha256": "42ca319274189ce4b5076b617cad86ecb3b56a311dc09b648b6280d51d55e0b6"
+        },
+        "request": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-008-request.json",
+          "sha256": "590f547d889cfe82aecebf437a52cd62a369cbd9456b7e8fccffaac04724ea43"
+        },
+        "promptSha256": "41ad3c2fa8016b50a20acd593638fcb9388b91ec7532d2cc679a312efb383b58"
+      },
+      "observedStatus": "error",
+      "literalIntegrity": null,
+      "error": "LOCAL_INCOMPLETE:length",
+      "output": null,
+      "decision": "reject_incomplete",
+      "rationale": "Generation exhausted its output budget without a final answer. Retained as failure; reasoning was not salvaged.",
+      "review": null,
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "nano",
+      "model": {
+        "name": "counsel-nano-q5",
+        "digest": "36896b6271148892f83130812cb14116beeb2a518f98a0a17b469250b84901c8"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 2048,
+        "think": true
+      },
+      "taskId": "mining-009",
+      "kind": "hard_negative",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-nano-mining-2026-09-15/plan.json",
+          "sha256": "a90fa05739c9f36ad1866f8b1a682112b81c03eead002d61517be7af760ee641"
+        },
+        "inputSha256": "898ecb20d6f6b6b7ca7bef78b40af66c0c4bf0b9eaef5db4faeb020e27aae421",
+        "raw": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-009-raw.json",
+          "sha256": "389a2cad56c95bbb3c3481179778ee96b082d3b4cf5ab829a780ea4d0b77da93"
+        },
+        "result": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-009-result.json",
+          "sha256": "bcc53ba34db9131f506492bb464facd9df4cf6cc15b2866e4da1a95a66648db5"
+        },
+        "request": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-009-request.json",
+          "sha256": "2e4fd8e1797c76ee9c7be8eb97a9b0742e6061bea03a85dbc149632007d95901"
+        },
+        "promptSha256": "f177ee4955230c5f829322f92e74301078f21fac062a5b6b76c461de6680db6b"
+      },
+      "observedStatus": "ok",
+      "literalIntegrity": {
+        "valid": true,
+        "errors": []
+      },
+      "error": null,
+      "output": {
+        "controlClaim": "Crushing central chest pressure for 30 minutes spreading to your left arm with sweating and nausea can mean a heart attack, which needs an ECG and blood tests immediately.",
+        "defectClaim": "Crushing central chest pressure for 15 minutes spreading to your left arm with sweating and nausea can mean a heart attack, which needs an ECG and blood tests immediately.",
+        "patientQuotes": [
+          "45M. I've had crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach. I have high cholesterol."
+        ],
+        "sourceQuotes": [],
+        "explanation": "Changing \"30 minutes\" to \"15 minutes\" introduces a demonstrable temporal inconsistency; the original patient statement specifies 30 minutes, so the altered claim contradicts the supplied information, creating the defect."
+      },
+      "decision": "reject_pair_as_returned",
+      "rationale": "Changing 30 to 15 minutes demonstrably misstates the patient. But the returned control also asserts a heart-attack association and immediate ECG/blood-test requirements without a supplied source. Under the supported-control rule, the entire returned pair is not accepted.",
+      "review": {
+        "usableAsReturned": false,
+        "controlSupport": "temporal_atom_only_full_control_unverified",
+        "mutationSupport": "direct_patient_temporal_contradiction",
+        "singleInterpretableClaimChange": true,
+        "classification": "useful_temporal_hypothesis_in_unverified_control",
+        "rationale": "Changing 30 to 15 minutes demonstrably misstates the patient. But the returned control also asserts a heart-attack association and immediate ECG/blood-test requirements without a supplied source. Under the supported-control rule, the entire returned pair is not accepted.",
+        "proof": {
+          "patientQuote": "for the last 30 minutes"
+        },
+        "narrowerHypothesis": {
+          "reviewStatus": "requires_new_independent_review",
+          "controlAtom": "30 minutes",
+          "defectAtom": "15 minutes",
+          "reason": "The temporal edit is a useful idea for a future narrowed textual fixture; no rewritten pair was admitted here."
+        }
+      },
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "nano",
+      "model": {
+        "name": "counsel-nano-q5",
+        "digest": "36896b6271148892f83130812cb14116beeb2a518f98a0a17b469250b84901c8"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 2048,
+        "think": true
+      },
+      "taskId": "mining-010",
+      "kind": "hard_negative",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-nano-mining-2026-09-15/plan.json",
+          "sha256": "a90fa05739c9f36ad1866f8b1a682112b81c03eead002d61517be7af760ee641"
+        },
+        "inputSha256": "f21063ad811e70ea4e59500c59718fe4523b08cbb623d03656c63ed19bfb2339",
+        "raw": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-010-raw.json",
+          "sha256": "cf8e31c3bb014d8a1cbfbddbaf3efe9f2a968ada92fafaf6c3671b9567325645"
+        },
+        "result": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-010-result.json",
+          "sha256": "429bcba33d9c0f50696aa110304099b7b323bdfdc428dd7322af75373da4f0e2"
+        },
+        "request": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-010-request.json",
+          "sha256": "04e497e29847e7e69b699a4e107c9241ab949eb71dde8faf3f5355906dee5743"
+        },
+        "promptSha256": "aa7ebdb70bfa94da933ce6aa62e2d743f14a80b5631da5c0a91d205876b9f527"
+      },
+      "observedStatus": "ok",
+      "literalIntegrity": {
+        "valid": true,
+        "errors": []
+      },
+      "error": null,
+      "output": {
+        "controlClaim": "No pain at all.",
+        "defectClaim": "Pain was present.",
+        "patientQuotes": [
+          "No pain at all."
+        ],
+        "sourceQuotes": [],
+        "explanation": "The original claim is directly supported by the patient’s statement that there was no pain; altering it to assert that pain was present introduces a polarity error and adds a subject (pain) that contradicts the patient's reported experience, creating a demonstrable inconsistency."
+      },
+      "decision": "retain_candidate_textual_pair",
+      "rationale": "The exact patient denial supports the control; the mutation reverses the presence of pain. The explanation needlessly calls pain a new subject, but the usable contrast is a single polarity change.",
+      "review": {
+        "usableAsReturned": true,
+        "controlSupport": "patient_text",
+        "mutationSupport": "direct_patient_contradiction",
+        "singleInterpretableClaimChange": true,
+        "classification": "candidate_patient_polarity_pair",
+        "rationale": "The exact patient denial supports the control; the mutation reverses the presence of pain. The explanation needlessly calls pain a new subject, but the usable contrast is a single polarity change.",
+        "proof": {
+          "patientQuote": "No pain at all."
+        },
+        "duplicateGroup": "pain-denial-presence",
+        "exactDuplicateOf": {
+          "configuration": "cascade8b",
+          "taskId": "mining-010"
+        },
+        "scope": "Symptom report only; no routing or diagnostic label."
+      },
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "nano",
+      "model": {
+        "name": "counsel-nano-q5",
+        "digest": "36896b6271148892f83130812cb14116beeb2a518f98a0a17b469250b84901c8"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 2048,
+        "think": true
+      },
+      "taskId": "mining-011",
+      "kind": "hard_negative",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-nano-mining-2026-09-15/plan.json",
+          "sha256": "a90fa05739c9f36ad1866f8b1a682112b81c03eead002d61517be7af760ee641"
+        },
+        "inputSha256": "ee7e7c35c3487271c780f7e9e49d9c5d3abbc8449521e305ab4267d2a370ccfb",
+        "raw": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-011-raw.json",
+          "sha256": "adc5500f5242057d4da67dce56be09256c92c9a36972ddd081d67f6a0ccfc345"
+        },
+        "result": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-011-result.json",
+          "sha256": "f367469517ccd4bdc07edc560c6b90d0b46bab4a7fe8132017783ac292710bae"
+        },
+        "request": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-011-request.json",
+          "sha256": "4e60926f920d23fc203a495d3e1ce9f8f578ccfbe397294c3c11bf639378c2fe"
+        },
+        "promptSha256": "c7b831c48751ecd8ac1922b85cff42cfd3c12d88b3c9012fe686e8f3f58ba70a"
+      },
+      "observedStatus": "ok",
+      "literalIntegrity": {
+        "valid": false,
+        "errors": [
+          "SOURCE_QUOTE_NOT_FOUND"
+        ]
+      },
+      "error": null,
+      "output": {
+        "controlClaim": "The compiled source's AOM diagnosis requires acute onset plus middle ear effusion and inflammation, which cannot be established from this message.",
+        "defectClaim": "The compiled source's AOM diagnosis requires acute onset plus middle ear effusion and inflammation, which cannot be established from this message, but the source actually says it can be established.",
+        "patientQuotes": [
+          "My 8-year-old says her right ear has hurt since last night."
+        ],
+        "sourceQuotes": [
+          "Acute otitis media (AOM) requires: (1) acute onset, (2) middle ear effusion, AND (3) middle ear inflammation."
+        ],
+        "explanation": "The defectClaim introduces a false statement that the source says the diagnosis can be established, which directly contradicts the actual source text that explicitly lists three required criteria and makes no claim about establishing the diagnosis from the limited patient message. This creates a polarity error regarding the source's qualification of diagnostic sufficiency, turning a correctly qualified claim into an unsupported defect while leaving the patient and source unchanged."
+      },
+      "decision": "reject_pair_as_returned",
+      "rationale": "The source quote adds an expansion that is not an exact span (SOURCE_QUOTE_NOT_FOUND). The mutation leaves cannot be established intact and appends an opposed claim about what the source says, creating a compound self-contradictory sentence instead of a clean isolated replacement. No quote or mutation was repaired.",
+      "review": {
+        "usableAsReturned": false,
+        "controlSupport": "supplied_source_and_patient_text",
+        "mutationSupport": "unsupported_source_attribution",
+        "singleInterpretableClaimChange": false,
+        "classification": "literal_rejection_and_compound_mutation",
+        "rationale": "The source quote adds an expansion that is not an exact span (SOURCE_QUOTE_NOT_FOUND). The mutation leaves cannot be established intact and appends an opposed claim about what the source says, creating a compound self-contradictory sentence instead of a clean isolated replacement. No quote or mutation was repaired.",
+        "proof": {
+          "invalidSourceQuote": "Acute otitis media (AOM) requires: (1) acute onset, (2) middle ear effusion, AND (3) middle ear inflammation.",
+          "actualSourceQuote": "AOM requires: (1) acute onset, (2) middle ear effusion, AND (3) middle ear inflammation."
+        }
+      },
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    },
+    {
+      "configuration": "nano",
+      "model": {
+        "name": "counsel-nano-q5",
+        "digest": "36896b6271148892f83130812cb14116beeb2a518f98a0a17b469250b84901c8"
+      },
+      "settings": {
+        "temperature": 0,
+        "seed": 42,
+        "num_ctx": 8192,
+        "num_predict": 2048,
+        "think": true
+      },
+      "taskId": "mining-012",
+      "kind": "hard_negative",
+      "provenance": {
+        "plan": {
+          "path": "outputs/local-nano-mining-2026-09-15/plan.json",
+          "sha256": "a90fa05739c9f36ad1866f8b1a682112b81c03eead002d61517be7af760ee641"
+        },
+        "inputSha256": "a2fe9d5d4ee593e64507516e4c8dc0f998c256be039220085903fd74166cbc23",
+        "raw": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-012-raw.json",
+          "sha256": "d41fbf52bc16dff82b808206dc1605f94bbcffb36999f8e498af8f6484b34bae"
+        },
+        "result": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-012-result.json",
+          "sha256": "69c144c13f30aa76dd63251a66ebee2219aa27a622957aeb661ea779e5877b8e"
+        },
+        "request": {
+          "path": "outputs/local-nano-mining-2026-09-15/mining-012-request.json",
+          "sha256": "d16a949d08985f1311a0780b42a12420c9f848d81c48b7a7af88ba91153b4251"
+        },
+        "promptSha256": "e8aee3c88549c55db216c56036b95d4fdfe00f3eb195906489ff2a36da38f53e"
+      },
+      "observedStatus": "ok",
+      "literalIntegrity": {
+        "valid": true,
+        "errors": []
+      },
+      "error": null,
+      "output": {
+        "controlClaim": "Insomnia can cause daytime sleepiness and lack of energy, consistent with her reported all-day tiredness.",
+        "defectClaim": "Insomnia cannot cause daytime sleepiness and lack of energy, consistent with her reported all-day tiredness.",
+        "patientQuotes": [
+          "I'm functioning but tired all day."
+        ],
+        "sourceQuotes": [
+          "Insomnia can cause daytime sleepiness and a lack of energy"
+        ],
+        "explanation": "Changing \"can cause\" to \"cannot cause\" flips the polarity of the causal relationship, directly contradicting the source statement that insomnia can cause daytime sleepiness and a lack of energy; this introduces a demonstrable polarity error while leaving the patient and source unchanged."
+      },
+      "decision": "retain_candidate_textual_pair",
+      "rationale": "The source explicitly states can cause daytime sleepiness and lack of energy. Replacing can with cannot reverses that source relationship while the patient/source inputs are fixed.",
+      "review": {
+        "usableAsReturned": true,
+        "controlSupport": "supplied_source_and_patient_text",
+        "mutationSupport": "explicit_source_contradiction",
+        "singleInterpretableClaimChange": true,
+        "classification": "candidate_source_polarity_pair",
+        "rationale": "The source explicitly states can cause daytime sleepiness and lack of energy. Replacing can with cannot reverses that source relationship while the patient/source inputs are fixed.",
+        "proof": {
+          "sourceQuote": "Insomnia can cause daytime sleepiness and a lack of energy",
+          "patientQuote": "I'm functioning but tired all day."
+        },
+        "scope": "Fidelity to the supplied source, without certifying an insomnia diagnosis.",
+        "overlappingFamily": "insomnia-source-relation"
+      },
+      "humanReviewed": false,
+      "physicianAttestation": false,
+      "clinicalApproval": false,
+      "corpusAdmission": false,
+      "goldAdmission": false
+    }
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "id": "C04",
+  "arm": "medium",
+  "trial": 2,
+  "role": "judge",
+  "execution": {
+    "output": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "revise",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "Diabetes with a tender, red, swollen foot wound requires prompt direct assessment. The draft preserves in-person assessment today rather than substituting messaging; no essential remote-access prerequisite delays it.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I'm diabetic. I got a small cut on the bottom of my foot about 4 days ago and now the skin around it is red and a little swollen."
+            },
+            {
+              "unit": "draft",
+              "quote": "I recommend being seen in person today"
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "Same-day outpatient hands-on assessment is proportionate to the inflamed diabetic foot wound. Emergency attendance is conditional on concerning changes, not imposed for the currently reported local symptoms.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "same-day clinic, urgent care or podiatry/foot service"
+            },
+            {
+              "unit": "patient",
+              "quote": "No fever. It's tender when I press on it."
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "fail",
+          "reason": "The patient reports surrounding redness, not spreading redness. The patient-facing narrative invents progression, despite the citation limitation correctly treating spread as unreported.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "a diabetic foot wound with spreading redness and swelling"
+            },
+            {
+              "unit": "patient",
+              "quote": "now the skin around it is red and a little swollen"
+            },
+            {
+              "unit": "draft",
+              "quote": "warmth and spread are unreported here"
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "fail",
+          "reason": "The sources support prompt assessment of red or painful diabetic feet, but do not establish that this small cut necessarily requires probing. Direct inspection and clinician determination of any depth assessment are sufficient routing requirements; mandatory probing is an unsupported procedural claim.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Someone needs to look at and probe the wound directly"
+            },
+            {
+              "unit": "draft",
+              "quote": "wound inspection, probing for depth, and decisions on imaging or culture"
+            },
+            {
+              "unit": "source:b1d6ccaf01576558d9086fdf723b1d3a37eec2fd353df2a02f3329b3afb34fa3",
+              "quote": "Serious foot problems can develop quickly. See your health care provider right away if you notice:"
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "pass",
+          "reason": "The draft gives immediate emergency escalation for systemic symptoms, rapid progression, severe pain or tissue blackening, independent of messaging availability, without postponing today's assessment.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Call 911 or go to an emergency department now if you develop fever or chills, rapidly spreading redness or red streaking, severe pain, or blackening skin."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "The issued question seeks relevant infection features that can affect assessment urgency and scope. It was nonblocking and did not hold the necessary in-person recommendation.",
+          "anchors": [
+            {
+              "unit": "issued_question",
+              "quote": "Can you see or feel any pus, drainage, or warmth from the wound, or any red streaking up the foot or leg?"
+            },
+            {
+              "unit": "issued_question",
+              "quote": "\"blocksRouting\":false"
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "Direct care is recommended through an appropriate in-person service. Optional Counsel involvement does not assert a booked visit, accepted handoff or promised response.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "I recommend being seen in person today — same-day clinic, urgent care or podiatry/foot service"
+            },
+            {
+              "unit": "draft",
+              "quote": "A Counsel clinician can stay involved in this thread."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "none",
+      "earlyCorrection": null,
+      "ownershipTaskReview": [],
+      "correction": "Keep the same-day in-person route. Replace the current finding of 'spreading redness' with reported surrounding redness. In patientMessage and reason, describe direct wound examination and clinician assessment of depth, leaving probing or other investigations conditional on examination findings rather than mandatory.",
+      "repairTargets": [
+        "patientMessage",
+        "reason"
+      ],
+      "evidenceQueries": []
+    },
+    "usage": {
+      "inputTokens": 9495,
+      "outputTokens": 1099
+    },
+    "failure": null,
+    "firstTextDeltaMs": 3024,
+    "streamProgress": {
+      "lastTextDeltaMs": 19520,
+      "textDeltaCount": 1049,
+      "textCharacters": 4606
+    },
+    "transportTimings": {
+      "startResolvedMs": 1,
+      "objectResolvedMs": 19656,
+      "usageResolvedMs": 19785,
+      "finishReasonResolvedMs": 19785,
+      "streamEndMs": 19785
+    },
+    "cacheUsage": {
+      "cachedInputTokens": 4202,
+      "cacheCreationInputTokens": 5290
+    },
+    "durationMs": 19785
+  },
+  "estimatedBaseUSD": 0.1499,
+  "accountedInclusiveUSD": 0.187375,
+  "accountedUSD": 7.79194375
+}

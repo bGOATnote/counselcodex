@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "counsel-model-bakeoff/v1",
+  "status": "proposed-not-run",
+  "asOf": "2026-09-05",
+  "task": "Clinician-facing history summary and response draft after deterministic disposition",
+  "dispositionAuthority": "counsel-disposition-v0",
+  "budget": {
+    "hardMaximumUsd": 100,
+    "pilotMaximumUsd": 10,
+    "requirePreflightEstimate": true,
+    "requireProviderUsageReconciliation": true,
+    "actualSpendUsd": null
+  },
+  "candidates": [
+    {
+      "provider": "openai",
+      "model": "openai/gpt-5.6-terra",
+      "role": "cost-balanced frontier candidate"
+    },
+    {
+      "provider": "anthropic",
+      "model": "anthropic/claude-sonnet-5",
+      "role": "cost-balanced frontier candidate"
+    }
+  ],
+  "experiment": {
+    "trialsPerCase": 5,
+    "split": "untouched patient-and-episode holdout",
+    "promptPolicy": "frozen and identical except provider-required formatting",
+    "toolPolicy": "identical read-only tools, retrieved context, and token budget",
+    "randomizedBlinding": true,
+    "crossProviderJudge": true,
+    "takeHomeReview": "single-clinician randomized pairwise review",
+    "externalReferenceCalibration": "multi-clinician overlap on a sampled subset",
+    "sameProviderSelfJudgeAccepted": false
+  },
+  "hardGates": {
+    "urgentRoutingMutationCount": 0,
+    "clinicalSideEffectCount": 0,
+    "rawClinicalTextInTraceCount": 0,
+    "schemaValidityRate": 1
+  },
+  "reportedMetrics": [
+    "decision-changing-history-recall",
+    "unsafe-reassurance-rate",
+    "citation-entailment-and-provenance",
+    "clinician-edit-distance-and-time-saved",
+    "cross-turn-consistency",
+    "p50-and-p95-latency",
+    "tokens-and-cost-per-completed-case",
+    "worst-case-pass-to-the-fifth-power"
+  ]
+}

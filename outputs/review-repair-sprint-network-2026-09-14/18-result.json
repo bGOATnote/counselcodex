@@ -1,0 +1,139 @@
+{
+  "label": "d761d5ff-2b0c-4ee0-bfd0-b70451b3db6a:field_patch:independent-review",
+  "role": "judge",
+  "execution": {
+    "output": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "revise",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "fail",
+          "reason": "Today’s prescribing review can appropriately start in messaging for this active usual migraine with sumatriptan exhausted. However, timely access is unconfirmed and the draft provides no alternative if thread review is unavailable, leaving the time-sensitive medication-access need unresolved.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I'm out of sumatriptan and would like a refill."
+            },
+            {
+              "unit": "draft",
+              "quote": "I recommend a Counsel clinician review your sumatriptan refill request in this thread today"
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "Priority messaging review is proportionate to an active usual attack with the requested medicine exhausted. No reported feature independently requires physical assessment or emergency transport now; emergency advice is conditional on new concerning symptoms.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get."
+            },
+            {
+              "unit": "draft",
+              "quote": "\"reviewPriority\":\"priority\",\"workType\":\"medication_request\""
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "The draft preserves the usual-pattern description and named-medication scope, does not invent a migraine subtype, and correctly leaves other medication access and vital-sign measurement status unknown.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "No vital signs reported; whether blood pressure, temperature or pulse were measured is unknown."
+            },
+            {
+              "unit": "draft",
+              "quote": "\"concern\":\"Other acute migraine medicines available\",\"status\":\"unknown\",\"quote\":\"I'm out of sumatriptan\""
+            },
+            {
+              "unit": "patient",
+              "quote": "40F. My usual migraine started this morning"
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "pass",
+          "reason": "The supplied passages support typical migraine features, secondary-headache warning signs and sumatriptan contraindication checks. Messaging review is a project-policy disposition inference, not falsely attributed prescribing authorization.",
+          "anchors": [
+            {
+              "unit": "source:5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+              "quote": "It typically causes throbbing or pulsing pain, which is often on one side of your head."
+            },
+            {
+              "unit": "source:4dc07d42df8d2579816619fd6483e91b8a1f6a7172a93844a7e77bd0592cbbe9",
+              "quote": "Red flag: Thunderclap headache\nIndication: Subarachnoid haemorrhage"
+            },
+            {
+              "unit": "source:1836c31f7ff0c81977ef05aaa725379e6b1b5bf5eab27adb054776ae69f7b5e1",
+              "quote": "Contraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura"
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "fail",
+          "reason": "Immediate emergency triggers are actionable, but a changing or progressively worsening headache is directed only back to an unconfirmed messaging queue, without assessment timing or an independent care-seeking instruction.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Message here if this headache changes character, keeps worsening, or does not settle."
+            },
+            {
+              "unit": "source:4dc07d42df8d2579816619fd6483e91b8a1f6a7172a93844a7e77bd0592cbbe9",
+              "quote": "Red flag: Progressive headache\nIndication: Intracranial space-occupying lesion"
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No question was issued and no answer is required before seeking the recommended review.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"questions\":[]"
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "fail",
+          "reason": "Counsel clinician ownership is explicitly recommended rather than falsely confirmed. However, the plan omits an access fallback if that recommended review cannot be obtained today.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "I recommend a Counsel clinician review your sumatriptan refill request in this thread today, since the attack you describe as your usual migraine is active and that medicine has run out."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "none",
+      "earlyCorrection": null,
+      "ownershipTaskReview": [],
+      "correction": "Retain priority async medication-request routing. In patientMessage, explain that today’s Counsel review is recommended but not confirmed; if unavailable, advise contacting the usual prescriber or another same-day prescribing service rather than waiting indefinitely. Replace messaging-only advice for a changing or progressively worsening headache with prompt clinical assessment and clear timing, independent of messaging availability. Retain the immediate emergency warning instructions.",
+      "repairTargets": [
+        "patientMessage"
+      ],
+      "evidenceQueries": []
+    },
+    "usage": {
+      "inputTokens": 10179,
+      "outputTokens": 1402
+    },
+    "failure": null,
+    "firstTextDeltaMs": 8628,
+    "streamProgress": {
+      "lastTextDeltaMs": 34946,
+      "textDeltaCount": 1264,
+      "textCharacters": 5523
+    },
+    "durationMs": 35063
+  },
+  "estimatedUSD": 0.17189,
+  "accountedUSD": 14.097649999999998
+}

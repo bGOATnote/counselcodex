@@ -1,0 +1,153 @@
+{
+  "id": "C04",
+  "arm": "low",
+  "trial": 1,
+  "role": "judge",
+  "execution": {
+    "output": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "revise",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "The inflamed plantar wound in a patient with diabetes requires prompt direct examination. The draft preserves in-person assessment today and does not substitute messaging or await answers.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I'm diabetic. I got a small cut on the bottom of my foot about 4 days ago and now the skin around it is red and a little swollen."
+            },
+            {
+              "unit": "draft",
+              "quote": "I recommend you be seen in person today"
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "fail",
+          "reason": "The current same-day route is proportionate, but the safety net makes any new drainage an independent ED-now trigger. Drainage alone, without rapid progression or systemic or limb-threatening features, can be assessed through the already recommended same-day in-person pathway; automatic emergency attendance adds an unsupported setting burden.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Go to an emergency department now if you develop fever, chills, spreading redness or red streaking, rapidly worsening pain, drainage, or the skin turns dusky or black."
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "Reported wound findings and fever denial are represented accurately. Infection remains a possibility, and unreported findings and measurement status remain unknown.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "No fever. It's tender when I press on it."
+            },
+            {
+              "unit": "draft",
+              "quote": "a possible diabetic foot infection"
+            },
+            {
+              "unit": "draft",
+              "quote": "No vital-sign values reported; whether temperature, heart rate or blood pressure were measured is unknown."
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "fail",
+          "reason": "The sources support prompt assessment of this diabetic foot wound and emergency escalation for important deterioration, but do not establish that drainage alone requires ED attendance. Remove that unsupported standalone threshold rather than seek evidence for unnecessary advice.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "rapidly worsening pain, drainage, or the skin turns dusky or black"
+            },
+            {
+              "unit": "source:b1d6ccaf01576558d9086fdf723b1d3a37eec2fd353df2a02f3329b3afb34fa3",
+              "quote": "Serious foot problems can develop quickly. See your health care provider right away if you notice:"
+            },
+            {
+              "unit": "source:1e2910a911fbc130939384e69d65ce835bb8d47345d2cf9466bf1177a4d612e4",
+              "quote": "Return immediately for: increasing pain, expanding erythema beyond marks, fever, systemic symptoms, crepitus, skin color change to dusky/purple"
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "fail",
+          "reason": "Action and timing are explicit and do not delay current care, but the drainage-only emergency trigger needs calibration to distinguish same-day wound assessment from emergency deterioration.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Go to an emergency department now if you develop fever, chills, spreading redness or red streaking, rapidly worsening pain, drainage, or the skin turns dusky or black."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "The issued question asks about relevant wound findings that could affect examination and treatment. It was nonblocking, and the draft still directs assessment today.",
+          "anchors": [
+            {
+              "unit": "issued_question",
+              "quote": "Can you see or feel any pus, drainage, or warmth from the wound, or any red streaking up the foot or leg?"
+            },
+            {
+              "unit": "issued_question",
+              "quote": "\"blocksRouting\":false"
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "The necessary care is assigned to an in-person service. Optional Counsel involvement does not promise acceptance, booking, coordination, or a response time.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "urgent care, your usual clinic, or a foot/wound service"
+            },
+            {
+              "unit": "draft",
+              "quote": "A Counsel clinician can stay involved in this thread."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "none",
+      "earlyCorrection": null,
+      "ownershipTaskReview": [],
+      "correction": "Preserve the same-day in-person recommendation. Remove drainage alone from the ED-now trigger list; it can be addressed at the required same-day wound assessment. Retain emergency escalation for systemic illness, significant progression, or concerning skin-color changes.",
+      "repairTargets": [
+        "patientMessage"
+      ],
+      "evidenceQueries": []
+    },
+    "usage": {
+      "inputTokens": 9440,
+      "outputTokens": 1182
+    },
+    "failure": null,
+    "firstTextDeltaMs": 3126,
+    "streamProgress": {
+      "lastTextDeltaMs": 21906,
+      "textDeltaCount": 1110,
+      "textCharacters": 4774
+    },
+    "transportTimings": {
+      "startResolvedMs": 1,
+      "objectResolvedMs": 21967,
+      "usageResolvedMs": 22176,
+      "finishReasonResolvedMs": 22176,
+      "streamEndMs": 22176
+    },
+    "cacheUsage": {
+      "cachedInputTokens": 4202,
+      "cacheCreationInputTokens": 5235
+    },
+    "durationMs": 22176
+  },
+  "estimatedBaseUSD": 0.1535,
+  "accountedInclusiveUSD": 0.191875,
+  "accountedUSD": 3.191275000000001
+}

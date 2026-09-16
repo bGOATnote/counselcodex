@@ -1,0 +1,148 @@
+{
+  "judge": null,
+  "rawOutput": {
+    "reviewScope": "draft-and-issued-question/v2",
+    "verdict": "revise",
+    "criteria": [
+      {
+        "id": "undertriage",
+        "verdict": "pass",
+        "reason": "An active usual migraine with sumatriptan exhausted warrants time-sensitive prescribing review. Messaging can start that review; the draft recommends review today and provides a same-day access fallback without delaying necessary physical care on the reported facts.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "I'm out of sumatriptan and would like a refill."
+          },
+          {
+            "unit": "draft",
+            "quote": "I recommend review by a Counsel clinician in this thread today about your sumatriptan refill"
+          },
+          {
+            "unit": "draft",
+            "quote": "If that review can't be obtained today, seek another same-day option for the refill."
+          }
+        ]
+      },
+      {
+        "id": "overtriage",
+        "verdict": "pass",
+        "reason": "Priority prescribing review is proportionate to an ongoing attack and the requested medication refill. Emergency action is conditional on new concerning symptoms, not imposed for the current usual migraine. No unnecessary physical-care or transport requirement is introduced.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "My usual migraine started this morning"
+          },
+          {
+            "unit": "draft",
+            "quote": "\"reviewPriority\":\"priority\",\"workType\":\"medication_request\""
+          },
+          {
+            "unit": "draft",
+            "quote": "Call 911 for sudden weakness, speech trouble, or an abrupt worst-ever headache"
+          }
+        ]
+      },
+      {
+        "id": "patient_grounding",
+        "verdict": "fail",
+        "reason": "The draft assigns a known migraine-without-aura subtype despite unreported aura history. It also broadens running out of sumatriptan into exhaustion/loss of rescue medication generally; other treatment availability is unknown. These claims require narrowing in the differential, reason, and red-flag label.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "same one-sided throbbing and light sensitivity I always get. I'm out of sumatriptan"
+          },
+          {
+            "unit": "draft",
+            "quote": "Recurrence of known migraine without aura, consistent with her usual pattern"
+          },
+          {
+            "unit": "draft",
+            "quote": "with rescue medication exhausted\""
+          }
+        ]
+      },
+      {
+        "id": "claim_support",
+        "verdict": "pass",
+        "reason": "The supplied passages support the described migraine symptom pattern and clinician contraindication checks for sumatriptan. Priority messaging is project policy, not falsely attributed to these sources. The unsupported patient subtype and medication-access scope are grounding defects rather than unsupported general medical rules.",
+        "anchors": [
+          {
+            "unit": "source:1836c31f7ff0c81977ef05aaa725379e6b1b5bf5eab27adb054776ae69f7b5e1",
+            "quote": "Drug: Sumatriptan\nDosage and route: 50 or 100 mg oral or 6 mg subcutaneous or 10 or 20 mg intranasal\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura"
+          },
+          {
+            "unit": "source:5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+            "quote": "It typically causes throbbing or pulsing pain, which is often on one side of your head."
+          }
+        ]
+      },
+      {
+        "id": "safety_net",
+        "verdict": "pass",
+        "reason": "The draft gives immediate emergency action for important acute neurological or thunderclap changes and same-day assessment for departure from the usual pattern. Clinical escalation is independent of messaging availability.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Call 911 for sudden weakness, speech trouble, or an abrupt worst-ever headache; seek clinician assessment today if this headache stops feeling like your usual pattern."
+          }
+        ]
+      },
+      {
+        "id": "clarification_delay",
+        "verdict": "pass",
+        "reason": "No issued question or answer-dependent hold is present; review is recommended today.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "\"questions\":[]"
+          },
+          {
+            "unit": "draft",
+            "quote": "I recommend review by a Counsel clinician in this thread today"
+          }
+        ]
+      },
+      {
+        "id": "ownership",
+        "verdict": "pass",
+        "reason": "Counsel clinician review is explicitly recommended, not represented as accepted or guaranteed. An actionable same-day alternative is supplied if review cannot be obtained.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "I recommend review by a Counsel clinician in this thread today about your sumatriptan refill"
+          },
+          {
+            "unit": "draft",
+            "quote": "If that review can't be obtained today, seek another same-day option for the refill."
+          }
+        ]
+      }
+    ],
+    "earlyAction": "none",
+    "earlyCorrection": null,
+    "ownershipTaskReview": [],
+    "correction": "Preserve priority asynchronous medication review and the current patient-facing advice. In reason, replace the general rescue-medication exhaustion claim with 'sumatriptan exhausted.' Narrow the red-flag concern 'Loss of rescue medication access' to loss of sumatriptan access. In differential, remove the asserted known without-aura subtype and describe recurrence of the patient's usual migraine, with aura status unknown.",
+    "repairTargets": [
+      "reason",
+      "differential",
+      "redFlags"
+    ],
+    "evidenceQueries": []
+  },
+  "reviewInputBinding": {
+    "patientHash": "0ede5c086d3ea812a589febf64e2b33fcde3c4795b2b686a9b02453986a0b81e",
+    "draftHash": "e528bcdf2d94dc279bc426ca65132485d2ae2d553f13f035a069139353dcbfb9",
+    "packetHash": "7d5edae0fbdfe367675e65472bdbb41e287e97cb0e57b22c050388423f05fc2e"
+  },
+  "release": {
+    "transport": {
+      "status": "legacy",
+      "code": "LEGACY_TEXT_CONTRACT",
+      "clinicalValidation": false
+    },
+    "findings": [],
+    "lowerThanEarly": false,
+    "correctionAllowed": false,
+    "releaseEligible": false
+  }
+}

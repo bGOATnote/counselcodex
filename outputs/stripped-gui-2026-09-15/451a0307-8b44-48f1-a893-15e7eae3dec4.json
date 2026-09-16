@@ -1,0 +1,71 @@
+{
+  "id": "451a0307-8b44-48f1-a893-15e7eae3dec4",
+  "status": "complete",
+  "createdAt": "2026-09-15T20:04:29.201Z",
+  "completedAt": "2026-09-15T20:04:33.372Z",
+  "message": "45M. I've had crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach. I have high cholesterol.",
+  "protocol": {
+    "model": "claude-fable-5-1",
+    "effort": "low",
+    "promptSHA256": "80810b85df956d779709a71dbc0d85534f5847e2563b0be5235048cb254a03ce"
+  },
+  "result": {
+    "disposition": "URGENT_ESCALATION",
+    "rationale": "Classic acute coronary syndrome presentation: crushing central chest pressure radiating to left arm with diaphoresis and nausea in a 45M with hyperlipidemia. Requires immediate emergency evaluation (call 911)."
+  },
+  "error": null,
+  "trace": {
+    "workflowId": "stripped-fable-5-1",
+    "stepId": "one-disposition",
+    "providerCalls": 1,
+    "providerRequestId": "req_011Cf5pnmVHjusLi2gUTH4DC",
+    "latencyMs": 4171,
+    "usage": {
+      "inputTokens": 211,
+      "outputTokens": 105,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0
+    },
+    "estimatedUSD": 0.00736,
+    "request": {
+      "model": "claude-fable-5-1",
+      "max_tokens": 4096,
+      "thinking": {
+        "type": "adaptive"
+      },
+      "output_config": {
+        "effort": "low"
+      },
+      "system": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short).",
+      "messages": [
+        {
+          "role": "user",
+          "content": "45M. I've had crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach. I have high cholesterol."
+        }
+      ]
+    },
+    "response": {
+      "id": "msg_011Cf5pnnDwsoiFr3cdZqyNy",
+      "model": "claude-fable-5-1",
+      "stop_reason": "end_turn",
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"disposition\": \"URGENT_ESCALATION\", \"rationale\": \"Classic acute coronary syndrome presentation: crushing central chest pressure radiating to left arm with diaphoresis and nausea in a 45M with hyperlipidemia. Requires immediate emergency evaluation (call 911).\"}"
+        }
+      ],
+      "usage": {
+        "inputTokens": 211,
+        "outputTokens": 105,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0
+      }
+    }
+  },
+  "accountedUSD": 0.00947,
+  "browserObservation": {
+    "case": "C02",
+    "browserReceiptMs": 4180,
+    "visibleDisposition": "URGENT_ESCALATION"
+  }
+}

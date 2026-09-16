@@ -1,0 +1,278 @@
+{
+  "protocol": "immutable-gui-capture/v1",
+  "label": "C04",
+  "runId": "7bfc528b-5d2e-42d9-9c7e-7a0813283eea",
+  "files": {
+    "run": {
+      "source": "apps/evaluation/.local/clinical-evidence-graph-v1/runs/7bfc528b-5d2e-42d9-9c7e-7a0813283eea.json",
+      "copied": "outputs/candidate-concise-gui-2026-09-14/runs/7bfc528b-5d2e-42d9-9c7e-7a0813283eea.json",
+      "sha256": "342777ab00e6653095e36c8bbd8681f7334ee3871d9ba56d51f4d84e47d58f29",
+      "bytes": 143191
+    },
+    "events": {
+      "source": "apps/evaluation/.local/clinical-evidence-graph-v1/events/7bfc528b-5d2e-42d9-9c7e-7a0813283eea.jsonl",
+      "copied": "outputs/candidate-concise-gui-2026-09-14/events/7bfc528b-5d2e-42d9-9c7e-7a0813283eea.jsonl",
+      "sha256": "776c9eb25d3cfabc7898d3046000fa89b074f95addacbe73aa4fac9e737ed441",
+      "bytes": 26443
+    }
+  },
+  "sourceCompletedAt": "2026-09-14T15:22:10.103Z",
+  "graphVersion": "evidence-graph/v15",
+  "runVersion": "disposition-agent/v3",
+  "clinicalPolicyVersion": "disposition-clinical-policy/v1",
+  "config": {
+    "models": {
+      "context": "anthropic/claude-haiku-4-5",
+      "safety": "anthropic/claude-haiku-4-5",
+      "disposition": "anthropic/claude-opus-5",
+      "judge": "openai/gpt-6-astra"
+    },
+    "factGraphMode": "off",
+    "judgeStyle": "concise"
+  },
+  "promptHash": "a6a85b8316e2a64cd1b6cddadf0111e223efe3bb92dc0d679a97be4976b341d7",
+  "inputHash": "4d307ea5fff71d10992dfebb600c1d805c5bbc88fef2a39c94515cf4eb8855d1",
+  "answerHash": "77dd4e4d0a9e77c57102be39b5bc6ccc9376fe6772ea58855c70539a6a83ae8b",
+  "status": "complete",
+  "release": "model_reviewed",
+  "failure": null,
+  "disposition": "SAME_DAY_IN_PERSON",
+  "reviewPriority": null,
+  "patientMessage": "I recommend an in-person foot assessment today (urgent care, your diabetes/foot clinic, or an emergency department if nothing else is available) rather than messaging alone. In diabetes, redness, swelling and tenderness around a wound on the sole can mean infection, and someone needs to look at the wound, judge how deep it is and check the circulation in your foot. I can help coordinate in this thread. Go to an emergency department now if you develop fever or chills, rapidly expanding redness, severe pain, dusky or blackening skin, or foul drainage.",
+  "reason": "Diabetic patient with a 4-day-old plantar wound now with surrounding redness, mild swelling and tenderness on pressure — features of a possible diabetic foot infection. Hands-on assessment today is needed to inspect the wound, judge depth and circulation and decide on treatment; messaging alone cannot examine the foot.",
+  "earlyNotices": [
+    {
+      "disposition": "SAME_DAY_IN_PERSON",
+      "directive": "Arrange an in-person assessment today. Do not wait for an asynchronous reply.",
+      "source": "emergency_agent"
+    }
+  ],
+  "transportAdmission": {
+    "status": "legacy",
+    "code": "LEGACY_TEXT_CONTRACT",
+    "clinicalValidation": false
+  },
+  "careCorrectionReleased": false,
+  "finalJudge": {
+    "reviewScope": "draft-and-issued-question/v2",
+    "verdict": "accept",
+    "criteria": [
+      {
+        "id": "undertriage",
+        "verdict": "pass",
+        "reason": "Required wound examination today is explicitly preserved.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Hands-on assessment today is needed to inspect the wound, judge depth and circulation and decide on treatment; messaging alone cannot examine the foot."
+          }
+        ]
+      },
+      {
+        "id": "overtriage",
+        "verdict": "pass",
+        "reason": "Inflamed diabetic wound warrants examination; ED is fallback.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "I recommend an in-person foot assessment today (urgent care, your diabetes/foot clinic, or an emergency department if nothing else is available) rather than messaging alone."
+          },
+          {
+            "unit": "patient",
+            "quote": "62F, I'm diabetic. I got a small cut on the bottom of my foot about 4 days ago and now the skin around it is red and a little swollen."
+          }
+        ]
+      },
+      {
+        "id": "patient_grounding",
+        "verdict": "pass",
+        "reason": "Reported inflammation and unknown measurement status remain distinct.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "The patient states \"No fever\" but no measurement method is described."
+          },
+          {
+            "unit": "patient",
+            "quote": "No fever. It's tender when I press on it."
+          }
+        ]
+      },
+      {
+        "id": "claim_support",
+        "verdict": "pass",
+        "reason": "Possible infection inference supported; source limitations acknowledged.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "features of a possible diabetic foot infection."
+          },
+          {
+            "unit": "source:ad0bab80198707f0fdc6865ec1b8b17f580b1c5838e6bd00e51b0c99c0f27525",
+            "quote": "- Entry point: skin break, wound, tinea pedis, insect bite"
+          }
+        ]
+      },
+      {
+        "id": "safety_net",
+        "verdict": "pass",
+        "reason": "Important infection deterioration prompts immediate emergency attendance.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Go to an emergency department now if you develop fever or chills, rapidly expanding redness, severe pain, dusky or blackening skin, or foul drainage."
+          }
+        ]
+      },
+      {
+        "id": "clarification_delay",
+        "verdict": "pass",
+        "reason": "Relevant wound-visibility question did not block required care.",
+        "anchors": [
+          {
+            "unit": "issued_question",
+            "quote": "Can you see the bottom of your foot clearly, and does the opening of the cut still look open or is it closed over?"
+          },
+          {
+            "unit": "issued_question",
+            "quote": "\"blocksRouting\":false"
+          }
+        ]
+      },
+      {
+        "id": "ownership",
+        "verdict": "pass",
+        "reason": "Direct assessment retained; coordination does not promise acceptance.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "I can help coordinate in this thread."
+          },
+          {
+            "unit": "draft",
+            "quote": "I recommend an in-person foot assessment today (urgent care, your diabetes/foot clinic, or an emergency department if nothing else is available) rather than messaging alone."
+          }
+        ]
+      }
+    ],
+    "earlyAction": "supported",
+    "earlyCorrection": null,
+    "ownershipTaskReview": [],
+    "correction": "",
+    "evidenceQueries": []
+  },
+  "failedApplicationChecks": [],
+  "timing": {
+    "firstActionMs": 4267,
+    "firstQuestionMs": 5917,
+    "firstPatientReplyMs": 79442,
+    "finalMs": 79475,
+    "workflowMs": 79454,
+    "tracePersistenceMs": 21
+  },
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 0
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 4268
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 28232
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 51214
+    }
+  ],
+  "modelCalls": 6,
+  "repairs": 1,
+  "agentTimings": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "calls": 1,
+      "durationMs": 5899,
+      "firstTextDeltaMs": 1901,
+      "usage": {
+        "inputTokens": 1092,
+        "outputTokens": 283
+      },
+      "failure": null
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "calls": 1,
+      "durationMs": 19745,
+      "firstTextDeltaMs": 2258,
+      "usage": {
+        "inputTokens": 16778,
+        "outputTokens": 1371
+      },
+      "failure": null
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "calls": 1,
+      "durationMs": 4255,
+      "firstTextDeltaMs": 1823,
+      "usage": {
+        "inputTokens": 2525,
+        "outputTokens": 248
+      },
+      "failure": null
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "calls": 1,
+      "durationMs": 17692,
+      "firstTextDeltaMs": 4114,
+      "usage": {
+        "inputTokens": 8428,
+        "outputTokens": 888
+      },
+      "failure": null
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "calls": 1,
+      "durationMs": 16540,
+      "firstTextDeltaMs": 1868,
+      "usage": {
+        "inputTokens": 18342,
+        "outputTokens": 1241
+      },
+      "failure": null
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "calls": 1,
+      "durationMs": 16952,
+      "firstTextDeltaMs": 3891,
+      "usage": {
+        "inputTokens": 8344,
+        "outputTokens": 885
+      },
+      "failure": null
+    }
+  ],
+  "traceId": "4b8df3eb4418832a56b5ad38cdf97315",
+  "tracePersisted": true,
+  "eventLogPersisted": true,
+  "estimatedUSD": 0.5035419999999999,
+  "pricingVersion": "clinical-study-pricing-2026-09-13/v1",
+  "clinicalApproval": false,
+  "limitation": "Exact runtime artifact capture, not an independent observation of browser rendering, patient receipt, clinical correctness or delivered care. All supplied attempts are retained, including failures. Cost is the standard token estimate, not an invoice; embedding and cache-specific charges are not included."
+}

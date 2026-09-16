@@ -1,0 +1,244 @@
+diff --git a/src/disposition/clinical-graph.ts b/src/disposition/clinical-graph.ts
+index 14d8233..1309024 100644
+--- a/src/disposition/clinical-graph.ts
++++ b/src/disposition/clinical-graph.ts
+@@ -16,7 +16,7 @@ import { requestDeadline, EXECUTION_POLICY } from "./execution-policy.ts";
+ import { sha256, type Retrieval, type Hit } from "../evidence/rag/model.ts";
+ import { RECONCILIATION_POLICY, type CareReconciliation } from "./reconciliation.ts";
+ import { exactStructuredJudgeAnchor } from "./judge-anchors.ts";
+-import { createRepairContract, nominateRepairFields, repairFieldSchema, REPAIR_INSTRUCTIONS, REPAIR_PROTOCOL, type RepairAudit } from "./graph-repair.ts";
++import { createRepairContract, nominateRepairFields, repairFieldSchema, REPAIR_INSTRUCTIONS, REPAIR_PROTOCOL, REPAIR_SCOPE_POLICY, type RepairAudit } from "./graph-repair.ts";
+ import { careAlternativeReviewSchema, reconcileCareAlternative, CARE_ALTERNATIVE_POLICY, type BoundCareAlternative } from "./care-alternative.ts";
+ import { JUDGE_SOURCE_REPAIR_POLICY, planJudgeSourceAnchorRepair, buildJudgeSourceAnchorRepairAuditSteps } from "./judge-source-anchor-repair.ts";
+ 
+@@ -127,7 +127,7 @@ export function graphPromptHash(config: GraphConfig = resolveGraphConfig()) {
+   const instructions = { ...GRAPH_INSTRUCTIONS, safety: safetyInstructions };
+   return sha256(JSON.stringify({ version: GRAPH_VERSION, config, outputLimits: GRAPH_OUTPUT_LIMITS,
+     requestSettings: { ...Object.fromEntries(Object.keys(config.models).map(role => [role, graphRequestSettings(role as keyof typeof GRAPH_MODELS, config)])), truncatedJudgeRecovery: graphRequestSettings("judge", config, true) },
+-    instructions, repairProtocol: REPAIR_PROTOCOL, repairInstructions: REPAIR_INSTRUCTIONS, careAlternativePolicy: CARE_ALTERNATIVE_POLICY, reviewProtocol: GRAPH_REVIEW_PROTOCOL, judgeSourceRepairPolicy: JUDGE_SOURCE_REPAIR_POLICY, judgeInstructions: graphJudgeInstructions(config.judgeStyle), schemas: [config.factGraphMode === "shadow" ? shadowContextSchema : contextSchema, config.safetyStyle === "compact" ? compactSafetyWireSchema : safetySchema, wireDraftSchema, graphJudgeSchema, graphRepair.schema].map(s => s.toJSONSchema()), ...(config.factGraphMode === "shadow" ? { factGraphHash: FACT_GRAPH_HASH, factInstructions: FACT_EXTRACTION_INSTRUCTIONS } : {}) }));
++    instructions, repairProtocol: REPAIR_PROTOCOL, repairScopePolicy: REPAIR_SCOPE_POLICY, repairInstructions: REPAIR_INSTRUCTIONS, careAlternativePolicy: CARE_ALTERNATIVE_POLICY, reviewProtocol: GRAPH_REVIEW_PROTOCOL, judgeSourceRepairPolicy: JUDGE_SOURCE_REPAIR_POLICY, judgeInstructions: graphJudgeInstructions(config.judgeStyle), schemas: [config.factGraphMode === "shadow" ? shadowContextSchema : contextSchema, config.safetyStyle === "compact" ? compactSafetyWireSchema : safetySchema, wireDraftSchema, graphJudgeSchema, graphRepair.schema].map(s => s.toJSONSchema()), ...(config.factGraphMode === "shadow" ? { factGraphHash: FACT_GRAPH_HASH, factInstructions: FACT_EXTRACTION_INSTRUCTIONS } : {}) }));
+ }
+ export const GRAPH_PROMPT_HASH = graphPromptHash();
+ export function createGraphAgents(config: GraphConfig = resolveGraphConfig()) {
+@@ -502,7 +502,7 @@ export function createClinicalGraph(options: { agents: ReturnType<typeof createG
+         const sources = s.hits.map(h => ({ id: h.chunk.id, kind: h.document.kind, scope: h.document.scope, text: h.chunk.text }));
+         const findings = contractFindings();
+         const transportFinding = assessEmergencyTransport(draft, s.message, judge);
+-        const allowed = nominateRepairFields(judge.repairTargets ?? [], findings, transportFinding.status === "rejected");
++        const allowed = nominateRepairFields(judge.repairTargets ?? [], findings, transportFinding.status === "rejected", draft);
+         const fieldPatch = config.repairMode !== "full_regeneration";
+         if (fieldPatch && !allowed.length) {
+           // Retain the rejected draft/review, but do not pay for an impossible
+diff --git a/src/disposition/contract.ts b/src/disposition/contract.ts
+index 40d4072..acb6625 100644
+--- a/src/disposition/contract.ts
++++ b/src/disposition/contract.ts
+@@ -64,7 +64,8 @@ export type Guidance = { id: string; title: string; url: string; section: string
+   retrievedPassages?: { id: string; sourceId: string; excerpt: string; excerptSha256: string; retrievedAt: string; sourceContentHash: string; kind: string; limitations: string }[];
+   evidenceRecord?: { recordHash?: string; libraryHash: string; recommendationHash: string; sourceId: string; status: string; reviewDue: string; population: string; applicability: string; passages: import("../evidence/library.ts").Passage[]; limitations: string[]; clinicianApproval: null };
+ };
+-export type Check = { id: string; status: "pass" | "fail" | "not_assessed"; detail: string };
++export type MechanicalVitalLocation = { field: "vitalSigns"; start: number; end: number; matchedText: string };
++export type Check = { id: string; status: "pass" | "fail" | "not_assessed"; detail: string; repairLocations?: MechanicalVitalLocation[] };
+ export type SafetyNotice = { disposition: "EMERGENCY_NOW" | "SAME_DAY_IN_PERSON"; directive: string; source: "initial_screen" | "emergency_agent"; elapsedMs?: number };
+ export type ResponseEvent =
+   | { kind: "action"; notice: SafetyNotice; elapsedMs?: number; sequence?: number }
+@@ -212,6 +213,14 @@ export function checkAnswer(answer: DispositionAnswer, message: string, guidance
+   // sentence. A later claim that readings are unnecessary must still fail.
+   const vitalClaims = answer.disposition === "EMERGENCY_NOW" ? answer.vitalSigns.replace(/\b(?:none|no (?:readings|measurements|vitals)) (?:are )?(?:needed|required) (?:before (?:(?:seeking|obtaining|accessing) )?emergency (?:assessment|care)|to act on this)\b/gi, "[do not delay emergency care]") : answer.vitalSigns;
+   const unmeasuredVitalsDismissed = /(?:none|no (?:readings|measurements|vitals)) (?:are )?(?:needed|required)|(?:vitals|readings|measurements) (?:are )?(?:unnecessary|not needed)/i.test(vitalClaims);
++  // Attribute the existing finding to exact offsets in the original field.
++  // Replacement above can change offsets; exclude only its original spans.
++  const exemptVitalSpans = answer.disposition === "EMERGENCY_NOW" ? [...answer.vitalSigns.matchAll(/\b(?:none|no (?:readings|measurements|vitals)) (?:are )?(?:needed|required) (?:before (?:(?:seeking|obtaining|accessing) )?emergency (?:assessment|care)|to act on this)\b/gi)] : [];
++  const vitalRepairLocations: MechanicalVitalLocation[] = unmeasuredVitalsDismissed
++    ? [...answer.vitalSigns.matchAll(/(?:none|no (?:readings|measurements|vitals)) (?:are )?(?:needed|required)|(?:vitals|readings|measurements) (?:are )?(?:unnecessary|not needed)/gi)]
++      .filter(match => !exemptVitalSpans.some(exempt => match.index >= exempt.index && match.index + match[0].length <= exempt.index + exempt[0].length))
++      .map(match => ({ field: "vitalSigns", start: match.index, end: match.index + match[0].length, matchedText: match[0] }))
++    : [];
+   const unsupportedRinses = /(?<!avoid )(?<!no )\b(?:saline rinses|nasal irrigation|neti pots?)\b/i.test(directive.replace(/\b(?:do not|don't|avoid) (?:use |recommend )?(?:saline rinses|nasal irrigation|neti pots?)\b/gi, "[irrigation not advised]"));
+   const timingPresent = answer.disposition === "EMERGENCY_NOW"
+     ? boundEmergencyTransport(answer.emergencyTransport, directive, message) || /\b(now|immediately)\b/i.test(directive) && /\b(9[\s\p{Pd}]*1[\s\p{Pd}]*1|emergency (?:department|room|services)|labor.and.delivery)\b/iu.test(directive)
+@@ -244,7 +253,7 @@ export function checkAnswer(answer: DispositionAnswer, message: string, guidance
+     check("atraumatic_leak_not_excluded", !traumaRulesOutLeak, "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."),
+     check("no_nosebleed_positioning_in_penetration", !nosebleedPositioning, "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."),
+     check("worsening_not_deferred_ten_days", !deferredWorsening, "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."),
+-    check("unmeasured_vitals_not_dismissed", !unmeasuredVitalsDismissed, "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."),
++    { ...check("unmeasured_vitals_not_dismissed", !unmeasuredVitalsDismissed, "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."), ...(unmeasuredVitalsDismissed ? { repairLocations: vitalRepairLocations } : {}) },
+     check("irrigation_support_missing", !unsupportedRinses, "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."),
+     { id: "research_support", status: answer.evidence.length ? "not_assessed" : "fail", detail: answer.evidence.length ? "Citations are present. Whether they support each claim and apply to this patient has NOT been graded." : "No retrieved research supports this answer. Evidence coverage is a known gap, not a pass." },
+     { id: "clinical_correctness", status: "not_assessed", detail: "No physician or calibrated independent judge has scored this exact answer." },
+diff --git a/src/disposition/graph-repair.ts b/src/disposition/graph-repair.ts
+index f08279a..4c2dfa6 100644
+--- a/src/disposition/graph-repair.ts
++++ b/src/disposition/graph-repair.ts
+@@ -3,8 +3,12 @@ import { sha256 } from "../evidence/rag/model.ts";
+ import { resolveSourceQuoteReferences } from "./source-quote-refs.ts";
+ import { routingFieldsValid } from "./routing-policy.ts";
+ import { sameRepairValue } from "./repair-values.ts";
++import type { MechanicalVitalLocation } from "./contract.ts";
+ 
+ export const REPAIR_PROTOCOL = "field-local-repair/v2";
++// Scope changes are prompt-bound separately from the unchanged v2 patch wire
++// and no-op replay contract. This does not approve a repaired clinical answer.
++export const REPAIR_SCOPE_POLICY = Object.freeze({ version: "mechanical-repair-scope/v1", check: "unmeasured_vitals_not_dismissed", field: "vitalSigns", binding: "exact-current-field-span" });
+ export const REPAIR_FIELDS = ["routing", "patientMessage", "reason", "differential", "redFlags", "vitalSigns", "questions", "evidenceLimitations", "citations"] as const;
+ export const repairFieldSchema = z.enum(REPAIR_FIELDS);
+ export type RepairField = z.infer<typeof repairFieldSchema>;
+@@ -57,9 +61,14 @@ export function createRepairContract<D extends z.ZodRawShape, W extends z.ZodRaw
+ }
+ 
+ /** Exact scope for mechanical failures; unknown defects never authorize all fields. */
+-export function nominateRepairFields(targets: RepairField[], findings: {id:string;detail:string}[], transportRejected: boolean): RepairField[] {
++export function nominateRepairFields(targets: RepairField[], findings: {id:string;detail:string;repairLocations?:MechanicalVitalLocation[]}[], transportRejected: boolean, currentDraft?: { vitalSigns: string }): RepairField[] {
+   const allowed = new Set<RepairField>(targets);
+   for (const finding of findings) {
++    if (finding.id === REPAIR_SCOPE_POLICY.check && Array.isArray(finding.repairLocations) && finding.repairLocations.some(location =>
++      location?.field === "vitalSigns" && typeof currentDraft?.vitalSigns === "string"
++      && Number.isSafeInteger(location.start) && Number.isSafeInteger(location.end)
++      && location.start >= 0 && location.end > location.start && location.end <= currentDraft.vitalSigns.length
++      && typeof location.matchedText === "string" && currentDraft.vitalSigns.slice(location.start, location.end) === location.matchedText)) allowed.add("vitalSigns");
+     for (const match of finding.detail.matchAll(/"field":"([A-Za-z]+)"/g)) if (repairFieldSchema.safeParse(match[1]).success) allowed.add(match[1] as RepairField);
+     if (finding.id === "routing_fields") allowed.add("routing");
+     if (finding.id === "no_unconfirmed_handoff" || finding.id === "action_timing_present") allowed.add("patientMessage");
+diff --git a/tests/graph-repair-admission.test.ts b/tests/graph-repair-admission.test.ts
+index 99a5fb1..a4b322c 100644
+--- a/tests/graph-repair-admission.test.ts
++++ b/tests/graph-repair-admission.test.ts
+@@ -1,6 +1,7 @@
+ import test from "node:test";
+ import assert from "node:assert/strict";
+-import { createRepairContract, nominateRepairFields } from "../src/disposition/graph-repair.ts";
++import { readFileSync } from "node:fs";
++import { createRepairContract, nominateRepairFields, REPAIR_PROTOCOL, REPAIR_SCOPE_POLICY } from "../src/disposition/graph-repair.ts";
+ import { sameRepairValue } from "../src/disposition/repair-values.ts";
+ import { draftSchema, wireDraftSchema } from "../src/disposition/graph-output.ts";
+ import { quoteSpans } from "../src/disposition/source-quote-refs.ts";
+@@ -10,6 +11,8 @@ import { sha256 } from "../src/evidence/rag/model.ts";
+ import { verifyPreservedCare } from "../apps/evaluation/lib/preserved-care.ts";
+ import { CONTINUE_EMS_DIRECTIVE, PRESERVED_CARE_COPY, urgentCareDirective } from "../src/disposition/care-setting.ts";
+ import { buildJudgeSourceAnchorRepairAuditSteps } from "../src/disposition/judge-source-anchor-repair.ts";
++import { graphPromptHash } from "../src/disposition/clinical-graph.ts";
++import type { GraphConfig } from "../src/disposition/graph-config.ts";
+ 
+ const repair = createRepairContract(draftSchema, wireDraftSchema);
+ const source = { id: "test-source", text: "This synthetic source describes symptoms and requires individualized clinician assessment." };
+@@ -126,6 +129,119 @@ test("medication check exposes exact field spans to the existing narrow repair n
+   }
+ });
+ 
++const dismissedVitals = "No vital signs reported; whether any were measured is unknown. None are needed for this routing decision.";
++function vitalFinding(base = { ...draft, vitalSigns: dismissedVitals }) {
++  const { citations, transportIntent: _intent, ...answer } = base;
++  return checkAnswer({ ...answer, evidence: citations.map(c => ({ sourceId: c.passageId, claim: c.claim })) }, "A synthetic message requesting clinician review.", [], null)
++    .find(check => check.id === "unmeasured_vitals_not_dismissed")!;
++}
++
++test("the actual vital check nominates and applies only its exact current field", () => {
++  const base = { ...draft, vitalSigns: dismissedVitals }, finding = vitalFinding(base);
++  assert.equal(finding.status, "fail");
++  assert.deepEqual(finding.repairLocations, [{ field: "vitalSigns", start: 63, end: 78, matchedText: "None are needed" }]);
++  const allowed = nominateRepairFields([], [finding], false, base);
++  assert.deepEqual(allowed, ["vitalSigns"]);
++  const binding = repair.prepare(base, [source], allowed);
++  const result = repair.apply(base, [source], allowed, { ...binding, protocol: undefined, allowedFields: undefined,
++    baseDraftHash: binding.baseDraftHash, evidenceHash: binding.evidenceHash, edits: [{ field: "vitalSigns", value: draft.vitalSigns }] });
++  // Patch schemas reject extra keys, even when their value is undefined.
++  assert.equal(result.audit.failure, "REPAIR_SCHEMA_INVALID");
++  const accepted = repair.apply(base, [source], allowed, { baseDraftHash: binding.baseDraftHash, evidenceHash: binding.evidenceHash,
++    edits: [{ field: "vitalSigns", value: draft.vitalSigns }] });
++  assert.ok(accepted.output);
++  assert.equal(accepted.audit.status, "applied");
++  assert.deepEqual(accepted.audit.changedFields, ["vitalSigns"]);
++  assert.equal(accepted.audit.protocol, "field-local-repair/v2");
++  assert.deepEqual(accepted.output, { ...base, vitalSigns: draft.vitalSigns });
++  assert.equal(vitalFinding(accepted.output).status, "pass");
++  assert.equal(base.vitalSigns, dismissedVitals, "the original draft is not mutated");
++});
++
++test("missing, malformed, other-field and stale vital locations grant no new repair permission", () => {
++  const base = { ...draft, vitalSigns: dismissedVitals }, finding = vitalFinding(base), location = finding.repairLocations![0];
++  assert.deepEqual(nominateRepairFields([], [finding], false), []);
++  assert.deepEqual(nominateRepairFields([], [{ ...finding, repairLocations: undefined }], false, base), []);
++  assert.deepEqual(nominateRepairFields([], [{ ...finding, repairLocations: {} } as typeof finding], false, base), []);
++  assert.deepEqual(nominateRepairFields([], [finding], false, draft), []);
++  const invalid = [null, { ...location, field: "reason" }, { ...location, start: -1 }, { ...location, start: 61.5 },
++    { ...location, end: Infinity }, { ...location, end: 10000 }, { ...location, end: location.start },
++    { ...location, matchedText: "Another phrase" }, { ...location, matchedText: null },
++    { ...location, start: 0, end: 15 }, { field: "vitalSigns" }];
++  for (const candidate of invalid) assert.deepEqual(nominateRepairFields([], [{ ...finding, repairLocations: [candidate] } as typeof finding], false, base), []);
++  assert.deepEqual(nominateRepairFields([], [{ ...finding, id: "unknown_check" }], false, base), []);
++  assert.deepEqual(nominateRepairFields(["questions"], [{ ...finding, repairLocations: undefined }], false, base), ["questions"]);
++});
++
++test("emergency exception preserves clinical status and original offsets of a later invalid claim", () => {
++  const exempt = "No readings are needed before seeking emergency care";
++  const emergency = { ...draft, disposition: "EMERGENCY_NOW" as const, reviewPriority: null, workType: null, vitalSigns: exempt };
++  assert.deepEqual(vitalFinding(emergency), { id: "unmeasured_vitals_not_dismissed", status: "pass",
++    detail: "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype." });
++  assert.equal(vitalFinding({ ...draft, vitalSigns: exempt }).status, "fail", "the exception remains emergency-only");
++  const text = `🩺 Unknown measurements. ${exempt}; readings are unnecessary.`;
++  const mixed = { ...emergency, vitalSigns: text }, finding = vitalFinding(mixed);
++  assert.equal(finding.status, "fail");
++  const start = text.indexOf("readings are unnecessary");
++  assert.deepEqual(finding.repairLocations, [{ field: "vitalSigns", start, end: start + "readings are unnecessary".length, matchedText: "readings are unnecessary" }]);
++  assert.deepEqual(nominateRepairFields([], [finding], false, mixed), ["vitalSigns"]);
++  assert.equal(vitalFinding({ ...emergency, vitalSigns: "No vitals are required to act on this" }).status, "pass");
++});
++
++test("typed vital scope does not bypass patch binding, actual-change, schema or permissions", () => {
++  const base = { ...draft, vitalSigns: dismissedVitals }, allowed = nominateRepairFields([], [vitalFinding(base)], false, base);
++  const binding = repair.prepare(base, [source], allowed), valid = { baseDraftHash: binding.baseDraftHash, evidenceHash: binding.evidenceHash,
++    edits: [{ field: "vitalSigns", value: draft.vitalSigns }] };
++  for (const [raw, failure] of [
++    [{ ...valid, baseDraftHash: "0".repeat(64) }, "STALE_REPAIR_BINDING"],
++    [{ ...valid, evidenceHash: "0".repeat(64) }, "STALE_REPAIR_BINDING"],
++    [{ ...valid, edits: [{ field: "vitalSigns", value: base.vitalSigns }] }, "NOOP_REPAIR_FIELD"],
++    [{ ...valid, edits: [{ field: "reason", value: "An unauthorized rewritten clinical reason." }] }, "UNAUTHORIZED_REPAIR_FIELD"],
++    [{ ...valid, edits: [{ field: "routing", value: routing }] }, "UNAUTHORIZED_REPAIR_FIELD"],
++    [{ ...valid, edits: [{ field: "vitalSigns", value: [] }] }, "REPAIR_SCHEMA_INVALID"],
++  ] as const) {
++    const result = repair.apply(base, [source], allowed, raw);
++    assert.equal(result.output, null); assert.equal(result.audit.failure, failure);
++    assert.equal(result.audit.resultDraftHash, null);
++  }
++});
++
++test("archived C36 attribution replay opens one field without rewriting its recorded failure or approving care", () => {
++  const url = new URL("../outputs/clinical-lift-v23-cohort-live-2026-09-14/36-C36-run.json", import.meta.url), raw = readFileSync(url, "utf8");
++  assert.equal(sha256(raw), "21e3ded568873bfeb4a05033a3effca035dcdef04aced3d0368a84d33219fbb7");
++  const archived = JSON.parse(raw) as DispositionRun;
++  assert.equal(archived.runId, "afdbfdad-b302-4bf1-9d87-b173268593f5");
++  assert.equal(archived.failure, "REPAIR_SCOPE_UNAVAILABLE");
++  assert.deepEqual(archived.graph!.repair!.allowedFields, []);
++  const base = draftSchema.parse(archived.agents!.find(a => a.role === "disposition" && a.modelCalls > 0)!.output);
++  const sources = archived.guidance.map(g => {
++    const hit = archived.graph!.retrieval.flatMap(r => r.hits).find(h => h.chunk.id === g.id && h.chunk.text === g.summary)!;
++    assert.ok(hit); return { id: hit.chunk.id, kind: hit.document.kind, scope: hit.document.scope, text: hit.chunk.text };
++  });
++  const finding = vitalFinding(base), allowed = nominateRepairFields([], [finding], false, base), binding = repair.prepare(base, sources, allowed);
++  assert.deepEqual(allowed, ["vitalSigns"]);
++  assert.equal(binding.baseDraftHash, archived.graph!.repair!.baseDraftHash);
++  assert.equal(binding.evidenceHash, archived.graph!.repair!.evidenceHash);
++  const { repairLocations: _locations, ...unchangedCheck } = finding;
++  assert.deepEqual(unchangedCheck, archived.checks.find(c => c.id === "unmeasured_vitals_not_dismissed"));
++  const patched = repair.apply(base, sources, allowed, { baseDraftHash: binding.baseDraftHash, evidenceHash: binding.evidenceHash,
++    edits: [{ field: "vitalSigns", value: "No vital signs reported; whether any were measured is unknown." }] });
++  assert.ok(patched.output); assert.deepEqual(patched.audit.changedFields, ["vitalSigns"]);
++  assert.equal(vitalFinding(patched.output).status, "pass");
++  assert.deepEqual(patched.output, { ...base, vitalSigns: "No vital signs reported; whether any were measured is unknown." });
++  assert.equal(archived.failure, "REPAIR_SCOPE_UNAVAILABLE");
++  assert.equal(sha256(readFileSync(url, "utf8")), sha256(raw));
++  // This offline synthetic patch is NOT a provider response, fresh judge
++  // verdict, released assessment, or retrospective change to the cohort.
++});
++
++test("new mechanical scope changes prompt identity without changing the v2 wire protocol", () => {
++  const manifest = JSON.parse(readFileSync(new URL("../outputs/clinical-lift-v23-cohort-plan-2026-09-14/manifest.json", import.meta.url), "utf8")) as { config: GraphConfig; promptHash: string };
++  assert.equal(REPAIR_PROTOCOL, "field-local-repair/v2");
++  assert.equal(REPAIR_SCOPE_POLICY.version, "mechanical-repair-scope/v1");
++  assert.notEqual(graphPromptHash(manifest.config), manifest.promptHash);
++});
++
+ /** Synthetic provenance fixture only; no judge/provider or clinical assertion.
+  * The final care review is deliberately distinct from the pre-patch draft.
+  */

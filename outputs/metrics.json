@@ -1,0 +1,108 @@
+{
+  "conclusion": {
+    "clinicalPerformanceEstimate": null,
+    "referenceStandardEstablished": false,
+    "releaseReadinessEstablished": false,
+    "reason": "No physician-attested review export or untouched representative holdout exists. The prototype was authored against an unattested 50-case reference proposal."
+  },
+  "physicianReview": {
+    "status": "awaiting-physician-attestation",
+    "reviewedCases": 0,
+    "proposedCases": 50,
+    "consensusReferenceCases": 0,
+    "developmentLeakage": true,
+    "completionSource": "integrity-hashed export from the physician review instrument"
+  },
+  "developmentSetReplay": {
+    "caseCount": 50,
+    "exactCandidateLabelMatches": 50,
+    "mismatchCount": 0,
+    "routeContract": [
+      "SELF_CARE",
+      "ASYNC_PHYSICIAN",
+      "SAME_DAY_IN_PERSON",
+      "EMERGENCY_NOW"
+    ],
+    "fullConfusionMatrix": {
+      "SELF_CARE->SELF_CARE": 6,
+      "SELF_CARE->ASYNC_PHYSICIAN": 0,
+      "SELF_CARE->SAME_DAY_IN_PERSON": 0,
+      "SELF_CARE->EMERGENCY_NOW": 0,
+      "ASYNC_PHYSICIAN->SELF_CARE": 0,
+      "ASYNC_PHYSICIAN->ASYNC_PHYSICIAN": 22,
+      "ASYNC_PHYSICIAN->SAME_DAY_IN_PERSON": 0,
+      "ASYNC_PHYSICIAN->EMERGENCY_NOW": 0,
+      "SAME_DAY_IN_PERSON->SELF_CARE": 0,
+      "SAME_DAY_IN_PERSON->ASYNC_PHYSICIAN": 0,
+      "SAME_DAY_IN_PERSON->SAME_DAY_IN_PERSON": 5,
+      "SAME_DAY_IN_PERSON->EMERGENCY_NOW": 0,
+      "EMERGENCY_NOW->SELF_CARE": 0,
+      "EMERGENCY_NOW->ASYNC_PHYSICIAN": 0,
+      "EMERGENCY_NOW->SAME_DAY_IN_PERSON": 0,
+      "EMERGENCY_NOW->EMERGENCY_NOW": 17
+    },
+    "classSupport": {
+      "SELF_CARE": 6,
+      "ASYNC_PHYSICIAN": 22,
+      "SAME_DAY_IN_PERSON": 5,
+      "EMERGENCY_NOW": 17
+    },
+    "inferenceAllowed": false,
+    "interpretation": "Software fit to labels used during implementation; not a clinical-performance estimate."
+  },
+  "suppliedWorkflowVsReferenceProposal": {
+    "caseCount": 50,
+    "agreementCount": 38,
+    "disagreementCount": 12,
+    "inferenceAllowed": false,
+    "interpretation": "Hypothesis-generating comparison against an unattested proposal; not physician review or consensus truth."
+  },
+  "developmentBaselines": {
+    "variants": {
+      "alwaysAsync": {
+        "caseCount": 50,
+        "candidateLabelMatches": 22,
+        "illustrativeWeightedCost": 506,
+        "anyEscalationRecall": 0,
+        "sameDayRecall": 0,
+        "emergencyRecall": 0,
+        "emergencyToSameDay": 0
+      },
+      "alwaysSameDay": {
+        "caseCount": 50,
+        "candidateLabelMatches": 5,
+        "illustrativeWeightedCost": 266,
+        "anyEscalationRecall": 1,
+        "sameDayRecall": 1,
+        "emergencyRecall": 0,
+        "emergencyToSameDay": 17
+      },
+      "alwaysEmergency": {
+        "caseCount": 50,
+        "candidateLabelMatches": 17,
+        "illustrativeWeightedCost": 100,
+        "anyEscalationRecall": 1,
+        "sameDayRecall": 0,
+        "emergencyRecall": 1,
+        "emergencyToSameDay": 0
+      },
+      "alwaysSelfCare": {
+        "caseCount": 50,
+        "candidateLabelMatches": 6,
+        "illustrativeWeightedCost": 688,
+        "anyEscalationRecall": 0,
+        "sameDayRecall": 0,
+        "emergencyRecall": 0,
+        "emergencyToSameDay": 0
+      }
+    },
+    "inferenceAllowed": false,
+    "interpretation": "Metric-design diagnostics against unattested proposed labels; not clinical comparators."
+  },
+  "providedLabelAudit": {
+    "disagreements": 12,
+    "missedEscalation": 8,
+    "falseEscalation": 4
+  },
+  "workflowMismatches": []
+}

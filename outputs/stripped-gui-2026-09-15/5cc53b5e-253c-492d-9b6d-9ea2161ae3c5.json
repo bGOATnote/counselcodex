@@ -1,0 +1,72 @@
+{
+  "id": "5cc53b5e-253c-492d-9b6d-9ea2161ae3c5",
+  "status": "complete",
+  "createdAt": "2026-09-15T20:13:45.088Z",
+  "completedAt": "2026-09-15T20:13:49.772Z",
+  "message": "Hi, I've had a runny nose and a mild sore throat for about 2 days. No fever, I'm still eating and drinking fine. Should I be worried?",
+  "protocol": {
+    "model": "claude-fable-5-1",
+    "effort": "low",
+    "promptSHA256": "80810b85df956d779709a71dbc0d85534f5847e2563b0be5235048cb254a03ce"
+  },
+  "result": {
+    "disposition": "SELF_CARE",
+    "rationale": "Mild upper respiratory symptoms for 2 days with no fever, normal intake, and no red flags; appropriate for home care (rest, fluids, OTC symptom relief) with advice to seek care if symptoms worsen or persist beyond 7-10 days."
+  },
+  "error": null,
+  "trace": {
+    "workflowId": "stripped-fable-5-1",
+    "stepId": "one-disposition",
+    "providerCalls": 1,
+    "providerRequestId": "req_011Cf5qVjztXaJHM91qm99Zs",
+    "latencyMs": 4684,
+    "usage": {
+      "inputTokens": 196,
+      "outputTokens": 110,
+      "cacheReadTokens": 0,
+      "cacheWriteTokens": 0
+    },
+    "estimatedUSD": 0.00746,
+    "request": {
+      "model": "claude-fable-5-1",
+      "max_tokens": 4096,
+      "thinking": {
+        "type": "adaptive"
+      },
+      "output_config": {
+        "effort": "low"
+      },
+      "system": "Choose exactly one bucket for the patient message:\n1. SELF_CARE\n2. ASYNC_PHYSICIAN\n3. URGENT_ESCALATION\n\nMedication refill → ASYNC_PHYSICIAN unless clear emergency/same-day red flags → URGENT_ESCALATION.\nReturn only JSON with \"disposition\" (one exact bucket name) and \"rationale\" (short).",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Hi, I've had a runny nose and a mild sore throat for about 2 days. No fever, I'm still eating and drinking fine. Should I be worried?"
+        }
+      ]
+    },
+    "response": {
+      "id": "msg_011Cf5qVm39kfPwrWvaBEuaQ",
+      "model": "claude-fable-5-1",
+      "stop_reason": "end_turn",
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"disposition\": \"SELF_CARE\", \"rationale\": \"Mild upper respiratory symptoms for 2 days with no fever, normal intake, and no red flags; appropriate for home care (rest, fluids, OTC symptom relief) with advice to seek care if symptoms worsen or persist beyond 7-10 days.\"}"
+        }
+      ],
+      "usage": {
+        "inputTokens": 196,
+        "outputTokens": 110,
+        "cacheReadTokens": 0,
+        "cacheWriteTokens": 0
+      }
+    }
+  },
+  "accountedUSD": 0.00942,
+  "browserObservation": {
+    "case": "C01 changed to C06 while in flight",
+    "browserReceiptMs": null,
+    "visibleDisposition": null,
+    "observation": "Loading appeared; selecting C06 cleared it. C01 result never appeared for C06. Server persisted the completed call."
+  }
+}

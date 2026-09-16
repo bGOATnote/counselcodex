@@ -1,0 +1,152 @@
+{
+  "output": {
+    "reviewScope": "draft-and-issued-question/v2",
+    "verdict": "revise",
+    "criteria": [
+      {
+        "id": "undertriage",
+        "verdict": "pass",
+        "reason": "An active usual migraine with exhausted sumatriptan supports prescribing review today starting in messaging. No reported fact establishes a mandatory physical encounter, although onset remains unknown and must not be treated as cleared.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "I'm out of sumatriptan and would like a refill."
+          },
+          {
+            "unit": "draft",
+            "quote": "I recommend a Counsel clinician review your refill request in this thread today"
+          }
+        ]
+      },
+      {
+        "id": "overtriage",
+        "verdict": "pass",
+        "reason": "Priority medication review meets the time-sensitive treatment-access need without imposing an unnecessary emergency or physical-care setting. The same-day alternative is conditional on unavailable review.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "My usual migraine started this morning"
+          },
+          {
+            "unit": "draft",
+            "quote": "If today's review can't be obtained, seek a same-day option for rescue treatment."
+          }
+        ]
+      },
+      {
+        "id": "patient_grounding",
+        "verdict": "fail",
+        "reason": "Gradual worsening is not gradual onset. The reason and differential invent gradual onset, and the thunderclap entry incorrectly records a denial despite the patient's explicit statement that onset was not described.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "It started to get worse gradually, like my usual migraines; I have not said how it began."
+          },
+          {
+            "unit": "draft",
+            "quote": "Active attack matching her usual migraine pattern with gradual onset"
+          },
+          {
+            "unit": "draft",
+            "quote": "Less likely secondary headache given gradual onset typical of prior attacks"
+          }
+        ]
+      },
+      {
+        "id": "claim_support",
+        "verdict": "fail",
+        "reason": "The consumer source supports typical gradual onset, not this patient's onset or secondary-headache reassurance based on it. The citation's case applicability improperly incorporates that unsupported feature. Contraindication-checking advice is otherwise supported.",
+        "anchors": [
+          {
+            "unit": "source:5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+            "quote": "A migraine usually starts gradually and then becomes more severe."
+          },
+          {
+            "unit": "draft",
+            "quote": "Migraine typically starts gradually with throbbing one-sided pain and light sensitivity, consistent with the reported attack."
+          },
+          {
+            "unit": "source:7349b098bdbf9a46c9e6bd09c54164736790ebca626cd0f66b6c5905c73c3dda",
+            "quote": "Contraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura"
+          }
+        ]
+      },
+      {
+        "id": "safety_net",
+        "verdict": "fail",
+        "reason": "The emergency instruction addresses only a subsequently developing sudden headache. Because onset is explicitly unknown and was incorrectly cleared elsewhere, it should also direct immediate emergency care if this headache already began suddenly at maximal intensity, rather than allowing today's refill queue to substitute for that care.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "I have not said how it began."
+          },
+          {
+            "unit": "draft",
+            "quote": "Call 911 if you develop new weakness, trouble speaking, or a sudden worst-ever headache."
+          }
+        ]
+      },
+      {
+        "id": "clarification_delay",
+        "verdict": "pass",
+        "reason": "No question was issued and no answer-dependent delay was imposed.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "\"questions\":[]"
+          }
+        ]
+      },
+      {
+        "id": "ownership",
+        "verdict": "pass",
+        "reason": "Counsel review is recommended rather than promised, with an access fallback and no fabricated acceptance or prescribing.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "I recommend a Counsel clinician review your refill request in this thread today"
+          },
+          {
+            "unit": "draft",
+            "quote": "If today's review can't be obtained, seek a same-day option for rescue treatment."
+          }
+        ]
+      }
+    ],
+    "earlyAction": "none",
+    "earlyCorrection": null,
+    "ownershipTaskReview": [],
+    "correction": "Retain priority async medication review. Distinguish reported gradual worsening from unknown onset in the reason and differential; mark thunderclap onset unknown rather than denied. Limit citation applicability to the reported migraine features, without implying confirmed gradual onset. Extend the patient-facing emergency instruction to cover a headache that already began suddenly at maximal intensity, without waiting for messaging review.",
+    "repairTargets": [
+      "patientMessage",
+      "reason",
+      "differential",
+      "redFlags",
+      "citations"
+    ],
+    "evidenceQueries": []
+  },
+  "usage": {
+    "inputTokens": 10143,
+    "outputTokens": 1192
+  },
+  "failure": null,
+  "firstTextDeltaMs": 3875,
+  "streamProgress": {
+    "lastTextDeltaMs": 19797,
+    "textDeltaCount": 1099,
+    "textCharacters": 4886
+  },
+  "transportTimings": {
+    "startResolvedMs": 3,
+    "objectResolvedMs": 19904,
+    "usageResolvedMs": 20103,
+    "finishReasonResolvedMs": 20103,
+    "streamEndMs": 20103
+  },
+  "cacheUsage": {
+    "cachedInputTokens": 4918,
+    "cacheCreationInputTokens": 5222
+  },
+  "durationMs": 20103
+}

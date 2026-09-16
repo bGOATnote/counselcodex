@@ -1,0 +1,127 @@
+{
+  "protocol": "graph-gui-capture/v1",
+  "capturedAt": "2026-09-15T02:59:56.115Z",
+  "from": "2026-09-15T02:57:22.000Z",
+  "until": "2026-09-15T02:59:56.114Z",
+  "planPath": "outputs/fast-routing-v24-2026-09-14/HYBRID_GUI_PLAN.json",
+  "planSHA256": "07102d93a39f8928e107498eb044373aab461f159244d8ed18b479fa8caaef50",
+  "rows": [
+    {
+      "runId": "368148e1-65ab-466d-8974-ed6e04a324b4",
+      "observedStart": "2026-09-15T02:57:46.998Z",
+      "timestampSource": "filesystem_birthtime",
+      "eventsSHA256": "f978aa10e9e282e62976a6bdc17c6f5f3b0b6f33954b3c206880bb5daf58e572",
+      "runSHA256": "bc1fc6f8c05042f4c2ac18f3fdac7a32fcb7698ba6b6ec9a1c717caa9fb86e15",
+      "status": "review_required",
+      "failure": "SOURCE_REFERENCE_CONTRACT_FAILED",
+      "version": "evidence-graph/v24",
+      "promptHash": "ddeb323c56a2a527422f455bda387fc3298a5ce769b55b8e0765ace94e727eb4",
+      "inputHash": "75e3de9dfe3eea7b98979483ea19030386bdd039342bcbc7e32108a5b00de88e",
+      "disposition": "EMERGENCY_NOW",
+      "reviewPriority": null,
+      "earlyActionMs": 3551,
+      "questionMs": null,
+      "durationMs": 24298,
+      "modelCalls": 4,
+      "repair": null,
+      "review": null,
+      "failedCriteria": [],
+      "estimatedUSD": 0.038614,
+      "tracePersisted": true,
+      "eventLogPersisted": true,
+      "clinicalApproval": false
+    },
+    {
+      "runId": "6888343a-620f-45c2-bea3-58dc7a90272e",
+      "observedStart": "2026-09-15T02:58:28.784Z",
+      "timestampSource": "filesystem_birthtime",
+      "eventsSHA256": "814f15848ebaa72b721116ccd3d309eee0f69f92d2938d27e92ad74fd71c8307",
+      "runSHA256": "47f5950323cd217807945abdaa81f49729d73b17db926e069d89ed58fb6fbd97",
+      "status": "review_required",
+      "failure": "CLINICIAN_REVIEW_REQUIRED",
+      "version": "evidence-graph/v24",
+      "promptHash": "ddeb323c56a2a527422f455bda387fc3298a5ce769b55b8e0765ace94e727eb4",
+      "inputHash": "9e1db2d0712a2fb3ee4a7542f19fb181102946b1ab059ac8f09063dde4b4b5bb",
+      "disposition": null,
+      "reviewPriority": null,
+      "earlyActionMs": null,
+      "questionMs": null,
+      "durationMs": 56599,
+      "modelCalls": 6,
+      "repair": {
+        "protocol": "field-local-repair/v2",
+        "baseDraftHash": "7334a1eb9db3543a83137b12a97275d75b2ffe42f004f3e1f13f6289e7636a20",
+        "evidenceHash": "ebdf75a7a70a5fa3fb4b793260783b002a91d3743c8319d52ca8e09342d6995e",
+        "allowedFields": [
+          "reason",
+          "redFlags",
+          "vitalSigns"
+        ],
+        "changedFields": [
+          "reason",
+          "vitalSigns",
+          "redFlags"
+        ],
+        "noopFields": [],
+        "resultDraftHash": "4d219fffdba947f2a2b23b3f95e2be5718fe21243ba233075e83eaa09a45224b",
+        "status": "applied",
+        "failure": null
+      },
+      "review": "revise",
+      "failedCriteria": [
+        {
+          "id": "patient_grounding",
+          "verdict": "fail",
+          "reason": "Vital-sign prose contradicts reported symptom denials, while red-flag labels extend those denials to unassessed systemic toxicity and respiratory involvement.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Fever status and respiratory status: not reported."
+            },
+            {
+              "unit": "draft",
+              "quote": "{\"concern\":\"Fever or systemic toxicity\",\"status\":\"denied\",\"quote\":\"No fever\"}"
+            },
+            {
+              "unit": "draft",
+              "quote": "{\"concern\":\"Respiratory involvement from inhalation exposure\",\"status\":\"denied\",\"quote\":\"no trouble breathing\"}"
+            }
+          ]
+        }
+      ],
+      "estimatedUSD": 0.331863,
+      "tracePersisted": true,
+      "eventLogPersisted": true,
+      "clinicalApproval": false
+    }
+  ],
+  "attempts": 2,
+  "complete": 0,
+  "knownUSD": 0.370477,
+  "unknownCostAttempts": 0,
+  "conservativeAccountedUSD": 0.370477,
+  "capacityExceeded": false,
+  "pricing": {
+    "version": "clinical-study-pricing-2026-09-13/v1",
+    "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+    "judgeSource": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+    "models": {
+      "anthropic/claude-opus-5": {
+        "input": 5,
+        "output": 25
+      },
+      "anthropic/claude-haiku-4-5": {
+        "input": 1,
+        "output": 5
+      },
+      "openai/gpt-6-astra": {
+        "input": 10,
+        "output": 50
+      }
+    },
+    "unit": "USD_per_million_tokens",
+    "reservationPerRunUSD": 1,
+    "limitation": "Standard uncached token estimate, not provider invoice. Cache writes/reads are not itemized in current run usage. No fast mode, tool billing or residency modifier is configured in this study."
+  },
+  "limitation": "All browser starts in window; engineering rehearsal, not randomized or clinical validation. Server event times are not browser paint measurements. Token estimates exclude embedding calls and cache-specific billing."
+}

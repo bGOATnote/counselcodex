@@ -1,0 +1,160 @@
+{
+  "id": "activeEMS",
+  "arm": "medium",
+  "trial": 2,
+  "role": "judge",
+  "execution": {
+    "output": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "revise",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "Ongoing crushing chest pressure with arm radiation, sweating and nausea requires immediate emergency assessment. Continuing the patient-reported dispatched ambulance meets that requirement without waiting for messaging.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "The chest pressure is still present."
+            },
+            {
+              "unit": "draft",
+              "quote": "Your ongoing crushing chest pressure spreading to your left arm with sweating and nausea needs emergency assessment now."
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "The reported symptom cluster supports emergency care and the existing EMS response; a lower-intensity messaging pathway would not meet the immediate assessment need.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I've had crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach."
+            },
+            {
+              "unit": "draft",
+              "quote": "Stay where you are and continue with the ambulance response you already have"
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "Symptoms and EMS activation match the original report. Vital-sign values and measurement status remain explicitly unknown; alternative diagnoses are not asserted as established findings.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I called 911. The ambulance has been dispatched for me and the dispatcher told me to wait here."
+            },
+            {
+              "unit": "draft",
+              "quote": "whether any measurement was taken or by what method is unknown."
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "pass",
+          "reason": "Supplied passages support immediate emergency assessment for this symptom pattern and concern for ACS with prolonged pressure and arm radiation. Source limitations are appropriately acknowledged. The collapse instruction has an actor-feasibility defect assessed under safety_net.",
+          "anchors": [
+            {
+              "unit": "source:07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+              "quote": "Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath."
+            },
+            {
+              "unit": "source:d7b0583624de341d300313fc3d298f799f19f6779b771da5e3caffae41194822",
+              "quote": "Get emergency help right away if you have chest pain or discomfort that does not go away or happens while you are resting. This may be a sign of a heart attack. Call 911."
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "fail",
+          "reason": "The instruction requires the patient to call after collapse, when they may be unconscious or incapable. Preserve current EMS action, but assign a collapse update to a bystander only if present, and patient updates only while able.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "If your symptoms worsen, or you become faint or collapse, call 911 back immediately."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No question was issued and the draft directs continued emergency action now without a clarification prerequisite.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"questions\":[]"
+            },
+            {
+              "unit": "draft",
+              "quote": "keep following the dispatcher's instructions"
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "Emergency services remain the appropriate owner. Existing dispatch is patient-reported, not a fabricated operational commitment; no Counsel sending or follow-up promise is made.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Stay where you are and continue with the ambulance response you already have"
+            },
+            {
+              "unit": "patient",
+              "quote": "The ambulance has been dispatched for me and the dispatcher told me to wait here."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "supported",
+      "earlyCorrection": null,
+      "transportReview": {
+        "mode": "continue_ems",
+        "verdict": "supported",
+        "draftQuote": "Stay where you are and continue with the ambulance response you already have",
+        "activation": {
+          "quote": "I called 911. The ambulance has been dispatched for me and the dispatcher told me to wait here.",
+          "currentPatient": true,
+          "currentEpisode": true,
+          "active": true
+        }
+      },
+      "ownershipTaskReview": [],
+      "correction": "Repair only the safety-net sentence: advise calling 911 back immediately for worsening or faintness while able; if someone is present, they should update the dispatcher immediately if the patient collapses or becomes unresponsive. Do not assume a bystander exists. Preserve the immediate emergency route, continued dispatched ambulance response, dispatcher instructions and no-driving advice.",
+      "repairTargets": [
+        "patientMessage"
+      ],
+      "evidenceQueries": []
+    },
+    "usage": {
+      "inputTokens": 9494,
+      "outputTokens": 1163
+    },
+    "failure": null,
+    "firstTextDeltaMs": 1585,
+    "streamProgress": {
+      "lastTextDeltaMs": 19358,
+      "textDeltaCount": 1156,
+      "textCharacters": 5080
+    },
+    "transportTimings": {
+      "startResolvedMs": 1,
+      "objectResolvedMs": 19526,
+      "usageResolvedMs": 19684,
+      "finishReasonResolvedMs": 19684,
+      "streamEndMs": 19684
+    },
+    "cacheUsage": {
+      "cachedInputTokens": 4202,
+      "cacheCreationInputTokens": 5289
+    },
+    "durationMs": 19684
+  },
+  "estimatedBaseUSD": 0.15309,
+  "accountedInclusiveUSD": 0.1913625,
+  "accountedUSD": 7.43065
+}

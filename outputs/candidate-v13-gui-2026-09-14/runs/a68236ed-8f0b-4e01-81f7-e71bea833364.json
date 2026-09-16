@@ -1,0 +1,2127 @@
+{
+  "status": "review_required",
+  "answer": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "reviewPriority": "priority",
+    "workType": "clinical_review",
+    "reason": "The automated assessment needs clinician review; this is a conservative workflow fallback, not a new clinical finding.",
+    "patientMessage": "Priority review by the Counsel clinician in this thread is needed today. This recommendation does not confirm a clinician has accepted the request.",
+    "differential": [],
+    "redFlags": [],
+    "vitalSigns": "The automated assessment has not established the vital-sign context.",
+    "questions": [],
+    "evidence": [],
+    "evidenceLimitations": "No model-reviewed clinical explanation has been released. The draft and review outcome are retained for clinician assessment."
+  },
+  "origin": "validation_safeguard",
+  "modelCalls": 6,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "migraine one-sided throbbing light sensitivity",
+          "medication refill sumatriptan efficacy prior response",
+          "migraine red flags warning signs severity"
+        ],
+        "findings": [
+          {
+            "finding": "Long-standing migraine pattern with typical features",
+            "status": "reported",
+            "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get"
+          },
+          {
+            "finding": "Current migraine episode",
+            "status": "reported",
+            "quote": "My usual migraine started this morning"
+          },
+          {
+            "finding": "Sumatriptan previously effective",
+            "status": "reported",
+            "quote": "I'm out of sumatriptan"
+          },
+          {
+            "finding": "One-sided headache",
+            "status": "reported",
+            "quote": "one-sided throbbing"
+          },
+          {
+            "finding": "Light sensitivity",
+            "status": "reported",
+            "quote": "light sensitivity I always get"
+          },
+          {
+            "finding": "No acute change from baseline pattern",
+            "status": "reported",
+            "quote": "same one-sided throbbing and light sensitivity I always get"
+          }
+        ],
+        "question": null
+      },
+      "usage": {
+        "inputTokens": 1034,
+        "outputTokens": 207
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1143,
+      "streamProgress": {
+        "lastTextDeltaMs": 2469,
+        "textDeltaCount": 52,
+        "textCharacters": 915
+      },
+      "durationMs": 2484
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "priority",
+        "workType": "medication_request",
+        "reason": "Active attack with the patient's usual, unchanged migraine features and no reported red flags, but rescue medication is exhausted; time-sensitive prescribing review can safely start in messaging without an in-person visit today.",
+        "patientMessage": "I recommend a Counsel clinician review your sumatriptan refill request in this thread today, since your attack is active and you're out of rescue medication. Your described pattern matches your usual migraines, so a same-day in-person visit doesn't appear necessary now. Call 911 if you develop sudden severe \"worst ever\" headache, weakness, numbness or trouble speaking; message back if this headache changes character, worsens, or brings fever or neck stiffness.",
+        "differential": [
+          "Recurrence of known episodic migraine, unchanged from usual pattern",
+          "Secondary headache less likely given typical, familiar features, but red-flag history not fully reported",
+          "Medication-overuse pattern unknown; attack frequency and prior triptan use not reported"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thunderclap/sudden severe headache",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Change from usual headache pattern",
+            "status": "denied",
+            "quote": "same one-sided throbbing and light sensitivity I always get"
+          },
+          {
+            "concern": "Focal neurological symptoms or atypical aura",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Fever or neck stiffness",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Head trauma",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported; blood pressure, temperature, heart rate and whether any measurement was taken are unknown.",
+        "questions": [],
+        "evidenceLimitations": "Guideline is a 2021 consensus with red-flag and acute-treatment tables; it is dated evidence and does not authorize prescribing or confirm this patient's eligibility. Cardiovascular history, blood pressure and aura type are unreported, so contraindication screening remains for the reviewing clinician. Service availability and clinician acceptance are not established.",
+        "transportIntent": null,
+        "citations": [
+          {
+            "passageId": "4b414539b327a45140589e8bd99223cd58b8e4dd1bbbf4823f41d2d5b8cb229f",
+            "quote": "Red flags in the medical history include thunderclap headache, atypical aura and head trauma.",
+            "claim": "Specific red flags such as thunderclap headache, atypical aura or head trauma raise suspicion of secondary headache.",
+            "applicability": "applicable",
+            "limitation": "These features are unreported here, so their absence is not established."
+          },
+          {
+            "passageId": "1836c31f7ff0c81977ef05aaa725379e6b1b5bf5eab27adb054776ae69f7b5e1",
+            "quote": "Contraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura",
+            "claim": "Sumatriptan has listed contraindications including cardiovascular or cerebrovascular disease and hemiplegic migraine that a prescriber should check.",
+            "applicability": "uncertain",
+            "limitation": "Patient's cardiovascular history and aura type are unreported; dated source, not a prescribing authorization."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 19516,
+        "outputTokens": 1041
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1096,
+      "streamProgress": {
+        "lastTextDeltaMs": 17308,
+        "textDeltaCount": 274,
+        "textCharacters": 2871
+      },
+      "durationMs": 17325,
+      "rawOutput": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "priority",
+        "workType": "medication_request",
+        "reason": "Active attack with the patient's usual, unchanged migraine features and no reported red flags, but rescue medication is exhausted; time-sensitive prescribing review can safely start in messaging without an in-person visit today.",
+        "patientMessage": "I recommend a Counsel clinician review your sumatriptan refill request in this thread today, since your attack is active and you're out of rescue medication. Your described pattern matches your usual migraines, so a same-day in-person visit doesn't appear necessary now. Call 911 if you develop sudden severe \"worst ever\" headache, weakness, numbness or trouble speaking; message back if this headache changes character, worsens, or brings fever or neck stiffness.",
+        "differential": [
+          "Recurrence of known episodic migraine, unchanged from usual pattern",
+          "Secondary headache less likely given typical, familiar features, but red-flag history not fully reported",
+          "Medication-overuse pattern unknown; attack frequency and prior triptan use not reported"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thunderclap/sudden severe headache",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Change from usual headache pattern",
+            "status": "denied",
+            "quote": "same one-sided throbbing and light sensitivity I always get"
+          },
+          {
+            "concern": "Focal neurological symptoms or atypical aura",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Fever or neck stiffness",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Head trauma",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported; blood pressure, temperature, heart rate and whether any measurement was taken are unknown.",
+        "questions": [],
+        "evidenceLimitations": "Guideline is a 2021 consensus with red-flag and acute-treatment tables; it is dated evidence and does not authorize prescribing or confirm this patient's eligibility. Cardiovascular history, blood pressure and aura type are unreported, so contraindication screening remains for the reviewing clinician. Service availability and clinician acceptance are not established.",
+        "transportIntent": null,
+        "citations": [
+          {
+            "passageId": "4b414539b327a45140589e8bd99223cd58b8e4dd1bbbf4823f41d2d5b8cb229f",
+            "claim": "Specific red flags such as thunderclap headache, atypical aura or head trauma raise suspicion of secondary headache.",
+            "applicability": "applicable",
+            "limitation": "These features are unreported here, so their absence is not established.",
+            "quoteId": "q3"
+          },
+          {
+            "passageId": "1836c31f7ff0c81977ef05aaa725379e6b1b5bf5eab27adb054776ae69f7b5e1",
+            "claim": "Sumatriptan has listed contraindications including cardiovascular or cerebrovascular disease and hemiplegic migraine that a prescriber should check.",
+            "applicability": "uncertain",
+            "limitation": "Patient's cardiovascular history and aura type are unreported; dated source, not a prescribing authorization.",
+            "quoteId": "q34"
+          }
+        ]
+      }
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "action": "PRIORITY_ASYNC",
+        "basis": [
+          {
+            "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get",
+            "interpretation": "Current active migraine with typical established features reported by the patient this morning",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "I'm out of sumatriptan and would like a refill",
+            "interpretation": "Patient has exhausted access to established acute migraine rescue medication and requires prescribing review and potential refill",
+            "currentPatient": true,
+            "present": true
+          }
+        ],
+        "actionBasis": null,
+        "reason": "Active usual migraine with exhausted rescue medication requires time-sensitive clinician prescribing assessment.",
+        "patientMessage": "",
+        "physicalRequirement": null
+      },
+      "usage": {
+        "inputTokens": 2467,
+        "outputTokens": 163
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1143,
+      "streamProgress": {
+        "lastTextDeltaMs": 2611,
+        "textDeltaCount": 55,
+        "textCharacters": 736
+      },
+      "durationMs": 2613
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "revise",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "The current unchanged attack with exhausted rescue medication requires time-sensitive prescribing review, which can start in messaging. No reported feature establishes a necessary physical encounter now; medication eligibility remains for clinician assessment.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I'm out of sumatriptan and would like a refill."
+              },
+              {
+                "unit": "draft",
+                "quote": "I recommend a Counsel clinician review your sumatriptan refill request in this thread today"
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "Priority prescribing review is proportionate to an active usual attack without rescue medication. The draft does not impose unnecessary current emergency or in-person attendance.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "My usual migraine started this morning"
+              },
+              {
+                "unit": "draft",
+                "quote": "\"reviewPriority\":\"priority\""
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "fail",
+            "reason": "The draft labels the migraine episodic despite explicitly acknowledging that attack frequency is unknown. The familiar pattern otherwise supports the current routing inference, not a blanket exclusion of secondary headache.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Recurrence of known episodic migraine, unchanged from usual pattern"
+              },
+              {
+                "unit": "draft",
+                "quote": "attack frequency and prior triptan use not reported"
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "fail",
+            "reason": "The cited red-flag and contraindication claims are supported, but advising messaging alone for headache with fever or neck stiffness is not supported by the supplied evidence identifying meningitis and other serious causes.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "message back if this headache changes character, worsens, or brings fever or neck stiffness."
+              },
+              {
+                "unit": "source:4dc07d42df8d2579816619fd6483e91b8a1f6a7172a93844a7e77bd0592cbbe9",
+                "quote": "Red flag: Neck stiffness\nIndication: Meningitis, subarachnoid haemorrhage"
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "fail",
+            "reason": "Emergency action for sudden severe headache and neurological symptoms is appropriate. Fever or neck stiffness with headache needs urgent direct assessment rather than simply messaging back and potentially waiting.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Call 911 if you develop sudden severe \"worst ever\" headache, weakness, numbness or trouble speaking"
+              },
+              {
+                "unit": "draft",
+                "quote": "message back if this headache changes character, worsens, or brings fever or neck stiffness."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No issued question or answer-dependent delay is present; review is recommended today.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              },
+              {
+                "unit": "draft",
+                "quote": "I recommend a Counsel clinician review your sumatriptan refill request in this thread today"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "fail",
+            "reason": "Counsel ownership is recommended without fabricating acceptance, but the patient receives no actionable alternative if today's time-sensitive prescribing review cannot be obtained. The internal availability disclaimer does not provide that fallback.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I recommend a Counsel clinician review your sumatriptan refill request in this thread today"
+              },
+              {
+                "unit": "draft",
+                "quote": "Service availability and clinician acceptance are not established."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "ownershipTaskReview": [],
+        "correction": "Retain Priority async medication-request routing. Remove the unsupported 'episodic' subtype. Replace messaging-only advice for new fever or neck stiffness with urgent direct assessment without waiting for a thread reply, including emergency assessment for neck stiffness or severe associated illness. Explain that today's Counsel review is not guaranteed and advise contacting the usual prescriber or another same-day prescribing service if timely review cannot be secured.",
+        "evidenceQueries": []
+      },
+      "usage": {
+        "inputTokens": 8331,
+        "outputTokens": 1000
+      },
+      "failure": null,
+      "firstTextDeltaMs": 2418,
+      "streamProgress": {
+        "lastTextDeltaMs": 24133,
+        "textDeltaCount": 993,
+        "textCharacters": 4518
+      },
+      "durationMs": 24401
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "priority",
+        "workType": "medication_request",
+        "reason": "Active attack with the patient's usual, unchanged migraine features and no reported red flags, but rescue medication is exhausted; time-sensitive prescribing review can safely start in messaging without an in-person visit today.",
+        "patientMessage": "I recommend a Counsel clinician review your sumatriptan refill request in this thread today, since your attack is active and you're out of rescue medication. Your described pattern matches your usual migraines, so an in-person visit doesn't appear necessary now. I can't guarantee today's review — if it isn't available, contact your usual prescriber or another same-day prescribing service. Call 911 for sudden severe \"worst ever\" headache, weakness, numbness or trouble speaking. Seek urgent in-person assessment the same day, without waiting for a reply here, if you develop fever, neck stiffness, or a headache clearly different from your usual pattern.",
+        "differential": [
+          "Recurrence of the patient's known migraine, unchanged from usual pattern",
+          "Secondary headache less likely given typical, familiar features, but red-flag history not fully reported",
+          "Medication-overuse pattern unknown; attack frequency and prior triptan use not reported"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thunderclap/sudden severe headache",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Change from usual headache pattern",
+            "status": "denied",
+            "quote": "same one-sided throbbing and light sensitivity I always get"
+          },
+          {
+            "concern": "Focal neurological symptoms or atypical aura",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Fever or neck stiffness",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Head trauma",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported; blood pressure, temperature, heart rate and whether any measurement was taken are unknown.",
+        "questions": [],
+        "evidenceLimitations": "The 2021 consensus tables list red flags and triptan contraindications but are dated and do not authorize prescribing or confirm this patient's eligibility; cardiovascular history, blood pressure and aura type are unreported, leaving contraindication screening to the reviewing clinician. Service availability and clinician acceptance are not established.",
+        "transportIntent": null,
+        "citations": [
+          {
+            "passageId": "4dc07d42df8d2579816619fd6483e91b8a1f6a7172a93844a7e77bd0592cbbe9",
+            "quote": "Indication: Meningitis, subarachnoid haemorrhage",
+            "claim": "Neck stiffness with headache is a red flag suggesting meningitis or subarachnoid haemorrhage, warranting urgent assessment.",
+            "applicability": "applicable",
+            "limitation": "Not reported by this patient; listed as a physical-examination finding."
+          },
+          {
+            "passageId": "1836c31f7ff0c81977ef05aaa725379e6b1b5bf5eab27adb054776ae69f7b5e1",
+            "quote": "Contraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura",
+            "claim": "Sumatriptan has listed contraindications including cardiovascular or cerebrovascular disease and hemiplegic migraine that a prescriber should check.",
+            "applicability": "uncertain",
+            "limitation": "Patient's cardiovascular history and aura type are unreported; dated source, not a prescribing authorization."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 20600,
+        "outputTokens": 1106
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1512,
+      "streamProgress": {
+        "lastTextDeltaMs": 15945,
+        "textDeltaCount": 244,
+        "textCharacters": 3062
+      },
+      "durationMs": 15963,
+      "rawOutput": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "priority",
+        "workType": "medication_request",
+        "reason": "Active attack with the patient's usual, unchanged migraine features and no reported red flags, but rescue medication is exhausted; time-sensitive prescribing review can safely start in messaging without an in-person visit today.",
+        "patientMessage": "I recommend a Counsel clinician review your sumatriptan refill request in this thread today, since your attack is active and you're out of rescue medication. Your described pattern matches your usual migraines, so an in-person visit doesn't appear necessary now. I can't guarantee today's review — if it isn't available, contact your usual prescriber or another same-day prescribing service. Call 911 for sudden severe \"worst ever\" headache, weakness, numbness or trouble speaking. Seek urgent in-person assessment the same day, without waiting for a reply here, if you develop fever, neck stiffness, or a headache clearly different from your usual pattern.",
+        "differential": [
+          "Recurrence of the patient's known migraine, unchanged from usual pattern",
+          "Secondary headache less likely given typical, familiar features, but red-flag history not fully reported",
+          "Medication-overuse pattern unknown; attack frequency and prior triptan use not reported"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thunderclap/sudden severe headache",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Change from usual headache pattern",
+            "status": "denied",
+            "quote": "same one-sided throbbing and light sensitivity I always get"
+          },
+          {
+            "concern": "Focal neurological symptoms or atypical aura",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Fever or neck stiffness",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Head trauma",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported; blood pressure, temperature, heart rate and whether any measurement was taken are unknown.",
+        "questions": [],
+        "evidenceLimitations": "The 2021 consensus tables list red flags and triptan contraindications but are dated and do not authorize prescribing or confirm this patient's eligibility; cardiovascular history, blood pressure and aura type are unreported, leaving contraindication screening to the reviewing clinician. Service availability and clinician acceptance are not established.",
+        "transportIntent": null,
+        "citations": [
+          {
+            "passageId": "4dc07d42df8d2579816619fd6483e91b8a1f6a7172a93844a7e77bd0592cbbe9",
+            "claim": "Neck stiffness with headache is a red flag suggesting meningitis or subarachnoid haemorrhage, warranting urgent assessment.",
+            "applicability": "applicable",
+            "limitation": "Not reported by this patient; listed as a physical-examination finding.",
+            "quoteId": "q29"
+          },
+          {
+            "passageId": "1836c31f7ff0c81977ef05aaa725379e6b1b5bf5eab27adb054776ae69f7b5e1",
+            "claim": "Sumatriptan has listed contraindications including cardiovascular or cerebrovascular disease and hemiplegic migraine that a prescriber should check.",
+            "applicability": "uncertain",
+            "limitation": "Patient's cardiovascular history and aura type are unreported; dated source, not a prescribing authorization.",
+            "quoteId": "q34"
+          }
+        ]
+      }
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "accept",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "An active usual migraine with exhausted rescue medication requires timely prescribing review. Priority messaging today with a same-day prescribing fallback meets that requirement; reported facts do not establish a necessary physical encounter.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get. I'm out of sumatriptan"
+              },
+              {
+                "unit": "draft",
+                "quote": "I can't guarantee today's review — if it isn't available, contact your usual prescriber or another same-day prescribing service."
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "Priority prescribing review is proportionate to an active attack without rescue medication. The draft does not impose unnecessary current emergency or in-person care; emergency instructions are conditional on concerning changes.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I recommend a Counsel clinician review your sumatriptan refill request in this thread today, since your attack is active and you're out of rescue medication."
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "The usual migraine pattern and medication exhaustion are patient-reported. Unreported red flags and measurements remain unknown. The qualified statement about not needing an examination now is a routing inference, not blanket exclusion of serious disease.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Your described pattern matches your usual migraines, so an in-person visit doesn't appear necessary now."
+              },
+              {
+                "unit": "draft",
+                "quote": "No vital signs reported; blood pressure, temperature, heart rate and whether any measurement was taken are unknown."
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "The sources support the migraine features, contraindication screening and headache red flags. Emergency precautions are reasonable clinical inferences from potentially serious neurological presentations, not falsely attributed source transport rules. Queue timing follows project policy.",
+            "anchors": [
+              {
+                "unit": "source:1836c31f7ff0c81977ef05aaa725379e6b1b5bf5eab27adb054776ae69f7b5e1",
+                "quote": "Contraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura"
+              },
+              {
+                "unit": "source:4dc07d42df8d2579816619fd6483e91b8a1f6a7172a93844a7e77bd0592cbbe9",
+                "quote": "Red flag: Thunderclap headache\nIndication: Subarachnoid haemorrhage"
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "The draft gives explicit emergency action for sudden severe headache or neurological symptoms and urgent same-day assessment for other concerning changes, without requiring a thread response first.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Call 911 for sudden severe \"worst ever\" headache, weakness, numbness or trouble speaking."
+              },
+              {
+                "unit": "draft",
+                "quote": "Seek urgent in-person assessment the same day, without waiting for a reply here, if you develop fever, neck stiffness, or a headache clearly different from your usual pattern."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No issued question is supplied and no answer is required before seeking prescribing review. Remaining prescribing checks are appropriately assigned to the clinician.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "leaving contraindication screening to the reviewing clinician."
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "Counsel clinician review is recommended rather than promised or accepted. Availability uncertainty and an actionable same-day alternative are explicit.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I recommend a Counsel clinician review your sumatriptan refill request in this thread today, since your attack is active and you're out of rescue medication."
+              },
+              {
+                "unit": "draft",
+                "quote": "I can't guarantee today's review — if it isn't available, contact your usual prescriber or another same-day prescribing service."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "ownershipTaskReview": [],
+        "correction": "",
+        "evidenceQueries": []
+      },
+      "usage": {
+        "inputTokens": 8359,
+        "outputTokens": 1123
+      },
+      "failure": null,
+      "firstTextDeltaMs": 3349,
+      "streamProgress": {
+        "lastTextDeltaMs": 26870,
+        "textDeltaCount": 1086,
+        "textCharacters": 4983
+      },
+      "durationMs": 27174
+    }
+  ],
+  "guidance": [
+    {
+      "id": "611e18d63434ae5d6eb6bc7c2299149c532cb7655d9dfa827e1975d247df284b",
+      "title": "Migraine",
+      "url": "https://medlineplus.gov/migraine.html",
+      "section": "Health-topic summary",
+      "summary": "What are migraines? \n Migraines are a recurring type of headache. They cause moderate to severe pain that is throbbing or pulsing. The pain is often on one side of your head. You may also have other symptoms, such as nausea and weakness. You may be sensitive to light and sound. \n\n What causes migraines? \n Researchers believe that migraine has a genetic cause. There are also a number of factors that can trigger a migraine. These factors vary from person to person, and they include: \n Stress \n Anxiety \n Hormonal changes in women \n Bright or flashing lights \n Loud noises \n Strong smells \n Medicines \n Too much or not enough sleep \n Sudden changes in weather or environment \n Overexertion (too much physical activity) \n Tobacco \n Caffeine or caffeine withdrawal \n Skipped meals \n Medication overuse (taking medicine for migraines too often) \n \n\n Some people have found that certain foods or ingredients can trigger headaches, especially when they are combined with other triggers. These foods and ingredients include: \n Alcohol \n Chocolate \n Aged cheeses \n Monosodium glutamate (MSG) \n Some fruits and nuts \n Fermented or pickled goods \n Yeast \n Cured or processed meats \n \n\n\n Who is at risk for migraines? \n About 12% of Americans get migraines. They can affect anyone, but you are more likely to have them if you: \n Are a woman. Women are three times more likely than men to get migraines. \n Have a family history of migraines. Most people with migraines have family members who have migraines. \n Have other medical conditions, such as depression , anxiety , bipolar disorder , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: ",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "611e18d63434ae5d6eb6bc7c2299149c532cb7655d9dfa827e1975d247df284b",
+          "sourceId": "medlineplus:3157",
+          "excerpt": "What are migraines? \n Migraines are a recurring type of headache. They cause moderate to severe pain that is throbbing or pulsing. The pain is often on one side of your head. You may also have other symptoms, such as nausea and weakness. You may be sensitive to light and sound. \n\n What causes migraines? \n Researchers believe that migraine has a genetic cause. There are also a number of factors that can trigger a migraine. These factors vary from person to person, and they include: \n Stress \n Anxiety \n Hormonal changes in women \n Bright or flashing lights \n Loud noises \n Strong smells \n Medicines \n Too much or not enough sleep \n Sudden changes in weather or environment \n Overexertion (too much physical activity) \n Tobacco \n Caffeine or caffeine withdrawal \n Skipped meals \n Medication overuse (taking medicine for migraines too often) \n \n\n Some people have found that certain foods or ingredients can trigger headaches, especially when they are combined with other triggers. These foods and ingredients include: \n Alcohol \n Chocolate \n Aged cheeses \n Monosodium glutamate (MSG) \n Some fruits and nuts \n Fermented or pickled goods \n Yeast \n Cured or processed meats \n \n\n\n Who is at risk for migraines? \n About 12% of Americans get migraines. They can affect anyone, but you are more likely to have them if you: \n Are a woman. Women are three times more likely than men to get migraines. \n Have a family history of migraines. Most people with migraines have family members who have migraines. \n Have other medical conditions, such as depression , anxiety , bipolar disorder , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: ",
+          "excerptSha256": "f361e0cfb4280839d2eece36d6f9915ce3d38bcb26479b2c1137ea00e12f7bfa",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "1836c31f7ff0c81977ef05aaa725379e6b1b5bf5eab27adb054776ae69f7b5e1",
+      "title": "Diagnosis and management of migraine in ten steps",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+      "section": "Tab3: Acute migraine treatment",
+      "summary": "Group: First-line medication\nDrug class: NSAIDs\nDrug: Acetylsalicylic acid\nDosage and route: 900–1,000 mg oral\nContraindications: Gastrointestinal bleeding, heart failure\n\nGroup: First-line medication\nDrug class: NSAIDs\nDrug: Ibuprofen\nDosage and route: 400–600 mg oral\nContraindications: Gastrointestinal bleeding, heart failure\n\nGroup: First-line medication\nDrug class: NSAIDs\nDrug: Diclofenac potassium\nDosage and route: 50 mg oral (soluble)\nContraindications: Gastrointestinal bleeding, heart failure\n\nGroup: First-line medication\nDrug class: Other simple analgesics (if NSAIDs are contraindicated)\nDrug: Paracetamol\nDosage and route: 1,000 mg oral\nContraindications: Hepatic disease, renal failure\n\nGroup: First-line medication\nDrug class: Antiemetics (when necessary)\nDrug: Domperidone\nDosage and route: 10 mg oral or suppository\nContraindications: Gastrointestinal bleeding, epilepsy, renal failure, cardiac arrhythmia\n\nGroup: First-line medication\nDrug class: Antiemetics (when necessary)\nDrug: Metoclopramide\nDosage and route: 10 mg oral\nContraindications: Parkinson disease, epilepsy, mechanical ileus\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Sumatriptan\nDosage and route: 50 or 100 mg oral or 6 mg subcutaneous or 10 or 20 mg intranasal\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "primary_guideline; publisher_reviewed. EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+      "retrievedPassages": [
+        {
+          "id": "1836c31f7ff0c81977ef05aaa725379e6b1b5bf5eab27adb054776ae69f7b5e1",
+          "sourceId": "pmc:PMC8321897",
+          "excerpt": "Group: First-line medication\nDrug class: NSAIDs\nDrug: Acetylsalicylic acid\nDosage and route: 900–1,000 mg oral\nContraindications: Gastrointestinal bleeding, heart failure\n\nGroup: First-line medication\nDrug class: NSAIDs\nDrug: Ibuprofen\nDosage and route: 400–600 mg oral\nContraindications: Gastrointestinal bleeding, heart failure\n\nGroup: First-line medication\nDrug class: NSAIDs\nDrug: Diclofenac potassium\nDosage and route: 50 mg oral (soluble)\nContraindications: Gastrointestinal bleeding, heart failure\n\nGroup: First-line medication\nDrug class: Other simple analgesics (if NSAIDs are contraindicated)\nDrug: Paracetamol\nDosage and route: 1,000 mg oral\nContraindications: Hepatic disease, renal failure\n\nGroup: First-line medication\nDrug class: Antiemetics (when necessary)\nDrug: Domperidone\nDosage and route: 10 mg oral or suppository\nContraindications: Gastrointestinal bleeding, epilepsy, renal failure, cardiac arrhythmia\n\nGroup: First-line medication\nDrug class: Antiemetics (when necessary)\nDrug: Metoclopramide\nDosage and route: 10 mg oral\nContraindications: Parkinson disease, epilepsy, mechanical ileus\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Sumatriptan\nDosage and route: 50 or 100 mg oral or 6 mg subcutaneous or 10 or 20 mg intranasal\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura",
+          "excerptSha256": "024b5cde6e73991ba34aae0185440f2afbd0dd375618990427265b4d76714cba",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+          "kind": "primary_guideline",
+          "limitations": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion."
+        }
+      ]
+    },
+    {
+      "id": "4dc07d42df8d2579816619fd6483e91b8a1f6a7172a93844a7e77bd0592cbbe9",
+      "title": "Diagnosis and management of migraine in ten steps",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+      "section": "Tab2: Red flags associated with secondary headaches31,32",
+      "summary": "When to look: Patient history\nRed flag: Thunderclap headache\nIndication: Subarachnoid haemorrhage\n\nWhen to look: Patient history\nRed flag: Atypical aura\nIndication: Transient ischaemic attack, stroke, epilepsy, arteriovenous malformations\n\nWhen to look: Patient history\nRed flag: Head trauma\nIndication: Subdural haematoma\n\nWhen to look: Patient history\nRed flag: Progressive headache\nIndication: Intracranial space-occupying lesion\n\nWhen to look: Patient history\nRed flag: Headache aggravated by postures or manoeuvres that raise intracranial pressure\nIndication: Intracranial hypertension or hypotension\n\nWhen to look: Patient history\nRed flag: Headache brought on by sneezing, coughing or exercise\nIndication: Intracranial space-occupying lesion\n\nWhen to look: Patient history\nRed flag: Headache associated with weight loss and/or change in memory or personality\nIndication: Suggests secondary headache\n\nWhen to look: Patient history\nRed flag: Headache onset at >50 years of age\nIndication: Suggests secondary headache; consider temporal arteritis\n\nWhen to look: Physical examination\nRed flag: Unexplained fever\nIndication: Meningitis\n\nWhen to look: Physical examination\nRed flag: Neck stiffness\nIndication: Meningitis, subarachnoid haemorrhage\n\nWhen to look: Physical examination\nRed flag: Focal neurological symptoms\nIndication: Suggests secondary headache\n\nWhen to look: Physical examination\nRed flag: Weight loss\nIndication: Suggests secondary headache",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "primary_guideline; publisher_reviewed. EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+      "retrievedPassages": [
+        {
+          "id": "4dc07d42df8d2579816619fd6483e91b8a1f6a7172a93844a7e77bd0592cbbe9",
+          "sourceId": "pmc:PMC8321897",
+          "excerpt": "When to look: Patient history\nRed flag: Thunderclap headache\nIndication: Subarachnoid haemorrhage\n\nWhen to look: Patient history\nRed flag: Atypical aura\nIndication: Transient ischaemic attack, stroke, epilepsy, arteriovenous malformations\n\nWhen to look: Patient history\nRed flag: Head trauma\nIndication: Subdural haematoma\n\nWhen to look: Patient history\nRed flag: Progressive headache\nIndication: Intracranial space-occupying lesion\n\nWhen to look: Patient history\nRed flag: Headache aggravated by postures or manoeuvres that raise intracranial pressure\nIndication: Intracranial hypertension or hypotension\n\nWhen to look: Patient history\nRed flag: Headache brought on by sneezing, coughing or exercise\nIndication: Intracranial space-occupying lesion\n\nWhen to look: Patient history\nRed flag: Headache associated with weight loss and/or change in memory or personality\nIndication: Suggests secondary headache\n\nWhen to look: Patient history\nRed flag: Headache onset at >50 years of age\nIndication: Suggests secondary headache; consider temporal arteritis\n\nWhen to look: Physical examination\nRed flag: Unexplained fever\nIndication: Meningitis\n\nWhen to look: Physical examination\nRed flag: Neck stiffness\nIndication: Meningitis, subarachnoid haemorrhage\n\nWhen to look: Physical examination\nRed flag: Focal neurological symptoms\nIndication: Suggests secondary headache\n\nWhen to look: Physical examination\nRed flag: Weight loss\nIndication: Suggests secondary headache",
+          "excerptSha256": "6f6d5e8673f0dcf32732a050f80f12ce41cc3436fdfb90e3299199d6ac1a2c62",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+          "kind": "primary_guideline",
+          "limitations": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion."
+        }
+      ]
+    },
+    {
+      "id": "5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+      "title": "Migraine",
+      "url": "https://medlineplus.gov/migraine.html",
+      "section": "Health-topic summary",
+      "summary": "er , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: \n Prodome. This phase starts up to 24 hours before you get the migraine. You have early signs and symptoms, such as food cravings, unexplained mood changes, uncontrollable yawning, fluid retention, and increased urination. \n Aura. If you have this phase, you might see flashing or bright lights or zig-zag lines. You may have muscle weakness or feel like you are being touched or grabbed. An aura can happen just before or during a migraine. \n Headache. A migraine usually starts gradually and then becomes more severe. It typically causes throbbing or pulsing pain, which is often on one side of your head. But sometimes you can have a migraine without a headache. Other migraine symptoms may include \n \n Increased sensitivity to light, noise, and odors \n Nausea and vomiting \n Worsened pain when you move, cough, or sneeze \n \n Postdrome (following the headache). You may feel exhausted, weak, and confused after a migraine. This can last up to a day. \n \n\n Migraines are more common in the morning; people often wake up with them. Some people have migraines at predictable times, such as before menstruation or on weekends following a stressful week of work. \n\n How are migraines diagnosed? \n To make a diagnosis, your health care provider will: \n Take your medical history \n Ask about your symptoms \n Do a physical and neurological exam \n \n\n An important part of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? ",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+          "sourceId": "medlineplus:3157",
+          "excerpt": "er , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: \n Prodome. This phase starts up to 24 hours before you get the migraine. You have early signs and symptoms, such as food cravings, unexplained mood changes, uncontrollable yawning, fluid retention, and increased urination. \n Aura. If you have this phase, you might see flashing or bright lights or zig-zag lines. You may have muscle weakness or feel like you are being touched or grabbed. An aura can happen just before or during a migraine. \n Headache. A migraine usually starts gradually and then becomes more severe. It typically causes throbbing or pulsing pain, which is often on one side of your head. But sometimes you can have a migraine without a headache. Other migraine symptoms may include \n \n Increased sensitivity to light, noise, and odors \n Nausea and vomiting \n Worsened pain when you move, cough, or sneeze \n \n Postdrome (following the headache). You may feel exhausted, weak, and confused after a migraine. This can last up to a day. \n \n\n Migraines are more common in the morning; people often wake up with them. Some people have migraines at predictable times, such as before menstruation or on weekends following a stressful week of work. \n\n How are migraines diagnosed? \n To make a diagnosis, your health care provider will: \n Take your medical history \n Ask about your symptoms \n Do a physical and neurological exam \n \n\n An important part of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? ",
+          "excerptSha256": "803dbd53505ae13a03c04a3e5916e34fe7ce5d3dfcd145977622ca0f766104da",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "7349b098bdbf9a46c9e6bd09c54164736790ebca626cd0f66b6c5905c73c3dda",
+      "title": "Diagnosis and management of migraine in ten steps",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+      "section": "Tab3: Acute migraine treatment",
+      "summary": "Group: Second-line medication\nDrug class: Triptans\nDrug: Zolmitriptan\nDosage and route: 2.5 or 5 mg oral or 5 mg intranasal\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Almotriptan\nDosage and route: 12.5 mg oral\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Eletriptan\nDosage and route: 20, 40 or 80 mg oral\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Frovatriptan\nDosage and route: 2.5 mg oral\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Naratriptan\nDosage and route: 2.5 mg oral\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Rizatriptan\nDosage and route: 10 mg oral tablet (5 mg if treated with propranolol) or 10 mg mouth-dispersible wafers\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "primary_guideline; publisher_reviewed. EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+      "retrievedPassages": [
+        {
+          "id": "7349b098bdbf9a46c9e6bd09c54164736790ebca626cd0f66b6c5905c73c3dda",
+          "sourceId": "pmc:PMC8321897",
+          "excerpt": "Group: Second-line medication\nDrug class: Triptans\nDrug: Zolmitriptan\nDosage and route: 2.5 or 5 mg oral or 5 mg intranasal\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Almotriptan\nDosage and route: 12.5 mg oral\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Eletriptan\nDosage and route: 20, 40 or 80 mg oral\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Frovatriptan\nDosage and route: 2.5 mg oral\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Naratriptan\nDosage and route: 2.5 mg oral\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Rizatriptan\nDosage and route: 10 mg oral tablet (5 mg if treated with propranolol) or 10 mg mouth-dispersible wafers\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura",
+          "excerptSha256": "605c40b91a048fcea07c472de2dd19cda0e3457ace36cd84e068692f245399ee",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+          "kind": "primary_guideline",
+          "limitations": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion."
+        }
+      ]
+    },
+    {
+      "id": "b5a99b4f87af8e043cb1d20ce0477e90d7a713b04b7eee889c13700063cbc332",
+      "title": "Diagnosis and management of migraine in ten steps",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+      "section": "Full-text body / Step 2: Diagnosis of migraine",
+      "summary": " aura symptom is unilateralat least one aura symptom is positivethe aura is accompanied with or followed by headache within 60 min4.Not better accounted for by another ICHD-3 diagnosisChronic migraine\nHeadache (migraine-like or tension-type-like) on ≥15 days/month for >3 months that fulfil criteria 2 and 3Attacks occur in an individual who has had at least five attacks that fulfil the criteria for migraine without aura and/or for migraine with auraOn ≥8 days/month for >3 months, any of the following criteria are met:criteria 3 and 4 for migraine without auracriteria 2 and 3 for migraine with aurabelieved by the patient to be migraine at onset and relieved by a triptan or ergot derivative4.Not better accounted for by another ICHD-3 diagnosisMedication-overuse headacheHeadache on ≥15 days/month in an individual with a pre-existing headache disorderRegular overuse for >3 months of one or more drugs that can be taken for acute and/or symptomatic treatment of headache (regular intake of one or more non-opioid analgesics on ≥15 days/month for ≥3 months or any other acute medication or combination of medications on ≥10 days/month for ≥3 months)Not better accounted for by another ICHD-3 diagnosis",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "primary_guideline; publisher_reviewed. EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+      "retrievedPassages": [
+        {
+          "id": "b5a99b4f87af8e043cb1d20ce0477e90d7a713b04b7eee889c13700063cbc332",
+          "sourceId": "pmc:PMC8321897",
+          "excerpt": " aura symptom is unilateralat least one aura symptom is positivethe aura is accompanied with or followed by headache within 60 min4.Not better accounted for by another ICHD-3 diagnosisChronic migraine\nHeadache (migraine-like or tension-type-like) on ≥15 days/month for >3 months that fulfil criteria 2 and 3Attacks occur in an individual who has had at least five attacks that fulfil the criteria for migraine without aura and/or for migraine with auraOn ≥8 days/month for >3 months, any of the following criteria are met:criteria 3 and 4 for migraine without auracriteria 2 and 3 for migraine with aurabelieved by the patient to be migraine at onset and relieved by a triptan or ergot derivative4.Not better accounted for by another ICHD-3 diagnosisMedication-overuse headacheHeadache on ≥15 days/month in an individual with a pre-existing headache disorderRegular overuse for >3 months of one or more drugs that can be taken for acute and/or symptomatic treatment of headache (regular intake of one or more non-opioid analgesics on ≥15 days/month for ≥3 months or any other acute medication or combination of medications on ≥10 days/month for ≥3 months)Not better accounted for by another ICHD-3 diagnosis",
+          "excerptSha256": "e3c65c0fc91157b8c1ffa9b643ea2b90210682f22ef555f176fe9897ca8dc702",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+          "kind": "primary_guideline",
+          "limitations": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion."
+        }
+      ]
+    },
+    {
+      "id": "7dd82130f4934376657800615797cd6a1204420e623b7d125bf535322758169d",
+      "title": "Tension-Type Headache",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/tension-headache.md",
+      "section": "Treatment",
+      "summary": "### Acute (Episodic TTH — Abortive)\n- **Aspirin 650-1000 mg PO**: first-line for acute TTH; NNT approximately 5 for complete headache relief at 2 hours\n- **Ibuprofen 400-800 mg PO**: first-line; similar efficacy to aspirin\n- **Acetaminophen 1000 mg PO**: slightly less effective than NSAIDs but useful when NSAIDs contraindicated\n- **Combination analgesic** (aspirin 500 mg + acetaminophen 500 mg + caffeine 130 mg): superior to single agents; caffeine potentiates analgesic effect — limit to 2 doses/week to avoid medication-overuse headache\n\nAvoid: opioids, barbiturates, butalbital-containing compounds — all have high medication-overuse potential and worsen long-term headache burden.\n\n### Preventive (Chronic TTH or Frequent Episodic — ≥4 days/month)\n- **Amitriptyline 10-75 mg PO at bedtime**: most evidence-based preventive for TTH; start 10 mg, titrate every 2-4 weeks; response seen at 4-8 weeks; NNT approximately 3 for 50% headache reduction\n- **Mirtazapine 15-30 mg PO at bedtime**: alternative, especially if amitriptyline poorly tolerated\n- **Venlafaxine 75-150 mg PO daily**: SNRI option; evidence for TTH prevention\n\n### Non-Pharmacologic (Strong Evidence)\n- Cognitive-behavioral therapy (CBT): effective for chronic TTH; addresses stress and pain catastrophizing\n- Relaxation training / biofeedback: comparable to amitriptyline in randomized trials for chronic TTH\n- Physical therapy: pericranial muscle stretching, postural correction, cervicothoracic strengthening\n- Sleep hygiene, hydration, regular meals, stress reduction — address precipitating factors\n\n### Medication-Overuse Prevention",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "7dd82130f4934376657800615797cd6a1204420e623b7d125bf535322758169d",
+          "sourceId": "openem:tension-headache",
+          "excerpt": "### Acute (Episodic TTH — Abortive)\n- **Aspirin 650-1000 mg PO**: first-line for acute TTH; NNT approximately 5 for complete headache relief at 2 hours\n- **Ibuprofen 400-800 mg PO**: first-line; similar efficacy to aspirin\n- **Acetaminophen 1000 mg PO**: slightly less effective than NSAIDs but useful when NSAIDs contraindicated\n- **Combination analgesic** (aspirin 500 mg + acetaminophen 500 mg + caffeine 130 mg): superior to single agents; caffeine potentiates analgesic effect — limit to 2 doses/week to avoid medication-overuse headache\n\nAvoid: opioids, barbiturates, butalbital-containing compounds — all have high medication-overuse potential and worsen long-term headache burden.\n\n### Preventive (Chronic TTH or Frequent Episodic — ≥4 days/month)\n- **Amitriptyline 10-75 mg PO at bedtime**: most evidence-based preventive for TTH; start 10 mg, titrate every 2-4 weeks; response seen at 4-8 weeks; NNT approximately 3 for 50% headache reduction\n- **Mirtazapine 15-30 mg PO at bedtime**: alternative, especially if amitriptyline poorly tolerated\n- **Venlafaxine 75-150 mg PO daily**: SNRI option; evidence for TTH prevention\n\n### Non-Pharmacologic (Strong Evidence)\n- Cognitive-behavioral therapy (CBT): effective for chronic TTH; addresses stress and pain catastrophizing\n- Relaxation training / biofeedback: comparable to amitriptyline in randomized trials for chronic TTH\n- Physical therapy: pericranial muscle stretching, postural correction, cervicothoracic strengthening\n- Sleep hygiene, hydration, regular meals, stress reduction — address precipitating factors\n\n### Medication-Overuse Prevention",
+          "excerptSha256": "84976c6fdb3864a1dfdb7ba5980d31bbd907b57ab73547d60d3e46c2a8b51c50",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "73653a341b4841d483b11a9308969e558e9256b1f9e82f7deba1b96982b273cc",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "4b414539b327a45140589e8bd99223cd58b8e4dd1bbbf4823f41d2d5b8cb229f",
+      "title": "Diagnosis and management of migraine in ten steps",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+      "section": "Full-text body / Step 2: Diagnosis of migraine / Differential diagnoses",
+      "summary": "osis for chronic migraine30 (Box 1). This disorder commonly develops from overuse of acute medication to treat migraine attacks, so the two disorders are often conflated (see Step 8 for more on MOH).\n\nSome other secondary headache disorders can present with features that suggest migraine, but specific red flags should create suspicion (Table 2). Red flags in the medical history include thunderclap headache, atypical aura and head trauma. Red flags in the physical examination include unexplained fever, impaired memory and focal neurological symptoms (Table 2). These red flags are indications for further investigation, such as neuroimaging, blood samples or lumbar puncture31.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "primary_guideline; publisher_reviewed. EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+      "retrievedPassages": [
+        {
+          "id": "4b414539b327a45140589e8bd99223cd58b8e4dd1bbbf4823f41d2d5b8cb229f",
+          "sourceId": "pmc:PMC8321897",
+          "excerpt": "osis for chronic migraine30 (Box 1). This disorder commonly develops from overuse of acute medication to treat migraine attacks, so the two disorders are often conflated (see Step 8 for more on MOH).\n\nSome other secondary headache disorders can present with features that suggest migraine, but specific red flags should create suspicion (Table 2). Red flags in the medical history include thunderclap headache, atypical aura and head trauma. Red flags in the physical examination include unexplained fever, impaired memory and focal neurological symptoms (Table 2). These red flags are indications for further investigation, such as neuroimaging, blood samples or lumbar puncture31.",
+          "excerptSha256": "d2a6d63b429d1c928d75770e18cec9e515f27bf33dbf644f8336c1ef299fe61b",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+          "kind": "primary_guideline",
+          "limitations": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion."
+        }
+      ]
+    },
+    {
+      "id": "426f24a3bc93d78a642eb8d367b48dfcb2c71eac1b89ee0e88d1e1b4da3b5803",
+      "title": "Diagnosis and management of migraine in ten steps",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+      "section": "Full-text body / Step 1: When to suspect migraine / Migraine with aura",
+      "summary": "Approximately one third of individuals with migraine experience aura5, either with every attack or with some attacks. Aura is defined as transient focal neurological symptoms that usually precede, but sometimes accompany, the headache phase of a migraine attack4. In >90% of affected individuals, aura manifests visually4,16, classically as fortification spectra4. Sensory symptoms occur in ~31% of affected individuals and are usually experienced as predominantly unilateral paraesthesia (pins and needles and/or numbness) that spreads gradually in the face or arm16.\n\nLess common aura symptoms include aphasic speech disturbance, brainstem symptoms (such as dysarthria and vertigo), motor weakness (in hemiplegic migraine) and retinal symptoms (for example, repeated monocular visual disturbances)4. Aura symptoms can be similar to those of transient ischaemic attacks (TIA), but can be differentiated on the basis that aura symptoms often spread gradually (over ≥5 min) and occur in succession, whereas symptoms of a TIA have a sudden, simultaneous onset4.\n\nNotably, migraine with aura and migraine without aura can coexist. Many individuals with migraine with aura also experience attacks that are not preceded by aura4. In such cases, migraine with aura and migraine without aura should both be diagnosed.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "primary_guideline; publisher_reviewed. EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+      "retrievedPassages": [
+        {
+          "id": "426f24a3bc93d78a642eb8d367b48dfcb2c71eac1b89ee0e88d1e1b4da3b5803",
+          "sourceId": "pmc:PMC8321897",
+          "excerpt": "Approximately one third of individuals with migraine experience aura5, either with every attack or with some attacks. Aura is defined as transient focal neurological symptoms that usually precede, but sometimes accompany, the headache phase of a migraine attack4. In >90% of affected individuals, aura manifests visually4,16, classically as fortification spectra4. Sensory symptoms occur in ~31% of affected individuals and are usually experienced as predominantly unilateral paraesthesia (pins and needles and/or numbness) that spreads gradually in the face or arm16.\n\nLess common aura symptoms include aphasic speech disturbance, brainstem symptoms (such as dysarthria and vertigo), motor weakness (in hemiplegic migraine) and retinal symptoms (for example, repeated monocular visual disturbances)4. Aura symptoms can be similar to those of transient ischaemic attacks (TIA), but can be differentiated on the basis that aura symptoms often spread gradually (over ≥5 min) and occur in succession, whereas symptoms of a TIA have a sudden, simultaneous onset4.\n\nNotably, migraine with aura and migraine without aura can coexist. Many individuals with migraine with aura also experience attacks that are not preceded by aura4. In such cases, migraine with aura and migraine without aura should both be diagnosed.",
+          "excerptSha256": "1eeb4882d7b2f4282d17f76a9a9d2d5e28a6fca72857af3701861306dacd879e",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+          "kind": "primary_guideline",
+          "limitations": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion."
+        }
+      ]
+    }
+  ],
+  "safetyFloor": null,
+  "rejectedAnswer": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "reviewPriority": "priority",
+    "workType": "medication_request",
+    "reason": "Active attack with the patient's usual, unchanged migraine features and no reported red flags, but rescue medication is exhausted; time-sensitive prescribing review can safely start in messaging without an in-person visit today.",
+    "patientMessage": "I recommend a Counsel clinician review your sumatriptan refill request in this thread today, since your attack is active and you're out of rescue medication. Your described pattern matches your usual migraines, so an in-person visit doesn't appear necessary now. I can't guarantee today's review — if it isn't available, contact your usual prescriber or another same-day prescribing service. Call 911 for sudden severe \"worst ever\" headache, weakness, numbness or trouble speaking. Seek urgent in-person assessment the same day, without waiting for a reply here, if you develop fever, neck stiffness, or a headache clearly different from your usual pattern.",
+    "differential": [
+      "Recurrence of the patient's known migraine, unchanged from usual pattern",
+      "Secondary headache less likely given typical, familiar features, but red-flag history not fully reported",
+      "Medication-overuse pattern unknown; attack frequency and prior triptan use not reported"
+    ],
+    "redFlags": [
+      {
+        "concern": "Thunderclap/sudden severe headache",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Change from usual headache pattern",
+        "status": "denied",
+        "quote": "same one-sided throbbing and light sensitivity I always get"
+      },
+      {
+        "concern": "Focal neurological symptoms or atypical aura",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Fever or neck stiffness",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Head trauma",
+        "status": "unknown",
+        "quote": ""
+      }
+    ],
+    "vitalSigns": "No vital signs reported; blood pressure, temperature, heart rate and whether any measurement was taken are unknown.",
+    "questions": [],
+    "evidenceLimitations": "The 2021 consensus tables list red flags and triptan contraindications but are dated and do not authorize prescribing or confirm this patient's eligibility; cardiovascular history, blood pressure and aura type are unreported, leaving contraindication screening to the reviewing clinician. Service availability and clinician acceptance are not established.",
+    "transportIntent": null,
+    "citations": [
+      {
+        "passageId": "4dc07d42df8d2579816619fd6483e91b8a1f6a7172a93844a7e77bd0592cbbe9",
+        "quote": "Indication: Meningitis, subarachnoid haemorrhage",
+        "claim": "Neck stiffness with headache is a red flag suggesting meningitis or subarachnoid haemorrhage, warranting urgent assessment.",
+        "applicability": "applicable",
+        "limitation": "Not reported by this patient; listed as a physical-examination finding."
+      },
+      {
+        "passageId": "1836c31f7ff0c81977ef05aaa725379e6b1b5bf5eab27adb054776ae69f7b5e1",
+        "quote": "Contraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura",
+        "claim": "Sumatriptan has listed contraindications including cardiovascular or cerebrovascular disease and hemiplegic migraine that a prescriber should check.",
+        "applicability": "uncertain",
+        "limitation": "Patient's cardiovascular history and aura type are unreported; dated source, not a prescribing authorization."
+      }
+    ]
+  },
+  "failure": "CLINICIAN_REVIEW_REQUIRED",
+  "routingPolicy": "five-route-queue/v2",
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "fail",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "pass",
+      "detail": "Checks explicit timing/destination tokens or exact independently reviewed emergency-transport binding; not clinical validation or verification of EMS activation."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen from a COPD diagnosis alone; targeted medication-instruction check."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "pass",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "emergency_transport",
+      "status": "not_assessed",
+      "detail": "LEGACY_TEXT_CONTRACT: typed transport intent and independent review are bound to patient and draft quotations; this is not externally verified EMS activation or clinical validation."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Cited passage identity and exact quote match; this does not establish claim support or applicability."
+    },
+    {
+      "id": "independent_review",
+      "status": "pass",
+      "detail": "Cross-vendor reviewer accepted this draft against seven criteria; application contract and care-reconciliation gates are separate. Not physician calibration or clinical approval."
+    },
+    {
+      "id": "care_reconciliation",
+      "status": "not_assessed",
+      "detail": "No reduction of already-issued care setting or emergency transport was requested."
+    }
+  ],
+  "usage": {
+    "inputTokens": 60307,
+    "outputTokens": 4640
+  },
+  "graph": {
+    "version": "evidence-graph/v13",
+    "mode": "hybrid",
+    "clinicalPolicyVersion": "disposition-clinical-policy/v1",
+    "context": {
+      "queries": [
+        "migraine one-sided throbbing light sensitivity",
+        "medication refill sumatriptan efficacy prior response",
+        "migraine red flags warning signs severity"
+      ],
+      "findings": [
+        {
+          "finding": "Long-standing migraine pattern with typical features",
+          "status": "reported",
+          "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get"
+        },
+        {
+          "finding": "Current migraine episode",
+          "status": "reported",
+          "quote": "My usual migraine started this morning"
+        },
+        {
+          "finding": "Sumatriptan previously effective",
+          "status": "reported",
+          "quote": "I'm out of sumatriptan"
+        },
+        {
+          "finding": "One-sided headache",
+          "status": "reported",
+          "quote": "one-sided throbbing"
+        },
+        {
+          "finding": "Light sensitivity",
+          "status": "reported",
+          "quote": "light sensitivity I always get"
+        },
+        {
+          "finding": "No acute change from baseline pattern",
+          "status": "reported",
+          "quote": "same one-sided throbbing and light sensitivity I always get"
+        }
+      ],
+      "question": null
+    },
+    "contextAdmission": {
+      "clinicalContextAccepted": true,
+      "querySource": "accepted_context",
+      "queries": [
+        "migraine one-sided throbbing light sensitivity",
+        "medication refill sumatriptan efficacy prior response",
+        "migraine red flags warning signs severity"
+      ],
+      "clinicalValidation": false
+    },
+    "safety": {
+      "action": "PRIORITY_ASYNC",
+      "basis": [
+        {
+          "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get",
+          "interpretation": "Current active migraine with typical established features reported by the patient this morning",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "I'm out of sumatriptan and would like a refill",
+          "interpretation": "Patient has exhausted access to established acute migraine rescue medication and requires prescribing review and potential refill",
+          "currentPatient": true,
+          "present": true
+        }
+      ],
+      "actionBasis": null,
+      "reason": "Active usual migraine with exhausted rescue medication requires time-sensitive clinician prescribing assessment.",
+      "patientMessage": "",
+      "physicalRequirement": null
+    },
+    "safetyAdmission": {
+      "status": "not_requested",
+      "code": "NO_EARLY_ACTION",
+      "proposedAction": "PRIORITY_ASYNC",
+      "basisMode": null,
+      "supportingBasisIndices": [],
+      "contextualBasisIndices": [],
+      "clinicalValidation": false
+    },
+    "questionPublication": {
+      "status": "not_proposed",
+      "blocksRouting": false
+    },
+    "transportAdmission": {
+      "status": "legacy",
+      "code": "LEGACY_TEXT_CONTRACT",
+      "clinicalValidation": false
+    },
+    "ownershipLanguageReview": {
+      "raw": {
+        "id": "no_unconfirmed_handoff",
+        "status": "pass",
+        "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+      },
+      "findings": [],
+      "status": "not_flagged",
+      "reviewedDraftHash": "16ca61af0ae31c058aa1d8c7c7395f7b66b1b2786dd99f843add1f5d148d75f0",
+      "taskReviews": [],
+      "clinicalApproval": false
+    },
+    "retrieval": [
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "migraine one-sided throbbing light sensitivity",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "611e18d63434ae5d6eb6bc7c2299149c532cb7655d9dfa827e1975d247df284b",
+              "end": 1778,
+              "hash": "f361e0cfb4280839d2eece36d6f9915ce3d38bcb26479b2c1137ea00e12f7bfa",
+              "text": "What are migraines? \n Migraines are a recurring type of headache. They cause moderate to severe pain that is throbbing or pulsing. The pain is often on one side of your head. You may also have other symptoms, such as nausea and weakness. You may be sensitive to light and sound. \n\n What causes migraines? \n Researchers believe that migraine has a genetic cause. There are also a number of factors that can trigger a migraine. These factors vary from person to person, and they include: \n Stress \n Anxiety \n Hormonal changes in women \n Bright or flashing lights \n Loud noises \n Strong smells \n Medicines \n Too much or not enough sleep \n Sudden changes in weather or environment \n Overexertion (too much physical activity) \n Tobacco \n Caffeine or caffeine withdrawal \n Skipped meals \n Medication overuse (taking medicine for migraines too often) \n \n\n Some people have found that certain foods or ingredients can trigger headaches, especially when they are combined with other triggers. These foods and ingredients include: \n Alcohol \n Chocolate \n Aged cheeses \n Monosodium glutamate (MSG) \n Some fruits and nuts \n Fermented or pickled goods \n Yeast \n Cured or processed meats \n \n\n\n Who is at risk for migraines? \n About 12% of Americans get migraines. They can affect anyone, but you are more likely to have them if you: \n Are a woman. Women are three times more likely than men to get migraines. \n Have a family history of migraines. Most people with migraines have family members who have migraines. \n Have other medical conditions, such as depression , anxiety , bipolar disorder , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: ",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:3157",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Migraine\n\nHealth-topic summary\nWhat are migraines? \n Migraines are a recurring type of headache. They cause moderate to severe pain that is throbbing or pulsing. The pain is often on one side of your head. You may also have other symptoms, such as nausea and weakness. You may be sensitive to light and sound. \n\n What causes migraines? \n Researchers believe that migraine has a genetic cause. There are also a number of factors that can trigger a migraine. These factors vary from person to person, and they include: \n Stress \n Anxiety \n Hormonal changes in women \n Bright or flashing lights \n Loud noises \n Strong smells \n Medicines \n Too much or not enough sleep \n Sudden changes in weather or environment \n Overexertion (too much physical activity) \n Tobacco \n Caffeine or caffeine withdrawal \n Skipped meals \n Medication overuse (taking medicine for migraines too often) \n \n\n Some people have found that certain foods or ingredients can trigger headaches, especially when they are combined with other triggers. These foods and ingredients include: \n Alcohol \n Chocolate \n Aged cheeses \n Monosodium glutamate (MSG) \n Some fruits and nuts \n Fermented or pickled goods \n Yeast \n Cured or processed meats \n \n\n\n Who is at risk for migraines? \n About 12% of Americans get migraines. They can affect anyone, but you are more likely to have them if you: \n Are a woman. Women are three times more likely than men to get migraines. \n Have a family history of migraines. Most people with migraines have family members who have migraines. \n Have other medical conditions, such as depression , anxiety , bipolar disorder , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: "
+            },
+            "document": {
+              "id": "medlineplus:3157",
+              "url": "https://medlineplus.gov/migraine.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Migraine",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:273",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Migraine Disorders"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.03278688524590164,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n Prodome. This phase starts up to 24 hours before you get the migraine. You have early signs and symptoms, such as food cravings, unexplained mood changes, uncontrollable yawning, fluid retention, and increased urination. \n Aura. If you have this phase, you might see flashing or bright lights or zi"
+            }
+          },
+          {
+            "chunk": {
+              "id": "5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+              "end": 3340,
+              "hash": "803dbd53505ae13a03c04a3e5916e34fe7ce5d3dfcd145977622ca0f766104da",
+              "text": "er , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: \n Prodome. This phase starts up to 24 hours before you get the migraine. You have early signs and symptoms, such as food cravings, unexplained mood changes, uncontrollable yawning, fluid retention, and increased urination. \n Aura. If you have this phase, you might see flashing or bright lights or zig-zag lines. You may have muscle weakness or feel like you are being touched or grabbed. An aura can happen just before or during a migraine. \n Headache. A migraine usually starts gradually and then becomes more severe. It typically causes throbbing or pulsing pain, which is often on one side of your head. But sometimes you can have a migraine without a headache. Other migraine symptoms may include \n \n Increased sensitivity to light, noise, and odors \n Nausea and vomiting \n Worsened pain when you move, cough, or sneeze \n \n Postdrome (following the headache). You may feel exhausted, weak, and confused after a migraine. This can last up to a day. \n \n\n Migraines are more common in the morning; people often wake up with them. Some people have migraines at predictable times, such as before menstruation or on weekends following a stressful week of work. \n\n How are migraines diagnosed? \n To make a diagnosis, your health care provider will: \n Take your medical history \n Ask about your symptoms \n Do a physical and neurological exam \n \n\n An important part of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? ",
+              "start": 1578,
+              "section": 0,
+              "documentId": "medlineplus:3157",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Migraine\n\nHealth-topic summary\ner , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: \n Prodome. This phase starts up to 24 hours before you get the migraine. You have early signs and symptoms, such as food cravings, unexplained mood changes, uncontrollable yawning, fluid retention, and increased urination. \n Aura. If you have this phase, you might see flashing or bright lights or zig-zag lines. You may have muscle weakness or feel like you are being touched or grabbed. An aura can happen just before or during a migraine. \n Headache. A migraine usually starts gradually and then becomes more severe. It typically causes throbbing or pulsing pain, which is often on one side of your head. But sometimes you can have a migraine without a headache. Other migraine symptoms may include \n \n Increased sensitivity to light, noise, and odors \n Nausea and vomiting \n Worsened pain when you move, cough, or sneeze \n \n Postdrome (following the headache). You may feel exhausted, weak, and confused after a migraine. This can last up to a day. \n \n\n Migraines are more common in the morning; people often wake up with them. Some people have migraines at predictable times, such as before menstruation or on weekends following a stressful week of work. \n\n How are migraines diagnosed? \n To make a diagnosis, your health care provider will: \n Take your medical history \n Ask about your symptoms \n Do a physical and neurological exam \n \n\n An important part of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? "
+            },
+            "document": {
+              "id": "medlineplus:3157",
+              "url": "https://medlineplus.gov/migraine.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Migraine",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:273",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Migraine Disorders"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.03200204813108039,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "you are more likely to have them if you: \n Are a woman. Women are three times more likely than men to get migraines. \n Have a family history of migraines. Most people with migraines have family members who have migraines. \n Have other medical conditions, such as depression , anxiety , bipolar disord",
+              "after": "\n There is no cure for migraines. Treatment focuses on relieving symptoms and preventing additional attacks. \n\n There are different types of medicines to relieve symptoms. They include triptan drugs, ergotamine drugs, and pain relievers . The sooner you take the medicine, the more effective it is. \n"
+            }
+          },
+          {
+            "chunk": {
+              "id": "b5a99b4f87af8e043cb1d20ce0477e90d7a713b04b7eee889c13700063cbc332",
+              "end": 2200,
+              "hash": "e3c65c0fc91157b8c1ffa9b643ea2b90210682f22ef555f176fe9897ca8dc702",
+              "text": " aura symptom is unilateralat least one aura symptom is positivethe aura is accompanied with or followed by headache within 60 min4.Not better accounted for by another ICHD-3 diagnosisChronic migraine\nHeadache (migraine-like or tension-type-like) on ≥15 days/month for >3 months that fulfil criteria 2 and 3Attacks occur in an individual who has had at least five attacks that fulfil the criteria for migraine without aura and/or for migraine with auraOn ≥8 days/month for >3 months, any of the following criteria are met:criteria 3 and 4 for migraine without auracriteria 2 and 3 for migraine with aurabelieved by the patient to be migraine at onset and relieved by a triptan or ergot derivative4.Not better accounted for by another ICHD-3 diagnosisMedication-overuse headacheHeadache on ≥15 days/month in an individual with a pre-existing headache disorderRegular overuse for >3 months of one or more drugs that can be taken for acute and/or symptomatic treatment of headache (regular intake of one or more non-opioid analgesics on ≥15 days/month for ≥3 months or any other acute medication or combination of medications on ≥10 days/month for ≥3 months)Not better accounted for by another ICHD-3 diagnosis",
+              "start": 993,
+              "section": 11,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Full-text body / Step 2: Diagnosis of migraine",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nFull-text body / Step 2: Diagnosis of migraine\n aura symptom is unilateralat least one aura symptom is positivethe aura is accompanied with or followed by headache within 60 min4.Not better accounted for by another ICHD-3 diagnosisChronic migraine\nHeadache (migraine-like or tension-type-like) on ≥15 days/month for >3 months that fulfil criteria 2 and 3Attacks occur in an individual who has had at least five attacks that fulfil the criteria for migraine without aura and/or for migraine with auraOn ≥8 days/month for >3 months, any of the following criteria are met:criteria 3 and 4 for migraine without auracriteria 2 and 3 for migraine with aurabelieved by the patient to be migraine at onset and relieved by a triptan or ergot derivative4.Not better accounted for by another ICHD-3 diagnosisMedication-overuse headacheHeadache on ≥15 days/month in an individual with a pre-existing headache disorderRegular overuse for >3 months of one or more drugs that can be taken for acute and/or symptomatic treatment of headache (regular intake of one or more non-opioid analgesics on ≥15 days/month for ≥3 months or any other acute medication or combination of medications on ≥10 days/month for ≥3 months)Not better accounted for by another ICHD-3 diagnosis"
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; selected tables Tab2, Tab3 normalized as header/value rows; other tables, figures and references omitted.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+              "publicationDate": "2021"
+            },
+            "score": 0.029631255487269532,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "ing fully reversible aura symptoms:visualsensoryspeech and/or languagemotorbrainstemretinal3.At least three of the following six characteristics:at least one aura symptom spreads gradually over ≥5 mintwo or more aura symptoms occur in successioneach individual aura symptom lasts 5–60 minat least one",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "426f24a3bc93d78a642eb8d367b48dfcb2c71eac1b89ee0e88d1e1b4da3b5803",
+              "end": 1310,
+              "hash": "1eeb4882d7b2f4282d17f76a9a9d2d5e28a6fca72857af3701861306dacd879e",
+              "text": "Approximately one third of individuals with migraine experience aura5, either with every attack or with some attacks. Aura is defined as transient focal neurological symptoms that usually precede, but sometimes accompany, the headache phase of a migraine attack4. In >90% of affected individuals, aura manifests visually4,16, classically as fortification spectra4. Sensory symptoms occur in ~31% of affected individuals and are usually experienced as predominantly unilateral paraesthesia (pins and needles and/or numbness) that spreads gradually in the face or arm16.\n\nLess common aura symptoms include aphasic speech disturbance, brainstem symptoms (such as dysarthria and vertigo), motor weakness (in hemiplegic migraine) and retinal symptoms (for example, repeated monocular visual disturbances)4. Aura symptoms can be similar to those of transient ischaemic attacks (TIA), but can be differentiated on the basis that aura symptoms often spread gradually (over ≥5 min) and occur in succession, whereas symptoms of a TIA have a sudden, simultaneous onset4.\n\nNotably, migraine with aura and migraine without aura can coexist. Many individuals with migraine with aura also experience attacks that are not preceded by aura4. In such cases, migraine with aura and migraine without aura should both be diagnosed.",
+              "start": 0,
+              "section": 4,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Full-text body / Step 1: When to suspect migraine / Migraine with aura",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nFull-text body / Step 1: When to suspect migraine / Migraine with aura\nApproximately one third of individuals with migraine experience aura5, either with every attack or with some attacks. Aura is defined as transient focal neurological symptoms that usually precede, but sometimes accompany, the headache phase of a migraine attack4. In >90% of affected individuals, aura manifests visually4,16, classically as fortification spectra4. Sensory symptoms occur in ~31% of affected individuals and are usually experienced as predominantly unilateral paraesthesia (pins and needles and/or numbness) that spreads gradually in the face or arm16.\n\nLess common aura symptoms include aphasic speech disturbance, brainstem symptoms (such as dysarthria and vertigo), motor weakness (in hemiplegic migraine) and retinal symptoms (for example, repeated monocular visual disturbances)4. Aura symptoms can be similar to those of transient ischaemic attacks (TIA), but can be differentiated on the basis that aura symptoms often spread gradually (over ≥5 min) and occur in succession, whereas symptoms of a TIA have a sudden, simultaneous onset4.\n\nNotably, migraine with aura and migraine without aura can coexist. Many individuals with migraine with aura also experience attacks that are not preceded by aura4. In such cases, migraine with aura and migraine without aura should both be diagnosed."
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; selected tables Tab2, Tab3 normalized as header/value rows; other tables, figures and references omitted.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+              "publicationDate": "2021"
+            },
+            "score": 0.02946912242686891,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "430038210bf479211035dbbaa7be26a2344136b0c6638586f6ba2f9a43a22c0e",
+              "end": 1789,
+              "hash": "79d9500f46a09fbfd26f3f6287c77469897c762d36540b418792dd888c4fcf31",
+              "text": "What is heart failure? \n Heart failure means that your heart can't pump enough oxygen-rich blood to meet your body's needs. Heart failure doesn't mean that your heart has stopped or is about to stop beating. But without enough blood flow, your organs may not work well, which can cause serious problems. \n\n Heart failure can affect one or both sides of your heart: \n \n With right-sided heart failure , your heart is too weak to pump enough blood to your lungs to get oxygen. \n With left-sided heart failure , your heart can't pump enough oxygen-rich blood out to your body. This happens when the left side of your heart becomes either:\n \n Too weak to pump enough blood. \n Too thick or stiff to relax and fill with enough blood. \n \n \n \n\n Left-sided heart failure is more common than right-sided heart failure. \n\n What causes heart failure? \n Heart failure can start suddenly after a medical condition or injury damages your heart muscle. But in most cases, heart failure develops slowly from long-term medical conditions. \n\n Conditions that can cause heart failure include: \n \n Arrhythmia (a problem with the rate or rhythm of your heartbeat) \n Cardiomyopathy \n Congenital heart defects or other types of heart diseases that you are born with \n Coronary artery disease \n Endocarditis \n Heart attack \n Heart valve diseases \n High blood pressure \n A blood clot in your lung \n Diabetes \n Certain severe lung diseases , such as COPD (chronic obstructive pulmonary disease) \n Obesity \n \n\n Over time, left-sided heart failure can lead to right-sided heart failure. \n\n Who is more likely to develop heart failure? \n Heart failure can happen at any age. It happens to both men and women, but men often develop it at a younger age than women. Your chance of developing heart failure increases if: \n ",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:199",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Heart Failure\nCHF; Cardiac failure; Congestive heart failure; Left-sided heart failure; Right-sided heart failure\nHealth-topic summary\nWhat is heart failure? \n Heart failure means that your heart can't pump enough oxygen-rich blood to meet your body's needs. Heart failure doesn't mean that your heart has stopped or is about to stop beating. But without enough blood flow, your organs may not work well, which can cause serious problems. \n\n Heart failure can affect one or both sides of your heart: \n \n With right-sided heart failure , your heart is too weak to pump enough blood to your lungs to get oxygen. \n With left-sided heart failure , your heart can't pump enough oxygen-rich blood out to your body. This happens when the left side of your heart becomes either:\n \n Too weak to pump enough blood. \n Too thick or stiff to relax and fill with enough blood. \n \n \n \n\n Left-sided heart failure is more common than right-sided heart failure. \n\n What causes heart failure? \n Heart failure can start suddenly after a medical condition or injury damages your heart muscle. But in most cases, heart failure develops slowly from long-term medical conditions. \n\n Conditions that can cause heart failure include: \n \n Arrhythmia (a problem with the rate or rhythm of your heartbeat) \n Cardiomyopathy \n Congenital heart defects or other types of heart diseases that you are born with \n Coronary artery disease \n Endocarditis \n Heart attack \n Heart valve diseases \n High blood pressure \n A blood clot in your lung \n Diabetes \n Certain severe lung diseases , such as COPD (chronic obstructive pulmonary disease) \n Obesity \n \n\n Over time, left-sided heart failure can lead to right-sided heart failure. \n\n Who is more likely to develop heart failure? \n Heart failure can happen at any age. It happens to both men and women, but men often develop it at a younger age than women. Your chance of developing heart failure increases if: \n "
+            },
+            "document": {
+              "id": "medlineplus:199",
+              "url": "https://medlineplus.gov/heartfailure.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Heart Failure",
+              "aliases": [
+                "CHF",
+                "Cardiac failure",
+                "Congestive heart failure",
+                "Left-sided heart failure",
+                "Right-sided heart failure"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "6ae647cd4bf8fc4ef73bd0b9239efed8f741fc7938f9c4883fc2f4f0b735a5b1",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5617",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:278",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3447",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Heart Failure"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.015873015873015872,
+            "channels": [
+              "lexical"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n You're 65 years old or older. Aging can weaken and stiffen your heart muscle. \n Your family health history includes relatives who have or have had heart failure. \n You have changes in your genes that affect your heart tissue. \n You have habits that can harm your heart , including:\n \n Smoking \n Eat"
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 48.41112499998417,
+          "embeddingMs": 1031.893291000044,
+          "vectorMs": 24.85795799997868,
+          "totalMs": 1156.9771670000046
+        },
+        "warnings": [],
+        "embeddingTokens": 9,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "medication refill sumatriptan efficacy prior response",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "1836c31f7ff0c81977ef05aaa725379e6b1b5bf5eab27adb054776ae69f7b5e1",
+              "end": 1403,
+              "hash": "024b5cde6e73991ba34aae0185440f2afbd0dd375618990427265b4d76714cba",
+              "text": "Group: First-line medication\nDrug class: NSAIDs\nDrug: Acetylsalicylic acid\nDosage and route: 900–1,000 mg oral\nContraindications: Gastrointestinal bleeding, heart failure\n\nGroup: First-line medication\nDrug class: NSAIDs\nDrug: Ibuprofen\nDosage and route: 400–600 mg oral\nContraindications: Gastrointestinal bleeding, heart failure\n\nGroup: First-line medication\nDrug class: NSAIDs\nDrug: Diclofenac potassium\nDosage and route: 50 mg oral (soluble)\nContraindications: Gastrointestinal bleeding, heart failure\n\nGroup: First-line medication\nDrug class: Other simple analgesics (if NSAIDs are contraindicated)\nDrug: Paracetamol\nDosage and route: 1,000 mg oral\nContraindications: Hepatic disease, renal failure\n\nGroup: First-line medication\nDrug class: Antiemetics (when necessary)\nDrug: Domperidone\nDosage and route: 10 mg oral or suppository\nContraindications: Gastrointestinal bleeding, epilepsy, renal failure, cardiac arrhythmia\n\nGroup: First-line medication\nDrug class: Antiemetics (when necessary)\nDrug: Metoclopramide\nDosage and route: 10 mg oral\nContraindications: Parkinson disease, epilepsy, mechanical ileus\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Sumatriptan\nDosage and route: 50 or 100 mg oral or 6 mg subcutaneous or 10 or 20 mg intranasal\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura",
+              "start": 0,
+              "section": 53,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Tab3: Acute migraine treatment",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nTab3: Acute migraine treatment\nGroup: First-line medication\nDrug class: NSAIDs\nDrug: Acetylsalicylic acid\nDosage and route: 900–1,000 mg oral\nContraindications: Gastrointestinal bleeding, heart failure\n\nGroup: First-line medication\nDrug class: NSAIDs\nDrug: Ibuprofen\nDosage and route: 400–600 mg oral\nContraindications: Gastrointestinal bleeding, heart failure\n\nGroup: First-line medication\nDrug class: NSAIDs\nDrug: Diclofenac potassium\nDosage and route: 50 mg oral (soluble)\nContraindications: Gastrointestinal bleeding, heart failure\n\nGroup: First-line medication\nDrug class: Other simple analgesics (if NSAIDs are contraindicated)\nDrug: Paracetamol\nDosage and route: 1,000 mg oral\nContraindications: Hepatic disease, renal failure\n\nGroup: First-line medication\nDrug class: Antiemetics (when necessary)\nDrug: Domperidone\nDosage and route: 10 mg oral or suppository\nContraindications: Gastrointestinal bleeding, epilepsy, renal failure, cardiac arrhythmia\n\nGroup: First-line medication\nDrug class: Antiemetics (when necessary)\nDrug: Metoclopramide\nDosage and route: 10 mg oral\nContraindications: Parkinson disease, epilepsy, mechanical ileus\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Sumatriptan\nDosage and route: 50 or 100 mg oral or 6 mg subcutaneous or 10 or 20 mg intranasal\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura"
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; selected tables Tab2, Tab3 normalized as header/value rows; other tables, figures and references omitted.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+              "publicationDate": "2021"
+            },
+            "score": 0.030090497737556562,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "7349b098bdbf9a46c9e6bd09c54164736790ebca626cd0f66b6c5905c73c3dda",
+              "end": 1542,
+              "hash": "605c40b91a048fcea07c472de2dd19cda0e3457ace36cd84e068692f245399ee",
+              "text": "Group: Second-line medication\nDrug class: Triptans\nDrug: Zolmitriptan\nDosage and route: 2.5 or 5 mg oral or 5 mg intranasal\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Almotriptan\nDosage and route: 12.5 mg oral\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Eletriptan\nDosage and route: 20, 40 or 80 mg oral\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Frovatriptan\nDosage and route: 2.5 mg oral\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Naratriptan\nDosage and route: 2.5 mg oral\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Rizatriptan\nDosage and route: 10 mg oral tablet (5 mg if treated with propranolol) or 10 mg mouth-dispersible wafers\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura",
+              "start": 0,
+              "section": 54,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Tab3: Acute migraine treatment",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nTab3: Acute migraine treatment\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Zolmitriptan\nDosage and route: 2.5 or 5 mg oral or 5 mg intranasal\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Almotriptan\nDosage and route: 12.5 mg oral\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Eletriptan\nDosage and route: 20, 40 or 80 mg oral\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Frovatriptan\nDosage and route: 2.5 mg oral\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Naratriptan\nDosage and route: 2.5 mg oral\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura\n\nGroup: Second-line medication\nDrug class: Triptans\nDrug: Rizatriptan\nDosage and route: 10 mg oral tablet (5 mg if treated with propranolol) or 10 mg mouth-dispersible wafers\nContraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura"
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; selected tables Tab2, Tab3 normalized as header/value rows; other tables, figures and references omitted.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+              "publicationDate": "2021"
+            },
+            "score": 0.02878726010616578,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "7dd82130f4934376657800615797cd6a1204420e623b7d125bf535322758169d",
+              "end": 1610,
+              "hash": "84976c6fdb3864a1dfdb7ba5980d31bbd907b57ab73547d60d3e46c2a8b51c50",
+              "text": "### Acute (Episodic TTH — Abortive)\n- **Aspirin 650-1000 mg PO**: first-line for acute TTH; NNT approximately 5 for complete headache relief at 2 hours\n- **Ibuprofen 400-800 mg PO**: first-line; similar efficacy to aspirin\n- **Acetaminophen 1000 mg PO**: slightly less effective than NSAIDs but useful when NSAIDs contraindicated\n- **Combination analgesic** (aspirin 500 mg + acetaminophen 500 mg + caffeine 130 mg): superior to single agents; caffeine potentiates analgesic effect — limit to 2 doses/week to avoid medication-overuse headache\n\nAvoid: opioids, barbiturates, butalbital-containing compounds — all have high medication-overuse potential and worsen long-term headache burden.\n\n### Preventive (Chronic TTH or Frequent Episodic — ≥4 days/month)\n- **Amitriptyline 10-75 mg PO at bedtime**: most evidence-based preventive for TTH; start 10 mg, titrate every 2-4 weeks; response seen at 4-8 weeks; NNT approximately 3 for 50% headache reduction\n- **Mirtazapine 15-30 mg PO at bedtime**: alternative, especially if amitriptyline poorly tolerated\n- **Venlafaxine 75-150 mg PO daily**: SNRI option; evidence for TTH prevention\n\n### Non-Pharmacologic (Strong Evidence)\n- Cognitive-behavioral therapy (CBT): effective for chronic TTH; addresses stress and pain catastrophizing\n- Relaxation training / biofeedback: comparable to amitriptyline in randomized trials for chronic TTH\n- Physical therapy: pericranial muscle stretching, postural correction, cervicothoracic strengthening\n- Sleep hygiene, hydration, regular meals, stress reduction — address precipitating factors\n\n### Medication-Overuse Prevention",
+              "start": 0,
+              "section": 4,
+              "documentId": "openem:tension-headache",
+              "sectionTitle": "Treatment",
+              "embeddingText": "Tension-Type Headache\ntension headache; TTH; muscle contraction headache; episodic tension-type headache; chronic tension-type headache\nTreatment\n### Acute (Episodic TTH — Abortive)\n- **Aspirin 650-1000 mg PO**: first-line for acute TTH; NNT approximately 5 for complete headache relief at 2 hours\n- **Ibuprofen 400-800 mg PO**: first-line; similar efficacy to aspirin\n- **Acetaminophen 1000 mg PO**: slightly less effective than NSAIDs but useful when NSAIDs contraindicated\n- **Combination analgesic** (aspirin 500 mg + acetaminophen 500 mg + caffeine 130 mg): superior to single agents; caffeine potentiates analgesic effect — limit to 2 doses/week to avoid medication-overuse headache\n\nAvoid: opioids, barbiturates, butalbital-containing compounds — all have high medication-overuse potential and worsen long-term headache burden.\n\n### Preventive (Chronic TTH or Frequent Episodic — ≥4 days/month)\n- **Amitriptyline 10-75 mg PO at bedtime**: most evidence-based preventive for TTH; start 10 mg, titrate every 2-4 weeks; response seen at 4-8 weeks; NNT approximately 3 for 50% headache reduction\n- **Mirtazapine 15-30 mg PO at bedtime**: alternative, especially if amitriptyline poorly tolerated\n- **Venlafaxine 75-150 mg PO daily**: SNRI option; evidence for TTH prevention\n\n### Non-Pharmacologic (Strong Evidence)\n- Cognitive-behavioral therapy (CBT): effective for chronic TTH; addresses stress and pain catastrophizing\n- Relaxation training / biofeedback: comparable to amitriptyline in randomized trials for chronic TTH\n- Physical therapy: pericranial muscle stretching, postural correction, cervicothoracic strengthening\n- Sleep hygiene, hydration, regular meals, stress reduction — address precipitating factors\n\n### Medication-Overuse Prevention"
+            },
+            "document": {
+              "id": "openem:tension-headache",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/tension-headache.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Tension-Type Headache",
+              "aliases": [
+                "tension headache",
+                "TTH",
+                "muscle contraction headache",
+                "episodic tension-type headache",
+                "chronic tension-type headache"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "73653a341b4841d483b11a9308969e558e9256b1f9e82f7deba1b96982b273cc",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:subarachnoid-hemorrhage",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "neurological"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-23"
+            },
+            "score": 0.020853698273053112,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\nAny abortive medication used >10-15 days/month (NSAIDs >15 days; opioids/triptans >10 days) causes medication-overuse headache (MOH). Educate all TTH patients at every visit about MOH risk. Limit abortive medications to 2 days/week maximum."
+            }
+          },
+          {
+            "chunk": {
+              "id": "4a102b9b4d36c393427fc37101cb3bcc40809608ab3d0bfb975903da64525cf5",
+              "end": 533,
+              "hash": "0c0654d9906cf17ce9143706e646853452b3a29981e39606e1d49e4442bcb9ff",
+              "text": "Every day, around the clock, people who work in the health care industry provide care for millions of people, from newborns to the very ill. In fact, the health care industry is one of largest providers of jobs in the United States. Many health jobs are in hospitals. Others are in nursing homes, doctors' offices, dentists' offices, outpatient clinics and laboratories. \n\n To work in a health occupation, you often must have special training. Some, like doctors, must have more than 4 years of college. \n\n Bureau of Labor Statistics",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:1483",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Health Occupations\nHealth careers; Health professions; Medical occupations; Medical professions\nHealth-topic summary\nEvery day, around the clock, people who work in the health care industry provide care for millions of people, from newborns to the very ill. In fact, the health care industry is one of largest providers of jobs in the United States. Many health jobs are in hospitals. Others are in nursing homes, doctors' offices, dentists' offices, outpatient clinics and laboratories. \n\n To work in a health occupation, you often must have special training. Some, like doctors, must have more than 4 years of college. \n\n Bureau of Labor Statistics"
+            },
+            "document": {
+              "id": "medlineplus:1483",
+              "url": "https://medlineplus.gov/healthoccupations.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Health Occupations",
+              "aliases": [
+                "Health careers",
+                "Health professions",
+                "Medical occupations",
+                "Medical professions"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "0e4e9d572e6e9af33fc9ee118d2707b07fc423ebd907654ae55c27d9ce65db69",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1433",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Health Occupations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.01639344262295082,
+            "channels": [
+              "lexical"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "9777ed1b5953ee38011e5077768441ec5df76adb575898dcc8bfda89197c595d",
+              "end": 1265,
+              "hash": "32e64a3c66e2419fe77c9a443ec6f3b11936233fba10b745b57afdcbe4a1ecba",
+              "text": "1. **Misdiagnosing acute dystonia as a seizure or psychogenic event.** Young patients presenting with torticollis or oculogyric crisis are frequently misdiagnosed. Ask about any new medication (including metoclopramide or prochlorperazine given in a recent ED visit or prescribed for nausea).\n\n2. **Not giving anticholinergic prophylaxis when prescribing high-risk agents.** When haloperidol is given to a young patient (IM for agitation), co-administer diphenhydramine 50 mg IM or benztropine 1-2 mg IM to prevent dystonia.\n\n3. **Discharging without oral anticholinergic for 48-72 hours.** The offending medication's half-life often exceeds the duration of the IV anticholinergic. Dystonia recurs in up to 20% of patients if no oral bridging medication is prescribed.\n\n4. **Missing laryngeal dystonia as a cause of stridor.** Unexplained stridor in a patient on antipsychotics or antiemetics should prompt immediate IV diphenhydramine before pursuing imaging or airway intervention. The response is dramatic and diagnostic.\n\n5. **Attributing medication-seeking behavior to the patient.** Acute dystonia is painful and terrifying. Patients may appear anxious and request immediate treatment. This is a genuine, painful medical emergency — not drug-seeking behavior.",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:acute-dystonia",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Acute Dystonic Reaction\ndrug-induced dystonia; acute dystonia; medication-induced dystonia; oculogyric crisis\nPitfalls\n1. **Misdiagnosing acute dystonia as a seizure or psychogenic event.** Young patients presenting with torticollis or oculogyric crisis are frequently misdiagnosed. Ask about any new medication (including metoclopramide or prochlorperazine given in a recent ED visit or prescribed for nausea).\n\n2. **Not giving anticholinergic prophylaxis when prescribing high-risk agents.** When haloperidol is given to a young patient (IM for agitation), co-administer diphenhydramine 50 mg IM or benztropine 1-2 mg IM to prevent dystonia.\n\n3. **Discharging without oral anticholinergic for 48-72 hours.** The offending medication's half-life often exceeds the duration of the IV anticholinergic. Dystonia recurs in up to 20% of patients if no oral bridging medication is prescribed.\n\n4. **Missing laryngeal dystonia as a cause of stridor.** Unexplained stridor in a patient on antipsychotics or antiemetics should prompt immediate IV diphenhydramine before pursuing imaging or airway intervention. The response is dramatic and diagnostic.\n\n5. **Attributing medication-seeking behavior to the patient.** Acute dystonia is painful and terrifying. Patients may appear anxious and request immediate treatment. This is a genuine, painful medical emergency — not drug-seeking behavior."
+            },
+            "document": {
+              "id": "openem:acute-dystonia",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-dystonia.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Dystonic Reaction",
+              "aliases": [
+                "drug-induced dystonia",
+                "acute dystonia",
+                "medication-induced dystonia",
+                "oculogyric crisis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "4440f1d3b23c262abb37808d9836cea35e7ecd6e1e92899a8faa86c2669e4ca6",
+              "related": [],
+              "concepts": [
+                "psychiatric"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.016129032258064516,
+            "channels": [
+              "lexical"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 72.71425000001909,
+          "embeddingMs": 708.6097910000244,
+          "vectorMs": 33.11066700000083,
+          "totalMs": 843.5765830000164
+        },
+        "warnings": [],
+        "embeddingTokens": 10,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "migraine red flags warning signs severity",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "4dc07d42df8d2579816619fd6483e91b8a1f6a7172a93844a7e77bd0592cbbe9",
+              "end": 1459,
+              "hash": "6f6d5e8673f0dcf32732a050f80f12ce41cc3436fdfb90e3299199d6ac1a2c62",
+              "text": "When to look: Patient history\nRed flag: Thunderclap headache\nIndication: Subarachnoid haemorrhage\n\nWhen to look: Patient history\nRed flag: Atypical aura\nIndication: Transient ischaemic attack, stroke, epilepsy, arteriovenous malformations\n\nWhen to look: Patient history\nRed flag: Head trauma\nIndication: Subdural haematoma\n\nWhen to look: Patient history\nRed flag: Progressive headache\nIndication: Intracranial space-occupying lesion\n\nWhen to look: Patient history\nRed flag: Headache aggravated by postures or manoeuvres that raise intracranial pressure\nIndication: Intracranial hypertension or hypotension\n\nWhen to look: Patient history\nRed flag: Headache brought on by sneezing, coughing or exercise\nIndication: Intracranial space-occupying lesion\n\nWhen to look: Patient history\nRed flag: Headache associated with weight loss and/or change in memory or personality\nIndication: Suggests secondary headache\n\nWhen to look: Patient history\nRed flag: Headache onset at >50 years of age\nIndication: Suggests secondary headache; consider temporal arteritis\n\nWhen to look: Physical examination\nRed flag: Unexplained fever\nIndication: Meningitis\n\nWhen to look: Physical examination\nRed flag: Neck stiffness\nIndication: Meningitis, subarachnoid haemorrhage\n\nWhen to look: Physical examination\nRed flag: Focal neurological symptoms\nIndication: Suggests secondary headache\n\nWhen to look: Physical examination\nRed flag: Weight loss\nIndication: Suggests secondary headache",
+              "start": 0,
+              "section": 51,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Tab2: Red flags associated with secondary headaches31,32",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nTab2: Red flags associated with secondary headaches31,32\nWhen to look: Patient history\nRed flag: Thunderclap headache\nIndication: Subarachnoid haemorrhage\n\nWhen to look: Patient history\nRed flag: Atypical aura\nIndication: Transient ischaemic attack, stroke, epilepsy, arteriovenous malformations\n\nWhen to look: Patient history\nRed flag: Head trauma\nIndication: Subdural haematoma\n\nWhen to look: Patient history\nRed flag: Progressive headache\nIndication: Intracranial space-occupying lesion\n\nWhen to look: Patient history\nRed flag: Headache aggravated by postures or manoeuvres that raise intracranial pressure\nIndication: Intracranial hypertension or hypotension\n\nWhen to look: Patient history\nRed flag: Headache brought on by sneezing, coughing or exercise\nIndication: Intracranial space-occupying lesion\n\nWhen to look: Patient history\nRed flag: Headache associated with weight loss and/or change in memory or personality\nIndication: Suggests secondary headache\n\nWhen to look: Patient history\nRed flag: Headache onset at >50 years of age\nIndication: Suggests secondary headache; consider temporal arteritis\n\nWhen to look: Physical examination\nRed flag: Unexplained fever\nIndication: Meningitis\n\nWhen to look: Physical examination\nRed flag: Neck stiffness\nIndication: Meningitis, subarachnoid haemorrhage\n\nWhen to look: Physical examination\nRed flag: Focal neurological symptoms\nIndication: Suggests secondary headache\n\nWhen to look: Physical examination\nRed flag: Weight loss\nIndication: Suggests secondary headache"
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; selected tables Tab2, Tab3 normalized as header/value rows; other tables, figures and references omitted.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+              "publicationDate": "2021"
+            },
+            "score": 0.03252247488101534,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "611e18d63434ae5d6eb6bc7c2299149c532cb7655d9dfa827e1975d247df284b",
+              "end": 1778,
+              "hash": "f361e0cfb4280839d2eece36d6f9915ce3d38bcb26479b2c1137ea00e12f7bfa",
+              "text": "What are migraines? \n Migraines are a recurring type of headache. They cause moderate to severe pain that is throbbing or pulsing. The pain is often on one side of your head. You may also have other symptoms, such as nausea and weakness. You may be sensitive to light and sound. \n\n What causes migraines? \n Researchers believe that migraine has a genetic cause. There are also a number of factors that can trigger a migraine. These factors vary from person to person, and they include: \n Stress \n Anxiety \n Hormonal changes in women \n Bright or flashing lights \n Loud noises \n Strong smells \n Medicines \n Too much or not enough sleep \n Sudden changes in weather or environment \n Overexertion (too much physical activity) \n Tobacco \n Caffeine or caffeine withdrawal \n Skipped meals \n Medication overuse (taking medicine for migraines too often) \n \n\n Some people have found that certain foods or ingredients can trigger headaches, especially when they are combined with other triggers. These foods and ingredients include: \n Alcohol \n Chocolate \n Aged cheeses \n Monosodium glutamate (MSG) \n Some fruits and nuts \n Fermented or pickled goods \n Yeast \n Cured or processed meats \n \n\n\n Who is at risk for migraines? \n About 12% of Americans get migraines. They can affect anyone, but you are more likely to have them if you: \n Are a woman. Women are three times more likely than men to get migraines. \n Have a family history of migraines. Most people with migraines have family members who have migraines. \n Have other medical conditions, such as depression , anxiety , bipolar disorder , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: ",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:3157",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Migraine\n\nHealth-topic summary\nWhat are migraines? \n Migraines are a recurring type of headache. They cause moderate to severe pain that is throbbing or pulsing. The pain is often on one side of your head. You may also have other symptoms, such as nausea and weakness. You may be sensitive to light and sound. \n\n What causes migraines? \n Researchers believe that migraine has a genetic cause. There are also a number of factors that can trigger a migraine. These factors vary from person to person, and they include: \n Stress \n Anxiety \n Hormonal changes in women \n Bright or flashing lights \n Loud noises \n Strong smells \n Medicines \n Too much or not enough sleep \n Sudden changes in weather or environment \n Overexertion (too much physical activity) \n Tobacco \n Caffeine or caffeine withdrawal \n Skipped meals \n Medication overuse (taking medicine for migraines too often) \n \n\n Some people have found that certain foods or ingredients can trigger headaches, especially when they are combined with other triggers. These foods and ingredients include: \n Alcohol \n Chocolate \n Aged cheeses \n Monosodium glutamate (MSG) \n Some fruits and nuts \n Fermented or pickled goods \n Yeast \n Cured or processed meats \n \n\n\n Who is at risk for migraines? \n About 12% of Americans get migraines. They can affect anyone, but you are more likely to have them if you: \n Are a woman. Women are three times more likely than men to get migraines. \n Have a family history of migraines. Most people with migraines have family members who have migraines. \n Have other medical conditions, such as depression , anxiety , bipolar disorder , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: "
+            },
+            "document": {
+              "id": "medlineplus:3157",
+              "url": "https://medlineplus.gov/migraine.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Migraine",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:273",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Migraine Disorders"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.028381642512077296,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n Prodome. This phase starts up to 24 hours before you get the migraine. You have early signs and symptoms, such as food cravings, unexplained mood changes, uncontrollable yawning, fluid retention, and increased urination. \n Aura. If you have this phase, you might see flashing or bright lights or zi"
+            }
+          },
+          {
+            "chunk": {
+              "id": "4b414539b327a45140589e8bd99223cd58b8e4dd1bbbf4823f41d2d5b8cb229f",
+              "end": 2003,
+              "hash": "d2a6d63b429d1c928d75770e18cec9e515f27bf33dbf644f8336c1ef299fe61b",
+              "text": "osis for chronic migraine30 (Box 1). This disorder commonly develops from overuse of acute medication to treat migraine attacks, so the two disorders are often conflated (see Step 8 for more on MOH).\n\nSome other secondary headache disorders can present with features that suggest migraine, but specific red flags should create suspicion (Table 2). Red flags in the medical history include thunderclap headache, atypical aura and head trauma. Red flags in the physical examination include unexplained fever, impaired memory and focal neurological symptoms (Table 2). These red flags are indications for further investigation, such as neuroimaging, blood samples or lumbar puncture31.",
+              "start": 1321,
+              "section": 14,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Full-text body / Step 2: Diagnosis of migraine / Differential diagnoses",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nFull-text body / Step 2: Diagnosis of migraine / Differential diagnoses\nosis for chronic migraine30 (Box 1). This disorder commonly develops from overuse of acute medication to treat migraine attacks, so the two disorders are often conflated (see Step 8 for more on MOH).\n\nSome other secondary headache disorders can present with features that suggest migraine, but specific red flags should create suspicion (Table 2). Red flags in the medical history include thunderclap headache, atypical aura and head trauma. Red flags in the physical examination include unexplained fever, impaired memory and focal neurological symptoms (Table 2). These red flags are indications for further investigation, such as neuroimaging, blood samples or lumbar puncture31."
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; selected tables Tab2, Tab3 normalized as header/value rows; other tables, figures and references omitted.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+              "publicationDate": "2021"
+            },
+            "score": 0.027820121951219513,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "adache of severe or very severe intensity4. The head pain is accompanied by ipsilateral cranial autonomic symptoms, such as conjunctival injection, lacrimation and nasal congestion4 (Table 1).\n\nMedication-overuse headache (MOH) is a secondary headache disorder that is an important differential diagn",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+              "end": 3340,
+              "hash": "803dbd53505ae13a03c04a3e5916e34fe7ce5d3dfcd145977622ca0f766104da",
+              "text": "er , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: \n Prodome. This phase starts up to 24 hours before you get the migraine. You have early signs and symptoms, such as food cravings, unexplained mood changes, uncontrollable yawning, fluid retention, and increased urination. \n Aura. If you have this phase, you might see flashing or bright lights or zig-zag lines. You may have muscle weakness or feel like you are being touched or grabbed. An aura can happen just before or during a migraine. \n Headache. A migraine usually starts gradually and then becomes more severe. It typically causes throbbing or pulsing pain, which is often on one side of your head. But sometimes you can have a migraine without a headache. Other migraine symptoms may include \n \n Increased sensitivity to light, noise, and odors \n Nausea and vomiting \n Worsened pain when you move, cough, or sneeze \n \n Postdrome (following the headache). You may feel exhausted, weak, and confused after a migraine. This can last up to a day. \n \n\n Migraines are more common in the morning; people often wake up with them. Some people have migraines at predictable times, such as before menstruation or on weekends following a stressful week of work. \n\n How are migraines diagnosed? \n To make a diagnosis, your health care provider will: \n Take your medical history \n Ask about your symptoms \n Do a physical and neurological exam \n \n\n An important part of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? ",
+              "start": 1578,
+              "section": 0,
+              "documentId": "medlineplus:3157",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Migraine\n\nHealth-topic summary\ner , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: \n Prodome. This phase starts up to 24 hours before you get the migraine. You have early signs and symptoms, such as food cravings, unexplained mood changes, uncontrollable yawning, fluid retention, and increased urination. \n Aura. If you have this phase, you might see flashing or bright lights or zig-zag lines. You may have muscle weakness or feel like you are being touched or grabbed. An aura can happen just before or during a migraine. \n Headache. A migraine usually starts gradually and then becomes more severe. It typically causes throbbing or pulsing pain, which is often on one side of your head. But sometimes you can have a migraine without a headache. Other migraine symptoms may include \n \n Increased sensitivity to light, noise, and odors \n Nausea and vomiting \n Worsened pain when you move, cough, or sneeze \n \n Postdrome (following the headache). You may feel exhausted, weak, and confused after a migraine. This can last up to a day. \n \n\n Migraines are more common in the morning; people often wake up with them. Some people have migraines at predictable times, such as before menstruation or on weekends following a stressful week of work. \n\n How are migraines diagnosed? \n To make a diagnosis, your health care provider will: \n Take your medical history \n Ask about your symptoms \n Do a physical and neurological exam \n \n\n An important part of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? "
+            },
+            "document": {
+              "id": "medlineplus:3157",
+              "url": "https://medlineplus.gov/migraine.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Migraine",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:273",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Migraine Disorders"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.0264301860545992,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "you are more likely to have them if you: \n Are a woman. Women are three times more likely than men to get migraines. \n Have a family history of migraines. Most people with migraines have family members who have migraines. \n Have other medical conditions, such as depression , anxiety , bipolar disord",
+              "after": "\n There is no cure for migraines. Treatment focuses on relieving symptoms and preventing additional attacks. \n\n There are different types of medicines to relieve symptoms. They include triptan drugs, ergotamine drugs, and pain relievers . The sooner you take the medicine, the more effective it is. \n"
+            }
+          },
+          {
+            "chunk": {
+              "id": "730b1a87538468dff44dd31c81f81cadb0987d47fe55d34411a986893651f16c",
+              "end": 1744,
+              "hash": "47ed4f719c7d1de78019a5b28ee828de476751b698f15c2fe5448e087a5e29b5",
+              "text": "| Condition | Red Flag Features | ED Workup |\n|-----------|-------------------|-----------|\n| **Cauda equina syndrome** | Saddle anesthesia, urinary retention (PVR > 200 mL), bilateral leg weakness, decreased rectal tone | Emergent MRI lumbar spine; see `cauda-equina-syndrome.md` |\n| **Spinal epidural abscess** | Fever (50-65%), IVDU, immunosuppression, point midline tenderness, progressive pain over days; classic triad (fever, back pain, neuro deficit) present in only 13% | ESR/CRP, blood cultures, emergent MRI entire spine with gadolinium; see `spinal-epidural-abscess.md` |\n| **Spinal epidural hematoma** | Anticoagulation, coagulopathy, post-procedural, acute-onset severe pain with rapid neuro decline | Emergent MRI, STAT coagulation studies, anticoagulation reversal |\n| **Metastatic spinal cord compression** | Known malignancy, progressive pain over weeks, night pain, weight loss, pain worse supine | MRI entire spine with gadolinium, dexamethasone 10 mg IV |\n| **Vertebral compression fracture** | Trauma (or minimal trauma in osteoporotic/steroid-treated patients), focal midline tenderness | Plain radiographs (initial); CT or MRI if neurological deficit |\n| **Vertebral osteomyelitis/discitis** | Subacute course (weeks), fever (variable), IVDU, recent bacteremia, elevated ESR/CRP | ESR/CRP, blood cultures, MRI with gadolinium |\n| **Abdominal aortic aneurysm (ruptured)** | Acute severe back/abdominal pain, hemodynamic instability, pulsatile abdominal mass, age > 60 | Bedside ultrasound, CT angiography if stable |\n| **Mechanical low back pain (85%)** | No red flags, no neurological deficits, paraspinal tenderness, reproduced by movement, self-limited | No imaging if < 6 weeks; reassurance and symptomatic treatment |",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:acute-low-back-pain-red-flags",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Acute Low Back Pain with Red Flags\nback pain red flags; low back pain emergency; back pain with neurological deficit; emergent back pain\nDifferential Diagnosis\n| Condition | Red Flag Features | ED Workup |\n|-----------|-------------------|-----------|\n| **Cauda equina syndrome** | Saddle anesthesia, urinary retention (PVR > 200 mL), bilateral leg weakness, decreased rectal tone | Emergent MRI lumbar spine; see `cauda-equina-syndrome.md` |\n| **Spinal epidural abscess** | Fever (50-65%), IVDU, immunosuppression, point midline tenderness, progressive pain over days; classic triad (fever, back pain, neuro deficit) present in only 13% | ESR/CRP, blood cultures, emergent MRI entire spine with gadolinium; see `spinal-epidural-abscess.md` |\n| **Spinal epidural hematoma** | Anticoagulation, coagulopathy, post-procedural, acute-onset severe pain with rapid neuro decline | Emergent MRI, STAT coagulation studies, anticoagulation reversal |\n| **Metastatic spinal cord compression** | Known malignancy, progressive pain over weeks, night pain, weight loss, pain worse supine | MRI entire spine with gadolinium, dexamethasone 10 mg IV |\n| **Vertebral compression fracture** | Trauma (or minimal trauma in osteoporotic/steroid-treated patients), focal midline tenderness | Plain radiographs (initial); CT or MRI if neurological deficit |\n| **Vertebral osteomyelitis/discitis** | Subacute course (weeks), fever (variable), IVDU, recent bacteremia, elevated ESR/CRP | ESR/CRP, blood cultures, MRI with gadolinium |\n| **Abdominal aortic aneurysm (ruptured)** | Acute severe back/abdominal pain, hemodynamic instability, pulsatile abdominal mass, age > 60 | Bedside ultrasound, CT angiography if stable |\n| **Mechanical low back pain (85%)** | No red flags, no neurological deficits, paraspinal tenderness, reproduced by movement, self-limited | No imaging if < 6 weeks; reassurance and symptomatic treatment |"
+            },
+            "document": {
+              "id": "openem:acute-low-back-pain-red-flags",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-low-back-pain-red-flags.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Low Back Pain with Red Flags",
+              "aliases": [
+                "back pain red flags",
+                "low back pain emergency",
+                "back pain with neurological deficit",
+                "emergent back pain"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "c79a80d1c857754bd2e068ea270c975797e1cb72abf17b37f80d5af065544651",
+              "related": [],
+              "concepts": [
+                "musculoskeletal"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-19"
+            },
+            "score": 0.016129032258064516,
+            "channels": [
+              "lexical"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n| **Lumbar radiculopathy** | Unilateral, dermatomal pain radiating below knee, positive SLR, single myotome weakness possible | Outpatient MRI if not improving at 4-6 weeks; emergent MRI only if progressive motor deficit |"
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 97.81033300003037,
+          "embeddingMs": 781.461083000002,
+          "vectorMs": 25.477416999987327,
+          "totalMs": 909.7843330000178
+        },
+        "warnings": [],
+        "embeddingTokens": 8,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "accept",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "An active usual migraine with exhausted rescue medication requires timely prescribing review. Priority messaging today with a same-day prescribing fallback meets that requirement; reported facts do not establish a necessary physical encounter.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get. I'm out of sumatriptan"
+            },
+            {
+              "unit": "draft",
+              "quote": "I can't guarantee today's review — if it isn't available, contact your usual prescriber or another same-day prescribing service."
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "Priority prescribing review is proportionate to an active attack without rescue medication. The draft does not impose unnecessary current emergency or in-person care; emergency instructions are conditional on concerning changes.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "I recommend a Counsel clinician review your sumatriptan refill request in this thread today, since your attack is active and you're out of rescue medication."
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "The usual migraine pattern and medication exhaustion are patient-reported. Unreported red flags and measurements remain unknown. The qualified statement about not needing an examination now is a routing inference, not blanket exclusion of serious disease.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Your described pattern matches your usual migraines, so an in-person visit doesn't appear necessary now."
+            },
+            {
+              "unit": "draft",
+              "quote": "No vital signs reported; blood pressure, temperature, heart rate and whether any measurement was taken are unknown."
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "pass",
+          "reason": "The sources support the migraine features, contraindication screening and headache red flags. Emergency precautions are reasonable clinical inferences from potentially serious neurological presentations, not falsely attributed source transport rules. Queue timing follows project policy.",
+          "anchors": [
+            {
+              "unit": "source:1836c31f7ff0c81977ef05aaa725379e6b1b5bf5eab27adb054776ae69f7b5e1",
+              "quote": "Contraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura"
+            },
+            {
+              "unit": "source:4dc07d42df8d2579816619fd6483e91b8a1f6a7172a93844a7e77bd0592cbbe9",
+              "quote": "Red flag: Thunderclap headache\nIndication: Subarachnoid haemorrhage"
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "pass",
+          "reason": "The draft gives explicit emergency action for sudden severe headache or neurological symptoms and urgent same-day assessment for other concerning changes, without requiring a thread response first.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Call 911 for sudden severe \"worst ever\" headache, weakness, numbness or trouble speaking."
+            },
+            {
+              "unit": "draft",
+              "quote": "Seek urgent in-person assessment the same day, without waiting for a reply here, if you develop fever, neck stiffness, or a headache clearly different from your usual pattern."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No issued question is supplied and no answer is required before seeking prescribing review. Remaining prescribing checks are appropriately assigned to the clinician.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "leaving contraindication screening to the reviewing clinician."
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "Counsel clinician review is recommended rather than promised or accepted. Availability uncertainty and an actionable same-day alternative are explicit.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "I recommend a Counsel clinician review your sumatriptan refill request in this thread today, since your attack is active and you're out of rescue medication."
+            },
+            {
+              "unit": "draft",
+              "quote": "I can't guarantee today's review — if it isn't available, contact your usual prescriber or another same-day prescribing service."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "none",
+      "earlyCorrection": null,
+      "ownershipTaskReview": [],
+      "correction": "",
+      "evidenceQueries": []
+    },
+    "release": "clinician_required",
+    "clinicalApproval": false,
+    "corrections": 1,
+    "careCorrectionReleased": false,
+    "sourceIntegrity": true,
+    "citations": []
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "clinical-evidence-graph",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "a68236ed-8f0b-4e01-81f7-e71bea833364",
+  "traceId": "1e1d39f5c29f7107aec5ccb9ab0c37ec",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "40F. My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get. I'm out of sumatriptan and would like a refill.",
+  "inputHash": "0ede5c086d3ea812a589febf64e2b33fcde3c4795b2b686a9b02453986a0b81e",
+  "answerHash": "cba974fa31aa7cbe32221e2fa46d98fb1c431b3736588d2d962326d54a596a32",
+  "promptHash": "3db1cccfb1b10322c92443e48068c803034f126fd549d7f46dd7b9c690c18fd5",
+  "guidanceHash": "0340fce3b11f2c32d153bbf644e2db6d9b8451566b3e67bf51d48042c1736761",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-14T08:16:02.227Z",
+  "durationMs": 88625,
+  "workflowDurationMs": 88584,
+  "tracePersistenceDurationMs": 41,
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 0
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 2618
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 20989
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 67576
+    }
+  ],
+  "responseEvents": [],
+  "safetyNotices": [],
+  "firstActionMs": null,
+  "firstPatientReplyMs": null,
+  "firstQuestionMs": null
+}

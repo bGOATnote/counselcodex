@@ -1,0 +1,1883 @@
+{
+  "status": "complete",
+  "answer": {
+    "disposition": "EMERGENCY_NOW",
+    "reviewPriority": null,
+    "workType": null,
+    "reason": "A 65-year-old with type 2 diabetes reports glucose over 400, repeated vomiting and inability to keep water down, a combination consistent with a hyperglycemic emergency (DKA or hyperosmolar state) requiring immediate IV fluids and labs.",
+    "patientMessage": "Go to the emergency department now. Blood sugar over 400 with vomiting and not being able to keep water down can mean a dangerous diabetic emergency needing IV fluids and blood tests today. Have someone drive you, or call 911 if you feel faint, confused, drowsy, or short of breath, or if vomiting continues on the way. Don't wait for a message reply.",
+    "differential": [
+      "Diabetic ketoacidosis",
+      "Hyperosmolar hyperglycemic state"
+    ],
+    "redFlags": [
+      {
+        "concern": "Glucose over 400 mg/dL",
+        "status": "reported",
+        "quote": "My sugar has been over 400 today"
+      },
+      {
+        "concern": "Vomiting",
+        "status": "reported",
+        "quote": "I've thrown up twice"
+      },
+      {
+        "concern": "Unable to tolerate oral fluids",
+        "status": "reported",
+        "quote": "can't keep water down"
+      },
+      {
+        "concern": "Confusion or drowsiness",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Abdominal pain or trouble breathing",
+        "status": "unknown",
+        "quote": ""
+      }
+    ],
+    "vitalSigns": "Self-reported glucose over 400 today with method and timing unstated; heart rate, blood pressure, temperature and ketone level not reported.",
+    "questions": [],
+    "evidenceLimitations": "Consumer summary and ED reference syntheses are not telehealth protocols, and no labs, ketones or vital signs are available to distinguish DKA from hyperosmolar state.",
+    "evidence": [
+      {
+        "sourceId": "a5a192fd2735975481b735e933956be1437e0dadc5999ad98e8a21ad6b380a6d",
+        "claim": "Severe hyperglycemia with DKA-type symptoms such as vomiting requires hospital treatment, often IV fluids and insulin."
+      },
+      {
+        "sourceId": "53e0775b86d5749e3973c17768c142b51e63bab0e0a80ab591b396a20ce52034",
+        "claim": "Without a ketone test during very high glucose with these symptoms, seek emergency medical help right away."
+      }
+    ]
+  },
+  "origin": "agent",
+  "failure": null,
+  "safetyFloor": null,
+  "modelCalls": 3,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "hyperglycemia vomiting unable to tolerate fluids diabetic",
+          "diabetic ketoacidosis hyperosmolar state",
+          "severe hyperglycemia dehydration acute complications"
+        ],
+        "findings": [
+          {
+            "finding": "Blood glucose elevated above 400 mg/dL",
+            "status": "reported",
+            "quote": "My sugar has been over 400 today"
+          },
+          {
+            "finding": "Vomiting",
+            "status": "reported",
+            "quote": "I've thrown up twice"
+          },
+          {
+            "finding": "Unable to tolerate oral fluids",
+            "status": "reported",
+            "quote": "can't keep water down"
+          },
+          {
+            "finding": "Feeling severely unwell",
+            "status": "reported",
+            "quote": "I feel awful"
+          },
+          {
+            "finding": "Type 2 diabetes mellitus",
+            "status": "reported",
+            "quote": "type 2 diabetes"
+          },
+          {
+            "finding": "Acute onset or worsening of current episode",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "question": {
+          "text": "Did your blood sugar start going high today, or has it been running high for days?",
+          "why": "Acute versus gradual hyperglycemia onset affects urgency and suspected diagnosis (DKA vs HHS).",
+          "quote": "My sugar has been over 400 today"
+        }
+      },
+      "usage": {
+        "inputTokens": 1076,
+        "outputTokens": 253
+      },
+      "failure": null,
+      "firstTextDeltaMs": 702,
+      "streamProgress": {
+        "lastTextDeltaMs": 2714,
+        "textDeltaCount": 78,
+        "textCharacters": 976
+      },
+      "transportTimings": {
+        "startResolvedMs": 1,
+        "objectResolvedMs": 2722,
+        "usageResolvedMs": 2727,
+        "finishReasonResolvedMs": 2727,
+        "streamEndMs": 2727
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 2727
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "EMERGENCY_NOW",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "A 65-year-old with type 2 diabetes reports glucose over 400, repeated vomiting and inability to keep water down, a combination consistent with a hyperglycemic emergency (DKA or hyperosmolar state) requiring immediate IV fluids and labs.",
+        "patientMessage": "Go to the emergency department now. Blood sugar over 400 with vomiting and not being able to keep water down can mean a dangerous diabetic emergency needing IV fluids and blood tests today. Have someone drive you, or call 911 if you feel faint, confused, drowsy, or short of breath, or if vomiting continues on the way. Don't wait for a message reply.",
+        "differential": [
+          "Diabetic ketoacidosis",
+          "Hyperosmolar hyperglycemic state"
+        ],
+        "redFlags": [
+          {
+            "concern": "Glucose over 400 mg/dL",
+            "status": "reported",
+            "quote": "My sugar has been over 400 today"
+          },
+          {
+            "concern": "Vomiting",
+            "status": "reported",
+            "quote": "I've thrown up twice"
+          },
+          {
+            "concern": "Unable to tolerate oral fluids",
+            "status": "reported",
+            "quote": "can't keep water down"
+          },
+          {
+            "concern": "Confusion or drowsiness",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Abdominal pain or trouble breathing",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "Self-reported glucose over 400 today with method and timing unstated; heart rate, blood pressure, temperature and ketone level not reported.",
+        "questions": [],
+        "evidenceLimitations": "Consumer summary and ED reference syntheses are not telehealth protocols, and no labs, ketones or vital signs are available to distinguish DKA from hyperosmolar state.",
+        "transportIntent": {
+          "mode": "ed_now",
+          "activationQuote": null
+        },
+        "citations": [
+          {
+            "passageId": "a5a192fd2735975481b735e933956be1437e0dadc5999ad98e8a21ad6b380a6d",
+            "quote": "If you have severe hyperglycemia and are having symptoms of DKA, you will need treatment at the hospital.",
+            "claim": "Severe hyperglycemia with DKA-type symptoms such as vomiting requires hospital treatment, often IV fluids and insulin.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary; DKA not confirmed without ketone or lab testing."
+          },
+          {
+            "passageId": "53e0775b86d5749e3973c17768c142b51e63bab0e0a80ab591b396a20ce52034",
+            "quote": "If the test shows that your ketones are moderate or high, or if you don't have a ketones test, contact your health care provider right away or get emergency medical help.",
+            "claim": "Without a ketone test during very high glucose with these symptoms, seek emergency medical help right away.",
+            "applicability": "applicable",
+            "limitation": "Ketone testing availability for this patient is unknown."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 16887,
+        "outputTokens": 912
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1487,
+      "streamProgress": {
+        "lastTextDeltaMs": 14046,
+        "textDeltaCount": 212,
+        "textCharacters": 2284
+      },
+      "transportTimings": {
+        "startResolvedMs": 3,
+        "objectResolvedMs": 14054,
+        "usageResolvedMs": 14065,
+        "finishReasonResolvedMs": 14065,
+        "streamEndMs": 14068
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 14068,
+      "rawOutput": {
+        "disposition": "EMERGENCY_NOW",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "A 65-year-old with type 2 diabetes reports glucose over 400, repeated vomiting and inability to keep water down, a combination consistent with a hyperglycemic emergency (DKA or hyperosmolar state) requiring immediate IV fluids and labs.",
+        "patientMessage": "Go to the emergency department now. Blood sugar over 400 with vomiting and not being able to keep water down can mean a dangerous diabetic emergency needing IV fluids and blood tests today. Have someone drive you, or call 911 if you feel faint, confused, drowsy, or short of breath, or if vomiting continues on the way. Don't wait for a message reply.",
+        "differential": [
+          "Diabetic ketoacidosis",
+          "Hyperosmolar hyperglycemic state"
+        ],
+        "redFlags": [
+          {
+            "concern": "Glucose over 400 mg/dL",
+            "status": "reported",
+            "quote": "My sugar has been over 400 today"
+          },
+          {
+            "concern": "Vomiting",
+            "status": "reported",
+            "quote": "I've thrown up twice"
+          },
+          {
+            "concern": "Unable to tolerate oral fluids",
+            "status": "reported",
+            "quote": "can't keep water down"
+          },
+          {
+            "concern": "Confusion or drowsiness",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Abdominal pain or trouble breathing",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "Self-reported glucose over 400 today with method and timing unstated; heart rate, blood pressure, temperature and ketone level not reported.",
+        "questions": [],
+        "evidenceLimitations": "Consumer summary and ED reference syntheses are not telehealth protocols, and no labs, ketones or vital signs are available to distinguish DKA from hyperosmolar state.",
+        "transportIntent": {
+          "mode": "ed_now",
+          "activationQuote": null
+        },
+        "citations": [
+          {
+            "passageId": "a5a192fd2735975481b735e933956be1437e0dadc5999ad98e8a21ad6b380a6d",
+            "claim": "Severe hyperglycemia with DKA-type symptoms such as vomiting requires hospital treatment, often IV fluids and insulin.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary; DKA not confirmed without ketone or lab testing.",
+            "quoteId": "q7"
+          },
+          {
+            "passageId": "53e0775b86d5749e3973c17768c142b51e63bab0e0a80ab591b396a20ce52034",
+            "claim": "Without a ketone test during very high glucose with these symptoms, seek emergency medical help right away.",
+            "applicability": "applicable",
+            "limitation": "Ketone testing availability for this patient is unknown.",
+            "quoteId": "q27"
+          }
+        ]
+      }
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "action": "ED_NOW",
+        "basis": [
+          {
+            "quote": "sugar has been over 400 today",
+            "interpretation": "Severe hyperglycemia reported in type 2 diabetic patient",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "I've thrown up twice and can't keep water down",
+            "interpretation": "Repeated vomiting with inability to retain fluids; risk of dehydration and metabolic decompensation",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "I feel awful",
+            "interpretation": "Severe subjective distress accompanying hyperglycemia and vomiting",
+            "currentPatient": true,
+            "present": true
+          }
+        ],
+        "actionBasis": {
+          "indices": [
+            0,
+            1,
+            2
+          ],
+          "sufficient": true
+        },
+        "reason": "Severe hyperglycemia with repeated vomiting and fluid intolerance in type 2 diabetic warrants immediate evaluation for diabetic ketoacidosis, hyperosmolar crisis or other acute decompensation.",
+        "patientMessage": "",
+        "physicalRequirement": null,
+        "activeEms": null
+      },
+      "usage": {
+        "inputTokens": 3429,
+        "outputTokens": 254
+      },
+      "failure": null,
+      "firstTextDeltaMs": 973,
+      "streamProgress": {
+        "lastTextDeltaMs": 2686,
+        "textDeltaCount": 75,
+        "textCharacters": 908
+      },
+      "transportTimings": {
+        "startResolvedMs": 1,
+        "objectResolvedMs": 2719,
+        "usageResolvedMs": 2813,
+        "finishReasonResolvedMs": 2813,
+        "streamEndMs": 2813
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 2813
+    }
+  ],
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "pass",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "pass",
+      "detail": "Checks explicit timing/destination tokens or exact independently reviewed emergency-transport binding; not clinical validation or verification of EMS activation."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen; a prescription/plan mention alone is not authority for a new instruction. Targeted prose finding, not prescribing validation."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "pass",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "transport_intent",
+      "status": "pass",
+      "detail": "Typed intent matches a bounded immediate directive. No independent review or external EMS activation is asserted."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Citation quotation and selected passage identity are checked; clinical support is not established."
+    },
+    {
+      "id": "evidence_packet",
+      "status": "pass",
+      "detail": "A nonempty integrity-valid evidence packet is required for a completed response. Missing evidence never cancels an issued action."
+    },
+    {
+      "id": "independent_review",
+      "status": "not_assessed",
+      "detail": "No model judge runs on gates-release. Clinical correctness and claim support remain unassessed."
+    },
+    {
+      "id": "care_reconciliation",
+      "status": "not_assessed",
+      "detail": "An issued emergency/in-person instruction cannot be silently reduced. Disagreement is retained for clinician review."
+    }
+  ],
+  "guidance": [
+    {
+      "id": "53e0775b86d5749e3973c17768c142b51e63bab0e0a80ab591b396a20ce52034",
+      "title": "Hyperglycemia",
+      "url": "https://medlineplus.gov/hyperglycemia.html",
+      "section": "Health-topic summary",
+      "summary": "r pancreas or adrenal glands , certain medicines, and severe illnesses. \n\n What are the symptoms of hyperglycemia? \n The symptoms of hyperglycemia include: \n \n Feeling thirsty \n Feeling tired or weak \n Headaches \n Urinating (peeing) often \n Blurred vision \n \n\n If you are diabetic and you often have high blood glucose levels or the symptoms of hyperglycemia, talk with your health care team. You may need a change in your diabetes meal plan, physical activity plan, or diabetes medicines. \n\n If you don't have diabetes and you are having these symptoms, see your provider to find out the cause and how to treat it. \n\n What other problems can hyperglycemia cause? \n If hyperglycemia is not treated, it can cause other problems. In people with diabetes, long-term hyperglycemia can lead to serious health problems (diabetes complications). \n\n If your blood glucose levels get very high, you can develop diabetes-related ketoacidosis (DKA). It happens when your body doesn't have enough insulin to allow blood glucose into your cells for use as energy. Instead, your liver breaks down fat for fuel. This process produces acids called ketones. When too many ketones are produced too fast, they can build up to dangerous levels in your body. This can be life-threatening. \n\n The symptoms of DKA may include: \n \n Trouble breathing \n Nausea or vomiting \n Pain in your abdomen (belly) \n Confusion \n Feeling very tired or sleepy \n \n\n If you have an an at-home test for ketones, check your ketone level every 4 to 6 hours when your blood glucose is very high or when you are having these symptoms. If the test shows that your ketones are moderate or high, or if you don't have a ketones test, contact your health care provider right away or get emergency medical help. \n\n How is hyperglycemia diagnosed? ",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "53e0775b86d5749e3973c17768c142b51e63bab0e0a80ab591b396a20ce52034",
+          "sourceId": "medlineplus:6125",
+          "excerpt": "r pancreas or adrenal glands , certain medicines, and severe illnesses. \n\n What are the symptoms of hyperglycemia? \n The symptoms of hyperglycemia include: \n \n Feeling thirsty \n Feeling tired or weak \n Headaches \n Urinating (peeing) often \n Blurred vision \n \n\n If you are diabetic and you often have high blood glucose levels or the symptoms of hyperglycemia, talk with your health care team. You may need a change in your diabetes meal plan, physical activity plan, or diabetes medicines. \n\n If you don't have diabetes and you are having these symptoms, see your provider to find out the cause and how to treat it. \n\n What other problems can hyperglycemia cause? \n If hyperglycemia is not treated, it can cause other problems. In people with diabetes, long-term hyperglycemia can lead to serious health problems (diabetes complications). \n\n If your blood glucose levels get very high, you can develop diabetes-related ketoacidosis (DKA). It happens when your body doesn't have enough insulin to allow blood glucose into your cells for use as energy. Instead, your liver breaks down fat for fuel. This process produces acids called ketones. When too many ketones are produced too fast, they can build up to dangerous levels in your body. This can be life-threatening. \n\n The symptoms of DKA may include: \n \n Trouble breathing \n Nausea or vomiting \n Pain in your abdomen (belly) \n Confusion \n Feeling very tired or sleepy \n \n\n If you have an an at-home test for ketones, check your ketone level every 4 to 6 hours when your blood glucose is very high or when you are having these symptoms. If the test shows that your ketones are moderate or high, or if you don't have a ketones test, contact your health care provider right away or get emergency medical help. \n\n How is hyperglycemia diagnosed? ",
+          "excerptSha256": "9b7a7082adf5d704d47d012e0473748d106fc56ea3a917d0a817ab6d033e3e25",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "fd6b578aa3d3e3d7a099ff5865e619bf6a33da680d595b5fab94dea0bb34d25e",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "66d58cec453a656e68b8c0319e0cc6c44863e2cf6ac456b8638e8a8f397f848c",
+      "title": "Hyperosmolar Hyperglycemic State",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/hhs.md",
+      "section": "Differential Diagnosis",
+      "summary": "| Condition | Distinguishing Features |\n|-----------|------------------------|\n| Diabetic ketoacidosis (DKA) | Glucose usually 250-600, pH < 7.30, bicarb < 18, elevated anion gap, significant ketosis, onset over hours (see `diabetic-ketoacidosis.md`) |\n| HHS-DKA overlap | Glucose > 600 + osmolality > 320 + pH < 7.30 + ketosis; present in ~30% of hyperglycemic crises |\n| Acute ischemic stroke | Focal deficits, but HHS itself causes reversible focal deficits (hemiparesis, aphasia); check glucose before calling stroke code |\n| Sepsis with hyperglycemia | Glucose elevated but usually < 600, osmolality < 320, infection source identified; stress hyperglycemia |\n| Myxedema coma | Altered mental status, hypothermia, but glucose normal or low, TSH elevated, no hyperosmolality |\n| Uremic encephalopathy | AMS with elevated BUN/Cr, but no extreme hyperglycemia or hyperosmolality |\n| Nonconvulsive status epilepticus | Prolonged AMS; EEG required to distinguish; HHS itself can cause seizures |",
+      "reviewedAt": "2026-02-27",
+      "projectInterpretation": "research_synthesis; upstream_physician_reviewed. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "66d58cec453a656e68b8c0319e0cc6c44863e2cf6ac456b8638e8a8f397f848c",
+          "sourceId": "openem:hhs",
+          "excerpt": "| Condition | Distinguishing Features |\n|-----------|------------------------|\n| Diabetic ketoacidosis (DKA) | Glucose usually 250-600, pH < 7.30, bicarb < 18, elevated anion gap, significant ketosis, onset over hours (see `diabetic-ketoacidosis.md`) |\n| HHS-DKA overlap | Glucose > 600 + osmolality > 320 + pH < 7.30 + ketosis; present in ~30% of hyperglycemic crises |\n| Acute ischemic stroke | Focal deficits, but HHS itself causes reversible focal deficits (hemiparesis, aphasia); check glucose before calling stroke code |\n| Sepsis with hyperglycemia | Glucose elevated but usually < 600, osmolality < 320, infection source identified; stress hyperglycemia |\n| Myxedema coma | Altered mental status, hypothermia, but glucose normal or low, TSH elevated, no hyperosmolality |\n| Uremic encephalopathy | AMS with elevated BUN/Cr, but no extreme hyperglycemia or hyperosmolality |\n| Nonconvulsive status epilepticus | Prolonged AMS; EEG required to distinguish; HHS itself can cause seizures |",
+          "excerptSha256": "5ee2724671cfa451e3d77f742a2dbfcf2a17e3efc57fad7e4835d992125c6653",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "3fdd292257c92f954e9232cb8a4c6ba6c4948ca224918e0c0236ba0a6e8d0241",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "8fb6dbbae9a2abf447ce0a718906c257aaa48061b3364f5377c38b3da50aeb0c",
+      "title": "Severe Hypernatremia",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/hypernatremia-severe.md",
+      "section": "Recognition",
+      "summary": "**Severity classification:**\n- Mild: Na 146-150 mEq/L\n- Moderate: Na 151-159 mEq/L\n- Severe: Na >= 160 mEq/L (high mortality: 40-60% when Na > 160)\n\n**Clinical presentation (primarily neurologic — brain shrinkage):**\n- Irritability, restlessness (early)\n- Lethargy, confusion, obtundation\n- Hyperreflexia, muscle twitching, tremor\n- Seizures (usually on overcorrection, not from hypernatremia itself)\n- Coma (Na > 160)\n- Intracerebral hemorrhage (bridging veins torn from brain shrinkage)\n- Fever (hypothalamic dysfunction)\n- Intense thirst (preserved sensorium patients)\n\n**Common etiologies:**\n- **Decreased water intake** (most common): elderly with impaired thirst, altered mental status, restricted access to water, intubated ICU patients\n- **Increased water losses:** diabetes insipidus (central or nephrogenic), osmotic diuresis (hyperglycemia, mannitol, urea), diarrhea, insensible losses (fever, burns)\n- **Sodium excess** (rare): iatrogenic (hypertonic saline, sodium bicarbonate), salt ingestion, hyperaldosteronism, Cushing syndrome",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "8fb6dbbae9a2abf447ce0a718906c257aaa48061b3364f5377c38b3da50aeb0c",
+          "sourceId": "openem:hypernatremia-severe",
+          "excerpt": "**Severity classification:**\n- Mild: Na 146-150 mEq/L\n- Moderate: Na 151-159 mEq/L\n- Severe: Na >= 160 mEq/L (high mortality: 40-60% when Na > 160)\n\n**Clinical presentation (primarily neurologic — brain shrinkage):**\n- Irritability, restlessness (early)\n- Lethargy, confusion, obtundation\n- Hyperreflexia, muscle twitching, tremor\n- Seizures (usually on overcorrection, not from hypernatremia itself)\n- Coma (Na > 160)\n- Intracerebral hemorrhage (bridging veins torn from brain shrinkage)\n- Fever (hypothalamic dysfunction)\n- Intense thirst (preserved sensorium patients)\n\n**Common etiologies:**\n- **Decreased water intake** (most common): elderly with impaired thirst, altered mental status, restricted access to water, intubated ICU patients\n- **Increased water losses:** diabetes insipidus (central or nephrogenic), osmotic diuresis (hyperglycemia, mannitol, urea), diarrhea, insensible losses (fever, burns)\n- **Sodium excess** (rare): iatrogenic (hypertonic saline, sodium bicarbonate), salt ingestion, hyperaldosteronism, Cushing syndrome",
+          "excerptSha256": "63c9e5cfcfcad3a9c65c1cee963b23b65ae7e522af0690eaa1628bcc267d1cd7",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "6232393f1158c9080dce666a834f01014b74600510441ce336013c60cd414512",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "a5a192fd2735975481b735e933956be1437e0dadc5999ad98e8a21ad6b380a6d",
+      "title": "Hyperglycemia",
+      "url": "https://medlineplus.gov/hyperglycemia.html",
+      "section": "Health-topic summary",
+      "summary": " test shows that your ketones are moderate or high, or if you don't have a ketones test, contact your health care provider right away or get emergency medical help. \n\n How is hyperglycemia diagnosed? \n If you have diabetes, you'll most likely need to check your blood glucose every day and make sure that it's not too high. You can do this with a blood glucose meter or continuous glucose monitoring (CGM) system. \n \n There are also blood tests that providers can use to check if your blood glucose is too high. \n\n What are the treatments for hyperglycemia? \n If you have diabetes and often have high blood glucose, your health care team may make changes to your diabetes meal plan, physical activity plan, and/or diabetes medicines. \n\n If you have severe hyperglycemia and are having symptoms of DKA, you will need treatment at the hospital. The treatment often includes I.V. (intravenous) fluids and insulin. \n\n Can hyperglycemia be prevented? \n If you have diabetes, managing your diabetes can help prevent hyperglycemia. To manage your diabetes, it's important to: \n \n Follow your diabetes meal plan \n Get regular physical activity \n If you need diabetes medicines, take them correctly \n Regularly check your blood glucose level \n Get regular checkups with your health care team",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "a5a192fd2735975481b735e933956be1437e0dadc5999ad98e8a21ad6b380a6d",
+          "sourceId": "medlineplus:6125",
+          "excerpt": " test shows that your ketones are moderate or high, or if you don't have a ketones test, contact your health care provider right away or get emergency medical help. \n\n How is hyperglycemia diagnosed? \n If you have diabetes, you'll most likely need to check your blood glucose every day and make sure that it's not too high. You can do this with a blood glucose meter or continuous glucose monitoring (CGM) system. \n \n There are also blood tests that providers can use to check if your blood glucose is too high. \n\n What are the treatments for hyperglycemia? \n If you have diabetes and often have high blood glucose, your health care team may make changes to your diabetes meal plan, physical activity plan, and/or diabetes medicines. \n\n If you have severe hyperglycemia and are having symptoms of DKA, you will need treatment at the hospital. The treatment often includes I.V. (intravenous) fluids and insulin. \n\n Can hyperglycemia be prevented? \n If you have diabetes, managing your diabetes can help prevent hyperglycemia. To manage your diabetes, it's important to: \n \n Follow your diabetes meal plan \n Get regular physical activity \n If you need diabetes medicines, take them correctly \n Regularly check your blood glucose level \n Get regular checkups with your health care team",
+          "excerptSha256": "59f2949eecba05e5f7ed303a046bd2ae39eb82ca4fe3fb9a5f17af8373b9a789",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "fd6b578aa3d3e3d7a099ff5865e619bf6a33da680d595b5fab94dea0bb34d25e",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "b6e7c77d3eb51df4f4bdb58ff5e7cc8fd7a29f8edc19675ac3b4e290ea276651",
+      "title": "Hyperosmolar Hyperglycemic State",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/hhs.md",
+      "section": "Recognition",
+      "summary": "**Diagnostic Criteria (all required):**\n1. Glucose > 600 mg/dL\n2. Effective serum osmolality > 320 mOsm/kg\n3. pH > 7.30 and bicarb > 18 mEq/L (minimal or absent ketoacidosis)\n4. Absent or small urine/serum ketones\n\n**Effective serum osmolality** = 2[Na+] + glucose/18 (BUN excluded because it freely crosses cell membranes and does not contribute to tonicity).\n\n**Presentation:**\n- Insidious onset over days to weeks (unlike DKA which evolves in hours)\n- Profound dehydration: average free water deficit 8-12 L (100-200 mL/kg)\n- Altered mental status ranging from lethargy to coma (correlates with osmolality; obtundation typical when osmolality > 340 mOsm/kg)\n- Tachycardia, hypotension, orthostasis, poor skin turgor, dry mucous membranes\n- Focal neurologic deficits (hemiparesis, hemianopia, aphasia) that reverse with treatment — often mistaken for stroke\n- Seizures (focal or generalized) in 10-25% of cases\n- No Kussmaul respirations (no significant acidosis to compensate)\n- No fruity breath (absent or minimal ketosis)\n- Hypothermia is common; fever may be masked despite underlying infection\n\n**Typical Patient:**\n- Elderly (mean age 60-70 years), type 2 DM\n- Nursing home resident or impaired access to free water (dementia, immobility, sedation)\n- Often undiagnosed or undertreated DM\n- Pediatric HHS is rare but carries high mortality (especially obese adolescents with new-onset type 2 DM)\n\n**Precipitants:**\n- Infection: 40-60% of cases (UTI, pneumonia, sepsis most common)\n- Medication noncompliance or insulin omission\n- New-onset diabetes (up to 20% of HHS presentations)\n- Acute illness: MI, stroke, pancreatitis, PE\n- Medications: glucocorticoids, thiazides, phenytoin, atypical antipsychotics (olanzapine, quetiapine), beta-blockers, calcium channel blockers",
+      "reviewedAt": "2026-02-27",
+      "projectInterpretation": "research_synthesis; upstream_physician_reviewed. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "b6e7c77d3eb51df4f4bdb58ff5e7cc8fd7a29f8edc19675ac3b4e290ea276651",
+          "sourceId": "openem:hhs",
+          "excerpt": "**Diagnostic Criteria (all required):**\n1. Glucose > 600 mg/dL\n2. Effective serum osmolality > 320 mOsm/kg\n3. pH > 7.30 and bicarb > 18 mEq/L (minimal or absent ketoacidosis)\n4. Absent or small urine/serum ketones\n\n**Effective serum osmolality** = 2[Na+] + glucose/18 (BUN excluded because it freely crosses cell membranes and does not contribute to tonicity).\n\n**Presentation:**\n- Insidious onset over days to weeks (unlike DKA which evolves in hours)\n- Profound dehydration: average free water deficit 8-12 L (100-200 mL/kg)\n- Altered mental status ranging from lethargy to coma (correlates with osmolality; obtundation typical when osmolality > 340 mOsm/kg)\n- Tachycardia, hypotension, orthostasis, poor skin turgor, dry mucous membranes\n- Focal neurologic deficits (hemiparesis, hemianopia, aphasia) that reverse with treatment — often mistaken for stroke\n- Seizures (focal or generalized) in 10-25% of cases\n- No Kussmaul respirations (no significant acidosis to compensate)\n- No fruity breath (absent or minimal ketosis)\n- Hypothermia is common; fever may be masked despite underlying infection\n\n**Typical Patient:**\n- Elderly (mean age 60-70 years), type 2 DM\n- Nursing home resident or impaired access to free water (dementia, immobility, sedation)\n- Often undiagnosed or undertreated DM\n- Pediatric HHS is rare but carries high mortality (especially obese adolescents with new-onset type 2 DM)\n\n**Precipitants:**\n- Infection: 40-60% of cases (UTI, pneumonia, sepsis most common)\n- Medication noncompliance or insulin omission\n- New-onset diabetes (up to 20% of HHS presentations)\n- Acute illness: MI, stroke, pancreatitis, PE\n- Medications: glucocorticoids, thiazides, phenytoin, atypical antipsychotics (olanzapine, quetiapine), beta-blockers, calcium channel blockers",
+          "excerptSha256": "2a503ce9caa5cffe4eb9a4a9803a62e032a4ea04faaf59a72c69525d6ca62258",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "3fdd292257c92f954e9232cb8a4c6ba6c4948ca224918e0c0236ba0a6e8d0241",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "199aec5fde323ffde2d12212bdd4578632c7e756c8f1e20ebdb640bb5dec82a5",
+      "title": "Severe Hypernatremia",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/hypernatremia-severe.md",
+      "section": "Differential Diagnosis",
+      "summary": "- Diabetes insipidus — central (low ADH, responds to desmopressin) vs nephrogenic (ADH-resistant)\n- Osmotic diuresis (DKA, mannitol, urea) — elevated serum osmolality with polyuria\n- Dehydration (pure water loss) — elderly, infants, impaired thirst\n- Iatrogenic sodium loading (sodium bicarbonate, hypertonic saline)\n- Hyperaldosteronism (hypertension, hypokalemia)\n- Cushing syndrome (cortisol excess)\n- Essential hypernatremia (reset osmostat — rare)",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "199aec5fde323ffde2d12212bdd4578632c7e756c8f1e20ebdb640bb5dec82a5",
+          "sourceId": "openem:hypernatremia-severe",
+          "excerpt": "- Diabetes insipidus — central (low ADH, responds to desmopressin) vs nephrogenic (ADH-resistant)\n- Osmotic diuresis (DKA, mannitol, urea) — elevated serum osmolality with polyuria\n- Dehydration (pure water loss) — elderly, infants, impaired thirst\n- Iatrogenic sodium loading (sodium bicarbonate, hypertonic saline)\n- Hyperaldosteronism (hypertension, hypokalemia)\n- Cushing syndrome (cortisol excess)\n- Essential hypernatremia (reset osmostat — rare)",
+          "excerptSha256": "ea3fae5e7be9e498bcbff29e3d748c5dd8d3a6dddefc2bc317cc2937d7f01eff",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "6232393f1158c9080dce666a834f01014b74600510441ce336013c60cd414512",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "5dbe37a5eddeed5ecc6fa4eb06a1e1c0fdb04cc08ac75d406fe6d8e07e317526",
+      "title": "Diabetic Ketoacidosis",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/diabetic-ketoacidosis.md",
+      "section": "Recognition",
+      "summary": "**Diagnostic Criteria (all three required):**\n1. Hyperglycemia: glucose > 250 mg/dL (may be lower in euglycemic DKA)\n2. Metabolic acidosis: pH < 7.3 or bicarb < 18 mEq/L\n3. Ketosis: serum or urine ketones positive, or beta-hydroxybutyrate > 3 mmol/L\n\n**Severity Classification:**\n\n| Severity | pH | Bicarb | Mental Status |\n|----------|----|--------|---------------|\n| Mild | 7.25-7.30 | 15-18 | Alert |\n| Moderate | 7.00-7.24 | 10-14 | Drowsy |\n| Severe | < 7.00 | < 10 | Obtunded/coma |\n\n**Presentation:**\n- Polyuria, polydipsia, weight loss (days to weeks)\n- Nausea, vomiting, abdominal pain (can mimic acute abdomen)\n- Kussmaul respirations (deep, rapid — compensatory for metabolic acidosis)\n- Fruity breath (acetone)\n- Tachycardia, hypotension (volume depletion averages 5-7 L in adults)\n- Altered mental status (correlates with osmolality more than pH)\n- Hypothermia (common; infection may not produce fever)\n\n**Precipitants (5 I's):**\n- **I**nfection (most common — UTI, pneumonia, sepsis)\n- **I**nsulin omission/noncompliance\n- **I**nfarction (MI, stroke, mesenteric ischemia)\n- **I**ntoxication/drugs (cocaine, SGLT2 inhibitors, steroids)\n- **I**nitial presentation of new-onset diabetes\n\n**Euglycemic DKA (glucose < 250 mg/dL):**\n- SGLT2 inhibitor use (empagliflozin, dapagliflozin, canagliflozin)\n- Pregnancy\n- Starvation + diabetes\n- Partial treatment prior to arrival\n- Missed if glucose is used as sole screening criterion",
+      "reviewedAt": "2026-02-27",
+      "projectInterpretation": "research_synthesis; upstream_physician_reviewed. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "5dbe37a5eddeed5ecc6fa4eb06a1e1c0fdb04cc08ac75d406fe6d8e07e317526",
+          "sourceId": "openem:diabetic-ketoacidosis",
+          "excerpt": "**Diagnostic Criteria (all three required):**\n1. Hyperglycemia: glucose > 250 mg/dL (may be lower in euglycemic DKA)\n2. Metabolic acidosis: pH < 7.3 or bicarb < 18 mEq/L\n3. Ketosis: serum or urine ketones positive, or beta-hydroxybutyrate > 3 mmol/L\n\n**Severity Classification:**\n\n| Severity | pH | Bicarb | Mental Status |\n|----------|----|--------|---------------|\n| Mild | 7.25-7.30 | 15-18 | Alert |\n| Moderate | 7.00-7.24 | 10-14 | Drowsy |\n| Severe | < 7.00 | < 10 | Obtunded/coma |\n\n**Presentation:**\n- Polyuria, polydipsia, weight loss (days to weeks)\n- Nausea, vomiting, abdominal pain (can mimic acute abdomen)\n- Kussmaul respirations (deep, rapid — compensatory for metabolic acidosis)\n- Fruity breath (acetone)\n- Tachycardia, hypotension (volume depletion averages 5-7 L in adults)\n- Altered mental status (correlates with osmolality more than pH)\n- Hypothermia (common; infection may not produce fever)\n\n**Precipitants (5 I's):**\n- **I**nfection (most common — UTI, pneumonia, sepsis)\n- **I**nsulin omission/noncompliance\n- **I**nfarction (MI, stroke, mesenteric ischemia)\n- **I**ntoxication/drugs (cocaine, SGLT2 inhibitors, steroids)\n- **I**nitial presentation of new-onset diabetes\n\n**Euglycemic DKA (glucose < 250 mg/dL):**\n- SGLT2 inhibitor use (empagliflozin, dapagliflozin, canagliflozin)\n- Pregnancy\n- Starvation + diabetes\n- Partial treatment prior to arrival\n- Missed if glucose is used as sole screening criterion",
+          "excerptSha256": "5e3ba6c829fe7ad04522cd933093d23b84b71d9f96441181307c6ceb1b988212",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "976da64b62b6b84c13b041a46533a1b1876bb3f3e447869d93be5f2967ebf2f9",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "62975b664aa15e8c4467c3eea4c20202578296e6a4046d0b610559216bc02874",
+      "title": "Diabetic Ketoacidosis",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/diabetic-ketoacidosis.md",
+      "section": "Differential Diagnosis",
+      "summary": "| Condition | Distinguishing Features |\n|-----------|------------------------|\n| Hyperosmolar hyperglycemic state (HHS) | Glucose > 600, osmolality > 320, minimal ketosis, pH > 7.30, profound dehydration |\n| Alcoholic ketoacidosis | History of alcohol use, low-normal glucose, elevated beta-hydroxybutyrate, anion gap acidosis |\n| Starvation ketosis | Mild ketosis, bicarb rarely < 18, no significant acidosis |\n| Uremic acidosis | Elevated BUN/Cr, anion gap acidosis, no ketosis |\n| Lactic acidosis | Elevated lactate, sepsis/shock/liver failure, no ketosis |\n| Toxic alcohol ingestion | Osmolar gap, specific toxin levels, no ketosis |\n| Salicylate toxicity | Mixed respiratory alkalosis + metabolic acidosis, tinnitus, salicylate level |",
+      "reviewedAt": "2026-02-27",
+      "projectInterpretation": "research_synthesis; upstream_physician_reviewed. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "62975b664aa15e8c4467c3eea4c20202578296e6a4046d0b610559216bc02874",
+          "sourceId": "openem:diabetic-ketoacidosis",
+          "excerpt": "| Condition | Distinguishing Features |\n|-----------|------------------------|\n| Hyperosmolar hyperglycemic state (HHS) | Glucose > 600, osmolality > 320, minimal ketosis, pH > 7.30, profound dehydration |\n| Alcoholic ketoacidosis | History of alcohol use, low-normal glucose, elevated beta-hydroxybutyrate, anion gap acidosis |\n| Starvation ketosis | Mild ketosis, bicarb rarely < 18, no significant acidosis |\n| Uremic acidosis | Elevated BUN/Cr, anion gap acidosis, no ketosis |\n| Lactic acidosis | Elevated lactate, sepsis/shock/liver failure, no ketosis |\n| Toxic alcohol ingestion | Osmolar gap, specific toxin levels, no ketosis |\n| Salicylate toxicity | Mixed respiratory alkalosis + metabolic acidosis, tinnitus, salicylate level |",
+          "excerptSha256": "126f7da1f209cb3809de499a594976ea1fe1e952f190e47c060d3dd611347171",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "976da64b62b6b84c13b041a46533a1b1876bb3f3e447869d93be5f2967ebf2f9",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "522c9abbf46e731f19208a0050f2caa445adce41151f680110faa3437637faa6",
+      "title": "Severe Hyponatremia",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/hyponatremia-severe.md",
+      "section": "Differential Diagnosis",
+      "summary": "- Pseudohyponatremia (hyperglycemia, hyperlipidemia, paraproteinemia — check serum osmolality)\n- Hyperglycemia-induced hyponatremia (correct Na: add 1.6 mEq/L for each 100 mg/dL glucose above 100)\n- Hypothyroidism (check TSH)\n- Adrenal insufficiency (check cortisol, ACTH)\n- SIADH (euvolemic, urine osm > 100, urine Na > 40)\n- Beer potomania (low solute intake)\n- Cerebral salt wasting (post-neurosurgery, hypovolemic)\n- Drug-induced SIADH (SSRIs, carbamazepine, cyclophosphamide, oxytocin, ecstasy)",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "522c9abbf46e731f19208a0050f2caa445adce41151f680110faa3437637faa6",
+          "sourceId": "openem:hyponatremia-severe",
+          "excerpt": "- Pseudohyponatremia (hyperglycemia, hyperlipidemia, paraproteinemia — check serum osmolality)\n- Hyperglycemia-induced hyponatremia (correct Na: add 1.6 mEq/L for each 100 mg/dL glucose above 100)\n- Hypothyroidism (check TSH)\n- Adrenal insufficiency (check cortisol, ACTH)\n- SIADH (euvolemic, urine osm > 100, urine Na > 40)\n- Beer potomania (low solute intake)\n- Cerebral salt wasting (post-neurosurgery, hypovolemic)\n- Drug-induced SIADH (SSRIs, carbamazepine, cyclophosphamide, oxytocin, ecstasy)",
+          "excerptSha256": "88bffab44c9ba0d4c99659af53994ca36f914d31fe0db4cded284472659b9a5f",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "0c29642f39944f294f51af24957079d3893c06d92d60a147fa2df47f6b2e9690",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    }
+  ],
+  "routingPolicy": "five-route-queue/v2",
+  "usage": {
+    "inputTokens": 21392,
+    "outputTokens": 1419
+  },
+  "graph": {
+    "version": "evidence-graph/v25",
+    "mode": "gates-release",
+    "frozenPacketHash": "85a223ab84006e876bfdedd86154a365647dbb247f5e06fac8f5fc87244ab7e9",
+    "gatesAdmission": {
+      "policy": "gates-release/v1",
+      "packetHash": "85a223ab84006e876bfdedd86154a365647dbb247f5e06fac8f5fc87244ab7e9",
+      "draftHash": "57b04f73b70c9fa3171b08ff563f5e224c82bc54a35c63687d144ca5b50be8c5",
+      "contractOk": true,
+      "packetOk": true,
+      "lowerThanEarly": false,
+      "aborted": false,
+      "released": true
+    },
+    "clinicalPolicyVersion": "disposition-clinical-policy/v2",
+    "context": {
+      "queries": [
+        "hyperglycemia vomiting unable to tolerate fluids diabetic",
+        "diabetic ketoacidosis hyperosmolar state",
+        "severe hyperglycemia dehydration acute complications"
+      ],
+      "findings": [
+        {
+          "finding": "Blood glucose elevated above 400 mg/dL",
+          "status": "reported",
+          "quote": "My sugar has been over 400 today"
+        },
+        {
+          "finding": "Vomiting",
+          "status": "reported",
+          "quote": "I've thrown up twice"
+        },
+        {
+          "finding": "Unable to tolerate oral fluids",
+          "status": "reported",
+          "quote": "can't keep water down"
+        },
+        {
+          "finding": "Feeling severely unwell",
+          "status": "reported",
+          "quote": "I feel awful"
+        },
+        {
+          "finding": "Type 2 diabetes mellitus",
+          "status": "reported",
+          "quote": "type 2 diabetes"
+        },
+        {
+          "finding": "Acute onset or worsening of current episode",
+          "status": "unknown",
+          "quote": ""
+        }
+      ],
+      "question": {
+        "text": "Did your blood sugar start going high today, or has it been running high for days?",
+        "why": "Acute versus gradual hyperglycemia onset affects urgency and suspected diagnosis (DKA vs HHS).",
+        "quote": "My sugar has been over 400 today"
+      }
+    },
+    "contextAdmission": {
+      "clinicalContextAccepted": true,
+      "querySource": "accepted_context",
+      "queries": [
+        "hyperglycemia vomiting unable to tolerate fluids diabetic",
+        "diabetic ketoacidosis hyperosmolar state",
+        "severe hyperglycemia dehydration acute complications"
+      ],
+      "clinicalValidation": false
+    },
+    "safety": {
+      "action": "ED_NOW",
+      "basis": [
+        {
+          "quote": "sugar has been over 400 today",
+          "interpretation": "Severe hyperglycemia reported in type 2 diabetic patient",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "I've thrown up twice and can't keep water down",
+          "interpretation": "Repeated vomiting with inability to retain fluids; risk of dehydration and metabolic decompensation",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "I feel awful",
+          "interpretation": "Severe subjective distress accompanying hyperglycemia and vomiting",
+          "currentPatient": true,
+          "present": true
+        }
+      ],
+      "actionBasis": {
+        "indices": [
+          0,
+          1,
+          2
+        ],
+        "sufficient": true
+      },
+      "reason": "Severe hyperglycemia with repeated vomiting and fluid intolerance in type 2 diabetic warrants immediate evaluation for diabetic ketoacidosis, hyperosmolar crisis or other acute decompensation.",
+      "patientMessage": "",
+      "physicalRequirement": null,
+      "activeEms": null
+    },
+    "safetyAdmission": {
+      "status": "admitted",
+      "code": "ACTION_ADMITTED",
+      "proposedAction": "ED_NOW",
+      "basisMode": "explicit",
+      "supportingBasisIndices": [
+        0,
+        1,
+        2
+      ],
+      "contextualBasisIndices": [],
+      "clinicalValidation": false
+    },
+    "questionPublication": {
+      "status": "suppressed_emergency",
+      "blocksRouting": false
+    },
+    "retrieval": [
+      {
+        "corpusHash": "af7e4a8c239c4b084525aba008d56ce833b3a08144cea6237319bf996aa30dbd",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "hyperglycemia vomiting unable to tolerate fluids diabetic",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "53e0775b86d5749e3973c17768c142b51e63bab0e0a80ab591b396a20ce52034",
+              "end": 3392,
+              "hash": "9b7a7082adf5d704d47d012e0473748d106fc56ea3a917d0a817ab6d033e3e25",
+              "text": "r pancreas or adrenal glands , certain medicines, and severe illnesses. \n\n What are the symptoms of hyperglycemia? \n The symptoms of hyperglycemia include: \n \n Feeling thirsty \n Feeling tired or weak \n Headaches \n Urinating (peeing) often \n Blurred vision \n \n\n If you are diabetic and you often have high blood glucose levels or the symptoms of hyperglycemia, talk with your health care team. You may need a change in your diabetes meal plan, physical activity plan, or diabetes medicines. \n\n If you don't have diabetes and you are having these symptoms, see your provider to find out the cause and how to treat it. \n\n What other problems can hyperglycemia cause? \n If hyperglycemia is not treated, it can cause other problems. In people with diabetes, long-term hyperglycemia can lead to serious health problems (diabetes complications). \n\n If your blood glucose levels get very high, you can develop diabetes-related ketoacidosis (DKA). It happens when your body doesn't have enough insulin to allow blood glucose into your cells for use as energy. Instead, your liver breaks down fat for fuel. This process produces acids called ketones. When too many ketones are produced too fast, they can build up to dangerous levels in your body. This can be life-threatening. \n\n The symptoms of DKA may include: \n \n Trouble breathing \n Nausea or vomiting \n Pain in your abdomen (belly) \n Confusion \n Feeling very tired or sleepy \n \n\n If you have an an at-home test for ketones, check your ketone level every 4 to 6 hours when your blood glucose is very high or when you are having these symptoms. If the test shows that your ketones are moderate or high, or if you don't have a ketones test, contact your health care provider right away or get emergency medical help. \n\n How is hyperglycemia diagnosed? ",
+              "start": 1597,
+              "section": 0,
+              "documentId": "medlineplus:6125",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Hyperglycemia\nHigh blood glucose; High blood sugar\nHealth-topic summary\nr pancreas or adrenal glands , certain medicines, and severe illnesses. \n\n What are the symptoms of hyperglycemia? \n The symptoms of hyperglycemia include: \n \n Feeling thirsty \n Feeling tired or weak \n Headaches \n Urinating (peeing) often \n Blurred vision \n \n\n If you are diabetic and you often have high blood glucose levels or the symptoms of hyperglycemia, talk with your health care team. You may need a change in your diabetes meal plan, physical activity plan, or diabetes medicines. \n\n If you don't have diabetes and you are having these symptoms, see your provider to find out the cause and how to treat it. \n\n What other problems can hyperglycemia cause? \n If hyperglycemia is not treated, it can cause other problems. In people with diabetes, long-term hyperglycemia can lead to serious health problems (diabetes complications). \n\n If your blood glucose levels get very high, you can develop diabetes-related ketoacidosis (DKA). It happens when your body doesn't have enough insulin to allow blood glucose into your cells for use as energy. Instead, your liver breaks down fat for fuel. This process produces acids called ketones. When too many ketones are produced too fast, they can build up to dangerous levels in your body. This can be life-threatening. \n\n The symptoms of DKA may include: \n \n Trouble breathing \n Nausea or vomiting \n Pain in your abdomen (belly) \n Confusion \n Feeling very tired or sleepy \n \n\n If you have an an at-home test for ketones, check your ketone level every 4 to 6 hours when your blood glucose is very high or when you are having these symptoms. If the test shows that your ketones are moderate or high, or if you don't have a ketones test, contact your health care provider right away or get emergency medical help. \n\n How is hyperglycemia diagnosed? "
+            },
+            "document": {
+              "id": "medlineplus:6125",
+              "url": "https://medlineplus.gov/hyperglycemia.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Hyperglycemia",
+              "aliases": [
+                "High blood glucose",
+                "High blood sugar"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "fd6b578aa3d3e3d7a099ff5865e619bf6a33da680d595b5fab94dea0bb34d25e",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6121",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Hyperglycemia"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.029030910609857977,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": " don't get physical activity, you can get hyperglycemia. It can also happen if you are stressed or sick. \n\n Less commonly, people who don't have diabetes can also get hyperglycemia. It can be caused by conditions that can affect insulin or glucose levels in your blood. They include problems with you",
+              "after": "\n If you have diabetes, you'll most likely need to check your blood glucose every day and make sure that it's not too high. You can do this with a blood glucose meter or continuous glucose monitoring (CGM) system. \n \n There are also blood tests that providers can use to check if your blood glucose i"
+            }
+          },
+          {
+            "chunk": {
+              "id": "a5a192fd2735975481b735e933956be1437e0dadc5999ad98e8a21ad6b380a6d",
+              "end": 4474,
+              "hash": "59f2949eecba05e5f7ed303a046bd2ae39eb82ca4fe3fb9a5f17af8373b9a789",
+              "text": " test shows that your ketones are moderate or high, or if you don't have a ketones test, contact your health care provider right away or get emergency medical help. \n\n How is hyperglycemia diagnosed? \n If you have diabetes, you'll most likely need to check your blood glucose every day and make sure that it's not too high. You can do this with a blood glucose meter or continuous glucose monitoring (CGM) system. \n \n There are also blood tests that providers can use to check if your blood glucose is too high. \n\n What are the treatments for hyperglycemia? \n If you have diabetes and often have high blood glucose, your health care team may make changes to your diabetes meal plan, physical activity plan, and/or diabetes medicines. \n\n If you have severe hyperglycemia and are having symptoms of DKA, you will need treatment at the hospital. The treatment often includes I.V. (intravenous) fluids and insulin. \n\n Can hyperglycemia be prevented? \n If you have diabetes, managing your diabetes can help prevent hyperglycemia. To manage your diabetes, it's important to: \n \n Follow your diabetes meal plan \n Get regular physical activity \n If you need diabetes medicines, take them correctly \n Regularly check your blood glucose level \n Get regular checkups with your health care team",
+              "start": 3192,
+              "section": 0,
+              "documentId": "medlineplus:6125",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Hyperglycemia\nHigh blood glucose; High blood sugar\nHealth-topic summary\n test shows that your ketones are moderate or high, or if you don't have a ketones test, contact your health care provider right away or get emergency medical help. \n\n How is hyperglycemia diagnosed? \n If you have diabetes, you'll most likely need to check your blood glucose every day and make sure that it's not too high. You can do this with a blood glucose meter or continuous glucose monitoring (CGM) system. \n \n There are also blood tests that providers can use to check if your blood glucose is too high. \n\n What are the treatments for hyperglycemia? \n If you have diabetes and often have high blood glucose, your health care team may make changes to your diabetes meal plan, physical activity plan, and/or diabetes medicines. \n\n If you have severe hyperglycemia and are having symptoms of DKA, you will need treatment at the hospital. The treatment often includes I.V. (intravenous) fluids and insulin. \n\n Can hyperglycemia be prevented? \n If you have diabetes, managing your diabetes can help prevent hyperglycemia. To manage your diabetes, it's important to: \n \n Follow your diabetes meal plan \n Get regular physical activity \n If you need diabetes medicines, take them correctly \n Regularly check your blood glucose level \n Get regular checkups with your health care team"
+            },
+            "document": {
+              "id": "medlineplus:6125",
+              "url": "https://medlineplus.gov/hyperglycemia.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Hyperglycemia",
+              "aliases": [
+                "High blood glucose",
+                "High blood sugar"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "fd6b578aa3d3e3d7a099ff5865e619bf6a33da680d595b5fab94dea0bb34d25e",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6121",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Hyperglycemia"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.02844551282051282,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "include: \n \n Trouble breathing \n Nausea or vomiting \n Pain in your abdomen (belly) \n Confusion \n Feeling very tired or sleepy \n \n\n If you have an an at-home test for ketones, check your ketone level every 4 to 6 hours when your blood glucose is very high or when you are having these symptoms. If the",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "5dbe37a5eddeed5ecc6fa4eb06a1e1c0fdb04cc08ac75d406fe6d8e07e317526",
+              "end": 1437,
+              "hash": "5e3ba6c829fe7ad04522cd933093d23b84b71d9f96441181307c6ceb1b988212",
+              "text": "**Diagnostic Criteria (all three required):**\n1. Hyperglycemia: glucose > 250 mg/dL (may be lower in euglycemic DKA)\n2. Metabolic acidosis: pH < 7.3 or bicarb < 18 mEq/L\n3. Ketosis: serum or urine ketones positive, or beta-hydroxybutyrate > 3 mmol/L\n\n**Severity Classification:**\n\n| Severity | pH | Bicarb | Mental Status |\n|----------|----|--------|---------------|\n| Mild | 7.25-7.30 | 15-18 | Alert |\n| Moderate | 7.00-7.24 | 10-14 | Drowsy |\n| Severe | < 7.00 | < 10 | Obtunded/coma |\n\n**Presentation:**\n- Polyuria, polydipsia, weight loss (days to weeks)\n- Nausea, vomiting, abdominal pain (can mimic acute abdomen)\n- Kussmaul respirations (deep, rapid — compensatory for metabolic acidosis)\n- Fruity breath (acetone)\n- Tachycardia, hypotension (volume depletion averages 5-7 L in adults)\n- Altered mental status (correlates with osmolality more than pH)\n- Hypothermia (common; infection may not produce fever)\n\n**Precipitants (5 I's):**\n- **I**nfection (most common — UTI, pneumonia, sepsis)\n- **I**nsulin omission/noncompliance\n- **I**nfarction (MI, stroke, mesenteric ischemia)\n- **I**ntoxication/drugs (cocaine, SGLT2 inhibitors, steroids)\n- **I**nitial presentation of new-onset diabetes\n\n**Euglycemic DKA (glucose < 250 mg/dL):**\n- SGLT2 inhibitor use (empagliflozin, dapagliflozin, canagliflozin)\n- Pregnancy\n- Starvation + diabetes\n- Partial treatment prior to arrival\n- Missed if glucose is used as sole screening criterion",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:diabetic-ketoacidosis",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Diabetic Ketoacidosis\nDKA; diabetic ketosis; ketoacidosis\nRecognition\n**Diagnostic Criteria (all three required):**\n1. Hyperglycemia: glucose > 250 mg/dL (may be lower in euglycemic DKA)\n2. Metabolic acidosis: pH < 7.3 or bicarb < 18 mEq/L\n3. Ketosis: serum or urine ketones positive, or beta-hydroxybutyrate > 3 mmol/L\n\n**Severity Classification:**\n\n| Severity | pH | Bicarb | Mental Status |\n|----------|----|--------|---------------|\n| Mild | 7.25-7.30 | 15-18 | Alert |\n| Moderate | 7.00-7.24 | 10-14 | Drowsy |\n| Severe | < 7.00 | < 10 | Obtunded/coma |\n\n**Presentation:**\n- Polyuria, polydipsia, weight loss (days to weeks)\n- Nausea, vomiting, abdominal pain (can mimic acute abdomen)\n- Kussmaul respirations (deep, rapid — compensatory for metabolic acidosis)\n- Fruity breath (acetone)\n- Tachycardia, hypotension (volume depletion averages 5-7 L in adults)\n- Altered mental status (correlates with osmolality more than pH)\n- Hypothermia (common; infection may not produce fever)\n\n**Precipitants (5 I's):**\n- **I**nfection (most common — UTI, pneumonia, sepsis)\n- **I**nsulin omission/noncompliance\n- **I**nfarction (MI, stroke, mesenteric ischemia)\n- **I**ntoxication/drugs (cocaine, SGLT2 inhibitors, steroids)\n- **I**nitial presentation of new-onset diabetes\n\n**Euglycemic DKA (glucose < 250 mg/dL):**\n- SGLT2 inhibitor use (empagliflozin, dapagliflozin, canagliflozin)\n- Pregnancy\n- Starvation + diabetes\n- Partial treatment prior to arrival\n- Missed if glucose is used as sole screening criterion"
+            },
+            "document": {
+              "id": "openem:diabetic-ketoacidosis",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/diabetic-ketoacidosis.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Diabetic Ketoacidosis",
+              "aliases": [
+                "DKA",
+                "diabetic ketosis",
+                "ketoacidosis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "976da64b62b6b84c13b041a46533a1b1876bb3f3e447869d93be5f2967ebf2f9",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:hhs",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:sepsis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:acute-pancreatitis",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "endocrine-metabolic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-28"
+            },
+            "score": 0.027146130794993832,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "2739ad45d37b15a677e435f5e06f70d0c1160916bcafffdb5b2b1af8e0440372",
+              "end": 4698,
+              "hash": "e9215ab9f4a8c426eab972faa65f318cc4c6a24b9716f55b6ed3f0143e658528",
+              "text": "l diabetes if you: \n \n Are overweight or have obesity. \n Have a family history of diabetes. \n Had gestational diabetes in a previous pregnancy. \n Have given birth to a baby weighing 9 pounds or more. \n Have polycystic ovary syndrome (PCOS). \n Are African American, Hispanic/Latino, American Indian, Alaska Native, Native Hawaiian, or Pacific Islander. \n \n\n \n\n What are the symptoms of diabetes? \n The symptoms of diabetes may include: \n \n Feeling very thirsty \n Feeling very hungry \n Urinating (peeing) more often, including at night \n Fatigue \n Blurry vision \n Numbness or tingling in the feet or hands \n Sores that do not heal \n Losing weight without trying \n \n\n But it's important to know that your symptoms may vary, depending on which type you have: \n \n The symptoms of type 1 diabetes usually come on quickly and can be severe. \n With type 2 diabetes, the symptoms often develop slowly, over several years. The symptoms can be so mild that you might not even notice them. \n Gestational diabetes often has no symptoms. If you do have symptoms, they may be mild. If you are pregnant, you will usually be screened for this condition between 24 and 28 weeks of pregnancy. \n \n\n How is diabetes diagnosed? \n To find out if you have diabetes, your health care provider will use one or more glucose blood tests . There are several types, including the A1C test . \n\n What are the treatments for diabetes? \n Treatment for diabetes involves managing your blood glucose levels: \n \n If you have type 1 diabetes, you will need to take daily doses of insulin, either by injection or through a special pump. Some people also need to take another type of diabetes medicine that works with insulin. ",
+              "start": 3011,
+              "section": 0,
+              "documentId": "medlineplus:4",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Diabetes\nDM; Diabetes mellitus\nHealth-topic summary\nl diabetes if you: \n \n Are overweight or have obesity. \n Have a family history of diabetes. \n Had gestational diabetes in a previous pregnancy. \n Have given birth to a baby weighing 9 pounds or more. \n Have polycystic ovary syndrome (PCOS). \n Are African American, Hispanic/Latino, American Indian, Alaska Native, Native Hawaiian, or Pacific Islander. \n \n\n \n\n What are the symptoms of diabetes? \n The symptoms of diabetes may include: \n \n Feeling very thirsty \n Feeling very hungry \n Urinating (peeing) more often, including at night \n Fatigue \n Blurry vision \n Numbness or tingling in the feet or hands \n Sores that do not heal \n Losing weight without trying \n \n\n But it's important to know that your symptoms may vary, depending on which type you have: \n \n The symptoms of type 1 diabetes usually come on quickly and can be severe. \n With type 2 diabetes, the symptoms often develop slowly, over several years. The symptoms can be so mild that you might not even notice them. \n Gestational diabetes often has no symptoms. If you do have symptoms, they may be mild. If you are pregnant, you will usually be screened for this condition between 24 and 28 weeks of pregnancy. \n \n\n How is diabetes diagnosed? \n To find out if you have diabetes, your health care provider will use one or more glucose blood tests . There are several types, including the A1C test . \n\n What are the treatments for diabetes? \n Treatment for diabetes involves managing your blood glucose levels: \n \n If you have type 1 diabetes, you will need to take daily doses of insulin, either by injection or through a special pump. Some people also need to take another type of diabetes medicine that works with insulin. "
+            },
+            "document": {
+              "id": "medlineplus:4",
+              "url": "https://medlineplus.gov/diabetes.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Diabetes",
+              "aliases": [
+                "DM",
+                "Diabetes mellitus"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "00e2c716e3d13ace98dfe193226171830506c94d6a5c366772b2a750ccdbd135",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6308",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6121",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1408",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4567",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6026",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4935",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1339",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5930",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3048",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1340",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1341",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6011",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1559",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1465",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6125",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1264",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1511",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:352",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5784",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Diabetes Mellitus"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.026161328190508135,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": " 9 pounds or more. \n Are African American, American Indian, Asian American, Hispanic/Latino, or Pacific Islander. \n Are not physically active. \n Have certain other health conditions, such as high blood pressure or polycystic ovary syndrome (PCOS). \n \n\n You are at higher risk of developing gestationa",
+              "after": "\n If you have type 2 diabetes, you may be able to manage or even reverse it by making lifestyle changes . These include eating a healthy diet , staying at healthy weight , and getting regular physical activity . Some people also need to take diabetes medicines to manage their diabetes. \n If you have"
+            }
+          },
+          {
+            "chunk": {
+              "id": "57d14c1d8cff1d01e9b32867b0338502e272495c291f25bb186e46929acb828f",
+              "end": 914,
+              "hash": "c9dc4e55e57d1933994ecf95382fa3e163dcc4332386a3adf6ae412d5b5cdaaf",
+              "text": "1. **Volume resuscitation** — NS 1-1.5 L/hr for first 1-2 hours (15-20 mL/kg/hr). Average deficit is 5-7 L. Switch to 0.45% NS at 250-500 mL/hr when corrected Na normalizes.\n2. **Insulin infusion** — Regular insulin 0.1-0.14 units/kg/hr IV continuous. If bolus protocol: 0.1 units/kg IV bolus then 0.1 units/kg/hr. Do NOT give insulin until K > 3.3 mEq/L.\n3. **Potassium replacement** — Check K before insulin. If K < 3.3: hold insulin, give 20-40 mEq/hr KCl until K > 3.3. If K 3.3-5.3: give 20-30 mEq K per liter of IV fluids. If K > 5.3: recheck in 2 hours.\n4. **Monitor q1-2h** — glucose, BMP (K, bicarb, anion gap), VBG. Glucose should drop 50-75 mg/dL/hr.\n5. **Dextrose when glucose reaches 200-250 mg/dL** — Switch to D5 0.45% NS. Continue insulin to close anion gap (do not stop insulin just because glucose normalized).\n6. **Search for precipitant** — UA, CXR, blood cultures, ECG, lipase, pregnancy test.",
+              "start": 0,
+              "section": 1,
+              "documentId": "openem:diabetic-ketoacidosis",
+              "sectionTitle": "Critical Actions",
+              "embeddingText": "Diabetic Ketoacidosis\nDKA; diabetic ketosis; ketoacidosis\nCritical Actions\n1. **Volume resuscitation** — NS 1-1.5 L/hr for first 1-2 hours (15-20 mL/kg/hr). Average deficit is 5-7 L. Switch to 0.45% NS at 250-500 mL/hr when corrected Na normalizes.\n2. **Insulin infusion** — Regular insulin 0.1-0.14 units/kg/hr IV continuous. If bolus protocol: 0.1 units/kg IV bolus then 0.1 units/kg/hr. Do NOT give insulin until K > 3.3 mEq/L.\n3. **Potassium replacement** — Check K before insulin. If K < 3.3: hold insulin, give 20-40 mEq/hr KCl until K > 3.3. If K 3.3-5.3: give 20-30 mEq K per liter of IV fluids. If K > 5.3: recheck in 2 hours.\n4. **Monitor q1-2h** — glucose, BMP (K, bicarb, anion gap), VBG. Glucose should drop 50-75 mg/dL/hr.\n5. **Dextrose when glucose reaches 200-250 mg/dL** — Switch to D5 0.45% NS. Continue insulin to close anion gap (do not stop insulin just because glucose normalized).\n6. **Search for precipitant** — UA, CXR, blood cultures, ECG, lipase, pregnancy test."
+            },
+            "document": {
+              "id": "openem:diabetic-ketoacidosis",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/diabetic-ketoacidosis.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Diabetic Ketoacidosis",
+              "aliases": [
+                "DKA",
+                "diabetic ketosis",
+                "ketoacidosis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "976da64b62b6b84c13b041a46533a1b1876bb3f3e447869d93be5f2967ebf2f9",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:hhs",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:sepsis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:acute-pancreatitis",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "endocrine-metabolic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-28"
+            },
+            "score": 0.025932953826691967,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 31.661042000050656,
+          "embeddingMs": 612.4087910000235,
+          "vectorMs": 14.008665999979712,
+          "totalMs": 695.8253750000149
+        },
+        "warnings": [],
+        "embeddingTokens": 10,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "af7e4a8c239c4b084525aba008d56ce833b3a08144cea6237319bf996aa30dbd",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "diabetic ketoacidosis hyperosmolar state",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "66d58cec453a656e68b8c0319e0cc6c44863e2cf6ac456b8638e8a8f397f848c",
+              "end": 994,
+              "hash": "5ee2724671cfa451e3d77f742a2dbfcf2a17e3efc57fad7e4835d992125c6653",
+              "text": "| Condition | Distinguishing Features |\n|-----------|------------------------|\n| Diabetic ketoacidosis (DKA) | Glucose usually 250-600, pH < 7.30, bicarb < 18, elevated anion gap, significant ketosis, onset over hours (see `diabetic-ketoacidosis.md`) |\n| HHS-DKA overlap | Glucose > 600 + osmolality > 320 + pH < 7.30 + ketosis; present in ~30% of hyperglycemic crises |\n| Acute ischemic stroke | Focal deficits, but HHS itself causes reversible focal deficits (hemiparesis, aphasia); check glucose before calling stroke code |\n| Sepsis with hyperglycemia | Glucose elevated but usually < 600, osmolality < 320, infection source identified; stress hyperglycemia |\n| Myxedema coma | Altered mental status, hypothermia, but glucose normal or low, TSH elevated, no hyperosmolality |\n| Uremic encephalopathy | AMS with elevated BUN/Cr, but no extreme hyperglycemia or hyperosmolality |\n| Nonconvulsive status epilepticus | Prolonged AMS; EEG required to distinguish; HHS itself can cause seizures |",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:hhs",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Hyperosmolar Hyperglycemic State\nHHS; hyperosmolar hyperglycemic nonketotic coma; HHNC; HONK; hyperosmolar nonketotic state\nDifferential Diagnosis\n| Condition | Distinguishing Features |\n|-----------|------------------------|\n| Diabetic ketoacidosis (DKA) | Glucose usually 250-600, pH < 7.30, bicarb < 18, elevated anion gap, significant ketosis, onset over hours (see `diabetic-ketoacidosis.md`) |\n| HHS-DKA overlap | Glucose > 600 + osmolality > 320 + pH < 7.30 + ketosis; present in ~30% of hyperglycemic crises |\n| Acute ischemic stroke | Focal deficits, but HHS itself causes reversible focal deficits (hemiparesis, aphasia); check glucose before calling stroke code |\n| Sepsis with hyperglycemia | Glucose elevated but usually < 600, osmolality < 320, infection source identified; stress hyperglycemia |\n| Myxedema coma | Altered mental status, hypothermia, but glucose normal or low, TSH elevated, no hyperosmolality |\n| Uremic encephalopathy | AMS with elevated BUN/Cr, but no extreme hyperglycemia or hyperosmolality |\n| Nonconvulsive status epilepticus | Prolonged AMS; EEG required to distinguish; HHS itself can cause seizures |"
+            },
+            "document": {
+              "id": "openem:hhs",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/hhs.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Hyperosmolar Hyperglycemic State",
+              "aliases": [
+                "HHS",
+                "hyperosmolar hyperglycemic nonketotic coma",
+                "HHNC",
+                "HONK",
+                "hyperosmolar nonketotic state"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "3fdd292257c92f954e9232cb8a4c6ba6c4948ca224918e0c0236ba0a6e8d0241",
+              "related": [],
+              "concepts": [
+                "endocrine-metabolic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-19"
+            },
+            "score": 0.030536130536130537,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "b6e7c77d3eb51df4f4bdb58ff5e7cc8fd7a29f8edc19675ac3b4e290ea276651",
+              "end": 1778,
+              "hash": "2a503ce9caa5cffe4eb9a4a9803a62e032a4ea04faaf59a72c69525d6ca62258",
+              "text": "**Diagnostic Criteria (all required):**\n1. Glucose > 600 mg/dL\n2. Effective serum osmolality > 320 mOsm/kg\n3. pH > 7.30 and bicarb > 18 mEq/L (minimal or absent ketoacidosis)\n4. Absent or small urine/serum ketones\n\n**Effective serum osmolality** = 2[Na+] + glucose/18 (BUN excluded because it freely crosses cell membranes and does not contribute to tonicity).\n\n**Presentation:**\n- Insidious onset over days to weeks (unlike DKA which evolves in hours)\n- Profound dehydration: average free water deficit 8-12 L (100-200 mL/kg)\n- Altered mental status ranging from lethargy to coma (correlates with osmolality; obtundation typical when osmolality > 340 mOsm/kg)\n- Tachycardia, hypotension, orthostasis, poor skin turgor, dry mucous membranes\n- Focal neurologic deficits (hemiparesis, hemianopia, aphasia) that reverse with treatment — often mistaken for stroke\n- Seizures (focal or generalized) in 10-25% of cases\n- No Kussmaul respirations (no significant acidosis to compensate)\n- No fruity breath (absent or minimal ketosis)\n- Hypothermia is common; fever may be masked despite underlying infection\n\n**Typical Patient:**\n- Elderly (mean age 60-70 years), type 2 DM\n- Nursing home resident or impaired access to free water (dementia, immobility, sedation)\n- Often undiagnosed or undertreated DM\n- Pediatric HHS is rare but carries high mortality (especially obese adolescents with new-onset type 2 DM)\n\n**Precipitants:**\n- Infection: 40-60% of cases (UTI, pneumonia, sepsis most common)\n- Medication noncompliance or insulin omission\n- New-onset diabetes (up to 20% of HHS presentations)\n- Acute illness: MI, stroke, pancreatitis, PE\n- Medications: glucocorticoids, thiazides, phenytoin, atypical antipsychotics (olanzapine, quetiapine), beta-blockers, calcium channel blockers",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:hhs",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Hyperosmolar Hyperglycemic State\nHHS; hyperosmolar hyperglycemic nonketotic coma; HHNC; HONK; hyperosmolar nonketotic state\nRecognition\n**Diagnostic Criteria (all required):**\n1. Glucose > 600 mg/dL\n2. Effective serum osmolality > 320 mOsm/kg\n3. pH > 7.30 and bicarb > 18 mEq/L (minimal or absent ketoacidosis)\n4. Absent or small urine/serum ketones\n\n**Effective serum osmolality** = 2[Na+] + glucose/18 (BUN excluded because it freely crosses cell membranes and does not contribute to tonicity).\n\n**Presentation:**\n- Insidious onset over days to weeks (unlike DKA which evolves in hours)\n- Profound dehydration: average free water deficit 8-12 L (100-200 mL/kg)\n- Altered mental status ranging from lethargy to coma (correlates with osmolality; obtundation typical when osmolality > 340 mOsm/kg)\n- Tachycardia, hypotension, orthostasis, poor skin turgor, dry mucous membranes\n- Focal neurologic deficits (hemiparesis, hemianopia, aphasia) that reverse with treatment — often mistaken for stroke\n- Seizures (focal or generalized) in 10-25% of cases\n- No Kussmaul respirations (no significant acidosis to compensate)\n- No fruity breath (absent or minimal ketosis)\n- Hypothermia is common; fever may be masked despite underlying infection\n\n**Typical Patient:**\n- Elderly (mean age 60-70 years), type 2 DM\n- Nursing home resident or impaired access to free water (dementia, immobility, sedation)\n- Often undiagnosed or undertreated DM\n- Pediatric HHS is rare but carries high mortality (especially obese adolescents with new-onset type 2 DM)\n\n**Precipitants:**\n- Infection: 40-60% of cases (UTI, pneumonia, sepsis most common)\n- Medication noncompliance or insulin omission\n- New-onset diabetes (up to 20% of HHS presentations)\n- Acute illness: MI, stroke, pancreatitis, PE\n- Medications: glucocorticoids, thiazides, phenytoin, atypical antipsychotics (olanzapine, quetiapine), beta-blockers, calcium channel blockers"
+            },
+            "document": {
+              "id": "openem:hhs",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/hhs.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Hyperosmolar Hyperglycemic State",
+              "aliases": [
+                "HHS",
+                "hyperosmolar hyperglycemic nonketotic coma",
+                "HHNC",
+                "HONK",
+                "hyperosmolar nonketotic state"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "3fdd292257c92f954e9232cb8a4c6ba6c4948ca224918e0c0236ba0a6e8d0241",
+              "related": [],
+              "concepts": [
+                "endocrine-metabolic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-19"
+            },
+            "score": 0.030536130536130537,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- Endocrine: Cushing syndrome, thyrotoxicosis, acromegaly\n- Procedures: surgery, total parenteral nutrition, peritoneal dialysis with dextrose\n\n**HHS-DKA Overlap:**\n- Approximately 30% of patients present with features of both HHS and DKA (glucose > 600, osmolality > 320, AND pH < 7.30 or bicarb < "
+            }
+          },
+          {
+            "chunk": {
+              "id": "62975b664aa15e8c4467c3eea4c20202578296e6a4046d0b610559216bc02874",
+              "end": 740,
+              "hash": "126f7da1f209cb3809de499a594976ea1fe1e952f190e47c060d3dd611347171",
+              "text": "| Condition | Distinguishing Features |\n|-----------|------------------------|\n| Hyperosmolar hyperglycemic state (HHS) | Glucose > 600, osmolality > 320, minimal ketosis, pH > 7.30, profound dehydration |\n| Alcoholic ketoacidosis | History of alcohol use, low-normal glucose, elevated beta-hydroxybutyrate, anion gap acidosis |\n| Starvation ketosis | Mild ketosis, bicarb rarely < 18, no significant acidosis |\n| Uremic acidosis | Elevated BUN/Cr, anion gap acidosis, no ketosis |\n| Lactic acidosis | Elevated lactate, sepsis/shock/liver failure, no ketosis |\n| Toxic alcohol ingestion | Osmolar gap, specific toxin levels, no ketosis |\n| Salicylate toxicity | Mixed respiratory alkalosis + metabolic acidosis, tinnitus, salicylate level |",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:diabetic-ketoacidosis",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Diabetic Ketoacidosis\nDKA; diabetic ketosis; ketoacidosis\nDifferential Diagnosis\n| Condition | Distinguishing Features |\n|-----------|------------------------|\n| Hyperosmolar hyperglycemic state (HHS) | Glucose > 600, osmolality > 320, minimal ketosis, pH > 7.30, profound dehydration |\n| Alcoholic ketoacidosis | History of alcohol use, low-normal glucose, elevated beta-hydroxybutyrate, anion gap acidosis |\n| Starvation ketosis | Mild ketosis, bicarb rarely < 18, no significant acidosis |\n| Uremic acidosis | Elevated BUN/Cr, anion gap acidosis, no ketosis |\n| Lactic acidosis | Elevated lactate, sepsis/shock/liver failure, no ketosis |\n| Toxic alcohol ingestion | Osmolar gap, specific toxin levels, no ketosis |\n| Salicylate toxicity | Mixed respiratory alkalosis + metabolic acidosis, tinnitus, salicylate level |"
+            },
+            "document": {
+              "id": "openem:diabetic-ketoacidosis",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/diabetic-ketoacidosis.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Diabetic Ketoacidosis",
+              "aliases": [
+                "DKA",
+                "diabetic ketosis",
+                "ketoacidosis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "976da64b62b6b84c13b041a46533a1b1876bb3f3e447869d93be5f2967ebf2f9",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:hhs",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:sepsis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:acute-pancreatitis",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "endocrine-metabolic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-28"
+            },
+            "score": 0.02889344262295082,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "5dbe37a5eddeed5ecc6fa4eb06a1e1c0fdb04cc08ac75d406fe6d8e07e317526",
+              "end": 1437,
+              "hash": "5e3ba6c829fe7ad04522cd933093d23b84b71d9f96441181307c6ceb1b988212",
+              "text": "**Diagnostic Criteria (all three required):**\n1. Hyperglycemia: glucose > 250 mg/dL (may be lower in euglycemic DKA)\n2. Metabolic acidosis: pH < 7.3 or bicarb < 18 mEq/L\n3. Ketosis: serum or urine ketones positive, or beta-hydroxybutyrate > 3 mmol/L\n\n**Severity Classification:**\n\n| Severity | pH | Bicarb | Mental Status |\n|----------|----|--------|---------------|\n| Mild | 7.25-7.30 | 15-18 | Alert |\n| Moderate | 7.00-7.24 | 10-14 | Drowsy |\n| Severe | < 7.00 | < 10 | Obtunded/coma |\n\n**Presentation:**\n- Polyuria, polydipsia, weight loss (days to weeks)\n- Nausea, vomiting, abdominal pain (can mimic acute abdomen)\n- Kussmaul respirations (deep, rapid — compensatory for metabolic acidosis)\n- Fruity breath (acetone)\n- Tachycardia, hypotension (volume depletion averages 5-7 L in adults)\n- Altered mental status (correlates with osmolality more than pH)\n- Hypothermia (common; infection may not produce fever)\n\n**Precipitants (5 I's):**\n- **I**nfection (most common — UTI, pneumonia, sepsis)\n- **I**nsulin omission/noncompliance\n- **I**nfarction (MI, stroke, mesenteric ischemia)\n- **I**ntoxication/drugs (cocaine, SGLT2 inhibitors, steroids)\n- **I**nitial presentation of new-onset diabetes\n\n**Euglycemic DKA (glucose < 250 mg/dL):**\n- SGLT2 inhibitor use (empagliflozin, dapagliflozin, canagliflozin)\n- Pregnancy\n- Starvation + diabetes\n- Partial treatment prior to arrival\n- Missed if glucose is used as sole screening criterion",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:diabetic-ketoacidosis",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Diabetic Ketoacidosis\nDKA; diabetic ketosis; ketoacidosis\nRecognition\n**Diagnostic Criteria (all three required):**\n1. Hyperglycemia: glucose > 250 mg/dL (may be lower in euglycemic DKA)\n2. Metabolic acidosis: pH < 7.3 or bicarb < 18 mEq/L\n3. Ketosis: serum or urine ketones positive, or beta-hydroxybutyrate > 3 mmol/L\n\n**Severity Classification:**\n\n| Severity | pH | Bicarb | Mental Status |\n|----------|----|--------|---------------|\n| Mild | 7.25-7.30 | 15-18 | Alert |\n| Moderate | 7.00-7.24 | 10-14 | Drowsy |\n| Severe | < 7.00 | < 10 | Obtunded/coma |\n\n**Presentation:**\n- Polyuria, polydipsia, weight loss (days to weeks)\n- Nausea, vomiting, abdominal pain (can mimic acute abdomen)\n- Kussmaul respirations (deep, rapid — compensatory for metabolic acidosis)\n- Fruity breath (acetone)\n- Tachycardia, hypotension (volume depletion averages 5-7 L in adults)\n- Altered mental status (correlates with osmolality more than pH)\n- Hypothermia (common; infection may not produce fever)\n\n**Precipitants (5 I's):**\n- **I**nfection (most common — UTI, pneumonia, sepsis)\n- **I**nsulin omission/noncompliance\n- **I**nfarction (MI, stroke, mesenteric ischemia)\n- **I**ntoxication/drugs (cocaine, SGLT2 inhibitors, steroids)\n- **I**nitial presentation of new-onset diabetes\n\n**Euglycemic DKA (glucose < 250 mg/dL):**\n- SGLT2 inhibitor use (empagliflozin, dapagliflozin, canagliflozin)\n- Pregnancy\n- Starvation + diabetes\n- Partial treatment prior to arrival\n- Missed if glucose is used as sole screening criterion"
+            },
+            "document": {
+              "id": "openem:diabetic-ketoacidosis",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/diabetic-ketoacidosis.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Diabetic Ketoacidosis",
+              "aliases": [
+                "DKA",
+                "diabetic ketosis",
+                "ketoacidosis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "976da64b62b6b84c13b041a46533a1b1876bb3f3e447869d93be5f2967ebf2f9",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:hhs",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:sepsis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:acute-pancreatitis",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "endocrine-metabolic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-28"
+            },
+            "score": 0.027820121951219513,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "a5a192fd2735975481b735e933956be1437e0dadc5999ad98e8a21ad6b380a6d",
+              "end": 4474,
+              "hash": "59f2949eecba05e5f7ed303a046bd2ae39eb82ca4fe3fb9a5f17af8373b9a789",
+              "text": " test shows that your ketones are moderate or high, or if you don't have a ketones test, contact your health care provider right away or get emergency medical help. \n\n How is hyperglycemia diagnosed? \n If you have diabetes, you'll most likely need to check your blood glucose every day and make sure that it's not too high. You can do this with a blood glucose meter or continuous glucose monitoring (CGM) system. \n \n There are also blood tests that providers can use to check if your blood glucose is too high. \n\n What are the treatments for hyperglycemia? \n If you have diabetes and often have high blood glucose, your health care team may make changes to your diabetes meal plan, physical activity plan, and/or diabetes medicines. \n\n If you have severe hyperglycemia and are having symptoms of DKA, you will need treatment at the hospital. The treatment often includes I.V. (intravenous) fluids and insulin. \n\n Can hyperglycemia be prevented? \n If you have diabetes, managing your diabetes can help prevent hyperglycemia. To manage your diabetes, it's important to: \n \n Follow your diabetes meal plan \n Get regular physical activity \n If you need diabetes medicines, take them correctly \n Regularly check your blood glucose level \n Get regular checkups with your health care team",
+              "start": 3192,
+              "section": 0,
+              "documentId": "medlineplus:6125",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Hyperglycemia\nHigh blood glucose; High blood sugar\nHealth-topic summary\n test shows that your ketones are moderate or high, or if you don't have a ketones test, contact your health care provider right away or get emergency medical help. \n\n How is hyperglycemia diagnosed? \n If you have diabetes, you'll most likely need to check your blood glucose every day and make sure that it's not too high. You can do this with a blood glucose meter or continuous glucose monitoring (CGM) system. \n \n There are also blood tests that providers can use to check if your blood glucose is too high. \n\n What are the treatments for hyperglycemia? \n If you have diabetes and often have high blood glucose, your health care team may make changes to your diabetes meal plan, physical activity plan, and/or diabetes medicines. \n\n If you have severe hyperglycemia and are having symptoms of DKA, you will need treatment at the hospital. The treatment often includes I.V. (intravenous) fluids and insulin. \n\n Can hyperglycemia be prevented? \n If you have diabetes, managing your diabetes can help prevent hyperglycemia. To manage your diabetes, it's important to: \n \n Follow your diabetes meal plan \n Get regular physical activity \n If you need diabetes medicines, take them correctly \n Regularly check your blood glucose level \n Get regular checkups with your health care team"
+            },
+            "document": {
+              "id": "medlineplus:6125",
+              "url": "https://medlineplus.gov/hyperglycemia.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Hyperglycemia",
+              "aliases": [
+                "High blood glucose",
+                "High blood sugar"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "fd6b578aa3d3e3d7a099ff5865e619bf6a33da680d595b5fab94dea0bb34d25e",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6121",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Hyperglycemia"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.021929824561403508,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "include: \n \n Trouble breathing \n Nausea or vomiting \n Pain in your abdomen (belly) \n Confusion \n Feeling very tired or sleepy \n \n\n If you have an an at-home test for ketones, check your ketone level every 4 to 6 hours when your blood glucose is very high or when you are having these symptoms. If the",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 44.57462500000838,
+          "embeddingMs": 470.6678330000723,
+          "vectorMs": 17.769582999986596,
+          "totalMs": 559.4870840000222
+        },
+        "warnings": [],
+        "embeddingTokens": 10,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "af7e4a8c239c4b084525aba008d56ce833b3a08144cea6237319bf996aa30dbd",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "severe hyperglycemia dehydration acute complications",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "8fb6dbbae9a2abf447ce0a718906c257aaa48061b3364f5377c38b3da50aeb0c",
+              "end": 1044,
+              "hash": "63c9e5cfcfcad3a9c65c1cee963b23b65ae7e522af0690eaa1628bcc267d1cd7",
+              "text": "**Severity classification:**\n- Mild: Na 146-150 mEq/L\n- Moderate: Na 151-159 mEq/L\n- Severe: Na >= 160 mEq/L (high mortality: 40-60% when Na > 160)\n\n**Clinical presentation (primarily neurologic — brain shrinkage):**\n- Irritability, restlessness (early)\n- Lethargy, confusion, obtundation\n- Hyperreflexia, muscle twitching, tremor\n- Seizures (usually on overcorrection, not from hypernatremia itself)\n- Coma (Na > 160)\n- Intracerebral hemorrhage (bridging veins torn from brain shrinkage)\n- Fever (hypothalamic dysfunction)\n- Intense thirst (preserved sensorium patients)\n\n**Common etiologies:**\n- **Decreased water intake** (most common): elderly with impaired thirst, altered mental status, restricted access to water, intubated ICU patients\n- **Increased water losses:** diabetes insipidus (central or nephrogenic), osmotic diuresis (hyperglycemia, mannitol, urea), diarrhea, insensible losses (fever, burns)\n- **Sodium excess** (rare): iatrogenic (hypertonic saline, sodium bicarbonate), salt ingestion, hyperaldosteronism, Cushing syndrome",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:hypernatremia-severe",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Severe Hypernatremia\nacute hypernatremia; severe hypernatremia; hypernatremic dehydration; sodium excess\nRecognition\n**Severity classification:**\n- Mild: Na 146-150 mEq/L\n- Moderate: Na 151-159 mEq/L\n- Severe: Na >= 160 mEq/L (high mortality: 40-60% when Na > 160)\n\n**Clinical presentation (primarily neurologic — brain shrinkage):**\n- Irritability, restlessness (early)\n- Lethargy, confusion, obtundation\n- Hyperreflexia, muscle twitching, tremor\n- Seizures (usually on overcorrection, not from hypernatremia itself)\n- Coma (Na > 160)\n- Intracerebral hemorrhage (bridging veins torn from brain shrinkage)\n- Fever (hypothalamic dysfunction)\n- Intense thirst (preserved sensorium patients)\n\n**Common etiologies:**\n- **Decreased water intake** (most common): elderly with impaired thirst, altered mental status, restricted access to water, intubated ICU patients\n- **Increased water losses:** diabetes insipidus (central or nephrogenic), osmotic diuresis (hyperglycemia, mannitol, urea), diarrhea, insensible losses (fever, burns)\n- **Sodium excess** (rare): iatrogenic (hypertonic saline, sodium bicarbonate), salt ingestion, hyperaldosteronism, Cushing syndrome"
+            },
+            "document": {
+              "id": "openem:hypernatremia-severe",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/hypernatremia-severe.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Severe Hypernatremia",
+              "aliases": [
+                "acute hypernatremia",
+                "severe hypernatremia",
+                "hypernatremic dehydration",
+                "sodium excess"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "6232393f1158c9080dce666a834f01014b74600510441ce336013c60cd414512",
+              "related": [],
+              "concepts": [
+                "endocrine-metabolic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.025278219395866455,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "199aec5fde323ffde2d12212bdd4578632c7e756c8f1e20ebdb640bb5dec82a5",
+              "end": 452,
+              "hash": "ea3fae5e7be9e498bcbff29e3d748c5dd8d3a6dddefc2bc317cc2937d7f01eff",
+              "text": "- Diabetes insipidus — central (low ADH, responds to desmopressin) vs nephrogenic (ADH-resistant)\n- Osmotic diuresis (DKA, mannitol, urea) — elevated serum osmolality with polyuria\n- Dehydration (pure water loss) — elderly, infants, impaired thirst\n- Iatrogenic sodium loading (sodium bicarbonate, hypertonic saline)\n- Hyperaldosteronism (hypertension, hypokalemia)\n- Cushing syndrome (cortisol excess)\n- Essential hypernatremia (reset osmostat — rare)",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:hypernatremia-severe",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Severe Hypernatremia\nacute hypernatremia; severe hypernatremia; hypernatremic dehydration; sodium excess\nDifferential Diagnosis\n- Diabetes insipidus — central (low ADH, responds to desmopressin) vs nephrogenic (ADH-resistant)\n- Osmotic diuresis (DKA, mannitol, urea) — elevated serum osmolality with polyuria\n- Dehydration (pure water loss) — elderly, infants, impaired thirst\n- Iatrogenic sodium loading (sodium bicarbonate, hypertonic saline)\n- Hyperaldosteronism (hypertension, hypokalemia)\n- Cushing syndrome (cortisol excess)\n- Essential hypernatremia (reset osmostat — rare)"
+            },
+            "document": {
+              "id": "openem:hypernatremia-severe",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/hypernatremia-severe.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Severe Hypernatremia",
+              "aliases": [
+                "acute hypernatremia",
+                "severe hypernatremia",
+                "hypernatremic dehydration",
+                "sodium excess"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "6232393f1158c9080dce666a834f01014b74600510441ce336013c60cd414512",
+              "related": [],
+              "concepts": [
+                "endocrine-metabolic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.02502638323533846,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "522c9abbf46e731f19208a0050f2caa445adce41151f680110faa3437637faa6",
+              "end": 499,
+              "hash": "88bffab44c9ba0d4c99659af53994ca36f914d31fe0db4cded284472659b9a5f",
+              "text": "- Pseudohyponatremia (hyperglycemia, hyperlipidemia, paraproteinemia — check serum osmolality)\n- Hyperglycemia-induced hyponatremia (correct Na: add 1.6 mEq/L for each 100 mg/dL glucose above 100)\n- Hypothyroidism (check TSH)\n- Adrenal insufficiency (check cortisol, ACTH)\n- SIADH (euvolemic, urine osm > 100, urine Na > 40)\n- Beer potomania (low solute intake)\n- Cerebral salt wasting (post-neurosurgery, hypovolemic)\n- Drug-induced SIADH (SSRIs, carbamazepine, cyclophosphamide, oxytocin, ecstasy)",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:hyponatremia-severe",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Severe Hyponatremia\nacute hyponatremia; symptomatic hyponatremia; severe hyponatremia; water intoxication; hyponatremic encephalopathy\nDifferential Diagnosis\n- Pseudohyponatremia (hyperglycemia, hyperlipidemia, paraproteinemia — check serum osmolality)\n- Hyperglycemia-induced hyponatremia (correct Na: add 1.6 mEq/L for each 100 mg/dL glucose above 100)\n- Hypothyroidism (check TSH)\n- Adrenal insufficiency (check cortisol, ACTH)\n- SIADH (euvolemic, urine osm > 100, urine Na > 40)\n- Beer potomania (low solute intake)\n- Cerebral salt wasting (post-neurosurgery, hypovolemic)\n- Drug-induced SIADH (SSRIs, carbamazepine, cyclophosphamide, oxytocin, ecstasy)"
+            },
+            "document": {
+              "id": "openem:hyponatremia-severe",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/hyponatremia-severe.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Severe Hyponatremia",
+              "aliases": [
+                "acute hyponatremia",
+                "symptomatic hyponatremia",
+                "severe hyponatremia",
+                "water intoxication",
+                "hyponatremic encephalopathy"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "0c29642f39944f294f51af24957079d3893c06d92d60a147fa2df47f6b2e9690",
+              "related": [],
+              "concepts": [
+                "endocrine-metabolic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.017313218390804595,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "4f2ceb58193c91882e15948f1b18f833ce9e4d962938f3af695b7ad6177da358",
+              "end": 1399,
+              "hash": "08974bd4ad7a0584e38aa7ef807bf1304604f4b477e30639c7c02afa4505b2d1",
+              "text": "1. **Assuming MVP is always benign.** While most MVP is clinically insignificant (2-3% prevalence), MVP with significant MR carries risk of chordae rupture, endocarditis, arrhythmia, and sudden cardiac death. Thick, redundant leaflets (> 5 mm) and moderate-severe MR identify the high-risk subset.\n\n2. **Missing acute severe MR because the murmur is soft.** In acute severe MR, the rapid equalization of pressures between LV and LA may produce only a brief, soft murmur rather than the classic loud pansystolic murmur of chronic MR. Flash pulmonary edema with a soft or absent murmur should raise suspicion.\n\n3. **Diagnosing panic disorder in a patient with MVP and palpitations.** While MVP and anxiety disorders are often comorbid, new palpitations may represent ventricular arrhythmias. An ECG and Holter monitor should be obtained before attributing symptoms to anxiety.\n\n4. **Using beta-blockers in acute severe MR with compromised cardiac output.** In acute MR, compensatory tachycardia maintains forward cardiac output. Beta-blockers reduce heart rate and worsen hemodynamics. Afterload reduction (nitroprusside, IABP) is the correct approach.\n\n5. **Delaying surgical consultation for acute chordae rupture.** Acute severe MR from chordae rupture is a surgical emergency. Medical management is a bridge, not definitive treatment. Early repair (before LV decompensation) has superior outcomes.",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:mitral-valve-prolapse-complications",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Mitral Valve Prolapse — Acute Complications\nMVP complications; acute mitral regurgitation from MVP; chordae tendineae rupture; flail mitral leaflet\nPitfalls\n1. **Assuming MVP is always benign.** While most MVP is clinically insignificant (2-3% prevalence), MVP with significant MR carries risk of chordae rupture, endocarditis, arrhythmia, and sudden cardiac death. Thick, redundant leaflets (> 5 mm) and moderate-severe MR identify the high-risk subset.\n\n2. **Missing acute severe MR because the murmur is soft.** In acute severe MR, the rapid equalization of pressures between LV and LA may produce only a brief, soft murmur rather than the classic loud pansystolic murmur of chronic MR. Flash pulmonary edema with a soft or absent murmur should raise suspicion.\n\n3. **Diagnosing panic disorder in a patient with MVP and palpitations.** While MVP and anxiety disorders are often comorbid, new palpitations may represent ventricular arrhythmias. An ECG and Holter monitor should be obtained before attributing symptoms to anxiety.\n\n4. **Using beta-blockers in acute severe MR with compromised cardiac output.** In acute MR, compensatory tachycardia maintains forward cardiac output. Beta-blockers reduce heart rate and worsen hemodynamics. Afterload reduction (nitroprusside, IABP) is the correct approach.\n\n5. **Delaying surgical consultation for acute chordae rupture.** Acute severe MR from chordae rupture is a surgical emergency. Medical management is a bridge, not definitive treatment. Early repair (before LV decompensation) has superior outcomes."
+            },
+            "document": {
+              "id": "openem:mitral-valve-prolapse-complications",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/mitral-valve-prolapse-complications.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Mitral Valve Prolapse — Acute Complications",
+              "aliases": [
+                "MVP complications",
+                "acute mitral regurgitation from MVP",
+                "chordae tendineae rupture",
+                "flail mitral leaflet"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "7022825105bb752e088dc4e1c863570944d2fe111b4456347e1fdb5aa96546b8",
+              "related": [],
+              "concepts": [
+                "cardiovascular"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.01639344262295082,
+            "channels": [
+              "lexical"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "c460010d88e036f3a11161817423f2353ae6f847fdf81bce51d22b9dc5fe1ec3",
+              "end": 3333,
+              "hash": "14b4181c7b8c31239046ca3050c8c9d3def9f40f6a9e8bc77e7b16000667686b",
+              "text": "fever. A patient with glucose > 600 and WBC of 14,000 with a temperature of 36.0C may be septic. Obtain blood cultures, UA, CXR, and procalcitonin. Treat empirically if clinical suspicion is present.\n\n10. **Missing HHS-DKA overlap.** Approximately 30% of hyperglycemic crises have features of both syndromes. Overlap presentations carry higher mortality. If a patient has glucose > 600 and osmolality > 320 (HHS features) PLUS pH < 7.30, bicarb < 18, and ketosis (DKA features), treat both: aggressive fluids for the hyperosmolality and insulin titrated to close the anion gap.",
+              "start": 2756,
+              "section": 6,
+              "documentId": "openem:hhs",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Hyperosmolar Hyperglycemic State\nHHS; hyperosmolar hyperglycemic nonketotic coma; HHNC; HONK; hyperosmolar nonketotic state\nPitfalls\nfever. A patient with glucose > 600 and WBC of 14,000 with a temperature of 36.0C may be septic. Obtain blood cultures, UA, CXR, and procalcitonin. Treat empirically if clinical suspicion is present.\n\n10. **Missing HHS-DKA overlap.** Approximately 30% of hyperglycemic crises have features of both syndromes. Overlap presentations carry higher mortality. If a patient has glucose > 600 and osmolality > 320 (HHS features) PLUS pH < 7.30, bicarb < 18, and ketosis (DKA features), treat both: aggressive fluids for the hyperosmolality and insulin titrated to close the anion gap."
+            },
+            "document": {
+              "id": "openem:hhs",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/hhs.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Hyperosmolar Hyperglycemic State",
+              "aliases": [
+                "HHS",
+                "hyperosmolar hyperglycemic nonketotic coma",
+                "HHNC",
+                "HONK",
+                "hyperosmolar nonketotic state"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "3fdd292257c92f954e9232cb8a4c6ba6c4948ca224918e0c0236ba0a6e8d0241",
+              "related": [],
+              "concepts": [
+                "endocrine-metabolic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-19"
+            },
+            "score": 0.01639344262295082,
+            "channels": [
+              "vector"
+            ],
+            "context": {
+              "before": "hout confirming osmolality < 315 mOsm/kg and mental status improvement allows osmolality to plateau. Continue insulin with dextrose-containing fluids until osmolality and mental status normalize.\n\n9. **Failing to search for a precipitant.** Infection triggers 40-60% of HHS. Hypothermia in HHS masks ",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 67.42783299996518,
+          "embeddingMs": 514.4557920000516,
+          "vectorMs": 11.690292000072077,
+          "totalMs": 598.358499999973
+        },
+        "warnings": [],
+        "embeddingTokens": 9,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": null,
+    "release": "gates_only",
+    "clinicalApproval": false,
+    "corrections": 0,
+    "careCorrectionReleased": false,
+    "sourceIntegrity": true,
+    "citations": [
+      {
+        "passageId": "a5a192fd2735975481b735e933956be1437e0dadc5999ad98e8a21ad6b380a6d",
+        "quote": "If you have severe hyperglycemia and are having symptoms of DKA, you will need treatment at the hospital.",
+        "claim": "Severe hyperglycemia with DKA-type symptoms such as vomiting requires hospital treatment, often IV fluids and insulin.",
+        "applicability": "applicable",
+        "limitation": "Consumer summary; DKA not confirmed without ketone or lab testing."
+      },
+      {
+        "passageId": "53e0775b86d5749e3973c17768c142b51e63bab0e0a80ab591b396a20ce52034",
+        "quote": "If the test shows that your ketones are moderate or high, or if you don't have a ketones test, contact your health care provider right away or get emergency medical help.",
+        "claim": "Without a ketone test during very high glucose with these symptoms, seek emergency medical help right away.",
+        "applicability": "applicable",
+        "limitation": "Ketone testing availability for this patient is unknown."
+      }
+    ]
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "clinical-evidence-graph",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "0da46a1e-2d28-4639-900c-d736667ae06a",
+  "traceId": "4e845d1ee1a3224d25c28166af42dd76",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "65M, type 2 diabetes. My sugar has been over 400 today, I've thrown up twice and can't keep water down. I feel awful.",
+  "inputHash": "67199ed3cc826af5d9efc9f9b0d01af4927333824092cf8d77a87360572749b0",
+  "answerHash": "25c5be21256f1c86459670a9ec67208106fc7be98604bb4c9a150caf3ee68a78",
+  "promptHash": "adb8c2cea95f09d101fe0e8ec7c3366e110a78501306053ef0df01a637cf8338",
+  "guidanceHash": "2265620f9ab9d3bcfc8f92d3901c42d1e6fa1547bf28c9c51317d9294e2aac25",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-15T05:46:23.332Z",
+  "durationMs": 17573,
+  "workflowDurationMs": 17548,
+  "tracePersistenceDurationMs": 25,
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 0
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 2821
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 17519
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 10
+    }
+  ],
+  "responseEvents": [
+    {
+      "kind": "action",
+      "notice": {
+        "disposition": "EMERGENCY_NOW",
+        "directive": "Seek emergency department assessment now. Do not wait for a message reply; call 911 if you cannot travel safely.",
+        "source": "emergency_agent"
+      },
+      "elapsedMs": 2822,
+      "sequence": 1
+    },
+    {
+      "kind": "patient_reply",
+      "disposition": "EMERGENCY_NOW",
+      "text": "Go to the emergency department now. Blood sugar over 400 with vomiting and not being able to keep water down can mean a dangerous diabetic emergency needing IV fluids and blood tests today. Have someone drive you, or call 911 if you feel faint, confused, drowsy, or short of breath, or if vomiting continues on the way. Don't wait for a message reply.",
+      "elapsedMs": 17532,
+      "sequence": 2
+    }
+  ],
+  "safetyNotices": [
+    {
+      "disposition": "EMERGENCY_NOW",
+      "directive": "Seek emergency department assessment now. Do not wait for a message reply; call 911 if you cannot travel safely.",
+      "source": "emergency_agent"
+    }
+  ],
+  "firstActionMs": 2822,
+  "firstPatientReplyMs": 17532,
+  "firstQuestionMs": null
+}

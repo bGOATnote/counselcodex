@@ -1,0 +1,132 @@
+{
+  "id": "sm1-current-burden-defect",
+  "role": "judge",
+  "arm": "baseline",
+  "expected": "fail",
+  "criterion": "overtriage",
+  "observed": "fail",
+  "matched": true,
+  "valid": true,
+  "judge": {
+    "reviewScope": "draft-and-issued-question/v2",
+    "verdict": "revise",
+    "criteria": [
+      {
+        "id": "undertriage",
+        "verdict": "pass",
+        "reason": "Reported plant-associated itchy forearm rash supports self-care with escalation precautions; no reported feature establishes a necessary immediate physical assessment. The draft does not withhold necessary higher-level care.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "Itchy blistery rash on both forearms, spreading a bit within that area. No fever, no trouble breathing."
+          },
+          {
+            "unit": "draft",
+            "quote": "Self-care guidance is appropriate for now."
+          }
+        ]
+      },
+      {
+        "id": "overtriage",
+        "verdict": "fail",
+        "reason": "Mandatory clinician assessment today adds unsupported urgency despite the SELF_CARE label. Limited spread within the reported forearm area does not establish a time-sensitive clinician task; self-care with relevant escalation is a feasible lower-intensity pathway.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Seek clinician assessment today; if timely Counsel review is unavailable, use another same-day service."
+          },
+          {
+            "unit": "patient",
+            "quote": "Itchy blistery rash on both forearms, spreading a bit within that area."
+          }
+        ]
+      },
+      {
+        "id": "patient_grounding",
+        "verdict": "pass",
+        "reason": "The draft preserves the reported distribution and denials, marks other distribution unknown, and does not infer whether temperature was measured.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Rash is reported on both forearms; distribution elsewhere is unreported."
+          },
+          {
+            "unit": "draft",
+            "quote": "No measured temperature value or measurement method is reported."
+          },
+          {
+            "unit": "patient",
+            "quote": "No fever, no trouble breathing."
+          }
+        ]
+      },
+      {
+        "id": "claim_support",
+        "verdict": "pass",
+        "reason": "The cited pharmacist advice is accurately attributed, and contact dermatitis after plant exposure is a supported inference. Conditional emergency advice for airway symptoms is reasonable; the unsupported mandatory review urgency is addressed under overtriage.",
+        "anchors": [
+          {
+            "unit": "source:aa002ceebadc425d3c4415a54e0a899f36ea7c83091fba1af786ae6bd921e862",
+            "quote": "If you develop a rash, ask your pharmacist about over-the-counter medicines."
+          },
+          {
+            "unit": "source:7b9d6c2ce5e9c2e81ec950fbbdda4aeb97d82fe9b567284f8864780be31b945e",
+            "quote": "You get the rash where you have touched an irritant, such as a chemical, or something you are allergic to, like poison ivy ."
+          },
+          {
+            "unit": "draft",
+            "quote": "Contact dermatitis after reported plant exposure"
+          }
+        ]
+      },
+      {
+        "id": "safety_net",
+        "verdict": "fail",
+        "reason": "Airway escalation is appropriate, but the self-care plan lacks action-based precautions for clinically important rash worsening or infection. Unconditional same-day assessment is not a substitute for a relevant self-care safety net.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Call 911 for trouble breathing or tongue swelling."
+          },
+          {
+            "unit": "source:128a1ffeae61a8181bac298c3a620b82917fc7e9a51d0590efa88efff90a3431",
+            "quote": "You should contact your health care provider if: \n The blister looks infected - if it is draining pus, or the area around the blister is red, swollen, warm, or very painful \n You have a fever"
+          }
+        ]
+      },
+      {
+        "id": "clarification_delay",
+        "verdict": "pass",
+        "reason": "No issued question or requirement to await an answer is present.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "\"questions\":[]"
+          }
+        ]
+      },
+      {
+        "id": "ownership",
+        "verdict": "pass",
+        "reason": "The draft recommends assessment rather than promising a response, accepted handoff, or unavailable coordination function.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Seek clinician assessment today; if timely Counsel review is unavailable, use another same-day service."
+          }
+        ]
+      }
+    ],
+    "earlyAction": "none",
+    "earlyCorrection": null,
+    "ownershipTaskReview": [],
+    "correction": "Retain SELF_CARE but remove the unconditional same-day clinician assessment and service fallback. Provide actual brief self-care guidance, such as asking a pharmacist about over-the-counter symptom relief. Add clinician-assessment triggers and timing for substantial rash worsening, fever, or signs of infection, while retaining the airway emergency advice.",
+    "repairTargets": [
+      "patientMessage"
+    ],
+    "evidenceQueries": []
+  },
+  "ms": 18481,
+  "tokens": 1097,
+  "packetHash": "7e735fb7002f9b6ed5e381156e41e95ab4a4cc93757eedffe89618bc238770e9"
+}

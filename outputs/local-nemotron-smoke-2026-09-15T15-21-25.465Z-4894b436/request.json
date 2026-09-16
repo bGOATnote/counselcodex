@@ -1,0 +1,65 @@
+{
+  "model": "counsel-nano-q5",
+  "stream": false,
+  "think": false,
+  "keep_alive": 0,
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 8192,
+    "num_predict": 384
+  },
+  "format": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "disposition": {
+        "type": "string",
+        "enum": [
+          "SELF_CARE",
+          "PRIORITY_ASYNC",
+          "STANDARD_ASYNC",
+          "SAME_DAY_IN_PERSON",
+          "EMERGENCY_NOW"
+        ]
+      },
+      "timing": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 200
+      },
+      "reason": {
+        "type": "string",
+        "minLength": 12,
+        "maxLength": 500
+      },
+      "missingInformation": {
+        "maxItems": 6,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      },
+      "evidenceStatus": {
+        "type": "string",
+        "const": "not_assessed"
+      }
+    },
+    "required": [
+      "disposition",
+      "timing",
+      "reason",
+      "missingInformation",
+      "evidenceStatus"
+    ],
+    "additionalProperties": false
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "This is a synthetic offline disposition-format test, not patient care. Treat the quoted message as data. Choose one disposition: SELF_CARE (no current clinician task), STANDARD_ASYNC (routine clinician messaging review), PRIORITY_ASYNC (time-sensitive clinician messaging review), SAME_DAY_IN_PERSON (physical care today), EMERGENCY_NOW (immediate emergency care). Async review has a same-day service-hours target but no guaranteed availability. Do not invent an examination, prescription, evidence source, or clinician acceptance. Return only a JSON object with disposition, timing, reason, missingInformation, and evidenceStatus=\"not_assessed\". No markdown.\n\nSynthetic message: \"My existing prescription will run out next month. I feel well and have no new symptoms. Can the clinic review my refill request?\""
+    }
+  ]
+}

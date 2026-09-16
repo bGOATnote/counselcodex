@@ -1,0 +1,2056 @@
+{
+  "status": "review_required",
+  "answer": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "reviewPriority": "priority",
+    "workType": "clinical_review",
+    "reason": "The automated assessment needs clinician review; this is a conservative workflow fallback, not a new clinical finding.",
+    "patientMessage": "Priority review by the Counsel clinician in this thread is needed today. This recommendation does not confirm a clinician has accepted the request.",
+    "differential": [],
+    "redFlags": [],
+    "vitalSigns": "The automated assessment has not established the vital-sign context.",
+    "questions": [],
+    "evidence": [],
+    "evidenceLimitations": "No model-reviewed clinical explanation has been released. The draft and review outcome are retained for clinician assessment."
+  },
+  "origin": "validation_safeguard",
+  "modelCalls": 6,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "usual migraine triptan refill in established patient",
+          "contraindications and pregnancy status for sumatriptan"
+        ],
+        "findings": [
+          {
+            "finding": "Established migraine pattern",
+            "status": "reported",
+            "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get"
+          },
+          {
+            "finding": "Current triptan depletion",
+            "status": "reported",
+            "quote": "I'm out of sumatriptan"
+          },
+          {
+            "finding": "Active migraine symptoms",
+            "status": "reported",
+            "quote": "usual migraine started this morning — same one-sided throbbing and light sensitivity"
+          },
+          {
+            "finding": "Request for sumatriptan refill",
+            "status": "reported",
+            "quote": "would like a refill"
+          }
+        ],
+        "question": null
+      },
+      "usage": {
+        "inputTokens": 1752,
+        "outputTokens": 158
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1897,
+      "streamProgress": {
+        "lastTextDeltaMs": 5551,
+        "textDeltaCount": 142,
+        "textCharacters": 670
+      },
+      "durationMs": 5655
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "priority",
+        "workType": "medication_request",
+        "reason": "40F reports her usual, unchanged one-sided throbbing headache with photophobia starting this morning and has exhausted her sumatriptan. Active attack plus medication interruption makes remote prescribing review time-sensitive; triptans work best taken early in the attack. No reported thunderclap onset, deficit, fever, neck stiffness or trauma was described, and nothing reported requires a physical examination today.",
+        "patientMessage": "I'm asking a Counsel clinician to review your request promptly today for a sumatriptan refill, since you have an active attack and have run out — acute migraine treatment works best taken early. They may ask about your diagnosis, prior response, how often you use it, and pregnancy or other health factors before deciding. Resting in a quiet, dark room, a cool cloth on your forehead and fluids may help meanwhile. Seek emergency care for sudden worst-ever headache, weakness, speech trouble, fever with neck stiffness, or a headache unlike your usual pattern.",
+        "differential": [
+          "Recurrence of established migraine, usual pattern",
+          "Medication-overuse headache if acute treatment used frequently",
+          "Secondary headache (not suggested by reported features, not excluded)"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thunderclap/sudden worst-ever onset",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Neurological deficit or aura symptoms",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Fever or neck stiffness",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Head trauma",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Headache different from usual pattern",
+            "status": "denied",
+            "quote": "same one-sided throbbing and light sensitivity I always get"
+          },
+          {
+            "concern": "Pregnancy status",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported: no blood pressure, heart rate, temperature or oxygen saturation provided in the message. Not provided does not mean not measured or normal.",
+        "questions": [],
+        "evidenceLimitations": "Retrieved guideline is a 2021 consensus with currentness not assessed and is not a prescribing authorization or current formulary; it does not address telehealth routing. Consumer summaries are general and not patient-specific. The threatened abortion synthesis is agent-compiled secondary material and irrelevant here. Pregnancy status, contraindications, attack frequency and vitals are unknown, not denied; routing reflects reported active usual migraine with exhausted rescue medication.",
+        "citations": [
+          {
+            "passageId": "092b4bc00250065c05de9cc76ead4999d4cc99ad13b58b5fbdcc67c015e9a429",
+            "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild",
+            "claim": "Early treatment in an attack supports time-sensitive review of an exhausted triptan supply.",
+            "applicability": "applicable",
+            "limitation": "Guideline is dated 2021, does not authorize prescribing or specify a care channel."
+          },
+          {
+            "passageId": "56f305c4485d8767942bd0a08de26a49c8800b32f982a73e5a1d45306d7bee91",
+            "quote": "Resting with your eyes closed in a quiet, darkened room \n Placing a cool cloth or ice pack on your forehead \n Drinking fluids",
+            "claim": "General self-care measures may relieve migraine symptoms in the interim.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary, undated; general advice not individualized."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 10672,
+        "outputTokens": 1204
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1712,
+      "streamProgress": {
+        "lastTextDeltaMs": 20011,
+        "textDeltaCount": 310,
+        "textCharacters": 3354
+      },
+      "durationMs": 20030
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "action": "NONE",
+        "basis": [
+          {
+            "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get",
+            "interpretation": "Established migraine pattern with typical features (unilateral pain, photophobia) matching patient's known history; no new neurological deficits, thunderclap onset, fever, neck stiffness, or trauma reported",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "I'm out of sumatriptan and would like a refill",
+            "interpretation": "Patient is requesting renewal of an established migraine abortive medication for a symptomatic episode matching her usual presentation",
+            "currentPatient": true,
+            "present": true
+          }
+        ],
+        "reason": "Patient reports her usual migraine pattern without red-flag features (sudden onset, neurological change, systemic illness, recent head injury). Triptan refill for an established, unchanged migraine does not independently mandate same-day physical examination. Clinician-led asynchronous review can assess diagnosis stability, prior response, dose suitability, interactions, and refill eligibility remotely and today.",
+        "patientMessage": ""
+      },
+      "usage": {
+        "inputTokens": 1664,
+        "outputTokens": 245
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1957,
+      "streamProgress": {
+        "lastTextDeltaMs": 7214,
+        "textDeltaCount": 207,
+        "textCharacters": 1101
+      },
+      "durationMs": 7315
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "verdict": "revise",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Priority asynchronous medication review fits the active usual migraine with exhausted sumatriptan. No reported feature independently requires physical care today.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get."
+              },
+              {
+                "unit": "draft",
+                "quote": "\"disposition\":\"ASYNC_PHYSICIAN\",\"reviewPriority\":\"priority\",\"workType\":\"medication_request\""
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "fail",
+            "reason": "The initial route is appropriate, but the safety net sends any headache unlike the usual pattern to emergency care without qualifying severity, onset or associated features. A pattern change alone does not invariably require emergency care.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Seek emergency care for sudden worst-ever headache, weakness, speech trouble, fever with neck stiffness, or a headache unlike your usual pattern."
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "The draft accurately captures the usual symptoms and named medication depletion, preserves unreported red flags and pregnancy as unknown, and does not infer absent aura or unmeasured vital signs.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I'm out of sumatriptan and would like a refill."
+              },
+              {
+                "unit": "draft",
+                "quote": "Not provided does not mean not measured or normal."
+              },
+              {
+                "unit": "draft",
+                "quote": "Pregnancy status, contraindications, attack frequency and vitals are unknown, not denied"
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "fail",
+            "reason": "Early triptan treatment and interim self-care are supported, and the conditional medication-overuse differential and pregnancy checks have relevant evidence. However, none of the supplied passages substantiates the emergency warning-sign instructions or their care thresholds. Source metadata mentioning a red-flag table is not the table's evidence. ",
+            "anchors": [
+              {
+                "unit": "source:092b4bc00250065c05de9cc76ead4999d4cc99ad13b58b5fbdcc67c015e9a429",
+                "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild"
+              },
+              {
+                "unit": "source:56f305c4485d8767942bd0a08de26a49c8800b32f982a73e5a1d45306d7bee91",
+                "quote": "Resting with your eyes closed in a quiet, darkened room"
+              },
+              {
+                "unit": "draft",
+                "quote": "Seek emergency care for sudden worst-ever headache, weakness, speech trouble, fever with neck stiffness, or a headache unlike your usual pattern."
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "fail",
+            "reason": "Warning signs are provided, but emergency timing and transport are not explicit. New weakness or speech trouble should carry an immediate 911 instruction, and emergency evaluation must not await queue review. Distinguish less acute pattern changes from emergency triggers.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Seek emergency care for sudden worst-ever headache, weakness, speech trouble, fever with neck stiffness, or a headache unlike your usual pattern."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No blocking questions or unnecessary delay precede routing. Proposed prescribing checks appropriately remain with the clinician.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              },
+              {
+                "unit": "draft",
+                "quote": "They may ask about your diagnosis, prior response, how often you use it, and pregnancy or other health factors before deciding."
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "fail",
+            "reason": "Counsel appropriately owns the prescribing decision, but the draft claims an operational request is being made despite no established handoff. Describe the recommended priority review without claiming transmission or guaranteeing today's service, and leave any follow-up plan with the clinician.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I'm asking a Counsel clinician to review your request promptly today for a sumatriptan refill"
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "correction": "Keep ASYNC_PHYSICIAN with priority review and medication_request. Describe Counsel review as the recommended next step, not a completed or initiated handoff or guaranteed review time. Add explicit immediate emergency instructions, including 911 for new weakness or speech difficulty and no waiting for messaging review. Do not classify every change from the usual headache as an emergency; distinguish prompt clinician reassessment from emergency warning signs. Retrieve evidence supporting these safety-net thresholds. Counsel should determine refill eligibility and any follow-up plan.",
+        "evidenceQueries": [
+          "Headache guideline emergency warning signs thunderclap focal neurological deficit fever neck stiffness versus nonemerg急?"
+        ]
+      },
+      "usage": {
+        "inputTokens": 6047,
+        "outputTokens": 1209
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1694,
+      "streamProgress": {
+        "lastTextDeltaMs": 19860,
+        "textDeltaCount": 1202,
+        "textCharacters": 5539
+      },
+      "durationMs": 20110
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "priority",
+        "workType": "medication_request",
+        "reason": "40F reports her usual, unchanged one-sided throbbing headache with light sensitivity starting this morning and has run out of sumatriptan. An active attack with exhausted rescue medication makes remote clinician review time-sensitive, since acute migraine treatment works best taken early. Nothing reported (no described thunderclap onset, deficit, fever, neck stiffness or trauma — these are unknown, not denied) establishes a need for physical examination or testing today. Counsel should verify diagnosis, prior response, use frequency, pregnancy and contraindications and decide on renewal and any follow-up.",
+        "patientMessage": "Recommended next step: priority asynchronous review by a Counsel clinician for your sumatriptan refill, since you have an active attack and have run out — acute migraine medicine works best taken early. They will decide eligibility and any follow-up; I can't confirm timing or approval. Meanwhile, resting in a quiet dark room, a cool cloth and fluids may help. Call 911 now for sudden worst-ever headache, new weakness or speech trouble; seek emergency care for fever with neck stiffness — don't wait for messaging review. Message again if this headache changes character.",
+        "differential": [
+          "Recurrence of established migraine, usual reported pattern",
+          "Medication-overuse headache if acute medication used frequently (frequency unknown)",
+          "Secondary headache — not suggested by reported features, not excluded"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thunderclap/sudden worst-ever onset",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Focal neurological deficit or aura",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Fever or neck stiffness",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Head trauma",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Headache different from usual pattern",
+            "status": "denied",
+            "quote": "same one-sided throbbing and light sensitivity I always get"
+          },
+          {
+            "concern": "Pregnancy status",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported in the message: blood pressure, heart rate, temperature and oxygen saturation not provided. Not provided does not mean not measured or normal.",
+        "questions": [],
+        "evidenceLimitations": "The 2021 consensus guideline is dated, does not authorize prescribing, verify formulary availability, or specify a care channel. Consumer summaries are general, undated and not patient-specific. Emergency warning-sign thresholds are supported only by an agent-compiled emergency-department synthesis describing classic presentations, not by a telehealth routing protocol; that material is secondary and unverified. Pregnancy status, contraindications, attack frequency and vital signs are unknown, not denied. Routing reflects reported active usual migraine with exhausted rescue medication.",
+        "citations": [
+          {
+            "passageId": "092b4bc00250065c05de9cc76ead4999d4cc99ad13b58b5fbdcc67c015e9a429",
+            "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild",
+            "claim": "Early treatment within an attack supports time-sensitive review of an exhausted triptan supply.",
+            "applicability": "applicable",
+            "limitation": "2021 dated guidance; does not authorize prescribing or specify a care channel."
+          },
+          {
+            "passageId": "56f305c4485d8767942bd0a08de26a49c8800b32f982a73e5a1d45306d7bee91",
+            "quote": "Resting with your eyes closed in a quiet, darkened room \n Placing a cool cloth or ice pack on your forehead \n Drinking fluids",
+            "claim": "General interim self-care measures may relieve migraine symptoms.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary, undated, general and not individualized."
+          },
+          {
+            "passageId": "3643b0452daec5eed3b84cc0fc477f3a43e0d339bd8a1eb9bf908557efcd2d2d",
+            "quote": "**Subarachnoid hemorrhage** (`subarachnoid-hemorrhage`): thunderclap headache, nuchal rigidity, vomiting, photophobia",
+            "claim": "Thunderclap onset, fever with neck stiffness, or focal deficit are features associated with life-threatening headache causes warranting emergency evaluation.",
+            "applicability": "uncertain",
+            "limitation": "Secondary emergency-department synthesis, not primary guidance or a telehealth protocol; describes ED presentations, not this patient."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 15118,
+        "outputTokens": 1672
+      },
+      "failure": null,
+      "firstTextDeltaMs": 3767,
+      "streamProgress": {
+        "lastTextDeltaMs": 25529,
+        "textDeltaCount": 370,
+        "textCharacters": 4234
+      },
+      "durationMs": 25548
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "verdict": "revise",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Priority remote medication review fits the active usual migraine and depleted sumatriptan. No reported feature independently requires emergency or in-person care.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get."
+              },
+              {
+                "unit": "draft",
+                "quote": "\"disposition\":\"ASYNC_PHYSICIAN\",\"reviewPriority\":\"priority\",\"workType\":\"medication_request\""
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "The draft appropriately separates queue priority from physical care. Emergency advice is conditional, not an escalation for current reported symptoms.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Recommended next step: priority asynchronous review by a Counsel clinician for your sumatriptan refill"
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "fail",
+            "reason": "“Exhausted rescue medication” broadens depletion of sumatriptan into depletion of rescue treatment generally. Other treatment access is unknown. Otherwise, the draft appropriately preserves unknown red flags and vital signs.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I'm out of sumatriptan and would like a refill."
+              },
+              {
+                "unit": "draft",
+                "quote": "An active attack with exhausted rescue medication makes remote clinician review time-sensitive"
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "fail",
+            "reason": "Early triptan treatment and conservative comfort measures have relevant support. Initial remote review follows project policy and does not promise prescribing eligibility. However, the emergency thresholds and transport advice rely only on an unverified research synthesis; acknowledging this limitation does not repair the evidence gap.",
+            "anchors": [
+              {
+                "unit": "source:092b4bc00250065c05de9cc76ead4999d4cc99ad13b58b5fbdcc67c015e9a429",
+                "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild"
+              },
+              {
+                "unit": "source:56f305c4485d8767942bd0a08de26a49c8800b32f982a73e5a1d45306d7bee91",
+                "quote": "Resting with your eyes closed in a quiet, darkened room"
+              },
+              {
+                "unit": "source:3643b0452daec5eed3b84cc0fc477f3a43e0d339bd8a1eb9bf908557efcd2d2d",
+                "quote": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol."
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "Conditional emergency warning signs include explicit 911 advice and instructions not to await messaging. Fever with neck stiffness should be phrased more explicitly as immediate ED care.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Call 911 now for sudden worst-ever headache, new weakness or speech trouble; seek emergency care for fever with neck stiffness — don't wait for messaging review."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No questions or prescribing checks block initial clinician routing.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              },
+              {
+                "unit": "draft",
+                "quote": "Counsel should verify diagnosis, prior response, use frequency, pregnancy and contraindications and decide on renewal and any follow-up."
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "Counsel owns eligibility and follow-up decisions. The response does not claim a completed handoff, prescription, resolution, or guaranteed timing.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "They will decide eligibility and any follow-up; I can't confirm timing or approval."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "correction": "Retain priority ASYNC_PHYSICIAN medication_request routing. Replace references to exhausted rescue medication with “out of sumatriptan”; do not imply other treatments are unavailable. Retrieve authoritative support for the conditional headache emergency thresholds and transport instructions. Specify immediate ED care for fever with neck stiffness, without waiting for messaging.",
+        "evidenceQueries": [
+          "Authoritative headache emergency guidance: sudden worst-ever headache, new weakness or speech difficulty, fever with n​​",
+          "Authoritative patient guidance on calling 911 versus immediate ED evaluation for headache emergency warning signs"
+        ]
+      },
+      "usage": {
+        "inputTokens": 8073,
+        "outputTokens": 1070
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1877,
+      "streamProgress": {
+        "lastTextDeltaMs": 15726,
+        "textDeltaCount": 1063,
+        "textCharacters": 4593
+      },
+      "durationMs": 15856
+    }
+  ],
+  "guidance": [
+    {
+      "id": "092b4bc00250065c05de9cc76ead4999d4cc99ad13b58b5fbdcc67c015e9a429",
+      "title": "Diagnosis and management of migraine in ten steps",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+      "section": "Full-text body / Step 4: Acute treatment / Second-line medication",
+      "summary": "Patients for whom over-the-counter analgesics provide inadequate headache relief should be offered a triptan. All triptans have well-documented effectiveness, but availability of and access to each vary between countries. Triptans are most effective when taken early in an attack, when the headache is still mild49,50. However, no evidence supports the use of triptans during the aura phase of a migraine attack. If one triptan is ineffective, others might still provide relief51,52. When all other triptans have failed or in patients who rapidly reach peak headache intensity or cannot take oral triptans because of vomiting, sumatriptan by subcutaneous injection can be useful53.\n\nSome patients can experience relapses, which are defined as a return of symptoms within 48 h after apparently successful treatment. Upon relapse, patients can repeat their triptan treatment or combine the triptan with simultaneous intake of fast-acting formulations of naproxen sodium, ibuprofen lysine or diclofenac potassium54,55. However, patients should be informed that repeating the treatment does not preclude further relapses and ultimately increases the risk of developing MOH.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "primary_guideline; publisher_reviewed. EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+      "retrievedPassages": [
+        {
+          "id": "092b4bc00250065c05de9cc76ead4999d4cc99ad13b58b5fbdcc67c015e9a429",
+          "sourceId": "pmc:PMC8321897",
+          "excerpt": "Patients for whom over-the-counter analgesics provide inadequate headache relief should be offered a triptan. All triptans have well-documented effectiveness, but availability of and access to each vary between countries. Triptans are most effective when taken early in an attack, when the headache is still mild49,50. However, no evidence supports the use of triptans during the aura phase of a migraine attack. If one triptan is ineffective, others might still provide relief51,52. When all other triptans have failed or in patients who rapidly reach peak headache intensity or cannot take oral triptans because of vomiting, sumatriptan by subcutaneous injection can be useful53.\n\nSome patients can experience relapses, which are defined as a return of symptoms within 48 h after apparently successful treatment. Upon relapse, patients can repeat their triptan treatment or combine the triptan with simultaneous intake of fast-acting formulations of naproxen sodium, ibuprofen lysine or diclofenac potassium54,55. However, patients should be informed that repeating the treatment does not preclude further relapses and ultimately increases the risk of developing MOH.",
+          "excerptSha256": "8e63bcc868a69d119df885e906aa5386f5c4c1d8753586d5e179796d3473711c",
+          "retrievedAt": "2026-09-13T23:38:35.557Z",
+          "sourceContentHash": "486bb3673009d721987fede0bc358d395f798c12cba8bf348afe06bfca02581e",
+          "kind": "primary_guideline",
+          "limitations": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion."
+        }
+      ]
+    },
+    {
+      "id": "153995adf10de093f8c817952aa217f03a8ca919f8a4d13b5ffcc9e2994b66bd",
+      "title": "Diagnosis and management of migraine in ten steps",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+      "section": "Full-text body / Step 2: Diagnosis of migraine",
+      "summary": " aura symptom is unilateralat least one aura symptom is positivethe aura is accompanied with or followed by headache within 60 min4.Not better accounted for by another ICHD-3 diagnosisChronic migraine\nHeadache (migraine-like or tension-type-like) on ≥15 days/month for >3 months that fulfil criteria 2 and 3Attacks occur in an individual who has had at least five attacks that fulfil the criteria for migraine without aura and/or for migraine with auraOn ≥8 days/month for >3 months, any of the following criteria are met:criteria 3 and 4 for migraine without auracriteria 2 and 3 for migraine with aurabelieved by the patient to be migraine at onset and relieved by a triptan or ergot derivative4.Not better accounted for by another ICHD-3 diagnosisMedication-overuse headacheHeadache on ≥15 days/month in an individual with a pre-existing headache disorderRegular overuse for >3 months of one or more drugs that can be taken for acute and/or symptomatic treatment of headache (regular intake of one or more non-opioid analgesics on ≥15 days/month for ≥3 months or any other acute medication or combination of medications on ≥10 days/month for ≥3 months)Not better accounted for by another ICHD-3 diagnosis",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "primary_guideline; publisher_reviewed. EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+      "retrievedPassages": [
+        {
+          "id": "153995adf10de093f8c817952aa217f03a8ca919f8a4d13b5ffcc9e2994b66bd",
+          "sourceId": "pmc:PMC8321897",
+          "excerpt": " aura symptom is unilateralat least one aura symptom is positivethe aura is accompanied with or followed by headache within 60 min4.Not better accounted for by another ICHD-3 diagnosisChronic migraine\nHeadache (migraine-like or tension-type-like) on ≥15 days/month for >3 months that fulfil criteria 2 and 3Attacks occur in an individual who has had at least five attacks that fulfil the criteria for migraine without aura and/or for migraine with auraOn ≥8 days/month for >3 months, any of the following criteria are met:criteria 3 and 4 for migraine without auracriteria 2 and 3 for migraine with aurabelieved by the patient to be migraine at onset and relieved by a triptan or ergot derivative4.Not better accounted for by another ICHD-3 diagnosisMedication-overuse headacheHeadache on ≥15 days/month in an individual with a pre-existing headache disorderRegular overuse for >3 months of one or more drugs that can be taken for acute and/or symptomatic treatment of headache (regular intake of one or more non-opioid analgesics on ≥15 days/month for ≥3 months or any other acute medication or combination of medications on ≥10 days/month for ≥3 months)Not better accounted for by another ICHD-3 diagnosis",
+          "excerptSha256": "e3c65c0fc91157b8c1ffa9b643ea2b90210682f22ef555f176fe9897ca8dc702",
+          "retrievedAt": "2026-09-13T23:38:35.557Z",
+          "sourceContentHash": "486bb3673009d721987fede0bc358d395f798c12cba8bf348afe06bfca02581e",
+          "kind": "primary_guideline",
+          "limitations": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion."
+        }
+      ]
+    },
+    {
+      "id": "56f305c4485d8767942bd0a08de26a49c8800b32f982a73e5a1d45306d7bee91",
+      "title": "Migraine",
+      "url": "https://medlineplus.gov/migraine.html",
+      "section": "Health-topic summary",
+      "summary": "of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? \n There is no cure for migraines. Treatment focuses on relieving symptoms and preventing additional attacks. \n\n There are different types of medicines to relieve symptoms. They include triptan drugs, ergotamine drugs, and pain relievers . The sooner you take the medicine, the more effective it is. \n\n There are also other things you can do to feel better: \n Resting with your eyes closed in a quiet, darkened room \n Placing a cool cloth or ice pack on your forehead \n Drinking fluids \n \n\n There are some lifestyle changes you can make to prevent migraines: \n Stress management strategies, such as exercise, relaxation techniques, and biofeedback, may reduce the number and severity of migraines. Biofeedback uses electronic devices to teach you to control certain body functions, such as your heartbeat, blood pressure, and muscle tension. \n Make a log of what seems to trigger your migraines. You can learn what you need to avoid, such as certain foods and medicines. It also help you figure out what you should do, such as establishing a consistent sleep schedule and eating regular meals. \n Hormone therapy may help some women whose migraines seem to be linked to their menstrual cycle \n If you have obesity , losing weight may also be helpful \n \n\n If you have frequent or severe migraines, you may need to take medicines to prevent further attacks. Talk with your health care provider about which drug would be right for you. \n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "56f305c4485d8767942bd0a08de26a49c8800b32f982a73e5a1d45306d7bee91",
+          "sourceId": "medlineplus:3157",
+          "excerpt": "of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? \n There is no cure for migraines. Treatment focuses on relieving symptoms and preventing additional attacks. \n\n There are different types of medicines to relieve symptoms. They include triptan drugs, ergotamine drugs, and pain relievers . The sooner you take the medicine, the more effective it is. \n\n There are also other things you can do to feel better: \n Resting with your eyes closed in a quiet, darkened room \n Placing a cool cloth or ice pack on your forehead \n Drinking fluids \n \n\n There are some lifestyle changes you can make to prevent migraines: \n Stress management strategies, such as exercise, relaxation techniques, and biofeedback, may reduce the number and severity of migraines. Biofeedback uses electronic devices to teach you to control certain body functions, such as your heartbeat, blood pressure, and muscle tension. \n Make a log of what seems to trigger your migraines. You can learn what you need to avoid, such as certain foods and medicines. It also help you figure out what you should do, such as establishing a consistent sleep schedule and eating regular meals. \n Hormone therapy may help some women whose migraines seem to be linked to their menstrual cycle \n If you have obesity , losing weight may also be helpful \n \n\n If you have frequent or severe migraines, you may need to take medicines to prevent further attacks. Talk with your health care provider about which drug would be right for you. \n",
+          "excerptSha256": "a0b542837f011680f7d98bd2c5ef53892751c18c743123f860eb5381e4b8a935",
+          "retrievedAt": "2026-09-13T23:38:35.557Z",
+          "sourceContentHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+      "title": "Migraine",
+      "url": "https://medlineplus.gov/migraine.html",
+      "section": "Health-topic summary",
+      "summary": "er , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: \n Prodome. This phase starts up to 24 hours before you get the migraine. You have early signs and symptoms, such as food cravings, unexplained mood changes, uncontrollable yawning, fluid retention, and increased urination. \n Aura. If you have this phase, you might see flashing or bright lights or zig-zag lines. You may have muscle weakness or feel like you are being touched or grabbed. An aura can happen just before or during a migraine. \n Headache. A migraine usually starts gradually and then becomes more severe. It typically causes throbbing or pulsing pain, which is often on one side of your head. But sometimes you can have a migraine without a headache. Other migraine symptoms may include \n \n Increased sensitivity to light, noise, and odors \n Nausea and vomiting \n Worsened pain when you move, cough, or sneeze \n \n Postdrome (following the headache). You may feel exhausted, weak, and confused after a migraine. This can last up to a day. \n \n\n Migraines are more common in the morning; people often wake up with them. Some people have migraines at predictable times, such as before menstruation or on weekends following a stressful week of work. \n\n How are migraines diagnosed? \n To make a diagnosis, your health care provider will: \n Take your medical history \n Ask about your symptoms \n Do a physical and neurological exam \n \n\n An important part of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? ",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+          "sourceId": "medlineplus:3157",
+          "excerpt": "er , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: \n Prodome. This phase starts up to 24 hours before you get the migraine. You have early signs and symptoms, such as food cravings, unexplained mood changes, uncontrollable yawning, fluid retention, and increased urination. \n Aura. If you have this phase, you might see flashing or bright lights or zig-zag lines. You may have muscle weakness or feel like you are being touched or grabbed. An aura can happen just before or during a migraine. \n Headache. A migraine usually starts gradually and then becomes more severe. It typically causes throbbing or pulsing pain, which is often on one side of your head. But sometimes you can have a migraine without a headache. Other migraine symptoms may include \n \n Increased sensitivity to light, noise, and odors \n Nausea and vomiting \n Worsened pain when you move, cough, or sneeze \n \n Postdrome (following the headache). You may feel exhausted, weak, and confused after a migraine. This can last up to a day. \n \n\n Migraines are more common in the morning; people often wake up with them. Some people have migraines at predictable times, such as before menstruation or on weekends following a stressful week of work. \n\n How are migraines diagnosed? \n To make a diagnosis, your health care provider will: \n Take your medical history \n Ask about your symptoms \n Do a physical and neurological exam \n \n\n An important part of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? ",
+          "excerptSha256": "803dbd53505ae13a03c04a3e5916e34fe7ce5d3dfcd145977622ca0f766104da",
+          "retrievedAt": "2026-09-13T23:38:35.557Z",
+          "sourceContentHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "3450620eb1825c0b2cac9f8cc51e8bd815bf0c10c4fe131851b2fdacb40fce57",
+      "title": "Patient Rights",
+      "url": "https://medlineplus.gov/patientrights.html",
+      "section": "Health-topic summary",
+      "summary": "What are patient rights? \n As a patient, you have certain rights. Some are guaranteed by federal law, such as the right to get a copy of your medical records and the right to keep them private and secure. Many states have additional laws protecting patients. And some states, insurance plans, medical organizations, and health care facilities have their own patient bill of rights. \n\n Some other examples of patient rights include: \n \n Being treated with respect \n Not being discriminated against in your medical care \n The right to refuse treatment \n The right of informed consent \n \n\n What is informed consent? \n Informed consent is an important patient right. It is a process in which your health care provider gives you the information you need to make decisions about your care. The types of care could be treatments, procedures, genetic testing, or clinical trials. The information should include the risks and benefits of the care, as well as details about your medical condition. \n\n It's important that you understand everything before you give consent. Sometimes your provider will ask you to sign a form to give your consent. This is called written consent. \n\n You have the right to change your mind about consent at any time. \n\n Where can I get help with patient rights? \n There are different resources that can help you if you have a problem with your patient rights: \n \n Many hospitals have patient advocates. These are people who can help guide you through the health care system and make sure that your rights are protected.\n Your state may have resources to help you, such as: \n \n Your state may have an office (called an ombudsmen office) for problems with long term care. \n Your state's department of health may be able to help. ",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "3450620eb1825c0b2cac9f8cc51e8bd815bf0c10c4fe131851b2fdacb40fce57",
+          "sourceId": "medlineplus:4253",
+          "excerpt": "What are patient rights? \n As a patient, you have certain rights. Some are guaranteed by federal law, such as the right to get a copy of your medical records and the right to keep them private and secure. Many states have additional laws protecting patients. And some states, insurance plans, medical organizations, and health care facilities have their own patient bill of rights. \n\n Some other examples of patient rights include: \n \n Being treated with respect \n Not being discriminated against in your medical care \n The right to refuse treatment \n The right of informed consent \n \n\n What is informed consent? \n Informed consent is an important patient right. It is a process in which your health care provider gives you the information you need to make decisions about your care. The types of care could be treatments, procedures, genetic testing, or clinical trials. The information should include the risks and benefits of the care, as well as details about your medical condition. \n\n It's important that you understand everything before you give consent. Sometimes your provider will ask you to sign a form to give your consent. This is called written consent. \n\n You have the right to change your mind about consent at any time. \n\n Where can I get help with patient rights? \n There are different resources that can help you if you have a problem with your patient rights: \n \n Many hospitals have patient advocates. These are people who can help guide you through the health care system and make sure that your rights are protected.\n Your state may have resources to help you, such as: \n \n Your state may have an office (called an ombudsmen office) for problems with long term care. \n Your state's department of health may be able to help. ",
+          "excerptSha256": "ac89fedcdb32ef8ecc2b06fbe335f2027a4538937dd38d30cec8f384350491fd",
+          "retrievedAt": "2026-09-13T23:38:35.557Z",
+          "sourceContentHash": "4b8c9e97ea1a4ad1c5c2381a63fdd0f0b08fe9fc1fab3acefb03932a8dd81b67",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "0d08a7c8440c158766e464eed7e188e68a7dba0db89d2ad83f9455e5b2082d8e",
+      "title": "Diagnosis and management of migraine in ten steps",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+      "section": "Full-text body / Step 6: Managing migraine in special populations / Pregnant and breastfeeding women",
+      "summary": "Migraine often remits during pregnancy, but if treatment is continued, the potential for harm to the fetus demands special consideration93. Despite relatively poor efficacy, paracetamol should be used as the first-line medication for acute treatment of migraine in pregnancy48; NSAIDs can be used only during the second trimester93,94. Triptans should be used only under the strict supervision of a specialist, as the safety data available are limited and originate from post-marketing surveillance; most data relate to the use of sumatriptan32. For nausea associated with migraine in pregnancy, metoclopramide can be used94,95.\n\nPreventive migraine medications are best avoided during pregnancy owing to the potential for fetal harm. However, if preventive therapy is considered clinically indicated because of frequent and disabling migraine attacks, the best available safety data support the use of propranolol or, if propranolol is contraindicated, amitriptyline. Both should be used under specialist supervision to adequately monitor any potential fetal harm32. Topiramate, candesartan and sodium valproate are contraindicated; sodium valproate is known to be teratogenic, so must not be used70,94, and the use of topiramate and candesartan is associated with adverse effects on the fetus.\n\nMigraine medication therapy in the post-partum period also requires caution because of potential risks to the infant. Paracetamol is the preferred acute medication, although ibuprofen and sumatriptan are also considered safe94. If preventive medication is required, propranolol is the recommended first choice as it has the best safety profile94. Pharmacological treatments for migraine during pregnancy and breastfeeding have been reviewed in more detail elsewhere94.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "primary_guideline; publisher_reviewed. EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+      "retrievedPassages": [
+        {
+          "id": "0d08a7c8440c158766e464eed7e188e68a7dba0db89d2ad83f9455e5b2082d8e",
+          "sourceId": "pmc:PMC8321897",
+          "excerpt": "Migraine often remits during pregnancy, but if treatment is continued, the potential for harm to the fetus demands special consideration93. Despite relatively poor efficacy, paracetamol should be used as the first-line medication for acute treatment of migraine in pregnancy48; NSAIDs can be used only during the second trimester93,94. Triptans should be used only under the strict supervision of a specialist, as the safety data available are limited and originate from post-marketing surveillance; most data relate to the use of sumatriptan32. For nausea associated with migraine in pregnancy, metoclopramide can be used94,95.\n\nPreventive migraine medications are best avoided during pregnancy owing to the potential for fetal harm. However, if preventive therapy is considered clinically indicated because of frequent and disabling migraine attacks, the best available safety data support the use of propranolol or, if propranolol is contraindicated, amitriptyline. Both should be used under specialist supervision to adequately monitor any potential fetal harm32. Topiramate, candesartan and sodium valproate are contraindicated; sodium valproate is known to be teratogenic, so must not be used70,94, and the use of topiramate and candesartan is associated with adverse effects on the fetus.\n\nMigraine medication therapy in the post-partum period also requires caution because of potential risks to the infant. Paracetamol is the preferred acute medication, although ibuprofen and sumatriptan are also considered safe94. If preventive medication is required, propranolol is the recommended first choice as it has the best safety profile94. Pharmacological treatments for migraine during pregnancy and breastfeeding have been reviewed in more detail elsewhere94.",
+          "excerptSha256": "61d10b9f2fcf73510d09947a7effd2713b2510f9f2de309700348b5d5fd50fb6",
+          "retrievedAt": "2026-09-13T23:38:35.557Z",
+          "sourceContentHash": "486bb3673009d721987fede0bc358d395f798c12cba8bf348afe06bfca02581e",
+          "kind": "primary_guideline",
+          "limitations": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion."
+        }
+      ]
+    },
+    {
+      "id": "8c6ac57e02e33eb37cbb1217a20f419612cee401a87b649dce179d1d7b648b48",
+      "title": "Pregnancy and Medicines",
+      "url": "https://medlineplus.gov/pregnancyandmedicines.html",
+      "section": "Health-topic summary",
+      "summary": "Is it safe to take medicine during pregnancy? \n Some medicines are safe to take during pregnancy , but many are not. If you're pregnant, check with your health care provider before taking any medicine. Some medicines can harm your developing fetus . This includes: \n \n Prescription drugs \n Over-the-counter medicines \n Herbs and supplements \n \n \n Should I stop taking my medicine during pregnancy? \n Always talk to your provider before you stop or start any medicine. You may take medicine to treat a health problem you had before pregnancy. Not using the medicine that you need may be more harmful to you and your fetus than using the medicine. For example, many pregnant women take prescription medicines for health problems like diabetes , asthma, seizures, and heartburn. The decision about whether to take a certain medicine should depend on the risks and benefits that go with it. You and your provider should make this choice together. \n\n Can I take vitamins during pregnancy? \n If you're pregnant, you shouldn't take regular vitamins . They may have too much or too little of the vitamins you need. For example, everyone needs folic acid , a type of B vitamin. But if you're trying to get pregnant, it's really important. Getting enough folic acid before and during pregnancy can prevent birth defects of the brain or spine. During your prenatal care visits, your provider will talk about prenatal vitamins. These are a special kind of vitamin to take during pregnancy. \n\n Food and Drug Administration",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "8c6ac57e02e33eb37cbb1217a20f419612cee401a87b649dce179d1d7b648b48",
+          "sourceId": "medlineplus:5578",
+          "excerpt": "Is it safe to take medicine during pregnancy? \n Some medicines are safe to take during pregnancy , but many are not. If you're pregnant, check with your health care provider before taking any medicine. Some medicines can harm your developing fetus . This includes: \n \n Prescription drugs \n Over-the-counter medicines \n Herbs and supplements \n \n \n Should I stop taking my medicine during pregnancy? \n Always talk to your provider before you stop or start any medicine. You may take medicine to treat a health problem you had before pregnancy. Not using the medicine that you need may be more harmful to you and your fetus than using the medicine. For example, many pregnant women take prescription medicines for health problems like diabetes , asthma, seizures, and heartburn. The decision about whether to take a certain medicine should depend on the risks and benefits that go with it. You and your provider should make this choice together. \n\n Can I take vitamins during pregnancy? \n If you're pregnant, you shouldn't take regular vitamins . They may have too much or too little of the vitamins you need. For example, everyone needs folic acid , a type of B vitamin. But if you're trying to get pregnant, it's really important. Getting enough folic acid before and during pregnancy can prevent birth defects of the brain or spine. During your prenatal care visits, your provider will talk about prenatal vitamins. These are a special kind of vitamin to take during pregnancy. \n\n Food and Drug Administration",
+          "excerptSha256": "11fcd61417898b2b70318e5a2b039af1d0e4138bc205197a2d5cc13eb59b9431",
+          "retrievedAt": "2026-09-13T23:38:35.557Z",
+          "sourceContentHash": "db6e942595df6a90ca88fc2fdea4ad3c80f3e02ec8aa57b839d5c3935cf14ff7",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "b3ab39241fefda1bc871f3eabbebab5b8e763e08d721f0374576edcbb72d55d8",
+      "title": "Threatened Abortion / Miscarriage",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/threatened-abortion.md",
+      "section": "Pitfalls",
+      "summary": "1. **Failing to exclude ectopic pregnancy.** This is the life-threatening miss. Every patient with first trimester bleeding must have ectopic ruled out with TVUS and hCG correlation. An empty uterus with hCG above the discriminatory zone (1,500-3,000 mIU/mL for TVUS) is ectopic until proven otherwise. Anchoring on \"miscarriage\" without imaging kills patients.\n\n2. **Diagnosing nonviable pregnancy too early.** Applying outdated or less stringent ultrasound criteria for pregnancy failure can lead to intervention on a viable pregnancy. Use the SRU/ACOG 2013 criteria: CRL >= 7 mm with no cardiac activity, or MSD >= 25 mm with no embryo. If findings are indeterminate, repeat ultrasound in 7-14 days. Never diagnose nonviability on a single borderline scan.\n\n3. **Forgetting Rh(D) immune globulin in Rh-negative patients.** Fetomaternal hemorrhage occurs even in early pregnancy. Failure to administer RhIg jeopardizes all future pregnancies through Rh alloimmunization. Administer to every Rh-negative patient with first trimester bleeding regardless of gestational age or management path. This applies to threatened abortion, miscarriage, AND ectopic pregnancy.\n\n4. **Confusing a pseudosac with an IUP.** A pseudosac (decidual reaction to ectopic pregnancy) appears as a small intrauterine fluid collection without a yolk sac, fetal pole, or double decidual sign. Misidentifying this as an IUP causes false reassurance and delays ectopic diagnosis. A true IUP must show a yolk sac or embryo within the gestational sac.\n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "b3ab39241fefda1bc871f3eabbebab5b8e763e08d721f0374576edcbb72d55d8",
+          "sourceId": "openem:threatened-abortion",
+          "excerpt": "1. **Failing to exclude ectopic pregnancy.** This is the life-threatening miss. Every patient with first trimester bleeding must have ectopic ruled out with TVUS and hCG correlation. An empty uterus with hCG above the discriminatory zone (1,500-3,000 mIU/mL for TVUS) is ectopic until proven otherwise. Anchoring on \"miscarriage\" without imaging kills patients.\n\n2. **Diagnosing nonviable pregnancy too early.** Applying outdated or less stringent ultrasound criteria for pregnancy failure can lead to intervention on a viable pregnancy. Use the SRU/ACOG 2013 criteria: CRL >= 7 mm with no cardiac activity, or MSD >= 25 mm with no embryo. If findings are indeterminate, repeat ultrasound in 7-14 days. Never diagnose nonviability on a single borderline scan.\n\n3. **Forgetting Rh(D) immune globulin in Rh-negative patients.** Fetomaternal hemorrhage occurs even in early pregnancy. Failure to administer RhIg jeopardizes all future pregnancies through Rh alloimmunization. Administer to every Rh-negative patient with first trimester bleeding regardless of gestational age or management path. This applies to threatened abortion, miscarriage, AND ectopic pregnancy.\n\n4. **Confusing a pseudosac with an IUP.** A pseudosac (decidual reaction to ectopic pregnancy) appears as a small intrauterine fluid collection without a yolk sac, fetal pole, or double decidual sign. Misidentifying this as an IUP causes false reassurance and delays ectopic diagnosis. A true IUP must show a yolk sac or embryo within the gestational sac.\n",
+          "excerptSha256": "ab200c6a1e15698db20152160678a8e91a23c148145700369dc8715f00794e2f",
+          "retrievedAt": "2026-09-13T23:38:35.557Z",
+          "sourceContentHash": "2485ee07490528680584223c423357f2183da542f7aa237f3a8152f9a86d9971",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "7e76765e76d5e78f65f1fae5873e38d15560c5799154e041fcf01dfeb41b2e34",
+      "title": "Acute Headache — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/headache-acute.md",
+      "section": "Differential Diagnosis",
+      "summary": " facial infection.\n\n### Emergent\n- **Temporal arteritis** (`temporal-arteritis`): age > 50, new headache, jaw claudication, scalp tenderness, PMR symptoms, ESR > 50. Untreated → permanent vision loss.\n- **Acute angle-closure glaucoma** (`acute-angle-closure-glaucoma`): severe unilateral eye/brow/forehead pain, red eye, fixed mid-dilated pupil, nausea, halos\n- **Spinal epidural abscess** (`spinal-epidural-abscess`): headache with fever, back pain, progressive neurological deficit. IV drug use, recent spinal procedure.\n- **Cerebral venous thrombosis (CVT):** subacute progressive headache, papilledema, focal deficits, seizures. Risk factors: OCP, pregnancy/postpartum, prothrombotic states. CTV or MRV to diagnose. [No standalone corpus entry]\n- **Cervical artery dissection:** unilateral headache/neck pain, Horner syndrome (carotid) or posterior circulation symptoms (vertebral). Trauma or chiropractic manipulation history. CTA neck to diagnose. [No standalone corpus entry]\n- **Acute ischemic stroke** (`acute-ischemic-stroke`): headache accompanies 25-35% of strokes, particularly posterior circulation\n\n### Urgent\n- **Idiopathic intracranial hypertension (IIH):** progressive headache in obese woman of reproductive age, papilledema, transient visual obscurations, pulsatile tinnitus, elevated LP opening pressure > 25 cmH2O. [No standalone corpus entry]\n\n### Non-Emergent\n- **Tension-type headache** (`tension-headache`): bilateral, band-like, mild-moderate, no nausea/vomiting, no neurological deficit. Diagnosis of pattern recognition, not exclusion — but only after red flags are excluded.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "7e76765e76d5e78f65f1fae5873e38d15560c5799154e041fcf01dfeb41b2e34",
+          "sourceId": "openem:headache-acute",
+          "excerpt": " facial infection.\n\n### Emergent\n- **Temporal arteritis** (`temporal-arteritis`): age > 50, new headache, jaw claudication, scalp tenderness, PMR symptoms, ESR > 50. Untreated → permanent vision loss.\n- **Acute angle-closure glaucoma** (`acute-angle-closure-glaucoma`): severe unilateral eye/brow/forehead pain, red eye, fixed mid-dilated pupil, nausea, halos\n- **Spinal epidural abscess** (`spinal-epidural-abscess`): headache with fever, back pain, progressive neurological deficit. IV drug use, recent spinal procedure.\n- **Cerebral venous thrombosis (CVT):** subacute progressive headache, papilledema, focal deficits, seizures. Risk factors: OCP, pregnancy/postpartum, prothrombotic states. CTV or MRV to diagnose. [No standalone corpus entry]\n- **Cervical artery dissection:** unilateral headache/neck pain, Horner syndrome (carotid) or posterior circulation symptoms (vertebral). Trauma or chiropractic manipulation history. CTA neck to diagnose. [No standalone corpus entry]\n- **Acute ischemic stroke** (`acute-ischemic-stroke`): headache accompanies 25-35% of strokes, particularly posterior circulation\n\n### Urgent\n- **Idiopathic intracranial hypertension (IIH):** progressive headache in obese woman of reproductive age, papilledema, transient visual obscurations, pulsatile tinnitus, elevated LP opening pressure > 25 cmH2O. [No standalone corpus entry]\n\n### Non-Emergent\n- **Tension-type headache** (`tension-headache`): bilateral, band-like, mild-moderate, no nausea/vomiting, no neurological deficit. Diagnosis of pattern recognition, not exclusion — but only after red flags are excluded.",
+          "excerptSha256": "b02ca738c2403f72e1dbea9418cf0382871d163fa7d69df6eba33c85c0f197c6",
+          "retrievedAt": "2026-09-13T23:38:35.557Z",
+          "sourceContentHash": "2a2d4d32c73f49ed333e23133c9fd5670dc6a30439200b209be9d475c1b23957",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "3643b0452daec5eed3b84cc0fc477f3a43e0d339bd8a1eb9bf908557efcd2d2d",
+      "title": "Acute Headache — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/headache-acute.md",
+      "section": "Differential Diagnosis",
+      "summary": "### Life-Threatening\n- **Subarachnoid hemorrhage** (`subarachnoid-hemorrhage`): thunderclap headache, nuchal rigidity, vomiting, photophobia, third nerve palsy (posterior communicating artery aneurysm). 12% mortality before reaching hospital. SAH rebleed mortality 40-60%.\n- **Hemorrhagic stroke** (`hemorrhagic-stroke`): sudden headache with focal deficit, hypertension, progression to obtundation\n- **Bacterial meningitis** (`bacterial-meningitis`): fever, headache, nuchal rigidity, photophobia. Classic triad (fever, neck stiffness, AMS) present < 50%. Jolt accentuation test may add sensitivity.\n- **HSV encephalitis** (`hsv-encephalitis`): headache with behavioral changes, temporal lobe seizures, fever. MRI temporal lobe signal change. Acyclovir 10 mg/kg IV empirically.\n- **Epidural hematoma** (`epidural-hematoma`): post-trauma lucid interval then rapid deterioration, temporal bone fracture, lens-shaped hematoma on CT\n- **Subdural hematoma** (`subdural-hematoma`): chronic headache in elderly or anticoagulated, crescent-shaped hematoma on CT. Minor or forgotten trauma.\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with headache + papilledema + encephalopathy → PRES (posterior reversible encephalopathy syndrome)\n- **CO poisoning** (`carbon-monoxide-poisoning`): headache is most common symptom. Multiple household members. Winter, enclosed space, generator use.\n- **Cavernous sinus thrombosis** (`cavernous-sinus-thrombosis`): headache, proptosis, cranial nerve palsies (III, IV, V1, VI), chemosis. Recent sinusitis or facial infection.\n\n### Emergent\n- **Temporal arteritis** (`temporal-arteritis`): age > 50, new headache, jaw claudication, scalp tenderness, PMR symptoms, ESR > 50. Untreated → permanent vision loss.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "3643b0452daec5eed3b84cc0fc477f3a43e0d339bd8a1eb9bf908557efcd2d2d",
+          "sourceId": "openem:headache-acute",
+          "excerpt": "### Life-Threatening\n- **Subarachnoid hemorrhage** (`subarachnoid-hemorrhage`): thunderclap headache, nuchal rigidity, vomiting, photophobia, third nerve palsy (posterior communicating artery aneurysm). 12% mortality before reaching hospital. SAH rebleed mortality 40-60%.\n- **Hemorrhagic stroke** (`hemorrhagic-stroke`): sudden headache with focal deficit, hypertension, progression to obtundation\n- **Bacterial meningitis** (`bacterial-meningitis`): fever, headache, nuchal rigidity, photophobia. Classic triad (fever, neck stiffness, AMS) present < 50%. Jolt accentuation test may add sensitivity.\n- **HSV encephalitis** (`hsv-encephalitis`): headache with behavioral changes, temporal lobe seizures, fever. MRI temporal lobe signal change. Acyclovir 10 mg/kg IV empirically.\n- **Epidural hematoma** (`epidural-hematoma`): post-trauma lucid interval then rapid deterioration, temporal bone fracture, lens-shaped hematoma on CT\n- **Subdural hematoma** (`subdural-hematoma`): chronic headache in elderly or anticoagulated, crescent-shaped hematoma on CT. Minor or forgotten trauma.\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with headache + papilledema + encephalopathy → PRES (posterior reversible encephalopathy syndrome)\n- **CO poisoning** (`carbon-monoxide-poisoning`): headache is most common symptom. Multiple household members. Winter, enclosed space, generator use.\n- **Cavernous sinus thrombosis** (`cavernous-sinus-thrombosis`): headache, proptosis, cranial nerve palsies (III, IV, V1, VI), chemosis. Recent sinusitis or facial infection.\n\n### Emergent\n- **Temporal arteritis** (`temporal-arteritis`): age > 50, new headache, jaw claudication, scalp tenderness, PMR symptoms, ESR > 50. Untreated → permanent vision loss.",
+          "excerptSha256": "5476538c70d80a8bbe5b4aa09dda918c93bc6e323aa0f0566e3447b739bfd908",
+          "retrievedAt": "2026-09-13T23:38:35.557Z",
+          "sourceContentHash": "2a2d4d32c73f49ed333e23133c9fd5670dc6a30439200b209be9d475c1b23957",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "ea5c7e1f4375052e5b119e2b73c8ccc1d426156900f87161a3375df25ba9c967",
+      "title": "Tension-Type Headache",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/tension-headache.md",
+      "section": "Pitfalls",
+      "summary": " daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n\n5. **Missing temporal arteritis in patients >50 years with new headache.** New headache after age 50 is temporal arteritis until proven otherwise (ESR, CRP, temporal artery biopsy). Giant cell arteritis causes permanent vision loss in 15-20% of untreated cases. Empiric steroids while awaiting biopsy are appropriate when clinical suspicion is high.\n\n6. **Anchoring on \"tension\" when meningismus is subtle.** Early bacterial meningitis may present with mild neck discomfort misattributed to muscle tension. Any headache with fever warrants careful assessment for meningeal signs. Jolt accentuation (worsening headache with horizontal head rotation at 2-3 Hz) has been described as a sensitive sign; absence does not exclude meningitis.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "ea5c7e1f4375052e5b119e2b73c8ccc1d426156900f87161a3375df25ba9c967",
+          "sourceId": "openem:tension-headache",
+          "excerpt": " daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n\n5. **Missing temporal arteritis in patients >50 years with new headache.** New headache after age 50 is temporal arteritis until proven otherwise (ESR, CRP, temporal artery biopsy). Giant cell arteritis causes permanent vision loss in 15-20% of untreated cases. Empiric steroids while awaiting biopsy are appropriate when clinical suspicion is high.\n\n6. **Anchoring on \"tension\" when meningismus is subtle.** Early bacterial meningitis may present with mild neck discomfort misattributed to muscle tension. Any headache with fever warrants careful assessment for meningeal signs. Jolt accentuation (worsening headache with horizontal head rotation at 2-3 Hz) has been described as a sensitive sign; absence does not exclude meningitis.",
+          "excerptSha256": "b6aa941353f93796791b77b8e64e3aaa2ee3edce5bd0be33fe9d7929e57a42a7",
+          "retrievedAt": "2026-09-13T23:38:35.557Z",
+          "sourceContentHash": "73653a341b4841d483b11a9308969e558e9256b1f9e82f7deba1b96982b273cc",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "771a3d8c99470f1195d621a3d6af24660a6b41b5096168977d3ff1b85b2e5410",
+      "title": "Tension-Type Headache",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/tension-headache.md",
+      "section": "Pitfalls",
+      "summary": "1. **Under-escalation: attributing a first thunderclap headache to tension headache.** Thunderclap headache (peak intensity <60 seconds) is SAH until proven otherwise. CT head within 6 hours has >97% sensitivity; LP >12 hours after onset provides definitive exclusion. A patient with classic BPPV, known anxiety, or chronic TTH who presents with a thunderclap event requires SAH exclusion regardless of history. The error of \"sentinel bleed attributed to TTH\" is one of the most litigation-generating missed diagnoses in emergency medicine.\n\n2. **Over-escalation: neuroimaging for stable, typical TTH with established pattern.** Neuroimaging in patients with stable headaches meeting primary headache criteria and a normal neurological exam has a yield of <1% for clinically significant findings and does not reduce re-presentation or anxiety in the long term. Choosing Wisely guidelines explicitly caution against this practice.\n\n3. **Failing to diagnose medication-overuse headache.** Patients with chronic daily headache who use NSAIDs, triptans, or opioids >10-15 days/month have medication-overuse headache as a perpetuating factor. Prescribing more analgesics worsens the condition. The key question: \"How many days per month do you take pain medication for your headaches?\" Withdrawal and preventive therapy are the treatment.\n\n4. **Prescribing opioids for TTH.** Opioids are inferior to NSAIDs for acute headache, accelerate the transition to chronic daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "771a3d8c99470f1195d621a3d6af24660a6b41b5096168977d3ff1b85b2e5410",
+          "sourceId": "openem:tension-headache",
+          "excerpt": "1. **Under-escalation: attributing a first thunderclap headache to tension headache.** Thunderclap headache (peak intensity <60 seconds) is SAH until proven otherwise. CT head within 6 hours has >97% sensitivity; LP >12 hours after onset provides definitive exclusion. A patient with classic BPPV, known anxiety, or chronic TTH who presents with a thunderclap event requires SAH exclusion regardless of history. The error of \"sentinel bleed attributed to TTH\" is one of the most litigation-generating missed diagnoses in emergency medicine.\n\n2. **Over-escalation: neuroimaging for stable, typical TTH with established pattern.** Neuroimaging in patients with stable headaches meeting primary headache criteria and a normal neurological exam has a yield of <1% for clinically significant findings and does not reduce re-presentation or anxiety in the long term. Choosing Wisely guidelines explicitly caution against this practice.\n\n3. **Failing to diagnose medication-overuse headache.** Patients with chronic daily headache who use NSAIDs, triptans, or opioids >10-15 days/month have medication-overuse headache as a perpetuating factor. Prescribing more analgesics worsens the condition. The key question: \"How many days per month do you take pain medication for your headaches?\" Withdrawal and preventive therapy are the treatment.\n\n4. **Prescribing opioids for TTH.** Opioids are inferior to NSAIDs for acute headache, accelerate the transition to chronic daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n",
+          "excerptSha256": "872a177f1596724b35cbf8a301442bf03a03e28de73f3450a71bad9ccc673f94",
+          "retrievedAt": "2026-09-13T23:38:35.557Z",
+          "sourceContentHash": "73653a341b4841d483b11a9308969e558e9256b1f9e82f7deba1b96982b273cc",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    }
+  ],
+  "safetyFloor": null,
+  "rejectedAnswer": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "reviewPriority": "priority",
+    "workType": "medication_request",
+    "reason": "40F reports her usual, unchanged one-sided throbbing headache with light sensitivity starting this morning and has run out of sumatriptan. An active attack with exhausted rescue medication makes remote clinician review time-sensitive, since acute migraine treatment works best taken early. Nothing reported (no described thunderclap onset, deficit, fever, neck stiffness or trauma — these are unknown, not denied) establishes a need for physical examination or testing today. Counsel should verify diagnosis, prior response, use frequency, pregnancy and contraindications and decide on renewal and any follow-up.",
+    "patientMessage": "Recommended next step: priority asynchronous review by a Counsel clinician for your sumatriptan refill, since you have an active attack and have run out — acute migraine medicine works best taken early. They will decide eligibility and any follow-up; I can't confirm timing or approval. Meanwhile, resting in a quiet dark room, a cool cloth and fluids may help. Call 911 now for sudden worst-ever headache, new weakness or speech trouble; seek emergency care for fever with neck stiffness — don't wait for messaging review. Message again if this headache changes character.",
+    "differential": [
+      "Recurrence of established migraine, usual reported pattern",
+      "Medication-overuse headache if acute medication used frequently (frequency unknown)",
+      "Secondary headache — not suggested by reported features, not excluded"
+    ],
+    "redFlags": [
+      {
+        "concern": "Thunderclap/sudden worst-ever onset",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Focal neurological deficit or aura",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Fever or neck stiffness",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Head trauma",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Headache different from usual pattern",
+        "status": "denied",
+        "quote": "same one-sided throbbing and light sensitivity I always get"
+      },
+      {
+        "concern": "Pregnancy status",
+        "status": "unknown",
+        "quote": ""
+      }
+    ],
+    "vitalSigns": "No vital signs reported in the message: blood pressure, heart rate, temperature and oxygen saturation not provided. Not provided does not mean not measured or normal.",
+    "questions": [],
+    "evidenceLimitations": "The 2021 consensus guideline is dated, does not authorize prescribing, verify formulary availability, or specify a care channel. Consumer summaries are general, undated and not patient-specific. Emergency warning-sign thresholds are supported only by an agent-compiled emergency-department synthesis describing classic presentations, not by a telehealth routing protocol; that material is secondary and unverified. Pregnancy status, contraindications, attack frequency and vital signs are unknown, not denied. Routing reflects reported active usual migraine with exhausted rescue medication.",
+    "citations": [
+      {
+        "passageId": "092b4bc00250065c05de9cc76ead4999d4cc99ad13b58b5fbdcc67c015e9a429",
+        "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild",
+        "claim": "Early treatment within an attack supports time-sensitive review of an exhausted triptan supply.",
+        "applicability": "applicable",
+        "limitation": "2021 dated guidance; does not authorize prescribing or specify a care channel."
+      },
+      {
+        "passageId": "56f305c4485d8767942bd0a08de26a49c8800b32f982a73e5a1d45306d7bee91",
+        "quote": "Resting with your eyes closed in a quiet, darkened room \n Placing a cool cloth or ice pack on your forehead \n Drinking fluids",
+        "claim": "General interim self-care measures may relieve migraine symptoms.",
+        "applicability": "applicable",
+        "limitation": "Consumer summary, undated, general and not individualized."
+      },
+      {
+        "passageId": "3643b0452daec5eed3b84cc0fc477f3a43e0d339bd8a1eb9bf908557efcd2d2d",
+        "quote": "**Subarachnoid hemorrhage** (`subarachnoid-hemorrhage`): thunderclap headache, nuchal rigidity, vomiting, photophobia",
+        "claim": "Thunderclap onset, fever with neck stiffness, or focal deficit are features associated with life-threatening headache causes warranting emergency evaluation.",
+        "applicability": "uncertain",
+        "limitation": "Secondary emergency-department synthesis, not primary guidance or a telehealth protocol; describes ED presentations, not this patient."
+      }
+    ]
+  },
+  "failure": "CLINICIAN_REVIEW_REQUIRED",
+  "routingPolicy": "five-route-queue/v2",
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "pass",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "fail",
+      "detail": "Checks explicit timing/destination tokens, not the clinical correctness or complete consistency of the message."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen from a COPD diagnosis alone; targeted medication-instruction check."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "pass",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Cited passage identity and exact quote match; this does not establish claim support or applicability."
+    },
+    {
+      "id": "independent_review",
+      "status": "fail",
+      "detail": "No accepted independent review; clinician assessment is required."
+    }
+  ],
+  "usage": {
+    "inputTokens": 43326,
+    "outputTokens": 5558
+  },
+  "graph": {
+    "version": "evidence-graph/v1",
+    "mode": "hybrid",
+    "context": {
+      "queries": [
+        "usual migraine triptan refill in established patient",
+        "contraindications and pregnancy status for sumatriptan"
+      ],
+      "findings": [
+        {
+          "finding": "Established migraine pattern",
+          "status": "reported",
+          "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get"
+        },
+        {
+          "finding": "Current triptan depletion",
+          "status": "reported",
+          "quote": "I'm out of sumatriptan"
+        },
+        {
+          "finding": "Active migraine symptoms",
+          "status": "reported",
+          "quote": "usual migraine started this morning — same one-sided throbbing and light sensitivity"
+        },
+        {
+          "finding": "Request for sumatriptan refill",
+          "status": "reported",
+          "quote": "would like a refill"
+        }
+      ],
+      "question": null
+    },
+    "safety": null,
+    "retrieval": [
+      {
+        "corpusHash": "ffdf216ecdd3fbd4db3e4538d71e0a58444862b184c84c189f01430930af3475",
+        "query": "usual migraine triptan refill in established patient",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "092b4bc00250065c05de9cc76ead4999d4cc99ad13b58b5fbdcc67c015e9a429",
+              "end": 1169,
+              "hash": "8e63bcc868a69d119df885e906aa5386f5c4c1d8753586d5e179796d3473711c",
+              "text": "Patients for whom over-the-counter analgesics provide inadequate headache relief should be offered a triptan. All triptans have well-documented effectiveness, but availability of and access to each vary between countries. Triptans are most effective when taken early in an attack, when the headache is still mild49,50. However, no evidence supports the use of triptans during the aura phase of a migraine attack. If one triptan is ineffective, others might still provide relief51,52. When all other triptans have failed or in patients who rapidly reach peak headache intensity or cannot take oral triptans because of vomiting, sumatriptan by subcutaneous injection can be useful53.\n\nSome patients can experience relapses, which are defined as a return of symptoms within 48 h after apparently successful treatment. Upon relapse, patients can repeat their triptan treatment or combine the triptan with simultaneous intake of fast-acting formulations of naproxen sodium, ibuprofen lysine or diclofenac potassium54,55. However, patients should be informed that repeating the treatment does not preclude further relapses and ultimately increases the risk of developing MOH.",
+              "start": 0,
+              "section": 24,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Full-text body / Step 4: Acute treatment / Second-line medication",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nFull-text body / Step 4: Acute treatment / Second-line medication\nPatients for whom over-the-counter analgesics provide inadequate headache relief should be offered a triptan. All triptans have well-documented effectiveness, but availability of and access to each vary between countries. Triptans are most effective when taken early in an attack, when the headache is still mild49,50. However, no evidence supports the use of triptans during the aura phase of a migraine attack. If one triptan is ineffective, others might still provide relief51,52. When all other triptans have failed or in patients who rapidly reach peak headache intensity or cannot take oral triptans because of vomiting, sumatriptan by subcutaneous injection can be useful53.\n\nSome patients can experience relapses, which are defined as a return of symptoms within 48 h after apparently successful treatment. Upon relapse, patients can repeat their triptan treatment or combine the triptan with simultaneous intake of fast-acting formulations of naproxen sodium, ibuprofen lysine or diclofenac potassium54,55. However, patients should be informed that repeating the treatment does not preclude further relapses and ultimately increases the risk of developing MOH."
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "486bb3673009d721987fede0bc358d395f798c12cba8bf348afe06bfca02581e",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; tables, figures and references omitted.",
+              "retrievedAt": "2026-09-13T23:38:35.557Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "486bb3673009d721987fede0bc358d395f798c12cba8bf348afe06bfca02581e",
+              "publicationDate": "2021"
+            },
+            "score": 0.032266458495966696,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "153995adf10de093f8c817952aa217f03a8ca919f8a4d13b5ffcc9e2994b66bd",
+              "end": 2200,
+              "hash": "e3c65c0fc91157b8c1ffa9b643ea2b90210682f22ef555f176fe9897ca8dc702",
+              "text": " aura symptom is unilateralat least one aura symptom is positivethe aura is accompanied with or followed by headache within 60 min4.Not better accounted for by another ICHD-3 diagnosisChronic migraine\nHeadache (migraine-like or tension-type-like) on ≥15 days/month for >3 months that fulfil criteria 2 and 3Attacks occur in an individual who has had at least five attacks that fulfil the criteria for migraine without aura and/or for migraine with auraOn ≥8 days/month for >3 months, any of the following criteria are met:criteria 3 and 4 for migraine without auracriteria 2 and 3 for migraine with aurabelieved by the patient to be migraine at onset and relieved by a triptan or ergot derivative4.Not better accounted for by another ICHD-3 diagnosisMedication-overuse headacheHeadache on ≥15 days/month in an individual with a pre-existing headache disorderRegular overuse for >3 months of one or more drugs that can be taken for acute and/or symptomatic treatment of headache (regular intake of one or more non-opioid analgesics on ≥15 days/month for ≥3 months or any other acute medication or combination of medications on ≥10 days/month for ≥3 months)Not better accounted for by another ICHD-3 diagnosis",
+              "start": 993,
+              "section": 11,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Full-text body / Step 2: Diagnosis of migraine",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nFull-text body / Step 2: Diagnosis of migraine\n aura symptom is unilateralat least one aura symptom is positivethe aura is accompanied with or followed by headache within 60 min4.Not better accounted for by another ICHD-3 diagnosisChronic migraine\nHeadache (migraine-like or tension-type-like) on ≥15 days/month for >3 months that fulfil criteria 2 and 3Attacks occur in an individual who has had at least five attacks that fulfil the criteria for migraine without aura and/or for migraine with auraOn ≥8 days/month for >3 months, any of the following criteria are met:criteria 3 and 4 for migraine without auracriteria 2 and 3 for migraine with aurabelieved by the patient to be migraine at onset and relieved by a triptan or ergot derivative4.Not better accounted for by another ICHD-3 diagnosisMedication-overuse headacheHeadache on ≥15 days/month in an individual with a pre-existing headache disorderRegular overuse for >3 months of one or more drugs that can be taken for acute and/or symptomatic treatment of headache (regular intake of one or more non-opioid analgesics on ≥15 days/month for ≥3 months or any other acute medication or combination of medications on ≥10 days/month for ≥3 months)Not better accounted for by another ICHD-3 diagnosis"
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "486bb3673009d721987fede0bc358d395f798c12cba8bf348afe06bfca02581e",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; tables, figures and references omitted.",
+              "retrievedAt": "2026-09-13T23:38:35.557Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "486bb3673009d721987fede0bc358d395f798c12cba8bf348afe06bfca02581e",
+              "publicationDate": "2021"
+            },
+            "score": 0.027364110201042444,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "ing fully reversible aura symptoms:visualsensoryspeech and/or languagemotorbrainstemretinal3.At least three of the following six characteristics:at least one aura symptom spreads gradually over ≥5 mintwo or more aura symptoms occur in successioneach individual aura symptom lasts 5–60 minat least one",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "56f305c4485d8767942bd0a08de26a49c8800b32f982a73e5a1d45306d7bee91",
+              "end": 4772,
+              "hash": "a0b542837f011680f7d98bd2c5ef53892751c18c743123f860eb5381e4b8a935",
+              "text": "of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? \n There is no cure for migraines. Treatment focuses on relieving symptoms and preventing additional attacks. \n\n There are different types of medicines to relieve symptoms. They include triptan drugs, ergotamine drugs, and pain relievers . The sooner you take the medicine, the more effective it is. \n\n There are also other things you can do to feel better: \n Resting with your eyes closed in a quiet, darkened room \n Placing a cool cloth or ice pack on your forehead \n Drinking fluids \n \n\n There are some lifestyle changes you can make to prevent migraines: \n Stress management strategies, such as exercise, relaxation techniques, and biofeedback, may reduce the number and severity of migraines. Biofeedback uses electronic devices to teach you to control certain body functions, such as your heartbeat, blood pressure, and muscle tension. \n Make a log of what seems to trigger your migraines. You can learn what you need to avoid, such as certain foods and medicines. It also help you figure out what you should do, such as establishing a consistent sleep schedule and eating regular meals. \n Hormone therapy may help some women whose migraines seem to be linked to their menstrual cycle \n If you have obesity , losing weight may also be helpful \n \n\n If you have frequent or severe migraines, you may need to take medicines to prevent further attacks. Talk with your health care provider about which drug would be right for you. \n",
+              "start": 3140,
+              "section": 0,
+              "documentId": "medlineplus:3157",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Migraine\n\nHealth-topic summary\nof diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? \n There is no cure for migraines. Treatment focuses on relieving symptoms and preventing additional attacks. \n\n There are different types of medicines to relieve symptoms. They include triptan drugs, ergotamine drugs, and pain relievers . The sooner you take the medicine, the more effective it is. \n\n There are also other things you can do to feel better: \n Resting with your eyes closed in a quiet, darkened room \n Placing a cool cloth or ice pack on your forehead \n Drinking fluids \n \n\n There are some lifestyle changes you can make to prevent migraines: \n Stress management strategies, such as exercise, relaxation techniques, and biofeedback, may reduce the number and severity of migraines. Biofeedback uses electronic devices to teach you to control certain body functions, such as your heartbeat, blood pressure, and muscle tension. \n Make a log of what seems to trigger your migraines. You can learn what you need to avoid, such as certain foods and medicines. It also help you figure out what you should do, such as establishing a consistent sleep schedule and eating regular meals. \n Hormone therapy may help some women whose migraines seem to be linked to their menstrual cycle \n If you have obesity , losing weight may also be helpful \n \n\n If you have frequent or severe migraines, you may need to take medicines to prevent further attacks. Talk with your health care provider about which drug would be right for you. \n"
+            },
+            "document": {
+              "id": "medlineplus:3157",
+              "url": "https://medlineplus.gov/migraine.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Migraine",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:273",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Migraine Disorders"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-13T23:38:35.557Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.020751173708920188,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "predictable times, such as before menstruation or on weekends following a stressful week of work. \n\n How are migraines diagnosed? \n To make a diagnosis, your health care provider will: \n Take your medical history \n Ask about your symptoms \n Do a physical and neurological exam \n \n\n An important part ",
+              "after": "\n Certain natural treatments, such as riboflavin (vitamin B2) and coenzyme Q10, may help prevent migraines. If your magnesium level is low, you can try taking magnesium. There is also an herb, butterbur, which some people take to prevent migraines. But butterbur may not be safe for long-term use. Al"
+            }
+          },
+          {
+            "chunk": {
+              "id": "5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+              "end": 3340,
+              "hash": "803dbd53505ae13a03c04a3e5916e34fe7ce5d3dfcd145977622ca0f766104da",
+              "text": "er , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: \n Prodome. This phase starts up to 24 hours before you get the migraine. You have early signs and symptoms, such as food cravings, unexplained mood changes, uncontrollable yawning, fluid retention, and increased urination. \n Aura. If you have this phase, you might see flashing or bright lights or zig-zag lines. You may have muscle weakness or feel like you are being touched or grabbed. An aura can happen just before or during a migraine. \n Headache. A migraine usually starts gradually and then becomes more severe. It typically causes throbbing or pulsing pain, which is often on one side of your head. But sometimes you can have a migraine without a headache. Other migraine symptoms may include \n \n Increased sensitivity to light, noise, and odors \n Nausea and vomiting \n Worsened pain when you move, cough, or sneeze \n \n Postdrome (following the headache). You may feel exhausted, weak, and confused after a migraine. This can last up to a day. \n \n\n Migraines are more common in the morning; people often wake up with them. Some people have migraines at predictable times, such as before menstruation or on weekends following a stressful week of work. \n\n How are migraines diagnosed? \n To make a diagnosis, your health care provider will: \n Take your medical history \n Ask about your symptoms \n Do a physical and neurological exam \n \n\n An important part of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? ",
+              "start": 1578,
+              "section": 0,
+              "documentId": "medlineplus:3157",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Migraine\n\nHealth-topic summary\ner , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: \n Prodome. This phase starts up to 24 hours before you get the migraine. You have early signs and symptoms, such as food cravings, unexplained mood changes, uncontrollable yawning, fluid retention, and increased urination. \n Aura. If you have this phase, you might see flashing or bright lights or zig-zag lines. You may have muscle weakness or feel like you are being touched or grabbed. An aura can happen just before or during a migraine. \n Headache. A migraine usually starts gradually and then becomes more severe. It typically causes throbbing or pulsing pain, which is often on one side of your head. But sometimes you can have a migraine without a headache. Other migraine symptoms may include \n \n Increased sensitivity to light, noise, and odors \n Nausea and vomiting \n Worsened pain when you move, cough, or sneeze \n \n Postdrome (following the headache). You may feel exhausted, weak, and confused after a migraine. This can last up to a day. \n \n\n Migraines are more common in the morning; people often wake up with them. Some people have migraines at predictable times, such as before menstruation or on weekends following a stressful week of work. \n\n How are migraines diagnosed? \n To make a diagnosis, your health care provider will: \n Take your medical history \n Ask about your symptoms \n Do a physical and neurological exam \n \n\n An important part of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? "
+            },
+            "document": {
+              "id": "medlineplus:3157",
+              "url": "https://medlineplus.gov/migraine.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Migraine",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:273",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Migraine Disorders"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-13T23:38:35.557Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.016129032258064516,
+            "channels": [
+              "lexical"
+            ],
+            "context": {
+              "before": "you are more likely to have them if you: \n Are a woman. Women are three times more likely than men to get migraines. \n Have a family history of migraines. Most people with migraines have family members who have migraines. \n Have other medical conditions, such as depression , anxiety , bipolar disord",
+              "after": "\n There is no cure for migraines. Treatment focuses on relieving symptoms and preventing additional attacks. \n\n There are different types of medicines to relieve symptoms. They include triptan drugs, ergotamine drugs, and pain relievers . The sooner you take the medicine, the more effective it is. \n"
+            }
+          },
+          {
+            "chunk": {
+              "id": "3450620eb1825c0b2cac9f8cc51e8bd815bf0c10c4fe131851b2fdacb40fce57",
+              "end": 1747,
+              "hash": "ac89fedcdb32ef8ecc2b06fbe335f2027a4538937dd38d30cec8f384350491fd",
+              "text": "What are patient rights? \n As a patient, you have certain rights. Some are guaranteed by federal law, such as the right to get a copy of your medical records and the right to keep them private and secure. Many states have additional laws protecting patients. And some states, insurance plans, medical organizations, and health care facilities have their own patient bill of rights. \n\n Some other examples of patient rights include: \n \n Being treated with respect \n Not being discriminated against in your medical care \n The right to refuse treatment \n The right of informed consent \n \n\n What is informed consent? \n Informed consent is an important patient right. It is a process in which your health care provider gives you the information you need to make decisions about your care. The types of care could be treatments, procedures, genetic testing, or clinical trials. The information should include the risks and benefits of the care, as well as details about your medical condition. \n\n It's important that you understand everything before you give consent. Sometimes your provider will ask you to sign a form to give your consent. This is called written consent. \n\n You have the right to change your mind about consent at any time. \n\n Where can I get help with patient rights? \n There are different resources that can help you if you have a problem with your patient rights: \n \n Many hospitals have patient advocates. These are people who can help guide you through the health care system and make sure that your rights are protected.\n Your state may have resources to help you, such as: \n \n Your state may have an office (called an ombudsmen office) for problems with long term care. \n Your state's department of health may be able to help. ",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:4253",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Patient Rights\n\nHealth-topic summary\nWhat are patient rights? \n As a patient, you have certain rights. Some are guaranteed by federal law, such as the right to get a copy of your medical records and the right to keep them private and secure. Many states have additional laws protecting patients. And some states, insurance plans, medical organizations, and health care facilities have their own patient bill of rights. \n\n Some other examples of patient rights include: \n \n Being treated with respect \n Not being discriminated against in your medical care \n The right to refuse treatment \n The right of informed consent \n \n\n What is informed consent? \n Informed consent is an important patient right. It is a process in which your health care provider gives you the information you need to make decisions about your care. The types of care could be treatments, procedures, genetic testing, or clinical trials. The information should include the risks and benefits of the care, as well as details about your medical condition. \n\n It's important that you understand everything before you give consent. Sometimes your provider will ask you to sign a form to give your consent. This is called written consent. \n\n You have the right to change your mind about consent at any time. \n\n Where can I get help with patient rights? \n There are different resources that can help you if you have a problem with your patient rights: \n \n Many hospitals have patient advocates. These are people who can help guide you through the health care system and make sure that your rights are protected.\n Your state may have resources to help you, such as: \n \n Your state may have an office (called an ombudsmen office) for problems with long term care. \n Your state's department of health may be able to help. "
+            },
+            "document": {
+              "id": "medlineplus:4253",
+              "url": "https://medlineplus.gov/patientrights.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Patient Rights",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "4b8c9e97ea1a4ad1c5c2381a63fdd0f0b08fe9fc1fab3acefb03932a8dd81b67",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:496",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:525",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:616",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3892",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Patient Rights"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-13T23:38:35.557Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.013513513513513514,
+            "channels": [
+              "lexical"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n States also have oversight agencies for insurance companies and various types of health care facilities and providers. These agencies make sure that these organizations and providers follow the rules so you can get quality care. \n \n \n The U.S. Department of Health and Human Services has an Office "
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 55.36779200000092,
+          "embeddingMs": 578.2231670000001,
+          "vectorMs": 49.773583999998664,
+          "totalMs": 697.7285000000011
+        },
+        "warnings": [],
+        "embeddingTokens": 9,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "ffdf216ecdd3fbd4db3e4538d71e0a58444862b184c84c189f01430930af3475",
+        "query": "contraindications and pregnancy status for sumatriptan",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "0d08a7c8440c158766e464eed7e188e68a7dba0db89d2ad83f9455e5b2082d8e",
+              "end": 1765,
+              "hash": "61d10b9f2fcf73510d09947a7effd2713b2510f9f2de309700348b5d5fd50fb6",
+              "text": "Migraine often remits during pregnancy, but if treatment is continued, the potential for harm to the fetus demands special consideration93. Despite relatively poor efficacy, paracetamol should be used as the first-line medication for acute treatment of migraine in pregnancy48; NSAIDs can be used only during the second trimester93,94. Triptans should be used only under the strict supervision of a specialist, as the safety data available are limited and originate from post-marketing surveillance; most data relate to the use of sumatriptan32. For nausea associated with migraine in pregnancy, metoclopramide can be used94,95.\n\nPreventive migraine medications are best avoided during pregnancy owing to the potential for fetal harm. However, if preventive therapy is considered clinically indicated because of frequent and disabling migraine attacks, the best available safety data support the use of propranolol or, if propranolol is contraindicated, amitriptyline. Both should be used under specialist supervision to adequately monitor any potential fetal harm32. Topiramate, candesartan and sodium valproate are contraindicated; sodium valproate is known to be teratogenic, so must not be used70,94, and the use of topiramate and candesartan is associated with adverse effects on the fetus.\n\nMigraine medication therapy in the post-partum period also requires caution because of potential risks to the infant. Paracetamol is the preferred acute medication, although ibuprofen and sumatriptan are also considered safe94. If preventive medication is required, propranolol is the recommended first choice as it has the best safety profile94. Pharmacological treatments for migraine during pregnancy and breastfeeding have been reviewed in more detail elsewhere94.",
+              "start": 0,
+              "section": 35,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Full-text body / Step 6: Managing migraine in special populations / Pregnant and breastfeeding women",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nFull-text body / Step 6: Managing migraine in special populations / Pregnant and breastfeeding women\nMigraine often remits during pregnancy, but if treatment is continued, the potential for harm to the fetus demands special consideration93. Despite relatively poor efficacy, paracetamol should be used as the first-line medication for acute treatment of migraine in pregnancy48; NSAIDs can be used only during the second trimester93,94. Triptans should be used only under the strict supervision of a specialist, as the safety data available are limited and originate from post-marketing surveillance; most data relate to the use of sumatriptan32. For nausea associated with migraine in pregnancy, metoclopramide can be used94,95.\n\nPreventive migraine medications are best avoided during pregnancy owing to the potential for fetal harm. However, if preventive therapy is considered clinically indicated because of frequent and disabling migraine attacks, the best available safety data support the use of propranolol or, if propranolol is contraindicated, amitriptyline. Both should be used under specialist supervision to adequately monitor any potential fetal harm32. Topiramate, candesartan and sodium valproate are contraindicated; sodium valproate is known to be teratogenic, so must not be used70,94, and the use of topiramate and candesartan is associated with adverse effects on the fetus.\n\nMigraine medication therapy in the post-partum period also requires caution because of potential risks to the infant. Paracetamol is the preferred acute medication, although ibuprofen and sumatriptan are also considered safe94. If preventive medication is required, propranolol is the recommended first choice as it has the best safety profile94. Pharmacological treatments for migraine during pregnancy and breastfeeding have been reviewed in more detail elsewhere94."
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "486bb3673009d721987fede0bc358d395f798c12cba8bf348afe06bfca02581e",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; tables, figures and references omitted.",
+              "retrievedAt": "2026-09-13T23:38:35.557Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "486bb3673009d721987fede0bc358d395f798c12cba8bf348afe06bfca02581e",
+              "publicationDate": "2021"
+            },
+            "score": 0.023969200198708396,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "8c6ac57e02e33eb37cbb1217a20f419612cee401a87b649dce179d1d7b648b48",
+              "end": 1509,
+              "hash": "11fcd61417898b2b70318e5a2b039af1d0e4138bc205197a2d5cc13eb59b9431",
+              "text": "Is it safe to take medicine during pregnancy? \n Some medicines are safe to take during pregnancy , but many are not. If you're pregnant, check with your health care provider before taking any medicine. Some medicines can harm your developing fetus . This includes: \n \n Prescription drugs \n Over-the-counter medicines \n Herbs and supplements \n \n \n Should I stop taking my medicine during pregnancy? \n Always talk to your provider before you stop or start any medicine. You may take medicine to treat a health problem you had before pregnancy. Not using the medicine that you need may be more harmful to you and your fetus than using the medicine. For example, many pregnant women take prescription medicines for health problems like diabetes , asthma, seizures, and heartburn. The decision about whether to take a certain medicine should depend on the risks and benefits that go with it. You and your provider should make this choice together. \n\n Can I take vitamins during pregnancy? \n If you're pregnant, you shouldn't take regular vitamins . They may have too much or too little of the vitamins you need. For example, everyone needs folic acid , a type of B vitamin. But if you're trying to get pregnant, it's really important. Getting enough folic acid before and during pregnancy can prevent birth defects of the brain or spine. During your prenatal care visits, your provider will talk about prenatal vitamins. These are a special kind of vitamin to take during pregnancy. \n\n Food and Drug Administration",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:5578",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Pregnancy and Medicines\n\nHealth-topic summary\nIs it safe to take medicine during pregnancy? \n Some medicines are safe to take during pregnancy , but many are not. If you're pregnant, check with your health care provider before taking any medicine. Some medicines can harm your developing fetus . This includes: \n \n Prescription drugs \n Over-the-counter medicines \n Herbs and supplements \n \n \n Should I stop taking my medicine during pregnancy? \n Always talk to your provider before you stop or start any medicine. You may take medicine to treat a health problem you had before pregnancy. Not using the medicine that you need may be more harmful to you and your fetus than using the medicine. For example, many pregnant women take prescription medicines for health problems like diabetes , asthma, seizures, and heartburn. The decision about whether to take a certain medicine should depend on the risks and benefits that go with it. You and your provider should make this choice together. \n\n Can I take vitamins during pregnancy? \n If you're pregnant, you shouldn't take regular vitamins . They may have too much or too little of the vitamins you need. For example, everyone needs folic acid , a type of B vitamin. But if you're trying to get pregnant, it's really important. Getting enough folic acid before and during pregnancy can prevent birth defects of the brain or spine. During your prenatal care visits, your provider will talk about prenatal vitamins. These are a special kind of vitamin to take during pregnancy. \n\n Food and Drug Administration"
+            },
+            "document": {
+              "id": "medlineplus:5578",
+              "url": "https://medlineplus.gov/pregnancyandmedicines.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Pregnancy and Medicines",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "db6e942595df6a90ca88fc2fdea4ad3c80f3e02ec8aa57b839d5c3935cf14ff7",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1127",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1300",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:31",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4455",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:7131",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1385",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:39",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Abnormalities, Drug-Induced"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-13T23:38:35.557Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.020309278350515464,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "b3ab39241fefda1bc871f3eabbebab5b8e763e08d721f0374576edcbb72d55d8",
+              "end": 1523,
+              "hash": "ab200c6a1e15698db20152160678a8e91a23c148145700369dc8715f00794e2f",
+              "text": "1. **Failing to exclude ectopic pregnancy.** This is the life-threatening miss. Every patient with first trimester bleeding must have ectopic ruled out with TVUS and hCG correlation. An empty uterus with hCG above the discriminatory zone (1,500-3,000 mIU/mL for TVUS) is ectopic until proven otherwise. Anchoring on \"miscarriage\" without imaging kills patients.\n\n2. **Diagnosing nonviable pregnancy too early.** Applying outdated or less stringent ultrasound criteria for pregnancy failure can lead to intervention on a viable pregnancy. Use the SRU/ACOG 2013 criteria: CRL >= 7 mm with no cardiac activity, or MSD >= 25 mm with no embryo. If findings are indeterminate, repeat ultrasound in 7-14 days. Never diagnose nonviability on a single borderline scan.\n\n3. **Forgetting Rh(D) immune globulin in Rh-negative patients.** Fetomaternal hemorrhage occurs even in early pregnancy. Failure to administer RhIg jeopardizes all future pregnancies through Rh alloimmunization. Administer to every Rh-negative patient with first trimester bleeding regardless of gestational age or management path. This applies to threatened abortion, miscarriage, AND ectopic pregnancy.\n\n4. **Confusing a pseudosac with an IUP.** A pseudosac (decidual reaction to ectopic pregnancy) appears as a small intrauterine fluid collection without a yolk sac, fetal pole, or double decidual sign. Misidentifying this as an IUP causes false reassurance and delays ectopic diagnosis. A true IUP must show a yolk sac or embryo within the gestational sac.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:threatened-abortion",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Threatened Abortion / Miscarriage\nthreatened miscarriage; first trimester bleeding; early pregnancy loss; spontaneous abortion; missed abortion; incomplete miscarriage; inevitable abortion\nPitfalls\n1. **Failing to exclude ectopic pregnancy.** This is the life-threatening miss. Every patient with first trimester bleeding must have ectopic ruled out with TVUS and hCG correlation. An empty uterus with hCG above the discriminatory zone (1,500-3,000 mIU/mL for TVUS) is ectopic until proven otherwise. Anchoring on \"miscarriage\" without imaging kills patients.\n\n2. **Diagnosing nonviable pregnancy too early.** Applying outdated or less stringent ultrasound criteria for pregnancy failure can lead to intervention on a viable pregnancy. Use the SRU/ACOG 2013 criteria: CRL >= 7 mm with no cardiac activity, or MSD >= 25 mm with no embryo. If findings are indeterminate, repeat ultrasound in 7-14 days. Never diagnose nonviability on a single borderline scan.\n\n3. **Forgetting Rh(D) immune globulin in Rh-negative patients.** Fetomaternal hemorrhage occurs even in early pregnancy. Failure to administer RhIg jeopardizes all future pregnancies through Rh alloimmunization. Administer to every Rh-negative patient with first trimester bleeding regardless of gestational age or management path. This applies to threatened abortion, miscarriage, AND ectopic pregnancy.\n\n4. **Confusing a pseudosac with an IUP.** A pseudosac (decidual reaction to ectopic pregnancy) appears as a small intrauterine fluid collection without a yolk sac, fetal pole, or double decidual sign. Misidentifying this as an IUP causes false reassurance and delays ectopic diagnosis. A true IUP must show a yolk sac or embryo within the gestational sac.\n"
+            },
+            "document": {
+              "id": "openem:threatened-abortion",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/threatened-abortion.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Threatened Abortion / Miscarriage",
+              "aliases": [
+                "threatened miscarriage",
+                "first trimester bleeding",
+                "early pregnancy loss",
+                "spontaneous abortion",
+                "missed abortion",
+                "incomplete miscarriage",
+                "inevitable abortion"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "2485ee07490528680584223c423357f2183da542f7aa237f3a8152f9a86d9971",
+              "related": [],
+              "concepts": [
+                "obstetric-gynecologic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-13T23:38:35.557Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-19"
+            },
+            "score": 0.018656397090286693,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n5. **Discharging a PUL without ectopic precautions.** A patient with hCG below the discriminatory zone and no IUP on TVUS has a pregnancy of unknown location. This may be a very early IUP, a completed miscarriage, or an ectopic pregnancy. The patient must understand she has a pregnancy whose locati"
+            }
+          },
+          {
+            "chunk": {
+              "id": "954b48e136e00308885160475f414eba403b6d11d4c84d8dc0e07e1fe7a1e082",
+              "end": 1783,
+              "hash": "66735e2a251961c599c7826a0872e8a63a6d6f47f76a5a8be1b679f5e49eb2c1",
+              "text": "1. **Attributing dyspnea and edema to \"normal pregnancy.\"** Dyspnea on exertion is common in normal pregnancy; orthopnea, PND, and new S3 gallop are not. Any peripartum woman with orthopnea, inability to lie flat, paroxysmal nocturnal dyspnea, or new S3 gallop requires immediate BNP and echo. The physical examination must include auscultation for S3, assessment of JVP, and lung exam for rales — do not dismiss the heart examination in a pregnant patient.\n\n2. **Using ACE inhibitors, ARBs, or spironolactone during pregnancy.** ACEi and ARBs are FDA Category D in the second and third trimester — they cause fetal renal tubular dysplasia, oligohydramnios, calvarial hypoplasia, and neonatal renal failure. Spironolactone causes anti-androgenic effects in male fetuses. The vasodilator regimen in pregnancy is hydralazine + isosorbide dinitrate, not enalapril or valsartan. Confirm current pregnancy status before prescribing any PPCM medications.\n\n3. **Initiating beta-blockers in the acutely volume-overloaded patient.** Beta-blockers are a cornerstone of PPCM management but are contraindicated in acute decompensated heart failure with volume overload. Starting carvedilol or metoprolol in a congested patient precipitates hemodynamic deterioration. Diurese to euvolemia first, then initiate beta-blockade at low dose on inpatient admission or at discharge.\n\n4. **Discharging a newly diagnosed PPCM patient without echo-confirmed EF.** PPCM cannot be managed outpatient from the ED in the initial presentation. LVEF determines anticoagulation need (EF <30%), arrhythmia risk, and prognostic counseling. A patient who \"looks well\" with an LVEF of 15% has a 25% risk of end-stage cardiomyopathy and immediate thromboembolic risk from LV thrombus. All new PPCM requires admission.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:peripartum-cardiomyopathy",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Peripartum Cardiomyopathy\nPPCM; pregnancy-associated cardiomyopathy; postpartum cardiomyopathy\nPitfalls\n1. **Attributing dyspnea and edema to \"normal pregnancy.\"** Dyspnea on exertion is common in normal pregnancy; orthopnea, PND, and new S3 gallop are not. Any peripartum woman with orthopnea, inability to lie flat, paroxysmal nocturnal dyspnea, or new S3 gallop requires immediate BNP and echo. The physical examination must include auscultation for S3, assessment of JVP, and lung exam for rales — do not dismiss the heart examination in a pregnant patient.\n\n2. **Using ACE inhibitors, ARBs, or spironolactone during pregnancy.** ACEi and ARBs are FDA Category D in the second and third trimester — they cause fetal renal tubular dysplasia, oligohydramnios, calvarial hypoplasia, and neonatal renal failure. Spironolactone causes anti-androgenic effects in male fetuses. The vasodilator regimen in pregnancy is hydralazine + isosorbide dinitrate, not enalapril or valsartan. Confirm current pregnancy status before prescribing any PPCM medications.\n\n3. **Initiating beta-blockers in the acutely volume-overloaded patient.** Beta-blockers are a cornerstone of PPCM management but are contraindicated in acute decompensated heart failure with volume overload. Starting carvedilol or metoprolol in a congested patient precipitates hemodynamic deterioration. Diurese to euvolemia first, then initiate beta-blockade at low dose on inpatient admission or at discharge.\n\n4. **Discharging a newly diagnosed PPCM patient without echo-confirmed EF.** PPCM cannot be managed outpatient from the ED in the initial presentation. LVEF determines anticoagulation need (EF <30%), arrhythmia risk, and prognostic counseling. A patient who \"looks well\" with an LVEF of 15% has a 25% risk of end-stage cardiomyopathy and immediate thromboembolic risk from LV thrombus. All new PPCM requires admission.\n"
+            },
+            "document": {
+              "id": "openem:peripartum-cardiomyopathy",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/peripartum-cardiomyopathy.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Peripartum Cardiomyopathy",
+              "aliases": [
+                "PPCM",
+                "pregnancy-associated cardiomyopathy",
+                "postpartum cardiomyopathy"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "7ef6ea9418112802ab595551e934159166506099c0a11d0d76b23fbfd642e7d3",
+              "related": [],
+              "concepts": [
+                "obstetric-gynecologic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-13T23:38:35.557Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-23"
+            },
+            "score": 0.018596642272922945,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n5. **Missing LV thrombus by not performing echocardiography.** LV thrombus is present in up to 17% of PPCM patients with EF <30%. Systemic embolism (stroke, limb ischemia, mesenteric ischemia) is the presenting event in some patients. Any PPCM patient with LVEF <30% who has not had a recent echocar"
+            }
+          },
+          {
+            "chunk": {
+              "id": "1a341e58e3412ec71ec39941390299f87a8648f4f8c7bcfbaed2a84122731e67",
+              "end": 2004,
+              "hash": "64692a9da3e8bc9aae25ab03443b0491f0690909c8917e8607f7127fe35b8f7a",
+              "text": " rupture risk. Ectopic pregnancies can rupture while hCG is declining, including after methotrexate treatment. Pain in a patient with known ectopic and declining hCG still requires urgent evaluation.\n\n7. **Forgetting RhoGAM in Rh-negative patients.** Fetomaternal hemorrhage causes Rh sensitization even in early pregnancy. Failure to administer RhoGAM jeopardizes all future pregnancies. Administer to every Rh-negative patient with ectopic pregnancy or threatened abortion.",
+              "start": 1529,
+              "section": 6,
+              "documentId": "openem:ectopic-pregnancy",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Ectopic Pregnancy\ntubal pregnancy; extrauterine pregnancy; EP; ectopic\nPitfalls\n rupture risk. Ectopic pregnancies can rupture while hCG is declining, including after methotrexate treatment. Pain in a patient with known ectopic and declining hCG still requires urgent evaluation.\n\n7. **Forgetting RhoGAM in Rh-negative patients.** Fetomaternal hemorrhage causes Rh sensitization even in early pregnancy. Failure to administer RhoGAM jeopardizes all future pregnancies. Administer to every Rh-negative patient with ectopic pregnancy or threatened abortion."
+            },
+            "document": {
+              "id": "openem:ectopic-pregnancy",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/ectopic-pregnancy.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Ectopic Pregnancy",
+              "aliases": [
+                "tubal pregnancy",
+                "extrauterine pregnancy",
+                "EP",
+                "ectopic"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "5d86e119cd154e75fb6174c39b905cc359d6731a998faad09366c965f85d4fae",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:acute-appendicitis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:ovarian-torsion",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:threatened-abortion",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "obstetric-gynecologic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-13T23:38:35.557Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.018499805674310144,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": " as low-risk.** Ectopic pregnancies rupture without warning. Patients who are hemodynamically stable in the ED can rupture hours later. Clear return precautions, reliable follow-up, and understanding of warning signs are mandatory.\n\n6. **Anchoring on declining hCG.** A falling hCG does not eliminate",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 67.50691599999845,
+          "embeddingMs": 489.9484590000029,
+          "vectorMs": 80.08458299999984,
+          "totalMs": 646.447957999997
+        },
+        "warnings": [],
+        "embeddingTokens": 12,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "ffdf216ecdd3fbd4db3e4538d71e0a58444862b184c84c189f01430930af3475",
+        "query": "Headache guideline emergency warning signs thunderclap focal neurological deficit fever neck stiffness versus nonemerg急?",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "7e76765e76d5e78f65f1fae5873e38d15560c5799154e041fcf01dfeb41b2e34",
+              "end": 3159,
+              "hash": "b02ca738c2403f72e1dbea9418cf0382871d163fa7d69df6eba33c85c0f197c6",
+              "text": " facial infection.\n\n### Emergent\n- **Temporal arteritis** (`temporal-arteritis`): age > 50, new headache, jaw claudication, scalp tenderness, PMR symptoms, ESR > 50. Untreated → permanent vision loss.\n- **Acute angle-closure glaucoma** (`acute-angle-closure-glaucoma`): severe unilateral eye/brow/forehead pain, red eye, fixed mid-dilated pupil, nausea, halos\n- **Spinal epidural abscess** (`spinal-epidural-abscess`): headache with fever, back pain, progressive neurological deficit. IV drug use, recent spinal procedure.\n- **Cerebral venous thrombosis (CVT):** subacute progressive headache, papilledema, focal deficits, seizures. Risk factors: OCP, pregnancy/postpartum, prothrombotic states. CTV or MRV to diagnose. [No standalone corpus entry]\n- **Cervical artery dissection:** unilateral headache/neck pain, Horner syndrome (carotid) or posterior circulation symptoms (vertebral). Trauma or chiropractic manipulation history. CTA neck to diagnose. [No standalone corpus entry]\n- **Acute ischemic stroke** (`acute-ischemic-stroke`): headache accompanies 25-35% of strokes, particularly posterior circulation\n\n### Urgent\n- **Idiopathic intracranial hypertension (IIH):** progressive headache in obese woman of reproductive age, papilledema, transient visual obscurations, pulsatile tinnitus, elevated LP opening pressure > 25 cmH2O. [No standalone corpus entry]\n\n### Non-Emergent\n- **Tension-type headache** (`tension-headache`): bilateral, band-like, mild-moderate, no nausea/vomiting, no neurological deficit. Diagnosis of pattern recognition, not exclusion — but only after red flags are excluded.",
+              "start": 1555,
+              "section": 2,
+              "documentId": "openem:headache-acute",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Acute Headache — Emergency Evaluation\nheadache; cephalgia; head pain; worst headache of life; thunderclap headache\nDifferential Diagnosis\n facial infection.\n\n### Emergent\n- **Temporal arteritis** (`temporal-arteritis`): age > 50, new headache, jaw claudication, scalp tenderness, PMR symptoms, ESR > 50. Untreated → permanent vision loss.\n- **Acute angle-closure glaucoma** (`acute-angle-closure-glaucoma`): severe unilateral eye/brow/forehead pain, red eye, fixed mid-dilated pupil, nausea, halos\n- **Spinal epidural abscess** (`spinal-epidural-abscess`): headache with fever, back pain, progressive neurological deficit. IV drug use, recent spinal procedure.\n- **Cerebral venous thrombosis (CVT):** subacute progressive headache, papilledema, focal deficits, seizures. Risk factors: OCP, pregnancy/postpartum, prothrombotic states. CTV or MRV to diagnose. [No standalone corpus entry]\n- **Cervical artery dissection:** unilateral headache/neck pain, Horner syndrome (carotid) or posterior circulation symptoms (vertebral). Trauma or chiropractic manipulation history. CTA neck to diagnose. [No standalone corpus entry]\n- **Acute ischemic stroke** (`acute-ischemic-stroke`): headache accompanies 25-35% of strokes, particularly posterior circulation\n\n### Urgent\n- **Idiopathic intracranial hypertension (IIH):** progressive headache in obese woman of reproductive age, papilledema, transient visual obscurations, pulsatile tinnitus, elevated LP opening pressure > 25 cmH2O. [No standalone corpus entry]\n\n### Non-Emergent\n- **Tension-type headache** (`tension-headache`): bilateral, band-like, mild-moderate, no nausea/vomiting, no neurological deficit. Diagnosis of pattern recognition, not exclusion — but only after red flags are excluded."
+            },
+            "document": {
+              "id": "openem:headache-acute",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/headache-acute.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Headache — Emergency Evaluation",
+              "aliases": [
+                "headache",
+                "cephalgia",
+                "head pain",
+                "worst headache of life",
+                "thunderclap headache"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "2a2d4d32c73f49ed333e23133c9fd5670dc6a30439200b209be9d475c1b23957",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-13T23:38:35.557Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.032266458495966696,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": " poisoning** (`carbon-monoxide-poisoning`): headache is most common symptom. Multiple household members. Winter, enclosed space, generator use.\n- **Cavernous sinus thrombosis** (`cavernous-sinus-thrombosis`): headache, proptosis, cranial nerve palsies (III, IV, V1, VI), chemosis. Recent sinusitis or",
+              "after": "\n- **Migraine:** unilateral, pulsatile, moderate-severe, photophobia, phonophobia, nausea/vomiting, aura (visual, sensory). Prior similar episodes. Typical migraine in a patient with established migraine history and no red flags does not require imaging.\n- **Cluster headache:** unilateral periorbita"
+            }
+          },
+          {
+            "chunk": {
+              "id": "3643b0452daec5eed3b84cc0fc477f3a43e0d339bd8a1eb9bf908557efcd2d2d",
+              "end": 1755,
+              "hash": "5476538c70d80a8bbe5b4aa09dda918c93bc6e323aa0f0566e3447b739bfd908",
+              "text": "### Life-Threatening\n- **Subarachnoid hemorrhage** (`subarachnoid-hemorrhage`): thunderclap headache, nuchal rigidity, vomiting, photophobia, third nerve palsy (posterior communicating artery aneurysm). 12% mortality before reaching hospital. SAH rebleed mortality 40-60%.\n- **Hemorrhagic stroke** (`hemorrhagic-stroke`): sudden headache with focal deficit, hypertension, progression to obtundation\n- **Bacterial meningitis** (`bacterial-meningitis`): fever, headache, nuchal rigidity, photophobia. Classic triad (fever, neck stiffness, AMS) present < 50%. Jolt accentuation test may add sensitivity.\n- **HSV encephalitis** (`hsv-encephalitis`): headache with behavioral changes, temporal lobe seizures, fever. MRI temporal lobe signal change. Acyclovir 10 mg/kg IV empirically.\n- **Epidural hematoma** (`epidural-hematoma`): post-trauma lucid interval then rapid deterioration, temporal bone fracture, lens-shaped hematoma on CT\n- **Subdural hematoma** (`subdural-hematoma`): chronic headache in elderly or anticoagulated, crescent-shaped hematoma on CT. Minor or forgotten trauma.\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with headache + papilledema + encephalopathy → PRES (posterior reversible encephalopathy syndrome)\n- **CO poisoning** (`carbon-monoxide-poisoning`): headache is most common symptom. Multiple household members. Winter, enclosed space, generator use.\n- **Cavernous sinus thrombosis** (`cavernous-sinus-thrombosis`): headache, proptosis, cranial nerve palsies (III, IV, V1, VI), chemosis. Recent sinusitis or facial infection.\n\n### Emergent\n- **Temporal arteritis** (`temporal-arteritis`): age > 50, new headache, jaw claudication, scalp tenderness, PMR symptoms, ESR > 50. Untreated → permanent vision loss.",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:headache-acute",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Acute Headache — Emergency Evaluation\nheadache; cephalgia; head pain; worst headache of life; thunderclap headache\nDifferential Diagnosis\n### Life-Threatening\n- **Subarachnoid hemorrhage** (`subarachnoid-hemorrhage`): thunderclap headache, nuchal rigidity, vomiting, photophobia, third nerve palsy (posterior communicating artery aneurysm). 12% mortality before reaching hospital. SAH rebleed mortality 40-60%.\n- **Hemorrhagic stroke** (`hemorrhagic-stroke`): sudden headache with focal deficit, hypertension, progression to obtundation\n- **Bacterial meningitis** (`bacterial-meningitis`): fever, headache, nuchal rigidity, photophobia. Classic triad (fever, neck stiffness, AMS) present < 50%. Jolt accentuation test may add sensitivity.\n- **HSV encephalitis** (`hsv-encephalitis`): headache with behavioral changes, temporal lobe seizures, fever. MRI temporal lobe signal change. Acyclovir 10 mg/kg IV empirically.\n- **Epidural hematoma** (`epidural-hematoma`): post-trauma lucid interval then rapid deterioration, temporal bone fracture, lens-shaped hematoma on CT\n- **Subdural hematoma** (`subdural-hematoma`): chronic headache in elderly or anticoagulated, crescent-shaped hematoma on CT. Minor or forgotten trauma.\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with headache + papilledema + encephalopathy → PRES (posterior reversible encephalopathy syndrome)\n- **CO poisoning** (`carbon-monoxide-poisoning`): headache is most common symptom. Multiple household members. Winter, enclosed space, generator use.\n- **Cavernous sinus thrombosis** (`cavernous-sinus-thrombosis`): headache, proptosis, cranial nerve palsies (III, IV, V1, VI), chemosis. Recent sinusitis or facial infection.\n\n### Emergent\n- **Temporal arteritis** (`temporal-arteritis`): age > 50, new headache, jaw claudication, scalp tenderness, PMR symptoms, ESR > 50. Untreated → permanent vision loss."
+            },
+            "document": {
+              "id": "openem:headache-acute",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/headache-acute.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Headache — Emergency Evaluation",
+              "aliases": [
+                "headache",
+                "cephalgia",
+                "head pain",
+                "worst headache of life",
+                "thunderclap headache"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "2a2d4d32c73f49ed333e23133c9fd5670dc6a30439200b209be9d475c1b23957",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-13T23:38:35.557Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.032018442622950824,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- **Acute angle-closure glaucoma** (`acute-angle-closure-glaucoma`): severe unilateral eye/brow/forehead pain, red eye, fixed mid-dilated pupil, nausea, halos\n- **Spinal epidural abscess** (`spinal-epidural-abscess`): headache with fever, back pain, progressive neurological deficit. IV drug use, re"
+            }
+          },
+          {
+            "chunk": {
+              "id": "ea5c7e1f4375052e5b119e2b73c8ccc1d426156900f87161a3375df25ba9c967",
+              "end": 2394,
+              "hash": "b6aa941353f93796791b77b8e64e3aaa2ee3edce5bd0be33fe9d7929e57a42a7",
+              "text": " daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n\n5. **Missing temporal arteritis in patients >50 years with new headache.** New headache after age 50 is temporal arteritis until proven otherwise (ESR, CRP, temporal artery biopsy). Giant cell arteritis causes permanent vision loss in 15-20% of untreated cases. Empiric steroids while awaiting biopsy are appropriate when clinical suspicion is high.\n\n6. **Anchoring on \"tension\" when meningismus is subtle.** Early bacterial meningitis may present with mild neck discomfort misattributed to muscle tension. Any headache with fever warrants careful assessment for meningeal signs. Jolt accentuation (worsening headache with horizontal head rotation at 2-3 Hz) has been described as a sensitive sign; absence does not exclude meningitis.",
+              "start": 1458,
+              "section": 6,
+              "documentId": "openem:tension-headache",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Tension-Type Headache\ntension headache; TTH; muscle contraction headache; episodic tension-type headache; chronic tension-type headache\nPitfalls\n daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n\n5. **Missing temporal arteritis in patients >50 years with new headache.** New headache after age 50 is temporal arteritis until proven otherwise (ESR, CRP, temporal artery biopsy). Giant cell arteritis causes permanent vision loss in 15-20% of untreated cases. Empiric steroids while awaiting biopsy are appropriate when clinical suspicion is high.\n\n6. **Anchoring on \"tension\" when meningismus is subtle.** Early bacterial meningitis may present with mild neck discomfort misattributed to muscle tension. Any headache with fever warrants careful assessment for meningeal signs. Jolt accentuation (worsening headache with horizontal head rotation at 2-3 Hz) has been described as a sensitive sign; absence does not exclude meningitis."
+            },
+            "document": {
+              "id": "openem:tension-headache",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/tension-headache.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Tension-Type Headache",
+              "aliases": [
+                "tension headache",
+                "TTH",
+                "muscle contraction headache",
+                "episodic tension-type headache",
+                "chronic tension-type headache"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "73653a341b4841d483b11a9308969e558e9256b1f9e82f7deba1b96982b273cc",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:subarachnoid-hemorrhage",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "neurological"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-13T23:38:35.557Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-23"
+            },
+            "score": 0.025893752088205813,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "lgesics worsens the condition. The key question: \"How many days per month do you take pain medication for your headaches?\" Withdrawal and preventive therapy are the treatment.\n\n4. **Prescribing opioids for TTH.** Opioids are inferior to NSAIDs for acute headache, accelerate the transition to chronic",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "771a3d8c99470f1195d621a3d6af24660a6b41b5096168977d3ff1b85b2e5410",
+              "end": 1658,
+              "hash": "872a177f1596724b35cbf8a301442bf03a03e28de73f3450a71bad9ccc673f94",
+              "text": "1. **Under-escalation: attributing a first thunderclap headache to tension headache.** Thunderclap headache (peak intensity <60 seconds) is SAH until proven otherwise. CT head within 6 hours has >97% sensitivity; LP >12 hours after onset provides definitive exclusion. A patient with classic BPPV, known anxiety, or chronic TTH who presents with a thunderclap event requires SAH exclusion regardless of history. The error of \"sentinel bleed attributed to TTH\" is one of the most litigation-generating missed diagnoses in emergency medicine.\n\n2. **Over-escalation: neuroimaging for stable, typical TTH with established pattern.** Neuroimaging in patients with stable headaches meeting primary headache criteria and a normal neurological exam has a yield of <1% for clinically significant findings and does not reduce re-presentation or anxiety in the long term. Choosing Wisely guidelines explicitly caution against this practice.\n\n3. **Failing to diagnose medication-overuse headache.** Patients with chronic daily headache who use NSAIDs, triptans, or opioids >10-15 days/month have medication-overuse headache as a perpetuating factor. Prescribing more analgesics worsens the condition. The key question: \"How many days per month do you take pain medication for your headaches?\" Withdrawal and preventive therapy are the treatment.\n\n4. **Prescribing opioids for TTH.** Opioids are inferior to NSAIDs for acute headache, accelerate the transition to chronic daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:tension-headache",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Tension-Type Headache\ntension headache; TTH; muscle contraction headache; episodic tension-type headache; chronic tension-type headache\nPitfalls\n1. **Under-escalation: attributing a first thunderclap headache to tension headache.** Thunderclap headache (peak intensity <60 seconds) is SAH until proven otherwise. CT head within 6 hours has >97% sensitivity; LP >12 hours after onset provides definitive exclusion. A patient with classic BPPV, known anxiety, or chronic TTH who presents with a thunderclap event requires SAH exclusion regardless of history. The error of \"sentinel bleed attributed to TTH\" is one of the most litigation-generating missed diagnoses in emergency medicine.\n\n2. **Over-escalation: neuroimaging for stable, typical TTH with established pattern.** Neuroimaging in patients with stable headaches meeting primary headache criteria and a normal neurological exam has a yield of <1% for clinically significant findings and does not reduce re-presentation or anxiety in the long term. Choosing Wisely guidelines explicitly caution against this practice.\n\n3. **Failing to diagnose medication-overuse headache.** Patients with chronic daily headache who use NSAIDs, triptans, or opioids >10-15 days/month have medication-overuse headache as a perpetuating factor. Prescribing more analgesics worsens the condition. The key question: \"How many days per month do you take pain medication for your headaches?\" Withdrawal and preventive therapy are the treatment.\n\n4. **Prescribing opioids for TTH.** Opioids are inferior to NSAIDs for acute headache, accelerate the transition to chronic daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n"
+            },
+            "document": {
+              "id": "openem:tension-headache",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/tension-headache.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Tension-Type Headache",
+              "aliases": [
+                "tension headache",
+                "TTH",
+                "muscle contraction headache",
+                "episodic tension-type headache",
+                "chronic tension-type headache"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "73653a341b4841d483b11a9308969e558e9256b1f9e82f7deba1b96982b273cc",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:subarachnoid-hemorrhage",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "neurological"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-13T23:38:35.557Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-23"
+            },
+            "score": 0.02557544757033248,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n5. **Missing temporal arteritis in patients >50 years with new headache.** New headache after age 50 is temporal arteritis until proven otherwise (ESR, CRP, temporal artery biopsy). Giant cell arteritis causes permanent vision loss in 15-20% of untreated cases. Empiric steroids while awaiting biops"
+            }
+          },
+          {
+            "chunk": {
+              "id": "7408fb0ff3fc2f3710ff81646d2e5720a318f0bc05ca1f025cd52bdd709cee56",
+              "end": 1445,
+              "hash": "3ae1746cfc87fb69650763fed75cf181607c1175e9d4b14f19d2307620baf99c",
+              "text": "**Classic presentation:**\n- \"Worst headache of my life\" — sudden onset, maximal intensity within seconds to one minute (thunderclap headache)\n- Nausea, vomiting, photophobia\n- Neck stiffness/meningismus (may take hours to develop)\n- Brief loss of consciousness at onset (up to 50% of cases)\n\n**Associated findings:**\n- Focal neurological deficits (cranial nerve III palsy — posterior communicating artery aneurysm)\n- Seizure at onset (6-16%)\n- Retinal/subhyaloid hemorrhages (Terson syndrome)\n- Fever (chemical meningitis from subarachnoid blood)\n\n**Atypical presentations (missed SAH):**\n- Headache that has improved by ED arrival (\"sentinel headache\" from minor leak)\n- Isolated neck pain or stiffness\n- Syncope without headache\n- Acute confusional state\n- Headache with exertion, Valsalva, or coitus\n\n**Hunt-Hess grading:**\n- Grade I: Asymptomatic or mild headache\n- Grade II: Moderate-severe headache, nuchal rigidity, cranial nerve palsy\n- Grade III: Drowsiness, confusion, mild focal deficit\n- Grade IV: Stupor, moderate-severe hemiparesis\n- Grade V: Coma, decerebrate posturing\n\n**Ottawa SAH Rule (sensitivity ~100% for ruling out SAH in alert patients):**\nAny ONE of the following in patients >= 15 years with new severe headache reaching max intensity within 1 hour:\n- Age >= 40 years\n- Neck pain or stiffness\n- Witnessed loss of consciousness\n- Onset during exertion\n- Thunderclap headache (instant peak)\n- Limited neck flexion on exam",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:subarachnoid-hemorrhage",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Subarachnoid Hemorrhage\nSAH; aneurysmal SAH; aSAH; thunderclap headache; ruptured cerebral aneurysm\nRecognition\n**Classic presentation:**\n- \"Worst headache of my life\" — sudden onset, maximal intensity within seconds to one minute (thunderclap headache)\n- Nausea, vomiting, photophobia\n- Neck stiffness/meningismus (may take hours to develop)\n- Brief loss of consciousness at onset (up to 50% of cases)\n\n**Associated findings:**\n- Focal neurological deficits (cranial nerve III palsy — posterior communicating artery aneurysm)\n- Seizure at onset (6-16%)\n- Retinal/subhyaloid hemorrhages (Terson syndrome)\n- Fever (chemical meningitis from subarachnoid blood)\n\n**Atypical presentations (missed SAH):**\n- Headache that has improved by ED arrival (\"sentinel headache\" from minor leak)\n- Isolated neck pain or stiffness\n- Syncope without headache\n- Acute confusional state\n- Headache with exertion, Valsalva, or coitus\n\n**Hunt-Hess grading:**\n- Grade I: Asymptomatic or mild headache\n- Grade II: Moderate-severe headache, nuchal rigidity, cranial nerve palsy\n- Grade III: Drowsiness, confusion, mild focal deficit\n- Grade IV: Stupor, moderate-severe hemiparesis\n- Grade V: Coma, decerebrate posturing\n\n**Ottawa SAH Rule (sensitivity ~100% for ruling out SAH in alert patients):**\nAny ONE of the following in patients >= 15 years with new severe headache reaching max intensity within 1 hour:\n- Age >= 40 years\n- Neck pain or stiffness\n- Witnessed loss of consciousness\n- Onset during exertion\n- Thunderclap headache (instant peak)\n- Limited neck flexion on exam"
+            },
+            "document": {
+              "id": "openem:subarachnoid-hemorrhage",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/subarachnoid-hemorrhage.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Subarachnoid Hemorrhage",
+              "aliases": [
+                "SAH",
+                "aneurysmal SAH",
+                "aSAH",
+                "thunderclap headache",
+                "ruptured cerebral aneurysm"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "5e5a8cc8de44304b0dd81ddcf09340f7137cabe4a411c35eb53feb66edfcf1ad",
+              "related": [],
+              "concepts": [
+                "neurological"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-13T23:38:35.557Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-28"
+            },
+            "score": 0.024891774891774892,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 47.10879099999147,
+          "embeddingMs": 512.8670000000129,
+          "vectorMs": 59.90283399999316,
+          "totalMs": 621.4766660000023
+        },
+        "warnings": [],
+        "embeddingTokens": 22,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": {
+      "verdict": "revise",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "Priority remote medication review fits the active usual migraine and depleted sumatriptan. No reported feature independently requires emergency or in-person care.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get."
+            },
+            {
+              "unit": "draft",
+              "quote": "\"disposition\":\"ASYNC_PHYSICIAN\",\"reviewPriority\":\"priority\",\"workType\":\"medication_request\""
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "The draft appropriately separates queue priority from physical care. Emergency advice is conditional, not an escalation for current reported symptoms.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Recommended next step: priority asynchronous review by a Counsel clinician for your sumatriptan refill"
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "fail",
+          "reason": "“Exhausted rescue medication” broadens depletion of sumatriptan into depletion of rescue treatment generally. Other treatment access is unknown. Otherwise, the draft appropriately preserves unknown red flags and vital signs.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I'm out of sumatriptan and would like a refill."
+            },
+            {
+              "unit": "draft",
+              "quote": "An active attack with exhausted rescue medication makes remote clinician review time-sensitive"
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "fail",
+          "reason": "Early triptan treatment and conservative comfort measures have relevant support. Initial remote review follows project policy and does not promise prescribing eligibility. However, the emergency thresholds and transport advice rely only on an unverified research synthesis; acknowledging this limitation does not repair the evidence gap.",
+          "anchors": [
+            {
+              "unit": "source:092b4bc00250065c05de9cc76ead4999d4cc99ad13b58b5fbdcc67c015e9a429",
+              "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild"
+            },
+            {
+              "unit": "source:56f305c4485d8767942bd0a08de26a49c8800b32f982a73e5a1d45306d7bee91",
+              "quote": "Resting with your eyes closed in a quiet, darkened room"
+            },
+            {
+              "unit": "source:3643b0452daec5eed3b84cc0fc477f3a43e0d339bd8a1eb9bf908557efcd2d2d",
+              "quote": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol."
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "pass",
+          "reason": "Conditional emergency warning signs include explicit 911 advice and instructions not to await messaging. Fever with neck stiffness should be phrased more explicitly as immediate ED care.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Call 911 now for sudden worst-ever headache, new weakness or speech trouble; seek emergency care for fever with neck stiffness — don't wait for messaging review."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No questions or prescribing checks block initial clinician routing.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"questions\":[]"
+            },
+            {
+              "unit": "draft",
+              "quote": "Counsel should verify diagnosis, prior response, use frequency, pregnancy and contraindications and decide on renewal and any follow-up."
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "Counsel owns eligibility and follow-up decisions. The response does not claim a completed handoff, prescription, resolution, or guaranteed timing.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "They will decide eligibility and any follow-up; I can't confirm timing or approval."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "none",
+      "earlyCorrection": null,
+      "correction": "Retain priority ASYNC_PHYSICIAN medication_request routing. Replace references to exhausted rescue medication with “out of sumatriptan”; do not imply other treatments are unavailable. Retrieve authoritative support for the conditional headache emergency thresholds and transport instructions. Specify immediate ED care for fever with neck stiffness, without waiting for messaging.",
+      "evidenceQueries": [
+        "Authoritative headache emergency guidance: sudden worst-ever headache, new weakness or speech difficulty, fever with n​​",
+        "Authoritative patient guidance on calling 911 versus immediate ED evaluation for headache emergency warning signs"
+      ]
+    },
+    "release": "clinician_required",
+    "clinicalApproval": false,
+    "corrections": 1,
+    "sourceIntegrity": true,
+    "citations": []
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "counsel-disposition-agent",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "17b786ac-d9c7-4c67-9d9e-f72434828c16",
+  "traceId": "5a2f77d62f779d8e3fc50b862921bae4",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "40F. My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get. I'm out of sumatriptan and would like a refill.",
+  "inputHash": "0ede5c086d3ea812a589febf64e2b33fcde3c4795b2b686a9b02453986a0b81e",
+  "answerHash": "cba974fa31aa7cbe32221e2fa46d98fb1c431b3736588d2d962326d54a596a32",
+  "promptHash": "9d951fdea74eb1a90bc75b05a1e33afeab0d0d41949d681e8b511f39b450838c",
+  "guidanceHash": "7359c99e14d6c3c13dd09600c4eb1b1432f82e0ca61b8f38d443446b73856d17",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-13T23:42:43.411Z",
+  "durationMs": 88732,
+  "workflowDurationMs": 88586,
+  "tracePersistenceDurationMs": 146,
+  "steps": [
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 7323
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 26399
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 62164
+    }
+  ],
+  "responseEvents": [],
+  "safetyNotices": [],
+  "firstActionMs": null,
+  "firstPatientReplyMs": null,
+  "firstQuestionMs": null
+}

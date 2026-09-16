@@ -1,0 +1,633 @@
+{
+  "version": "local-offline/v5-nano-mining",
+  "createdAt": "2026-09-15T17:17:45.478Z",
+  "deadlineUtc": "2026-09-15T19:37:46Z",
+  "model": {
+    "name": "counsel-nano-q5",
+    "digest": "36896b6271148892f83130812cb14116beeb2a518f98a0a17b469250b84901c8"
+  },
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 8192,
+    "num_predict": 2048
+  },
+  "gate": {
+    "defectDetections": 10,
+    "supportedControls": 10,
+    "maximumFalseAlarms": 1,
+    "validResponses": 23,
+    "usableResponses": 23,
+    "defects": 12,
+    "controls": 12,
+    "clinicalPromotion": false
+  },
+  "sourceHashes": {
+    "scripts/local-offline-study.ts": "7d86893106488a42db3dbb8f710d019c7000a38d0a09752f8f48a703eb8dde0d",
+    "src/evaluation/local-offline.ts": "9fd9fe948bcbf311b75bf94957bc5e76693f28d2d1b3c32f24c73330dab552d9",
+    "src/evaluation/local-binding-fixtures.ts": "06d6e94a44722104e445d2bb1bd35a9e7a325a1551b7793025b56f28854f1791",
+    "src/evaluation/local-mining-tasks.ts": "181bf67ea8b3548fabe0318bd56fad9b993460ef283f927974c6cff59704ac33"
+  },
+  "tasks": [
+    {
+      "id": "binding-033",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "I have slept poorly four nights a week for two weeks, and I am struggling with tasks at work.",
+        "claim": "The reported two-week duration is shorter than this excerpt's three-month chronic-insomnia threshold.",
+        "sourceText": "Insomnia is considered chronic (long-term) when it occurs 3 or more nights a week and lasts for 3 months or longer."
+      }
+    },
+    {
+      "id": "binding-017",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "I do not feel feverish. My throat has been scratchy since lunch.",
+        "claim": "The patient does not feel feverish; no temperature reading is supplied.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-009",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "In 2020 I had a fever during the flu. That illness resolved. Today I am asking about dry skin; I have no fever now.",
+        "claim": "The reported fever occurred during a resolved illness in 2020.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-025",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "My child is 18 months old and has mild symptoms in both ears. I am asking what the excerpt says, without claiming a diagnosis.",
+        "claim": "For children aged 6-23 months, this excerpt specifies unilateral symptoms when discussing possible watchful waiting.",
+        "sourceText": "Mild cases with unilateral symptoms in children 6-23 months of age or unilateral or bilateral symptoms in children >2 years may be appropriate for watchful waiting based on shared decision-making."
+      }
+    },
+    {
+      "id": "binding-007",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "I have a sore wrist. My daughter was the one who felt dizzy at school this afternoon.",
+        "claim": "The daughter, rather than the person with the sore wrist, felt dizzy this afternoon.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "mining-010",
+      "kind": "hard_negative",
+      "split": "mining",
+      "input": {
+        "patient": "55F. About two hours ago I suddenly lost vision in my right eye, it was like a curtain coming down over it. No pain at all. It hasn't come back.",
+        "draft": "{\n  \"concern\": \"Eye pain\",\n  \"status\": \"denied\",\n  \"quote\": \"No pain at all.\"\n}",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-035",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "My child has ear pain today. No examination has taken place and no diagnosis has been established.",
+        "claim": "This excerpt describes spontaneous resolution without antibiotics; it makes no statement that an initial assessment should be skipped.",
+        "sourceText": "Most episodes are self-limited: 80% resolve spontaneously within 3 days without antibiotics."
+      }
+    },
+    {
+      "id": "mining-001",
+      "kind": "mine",
+      "split": "mining",
+      "input": {
+        "patient": "My 3-year-old has had a fever up to 102F for 2 days. He's still drinking okay and pretty playful in between the fevers. No rash that I can see.",
+        "draft": "{\n  \"concern\": \"Fever duration 5 days or more (Kawasaki consideration)\",\n  \"status\": \"reported\",\n  \"quote\": \"fever up to 102F for 2 days\"\n}",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-037",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "I am still getting to work, but I am exhausted and need extra breaks to finish my usual tasks.",
+        "claim": "The patient continues to attend work while reporting exhaustion and extra breaks.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-016",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "I still have the same cough and stuffy nose. Since yesterday I have had no additional symptoms.",
+        "claim": "The cough and stuffy nose have resolved.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-013",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "The headache and light sensitivity are still there. Nothing new has appeared since this morning.",
+        "claim": "The headache and light sensitivity continue, with no additional symptoms reported.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-034",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "I have slept poorly four nights a week for two weeks, and I am struggling with tasks at work.",
+        "claim": "This excerpt says the patient must wait until three months have passed before discussing the sleep problem with a clinician.",
+        "sourceText": "Insomnia is considered chronic (long-term) when it occurs 3 or more nights a week and lasts for 3 months or longer."
+      }
+    },
+    {
+      "id": "binding-003",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "My ankle is sore after a long walk. I can describe the pain, but I have not mentioned swelling.",
+        "claim": "Whether the ankle is swollen is not established by this message.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-004",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "My ankle is sore after a long walk. I can describe the pain, but I have not mentioned swelling.",
+        "claim": "The patient says the ankle is not swollen.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-029",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "My 4-year-old says one ear hurts a little. No clinician has assessed it, and we have not discussed watchful waiting with anyone.",
+        "claim": "The excerpt describes possible watchful waiting based on shared decision-making, which is not established in this report.",
+        "sourceText": "Mild cases with unilateral symptoms in children 6-23 months of age or unilateral or bilateral symptoms in children >2 years may be appropriate for watchful waiting based on shared decision-making."
+      }
+    },
+    {
+      "id": "binding-048",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "I want to understand this sentence about insomnia. I have not described my daytime symptoms.",
+        "claim": "The excerpt says insomnia cannot cause daytime sleepiness or low energy.",
+        "sourceText": "Insomnia can cause daytime sleepiness and a lack of energy."
+      }
+    },
+    {
+      "id": "binding-039",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "I keep up with the household chores, although they now take much longer because I have to rest between them.",
+        "claim": "The patient still completes chores but describes taking longer and resting between them.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-036",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "My child has ear pain today. No examination has taken place and no diagnosis has been established.",
+        "claim": "This excerpt establishes that the child can skip an initial assessment because most episodes resolve without antibiotics.",
+        "sourceText": "Most episodes are self-limited: 80% resolve spontaneously within 3 days without antibiotics."
+      }
+    },
+    {
+      "id": "binding-020",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "My breathing feels comfortable while I sit. I have not supplied any device readings.",
+        "claim": "A pulse oximeter confirms that the patient's oxygen saturation is normal.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "mining-007",
+      "kind": "mine",
+      "split": "mining",
+      "input": {
+        "patient": "45M. I've had crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach. I have high cholesterol.",
+        "draft": "Call 911 now. You may be having a heart attack. Do not drive yourself. Emergency responders will perform an ECG and start treatment. If you lose consciousness or stop breathing, tell the dispatcher immediately.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-041",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "Today's headache feels like my usual headaches. I have not said how quickly it reached full strength.",
+        "claim": "The headache feels familiar, while its speed of onset is unreported.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "mining-009",
+      "kind": "hard_negative",
+      "split": "mining",
+      "input": {
+        "patient": "45M. I've had crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach. I have high cholesterol.",
+        "draft": "Call 911 now. Crushing central chest pressure for 30 minutes spreading to your left arm with sweating and nausea can mean a heart attack, which needs an ECG and blood tests immediately. Do not drive yourself and do not wait for a reply here. Stay resting; if you collapse or stop breathing, whoever is nearby should tell the dispatcher at once.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "mining-004",
+      "kind": "mine",
+      "split": "mining",
+      "input": {
+        "patient": "45F. I've had trouble falling asleep for the last month or so. Work has been stressful. I'm functioning but tired all day.",
+        "draft": "{\n  \"concern\": \"Functional decline\",\n  \"status\": \"denied\",\n  \"quote\": \"I'm functioning but tired all day\"\n}",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "mining-005",
+      "kind": "mine",
+      "split": "mining",
+      "input": {
+        "patient": "My 8-year-old says her right ear has hurt since last night. No fever, she ate breakfast fine and went to school.",
+        "draft": "{\n  \"claim\": \"Most acute otitis media episodes resolve spontaneously within days without antibiotics, supporting initial home management in a well child.\",\n  \"applicability\": \"uncertain\",\n  \"limitation\": \"AOM is unconfirmed without otoscopy; ED reference synthesis, not a telehealth protocol.\"\n}",
+        "sourceText": "Acute otitis media (AOM) is the most common reason for pediatric antibiotic prescriptions in the US. Approximately 50% of children have at least one episode by age 1 year; 80% by age 3 years. Most episodes are self-limited: 80% resolve spontaneously within 3 days without antibiotics.\n\n### AAP 2013 Diagnostic Criteria (All three required)\nAOM requires: (1) acute onset, (2) middle ear effusion, AND (3) middle ear inflammation.\n\n**Middle ear effusion** (at least one of):\n- Distinct bulging of the tympanic membrane (TM)\n- Limited or absent mobility of the TM on pneumatic otoscopy\n- Air-fluid level behind TM\n- Otorrhea not due to acute otitis externa\n\n**Middle ear inflammation** (at least one of):\n- Moderate to severe bulging of the TM\n- Intense erythema of the TM\n- Otalgia (ear pain) causing child to hold or rub ear, with onset <48 hours\n\n**Avoid AOM diagnosis based on erythema alone** — erythema without effusion or bulging is not AOM (crying, fever cause TM redness without effusion).\n\n### Clinical Presentation by Age\n- **Infants/toddlers**: Pulling or rubbing ear, unexplained irritability especially at night, fever, difficulty sleeping, reduced feeding\n- **Older children**: Otalgia verbalized, hearing difficulty, fullness in ear, fever\n- **Otorrhea**: Painless drainage through perforated TM indicates spontaneous perforation — relieves pain, is not a sign of worsening; treat with antibiotics\n\n### Severity Classification\n- **Mild**: Otalgia <48 hours, fever <39°C (102.2°F)\n- **Severe**: Otalgia ≥48 hours, fever ≥39°C (102.2°F), or any bilateral AOM in child <24 months"
+      }
+    },
+    {
+      "id": "binding-019",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "My breathing feels comfortable while I sit. I have not supplied any device readings.",
+        "claim": "The patient reports comfortable breathing while seated.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-008",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "I have a sore wrist. My daughter was the one who felt dizzy at school this afternoon.",
+        "claim": "The person asking about the sore wrist felt dizzy this afternoon.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-005",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "My brother has a fever today. I am writing about my own itchy eyes, which started this morning.",
+        "claim": "The current fever is reported in the patient's brother.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-026",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "My child is 18 months old and has mild symptoms in both ears. I am asking what the excerpt says, without claiming a diagnosis.",
+        "claim": "For children aged 6-23 months, this excerpt specifies either unilateral or bilateral symptoms when discussing possible watchful waiting.",
+        "sourceText": "Mild cases with unilateral symptoms in children 6-23 months of age or unilateral or bilateral symptoms in children >2 years may be appropriate for watchful waiting based on shared decision-making."
+      }
+    },
+    {
+      "id": "binding-001",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "The rash is on my right forearm and it itches. It began yesterday.",
+        "claim": "The patient reports an itchy forearm rash; fever status is unreported.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-024",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "I used the last tablet in my cetirizine packet yesterday. There may be other allergy medicines in the cupboard, but I have not checked.",
+        "claim": "There are no allergy medicines available to the patient.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-027",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "My child has ear pain. No one has examined the ears, and no test result is available.",
+        "claim": "The excerpt requires middle ear effusion to support an AOM diagnosis in a child.",
+        "sourceText": "Do not diagnose AOM in children without middle ear effusion (based on pneumatic otoscopy and/or tympanometry)."
+      }
+    },
+    {
+      "id": "binding-043",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "The headache gradually eased after I rested. I have not described how the pain started.",
+        "claim": "Gradual change here describes the headache easing after rest, not how it began.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-011",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "Last winter my knee was swollen after a fall and then recovered. My knee is not swollen today; I want advice about a squeaking brace.",
+        "claim": "The knee swelling described here was last winter and has resolved.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-010",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "In 2020 I had a fever during the flu. That illness resolved. Today I am asking about dry skin; I have no fever now.",
+        "claim": "The patient has a fever during the current dry-skin episode.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-045",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "I am asking what this sumatriptan table says. I have not provided my medical history.",
+        "claim": "The table lists uncontrolled hypertension among the contraindications.",
+        "sourceText": "Contraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura"
+      }
+    },
+    {
+      "id": "binding-040",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "I keep up with the household chores, although they now take much longer because I have to rest between them.",
+        "claim": "The patient reports that household chores take their usual time without any need to rest.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-031",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "I have had trouble sleeping for a few nights. I have not described whether it affects my daytime activities.",
+        "claim": "This excerpt's condition concerns sleep loss affecting daily activities; the patient's daily-activity impact is unreported.",
+        "sourceText": "If not getting enough sleep is affecting your daily activities, talk to your doctor."
+      }
+    },
+    {
+      "id": "binding-042",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "Today's headache feels like my usual headaches. I have not said how quickly it reached full strength.",
+        "claim": "The patient states that today's headache built up gradually.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-021",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "My usual headache is back. The sumatriptan box is empty. I have not listed my other medicines.",
+        "claim": "The patient has run out of sumatriptan.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "mining-008",
+      "kind": "mine",
+      "split": "mining",
+      "input": {
+        "patient": "36M. I got into poison ivy while clearing brush on Saturday. Itchy blistery rash on both forearms, spreading a bit within that area. No fever, no trouble breathing.",
+        "draft": "{\n  \"claim\": \"Topical corticosteroids and antihistamines are first-line for localized contact dermatitis; ointment formulations preferred for fissured or blistered lesions.\",\n  \"applicability\": \"applicable\",\n  \"limitation\": \"Systemic steroids are indicated for widespread (>10% BSA) or facial involvement; not established here.\"\n}",
+        "sourceText": "### Allergen Removal\n- Remove and wash any remaining allergen from skin, clothing, and equipment (soap and water within 10-20 minutes for urushiol significantly reduces reaction severity; washing after 60 minutes has limited effect on already-bound antigen)\n- Identify and counsel on future allergen avoidance\n\n### Topical Corticosteroids (First-Line for Localized Disease)\nPotency selection based on body region:\n- **High-potency (Class I-II)**: triamcinolone acetonide 0.1% cream/ointment twice daily, or clobetasol propionate 0.05% cream/ointment once daily — trunk and extremities (not face, skin folds, or genitalia); maximum 2 consecutive weeks to avoid skin atrophy\n- **Low-potency (Class VI-VII)**: hydrocortisone 2.5% cream twice daily — face, groin, axillae; appropriate for thin-skin areas\n- Ointment formulations preferred over creams for dry, fissured lesions; creams preferred for weeping, vesicular lesions\n\n### Systemic Corticosteroids (Moderate-to-Severe or Widespread Disease)\n- **Prednisone 0.5-1 mg/kg/day PO** (typical adult dose: 40-60 mg PO daily) tapered over 14-21 days. A 5-7 day taper is inadequate for poison ivy dermatitis — rebound dermatitis occurs. Minimum 14-day taper is standard for significant urushiol exposure.\n- **Methylprednisolone dose pack (Medrol)**: commonly prescribed but provides only 6 days of tapering — insufficient for severe poison ivy; prescribe a prednisone taper instead for significant cases.\n- Systemic steroids are the standard of care for moderate-to-severe poison ivy/oak dermatitis, >10% BSA involvement, or involvement of face/genitalia.\n- **Triamcinolone acetonide 40 mg IM** (single dose): alternative for patients unable to take oral medications or with poor compliance; equivalent efficacy to oral prednisone.\n"
+      }
+    },
+    {
+      "id": "binding-012",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "Last winter my knee was swollen after a fall and then recovered. My knee is not swollen today; I want advice about a squeaking brace.",
+        "claim": "The knee is swollen now while the patient is asking about the brace.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "mining-011",
+      "kind": "hard_negative",
+      "split": "mining",
+      "input": {
+        "patient": "My 8-year-old says her right ear has hurt since last night. No fever, she ate breakfast fine and went to school.",
+        "draft": "{\n  \"claim\": \"The compiled source's AOM diagnosis requires acute onset plus middle ear effusion and inflammation, which cannot be established from this message.\",\n  \"applicability\": \"uncertain\",\n  \"limitation\": \"No otoscopic assessment reported; effusion and inflammation remain unknown for this child.\"\n}",
+        "sourceText": "Acute otitis media (AOM) is the most common reason for pediatric antibiotic prescriptions in the US. Approximately 50% of children have at least one episode by age 1 year; 80% by age 3 years. Most episodes are self-limited: 80% resolve spontaneously within 3 days without antibiotics.\n\n### AAP 2013 Diagnostic Criteria (All three required)\nAOM requires: (1) acute onset, (2) middle ear effusion, AND (3) middle ear inflammation.\n\n**Middle ear effusion** (at least one of):\n- Distinct bulging of the tympanic membrane (TM)\n- Limited or absent mobility of the TM on pneumatic otoscopy\n- Air-fluid level behind TM\n- Otorrhea not due to acute otitis externa\n\n**Middle ear inflammation** (at least one of):\n- Moderate to severe bulging of the TM\n- Intense erythema of the TM\n- Otalgia (ear pain) causing child to hold or rub ear, with onset <48 hours\n\n**Avoid AOM diagnosis based on erythema alone** — erythema without effusion or bulging is not AOM (crying, fever cause TM redness without effusion).\n\n### Clinical Presentation by Age\n- **Infants/toddlers**: Pulling or rubbing ear, unexplained irritability especially at night, fever, difficulty sleeping, reduced feeding\n- **Older children**: Otalgia verbalized, hearing difficulty, fullness in ear, fever\n- **Otorrhea**: Painless drainage through perforated TM indicates spontaneous perforation — relieves pain, is not a sign of worsening; treat with antibiotics\n\n### Severity Classification\n- **Mild**: Otalgia <48 hours, fever <39°C (102.2°F)\n- **Severe**: Otalgia ≥48 hours, fever ≥39°C (102.2°F), or any bilateral AOM in child <24 months"
+      }
+    },
+    {
+      "id": "mining-002",
+      "kind": "mine",
+      "split": "mining",
+      "input": {
+        "patient": "55F. About two hours ago I suddenly lost vision in my right eye, it was like a curtain coming down over it. No pain at all. It hasn't come back.",
+        "draft": "{\n  \"concern\": \"Vision recovery\",\n  \"status\": \"reported\",\n  \"quote\": \"It hasn't come back.\"\n}",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-047",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "I want to understand this sentence about insomnia. I have not described my daytime symptoms.",
+        "claim": "The excerpt says insomnia can cause daytime sleepiness and low energy.",
+        "sourceText": "Insomnia can cause daytime sleepiness and a lack of energy."
+      }
+    },
+    {
+      "id": "mining-003",
+      "kind": "mine",
+      "split": "mining",
+      "input": {
+        "patient": "27F. My seasonal allergies are back — sneezing, itchy eyes, stuffy nose. What over the counter option do you recommend?",
+        "draft": "{\n  \"concern\": \"Bilateral nasal symptoms reported\",\n  \"status\": \"reported\",\n  \"quote\": \"sneezing, itchy eyes, stuffy nose\"\n}",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-030",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "My 4-year-old says one ear hurts a little. No clinician has assessed it, and we have not discussed watchful waiting with anyone.",
+        "claim": "The patient has already satisfied the excerpt's shared-decision condition for watchful waiting.",
+        "sourceText": "Mild cases with unilateral symptoms in children 6-23 months of age or unilateral or bilateral symptoms in children >2 years may be appropriate for watchful waiting based on shared decision-making."
+      }
+    },
+    {
+      "id": "binding-002",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "The rash is on my right forearm and it itches. It began yesterday.",
+        "claim": "The patient reports an itchy forearm rash and denies fever.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "mining-012",
+      "kind": "hard_negative",
+      "split": "mining",
+      "input": {
+        "patient": "45F. I've had trouble falling asleep for the last month or so. Work has been stressful. I'm functioning but tired all day.",
+        "draft": "{\n  \"claim\": \"Insomnia can cause daytime sleepiness and lack of energy, consistent with her reported all-day tiredness.\",\n  \"applicability\": \"applicable\",\n  \"limitation\": \"Symptom-level support only; insomnia type and cause unresolved.\"\n}",
+        "sourceText": "African Americans take longer to fall asleep, don't sleep as well, and have more sleep-related breathing problems than Whites. \n \n\n\n What are the symptoms of insomnia? \n Symptoms of insomnia include: \n Lying awake for a long time before you fall asleep \n Sleeping for only short periods \n Being awake for much of the night \n Feeling as if you haven't slept at all \n Waking up too early \n \n\n What other problems can insomnia cause? \n Insomnia can cause daytime sleepiness and a lack of energy. It also can make you feel anxious, depressed, or irritable. You may have trouble focusing on tasks, paying attention, learning, and remembering. Insomnia also can cause other serious problems. For example, it could make you feel drowsy while driving. This could cause you get into a car accident. \n\n How is insomnia diagnosed? \n To diagnose insomnia, your health care provider: \n Takes your medical history \n Asks for your sleep history. Your provider will ask you for details about your sleep habits. \n Does a physical exam, to rule out other medical problems that might cause insomnia \n May recommend a sleep study. A sleep study measures how well you sleep and how your body responds to sleep problems. \n \n \n What are the treatments for insomnia? \n Treatments include lifestyle changes, counseling, and medicines: \n Lifestyle changes, including good sleep habits , often help relieve acute (short-term) insomnia. These changes might make it easier for you to fall asleep and stay asleep. \n A type of counseling called cognitive-behavioral therapy (CBT) can help relieve the anxiety linked to chronic (ongoing) insomnia \n Several medicines also can help relieve your insomnia and allow you to re-establish a regular sleep schedule \n \n"
+      }
+    },
+    {
+      "id": "mining-006",
+      "kind": "mine",
+      "split": "mining",
+      "input": {
+        "patient": "50M. For a few weeks I've had pain in my upper right belly that comes and goes, usually after a fatty meal. No fever, no yellowing of my skin or eyes.",
+        "draft": "{\n  \"claim\": \"Episodic post-prandial RUQ pain without fever is categorized as non-emergent biliary colic in this reference.\",\n  \"applicability\": \"uncertain\",\n  \"limitation\": \"Leukocyte count and episode duration are not reported for this patient.\"\n}",
+        "sourceText": " distension, obstipation, \"coffee-bean\" sign on X-ray\n- **Intussusception** (`intussusception`): pediatric: intermittent colicky abdominal pain, \"currant jelly\" stool, palpable mass, target sign on US\n- **Fournier gangrene** (`fourniers-gangrene`): perineal pain, crepitus, rapidly progressive infection, sepsis. Surgical emergency.\n- **SBP** (`spontaneous-bacterial-peritonitis`): ascitic patient (cirrhosis) with fever, abdominal pain, AMS. Diagnostic paracentesis: PMN > 250/mm3.\n- **Mesenteric venous thrombosis** (`acute-mesenteric-venous-thrombosis`): subacute abdominal pain, hypercoagulable state, CT with portal/mesenteric vein thrombus\n\n### Urgent\n- **Diverticulitis** (`acute-diverticulitis`): LLQ pain, low-grade fever, leukocytosis. CT for complications (abscess, perforation, fistula).\n- **Pyelonephritis** (`pyelonephritis`): flank pain, fever, pyuria, CVA tenderness\n- **Urolithiasis** (`urolithiasis`): colicky flank-to-groin pain, hematuria, restless patient. CT KUB without contrast.\n- **Ischemic colitis** (`ischemic-colitis`): elderly, post-prandial pain, bloody diarrhea, watershed area\n- **Ogilvie syndrome** (`ogilvie-syndrome`): acute colonic pseudo-obstruction, massive distension, cecal diameter > 12 cm → risk of perforation\n\n### Non-Emergent\n- **Biliary colic** (`biliary-colic`): episodic RUQ pain, post-prandial, resolves within 6 hours, no fever/leukocytosis\n- **Viral gastroenteritis** (`viral-gastroenteritis`): nausea, vomiting, diarrhea, diffuse cramping, no peritoneal signs"
+      }
+    },
+    {
+      "id": "binding-046",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "I am asking what this sumatriptan table says. I have not provided my medical history.",
+        "claim": "The table states that uncontrolled hypertension is not a contraindication.",
+        "sourceText": "Contraindications: Cardiovascular or cerebrovascular disease, uncontrolled hypertension, hemiplegic migraine, migraine with brainstem aura"
+      }
+    },
+    {
+      "id": "binding-015",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "I still have the same cough and stuffy nose. Since yesterday I have had no additional symptoms.",
+        "claim": "The cough and stuffy nose remain present without newly added symptoms.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-038",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "I am still getting to work, but I am exhausted and need extra breaks to finish my usual tasks.",
+        "claim": "The patient reports normal daytime functioning with no impact on usual tasks.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-022",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "My usual headache is back. The sumatriptan box is empty. I have not listed my other medicines.",
+        "claim": "The patient has run out of every headache medicine.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-018",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "I do not feel feverish. My throat has been scratchy since lunch.",
+        "claim": "The patient's measured temperature is normal.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-023",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "I used the last tablet in my cetirizine packet yesterday. There may be other allergy medicines in the cupboard, but I have not checked.",
+        "claim": "The patient used the last tablet from the cetirizine packet.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-006",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "My brother has a fever today. I am writing about my own itchy eyes, which started this morning.",
+        "claim": "The patient reports having a fever today.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-028",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "My child has ear pain. No one has examined the ears, and no test result is available.",
+        "claim": "The excerpt permits an AOM diagnosis in a child even when middle ear effusion is absent.",
+        "sourceText": "Do not diagnose AOM in children without middle ear effusion (based on pneumatic otoscopy and/or tympanometry)."
+      }
+    },
+    {
+      "id": "binding-032",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "I have had trouble sleeping for a few nights. I have not described whether it affects my daytime activities.",
+        "claim": "The patient currently meets this excerpt's condition because sleep loss is affecting their daily activities.",
+        "sourceText": "If not getting enough sleep is affecting your daily activities, talk to your doctor."
+      }
+    },
+    {
+      "id": "binding-044",
+      "kind": "binding",
+      "split": "validation",
+      "input": {
+        "patient": "The headache gradually eased after I rested. I have not described how the pain started.",
+        "claim": "The headache began gradually.",
+        "sourceText": null
+      }
+    },
+    {
+      "id": "binding-014",
+      "kind": "binding",
+      "split": "development",
+      "input": {
+        "patient": "The headache and light sensitivity are still there. Nothing new has appeared since this morning.",
+        "claim": "The patient is now symptom-free.",
+        "sourceText": null
+      }
+    }
+  ]
+}

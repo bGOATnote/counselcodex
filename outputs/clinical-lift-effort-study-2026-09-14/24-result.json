@@ -1,0 +1,153 @@
+{
+  "id": "C01",
+  "arm": "low",
+  "trial": 1,
+  "role": "judge",
+  "execution": {
+    "output": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "revise",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "Home guidance meets the current need: mild symptoms for two days with preserved intake and denied fever do not establish a necessary clinician task or physical-care requirement. Escalation advice is provided.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "a runny nose and a mild sore throat for about 2 days. No fever, I'm still eating and drinking fine."
+            },
+            {
+              "unit": "draft",
+              "quote": "You can manage this at home for now with rest and fluids"
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "The current pathway imposes no unnecessary assessment or transport burden. Emergency advice is conditional on potentially airway-threatening changes, rather than the symptoms currently reported.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "nothing you describe needs a clinician visit today."
+            },
+            {
+              "unit": "draft",
+              "quote": "If you develop trouble breathing or noisy breathing, drooling or inability to swallow your own saliva, call 911."
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "fail",
+          "reason": "The combined red-flag entry marks dehydration as denied, but normal eating and drinking only supports preserved intake; it does not establish absence of dehydration. Split or narrow the entry so dehydration remains unknown. The vital-sign narrative correctly preserves unknown measurement status.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "{\"concern\":\"Reduced oral intake / dehydration\",\"status\":\"denied\",\"quote\":\"still eating and drinking fine\"}"
+            },
+            {
+              "unit": "patient",
+              "quote": "I'm still eating and drinking fine."
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "pass",
+          "reason": "The supplied passages support the broad mild viral-illness inference, fluids, and emergency airway safety net. RSV-specific applicability is explicitly limited rather than presented as a confirmed diagnosis.",
+          "anchors": [
+            {
+              "unit": "source:842af39890333fa4a54e48d0fad0ed39b94db2b54f2cafc8c7d5a0bc8a7c8f9d",
+              "quote": "It usually causes mild, cold-like symptoms."
+            },
+            {
+              "unit": "source:a139d4c3f576ff9e6b7536fd7d0824cd52a2015c7874636e16f55150a83ac57e",
+              "quote": "It is also important to get enough fluids to prevent dehydration ."
+            },
+            {
+              "unit": "source:672cace27d062db03d94c5e4a02bff85b5b3c5a46f3f8064d3ce68cc7b3d4332",
+              "quote": "### Red Flags for Imminent Airway Loss\n- Stridor at rest\n- Inability to swallow secretions"
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "pass",
+          "reason": "Airway symptoms trigger immediate emergency action. Fever, severe pain, or continued worsening independently trigger clinician assessment, with an alternative if messaging is unavailable.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "If you develop trouble breathing or noisy breathing, drooling or inability to swallow your own saliva, call 911."
+            },
+            {
+              "unit": "draft",
+              "quote": "If you get a high or persistent fever, severe throat pain, or symptoms that keep worsening beyond about a week, arrange a clinician assessment — through this thread or an urgent care clinic if that isn't available."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No issued question is supplied, and home guidance is not contingent on further answers.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"questions\":[]"
+            },
+            {
+              "unit": "draft",
+              "quote": "You can manage this at home for now with rest and fluids"
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "No current clinician task is required. Conditional future assessment is recommended without claiming acceptance, booking, or a response guarantee.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "arrange a clinician assessment — through this thread or an urgent care clinic if that isn't available."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "none",
+      "earlyCorrection": null,
+      "ownershipTaskReview": [],
+      "correction": "Narrow the denied red-flag entry to reduced oral intake. If dehydration is retained as a separate concern, mark it unknown rather than denied. Preserve the self-care route and existing patient advice.",
+      "repairTargets": [
+        "redFlags"
+      ],
+      "evidenceQueries": []
+    },
+    "usage": {
+      "inputTokens": 9651,
+      "outputTokens": 1203
+    },
+    "failure": null,
+    "firstTextDeltaMs": 2748,
+    "streamProgress": {
+      "lastTextDeltaMs": 20276,
+      "textDeltaCount": 1169,
+      "textCharacters": 4956
+    },
+    "transportTimings": {
+      "startResolvedMs": 1,
+      "objectResolvedMs": 20370,
+      "usageResolvedMs": 20496,
+      "finishReasonResolvedMs": 20496,
+      "streamEndMs": 20496
+    },
+    "cacheUsage": {
+      "cachedInputTokens": 4202,
+      "cacheCreationInputTokens": 5446
+    },
+    "durationMs": 20496
+  },
+  "estimatedBaseUSD": 0.15666,
+  "accountedInclusiveUSD": 0.195825,
+  "accountedUSD": 4.309375000000001
+}

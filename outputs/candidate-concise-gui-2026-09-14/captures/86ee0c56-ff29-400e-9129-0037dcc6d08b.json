@@ -1,0 +1,147 @@
+{
+  "protocol": "immutable-gui-capture/v1",
+  "label": "C50-unchanged-symptoms-update",
+  "runId": "86ee0c56-ff29-400e-9129-0037dcc6d08b",
+  "files": {
+    "run": {
+      "source": "apps/evaluation/.local/clinical-evidence-graph-v1/runs/86ee0c56-ff29-400e-9129-0037dcc6d08b.json",
+      "copied": "outputs/candidate-concise-gui-2026-09-14/runs/86ee0c56-ff29-400e-9129-0037dcc6d08b.json",
+      "sha256": "da0abe753f05bae54c8921e71ea3dc37209ec63c74ffcf2413b96b881df90139",
+      "bytes": 156018
+    },
+    "events": {
+      "source": "apps/evaluation/.local/clinical-evidence-graph-v1/events/86ee0c56-ff29-400e-9129-0037dcc6d08b.jsonl",
+      "copied": "outputs/candidate-concise-gui-2026-09-14/events/86ee0c56-ff29-400e-9129-0037dcc6d08b.jsonl",
+      "sha256": "3bc2ad22da483fe76c5761b59a610ad17865df13e52261c7b77ac8334cc211b4",
+      "bytes": 12216
+    }
+  },
+  "sourceCompletedAt": "2026-09-14T15:26:22.806Z",
+  "graphVersion": "evidence-graph/v15",
+  "runVersion": "disposition-agent/v3",
+  "clinicalPolicyVersion": "disposition-clinical-policy/v1",
+  "config": {
+    "models": {
+      "context": "anthropic/claude-haiku-4-5",
+      "safety": "anthropic/claude-haiku-4-5",
+      "disposition": "anthropic/claude-opus-5",
+      "judge": "openai/gpt-6-astra"
+    },
+    "factGraphMode": "off",
+    "judgeStyle": "concise"
+  },
+  "promptHash": "a6a85b8316e2a64cd1b6cddadf0111e223efe3bb92dc0d679a97be4976b341d7",
+  "inputHash": "182a3e80c8a4863c7e8b821b3b4fda56c09014c6471c726574c6eab957c7ee34",
+  "answerHash": "cba974fa31aa7cbe32221e2fa46d98fb1c431b3736588d2d962326d54a596a32",
+  "status": "review_required",
+  "release": "clinician_required",
+  "failure": "CLINICIAN_REVIEW_REQUIRED",
+  "disposition": "ASYNC_PHYSICIAN",
+  "reviewPriority": "priority",
+  "patientMessage": "Priority review by the Counsel clinician in this thread is needed today. This recommendation does not confirm a clinician has accepted the request.",
+  "reason": "The automated assessment needs clinician review; this is a conservative workflow fallback, not a new clinical finding.",
+  "earlyNotices": [],
+  "transportAdmission": {
+    "status": "legacy",
+    "code": "LEGACY_TEXT_CONTRACT",
+    "clinicalValidation": false
+  },
+  "careCorrectionReleased": false,
+  "finalJudge": null,
+  "failedApplicationChecks": [
+    {
+      "id": "independent_review",
+      "status": "fail",
+      "detail": "No accepted independent review; clinician assessment is required."
+    }
+  ],
+  "timing": {
+    "firstActionMs": null,
+    "firstQuestionMs": null,
+    "firstPatientReplyMs": null,
+    "finalMs": 37015,
+    "workflowMs": 36993,
+    "tracePersistenceMs": 22
+  },
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 1
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 5933
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 19155
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 17823
+    }
+  ],
+  "modelCalls": 4,
+  "repairs": 0,
+  "agentTimings": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "calls": 1,
+      "durationMs": 2058,
+      "firstTextDeltaMs": 913,
+      "usage": {
+        "inputTokens": 1121,
+        "outputTokens": 181
+      },
+      "failure": null
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "calls": 1,
+      "durationMs": 16021,
+      "firstTextDeltaMs": 2174,
+      "usage": {
+        "inputTokens": 18215,
+        "outputTokens": 898
+      },
+      "failure": null
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "calls": 1,
+      "durationMs": 5929,
+      "firstTextDeltaMs": 1564,
+      "usage": {
+        "inputTokens": 2554,
+        "outputTokens": 180
+      },
+      "failure": null
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "calls": 1,
+      "durationMs": 17810,
+      "firstTextDeltaMs": 2641,
+      "usage": {
+        "inputTokens": 8238,
+        "outputTokens": 841
+      },
+      "failure": "JUDGE_CONTRACT_FAILED"
+    }
+  ],
+  "traceId": "a9750db7b55d266849d3cb82da8bc1f2",
+  "tracePersisted": true,
+  "eventLogPersisted": true,
+  "estimatedUSD": 0.243435,
+  "pricingVersion": "clinical-study-pricing-2026-09-13/v1",
+  "clinicalApproval": false,
+  "limitation": "Exact runtime artifact capture, not an independent observation of browser rendering, patient receipt, clinical correctness or delivered care. All supplied attempts are retained, including failures. Cost is the standard token estimate, not an invoice; embedding and cache-specific charges are not included."
+}

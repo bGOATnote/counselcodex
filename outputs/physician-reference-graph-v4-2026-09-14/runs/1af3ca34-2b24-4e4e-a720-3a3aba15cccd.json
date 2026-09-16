@@ -1,0 +1,2245 @@
+{
+  "status": "complete",
+  "answer": {
+    "disposition": "SAME_DAY_IN_PERSON",
+    "reviewPriority": null,
+    "workType": null,
+    "reason": "62-year-old with diabetes has a 4-day-old plantar wound with surrounding redness, swelling and tenderness — features consistent with an evolving soft-tissue infection in an immunocompromised host at a weight-bearing site. Direct inspection of the wound to judge depth and the extent of infection, plus any wound care or testing the examining clinician judges necessary, cannot be done in a messaging thread today. Absence of subjective fever does not exclude significant diabetic foot infection, and systemic vital signs are unreported. This routing is my clinical inference; the cited ED synthesis lists diabetes as an immunocompromising factor in disposition considerations rather than defining telehealth routing.",
+    "patientMessage": "I recommend you be seen in person today (urgent care, your diabetes/foot clinic, or the ED if nothing else is available) rather than waiting for messaging review; Counsel stays involved in this thread. A red, swollen, tender foot wound in someone with diabetes needs the wound looked at directly to judge depth and how far the infection extends. Go to the ED now if you develop fever, chills, redness spreading up the foot, dusky or black skin, blistering, foul drainage, or feel generally unwell.",
+    "differential": [
+      "Cellulitis/soft-tissue infection around a diabetic foot wound",
+      "Deeper diabetic foot infection with possible abscess or bone involvement",
+      "Less likely: local inflammatory reaction without infection"
+    ],
+    "redFlags": [
+      {
+        "concern": "Fever",
+        "status": "denied",
+        "quote": "No fever"
+      },
+      {
+        "concern": "Redness and swelling around wound in a diabetic patient",
+        "status": "reported",
+        "quote": "the skin around it is red and a little swollen"
+      },
+      {
+        "concern": "Local tenderness",
+        "status": "reported",
+        "quote": "It's tender when I press on it"
+      },
+      {
+        "concern": "Wound depth",
+        "status": "unknown",
+        "quote": "small cut on the bottom of my foot"
+      },
+      {
+        "concern": "Purulent drainage, dusky skin, bullae or crepitus",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Systemic symptoms (chills, confusion, malaise)",
+        "status": "unknown",
+        "quote": ""
+      }
+    ],
+    "vitalSigns": "No vital signs reported. Patient states \"No fever\" but no measured temperature, heart rate, blood pressure, respiratory rate or blood glucose was provided.",
+    "questions": [],
+    "evidenceLimitations": "Available sources are agent-compiled emergency-department reference syntheses, not primary diabetic-foot guidelines or telehealth routing protocols, and currency was not assessed. Wound depth, extent of redness and systemic vital signs are unknown, so infection severity cannot be graded remotely; which examination steps or tests are needed is for the examining clinician to decide.",
+    "evidence": [
+      {
+        "sourceId": "1e2910a911fbc130939384e69d65ce835bb8d47345d2cf9466bf1177a4d612e4",
+        "claim": "This ED synthesis lists diabetes among immunocompromising conditions weighing toward higher-acuity evaluation in skin/soft-tissue infection."
+      },
+      {
+        "sourceId": "8daa75a7be210eb3157a7bcee872d18d640f62717c64833a2abd06e7eb68a105",
+        "claim": "Dusky discoloration is a hard sign of necrotizing infection, supporting the emergency return precaution given."
+      }
+    ]
+  },
+  "origin": "agent",
+  "modelCalls": 6,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "foot wound diabetes cellulitis",
+          "diabetic foot ulcer depth penetration risk",
+          "foot wound systemic signs sepsis"
+        ],
+        "findings": [
+          {
+            "finding": "Diabetic patient with foot wound",
+            "status": "reported",
+            "quote": "I'm diabetic. I got a small cut on the bottom of my foot about 4 days ago"
+          },
+          {
+            "finding": "Erythema around wound",
+            "status": "reported",
+            "quote": "the skin around it is red"
+          },
+          {
+            "finding": "Swelling around wound",
+            "status": "reported",
+            "quote": "a little swollen"
+          },
+          {
+            "finding": "Local tenderness at wound site",
+            "status": "reported",
+            "quote": "It's tender when I press on it"
+          },
+          {
+            "finding": "No fever",
+            "status": "reported",
+            "quote": "No fever"
+          },
+          {
+            "finding": "Wound duration 4 days",
+            "status": "reported",
+            "quote": "about 4 days ago"
+          }
+        ],
+        "question": {
+          "text": "Can you see the bottom of the cut—does it look like it only affects the surface skin, or does it appear deeper?",
+          "why": "Depth of penetration determines risk for serious infection and need for urgent evaluation in a diabetic patient, particularly on a weight-bearing surface.",
+          "quote": "small cut on the bottom of my foot"
+        }
+      },
+      "usage": {
+        "inputTokens": 977,
+        "outputTokens": 263
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1415,
+      "streamProgress": {
+        "lastTextDeltaMs": 4062,
+        "textDeltaCount": 101,
+        "textCharacters": 1058
+      },
+      "durationMs": 4121
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "SAME_DAY_IN_PERSON",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "62-year-old with diabetes has a 4-day-old plantar foot wound with surrounding erythema, swelling and tenderness — features consistent with evolving soft-tissue infection in an immunocompromised host at a weight-bearing site. Assessment of wound depth, probing to bone, drainage/abscess and extent of erythema requires direct inspection and possible wound care/imaging that cannot be done in a messaging thread today. Absence of fever does not exclude significant diabetic foot infection; systemic vital signs are unreported. This is my clinical inference; the cited synthesis lists diabetes as an immunocompromising factor in disposition considerations rather than defining telehealth routing.",
+        "patientMessage": "I recommend you be seen in person today (urgent care, your diabetes/foot clinic, or ED if nothing else is available) rather than waiting for messaging review, and Counsel stays involved in this thread. A spreading red, swollen, tender foot wound in someone with diabetes needs the wound examined and probed for depth. Go to the ED now if you develop fever, chills, rapidly spreading redness, dusky or black skin, blistering, foul drainage, or feel generally unwell.",
+        "differential": [
+          "Cellulitis/soft-tissue infection around a diabetic foot wound",
+          "Deeper diabetic foot infection with possible abscess or bone involvement",
+          "Less likely: local inflammatory reaction without infection"
+        ],
+        "redFlags": [
+          {
+            "concern": "Fever",
+            "status": "denied",
+            "quote": "No fever"
+          },
+          {
+            "concern": "Erythema around wound in a diabetic patient",
+            "status": "reported",
+            "quote": "the skin around it is red and a little swollen"
+          },
+          {
+            "concern": "Local tenderness",
+            "status": "reported",
+            "quote": "It's tender when I press on it"
+          },
+          {
+            "concern": "Wound depth / probing to bone",
+            "status": "unknown",
+            "quote": "small cut on the bottom of my foot"
+          },
+          {
+            "concern": "Purulent drainage, dusky skin, bullae or crepitus",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Systemic symptoms (chills, confusion, malaise)",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported. Patient states \"No fever\" but no measured temperature, heart rate, blood pressure, respiratory rate or blood glucose was provided.",
+        "questions": [],
+        "evidenceLimitations": "Available sources are agent-compiled emergency-department reference syntheses, not primary diabetic-foot guidelines or telehealth routing protocols, and currency was not assessed. Wound depth, extent of erythema and systemic vital signs are unknown, so infection severity cannot be graded remotely.",
+        "citations": [
+          {
+            "passageId": "1e2910a911fbc130939384e69d65ce835bb8d47345d2cf9466bf1177a4d612e4",
+            "quote": "Immunocompromised (diabetes, HIV, transplant, chemotherapy)",
+            "claim": "This ED synthesis lists diabetes among immunocompromising conditions weighing toward higher-acuity evaluation in skin/soft-tissue infection.",
+            "applicability": "uncertain",
+            "limitation": "Listed under inpatient admission criteria for diagnosed cellulitis, not a telehealth triage rule; routing inference here is mine."
+          },
+          {
+            "passageId": "8daa75a7be210eb3157a7bcee872d18d640f62717c64833a2abd06e7eb68a105",
+            "quote": "Skin necrosis or dusky discoloration beyond erythema",
+            "claim": "Dusky discoloration is a hard sign of necrotizing infection, supporting the emergency return precaution given.",
+            "applicability": "applicable",
+            "limitation": "No such feature is reported by this patient; used only for safety-netting."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 11357,
+        "outputTokens": 1282
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1805,
+      "streamProgress": {
+        "lastTextDeltaMs": 20758,
+        "textDeltaCount": 322,
+        "textCharacters": 3455
+      },
+      "durationMs": 20768
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "action": "SAME_DAY_IN_PERSON",
+        "basis": [
+          {
+            "quote": "I got a small cut on the bottom of my foot about 4 days ago and now the skin around it is red and a little swollen",
+            "interpretation": "Diabetic patient with 4-day-old foot wound showing localized inflammation (erythema and edema), requiring direct visualization and assessment for depth, drainage, and early cellulitis in a high-risk anatomic site",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "I'm diabetic",
+            "interpretation": "Diabetes significantly elevates risk for rapid progression of foot infections, tissue compromise, and delayed healing; physical examination is essential to establish baseline severity and guide management today",
+            "currentPatient": true,
+            "present": true
+          }
+        ],
+        "reason": "Diabetic foot wound with progressive local inflammation requires same-day in-person assessment to evaluate depth, perfusion, infection severity, and need for imaging or intervention before escalation risk.",
+        "patientMessage": "",
+        "physicalRequirement": "Direct visualization and palpation of foot wound to assess depth, drainage character, surrounding erythema extent, warmth, and distal perfusion; evaluation for early cellulitis or abscess formation in a patient with diabetes at risk for rapid progression."
+      },
+      "usage": {
+        "inputTokens": 1952,
+        "outputTokens": 289
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1273,
+      "streamProgress": {
+        "lastTextDeltaMs": 8244,
+        "textDeltaCount": 263,
+        "textCharacters": 1270
+      },
+      "durationMs": 8337
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "revise",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Same-day physical assessment addresses a diabetic plantar wound with new local inflammatory findings; the draft does not defer that assessment to messaging.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I'm diabetic."
+              },
+              {
+                "unit": "patient",
+                "quote": "now the skin around it is red and a little swollen"
+              },
+              {
+                "unit": "draft",
+                "quote": "I recommend you be seen in person today"
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "The current wound findings and diabetes justify direct assessment today. Emergency care is offered as a fallback or for concerning changes, rather than unconditional emergency transport.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "small cut on the bottom of my foot"
+              },
+              {
+                "unit": "patient",
+                "quote": "It's tender when I press on it."
+              },
+              {
+                "unit": "draft",
+                "quote": "urgent care, your diabetes/foot clinic, or ED if nothing else is available"
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "fail",
+            "reason": "The patient reports surrounding redness, not spreading redness. The patient-facing description adds an unreported trajectory.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "now the skin around it is red and a little swollen"
+              },
+              {
+                "unit": "draft",
+                "quote": "A spreading red, swollen, tender foot wound"
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "fail",
+            "reason": "The same-day examination inference is reasonable and the source limitations are disclosed. However, the categorical instruction that this small cut needs probing is not established by the supplied evidence. Whether probing or imaging is indicated should be determined by the examining clinician.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "needs the wound examined and probed for depth"
+              },
+              {
+                "unit": "draft",
+                "quote": "Wound depth, extent of erythema and systemic vital signs are unknown"
+              },
+              {
+                "unit": "source:1e2910a911fbc130939384e69d65ce835bb8d47345d2cf9466bf1177a4d612e4",
+                "quote": "Concern for necrotizing fasciitis or deep space infection — surgical consultation and admission"
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "The draft specifies immediate ED assessment for important infectious or tissue-compromise changes while retaining today's examination recommendation.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Go to the ED now if you develop fever, chills, rapidly spreading redness, dusky or black skin, blistering, foul drainage, or feel generally unwell."
+              },
+              {
+                "unit": "source:1e2910a911fbc130939384e69d65ce835bb8d47345d2cf9466bf1177a4d612e4",
+                "quote": "Return immediately for: increasing pain, expanding erythema beyond marks, fever, systemic symptoms, crepitus, skin color change to dusky/purple"
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "The visual-depth question is relevant and nonblocking; no answer is required before seeking today's assessment.",
+            "anchors": [
+              {
+                "unit": "issued_question",
+                "quote": "Can you see the bottom of the cut—does it look like it only affects the surface skin, or does it appear deeper?"
+              },
+              {
+                "unit": "draft",
+                "quote": "rather than waiting for messaging review"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "Counsel remains the intended thread owner without a promised prescription, appointment, response time, or completed handoff.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Counsel stays involved in this thread."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "supported",
+        "earlyCorrection": null,
+        "correction": "Keep the same-day in-person route. Replace 'spreading red' with 'red' to reflect the reported findings. Say the wound needs examination to assess depth and infection extent; leave probing, imaging, and other procedures to the examining clinician rather than declaring them necessary.",
+        "evidenceQueries": []
+      },
+      "usage": {
+        "inputTokens": 6774,
+        "outputTokens": 1134
+      },
+      "failure": null,
+      "firstTextDeltaMs": 4270,
+      "streamProgress": {
+        "lastTextDeltaMs": 21498,
+        "textDeltaCount": 1085,
+        "textCharacters": 4707
+      },
+      "durationMs": 21714
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "SAME_DAY_IN_PERSON",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "62-year-old with diabetes has a 4-day-old plantar wound with surrounding redness, swelling and tenderness — features consistent with an evolving soft-tissue infection in an immunocompromised host at a weight-bearing site. Direct inspection of the wound to judge depth and the extent of infection, plus any wound care or testing the examining clinician judges necessary, cannot be done in a messaging thread today. Absence of subjective fever does not exclude significant diabetic foot infection, and systemic vital signs are unreported. This routing is my clinical inference; the cited ED synthesis lists diabetes as an immunocompromising factor in disposition considerations rather than defining telehealth routing.",
+        "patientMessage": "I recommend you be seen in person today (urgent care, your diabetes/foot clinic, or the ED if nothing else is available) rather than waiting for messaging review; Counsel stays involved in this thread. A red, swollen, tender foot wound in someone with diabetes needs the wound looked at directly to judge depth and how far the infection extends. Go to the ED now if you develop fever, chills, redness spreading up the foot, dusky or black skin, blistering, foul drainage, or feel generally unwell.",
+        "differential": [
+          "Cellulitis/soft-tissue infection around a diabetic foot wound",
+          "Deeper diabetic foot infection with possible abscess or bone involvement",
+          "Less likely: local inflammatory reaction without infection"
+        ],
+        "redFlags": [
+          {
+            "concern": "Fever",
+            "status": "denied",
+            "quote": "No fever"
+          },
+          {
+            "concern": "Redness and swelling around wound in a diabetic patient",
+            "status": "reported",
+            "quote": "the skin around it is red and a little swollen"
+          },
+          {
+            "concern": "Local tenderness",
+            "status": "reported",
+            "quote": "It's tender when I press on it"
+          },
+          {
+            "concern": "Wound depth",
+            "status": "unknown",
+            "quote": "small cut on the bottom of my foot"
+          },
+          {
+            "concern": "Purulent drainage, dusky skin, bullae or crepitus",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Systemic symptoms (chills, confusion, malaise)",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported. Patient states \"No fever\" but no measured temperature, heart rate, blood pressure, respiratory rate or blood glucose was provided.",
+        "questions": [],
+        "evidenceLimitations": "Available sources are agent-compiled emergency-department reference syntheses, not primary diabetic-foot guidelines or telehealth routing protocols, and currency was not assessed. Wound depth, extent of redness and systemic vital signs are unknown, so infection severity cannot be graded remotely; which examination steps or tests are needed is for the examining clinician to decide.",
+        "citations": [
+          {
+            "passageId": "1e2910a911fbc130939384e69d65ce835bb8d47345d2cf9466bf1177a4d612e4",
+            "quote": "Immunocompromised (diabetes, HIV, transplant, chemotherapy)",
+            "claim": "This ED synthesis lists diabetes among immunocompromising conditions weighing toward higher-acuity evaluation in skin/soft-tissue infection.",
+            "applicability": "uncertain",
+            "limitation": "Listed under inpatient admission criteria for diagnosed cellulitis, not a telehealth triage rule; routing inference here is mine."
+          },
+          {
+            "passageId": "8daa75a7be210eb3157a7bcee872d18d640f62717c64833a2abd06e7eb68a105",
+            "quote": "Skin necrosis or dusky discoloration beyond erythema",
+            "claim": "Dusky discoloration is a hard sign of necrotizing infection, supporting the emergency return precaution given.",
+            "applicability": "applicable",
+            "limitation": "No such feature is reported by this patient; used only for safety-netting."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 12921,
+        "outputTokens": 1310
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1398,
+      "streamProgress": {
+        "lastTextDeltaMs": 17612,
+        "textDeltaCount": 275,
+        "textCharacters": 3589
+      },
+      "durationMs": 17631
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "accept",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Same-day direct assessment addresses a potentially infected diabetic foot wound; the draft does not let messaging review delay examination.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I'm diabetic."
+              },
+              {
+                "unit": "patient",
+                "quote": "now the skin around it is red and a little swollen"
+              },
+              {
+                "unit": "draft",
+                "quote": "I recommend you be seen in person today"
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "The plantar wound with new redness, swelling and tenderness supplies a specific reason to assess infection extent and depth today. Emergency care is not the unconditional initial route.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "It's tender when I press on it."
+              },
+              {
+                "unit": "draft",
+                "quote": "Direct inspection of the wound to judge depth and the extent of infection"
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "The draft preserves the reported findings and fever denial while treating wound depth, other symptoms and vital signs as unknown. Deeper infection is presented as a possibility, not an established finding.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "No fever."
+              },
+              {
+                "unit": "draft",
+                "quote": "systemic vital signs are unreported"
+              },
+              {
+                "unit": "draft",
+                "quote": "Deeper diabetic foot infection with possible abscess or bone involvement"
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "The draft explicitly distinguishes its case-specific routing inference from the limited ED synthesis. The supplied passages support increased concern with diabetes and emergency precautions for spreading inflammation, systemic symptoms and concerning skin changes.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "This routing is my clinical inference"
+              },
+              {
+                "unit": "source:1e2910a911fbc130939384e69d65ce835bb8d47345d2cf9466bf1177a4d612e4",
+                "quote": "Immunocompromised (diabetes, HIV, transplant, chemotherapy)"
+              },
+              {
+                "unit": "source:1e2910a911fbc130939384e69d65ce835bb8d47345d2cf9466bf1177a4d612e4",
+                "quote": "Return immediately for: increasing pain, expanding erythema beyond marks, fever, systemic symptoms, crepitus, skin color change to dusky/purple"
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "The advice gives explicit immediate ED escalation for important infectious deterioration while retaining today's examination recommendation.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Go to the ED now if you develop fever, chills, redness spreading up the foot, dusky or black skin, blistering, foul drainage, or feel generally unwell."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "The issued depth question is relevant and does not condition or postpone the same-day assessment.",
+            "anchors": [
+              {
+                "unit": "issued_question",
+                "quote": "Can you see the bottom of the cut—does it look like it only affects the surface skin, or does it appear deeper?"
+              },
+              {
+                "unit": "draft",
+                "quote": "rather than waiting for messaging review"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "Counsel remains the intended thread owner without a promised response time, prescription, accepted handoff or completed follow-up.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Counsel stays involved in this thread."
+              },
+              {
+                "unit": "draft",
+                "quote": "which examination steps or tests are needed is for the examining clinician to decide"
+              }
+            ]
+          }
+        ],
+        "earlyAction": "supported",
+        "earlyCorrection": null,
+        "correction": "",
+        "evidenceQueries": []
+      },
+      "usage": {
+        "inputTokens": 6789,
+        "outputTokens": 995
+      },
+      "failure": null,
+      "firstTextDeltaMs": 3166,
+      "streamProgress": {
+        "lastTextDeltaMs": 17653,
+        "textDeltaCount": 943,
+        "textCharacters": 3920
+      },
+      "durationMs": 18172
+    }
+  ],
+  "guidance": [
+    {
+      "id": "1e2910a911fbc130939384e69d65ce835bb8d47345d2cf9466bf1177a4d612e4",
+      "title": "Cellulitis and Cutaneous Abscess",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/cellulitis-abscess.md",
+      "section": "Disposition",
+      "summary": "### Discharge Criteria\n- Mild cellulitis: immunocompetent, no systemic signs, reliable follow-up\n- Abscess after I&D: pain controlled, no surrounding cellulitis/systemic signs, able to return for wound check in 48-72 hours\n- Prescribe oral antibiotics, wound care instructions, clear return precautions\n\n### Admission Criteria\n- Systemic toxicity (fever, tachycardia, hypotension)\n- Failed outpatient oral antibiotics (progression despite 48-72 hours of therapy)\n- Immunocompromised (diabetes, HIV, transplant, chemotherapy)\n- Extensive cellulitis requiring IV antibiotics\n- Location requiring close monitoring (face, orbit, hand, perineum)\n- Concern for necrotizing fasciitis or deep space infection — surgical consultation and admission\n- Unable to tolerate oral medications\n\n### Follow-Up\n- Wound check 48-72 hours post-I&D\n- Cellulitis re-evaluation at 48-72 hours to assess response (erythema should not extend beyond marked borders)\n- Return immediately for: increasing pain, expanding erythema beyond marks, fever, systemic symptoms, crepitus, skin color change to dusky/purple",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "1e2910a911fbc130939384e69d65ce835bb8d47345d2cf9466bf1177a4d612e4",
+          "sourceId": "openem:cellulitis-abscess",
+          "excerpt": "### Discharge Criteria\n- Mild cellulitis: immunocompetent, no systemic signs, reliable follow-up\n- Abscess after I&D: pain controlled, no surrounding cellulitis/systemic signs, able to return for wound check in 48-72 hours\n- Prescribe oral antibiotics, wound care instructions, clear return precautions\n\n### Admission Criteria\n- Systemic toxicity (fever, tachycardia, hypotension)\n- Failed outpatient oral antibiotics (progression despite 48-72 hours of therapy)\n- Immunocompromised (diabetes, HIV, transplant, chemotherapy)\n- Extensive cellulitis requiring IV antibiotics\n- Location requiring close monitoring (face, orbit, hand, perineum)\n- Concern for necrotizing fasciitis or deep space infection — surgical consultation and admission\n- Unable to tolerate oral medications\n\n### Follow-Up\n- Wound check 48-72 hours post-I&D\n- Cellulitis re-evaluation at 48-72 hours to assess response (erythema should not extend beyond marked borders)\n- Return immediately for: increasing pain, expanding erythema beyond marks, fever, systemic symptoms, crepitus, skin color change to dusky/purple",
+          "excerptSha256": "35767061d7a9459f83c398ef615af197e590863887737761bca8fdd394974fd8",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "7c2265aec9c556a3d0cbe5988d3b8b2e9cc4a35f2781e35ece7b1632ed1e8139",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "18c7dd2b89ea4422b4a626593311212ec3469a03ca4beaf81d9fb392a594127e",
+      "title": "Corneal Ulcer (Infectious Keratitis)",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/corneal-ulcer.md",
+      "section": "Pitfalls",
+      "summary": "1. **Prescribing topical steroids for a corneal ulcer.** Topical steroids dramatically worsen bacterial and fungal keratitis. Steroids may be used ONLY after culture results and under direct ophthalmology supervision. Never initiate from the ED.\n\n2. **Missing Pseudomonas keratitis in a contact lens wearer.** Pseudomonas causes rapid corneal melting and perforation within 24-48 hours. Any contact lens wearer with a painful red eye and corneal infiltrate needs aggressive hourly fluoroquinolone drops and same-day ophthalmology follow-up.\n\n3. **Patching the eye.** Eye patches create a warm, moist, dark environment that promotes bacterial growth. Never patch an infected cornea.\n\n4. **Discharging without explicit instructions for hourly drop administration.** Bacterial keratitis requires drops every 1 hour while awake. Patients who misunderstand this as \"four times a day\" will have treatment failure. Written instructions are essential.\n\n5. **Missing herpes simplex keratitis.** The dendritic ulcer pattern on fluorescein staining is pathognomonic. HSV keratitis requires antiviral therapy (ganciclovir gel or trifluridine drops); antibacterial drops alone will not treat the underlying virus and steroids will worsen it.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "18c7dd2b89ea4422b4a626593311212ec3469a03ca4beaf81d9fb392a594127e",
+          "sourceId": "openem:corneal-ulcer",
+          "excerpt": "1. **Prescribing topical steroids for a corneal ulcer.** Topical steroids dramatically worsen bacterial and fungal keratitis. Steroids may be used ONLY after culture results and under direct ophthalmology supervision. Never initiate from the ED.\n\n2. **Missing Pseudomonas keratitis in a contact lens wearer.** Pseudomonas causes rapid corneal melting and perforation within 24-48 hours. Any contact lens wearer with a painful red eye and corneal infiltrate needs aggressive hourly fluoroquinolone drops and same-day ophthalmology follow-up.\n\n3. **Patching the eye.** Eye patches create a warm, moist, dark environment that promotes bacterial growth. Never patch an infected cornea.\n\n4. **Discharging without explicit instructions for hourly drop administration.** Bacterial keratitis requires drops every 1 hour while awake. Patients who misunderstand this as \"four times a day\" will have treatment failure. Written instructions are essential.\n\n5. **Missing herpes simplex keratitis.** The dendritic ulcer pattern on fluorescein staining is pathognomonic. HSV keratitis requires antiviral therapy (ganciclovir gel or trifluridine drops); antibacterial drops alone will not treat the underlying virus and steroids will worsen it.",
+          "excerptSha256": "8ad30801d7359942984d4e67e8ab037806b53d998d0be6c512b95178c9ade865",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "073ecbae5cff3effe1d9e698335699947b094b18302adba66ad09a247bccd6f4",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "a837f7b74b014993718d93f85e1bd07d24d8de738bee12651b4be396cda3d985",
+      "title": "Pediatric Sepsis",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/pediatric-sepsis.md",
+      "section": "Recognition",
+      "summary": "**Sepsis in children = suspected infection + signs of systemic inflammatory response with organ dysfunction**\n\n**Early signs (do NOT wait for hypotension):**\n- Tachycardia (often the earliest sign — age-adjusted)\n- Tachypnea\n- Altered mental status (irritability, lethargy, poor interaction)\n- Delayed capillary refill > 3 seconds (cold shock) OR flash capillary refill < 1 second (warm shock)\n- Mottled, cool extremities (cold shock) OR bounding pulses, warm flushed skin (warm shock)\n- Decreased urine output (< 1 mL/kg/hr)\n- Fever or hypothermia (hypothermia is ominous in neonates)\n\n**Age-adjusted vital sign thresholds for tachycardia:**\n- Neonate (0-28 days): HR > 180\n- Infant (1-12 months): HR > 180\n- Toddler (1-5 years): HR > 140\n- Child (6-12 years): HR > 130\n- Adolescent (13-18 years): HR > 110\n\n**Hypotension is a LATE sign in children** (5th percentile SBP):\n- Neonate: < 60 mmHg\n- Infant: < 70 mmHg\n- Child 1-10 years: < 70 + (2 x age in years) mmHg\n- Child > 10 years: < 90 mmHg\n\n**High-risk populations:**\n- Neonates (< 28 days), especially preterm\n- Immunocompromised (oncology, transplant, sickle cell, asplenic)\n- Central venous catheter (line sepsis)\n- Recent surgery",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "a837f7b74b014993718d93f85e1bd07d24d8de738bee12651b4be396cda3d985",
+          "sourceId": "openem:pediatric-sepsis",
+          "excerpt": "**Sepsis in children = suspected infection + signs of systemic inflammatory response with organ dysfunction**\n\n**Early signs (do NOT wait for hypotension):**\n- Tachycardia (often the earliest sign — age-adjusted)\n- Tachypnea\n- Altered mental status (irritability, lethargy, poor interaction)\n- Delayed capillary refill > 3 seconds (cold shock) OR flash capillary refill < 1 second (warm shock)\n- Mottled, cool extremities (cold shock) OR bounding pulses, warm flushed skin (warm shock)\n- Decreased urine output (< 1 mL/kg/hr)\n- Fever or hypothermia (hypothermia is ominous in neonates)\n\n**Age-adjusted vital sign thresholds for tachycardia:**\n- Neonate (0-28 days): HR > 180\n- Infant (1-12 months): HR > 180\n- Toddler (1-5 years): HR > 140\n- Child (6-12 years): HR > 130\n- Adolescent (13-18 years): HR > 110\n\n**Hypotension is a LATE sign in children** (5th percentile SBP):\n- Neonate: < 60 mmHg\n- Infant: < 70 mmHg\n- Child 1-10 years: < 70 + (2 x age in years) mmHg\n- Child > 10 years: < 90 mmHg\n\n**High-risk populations:**\n- Neonates (< 28 days), especially preterm\n- Immunocompromised (oncology, transplant, sickle cell, asplenic)\n- Central venous catheter (line sepsis)\n- Recent surgery",
+          "excerptSha256": "7c8e5d0e83fab9224651b286c3e7997a72b060e6bd7e949a6099189873805c27",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "f3afb896417b4b0319064fe225d05b2f5d9976f59c03dce9281dd2b0468e86e3",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "a77519e473211ae63cc35e4cf344a7efd5da11ede02620df371772725a63c695",
+      "title": "Cellulitis and Cutaneous Abscess",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/cellulitis-abscess.md",
+      "section": "Pitfalls",
+      "summary": "acuity, pain with eye movement) requires CT, IV antibiotics, and ophthalmology/ENT consultation. Missed orbital cellulitis leads to vision loss, cavernous sinus thrombosis, or intracranial extension.\n\n7. **Diagnosing cellulitis of bilateral lower extremities.** Bilateral cellulitis is rare. Stasis dermatitis is common and frequently misdiagnosed as cellulitis. Look for chronicity, varicosities, hemosiderin staining, and bilateral involvement.\n\n8. **Not considering Fournier gangrene in perineal pain with systemic toxicity.** Perineal/scrotal/vulvar necrotizing infection progresses rapidly. Any perineal pain with disproportionate tenderness, crepitus, or systemic illness requires emergent surgical evaluation.\n\n9. **Giving clindamycin empirically without knowing local resistance rates.** Inducible clindamycin resistance (positive D-test) in community MRSA ranges 20-50% by region. TMP-SMX or doxycycline are preferred for outpatient MRSA coverage unless local susceptibility data supports clindamycin.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "a77519e473211ae63cc35e4cf344a7efd5da11ede02620df371772725a63c695",
+          "sourceId": "openem:cellulitis-abscess",
+          "excerpt": "acuity, pain with eye movement) requires CT, IV antibiotics, and ophthalmology/ENT consultation. Missed orbital cellulitis leads to vision loss, cavernous sinus thrombosis, or intracranial extension.\n\n7. **Diagnosing cellulitis of bilateral lower extremities.** Bilateral cellulitis is rare. Stasis dermatitis is common and frequently misdiagnosed as cellulitis. Look for chronicity, varicosities, hemosiderin staining, and bilateral involvement.\n\n8. **Not considering Fournier gangrene in perineal pain with systemic toxicity.** Perineal/scrotal/vulvar necrotizing infection progresses rapidly. Any perineal pain with disproportionate tenderness, crepitus, or systemic illness requires emergent surgical evaluation.\n\n9. **Giving clindamycin empirically without knowing local resistance rates.** Inducible clindamycin resistance (positive D-test) in community MRSA ranges 20-50% by region. TMP-SMX or doxycycline are preferred for outpatient MRSA coverage unless local susceptibility data supports clindamycin.",
+          "excerptSha256": "235dbcc10b34ef9fea670e41785824af13c2e67f480e984d81e81be07cd4979f",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "7c2265aec9c556a3d0cbe5988d3b8b2e9cc4a35f2781e35ece7b1632ed1e8139",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "383371da3defa736061b475734f4aba75ab42376a7065db72928a405fad92128",
+      "title": "Peptic Ulcer",
+      "url": "https://medlineplus.gov/pepticulcer.html",
+      "section": "Health-topic summary",
+      "summary": "A peptic ulcer is a sore in the lining of your stomach or your duodenum, the first part of your small intestine. A burning stomach pain is the most common symptom. The pain: \n Starts between meals or during the night \n Briefly stops if you eat or take antacids \n Lasts for minutes to hours \n Comes and goes for several days or weeks \n \n\n Peptic ulcers happen when the acids that help you digest food damage the walls of the stomach or duodenum. The most common cause is infection with a bacterium called Helicobacter pylori . Another cause is the long-term use of nonsteroidal anti-inflammatory medicines (NSAIDs) such as aspirin and ibuprofen. Stress and spicy foods do not cause ulcers, but can make them worse. \n\n To see if you have an H. pylori infection, your doctor will test your blood, breath, or stool. Your doctor also may look inside your stomach and duodenum by doing an endoscopy or x-ray. \n\n Peptic ulcers will get worse if not treated. Treatment may include medicines to reduce stomach acids or antibiotics to kill H. pylori. Antacids and milk can't heal peptic ulcers. Not smoking and avoiding alcohol can help. You may need surgery if your ulcers don't heal. \n\n NIH: National Institute of Diabetes and Digestive and Kidney Diseases",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "383371da3defa736061b475734f4aba75ab42376a7065db72928a405fad92128",
+          "sourceId": "medlineplus:357",
+          "excerpt": "A peptic ulcer is a sore in the lining of your stomach or your duodenum, the first part of your small intestine. A burning stomach pain is the most common symptom. The pain: \n Starts between meals or during the night \n Briefly stops if you eat or take antacids \n Lasts for minutes to hours \n Comes and goes for several days or weeks \n \n\n Peptic ulcers happen when the acids that help you digest food damage the walls of the stomach or duodenum. The most common cause is infection with a bacterium called Helicobacter pylori . Another cause is the long-term use of nonsteroidal anti-inflammatory medicines (NSAIDs) such as aspirin and ibuprofen. Stress and spicy foods do not cause ulcers, but can make them worse. \n\n To see if you have an H. pylori infection, your doctor will test your blood, breath, or stool. Your doctor also may look inside your stomach and duodenum by doing an endoscopy or x-ray. \n\n Peptic ulcers will get worse if not treated. Treatment may include medicines to reduce stomach acids or antibiotics to kill H. pylori. Antacids and milk can't heal peptic ulcers. Not smoking and avoiding alcohol can help. You may need surgery if your ulcers don't heal. \n\n NIH: National Institute of Diabetes and Digestive and Kidney Diseases",
+          "excerptSha256": "ab1cc28a73772d7cdf20e6c9e5f86611a581c3e9fe9c0c76e1b07b08606c04b0",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "c22a98d9bc2318ee19108e8386d46983ef55eb8d071693c2e126060968d32ee7",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "25a30c169746d2097e2f1a59c12dd978dcdcabd191efa43ab715b465a329849a",
+      "title": "Sepsis and Septic Shock",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/sepsis.md",
+      "section": "Recognition",
+      "summary": "### Sepsis-3 Definitions\n\n**Sepsis:** Life-threatening organ dysfunction caused by a dysregulated host response to infection. Operationalized as suspected infection + acute increase in SOFA score >= 2.\n\n**Septic shock:** Sepsis with persistent hypotension requiring vasopressors to maintain MAP >= 65 mmHg AND serum lactate > 2 mmol/L despite adequate volume resuscitation.\n\n### qSOFA (Quick SOFA) - Bedside Screening\n- Respiratory rate >= 22/min\n- Altered mentation (GCS < 15)\n- Systolic BP <= 100 mmHg\n- Score >= 2 associated with poor outcomes; prompts further assessment. Not a diagnostic criterion.\n\n### SOFA Score Components (baseline = 0 for all unless known prior dysfunction)\n- PaO2/FiO2 ratio\n- Platelet count\n- Bilirubin\n- Cardiovascular (MAP and vasopressor requirements)\n- GCS\n- Creatinine or urine output\n\n### Clinical Clues by Source\n| Source | Findings |\n|---|---|\n| Pulmonary | Cough, hypoxia, crackles, consolidation on CXR |\n| Urinary | Dysuria, flank pain, pyuria, CVA tenderness |\n| Abdominal | Tenderness, rigidity, distension, peritoneal signs |\n| Skin/soft tissue | Cellulitis, crepitus, purulent drainage, necrotizing fasciitis |\n| CNS | Meningismus, photophobia, altered mental status |\n| Line-related | Erythema/purulence at catheter site, tunneled line without other source |\n\n### High-Risk Populations\n- Immunosuppressed (transplant, chemotherapy, HIV with CD4 < 200, chronic steroids)\n- Extremes of age (neonates, elderly)\n- Indwelling devices (central lines, urinary catheters, prosthetic joints)\n- Asplenic patients (encapsulated organisms: pneumococcus, meningococcus, H. influenzae)\n- IV drug users (endocarditis, epidural abscess)",
+      "reviewedAt": "2026-02-27",
+      "projectInterpretation": "research_synthesis; upstream_physician_reviewed. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "25a30c169746d2097e2f1a59c12dd978dcdcabd191efa43ab715b465a329849a",
+          "sourceId": "openem:sepsis",
+          "excerpt": "### Sepsis-3 Definitions\n\n**Sepsis:** Life-threatening organ dysfunction caused by a dysregulated host response to infection. Operationalized as suspected infection + acute increase in SOFA score >= 2.\n\n**Septic shock:** Sepsis with persistent hypotension requiring vasopressors to maintain MAP >= 65 mmHg AND serum lactate > 2 mmol/L despite adequate volume resuscitation.\n\n### qSOFA (Quick SOFA) - Bedside Screening\n- Respiratory rate >= 22/min\n- Altered mentation (GCS < 15)\n- Systolic BP <= 100 mmHg\n- Score >= 2 associated with poor outcomes; prompts further assessment. Not a diagnostic criterion.\n\n### SOFA Score Components (baseline = 0 for all unless known prior dysfunction)\n- PaO2/FiO2 ratio\n- Platelet count\n- Bilirubin\n- Cardiovascular (MAP and vasopressor requirements)\n- GCS\n- Creatinine or urine output\n\n### Clinical Clues by Source\n| Source | Findings |\n|---|---|\n| Pulmonary | Cough, hypoxia, crackles, consolidation on CXR |\n| Urinary | Dysuria, flank pain, pyuria, CVA tenderness |\n| Abdominal | Tenderness, rigidity, distension, peritoneal signs |\n| Skin/soft tissue | Cellulitis, crepitus, purulent drainage, necrotizing fasciitis |\n| CNS | Meningismus, photophobia, altered mental status |\n| Line-related | Erythema/purulence at catheter site, tunneled line without other source |\n\n### High-Risk Populations\n- Immunosuppressed (transplant, chemotherapy, HIV with CD4 < 200, chronic steroids)\n- Extremes of age (neonates, elderly)\n- Indwelling devices (central lines, urinary catheters, prosthetic joints)\n- Asplenic patients (encapsulated organisms: pneumococcus, meningococcus, H. influenzae)\n- IV drug users (endocarditis, epidural abscess)",
+          "excerptSha256": "2c17908c2d40e466a62c1ac2890b87f546fa0683a1f972f03e7c5ab0ed0b5c69",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "a3e45738910bed9f07fd211a080992e348b77af56c9765f6a8cd2259246966ec",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "ff120e397abc0ac4233ea7cc0980569db44a89f1daa2cb8193595d308fa6f12a",
+      "title": "Orbital Cellulitis",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/orbital-cellulitis.md",
+      "section": "Pitfalls",
+      "summary": "1. **Misdiagnosing orbital cellulitis as preseptal cellulitis.** Any proptosis, EOM restriction, or vision change mandates CT and IV antibiotics. Oral antibiotics alone for true orbital cellulitis leads to vision loss and intracranial complications.\n\n2. **Failing to obtain CT with contrast.** Non-contrast CT misses early abscess formation and subperiosteal collections. Contrast is essential.\n\n3. **Not performing serial visual acuity checks.** Vision can deteriorate rapidly from optic nerve compression. Declining acuity or a new afferent pupillary defect is a surgical emergency — do not wait for repeat imaging.\n\n4. **Missing intracranial complications.** Cavernous sinus thrombosis presents with bilateral orbital findings, cranial nerve palsies, and meningismus. Requires MRI/MRV and neurosurgical involvement.\n\n5. **Inadequate anaerobic coverage.** Sinus-source orbital cellulitis often involves polymicrobial flora including anaerobes. Omitting metronidazole increases treatment failure risk.\n\n6. **Missing mucormycosis in immunocompromised patients.** Diabetics in DKA or neutropenic patients with orbital cellulitis must be evaluated for invasive fungal sinusitis — requires urgent biopsy and amphotericin B.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "ff120e397abc0ac4233ea7cc0980569db44a89f1daa2cb8193595d308fa6f12a",
+          "sourceId": "openem:orbital-cellulitis",
+          "excerpt": "1. **Misdiagnosing orbital cellulitis as preseptal cellulitis.** Any proptosis, EOM restriction, or vision change mandates CT and IV antibiotics. Oral antibiotics alone for true orbital cellulitis leads to vision loss and intracranial complications.\n\n2. **Failing to obtain CT with contrast.** Non-contrast CT misses early abscess formation and subperiosteal collections. Contrast is essential.\n\n3. **Not performing serial visual acuity checks.** Vision can deteriorate rapidly from optic nerve compression. Declining acuity or a new afferent pupillary defect is a surgical emergency — do not wait for repeat imaging.\n\n4. **Missing intracranial complications.** Cavernous sinus thrombosis presents with bilateral orbital findings, cranial nerve palsies, and meningismus. Requires MRI/MRV and neurosurgical involvement.\n\n5. **Inadequate anaerobic coverage.** Sinus-source orbital cellulitis often involves polymicrobial flora including anaerobes. Omitting metronidazole increases treatment failure risk.\n\n6. **Missing mucormycosis in immunocompromised patients.** Diabetics in DKA or neutropenic patients with orbital cellulitis must be evaluated for invasive fungal sinusitis — requires urgent biopsy and amphotericin B.",
+          "excerptSha256": "167410ccfa00d3622cd49670aece4ba02aafe39ff3ce0803723c19a899404533",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "e1fe869d85251ac8461c0faad50a9db3f394e1c2fe6ad92aae38ccccbbea9a66",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "8daa75a7be210eb3157a7bcee872d18d640f62717c64833a2abd06e7eb68a105",
+      "title": "Necrotizing Fasciitis — Skin Presentation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/necrotizing-fasciitis-skin-presentation.md",
+      "section": "Recognition",
+      "summary": "**Hard signs (any one is sufficient for operative exploration):**\n- Crepitus on palpation (subcutaneous gas)\n- Skin necrosis or dusky discoloration beyond erythema\n- Bullae (hemorrhagic or serous)\n- Gas on imaging (CT or X-ray)\n- Dishwater-gray wound drainage\n- Skin anesthesia within area of erythema (nerve destruction)\n- Rapid progression of erythema despite IV antibiotics\n\n**Soft signs (high suspicion when multiple present):**\n- Pain out of proportion to skin findings (hallmark — most sensitive early sign)\n- Wooden-hard induration of subcutaneous tissue\n- Edema beyond area of erythema\n- Systemic toxicity: high fever, tachycardia, hypotension\n- Failure to improve with 24-48h of appropriate cellulitis antibiotics\n\n**Classification:**\n- **Type I (polymicrobial):** Mixed aerobic/anaerobic flora; occurs in diabetics, post-surgical, perineal (Fournier gangrene)\n- **Type II (monomicrobial):** Group A Streptococcus (most common), Staphylococcus aureus, Vibrio vulnificus; occurs in otherwise healthy patients\n- **Type III:** Clostridial gas gangrene (Clostridium perfringens); rapid gas formation, bronze skin\n\n**LRINEC Score (Laboratory Risk Indicator for Necrotizing Fasciitis):**\n- CRP >= 150 mg/L (+4)\n- WBC 15-25k (+1), > 25k (+2)\n- Hemoglobin < 13.5 (+1), < 11 (+2)\n- Sodium < 135 (+2)\n- Creatinine > 1.6 (+2)\n- Glucose > 180 (+1)\n- Score >= 6: High suspicion; Score >= 8: Strongly predictive\n- NOTE: Low LRINEC does NOT rule out necrotizing fasciitis — clinical judgment supersedes scoring",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "8daa75a7be210eb3157a7bcee872d18d640f62717c64833a2abd06e7eb68a105",
+          "sourceId": "openem:necrotizing-fasciitis-skin-presentation",
+          "excerpt": "**Hard signs (any one is sufficient for operative exploration):**\n- Crepitus on palpation (subcutaneous gas)\n- Skin necrosis or dusky discoloration beyond erythema\n- Bullae (hemorrhagic or serous)\n- Gas on imaging (CT or X-ray)\n- Dishwater-gray wound drainage\n- Skin anesthesia within area of erythema (nerve destruction)\n- Rapid progression of erythema despite IV antibiotics\n\n**Soft signs (high suspicion when multiple present):**\n- Pain out of proportion to skin findings (hallmark — most sensitive early sign)\n- Wooden-hard induration of subcutaneous tissue\n- Edema beyond area of erythema\n- Systemic toxicity: high fever, tachycardia, hypotension\n- Failure to improve with 24-48h of appropriate cellulitis antibiotics\n\n**Classification:**\n- **Type I (polymicrobial):** Mixed aerobic/anaerobic flora; occurs in diabetics, post-surgical, perineal (Fournier gangrene)\n- **Type II (monomicrobial):** Group A Streptococcus (most common), Staphylococcus aureus, Vibrio vulnificus; occurs in otherwise healthy patients\n- **Type III:** Clostridial gas gangrene (Clostridium perfringens); rapid gas formation, bronze skin\n\n**LRINEC Score (Laboratory Risk Indicator for Necrotizing Fasciitis):**\n- CRP >= 150 mg/L (+4)\n- WBC 15-25k (+1), > 25k (+2)\n- Hemoglobin < 13.5 (+1), < 11 (+2)\n- Sodium < 135 (+2)\n- Creatinine > 1.6 (+2)\n- Glucose > 180 (+1)\n- Score >= 6: High suspicion; Score >= 8: Strongly predictive\n- NOTE: Low LRINEC does NOT rule out necrotizing fasciitis — clinical judgment supersedes scoring",
+          "excerptSha256": "12aced83e05febf10ff41dd1296f71c5e3d95d5ae98084016500ef8477d1ba9e",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "6b068545e4add6b54d1d2f75ba5d79ebfab533671d51560b8e13927c7d42578e",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "3a66fde42152bc7625eb7fd251768d5710b7373d03743b171b6824c7bb9de520",
+      "title": "Sepsis and Septic Shock",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/sepsis.md",
+      "section": "Pitfalls",
+      "summary": "1. **Delaying antibiotics to obtain cultures.** Draw cultures, then immediately administer antibiotics. Never wait for culture results, LP results, or imaging before giving antibiotics in septic shock.\n\n2. **Using qSOFA as a diagnostic tool rather than a screening tool.** A qSOFA < 2 does NOT exclude sepsis. It was designed for bedside prognostication, not diagnosis. Use clinical judgment and SOFA scoring.\n\n3. **Attributing altered mental status to \"baseline\" in elderly patients.** Acute confusion is an organ dysfunction marker. Assume sepsis until proven otherwise in elderly patients with altered mentation and any infection risk.\n\n4. **Over-resuscitating with crystalloid without reassessing.** Fluid overload worsens outcomes, especially in ARDS. Reassess with POCUS after every 500-1000 mL. Start vasopressors early if MAP remains < 65 despite 1-2 L.\n\n5. **Failing to identify and control the source.** Antibiotics alone will not resolve undrained abscesses, obstructed viscera, or necrotizing infections. Imaging and surgical consultation are part of first-hour management when source is uncertain.\n\n6. **Not considering occult sources in patients with negative initial workup.** Endocarditis, epidural abscess, prosthetic joint infection, and C. difficile colitis may not be apparent on initial evaluation. Broaden the search when cultures are negative and the patient is not improving.\n\n7. **Underdosing vancomycin.** Use actual body weight for the loading dose (25-30 mg/kg). A 100 kg patient needs 2.5-3 g, not the traditional 1 g.",
+      "reviewedAt": "2026-02-27",
+      "projectInterpretation": "research_synthesis; upstream_physician_reviewed. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "3a66fde42152bc7625eb7fd251768d5710b7373d03743b171b6824c7bb9de520",
+          "sourceId": "openem:sepsis",
+          "excerpt": "1. **Delaying antibiotics to obtain cultures.** Draw cultures, then immediately administer antibiotics. Never wait for culture results, LP results, or imaging before giving antibiotics in septic shock.\n\n2. **Using qSOFA as a diagnostic tool rather than a screening tool.** A qSOFA < 2 does NOT exclude sepsis. It was designed for bedside prognostication, not diagnosis. Use clinical judgment and SOFA scoring.\n\n3. **Attributing altered mental status to \"baseline\" in elderly patients.** Acute confusion is an organ dysfunction marker. Assume sepsis until proven otherwise in elderly patients with altered mentation and any infection risk.\n\n4. **Over-resuscitating with crystalloid without reassessing.** Fluid overload worsens outcomes, especially in ARDS. Reassess with POCUS after every 500-1000 mL. Start vasopressors early if MAP remains < 65 despite 1-2 L.\n\n5. **Failing to identify and control the source.** Antibiotics alone will not resolve undrained abscesses, obstructed viscera, or necrotizing infections. Imaging and surgical consultation are part of first-hour management when source is uncertain.\n\n6. **Not considering occult sources in patients with negative initial workup.** Endocarditis, epidural abscess, prosthetic joint infection, and C. difficile colitis may not be apparent on initial evaluation. Broaden the search when cultures are negative and the patient is not improving.\n\n7. **Underdosing vancomycin.** Use actual body weight for the loading dose (25-30 mg/kg). A 100 kg patient needs 2.5-3 g, not the traditional 1 g.",
+          "excerptSha256": "e003b21e0619a2b8e9872dbed301e9c46138a0a850b8ead29e78975c1d91658a",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "a3e45738910bed9f07fd211a080992e348b77af56c9765f6a8cd2259246966ec",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    }
+  ],
+  "safetyFloor": null,
+  "failure": null,
+  "routingPolicy": "five-route-queue/v2",
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "pass",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "pass",
+      "detail": "Checks explicit timing/destination tokens, not the clinical correctness or complete consistency of the message."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen from a COPD diagnosis alone; targeted medication-instruction check."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "pass",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Cited passage identity and exact quote match; this does not establish claim support or applicability."
+    },
+    {
+      "id": "independent_review",
+      "status": "pass",
+      "detail": "Cross-vendor reviewer accepted this draft against seven criteria. Not physician calibration or clinical approval."
+    }
+  ],
+  "usage": {
+    "inputTokens": 40770,
+    "outputTokens": 5273
+  },
+  "graph": {
+    "version": "evidence-graph/v4",
+    "mode": "hybrid",
+    "context": {
+      "queries": [
+        "foot wound diabetes cellulitis",
+        "diabetic foot ulcer depth penetration risk",
+        "foot wound systemic signs sepsis"
+      ],
+      "findings": [
+        {
+          "finding": "Diabetic patient with foot wound",
+          "status": "reported",
+          "quote": "I'm diabetic. I got a small cut on the bottom of my foot about 4 days ago"
+        },
+        {
+          "finding": "Erythema around wound",
+          "status": "reported",
+          "quote": "the skin around it is red"
+        },
+        {
+          "finding": "Swelling around wound",
+          "status": "reported",
+          "quote": "a little swollen"
+        },
+        {
+          "finding": "Local tenderness at wound site",
+          "status": "reported",
+          "quote": "It's tender when I press on it"
+        },
+        {
+          "finding": "No fever",
+          "status": "reported",
+          "quote": "No fever"
+        },
+        {
+          "finding": "Wound duration 4 days",
+          "status": "reported",
+          "quote": "about 4 days ago"
+        }
+      ],
+      "question": {
+        "text": "Can you see the bottom of the cut—does it look like it only affects the surface skin, or does it appear deeper?",
+        "why": "Depth of penetration determines risk for serious infection and need for urgent evaluation in a diabetic patient, particularly on a weight-bearing surface.",
+        "quote": "small cut on the bottom of my foot"
+      }
+    },
+    "safety": {
+      "action": "SAME_DAY_IN_PERSON",
+      "basis": [
+        {
+          "quote": "I got a small cut on the bottom of my foot about 4 days ago and now the skin around it is red and a little swollen",
+          "interpretation": "Diabetic patient with 4-day-old foot wound showing localized inflammation (erythema and edema), requiring direct visualization and assessment for depth, drainage, and early cellulitis in a high-risk anatomic site",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "I'm diabetic",
+          "interpretation": "Diabetes significantly elevates risk for rapid progression of foot infections, tissue compromise, and delayed healing; physical examination is essential to establish baseline severity and guide management today",
+          "currentPatient": true,
+          "present": true
+        }
+      ],
+      "reason": "Diabetic foot wound with progressive local inflammation requires same-day in-person assessment to evaluate depth, perfusion, infection severity, and need for imaging or intervention before escalation risk.",
+      "patientMessage": "",
+      "physicalRequirement": "Direct visualization and palpation of foot wound to assess depth, drainage character, surrounding erythema extent, warmth, and distal perfusion; evaluation for early cellulitis or abscess formation in a patient with diabetes at risk for rapid progression."
+    },
+    "retrieval": [
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "foot wound diabetes cellulitis",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "1e2910a911fbc130939384e69d65ce835bb8d47345d2cf9466bf1177a4d612e4",
+              "end": 1084,
+              "hash": "35767061d7a9459f83c398ef615af197e590863887737761bca8fdd394974fd8",
+              "text": "### Discharge Criteria\n- Mild cellulitis: immunocompetent, no systemic signs, reliable follow-up\n- Abscess after I&D: pain controlled, no surrounding cellulitis/systemic signs, able to return for wound check in 48-72 hours\n- Prescribe oral antibiotics, wound care instructions, clear return precautions\n\n### Admission Criteria\n- Systemic toxicity (fever, tachycardia, hypotension)\n- Failed outpatient oral antibiotics (progression despite 48-72 hours of therapy)\n- Immunocompromised (diabetes, HIV, transplant, chemotherapy)\n- Extensive cellulitis requiring IV antibiotics\n- Location requiring close monitoring (face, orbit, hand, perineum)\n- Concern for necrotizing fasciitis or deep space infection — surgical consultation and admission\n- Unable to tolerate oral medications\n\n### Follow-Up\n- Wound check 48-72 hours post-I&D\n- Cellulitis re-evaluation at 48-72 hours to assess response (erythema should not extend beyond marked borders)\n- Return immediately for: increasing pain, expanding erythema beyond marks, fever, systemic symptoms, crepitus, skin color change to dusky/purple",
+              "start": 0,
+              "section": 5,
+              "documentId": "openem:cellulitis-abscess",
+              "sectionTitle": "Disposition",
+              "embeddingText": "Cellulitis and Cutaneous Abscess\ncellulitis; skin abscess; SSTI; soft tissue infection; MRSA abscess; skin and soft tissue infection; purulent cellulitis\nDisposition\n### Discharge Criteria\n- Mild cellulitis: immunocompetent, no systemic signs, reliable follow-up\n- Abscess after I&D: pain controlled, no surrounding cellulitis/systemic signs, able to return for wound check in 48-72 hours\n- Prescribe oral antibiotics, wound care instructions, clear return precautions\n\n### Admission Criteria\n- Systemic toxicity (fever, tachycardia, hypotension)\n- Failed outpatient oral antibiotics (progression despite 48-72 hours of therapy)\n- Immunocompromised (diabetes, HIV, transplant, chemotherapy)\n- Extensive cellulitis requiring IV antibiotics\n- Location requiring close monitoring (face, orbit, hand, perineum)\n- Concern for necrotizing fasciitis or deep space infection — surgical consultation and admission\n- Unable to tolerate oral medications\n\n### Follow-Up\n- Wound check 48-72 hours post-I&D\n- Cellulitis re-evaluation at 48-72 hours to assess response (erythema should not extend beyond marked borders)\n- Return immediately for: increasing pain, expanding erythema beyond marks, fever, systemic symptoms, crepitus, skin color change to dusky/purple"
+            },
+            "document": {
+              "id": "openem:cellulitis-abscess",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/cellulitis-abscess.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Cellulitis and Cutaneous Abscess",
+              "aliases": [
+                "cellulitis",
+                "skin abscess",
+                "SSTI",
+                "soft tissue infection",
+                "MRSA abscess",
+                "skin and soft tissue infection",
+                "purulent cellulitis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "7c2265aec9c556a3d0cbe5988d3b8b2e9cc4a35f2781e35ece7b1632ed1e8139",
+              "related": [],
+              "concepts": [
+                "dermatologic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.02877846790890269,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "a77519e473211ae63cc35e4cf344a7efd5da11ede02620df371772725a63c695",
+              "end": 2542,
+              "hash": "235dbcc10b34ef9fea670e41785824af13c2e67f480e984d81e81be07cd4979f",
+              "text": "acuity, pain with eye movement) requires CT, IV antibiotics, and ophthalmology/ENT consultation. Missed orbital cellulitis leads to vision loss, cavernous sinus thrombosis, or intracranial extension.\n\n7. **Diagnosing cellulitis of bilateral lower extremities.** Bilateral cellulitis is rare. Stasis dermatitis is common and frequently misdiagnosed as cellulitis. Look for chronicity, varicosities, hemosiderin staining, and bilateral involvement.\n\n8. **Not considering Fournier gangrene in perineal pain with systemic toxicity.** Perineal/scrotal/vulvar necrotizing infection progresses rapidly. Any perineal pain with disproportionate tenderness, crepitus, or systemic illness requires emergent surgical evaluation.\n\n9. **Giving clindamycin empirically without knowing local resistance rates.** Inducible clindamycin resistance (positive D-test) in community MRSA ranges 20-50% by region. TMP-SMX or doxycycline are preferred for outpatient MRSA coverage unless local susceptibility data supports clindamycin.",
+              "start": 1532,
+              "section": 6,
+              "documentId": "openem:cellulitis-abscess",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Cellulitis and Cutaneous Abscess\ncellulitis; skin abscess; SSTI; soft tissue infection; MRSA abscess; skin and soft tissue infection; purulent cellulitis\nPitfalls\nacuity, pain with eye movement) requires CT, IV antibiotics, and ophthalmology/ENT consultation. Missed orbital cellulitis leads to vision loss, cavernous sinus thrombosis, or intracranial extension.\n\n7. **Diagnosing cellulitis of bilateral lower extremities.** Bilateral cellulitis is rare. Stasis dermatitis is common and frequently misdiagnosed as cellulitis. Look for chronicity, varicosities, hemosiderin staining, and bilateral involvement.\n\n8. **Not considering Fournier gangrene in perineal pain with systemic toxicity.** Perineal/scrotal/vulvar necrotizing infection progresses rapidly. Any perineal pain with disproportionate tenderness, crepitus, or systemic illness requires emergent surgical evaluation.\n\n9. **Giving clindamycin empirically without knowing local resistance rates.** Inducible clindamycin resistance (positive D-test) in community MRSA ranges 20-50% by region. TMP-SMX or doxycycline are preferred for outpatient MRSA coverage unless local susceptibility data supports clindamycin."
+            },
+            "document": {
+              "id": "openem:cellulitis-abscess",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/cellulitis-abscess.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Cellulitis and Cutaneous Abscess",
+              "aliases": [
+                "cellulitis",
+                "skin abscess",
+                "SSTI",
+                "soft tissue infection",
+                "MRSA abscess",
+                "skin and soft tissue infection",
+                "purulent cellulitis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "7c2265aec9c556a3d0cbe5988d3b8b2e9cc4a35f2781e35ece7b1632ed1e8139",
+              "related": [],
+              "concepts": [
+                "dermatologic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.028298204527712725,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "tat or finger to disrupt all septations within the abscess cavity.\n\n6. **Not differentiating orbital from preseptal cellulitis.** Preseptal cellulitis (anterior to orbital septum) is managed with oral antibiotics. Orbital cellulitis (posterior to septum: proptosis, ophthalmoplegia, decreased visual ",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "ff120e397abc0ac4233ea7cc0980569db44a89f1daa2cb8193595d308fa6f12a",
+              "end": 1220,
+              "hash": "167410ccfa00d3622cd49670aece4ba02aafe39ff3ce0803723c19a899404533",
+              "text": "1. **Misdiagnosing orbital cellulitis as preseptal cellulitis.** Any proptosis, EOM restriction, or vision change mandates CT and IV antibiotics. Oral antibiotics alone for true orbital cellulitis leads to vision loss and intracranial complications.\n\n2. **Failing to obtain CT with contrast.** Non-contrast CT misses early abscess formation and subperiosteal collections. Contrast is essential.\n\n3. **Not performing serial visual acuity checks.** Vision can deteriorate rapidly from optic nerve compression. Declining acuity or a new afferent pupillary defect is a surgical emergency — do not wait for repeat imaging.\n\n4. **Missing intracranial complications.** Cavernous sinus thrombosis presents with bilateral orbital findings, cranial nerve palsies, and meningismus. Requires MRI/MRV and neurosurgical involvement.\n\n5. **Inadequate anaerobic coverage.** Sinus-source orbital cellulitis often involves polymicrobial flora including anaerobes. Omitting metronidazole increases treatment failure risk.\n\n6. **Missing mucormycosis in immunocompromised patients.** Diabetics in DKA or neutropenic patients with orbital cellulitis must be evaluated for invasive fungal sinusitis — requires urgent biopsy and amphotericin B.",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:orbital-cellulitis",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Orbital Cellulitis\npostseptal cellulitis; orbital infection; post-septal cellulitis\nPitfalls\n1. **Misdiagnosing orbital cellulitis as preseptal cellulitis.** Any proptosis, EOM restriction, or vision change mandates CT and IV antibiotics. Oral antibiotics alone for true orbital cellulitis leads to vision loss and intracranial complications.\n\n2. **Failing to obtain CT with contrast.** Non-contrast CT misses early abscess formation and subperiosteal collections. Contrast is essential.\n\n3. **Not performing serial visual acuity checks.** Vision can deteriorate rapidly from optic nerve compression. Declining acuity or a new afferent pupillary defect is a surgical emergency — do not wait for repeat imaging.\n\n4. **Missing intracranial complications.** Cavernous sinus thrombosis presents with bilateral orbital findings, cranial nerve palsies, and meningismus. Requires MRI/MRV and neurosurgical involvement.\n\n5. **Inadequate anaerobic coverage.** Sinus-source orbital cellulitis often involves polymicrobial flora including anaerobes. Omitting metronidazole increases treatment failure risk.\n\n6. **Missing mucormycosis in immunocompromised patients.** Diabetics in DKA or neutropenic patients with orbital cellulitis must be evaluated for invasive fungal sinusitis — requires urgent biopsy and amphotericin B."
+            },
+            "document": {
+              "id": "openem:orbital-cellulitis",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/orbital-cellulitis.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Orbital Cellulitis",
+              "aliases": [
+                "postseptal cellulitis",
+                "orbital infection",
+                "post-septal cellulitis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "e1fe869d85251ac8461c0faad50a9db3f394e1c2fe6ad92aae38ccccbbea9a66",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:peritonsillar-abscess",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:cavernous-sinus-thrombosis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:acute-angle-closure-glaucoma",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "infectious"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.02402186421173763,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "553b6348b4f527864b1e7ded6a6b8f3096ec52270b6dc6063b0d8cdee8998d88",
+              "end": 631,
+              "hash": "38ca0ce795444419078a06a889cfb37094a20e1e5521d556a19aa70c6cd52dd2",
+              "text": "Cellulitis is an infection of the skin and deep underlying tissues. Group A strep ( streptococcal ) bacteria are the most common cause. The bacteria enter your body when you get an injury such as a bruise, burn, surgical cut, or wound. \n\n Symptoms include: \n Fever and chills \n Swollen glands or lymph nodes \n A rash with painful, red, tender skin. The skin may blister and scab over. \n \n\n Your health care provider may take a sample or culture from your skin or do a blood test to identify the bacteria causing infection. Treatment is with antibiotics. They may be oral in mild cases, or intravenous (by IV) for more severe cases.",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:1227",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Cellulitis\n\nHealth-topic summary\nCellulitis is an infection of the skin and deep underlying tissues. Group A strep ( streptococcal ) bacteria are the most common cause. The bacteria enter your body when you get an injury such as a bruise, burn, surgical cut, or wound. \n\n Symptoms include: \n Fever and chills \n Swollen glands or lymph nodes \n A rash with painful, red, tender skin. The skin may blister and scab over. \n \n\n Your health care provider may take a sample or culture from your skin or do a blood test to identify the bacteria causing infection. Treatment is with antibiotics. They may be oral in mild cases, or intravenous (by IV) for more severe cases."
+            },
+            "document": {
+              "id": "medlineplus:1227",
+              "url": "https://medlineplus.gov/cellulitis.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Cellulitis",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "c3d55ea7945a79f6fa962b393577df45c2a3a5ba6e9eb66056eb3ade89ac2bf3",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:418",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:421",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Cellulitis"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.022664979970482817,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "5f384d8ea26494d5da6537aede5997543e6f7af05445ead7eaf07bf86dda4483",
+              "end": 787,
+              "hash": "17f9b7836dfb14cc2ea9a6ddbbb68d75d87e7e99916b0a53c50f27399b02958c",
+              "text": "**Presentation:**\n- Unilateral periorbital swelling, erythema, warmth\n- Proptosis (distinguishes orbital from preseptal cellulitis)\n- Pain with extraocular movements (pathognomonic)\n- Ophthalmoplegia, restricted gaze\n- Decreased visual acuity, afferent pupillary defect (optic nerve compromise)\n- Fever, malaise, elevated WBC\n\n**Key distinguishing features from preseptal cellulitis:**\n- Proptosis\n- Painful or restricted extraocular movements\n- Decreased vision\n- Chemosis\n\n**Common etiologies:**\n- Contiguous spread from sinusitis (most common, especially ethmoid)\n- Dental infection, dacryocystitis, skin infection\n- Post-surgical, post-traumatic\n- Organisms: Streptococcus spp., Staphylococcus aureus (including MRSA), Haemophilus influenzae, anaerobes, polymicrobial in older adults",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:orbital-cellulitis",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Orbital Cellulitis\npostseptal cellulitis; orbital infection; post-septal cellulitis\nRecognition\n**Presentation:**\n- Unilateral periorbital swelling, erythema, warmth\n- Proptosis (distinguishes orbital from preseptal cellulitis)\n- Pain with extraocular movements (pathognomonic)\n- Ophthalmoplegia, restricted gaze\n- Decreased visual acuity, afferent pupillary defect (optic nerve compromise)\n- Fever, malaise, elevated WBC\n\n**Key distinguishing features from preseptal cellulitis:**\n- Proptosis\n- Painful or restricted extraocular movements\n- Decreased vision\n- Chemosis\n\n**Common etiologies:**\n- Contiguous spread from sinusitis (most common, especially ethmoid)\n- Dental infection, dacryocystitis, skin infection\n- Post-surgical, post-traumatic\n- Organisms: Streptococcus spp., Staphylococcus aureus (including MRSA), Haemophilus influenzae, anaerobes, polymicrobial in older adults"
+            },
+            "document": {
+              "id": "openem:orbital-cellulitis",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/orbital-cellulitis.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Orbital Cellulitis",
+              "aliases": [
+                "postseptal cellulitis",
+                "orbital infection",
+                "post-septal cellulitis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "e1fe869d85251ac8461c0faad50a9db3f394e1c2fe6ad92aae38ccccbbea9a66",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:peritonsillar-abscess",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:cavernous-sinus-thrombosis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:acute-angle-closure-glaucoma",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "infectious"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.021279003961516697,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 21.294250000006286,
+          "embeddingMs": 418.40841699999874,
+          "vectorMs": 14.159209000004921,
+          "totalMs": 500.8117499999935
+        },
+        "warnings": [],
+        "embeddingTokens": 5,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "diabetic foot ulcer depth penetration risk",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "18c7dd2b89ea4422b4a626593311212ec3469a03ca4beaf81d9fb392a594127e",
+              "end": 1228,
+              "hash": "8ad30801d7359942984d4e67e8ab037806b53d998d0be6c512b95178c9ade865",
+              "text": "1. **Prescribing topical steroids for a corneal ulcer.** Topical steroids dramatically worsen bacterial and fungal keratitis. Steroids may be used ONLY after culture results and under direct ophthalmology supervision. Never initiate from the ED.\n\n2. **Missing Pseudomonas keratitis in a contact lens wearer.** Pseudomonas causes rapid corneal melting and perforation within 24-48 hours. Any contact lens wearer with a painful red eye and corneal infiltrate needs aggressive hourly fluoroquinolone drops and same-day ophthalmology follow-up.\n\n3. **Patching the eye.** Eye patches create a warm, moist, dark environment that promotes bacterial growth. Never patch an infected cornea.\n\n4. **Discharging without explicit instructions for hourly drop administration.** Bacterial keratitis requires drops every 1 hour while awake. Patients who misunderstand this as \"four times a day\" will have treatment failure. Written instructions are essential.\n\n5. **Missing herpes simplex keratitis.** The dendritic ulcer pattern on fluorescein staining is pathognomonic. HSV keratitis requires antiviral therapy (ganciclovir gel or trifluridine drops); antibacterial drops alone will not treat the underlying virus and steroids will worsen it.",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:corneal-ulcer",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Corneal Ulcer (Infectious Keratitis)\nbacterial keratitis; infectious keratitis; corneal ulceration; microbial keratitis\nPitfalls\n1. **Prescribing topical steroids for a corneal ulcer.** Topical steroids dramatically worsen bacterial and fungal keratitis. Steroids may be used ONLY after culture results and under direct ophthalmology supervision. Never initiate from the ED.\n\n2. **Missing Pseudomonas keratitis in a contact lens wearer.** Pseudomonas causes rapid corneal melting and perforation within 24-48 hours. Any contact lens wearer with a painful red eye and corneal infiltrate needs aggressive hourly fluoroquinolone drops and same-day ophthalmology follow-up.\n\n3. **Patching the eye.** Eye patches create a warm, moist, dark environment that promotes bacterial growth. Never patch an infected cornea.\n\n4. **Discharging without explicit instructions for hourly drop administration.** Bacterial keratitis requires drops every 1 hour while awake. Patients who misunderstand this as \"four times a day\" will have treatment failure. Written instructions are essential.\n\n5. **Missing herpes simplex keratitis.** The dendritic ulcer pattern on fluorescein staining is pathognomonic. HSV keratitis requires antiviral therapy (ganciclovir gel or trifluridine drops); antibacterial drops alone will not treat the underlying virus and steroids will worsen it."
+            },
+            "document": {
+              "id": "openem:corneal-ulcer",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/corneal-ulcer.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Corneal Ulcer (Infectious Keratitis)",
+              "aliases": [
+                "bacterial keratitis",
+                "infectious keratitis",
+                "corneal ulceration",
+                "microbial keratitis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "073ecbae5cff3effe1d9e698335699947b094b18302adba66ad09a247bccd6f4",
+              "related": [],
+              "concepts": [
+                "ophthalmologic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.019004930524428507,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "383371da3defa736061b475734f4aba75ab42376a7065db72928a405fad92128",
+              "end": 1248,
+              "hash": "ab1cc28a73772d7cdf20e6c9e5f86611a581c3e9fe9c0c76e1b07b08606c04b0",
+              "text": "A peptic ulcer is a sore in the lining of your stomach or your duodenum, the first part of your small intestine. A burning stomach pain is the most common symptom. The pain: \n Starts between meals or during the night \n Briefly stops if you eat or take antacids \n Lasts for minutes to hours \n Comes and goes for several days or weeks \n \n\n Peptic ulcers happen when the acids that help you digest food damage the walls of the stomach or duodenum. The most common cause is infection with a bacterium called Helicobacter pylori . Another cause is the long-term use of nonsteroidal anti-inflammatory medicines (NSAIDs) such as aspirin and ibuprofen. Stress and spicy foods do not cause ulcers, but can make them worse. \n\n To see if you have an H. pylori infection, your doctor will test your blood, breath, or stool. Your doctor also may look inside your stomach and duodenum by doing an endoscopy or x-ray. \n\n Peptic ulcers will get worse if not treated. Treatment may include medicines to reduce stomach acids or antibiotics to kill H. pylori. Antacids and milk can't heal peptic ulcers. Not smoking and avoiding alcohol can help. You may need surgery if your ulcers don't heal. \n\n NIH: National Institute of Diabetes and Digestive and Kidney Diseases",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:357",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Peptic Ulcer\nDuodenal ulcer; Gastric ulcer; Stomach ulcer; Ulcer\nHealth-topic summary\nA peptic ulcer is a sore in the lining of your stomach or your duodenum, the first part of your small intestine. A burning stomach pain is the most common symptom. The pain: \n Starts between meals or during the night \n Briefly stops if you eat or take antacids \n Lasts for minutes to hours \n Comes and goes for several days or weeks \n \n\n Peptic ulcers happen when the acids that help you digest food damage the walls of the stomach or duodenum. The most common cause is infection with a bacterium called Helicobacter pylori . Another cause is the long-term use of nonsteroidal anti-inflammatory medicines (NSAIDs) such as aspirin and ibuprofen. Stress and spicy foods do not cause ulcers, but can make them worse. \n\n To see if you have an H. pylori infection, your doctor will test your blood, breath, or stool. Your doctor also may look inside your stomach and duodenum by doing an endoscopy or x-ray. \n\n Peptic ulcers will get worse if not treated. Treatment may include medicines to reduce stomach acids or antibiotics to kill H. pylori. Antacids and milk can't heal peptic ulcers. Not smoking and avoiding alcohol can help. You may need surgery if your ulcers don't heal. \n\n NIH: National Institute of Diabetes and Digestive and Kidney Diseases"
+            },
+            "document": {
+              "id": "medlineplus:357",
+              "url": "https://medlineplus.gov/pepticulcer.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Peptic Ulcer",
+              "aliases": [
+                "Duodenal ulcer",
+                "Gastric ulcer",
+                "Stomach ulcer",
+                "Ulcer"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "c22a98d9bc2318ee19108e8386d46983ef55eb8d071693c2e126060968d32ee7",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6078",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:420",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Peptic Ulcer"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.01639344262295082,
+            "channels": [
+              "lexical"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "8daa75a7be210eb3157a7bcee872d18d640f62717c64833a2abd06e7eb68a105",
+              "end": 1504,
+              "hash": "12aced83e05febf10ff41dd1296f71c5e3d95d5ae98084016500ef8477d1ba9e",
+              "text": "**Hard signs (any one is sufficient for operative exploration):**\n- Crepitus on palpation (subcutaneous gas)\n- Skin necrosis or dusky discoloration beyond erythema\n- Bullae (hemorrhagic or serous)\n- Gas on imaging (CT or X-ray)\n- Dishwater-gray wound drainage\n- Skin anesthesia within area of erythema (nerve destruction)\n- Rapid progression of erythema despite IV antibiotics\n\n**Soft signs (high suspicion when multiple present):**\n- Pain out of proportion to skin findings (hallmark — most sensitive early sign)\n- Wooden-hard induration of subcutaneous tissue\n- Edema beyond area of erythema\n- Systemic toxicity: high fever, tachycardia, hypotension\n- Failure to improve with 24-48h of appropriate cellulitis antibiotics\n\n**Classification:**\n- **Type I (polymicrobial):** Mixed aerobic/anaerobic flora; occurs in diabetics, post-surgical, perineal (Fournier gangrene)\n- **Type II (monomicrobial):** Group A Streptococcus (most common), Staphylococcus aureus, Vibrio vulnificus; occurs in otherwise healthy patients\n- **Type III:** Clostridial gas gangrene (Clostridium perfringens); rapid gas formation, bronze skin\n\n**LRINEC Score (Laboratory Risk Indicator for Necrotizing Fasciitis):**\n- CRP >= 150 mg/L (+4)\n- WBC 15-25k (+1), > 25k (+2)\n- Hemoglobin < 13.5 (+1), < 11 (+2)\n- Sodium < 135 (+2)\n- Creatinine > 1.6 (+2)\n- Glucose > 180 (+1)\n- Score >= 6: High suspicion; Score >= 8: Strongly predictive\n- NOTE: Low LRINEC does NOT rule out necrotizing fasciitis — clinical judgment supersedes scoring",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:necrotizing-fasciitis-skin-presentation",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Necrotizing Fasciitis — Skin Presentation\nnecrotizing soft tissue infection; NSTI; flesh-eating disease; necrotizing fasciitis; Fournier gangrene\nRecognition\n**Hard signs (any one is sufficient for operative exploration):**\n- Crepitus on palpation (subcutaneous gas)\n- Skin necrosis or dusky discoloration beyond erythema\n- Bullae (hemorrhagic or serous)\n- Gas on imaging (CT or X-ray)\n- Dishwater-gray wound drainage\n- Skin anesthesia within area of erythema (nerve destruction)\n- Rapid progression of erythema despite IV antibiotics\n\n**Soft signs (high suspicion when multiple present):**\n- Pain out of proportion to skin findings (hallmark — most sensitive early sign)\n- Wooden-hard induration of subcutaneous tissue\n- Edema beyond area of erythema\n- Systemic toxicity: high fever, tachycardia, hypotension\n- Failure to improve with 24-48h of appropriate cellulitis antibiotics\n\n**Classification:**\n- **Type I (polymicrobial):** Mixed aerobic/anaerobic flora; occurs in diabetics, post-surgical, perineal (Fournier gangrene)\n- **Type II (monomicrobial):** Group A Streptococcus (most common), Staphylococcus aureus, Vibrio vulnificus; occurs in otherwise healthy patients\n- **Type III:** Clostridial gas gangrene (Clostridium perfringens); rapid gas formation, bronze skin\n\n**LRINEC Score (Laboratory Risk Indicator for Necrotizing Fasciitis):**\n- CRP >= 150 mg/L (+4)\n- WBC 15-25k (+1), > 25k (+2)\n- Hemoglobin < 13.5 (+1), < 11 (+2)\n- Sodium < 135 (+2)\n- Creatinine > 1.6 (+2)\n- Glucose > 180 (+1)\n- Score >= 6: High suspicion; Score >= 8: Strongly predictive\n- NOTE: Low LRINEC does NOT rule out necrotizing fasciitis — clinical judgment supersedes scoring"
+            },
+            "document": {
+              "id": "openem:necrotizing-fasciitis-skin-presentation",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/necrotizing-fasciitis-skin-presentation.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Necrotizing Fasciitis — Skin Presentation",
+              "aliases": [
+                "necrotizing soft tissue infection",
+                "NSTI",
+                "flesh-eating disease",
+                "necrotizing fasciitis",
+                "Fournier gangrene"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "6b068545e4add6b54d1d2f75ba5d79ebfab533671d51560b8e13927c7d42578e",
+              "related": [],
+              "concepts": [
+                "dermatologic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.01639344262295082,
+            "channels": [
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "28ad1ae755476fbded72699ad6e766757940039fba3d10cbaae1403b7976a6cc",
+              "end": 1489,
+              "hash": "473fa216f0b6b0dedb65559ef20e65790ff6c1e52a48e940bf966a8248af037e",
+              "text": "1. **Treating as simple cellulitis.** Pain out of proportion to skin findings, systemic toxicity, and failure to improve on antibiotics are red flags. If any hard sign is present, proceed directly to operative exploration.\n\n2. **Relying on a low LRINEC score to rule out necrotizing fasciitis.** The LRINEC score has limited sensitivity (~60-80%). Clinical suspicion must override scoring. When in doubt, take the patient to the OR.\n\n3. **Delaying surgery for imaging.** CT and MRI can support the diagnosis but are neither 100% sensitive nor specific. If clinical suspicion is high, operative exploration is both diagnostic and therapeutic. Every hour of surgical delay increases mortality.\n\n4. **Performing a single debridement and declaring the patient treated.** Necrotizing fasciitis requires serial debridements. The infection often extends beyond the initial operative field. Return to OR in 24-48h is standard.\n\n5. **Omitting clindamycin.** Clindamycin inhibits toxin production at the ribosomal level. In GAS and Staphylococcal infections, toxin-mediated tissue destruction continues even after bactericidal antibiotics kill the organism. Clindamycin addresses this mechanism.\n\n6. **Missing Fournier gangrene.** Perineal necrotizing fasciitis (Fournier gangrene) in diabetics or immunocompromised patients may present with subtle perineal pain and scrotal swelling. Digital rectal exam and perineal inspection are essential in patients with perineal/genital complaints and sepsis.",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:necrotizing-fasciitis-skin-presentation",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Necrotizing Fasciitis — Skin Presentation\nnecrotizing soft tissue infection; NSTI; flesh-eating disease; necrotizing fasciitis; Fournier gangrene\nPitfalls\n1. **Treating as simple cellulitis.** Pain out of proportion to skin findings, systemic toxicity, and failure to improve on antibiotics are red flags. If any hard sign is present, proceed directly to operative exploration.\n\n2. **Relying on a low LRINEC score to rule out necrotizing fasciitis.** The LRINEC score has limited sensitivity (~60-80%). Clinical suspicion must override scoring. When in doubt, take the patient to the OR.\n\n3. **Delaying surgery for imaging.** CT and MRI can support the diagnosis but are neither 100% sensitive nor specific. If clinical suspicion is high, operative exploration is both diagnostic and therapeutic. Every hour of surgical delay increases mortality.\n\n4. **Performing a single debridement and declaring the patient treated.** Necrotizing fasciitis requires serial debridements. The infection often extends beyond the initial operative field. Return to OR in 24-48h is standard.\n\n5. **Omitting clindamycin.** Clindamycin inhibits toxin production at the ribosomal level. In GAS and Staphylococcal infections, toxin-mediated tissue destruction continues even after bactericidal antibiotics kill the organism. Clindamycin addresses this mechanism.\n\n6. **Missing Fournier gangrene.** Perineal necrotizing fasciitis (Fournier gangrene) in diabetics or immunocompromised patients may present with subtle perineal pain and scrotal swelling. Digital rectal exam and perineal inspection are essential in patients with perineal/genital complaints and sepsis."
+            },
+            "document": {
+              "id": "openem:necrotizing-fasciitis-skin-presentation",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/necrotizing-fasciitis-skin-presentation.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Necrotizing Fasciitis — Skin Presentation",
+              "aliases": [
+                "necrotizing soft tissue infection",
+                "NSTI",
+                "flesh-eating disease",
+                "necrotizing fasciitis",
+                "Fournier gangrene"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "6b068545e4add6b54d1d2f75ba5d79ebfab533671d51560b8e13927c7d42578e",
+              "related": [],
+              "concepts": [
+                "dermatologic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.016129032258064516,
+            "channels": [
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "44b16e086891c208ec39a43ad7ee57046a037854bb46a8ce585603b74f02d4f1",
+              "end": 3211,
+              "hash": "643f90cccaaeff89f10fb87975799e8edae2e8841857f49b8a0e707603c0a1ca",
+              "text": " What causes diabetes? \n The different types of diabetes have different causes: \n \n Researchers think type 1 diabetes is caused by genes and factors in the environment that might trigger the disease. \n Type 2 diabetes is caused by several factors, including lifestyle factors and genes . The lifestyle factors include not being physically active and being overweight or having obesity . \n Researchers think gestational diabetes is caused by the hormonal changes of pregnancy along with genetic and lifestyle factors. \n \n\n Who is more likely to develop diabetes? \n The different types of diabetes have different risk factors: \n \n You can develop type 1 diabetes at any age, but it most often starts in childhood. Having a parent or sibling with type 1 diabetes may increase your chance of developing it. \n You are at higher risk of developing type 2 diabetes if you: \n \n Are overweight or have obesity. \n Are over age 35. Children, teenagers, and younger adults can get diabetes, but it is more common in middle-aged and older adults. \n Have a family history of diabetes. \n Have prediabetes . This means that your blood glucose is higher than normal, but it's not high enough to be called diabetes. \n Had gestational diabetes. \n Have given birth to a baby weighing 9 pounds or more. \n Are African American, American Indian, Asian American, Hispanic/Latino, or Pacific Islander. \n Are not physically active. \n Have certain other health conditions, such as high blood pressure or polycystic ovary syndrome (PCOS). \n \n\n You are at higher risk of developing gestational diabetes if you: \n \n Are overweight or have obesity. \n Have a family history of diabetes. \n Had gestational diabetes in a previous pregnancy. \n Have given birth to a baby weighing 9 pounds or more. ",
+              "start": 1448,
+              "section": 0,
+              "documentId": "medlineplus:4",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Diabetes\nDM; Diabetes mellitus\nHealth-topic summary\n What causes diabetes? \n The different types of diabetes have different causes: \n \n Researchers think type 1 diabetes is caused by genes and factors in the environment that might trigger the disease. \n Type 2 diabetes is caused by several factors, including lifestyle factors and genes . The lifestyle factors include not being physically active and being overweight or having obesity . \n Researchers think gestational diabetes is caused by the hormonal changes of pregnancy along with genetic and lifestyle factors. \n \n\n Who is more likely to develop diabetes? \n The different types of diabetes have different risk factors: \n \n You can develop type 1 diabetes at any age, but it most often starts in childhood. Having a parent or sibling with type 1 diabetes may increase your chance of developing it. \n You are at higher risk of developing type 2 diabetes if you: \n \n Are overweight or have obesity. \n Are over age 35. Children, teenagers, and younger adults can get diabetes, but it is more common in middle-aged and older adults. \n Have a family history of diabetes. \n Have prediabetes . This means that your blood glucose is higher than normal, but it's not high enough to be called diabetes. \n Had gestational diabetes. \n Have given birth to a baby weighing 9 pounds or more. \n Are African American, American Indian, Asian American, Hispanic/Latino, or Pacific Islander. \n Are not physically active. \n Have certain other health conditions, such as high blood pressure or polycystic ovary syndrome (PCOS). \n \n\n You are at higher risk of developing gestational diabetes if you: \n \n Are overweight or have obesity. \n Have a family history of diabetes. \n Had gestational diabetes in a previous pregnancy. \n Have given birth to a baby weighing 9 pounds or more. "
+            },
+            "document": {
+              "id": "medlineplus:4",
+              "url": "https://medlineplus.gov/diabetes.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Diabetes",
+              "aliases": [
+                "DM",
+                "Diabetes mellitus"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "00e2c716e3d13ace98dfe193226171830506c94d6a5c366772b2a750ccdbd135",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6308",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6121",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1408",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4567",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6026",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4935",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1339",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5930",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3048",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1340",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1341",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6011",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1559",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1465",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6125",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1264",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1511",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:352",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5784",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Diabetes Mellitus"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.016129032258064516,
+            "channels": [
+              "lexical"
+            ],
+            "context": {
+              "before": " be able to make insulin, but your cells don't respond well to insulin. They can't easily take up enough glucose from your blood. \n Gestational diabetes . This is a form of diabetes that develops during pregnancy. It happens when your body can't make the extra insulin it needs during pregnancy. \n \n\n",
+              "after": "\n Have polycystic ovary syndrome (PCOS). \n Are African American, Hispanic/Latino, American Indian, Alaska Native, Native Hawaiian, or Pacific Islander. \n \n\n \n\n What are the symptoms of diabetes? \n The symptoms of diabetes may include: \n \n Feeling very thirsty \n Feeling very hungry \n Urinating (peein"
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 46.225625000020955,
+          "embeddingMs": 431.79075000001467,
+          "vectorMs": 10.406665999995312,
+          "totalMs": 511.68600000001607
+        },
+        "warnings": [],
+        "embeddingTokens": 7,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "foot wound systemic signs sepsis",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "a837f7b74b014993718d93f85e1bd07d24d8de738bee12651b4be396cda3d985",
+              "end": 1189,
+              "hash": "7c8e5d0e83fab9224651b286c3e7997a72b060e6bd7e949a6099189873805c27",
+              "text": "**Sepsis in children = suspected infection + signs of systemic inflammatory response with organ dysfunction**\n\n**Early signs (do NOT wait for hypotension):**\n- Tachycardia (often the earliest sign — age-adjusted)\n- Tachypnea\n- Altered mental status (irritability, lethargy, poor interaction)\n- Delayed capillary refill > 3 seconds (cold shock) OR flash capillary refill < 1 second (warm shock)\n- Mottled, cool extremities (cold shock) OR bounding pulses, warm flushed skin (warm shock)\n- Decreased urine output (< 1 mL/kg/hr)\n- Fever or hypothermia (hypothermia is ominous in neonates)\n\n**Age-adjusted vital sign thresholds for tachycardia:**\n- Neonate (0-28 days): HR > 180\n- Infant (1-12 months): HR > 180\n- Toddler (1-5 years): HR > 140\n- Child (6-12 years): HR > 130\n- Adolescent (13-18 years): HR > 110\n\n**Hypotension is a LATE sign in children** (5th percentile SBP):\n- Neonate: < 60 mmHg\n- Infant: < 70 mmHg\n- Child 1-10 years: < 70 + (2 x age in years) mmHg\n- Child > 10 years: < 90 mmHg\n\n**High-risk populations:**\n- Neonates (< 28 days), especially preterm\n- Immunocompromised (oncology, transplant, sickle cell, asplenic)\n- Central venous catheter (line sepsis)\n- Recent surgery",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:pediatric-sepsis",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Pediatric Sepsis\npediatric severe sepsis; pediatric septic shock; neonatal sepsis; childhood sepsis\nRecognition\n**Sepsis in children = suspected infection + signs of systemic inflammatory response with organ dysfunction**\n\n**Early signs (do NOT wait for hypotension):**\n- Tachycardia (often the earliest sign — age-adjusted)\n- Tachypnea\n- Altered mental status (irritability, lethargy, poor interaction)\n- Delayed capillary refill > 3 seconds (cold shock) OR flash capillary refill < 1 second (warm shock)\n- Mottled, cool extremities (cold shock) OR bounding pulses, warm flushed skin (warm shock)\n- Decreased urine output (< 1 mL/kg/hr)\n- Fever or hypothermia (hypothermia is ominous in neonates)\n\n**Age-adjusted vital sign thresholds for tachycardia:**\n- Neonate (0-28 days): HR > 180\n- Infant (1-12 months): HR > 180\n- Toddler (1-5 years): HR > 140\n- Child (6-12 years): HR > 130\n- Adolescent (13-18 years): HR > 110\n\n**Hypotension is a LATE sign in children** (5th percentile SBP):\n- Neonate: < 60 mmHg\n- Infant: < 70 mmHg\n- Child 1-10 years: < 70 + (2 x age in years) mmHg\n- Child > 10 years: < 90 mmHg\n\n**High-risk populations:**\n- Neonates (< 28 days), especially preterm\n- Immunocompromised (oncology, transplant, sickle cell, asplenic)\n- Central venous catheter (line sepsis)\n- Recent surgery"
+            },
+            "document": {
+              "id": "openem:pediatric-sepsis",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/pediatric-sepsis.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Pediatric Sepsis",
+              "aliases": [
+                "pediatric severe sepsis",
+                "pediatric septic shock",
+                "neonatal sepsis",
+                "childhood sepsis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "f3afb896417b4b0319064fe225d05b2f5d9976f59c03dce9281dd2b0468e86e3",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:sepsis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:diabetic-ketoacidosis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:kawasaki-disease",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "pediatric"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03177805800756621,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "25a30c169746d2097e2f1a59c12dd978dcdcabd191efa43ab715b465a329849a",
+              "end": 1665,
+              "hash": "2c17908c2d40e466a62c1ac2890b87f546fa0683a1f972f03e7c5ab0ed0b5c69",
+              "text": "### Sepsis-3 Definitions\n\n**Sepsis:** Life-threatening organ dysfunction caused by a dysregulated host response to infection. Operationalized as suspected infection + acute increase in SOFA score >= 2.\n\n**Septic shock:** Sepsis with persistent hypotension requiring vasopressors to maintain MAP >= 65 mmHg AND serum lactate > 2 mmol/L despite adequate volume resuscitation.\n\n### qSOFA (Quick SOFA) - Bedside Screening\n- Respiratory rate >= 22/min\n- Altered mentation (GCS < 15)\n- Systolic BP <= 100 mmHg\n- Score >= 2 associated with poor outcomes; prompts further assessment. Not a diagnostic criterion.\n\n### SOFA Score Components (baseline = 0 for all unless known prior dysfunction)\n- PaO2/FiO2 ratio\n- Platelet count\n- Bilirubin\n- Cardiovascular (MAP and vasopressor requirements)\n- GCS\n- Creatinine or urine output\n\n### Clinical Clues by Source\n| Source | Findings |\n|---|---|\n| Pulmonary | Cough, hypoxia, crackles, consolidation on CXR |\n| Urinary | Dysuria, flank pain, pyuria, CVA tenderness |\n| Abdominal | Tenderness, rigidity, distension, peritoneal signs |\n| Skin/soft tissue | Cellulitis, crepitus, purulent drainage, necrotizing fasciitis |\n| CNS | Meningismus, photophobia, altered mental status |\n| Line-related | Erythema/purulence at catheter site, tunneled line without other source |\n\n### High-Risk Populations\n- Immunosuppressed (transplant, chemotherapy, HIV with CD4 < 200, chronic steroids)\n- Extremes of age (neonates, elderly)\n- Indwelling devices (central lines, urinary catheters, prosthetic joints)\n- Asplenic patients (encapsulated organisms: pneumococcus, meningococcus, H. influenzae)\n- IV drug users (endocarditis, epidural abscess)",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:sepsis",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Sepsis and Septic Shock\nsepsis; septic shock; severe sepsis; systemic infection; SIRS with infection\nRecognition\n### Sepsis-3 Definitions\n\n**Sepsis:** Life-threatening organ dysfunction caused by a dysregulated host response to infection. Operationalized as suspected infection + acute increase in SOFA score >= 2.\n\n**Septic shock:** Sepsis with persistent hypotension requiring vasopressors to maintain MAP >= 65 mmHg AND serum lactate > 2 mmol/L despite adequate volume resuscitation.\n\n### qSOFA (Quick SOFA) - Bedside Screening\n- Respiratory rate >= 22/min\n- Altered mentation (GCS < 15)\n- Systolic BP <= 100 mmHg\n- Score >= 2 associated with poor outcomes; prompts further assessment. Not a diagnostic criterion.\n\n### SOFA Score Components (baseline = 0 for all unless known prior dysfunction)\n- PaO2/FiO2 ratio\n- Platelet count\n- Bilirubin\n- Cardiovascular (MAP and vasopressor requirements)\n- GCS\n- Creatinine or urine output\n\n### Clinical Clues by Source\n| Source | Findings |\n|---|---|\n| Pulmonary | Cough, hypoxia, crackles, consolidation on CXR |\n| Urinary | Dysuria, flank pain, pyuria, CVA tenderness |\n| Abdominal | Tenderness, rigidity, distension, peritoneal signs |\n| Skin/soft tissue | Cellulitis, crepitus, purulent drainage, necrotizing fasciitis |\n| CNS | Meningismus, photophobia, altered mental status |\n| Line-related | Erythema/purulence at catheter site, tunneled line without other source |\n\n### High-Risk Populations\n- Immunosuppressed (transplant, chemotherapy, HIV with CD4 < 200, chronic steroids)\n- Extremes of age (neonates, elderly)\n- Indwelling devices (central lines, urinary catheters, prosthetic joints)\n- Asplenic patients (encapsulated organisms: pneumococcus, meningococcus, H. influenzae)\n- IV drug users (endocarditis, epidural abscess)"
+            },
+            "document": {
+              "id": "openem:sepsis",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/sepsis.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Sepsis and Septic Shock",
+              "aliases": [
+                "sepsis",
+                "septic shock",
+                "severe sepsis",
+                "systemic infection",
+                "SIRS with infection"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "a3e45738910bed9f07fd211a080992e348b77af56c9765f6a8cd2259246966ec",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:anaphylaxis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:diabetic-ketoacidosis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:adrenal-crisis",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "infectious"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.03149801587301587,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "3a66fde42152bc7625eb7fd251768d5710b7373d03743b171b6824c7bb9de520",
+              "end": 1547,
+              "hash": "e003b21e0619a2b8e9872dbed301e9c46138a0a850b8ead29e78975c1d91658a",
+              "text": "1. **Delaying antibiotics to obtain cultures.** Draw cultures, then immediately administer antibiotics. Never wait for culture results, LP results, or imaging before giving antibiotics in septic shock.\n\n2. **Using qSOFA as a diagnostic tool rather than a screening tool.** A qSOFA < 2 does NOT exclude sepsis. It was designed for bedside prognostication, not diagnosis. Use clinical judgment and SOFA scoring.\n\n3. **Attributing altered mental status to \"baseline\" in elderly patients.** Acute confusion is an organ dysfunction marker. Assume sepsis until proven otherwise in elderly patients with altered mentation and any infection risk.\n\n4. **Over-resuscitating with crystalloid without reassessing.** Fluid overload worsens outcomes, especially in ARDS. Reassess with POCUS after every 500-1000 mL. Start vasopressors early if MAP remains < 65 despite 1-2 L.\n\n5. **Failing to identify and control the source.** Antibiotics alone will not resolve undrained abscesses, obstructed viscera, or necrotizing infections. Imaging and surgical consultation are part of first-hour management when source is uncertain.\n\n6. **Not considering occult sources in patients with negative initial workup.** Endocarditis, epidural abscess, prosthetic joint infection, and C. difficile colitis may not be apparent on initial evaluation. Broaden the search when cultures are negative and the patient is not improving.\n\n7. **Underdosing vancomycin.** Use actual body weight for the loading dose (25-30 mg/kg). A 100 kg patient needs 2.5-3 g, not the traditional 1 g.",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:sepsis",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Sepsis and Septic Shock\nsepsis; septic shock; severe sepsis; systemic infection; SIRS with infection\nPitfalls\n1. **Delaying antibiotics to obtain cultures.** Draw cultures, then immediately administer antibiotics. Never wait for culture results, LP results, or imaging before giving antibiotics in septic shock.\n\n2. **Using qSOFA as a diagnostic tool rather than a screening tool.** A qSOFA < 2 does NOT exclude sepsis. It was designed for bedside prognostication, not diagnosis. Use clinical judgment and SOFA scoring.\n\n3. **Attributing altered mental status to \"baseline\" in elderly patients.** Acute confusion is an organ dysfunction marker. Assume sepsis until proven otherwise in elderly patients with altered mentation and any infection risk.\n\n4. **Over-resuscitating with crystalloid without reassessing.** Fluid overload worsens outcomes, especially in ARDS. Reassess with POCUS after every 500-1000 mL. Start vasopressors early if MAP remains < 65 despite 1-2 L.\n\n5. **Failing to identify and control the source.** Antibiotics alone will not resolve undrained abscesses, obstructed viscera, or necrotizing infections. Imaging and surgical consultation are part of first-hour management when source is uncertain.\n\n6. **Not considering occult sources in patients with negative initial workup.** Endocarditis, epidural abscess, prosthetic joint infection, and C. difficile colitis may not be apparent on initial evaluation. Broaden the search when cultures are negative and the patient is not improving.\n\n7. **Underdosing vancomycin.** Use actual body weight for the loading dose (25-30 mg/kg). A 100 kg patient needs 2.5-3 g, not the traditional 1 g."
+            },
+            "document": {
+              "id": "openem:sepsis",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/sepsis.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Sepsis and Septic Shock",
+              "aliases": [
+                "sepsis",
+                "septic shock",
+                "severe sepsis",
+                "systemic infection",
+                "SIRS with infection"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "a3e45738910bed9f07fd211a080992e348b77af56c9765f6a8cd2259246966ec",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:anaphylaxis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:diabetic-ketoacidosis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:adrenal-crisis",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "infectious"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.029877369007803793,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "31459d57f4954f331b2aa770447919cb9767da12d87628bfd5aa5c21ce2ce80b",
+              "end": 1756,
+              "hash": "a8a40033a00858a5418a12bc420571452d5b5586bce6080e25611cf4eed9b253",
+              "text": "What is sepsis? \n Sepsis is your body's overactive and extreme response to an infection . Sepsis is a life-threatening medical emergency. Without quick treatment, it can lead to tissue damage, organ failure, and even death. \n\n What causes sepsis? \n Sepsis happens when an infection you already have triggers a chain reaction throughout your body. Bacterial infections are the most common cause, but other types of infections can also cause it. \n\n The infections are often in the lungs, stomach, kidneys, or bladder. It's possible for sepsis to begin with a small cut that gets infected or with an infection that develops after surgery. Sometimes, sepsis can occur in people who didn't even know that they had an infection. \n\n Who is more likely to develop sepsis? \n Anyone with an infection could get sepsis. But certain people are more likely to develop it: \n Adults 65 or older \n People with chronic (long-lasting) conditions, such as diabetes , lung disease , cancer , and kidney disease \n People with weakened immune systems \n Pregnant women \n Children younger than one \n \n\n What are the symptoms of sepsis? \n Sepsis can cause one or more of these symptoms: \n Rapid breathing and heart rate \n Shortness of breath \n Confusion or disorientation \n Extreme pain or discomfort \n Fever , shivering, or feeling very cold \n Clammy or sweaty skin \n \n\n It's important to get medical care right away if you think you might have sepsis or if your infection is not getting better or is getting worse. \n\n What other problems can sepsis cause? \n Severe cases of sepsis can lead to septic shock, where your blood pressure drops to a dangerous level and multiple organs can fail. \n\n How is sepsis diagnosed? \n To find out if you have sepsis, your health care provider: ",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:3210",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Sepsis\n\nHealth-topic summary\nWhat is sepsis? \n Sepsis is your body's overactive and extreme response to an infection . Sepsis is a life-threatening medical emergency. Without quick treatment, it can lead to tissue damage, organ failure, and even death. \n\n What causes sepsis? \n Sepsis happens when an infection you already have triggers a chain reaction throughout your body. Bacterial infections are the most common cause, but other types of infections can also cause it. \n\n The infections are often in the lungs, stomach, kidneys, or bladder. It's possible for sepsis to begin with a small cut that gets infected or with an infection that develops after surgery. Sometimes, sepsis can occur in people who didn't even know that they had an infection. \n\n Who is more likely to develop sepsis? \n Anyone with an infection could get sepsis. But certain people are more likely to develop it: \n Adults 65 or older \n People with chronic (long-lasting) conditions, such as diabetes , lung disease , cancer , and kidney disease \n People with weakened immune systems \n Pregnant women \n Children younger than one \n \n\n What are the symptoms of sepsis? \n Sepsis can cause one or more of these symptoms: \n Rapid breathing and heart rate \n Shortness of breath \n Confusion or disorientation \n Extreme pain or discomfort \n Fever , shivering, or feeling very cold \n Clammy or sweaty skin \n \n\n It's important to get medical care right away if you think you might have sepsis or if your infection is not getting better or is getting worse. \n\n What other problems can sepsis cause? \n Severe cases of sepsis can lead to septic shock, where your blood pressure drops to a dangerous level and multiple organs can fail. \n\n How is sepsis diagnosed? \n To find out if you have sepsis, your health care provider: "
+            },
+            "document": {
+              "id": "medlineplus:3210",
+              "url": "https://medlineplus.gov/sepsis.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Sepsis",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "f3071b29e9166274f43d6aa3aa5bc9cc45c07e69973eaa4296a3befe2f5569e4",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:158",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Sepsis"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.029513888888888888,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n Will take your medical history, which includes asking about your symptoms \n Will do a physical exam, which includes checking vital signs (your temperature, blood pressure, heart rate, and breathing) \n Will likely order lab tests that check for signs of infection or organ damage \n May order imaging"
+            }
+          },
+          {
+            "chunk": {
+              "id": "6a42ff3d3b1189078c4acfa14baa4a876ab1d1670cc0ae4be6e112ebec2ea4ba",
+              "end": 786,
+              "hash": "13672509aa59d2f234fba38e609d1079efc4a985f4c6b66a10f6874765d93cbc",
+              "text": "- **Blood cultures x 2** (before antibiotics)\n- **CBC with differential:** leukocytosis or leukopenia, bandemia, thrombocytopenia\n- **BMP:** electrolytes, glucose, BUN, creatinine\n- **Lactate:** elevated > 2 mmol/L supports tissue hypoperfusion\n- **VBG/ABG:** acidosis (metabolic > respiratory)\n- **CRP, procalcitonin:** markers of bacterial infection (procalcitonin > 2 ng/mL supports bacterial sepsis)\n- **Coagulation studies:** PT, INR, fibrinogen, D-dimer (DIC screening)\n- **Urinalysis and urine culture**\n- **CSF analysis** (neonates < 28 days and febrile infants < 60 days — only if stable enough for LP; do NOT delay antibiotics for LP)\n- **Chest X-ray** if respiratory symptoms present\n- **Point-of-care ultrasound:** IVC collapsibility (fluid responsiveness), cardiac function",
+              "start": 0,
+              "section": 3,
+              "documentId": "openem:pediatric-sepsis",
+              "sectionTitle": "Workup",
+              "embeddingText": "Pediatric Sepsis\npediatric severe sepsis; pediatric septic shock; neonatal sepsis; childhood sepsis\nWorkup\n- **Blood cultures x 2** (before antibiotics)\n- **CBC with differential:** leukocytosis or leukopenia, bandemia, thrombocytopenia\n- **BMP:** electrolytes, glucose, BUN, creatinine\n- **Lactate:** elevated > 2 mmol/L supports tissue hypoperfusion\n- **VBG/ABG:** acidosis (metabolic > respiratory)\n- **CRP, procalcitonin:** markers of bacterial infection (procalcitonin > 2 ng/mL supports bacterial sepsis)\n- **Coagulation studies:** PT, INR, fibrinogen, D-dimer (DIC screening)\n- **Urinalysis and urine culture**\n- **CSF analysis** (neonates < 28 days and febrile infants < 60 days — only if stable enough for LP; do NOT delay antibiotics for LP)\n- **Chest X-ray** if respiratory symptoms present\n- **Point-of-care ultrasound:** IVC collapsibility (fluid responsiveness), cardiac function"
+            },
+            "document": {
+              "id": "openem:pediatric-sepsis",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/pediatric-sepsis.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Pediatric Sepsis",
+              "aliases": [
+                "pediatric severe sepsis",
+                "pediatric septic shock",
+                "neonatal sepsis",
+                "childhood sepsis"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "f3afb896417b4b0319064fe225d05b2f5d9976f59c03dce9281dd2b0468e86e3",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:sepsis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:diabetic-ketoacidosis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:kawasaki-disease",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "pediatric"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.025987006496751626,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 66.18983399998979,
+          "embeddingMs": 499.2909159999981,
+          "vectorMs": 10.316583000007086,
+          "totalMs": 580.2468750000116
+        },
+        "warnings": [],
+        "embeddingTokens": 7,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "accept",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "Same-day direct assessment addresses a potentially infected diabetic foot wound; the draft does not let messaging review delay examination.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I'm diabetic."
+            },
+            {
+              "unit": "patient",
+              "quote": "now the skin around it is red and a little swollen"
+            },
+            {
+              "unit": "draft",
+              "quote": "I recommend you be seen in person today"
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "The plantar wound with new redness, swelling and tenderness supplies a specific reason to assess infection extent and depth today. Emergency care is not the unconditional initial route.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "It's tender when I press on it."
+            },
+            {
+              "unit": "draft",
+              "quote": "Direct inspection of the wound to judge depth and the extent of infection"
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "The draft preserves the reported findings and fever denial while treating wound depth, other symptoms and vital signs as unknown. Deeper infection is presented as a possibility, not an established finding.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "No fever."
+            },
+            {
+              "unit": "draft",
+              "quote": "systemic vital signs are unreported"
+            },
+            {
+              "unit": "draft",
+              "quote": "Deeper diabetic foot infection with possible abscess or bone involvement"
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "pass",
+          "reason": "The draft explicitly distinguishes its case-specific routing inference from the limited ED synthesis. The supplied passages support increased concern with diabetes and emergency precautions for spreading inflammation, systemic symptoms and concerning skin changes.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "This routing is my clinical inference"
+            },
+            {
+              "unit": "source:1e2910a911fbc130939384e69d65ce835bb8d47345d2cf9466bf1177a4d612e4",
+              "quote": "Immunocompromised (diabetes, HIV, transplant, chemotherapy)"
+            },
+            {
+              "unit": "source:1e2910a911fbc130939384e69d65ce835bb8d47345d2cf9466bf1177a4d612e4",
+              "quote": "Return immediately for: increasing pain, expanding erythema beyond marks, fever, systemic symptoms, crepitus, skin color change to dusky/purple"
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "pass",
+          "reason": "The advice gives explicit immediate ED escalation for important infectious deterioration while retaining today's examination recommendation.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Go to the ED now if you develop fever, chills, redness spreading up the foot, dusky or black skin, blistering, foul drainage, or feel generally unwell."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "The issued depth question is relevant and does not condition or postpone the same-day assessment.",
+          "anchors": [
+            {
+              "unit": "issued_question",
+              "quote": "Can you see the bottom of the cut—does it look like it only affects the surface skin, or does it appear deeper?"
+            },
+            {
+              "unit": "draft",
+              "quote": "rather than waiting for messaging review"
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "Counsel remains the intended thread owner without a promised response time, prescription, accepted handoff or completed follow-up.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Counsel stays involved in this thread."
+            },
+            {
+              "unit": "draft",
+              "quote": "which examination steps or tests are needed is for the examining clinician to decide"
+            }
+          ]
+        }
+      ],
+      "earlyAction": "supported",
+      "earlyCorrection": null,
+      "correction": "",
+      "evidenceQueries": []
+    },
+    "release": "model_reviewed",
+    "clinicalApproval": false,
+    "corrections": 1,
+    "careCorrectionReleased": false,
+    "sourceIntegrity": true,
+    "citations": [
+      {
+        "passageId": "1e2910a911fbc130939384e69d65ce835bb8d47345d2cf9466bf1177a4d612e4",
+        "quote": "Immunocompromised (diabetes, HIV, transplant, chemotherapy)",
+        "claim": "This ED synthesis lists diabetes among immunocompromising conditions weighing toward higher-acuity evaluation in skin/soft-tissue infection.",
+        "applicability": "uncertain",
+        "limitation": "Listed under inpatient admission criteria for diagnosed cellulitis, not a telehealth triage rule; routing inference here is mine."
+      },
+      {
+        "passageId": "8daa75a7be210eb3157a7bcee872d18d640f62717c64833a2abd06e7eb68a105",
+        "quote": "Skin necrosis or dusky discoloration beyond erythema",
+        "claim": "Dusky discoloration is a hard sign of necrotizing infection, supporting the emergency return precaution given.",
+        "applicability": "applicable",
+        "limitation": "No such feature is reported by this patient; used only for safety-netting."
+      }
+    ]
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "clinical-evidence-graph",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "1af3ca34-2b24-4e4e-a720-3a3aba15cccd",
+  "traceId": "eb2e57c4bc5e20ce16860cd19e0f0b04",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "62F, I'm diabetic. I got a small cut on the bottom of my foot about 4 days ago and now the skin around it is red and a little swollen. No fever. It's tender when I press on it.",
+  "inputHash": "4d307ea5fff71d10992dfebb600c1d805c5bbc88fef2a39c94515cf4eb8855d1",
+  "answerHash": "88c9408d5f3d30902181fbe1be9f68a4869d4db240bcb567463db2e853f2400c",
+  "promptHash": "59954258cc9db8b3328bb62ece52015709913252bf88312381f9f8b8c70fd122",
+  "guidanceHash": "0340fce3b11f2c32d153bbf644e2db6d9b8451566b3e67bf51d48042c1736761",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-14T03:17:48.433Z",
+  "durationMs": 83213,
+  "workflowDurationMs": 83068,
+  "tracePersistenceDurationMs": 145,
+  "steps": [
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 8349
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 25499
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 57549
+    }
+  ],
+  "responseEvents": [
+    {
+      "kind": "intake_question",
+      "questionId": "adaptive-332ef97e07fe114e",
+      "quote": "small cut on the bottom of my foot",
+      "text": "Can you see the bottom of the cut—does it look like it only affects the surface skin, or does it appear deeper?",
+      "why": "Depth of penetration determines risk for serious infection and need for urgent evaluation in a diabetic patient, particularly on a weight-bearing surface.",
+      "decisionChanging": false,
+      "elapsedMs": 4135,
+      "sequence": 1,
+      "runId": "1af3ca34-2b24-4e4e-a720-3a3aba15cccd"
+    },
+    {
+      "kind": "action",
+      "notice": {
+        "disposition": "SAME_DAY_IN_PERSON",
+        "directive": "Arrange an in-person assessment today. Do not wait for an asynchronous reply.",
+        "source": "emergency_agent"
+      },
+      "elapsedMs": 8349,
+      "sequence": 2
+    },
+    {
+      "kind": "patient_reply",
+      "disposition": "SAME_DAY_IN_PERSON",
+      "text": "I recommend you be seen in person today (urgent care, your diabetes/foot clinic, or the ED if nothing else is available) rather than waiting for messaging review; Counsel stays involved in this thread. A red, swollen, tender foot wound in someone with diabetes needs the wound looked at directly to judge depth and how far the infection extends. Go to the ED now if you develop fever, chills, redness spreading up the foot, dusky or black skin, blistering, foul drainage, or feel generally unwell.",
+      "elapsedMs": 83050,
+      "sequence": 3
+    }
+  ],
+  "safetyNotices": [
+    {
+      "disposition": "SAME_DAY_IN_PERSON",
+      "directive": "Arrange an in-person assessment today. Do not wait for an asynchronous reply.",
+      "source": "emergency_agent"
+    }
+  ],
+  "firstActionMs": 8349,
+  "firstPatientReplyMs": 83050,
+  "firstQuestionMs": 4135
+}

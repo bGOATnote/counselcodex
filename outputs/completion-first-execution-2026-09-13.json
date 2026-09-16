@@ -1,0 +1,399 @@
+{
+  "version": "completion-first-execution-incident/v1",
+  "date": "2026-09-13",
+  "purpose": "Timeout-policy repair; not a clinical efficacy evaluation",
+  "sourceHead": "6fb2cef0df3ada4920611d45aaf1ea9cf056e06f",
+  "workflow": "adaptive-disposition/v41",
+  "policy": {
+    "version": "completion-first/v1",
+    "modelTimeoutMs": 600000,
+    "reviewTimeoutMs": 600000,
+    "reviewStaleAfterMs": 720000,
+    "heartbeatMs": 15000
+  },
+  "recovery": {
+    "version": "sequential-recovery/v2",
+    "attemptTimeoutMs": 600000,
+    "retryDelayMs": 1000,
+    "maxAttempts": 2
+  },
+  "verification": {
+    "rootTests": 347,
+    "guiTests": 127,
+    "lint": "pass",
+    "typecheck": "pass",
+    "nextBuild": "pass",
+    "mastraBuild": "pass (network-enabled retry; initial dependency installation stalled)"
+  },
+  "wallClockTest": {
+    "kind": "synthetic delayed provider through production handler, recovery and GUI decoder; no browser/TCP or model-latency claim",
+    "command": "npm run reliability:long-response",
+    "injectedDelayMs": 110000,
+    "actualFinalReceivedMs": 110015,
+    "keepaliveReceivedMs": [
+      15014,
+      30015,
+      45017,
+      60018,
+      75019,
+      90020,
+      105020
+    ],
+    "providerCalls": 0,
+    "attempts": 1,
+    "exactResponsePreserved": true,
+    "passed": true
+  },
+  "liveGui": {
+    "cases": 4,
+    "completed": 4,
+    "failures": 0,
+    "providerCalls": 12,
+    "finalMs": [
+      18205,
+      19889,
+      18170,
+      19293
+    ],
+    "judgeCompleted": 4,
+    "judgeConcerns": [
+      "c39f084c-4d20-4fb1-899f-cfa1d5009eef"
+    ],
+    "allAttemptsRetained": true,
+    "emergencyVisibleWhilePending": true
+  },
+  "cost": {
+    "generationEstimateUsd": 0.317456,
+    "judgeEstimateUsd": 0.44675,
+    "totalEstimateUsd": 0.764206,
+    "unknownUsageCalls": 0,
+    "method": "Repository standard token prices, not an invoice; caching discounts not assumed; no provider credit or historical ledger reset"
+  },
+  "knownLimitations": [
+    "No repeated-model reliability or clinical efficacy claim from four GUI runs.",
+    "Live retrieval varies and was not a paired clinical ablation.",
+    "C50 background judge flagged conditional emergency advice for focal neurologic symptoms as insufficiently explicit about 911/ED; retained, not relabeled as pass.",
+    "Background judge is not physician-calibrated. No-flags is not clinical approval.",
+    "Source coverage and clinical guideline applicability remain separate unresolved quality work.",
+    "GUI disconnect cancels; job resumption after disconnect or process restart is not implemented.",
+    "Ten-minute request allowance is not a latency target or guarantee of completion."
+  ],
+  "rows": [
+    {
+      "runId": "b3bc8a22-4a72-4799-9ae9-f8c4b48e0203",
+      "completedAt": "2026-09-13T15:13:14.729Z",
+      "artifactSha256": "15843500cbe182211847395d4301616a42461cddb964ea01dcaa2b7b07ad3de9",
+      "status": "complete",
+      "failure": null,
+      "durationMs": 18205,
+      "firstActionMs": null,
+      "firstPatientReplyMs": 18159,
+      "route": "ASYNC_PHYSICIAN",
+      "priority": "routine",
+      "tracePersisted": true,
+      "artifactPersisted": true,
+      "eventLogPersisted": true,
+      "modelCalls": 2,
+      "generation": {
+        "effort": "medium",
+        "maxOutputTokens": 2400,
+        "execution": {
+          "version": "completion-first/v1",
+          "modelTimeoutMs": 600000,
+          "reviewTimeoutMs": 600000,
+          "reviewStaleAfterMs": 720000,
+          "heartbeatMs": 15000
+        },
+        "recovery": {
+          "version": "sequential-recovery/v2",
+          "attemptTimeoutMs": 600000,
+          "retryDelayMs": 1000,
+          "maxAttempts": 2
+        }
+      },
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "modelCalls": 1,
+          "failure": null,
+          "durationMs": 1896,
+          "usage": {
+            "inputTokens": 2807,
+            "outputTokens": 76
+          }
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "failure": null,
+          "durationMs": 14034,
+          "usage": {
+            "inputTokens": 10780,
+            "outputTokens": 896
+          },
+          "attempt": {
+            "number": 1,
+            "offsetMs": 0,
+            "selected": true,
+            "policy": "sequential-recovery/v2"
+          }
+        }
+      ],
+      "judge": {
+        "state": "complete",
+        "startedAt": "2026-09-13T15:13:14.738Z",
+        "finishedAt": "2026-09-13T15:13:33.862Z",
+        "durationMs": 19121,
+        "usage": {
+          "inputTokens": 3880,
+          "outputTokens": 1262
+        },
+        "estimatedUsd": 0.1019,
+        "outcome": "no_flags",
+        "error": null,
+        "tracePersisted": true
+      },
+      "case": "C15",
+      "browserFinalReceiptRoundedMs": 18230
+    },
+    {
+      "runId": "dcaae60d-ad07-4339-9777-4e5bc5596087",
+      "completedAt": "2026-09-13T15:14:05.739Z",
+      "artifactSha256": "8e5c45a6f6467e295733ed88c9ffc464b863e83ff358a6e93aabf3600f9c59eb",
+      "status": "complete",
+      "failure": null,
+      "durationMs": 19889,
+      "firstActionMs": null,
+      "firstPatientReplyMs": 19824,
+      "route": "ASYNC_PHYSICIAN",
+      "priority": "routine",
+      "tracePersisted": true,
+      "artifactPersisted": true,
+      "eventLogPersisted": true,
+      "modelCalls": 2,
+      "generation": {
+        "effort": "medium",
+        "maxOutputTokens": 2400,
+        "execution": {
+          "version": "completion-first/v1",
+          "modelTimeoutMs": 600000,
+          "reviewTimeoutMs": 600000,
+          "reviewStaleAfterMs": 720000,
+          "heartbeatMs": 15000
+        },
+        "recovery": {
+          "version": "sequential-recovery/v2",
+          "attemptTimeoutMs": 600000,
+          "retryDelayMs": 1000,
+          "maxAttempts": 2
+        }
+      },
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "modelCalls": 1,
+          "failure": null,
+          "durationMs": 3655,
+          "usage": {
+            "inputTokens": 2882,
+            "outputTokens": 74
+          }
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "failure": null,
+          "durationMs": 14060,
+          "usage": {
+            "inputTokens": 10528,
+            "outputTokens": 885
+          },
+          "attempt": {
+            "number": 1,
+            "offsetMs": 0,
+            "selected": true,
+            "policy": "sequential-recovery/v2"
+          }
+        }
+      ],
+      "judge": {
+        "state": "complete",
+        "startedAt": "2026-09-13T15:14:05.748Z",
+        "finishedAt": "2026-09-13T15:14:23.504Z",
+        "durationMs": 17757,
+        "usage": {
+          "inputTokens": 4163,
+          "outputTokens": 1243
+        },
+        "estimatedUsd": 0.10378,
+        "outcome": "no_flags",
+        "error": null,
+        "tracePersisted": true
+      },
+      "case": "C15 follow-up (contact six weeks ago)",
+      "browserFinalReceiptRoundedMs": 19900
+    },
+    {
+      "runId": "2caba702-f8d8-47d8-b3aa-76e65d338e8f",
+      "completedAt": "2026-09-13T15:15:29.828Z",
+      "artifactSha256": "625a309c969ab0bb8af0320dc6f6ff7ac97b25b0eeaac29c56d7633cfaaa7f3c",
+      "status": "complete",
+      "failure": null,
+      "durationMs": 18170,
+      "firstActionMs": 7,
+      "firstPatientReplyMs": 18129,
+      "route": "EMERGENCY_NOW",
+      "priority": null,
+      "tracePersisted": true,
+      "artifactPersisted": true,
+      "eventLogPersisted": true,
+      "modelCalls": 2,
+      "generation": {
+        "effort": "medium",
+        "maxOutputTokens": 2400,
+        "execution": {
+          "version": "completion-first/v1",
+          "modelTimeoutMs": 600000,
+          "reviewTimeoutMs": 600000,
+          "reviewStaleAfterMs": 720000,
+          "heartbeatMs": 15000
+        },
+        "recovery": {
+          "version": "sequential-recovery/v2",
+          "attemptTimeoutMs": 600000,
+          "retryDelayMs": 1000,
+          "maxAttempts": 2
+        }
+      },
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "modelCalls": 1,
+          "failure": null,
+          "durationMs": 3617,
+          "usage": {
+            "inputTokens": 2859,
+            "outputTokens": 78
+          }
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "failure": null,
+          "durationMs": 12353,
+          "usage": {
+            "inputTokens": 10678,
+            "outputTokens": 900
+          },
+          "attempt": {
+            "number": 1,
+            "offsetMs": 0,
+            "selected": true,
+            "policy": "sequential-recovery/v2"
+          }
+        }
+      ],
+      "judge": {
+        "state": "complete",
+        "startedAt": "2026-09-13T15:15:29.836Z",
+        "finishedAt": "2026-09-13T15:15:50.911Z",
+        "durationMs": 21075,
+        "usage": {
+          "inputTokens": 3785,
+          "outputTokens": 1429
+        },
+        "estimatedUsd": 0.1093,
+        "outcome": "no_flags",
+        "error": null,
+        "tracePersisted": true
+      },
+      "case": "C02",
+      "browserFinalReceiptRoundedMs": 18180
+    },
+    {
+      "runId": "c39f084c-4d20-4fb1-899f-cfa1d5009eef",
+      "completedAt": "2026-09-13T15:17:30.811Z",
+      "artifactSha256": "ab1c956b1d672c9384ec9e1ff969113876b84c6767e15ea728d81009bdeb7d87",
+      "status": "complete",
+      "failure": null,
+      "durationMs": 19293,
+      "firstActionMs": null,
+      "firstPatientReplyMs": 19244,
+      "route": "ASYNC_PHYSICIAN",
+      "priority": "priority",
+      "tracePersisted": true,
+      "artifactPersisted": true,
+      "eventLogPersisted": true,
+      "modelCalls": 2,
+      "generation": {
+        "effort": "medium",
+        "maxOutputTokens": 2400,
+        "execution": {
+          "version": "completion-first/v1",
+          "modelTimeoutMs": 600000,
+          "reviewTimeoutMs": 600000,
+          "reviewStaleAfterMs": 720000,
+          "heartbeatMs": 15000
+        },
+        "recovery": {
+          "version": "sequential-recovery/v2",
+          "attemptTimeoutMs": 600000,
+          "retryDelayMs": 1000,
+          "maxAttempts": 2
+        }
+      },
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "modelCalls": 1,
+          "failure": null,
+          "durationMs": 3613,
+          "usage": {
+            "inputTokens": 2843,
+            "outputTokens": 75
+          }
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "failure": null,
+          "durationMs": 13639,
+          "usage": {
+            "inputTokens": 10794,
+            "outputTokens": 945
+          },
+          "attempt": {
+            "number": 1,
+            "offsetMs": 0,
+            "selected": true,
+            "policy": "sequential-recovery/v2"
+          }
+        }
+      ],
+      "judge": {
+        "state": "complete",
+        "startedAt": "2026-09-13T15:17:30.820Z",
+        "finishedAt": "2026-09-13T15:17:56.936Z",
+        "durationMs": 26116,
+        "usage": {
+          "inputTokens": 4952,
+          "outputTokens": 1645
+        },
+        "estimatedUsd": 0.13177,
+        "outcome": "concerns",
+        "error": null,
+        "tracePersisted": true
+      },
+      "case": "C50",
+      "browserFinalReceiptRoundedMs": 19310
+    }
+  ]
+}

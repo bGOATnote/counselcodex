@@ -1,0 +1,2267 @@
+{
+  "status": "review_required",
+  "answer": {
+    "disposition": "EMERGENCY_NOW",
+    "reviewPriority": null,
+    "workType": null,
+    "reason": "The automated assessment needs clinician review; this is a conservative workflow fallback, not a new clinical finding.",
+    "patientMessage": "Call 911 now. Do not drive yourself or wait for a message reply.",
+    "differential": [],
+    "redFlags": [],
+    "vitalSigns": "The automated assessment has not established the vital-sign context.",
+    "questions": [],
+    "evidence": [],
+    "evidenceLimitations": "No model-reviewed clinical explanation has been released. The draft and review outcome are retained for clinician assessment."
+  },
+  "origin": "validation_safeguard",
+  "modelCalls": 4,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "chest pressure left arm sweating nausea",
+          "cardiac risk factors hyperlipidemia",
+          "acute coronary syndrome"
+        ],
+        "findings": [
+          {
+            "finding": "Crushing chest pressure, central location",
+            "status": "reported",
+            "quote": "crushing pressure in the center of my chest"
+          },
+          {
+            "finding": "Chest pressure duration 30 minutes",
+            "status": "reported",
+            "quote": "for the last 30 minutes"
+          },
+          {
+            "finding": "Left arm radiation",
+            "status": "reported",
+            "quote": "going into my left arm"
+          },
+          {
+            "finding": "Diaphoresis",
+            "status": "reported",
+            "quote": "feel sweaty"
+          },
+          {
+            "finding": "Nausea",
+            "status": "reported",
+            "quote": "a bit sick to my stomach"
+          },
+          {
+            "finding": "High cholesterol",
+            "status": "reported",
+            "quote": "have high cholesterol"
+          }
+        ],
+        "question": null
+      },
+      "usage": {
+        "inputTokens": 1028,
+        "outputTokens": 207
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1262,
+      "streamProgress": {
+        "lastTextDeltaMs": 3378,
+        "textDeltaCount": 80,
+        "textCharacters": 736
+      },
+      "durationMs": 3439
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "EMERGENCY_NOW",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "45-year-old man with 30 minutes of ongoing crushing central chest pressure radiating to the left arm, with diaphoresis and nausea — a presentation requiring immediate emergency evaluation for acute coronary syndrome. 911 has already been activated and the ambulance is en route.",
+        "patientMessage": "Stay with your current plan — the ambulance is on the way; do not drive yourself and do not delay. Unlock your door, sit or lie down, and stay near your phone. Your ongoing crushing chest pressure with arm radiation, sweating and nausea can signal a heart attack and needs emergency assessment now. If you feel faint, collapse, or the ambulance is delayed, call 911 back immediately.",
+        "differential": [
+          "Acute coronary syndrome (STEMI/NSTEMI) given pressure-type pain, arm radiation, diaphoresis",
+          "Aortic dissection or pulmonary embolism as alternative life-threatening chest pain causes",
+          "Non-cardiac causes (reflux, musculoskeletal) — cannot be assumed without emergency workup"
+        ],
+        "redFlags": [
+          {
+            "concern": "Crushing central chest pressure, ongoing",
+            "status": "reported",
+            "quote": "crushing pressure in the center of my chest"
+          },
+          {
+            "concern": "Radiation to left arm",
+            "status": "reported",
+            "quote": "going into my left arm"
+          },
+          {
+            "concern": "Diaphoresis",
+            "status": "reported",
+            "quote": "I feel sweaty"
+          },
+          {
+            "concern": "Nausea",
+            "status": "reported",
+            "quote": "a bit sick to my stomach"
+          },
+          {
+            "concern": "Symptoms persisting >20 minutes",
+            "status": "reported",
+            "quote": "for the last 30 minutes"
+          },
+          {
+            "concern": "Ongoing symptoms at time of message",
+            "status": "reported",
+            "quote": "the chest pressure is still present"
+          },
+          {
+            "concern": "Shortness of breath",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Syncope or collapse",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported: no blood pressure, heart rate, oxygen saturation or temperature provided. Absence of measurements does not reduce the concern; EMS can obtain them on arrival.",
+        "questions": [],
+        "evidenceLimitations": "Available sources are an agent-compiled ED reference synthesis and consumer health summaries, not primary guidelines or telehealth protocols; they support symptom recognition and urgency but not a diagnosis. No examination, ECG or troponin data are available remotely.",
+        "citations": [
+          {
+            "passageId": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+            "quote": "Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath.",
+            "claim": "Consumer guidance advises immediate medical care for crushing chest pressure with nausea and sweating.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary; general safety advice, not individualized diagnosis."
+          },
+          {
+            "passageId": "19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+            "quote": "- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)",
+            "claim": "Chest pain lasting more than 20 minutes is described as concerning for acute coronary syndrome.",
+            "applicability": "applicable",
+            "limitation": "Agent-compiled ED synthesis, not a primary guideline; duration alone is not diagnostic."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 18452,
+        "outputTokens": 1146
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1375,
+      "streamProgress": {
+        "lastTextDeltaMs": 17082,
+        "textDeltaCount": 263,
+        "textCharacters": 2958
+      },
+      "durationMs": 17098,
+      "rawOutput": {
+        "disposition": "EMERGENCY_NOW",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "45-year-old man with 30 minutes of ongoing crushing central chest pressure radiating to the left arm, with diaphoresis and nausea — a presentation requiring immediate emergency evaluation for acute coronary syndrome. 911 has already been activated and the ambulance is en route.",
+        "patientMessage": "Stay with your current plan — the ambulance is on the way; do not drive yourself and do not delay. Unlock your door, sit or lie down, and stay near your phone. Your ongoing crushing chest pressure with arm radiation, sweating and nausea can signal a heart attack and needs emergency assessment now. If you feel faint, collapse, or the ambulance is delayed, call 911 back immediately.",
+        "differential": [
+          "Acute coronary syndrome (STEMI/NSTEMI) given pressure-type pain, arm radiation, diaphoresis",
+          "Aortic dissection or pulmonary embolism as alternative life-threatening chest pain causes",
+          "Non-cardiac causes (reflux, musculoskeletal) — cannot be assumed without emergency workup"
+        ],
+        "redFlags": [
+          {
+            "concern": "Crushing central chest pressure, ongoing",
+            "status": "reported",
+            "quote": "crushing pressure in the center of my chest"
+          },
+          {
+            "concern": "Radiation to left arm",
+            "status": "reported",
+            "quote": "going into my left arm"
+          },
+          {
+            "concern": "Diaphoresis",
+            "status": "reported",
+            "quote": "I feel sweaty"
+          },
+          {
+            "concern": "Nausea",
+            "status": "reported",
+            "quote": "a bit sick to my stomach"
+          },
+          {
+            "concern": "Symptoms persisting >20 minutes",
+            "status": "reported",
+            "quote": "for the last 30 minutes"
+          },
+          {
+            "concern": "Ongoing symptoms at time of message",
+            "status": "reported",
+            "quote": "the chest pressure is still present"
+          },
+          {
+            "concern": "Shortness of breath",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Syncope or collapse",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported: no blood pressure, heart rate, oxygen saturation or temperature provided. Absence of measurements does not reduce the concern; EMS can obtain them on arrival.",
+        "questions": [],
+        "evidenceLimitations": "Available sources are an agent-compiled ED reference synthesis and consumer health summaries, not primary guidelines or telehealth protocols; they support symptom recognition and urgency but not a diagnosis. No examination, ECG or troponin data are available remotely.",
+        "citations": [
+          {
+            "passageId": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+            "claim": "Consumer guidance advises immediate medical care for crushing chest pressure with nausea and sweating.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary; general safety advice, not individualized diagnosis.",
+            "quoteId": "q10"
+          },
+          {
+            "passageId": "19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+            "claim": "Chest pain lasting more than 20 minutes is described as concerning for acute coronary syndrome.",
+            "applicability": "applicable",
+            "limitation": "Agent-compiled ED synthesis, not a primary guideline; duration alone is not diagnostic.",
+            "quoteId": "q6"
+          }
+        ]
+      }
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "action": "EMS_NOW",
+        "basis": [
+          {
+            "quote": "crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach",
+            "interpretation": "Classic acute coronary syndrome presentation with central chest pressure radiating to left arm, diaphoresis, and nausea in a patient with cardiac risk factor (high cholesterol)",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "I called 911; the ambulance is coming; the chest pressure is still present",
+            "interpretation": "Patient has already activated emergency medical services; ongoing acute symptoms confirm emergency transport is appropriate and already underway",
+            "currentPatient": true,
+            "present": true
+          }
+        ],
+        "actionBasis": {
+          "indices": [
+            0,
+            1
+          ],
+          "sufficient": true
+        },
+        "reason": "Acute coronary syndrome is a life-threatening emergency requiring immediate hospital cardiac evaluation; 911 has been appropriately activated.",
+        "patientMessage": "",
+        "physicalRequirement": null
+      },
+      "usage": {
+        "inputTokens": 2461,
+        "outputTokens": 218
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1343,
+      "streamProgress": {
+        "lastTextDeltaMs": 6776,
+        "textDeltaCount": 205,
+        "textCharacters": 958
+      },
+      "durationMs": 6819
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "accept",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Persistent crushing chest pressure with arm radiation, sweating and nausea requires immediate emergency assessment. The draft preserves ambulance transport already underway without waiting for messaging or measurements.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I called 911; the ambulance is coming; the chest pressure is still present."
+              },
+              {
+                "unit": "draft",
+                "quote": "Stay with your current plan — the ambulance is on the way; do not drive yourself and do not delay."
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "Immediate emergency assessment and continued EMS transport are proportionate to ongoing symptoms concerning for acute coronary syndrome. A lower-intensity messaging or outpatient pathway would not meet the clinical need; no additional access prerequisite is assumed.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach"
+              },
+              {
+                "unit": "draft",
+                "quote": "needs emergency assessment now."
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "The draft accurately represents the reported symptoms and activated ambulance response. It does not invent vital signs or treat unreported breathlessness or syncope as absent.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "45M."
+              },
+              {
+                "unit": "draft",
+                "quote": "No vital signs reported: no blood pressure, heart rate, oxygen saturation or temperature provided."
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "The supplied passages support immediate care for this symptom cluster and concern for ACS. The draft presents heart attack as a possibility rather than a confirmed diagnosis, accurately qualifies its sources, and gives reasonable supportive precautions while EMS is coming.",
+            "anchors": [
+              {
+                "unit": "source:07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+                "quote": "Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath."
+              },
+              {
+                "unit": "draft",
+                "quote": "Your ongoing crushing chest pressure with arm radiation, sweating and nausea can signal a heart attack"
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "The draft maintains immediate care and directs renewed emergency contact for deterioration or ambulance delay. This does not postpone the existing emergency response.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "If you feel faint, collapse, or the ambulance is delayed, call 911 back immediately."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No issued question is supplied, and the draft asks no questions or requires an answer before emergency care.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              },
+              {
+                "unit": "draft",
+                "quote": "do not drive yourself and do not delay."
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "Emergency services appropriately own the immediate response. Ambulance activation is patient-reported, not fabricated acceptance, and the draft does not introduce a competing Counsel queue or promise an arrival time.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I called 911; the ambulance is coming"
+              },
+              {
+                "unit": "draft",
+                "quote": "Stay with your current plan — the ambulance is on the way"
+              }
+            ]
+          }
+        ],
+        "earlyAction": "supported",
+        "earlyCorrection": null,
+        "correction": "",
+        "evidenceQueries": []
+      },
+      "usage": {
+        "inputTokens": 7800,
+        "outputTokens": 1036
+      },
+      "failure": null,
+      "firstTextDeltaMs": 4162,
+      "streamProgress": {
+        "lastTextDeltaMs": 20947,
+        "textDeltaCount": 968,
+        "textCharacters": 4365
+      },
+      "durationMs": 21176
+    }
+  ],
+  "guidance": [
+    {
+      "id": "575b71f9a6f96d2b9d9aa5586fa84978660a00743e5e42bfead957fa698639d0",
+      "title": "Chest Pain — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+      "section": "Pitfalls",
+      "summary": "1. **Anchoring on \"GERD\" or \"musculoskeletal\" without completing ACS workup.** Reproducible chest wall tenderness is present in 5-15% of patients with ACS. A response to antacids does not rule out ACS. Always obtain ECG and troponin regardless of initial impression.\n\n2. **Failure to consider aortic dissection in the patient treated for ACS.** Giving anticoagulation and thrombolytics to a patient with aortic dissection is lethal. Check bilateral arm pressures on every chest pain patient. Dissection can cause ST elevation by occluding coronary ostia.\n\n3. **Dismissing PE because chest pain is not pleuritic.** Up to 50% of PE patients have non-pleuritic chest pain. Dyspnea with tachycardia should trigger PE evaluation regardless of pain character.\n\n4. **Over-reliance on negative initial troponin.** High-sensitivity troponin can be negative in the first 1-3 hours of symptom onset. Serial testing is mandatory for moderate-risk patients. A single negative troponin does not rule out ACS.\n\n5. **Premature closure on musculoskeletal diagnosis in young patients.** Spontaneous coronary artery dissection affects young women. Type A aortic dissection occurs in Marfan syndrome in the 20s-30s. Myocarditis affects young adults.\n\n6. **Missing posterior STEMI.** Standard 12-lead ECG misses posterior MI. ST depression in V1-V3 should prompt posterior leads (V7-V9). This is the most commonly missed STEMI territory.\n\n7. **Cocaine-associated chest pain mismanagement.** Do NOT give beta-blockers (unopposed alpha stimulation → coronary vasospasm and hypertension). Use benzodiazepines, nitroglycerin, and calcium channel blockers. Phentolamine for refractory hypertension.\n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "575b71f9a6f96d2b9d9aa5586fa84978660a00743e5e42bfead957fa698639d0",
+          "sourceId": "openem:chest-pain",
+          "excerpt": "1. **Anchoring on \"GERD\" or \"musculoskeletal\" without completing ACS workup.** Reproducible chest wall tenderness is present in 5-15% of patients with ACS. A response to antacids does not rule out ACS. Always obtain ECG and troponin regardless of initial impression.\n\n2. **Failure to consider aortic dissection in the patient treated for ACS.** Giving anticoagulation and thrombolytics to a patient with aortic dissection is lethal. Check bilateral arm pressures on every chest pain patient. Dissection can cause ST elevation by occluding coronary ostia.\n\n3. **Dismissing PE because chest pain is not pleuritic.** Up to 50% of PE patients have non-pleuritic chest pain. Dyspnea with tachycardia should trigger PE evaluation regardless of pain character.\n\n4. **Over-reliance on negative initial troponin.** High-sensitivity troponin can be negative in the first 1-3 hours of symptom onset. Serial testing is mandatory for moderate-risk patients. A single negative troponin does not rule out ACS.\n\n5. **Premature closure on musculoskeletal diagnosis in young patients.** Spontaneous coronary artery dissection affects young women. Type A aortic dissection occurs in Marfan syndrome in the 20s-30s. Myocarditis affects young adults.\n\n6. **Missing posterior STEMI.** Standard 12-lead ECG misses posterior MI. ST depression in V1-V3 should prompt posterior leads (V7-V9). This is the most commonly missed STEMI territory.\n\n7. **Cocaine-associated chest pain mismanagement.** Do NOT give beta-blockers (unopposed alpha stimulation → coronary vasospasm and hypertension). Use benzodiazepines, nitroglycerin, and calcium channel blockers. Phentolamine for refractory hypertension.\n",
+          "excerptSha256": "05e6098a47836d6671312fbc47fcf06cab23eb38c32ec7d4acb74609d770a294",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "bebd60643f6cc3806e5bec68bae9a952abc29171cdac43299963585a5401db2d",
+      "title": "How to Prevent Heart Disease",
+      "url": "https://medlineplus.gov/howtopreventheartdisease.html",
+      "section": "Health-topic summary",
+      "summary": "Heart disease is the leading cause of the death in the United States. It is also a major cause of disability. But you can take steps to improve your health and help prevent heart disease. The first step is understanding your risk of heart disease. Your risk depends on many factors, some of which are changeable and others that are not. Learning about them and working on the things that you can change can lower your risk of heart disease. \n\n What are the heart disease risk factors that I cannot change? \n There are some risk factors for heart disease that you cannot change: \n \n Your age. Your risk of heart disease increases as you get older. The risk is higher in:\n \n Men age 45 and older \n Women age 55 and older \n \n \n\n Your sex. Some risk factors may affect heart disease risk differently in women than in men. For example: \n \n The hormone estrogen provides women some protection against heart disease \n Diabetes raises the risk of heart disease more in women than in men. \n \n \n\n Your race or ethnicity. Certain groups have higher risks than others. For example:\n \n African Americans are more likely than Whites to die of heart disease, while Hispanic Americans are less likely to die of it \n Asian Americans as a group have lower rates of heart disease than other groups, but South Asian Americans have higher rates \n \n \n\n Your family history. You have a greater risk if you have a close family member who had heart disease at an early age, for example if:\n \n Your father or brother was diagnosed before age 55 \n Your mother or sister was diagnosed before age 65 \n \n \n \n\n What are the heart disease risk factors I can change and what can I do to lower my risk? ",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "bebd60643f6cc3806e5bec68bae9a952abc29171cdac43299963585a5401db2d",
+          "sourceId": "medlineplus:1598",
+          "excerpt": "Heart disease is the leading cause of the death in the United States. It is also a major cause of disability. But you can take steps to improve your health and help prevent heart disease. The first step is understanding your risk of heart disease. Your risk depends on many factors, some of which are changeable and others that are not. Learning about them and working on the things that you can change can lower your risk of heart disease. \n\n What are the heart disease risk factors that I cannot change? \n There are some risk factors for heart disease that you cannot change: \n \n Your age. Your risk of heart disease increases as you get older. The risk is higher in:\n \n Men age 45 and older \n Women age 55 and older \n \n \n\n Your sex. Some risk factors may affect heart disease risk differently in women than in men. For example: \n \n The hormone estrogen provides women some protection against heart disease \n Diabetes raises the risk of heart disease more in women than in men. \n \n \n\n Your race or ethnicity. Certain groups have higher risks than others. For example:\n \n African Americans are more likely than Whites to die of heart disease, while Hispanic Americans are less likely to die of it \n Asian Americans as a group have lower rates of heart disease than other groups, but South Asian Americans have higher rates \n \n \n\n Your family history. You have a greater risk if you have a close family member who had heart disease at an early age, for example if:\n \n Your father or brother was diagnosed before age 55 \n Your mother or sister was diagnosed before age 65 \n \n \n \n\n What are the heart disease risk factors I can change and what can I do to lower my risk? ",
+          "excerptSha256": "b2d6c483d93048f4712736e530517cd9d33ec35f965b11b39c0a0fcf8fe57099",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "1dd3032fc52dc4f84b6fdbf6a40b7f9c34a2ccd6e2dc01ee426e6bf67715d18f",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "35489cc86908017c68eae2c9153d9d390615bb1f48ac411ea6b628413a4eb2f9",
+      "title": "Spontaneous Coronary Artery Dissection",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/spontaneous-coronary-artery-dissection.md",
+      "section": "Differential Diagnosis",
+      "summary": "| Condition | Distinguishing Features |\n|-----------|------------------------|\n| Atherosclerotic ACS (STEMI/NSTEMI) | Older patients; traditional risk factors (HTN, DM, hyperlipidemia, smoking, family history); angiography shows plaque rupture/erosion with thrombus; calcified vessels |\n| Takotsubo cardiomyopathy | Apical ballooning on echo not following single coronary territory; normal coronary angiography; emotional precipitant; transient ST elevation; troponin elevation modest relative to wall motion abnormality |\n| Myocarditis | Viral prodrome; diffuse ST changes (not single territory); troponin elevation; cardiac MRI shows subepicardial/mid-wall late gadolinium enhancement; normal coronary angiography |\n| Coronary vasospasm (Prinzmetal) | Transient ST elevation resolving with nitroglycerin; normal angiography (or provoked spasm with acetylcholine/ergonovine); no intramural hematoma |\n| Aortic dissection with coronary extension | Tearing chest/back pain; pulse deficits; widened mediastinum on CXR; CT shows aortic dissection flap extending into coronary ostium (usually RCA) |\n| Pulmonary embolism | Dyspnea predominant; S1Q3T3 or right heart strain on ECG; CTA shows filling defect; troponin elevation from RV strain |\n| Coronary artery embolism | Atrial fibrillation, prosthetic valve, or endocarditis; abrupt vessel cutoff on angiography without dissection plane; no intramural hematoma |",
+      "reviewedAt": "2026-02-27",
+      "projectInterpretation": "research_synthesis; upstream_physician_reviewed. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "35489cc86908017c68eae2c9153d9d390615bb1f48ac411ea6b628413a4eb2f9",
+          "sourceId": "openem:spontaneous-coronary-artery-dissection",
+          "excerpt": "| Condition | Distinguishing Features |\n|-----------|------------------------|\n| Atherosclerotic ACS (STEMI/NSTEMI) | Older patients; traditional risk factors (HTN, DM, hyperlipidemia, smoking, family history); angiography shows plaque rupture/erosion with thrombus; calcified vessels |\n| Takotsubo cardiomyopathy | Apical ballooning on echo not following single coronary territory; normal coronary angiography; emotional precipitant; transient ST elevation; troponin elevation modest relative to wall motion abnormality |\n| Myocarditis | Viral prodrome; diffuse ST changes (not single territory); troponin elevation; cardiac MRI shows subepicardial/mid-wall late gadolinium enhancement; normal coronary angiography |\n| Coronary vasospasm (Prinzmetal) | Transient ST elevation resolving with nitroglycerin; normal angiography (or provoked spasm with acetylcholine/ergonovine); no intramural hematoma |\n| Aortic dissection with coronary extension | Tearing chest/back pain; pulse deficits; widened mediastinum on CXR; CT shows aortic dissection flap extending into coronary ostium (usually RCA) |\n| Pulmonary embolism | Dyspnea predominant; S1Q3T3 or right heart strain on ECG; CTA shows filling defect; troponin elevation from RV strain |\n| Coronary artery embolism | Atrial fibrillation, prosthetic valve, or endocarditis; abrupt vessel cutoff on angiography without dissection plane; no intramural hematoma |",
+          "excerptSha256": "a98cb4e7f260dc75bb434ea56f2eda2dc6a0f9b3645eb3619627ca19e7fb7db9",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "8c049559cea489309136d7ae749c265f4bd8a764eff5567638e66f7e559ec477",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+      "title": "Chest Pain — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+      "section": "Recognition",
+      "summary": "Chest pain accounts for approximately 6-8 million ED visits annually in the US (5-8% of all ED visits). Fewer than 25% have an acute coronary syndrome; the challenge is identifying the minority with life-threatening causes.\n\n**Key history elements:**\n- Onset: sudden vs gradual; activity at onset\n- Character: pressure/squeezing (ACS), tearing/ripping (dissection), sharp/pleuritic (PE, pneumothorax, pericarditis)\n- Radiation: arm/jaw (ACS), back/interscapular (dissection), unilateral (pleuritic)\n- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)\n- Associated symptoms: diaphoresis, dyspnea, syncope, nausea\n- Positional: worse supine/improved leaning forward (pericarditis)\n- Prior history: known CAD, PE, DVT, connective tissue disease, recent procedures/immobilization\n- Cocaine or stimulant use within 72 hours\n\n**High-risk populations for atypical presentations:**\n- Women: more likely to present with dyspnea, nausea, fatigue, back/jaw pain\n- Elderly (> 75): painless MI in up to 60%\n- Diabetics: autonomic neuropathy masks angina\n- Post-surgical/immobilized: PE risk\n\n**Epidemiology of serious causes:**\n- ACS: 10-15% of ED chest pain presentations\n- PE: 2-5%\n- Aortic dissection: < 1% but > 25% mortality if missed\n- Pneumothorax: 1-2%",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+          "sourceId": "openem:chest-pain",
+          "excerpt": "Chest pain accounts for approximately 6-8 million ED visits annually in the US (5-8% of all ED visits). Fewer than 25% have an acute coronary syndrome; the challenge is identifying the minority with life-threatening causes.\n\n**Key history elements:**\n- Onset: sudden vs gradual; activity at onset\n- Character: pressure/squeezing (ACS), tearing/ripping (dissection), sharp/pleuritic (PE, pneumothorax, pericarditis)\n- Radiation: arm/jaw (ACS), back/interscapular (dissection), unilateral (pleuritic)\n- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)\n- Associated symptoms: diaphoresis, dyspnea, syncope, nausea\n- Positional: worse supine/improved leaning forward (pericarditis)\n- Prior history: known CAD, PE, DVT, connective tissue disease, recent procedures/immobilization\n- Cocaine or stimulant use within 72 hours\n\n**High-risk populations for atypical presentations:**\n- Women: more likely to present with dyspnea, nausea, fatigue, back/jaw pain\n- Elderly (> 75): painless MI in up to 60%\n- Diabetics: autonomic neuropathy masks angina\n- Post-surgical/immobilized: PE risk\n\n**Epidemiology of serious causes:**\n- ACS: 10-15% of ED chest pain presentations\n- PE: 2-5%\n- Aortic dissection: < 1% but > 25% mortality if missed\n- Pneumothorax: 1-2%",
+          "excerptSha256": "34e2b67bcc7402aa854897a64bda2e3acba3f6ef414d369c44e42fbbe59179e9",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "874099773e899c8525671a6513196b11c8a6c451641af341d2609052f138df00",
+      "title": "How to Prevent Heart Disease",
+      "url": "https://medlineplus.gov/howtopreventheartdisease.html",
+      "section": "Health-topic summary",
+      "summary": "our father or brother was diagnosed before age 55 \n Your mother or sister was diagnosed before age 65 \n \n \n \n\n What are the heart disease risk factors I can change and what can I do to lower my risk? \n There are many heart disease risk factors that you can change. If you make these changes, you don't just help protect your heart. You can also improve your overall health and well-being. \n\n You may have a lot of changes to make. If you need to, you can make the changes gradually, one at a time. What's most important is that you make them. Depending on your lifestyle, these changes could include: \n \n Controlling your blood pressure. High blood pressure is a major risk factor for heart disease. It is important to get your blood pressure checked regularly - at least once a year for most adults, and more often if you have high blood pressure. You can also take steps, including lifestyle changes, to prevent or control high blood pressure. \n\n Keeping your cholesterol and triglyceride levels under control: \n \n High levels of cholesterol can clog your arteries and raise your risk of coronary artery disease and heart attack . Lifestyle changes and medicines (if needed) can lower your cholesterol. \n Triglycerides are another type of fat in the blood. High levels of triglyceride may also raise the risk of coronary artery disease, especially in women. \n \n \n\n Staying at a healthy weight. Being overweight or having obesity can increase your risk of heart disease. This is mostly because they are linked to other heart disease risk factors, including high blood cholesterol and triglyceride levels, high blood pressure, and diabetes. Controlling your weight can lower these risks. \n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "874099773e899c8525671a6513196b11c8a6c451641af341d2609052f138df00",
+          "sourceId": "medlineplus:1598",
+          "excerpt": "our father or brother was diagnosed before age 55 \n Your mother or sister was diagnosed before age 65 \n \n \n \n\n What are the heart disease risk factors I can change and what can I do to lower my risk? \n There are many heart disease risk factors that you can change. If you make these changes, you don't just help protect your heart. You can also improve your overall health and well-being. \n\n You may have a lot of changes to make. If you need to, you can make the changes gradually, one at a time. What's most important is that you make them. Depending on your lifestyle, these changes could include: \n \n Controlling your blood pressure. High blood pressure is a major risk factor for heart disease. It is important to get your blood pressure checked regularly - at least once a year for most adults, and more often if you have high blood pressure. You can also take steps, including lifestyle changes, to prevent or control high blood pressure. \n\n Keeping your cholesterol and triglyceride levels under control: \n \n High levels of cholesterol can clog your arteries and raise your risk of coronary artery disease and heart attack . Lifestyle changes and medicines (if needed) can lower your cholesterol. \n Triglycerides are another type of fat in the blood. High levels of triglyceride may also raise the risk of coronary artery disease, especially in women. \n \n \n\n Staying at a healthy weight. Being overweight or having obesity can increase your risk of heart disease. This is mostly because they are linked to other heart disease risk factors, including high blood cholesterol and triglyceride levels, high blood pressure, and diabetes. Controlling your weight can lower these risks. \n",
+          "excerptSha256": "c880e50c31a7bd46f139aa24b3820544e146cb7e7fa74fde2d59a84869f9db27",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "1dd3032fc52dc4f84b6fdbf6a40b7f9c34a2ccd6e2dc01ee426e6bf67715d18f",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "5489b39dc59208f5fd1c4910a112c861a8057bd832431a2fed984f367f9b194e",
+      "title": "Spontaneous Coronary Artery Dissection",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/spontaneous-coronary-artery-dissection.md",
+      "section": "Recognition",
+      "summary": "**Definition:** Non-atherosclerotic, non-traumatic, non-iatrogenic separation of the coronary artery wall by intramural hemorrhage or intimal tear, causing luminal compromise and myocardial ischemia. Distinct from atherosclerotic plaque rupture and iatrogenic dissection during PCI.\n\n**Epidemiology:**\n- Accounts for 1-4% of all ACS presentations\n- Most common cause of MI in women <50 years old (up to 35% of MI in this population)\n- Female predominance: 90-95% female\n- Median age: 44-53 years\n- Peripartum SCAD: 5-10% of all SCAD cases (highest risk in third trimester and first weeks postpartum)\n\n**Associated conditions:**\n- **Fibromuscular dysplasia (FMD):** Present in 25-86% of SCAD patients when systematically screened. Most commonly renal and iliac arteries.\n- **Connective tissue disorders:** Marfan syndrome, Ehlers-Danlos type IV, Loeys-Dietz syndrome\n- **Pregnancy/postpartum:** Hormonal and hemodynamic changes weaken arterial wall\n- **Systemic inflammatory conditions:** SLE, polyarteritis nodosa, sarcoidosis, IBD\n- **Hormonal therapy:** Oral contraceptives, fertility treatments, hormone replacement\n\n**Precipitants:**\n- Intense physical exertion (isometric exercise, Valsalva, heavy lifting)\n- Intense emotional stress\n- Labor and delivery\n- Recreational drug use (cocaine, amphetamines)\n- Retching/vomiting\n- Coughing paroxysms\n\n**Presentation:** Indistinguishable from atherosclerotic ACS at the bedside.\n- Acute chest pain (96%) — typical or atypical\n- STEMI pattern on ECG (26-87%)\n- NSTEMI pattern (13-74%)\n- Cardiogenic shock (2-5%)\n- Ventricular arrhythmia/sudden cardiac death (2-4%)\n\n**Coronary angiography classification (Saw classification):**\n\n| Type | Description | Frequency |\n|------|-------------|-----------|",
+      "reviewedAt": "2026-02-27",
+      "projectInterpretation": "research_synthesis; upstream_physician_reviewed. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "5489b39dc59208f5fd1c4910a112c861a8057bd832431a2fed984f367f9b194e",
+          "sourceId": "openem:spontaneous-coronary-artery-dissection",
+          "excerpt": "**Definition:** Non-atherosclerotic, non-traumatic, non-iatrogenic separation of the coronary artery wall by intramural hemorrhage or intimal tear, causing luminal compromise and myocardial ischemia. Distinct from atherosclerotic plaque rupture and iatrogenic dissection during PCI.\n\n**Epidemiology:**\n- Accounts for 1-4% of all ACS presentations\n- Most common cause of MI in women <50 years old (up to 35% of MI in this population)\n- Female predominance: 90-95% female\n- Median age: 44-53 years\n- Peripartum SCAD: 5-10% of all SCAD cases (highest risk in third trimester and first weeks postpartum)\n\n**Associated conditions:**\n- **Fibromuscular dysplasia (FMD):** Present in 25-86% of SCAD patients when systematically screened. Most commonly renal and iliac arteries.\n- **Connective tissue disorders:** Marfan syndrome, Ehlers-Danlos type IV, Loeys-Dietz syndrome\n- **Pregnancy/postpartum:** Hormonal and hemodynamic changes weaken arterial wall\n- **Systemic inflammatory conditions:** SLE, polyarteritis nodosa, sarcoidosis, IBD\n- **Hormonal therapy:** Oral contraceptives, fertility treatments, hormone replacement\n\n**Precipitants:**\n- Intense physical exertion (isometric exercise, Valsalva, heavy lifting)\n- Intense emotional stress\n- Labor and delivery\n- Recreational drug use (cocaine, amphetamines)\n- Retching/vomiting\n- Coughing paroxysms\n\n**Presentation:** Indistinguishable from atherosclerotic ACS at the bedside.\n- Acute chest pain (96%) — typical or atypical\n- STEMI pattern on ECG (26-87%)\n- NSTEMI pattern (13-74%)\n- Cardiogenic shock (2-5%)\n- Ventricular arrhythmia/sudden cardiac death (2-4%)\n\n**Coronary angiography classification (Saw classification):**\n\n| Type | Description | Frequency |\n|------|-------------|-----------|",
+          "excerptSha256": "280f966ee849f3e4a9fc179aed022012ab92dde2cf299aa6f9b7c6a91d1b26a3",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "8c049559cea489309136d7ae749c265f4bd8a764eff5567638e66f7e559ec477",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+      "title": "Chest Pain",
+      "url": "https://medlineplus.gov/chestpain.html",
+      "section": "Health-topic summary",
+      "summary": "Having a pain in your chest can be scary. It does not always mean that you are having a heart attack . There can be many other causes, including: \n Other heart problems, such as angina \n Panic attacks \n Digestive problems, such as heartburn or esophagus disorders \n Sore muscles \n Lung diseases, such as pneumonia , pleurisy , or pulmonary embolism \n Costochondritis - an inflammation of joints in your chest \n \n\n Some of these problems can be serious. Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath. Treatment depends on the cause of the pain.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+          "sourceId": "medlineplus:4744",
+          "excerpt": "Having a pain in your chest can be scary. It does not always mean that you are having a heart attack . There can be many other causes, including: \n Other heart problems, such as angina \n Panic attacks \n Digestive problems, such as heartburn or esophagus disorders \n Sore muscles \n Lung diseases, such as pneumonia , pleurisy , or pulmonary embolism \n Costochondritis - an inflammation of joints in your chest \n \n\n Some of these problems can be serious. Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath. Treatment depends on the cause of the pain.",
+          "excerptSha256": "3c4f7db5a65ad5bc93659ca9dd5bf3d34dde62438bafe5aaf972dddc31ee68bc",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "7b170b3bcd033cd1fe978fd52e16baf1463a93b60ca6c006fef0ef1ab61175cc",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "b18f45c7d9132b69070fec28c4184599b15d7d4bbccc00a5832cab85a01da9ec",
+      "title": "Heart Diseases",
+      "url": "https://medlineplus.gov/heartdiseases.html",
+      "section": "Health-topic summary",
+      "summary": "these factors you can change, but others you cannot. \n\n \n Age. Your risk of heart disease goes up as you get older. \n Sex. Some factors may affect heart disease risk differently in women than in men. \n Family history and genetics. A family history of early heart disease raises your risk. And research has shown that some genes are linked to a higher risk of certain heart diseases. \n Race/ethnicity. Heart disease is the leading cause of death in most racial and ethnic groups in the United States. However, certain groups have higher risks than others. This includes Black people, White people, and American Indian/Alaska Native people. \n Lifestyle habits. Over time, unhealthy lifestyle habits can raise your risk of heart disease. These can include: \n \n Eating a diet high in saturated fats , refined carbohydrates, and salt . \n Not getting enough physical activity . \n Drinking too much alcohol . \n Smoking and exposure to secondhand smoke . \n Too much stress . \n \n \n Having other medical conditions can raise your risk of heart diseases. These conditions include:\n \n High blood pressure . \n High cholesterol levels . \n Diabetes . \n Obesity . \n Autoimmune and inflammatory diseases. \n Chronic kidney disease . \n Metabolic syndrome . \n \n \n \n\n What are the symptoms of heart disease? \n Your symptoms will depend on the type of heart disease you have. You may not have symptoms at first. In some cases, you may not know you have heart disease until you have a complication such as a heart attack. \n\n How are heart diseases diagnosed? \n To find out if you have heart disease, your health care provider will: \n \n Ask about your medical history , including your symptoms \n Ask about your family health history , including relatives who have had heart disease \n Do a physical exam ",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "b18f45c7d9132b69070fec28c4184599b15d7d4bbccc00a5832cab85a01da9ec",
+          "sourceId": "medlineplus:277",
+          "excerpt": "these factors you can change, but others you cannot. \n\n \n Age. Your risk of heart disease goes up as you get older. \n Sex. Some factors may affect heart disease risk differently in women than in men. \n Family history and genetics. A family history of early heart disease raises your risk. And research has shown that some genes are linked to a higher risk of certain heart diseases. \n Race/ethnicity. Heart disease is the leading cause of death in most racial and ethnic groups in the United States. However, certain groups have higher risks than others. This includes Black people, White people, and American Indian/Alaska Native people. \n Lifestyle habits. Over time, unhealthy lifestyle habits can raise your risk of heart disease. These can include: \n \n Eating a diet high in saturated fats , refined carbohydrates, and salt . \n Not getting enough physical activity . \n Drinking too much alcohol . \n Smoking and exposure to secondhand smoke . \n Too much stress . \n \n \n Having other medical conditions can raise your risk of heart diseases. These conditions include:\n \n High blood pressure . \n High cholesterol levels . \n Diabetes . \n Obesity . \n Autoimmune and inflammatory diseases. \n Chronic kidney disease . \n Metabolic syndrome . \n \n \n \n\n What are the symptoms of heart disease? \n Your symptoms will depend on the type of heart disease you have. You may not have symptoms at first. In some cases, you may not know you have heart disease until you have a complication such as a heart attack. \n\n How are heart diseases diagnosed? \n To find out if you have heart disease, your health care provider will: \n \n Ask about your medical history , including your symptoms \n Ask about your family health history , including relatives who have had heart disease \n Do a physical exam ",
+          "excerptSha256": "ab432a9853eae31d5c5927b61252ffe11b6764ee077393b315a17ec32c9503ec",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "3ec38449c2cd16f36ed79a9c81072ccc8b6de5b892561598745e2e5cc6786952",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "42fed638a04fc79be12f567a2affcb797313eeba973635301a57fef3b94bb601",
+      "title": "Non-ST-Elevation Myocardial Infarction",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-coronary-syndrome-nstemi.md",
+      "section": "Pitfalls",
+      "summary": "1. **Excluding ACS based on a single normal troponin.** A single troponin at presentation may be falsely negative early after symptom onset. Serial troponins (0h/1h or 0h/3h protocol) are required. hs-cTn rises within 1-3 hours of ischemia but may not reach diagnostic threshold at time of initial draw.\n\n2. **Stress testing a patient with Wellens syndrome.** Biphasic or deeply inverted T waves in V2-V3 indicate critical proximal LAD stenosis (Wellens). Stress testing can precipitate acute LAD occlusion and STEMI. These patients require direct coronary angiography.\n\n3. **Failing to distinguish type 1 from type 2 MI.** Type 2 MI (demand ischemia from anemia, sepsis, tachycardia, hypotension) requires treatment of the underlying condition, not emergent revascularization. Troponin elevation in a septic patient does not automatically warrant anticoagulation and cath lab activation.\n\n4. **Discharging moderate-risk chest pain without adequate observation.** HEART score 4-6 patients have 12-16% risk of MACE. These patients require serial troponins, observation, and often further testing before safe discharge.\n\n5. **Omitting high-intensity statin in the ED.** Early high-intensity statin (atorvastatin 80 mg) has pleiotropic effects that reduce periprocedural MI risk and improve outcomes. Initiate in the ED, not as a discharge afterthought.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "42fed638a04fc79be12f567a2affcb797313eeba973635301a57fef3b94bb601",
+          "sourceId": "openem:acute-coronary-syndrome-nstemi",
+          "excerpt": "1. **Excluding ACS based on a single normal troponin.** A single troponin at presentation may be falsely negative early after symptom onset. Serial troponins (0h/1h or 0h/3h protocol) are required. hs-cTn rises within 1-3 hours of ischemia but may not reach diagnostic threshold at time of initial draw.\n\n2. **Stress testing a patient with Wellens syndrome.** Biphasic or deeply inverted T waves in V2-V3 indicate critical proximal LAD stenosis (Wellens). Stress testing can precipitate acute LAD occlusion and STEMI. These patients require direct coronary angiography.\n\n3. **Failing to distinguish type 1 from type 2 MI.** Type 2 MI (demand ischemia from anemia, sepsis, tachycardia, hypotension) requires treatment of the underlying condition, not emergent revascularization. Troponin elevation in a septic patient does not automatically warrant anticoagulation and cath lab activation.\n\n4. **Discharging moderate-risk chest pain without adequate observation.** HEART score 4-6 patients have 12-16% risk of MACE. These patients require serial troponins, observation, and often further testing before safe discharge.\n\n5. **Omitting high-intensity statin in the ED.** Early high-intensity statin (atorvastatin 80 mg) has pleiotropic effects that reduce periprocedural MI risk and improve outcomes. Initiate in the ED, not as a discharge afterthought.",
+          "excerptSha256": "956022fc0489ab1da6fcf4686f7d87af67357e469655cdc7b098a71acfdbf79c",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "00362d46000245201b4650b00aa6a0d8e061f7458b94a9566901c015a8195416",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    }
+  ],
+  "safetyFloor": {
+    "disposition": "EMERGENCY_NOW",
+    "directive": "Call 911 now. Do not drive yourself or wait for a message reply."
+  },
+  "rejectedAnswer": {
+    "disposition": "EMERGENCY_NOW",
+    "reviewPriority": null,
+    "workType": null,
+    "reason": "45-year-old man with 30 minutes of ongoing crushing central chest pressure radiating to the left arm, with diaphoresis and nausea — a presentation requiring immediate emergency evaluation for acute coronary syndrome. 911 has already been activated and the ambulance is en route.",
+    "patientMessage": "Stay with your current plan — the ambulance is on the way; do not drive yourself and do not delay. Unlock your door, sit or lie down, and stay near your phone. Your ongoing crushing chest pressure with arm radiation, sweating and nausea can signal a heart attack and needs emergency assessment now. If you feel faint, collapse, or the ambulance is delayed, call 911 back immediately.",
+    "differential": [
+      "Acute coronary syndrome (STEMI/NSTEMI) given pressure-type pain, arm radiation, diaphoresis",
+      "Aortic dissection or pulmonary embolism as alternative life-threatening chest pain causes",
+      "Non-cardiac causes (reflux, musculoskeletal) — cannot be assumed without emergency workup"
+    ],
+    "redFlags": [
+      {
+        "concern": "Crushing central chest pressure, ongoing",
+        "status": "reported",
+        "quote": "crushing pressure in the center of my chest"
+      },
+      {
+        "concern": "Radiation to left arm",
+        "status": "reported",
+        "quote": "going into my left arm"
+      },
+      {
+        "concern": "Diaphoresis",
+        "status": "reported",
+        "quote": "I feel sweaty"
+      },
+      {
+        "concern": "Nausea",
+        "status": "reported",
+        "quote": "a bit sick to my stomach"
+      },
+      {
+        "concern": "Symptoms persisting >20 minutes",
+        "status": "reported",
+        "quote": "for the last 30 minutes"
+      },
+      {
+        "concern": "Ongoing symptoms at time of message",
+        "status": "reported",
+        "quote": "the chest pressure is still present"
+      },
+      {
+        "concern": "Shortness of breath",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Syncope or collapse",
+        "status": "unknown",
+        "quote": ""
+      }
+    ],
+    "vitalSigns": "No vital signs reported: no blood pressure, heart rate, oxygen saturation or temperature provided. Absence of measurements does not reduce the concern; EMS can obtain them on arrival.",
+    "questions": [],
+    "evidenceLimitations": "Available sources are an agent-compiled ED reference synthesis and consumer health summaries, not primary guidelines or telehealth protocols; they support symptom recognition and urgency but not a diagnosis. No examination, ECG or troponin data are available remotely.",
+    "citations": [
+      {
+        "passageId": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+        "quote": "Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath.",
+        "claim": "Consumer guidance advises immediate medical care for crushing chest pressure with nausea and sweating.",
+        "applicability": "applicable",
+        "limitation": "Consumer summary; general safety advice, not individualized diagnosis."
+      },
+      {
+        "passageId": "19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+        "quote": "- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)",
+        "claim": "Chest pain lasting more than 20 minutes is described as concerning for acute coronary syndrome.",
+        "applicability": "applicable",
+        "limitation": "Agent-compiled ED synthesis, not a primary guideline; duration alone is not diagnostic."
+      }
+    ]
+  },
+  "failure": "CLINICIAN_REVIEW_REQUIRED",
+  "routingPolicy": "five-route-queue/v2",
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "pass",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "pass",
+      "detail": "Checks explicit timing/destination tokens, not the clinical correctness or complete consistency of the message."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen from a COPD diagnosis alone; targeted medication-instruction check."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "pass",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Cited passage identity and exact quote match; this does not establish claim support or applicability."
+    },
+    {
+      "id": "independent_review",
+      "status": "pass",
+      "detail": "Cross-vendor reviewer accepted this draft against seven criteria; application contract and care-reconciliation gates are separate. Not physician calibration or clinical approval."
+    },
+    {
+      "id": "care_reconciliation",
+      "status": "fail",
+      "detail": "Application withheld a reduction of already-issued care setting or emergency transport because an explicit bound correction is missing. This is a reconciliation-contract failure, not an absent or rejected judge verdict."
+    }
+  ],
+  "usage": {
+    "inputTokens": 29741,
+    "outputTokens": 2607
+  },
+  "graph": {
+    "version": "evidence-graph/v11",
+    "mode": "hybrid",
+    "clinicalPolicyVersion": "disposition-clinical-policy/v1",
+    "context": {
+      "queries": [
+        "chest pressure left arm sweating nausea",
+        "cardiac risk factors hyperlipidemia",
+        "acute coronary syndrome"
+      ],
+      "findings": [
+        {
+          "finding": "Crushing chest pressure, central location",
+          "status": "reported",
+          "quote": "crushing pressure in the center of my chest"
+        },
+        {
+          "finding": "Chest pressure duration 30 minutes",
+          "status": "reported",
+          "quote": "for the last 30 minutes"
+        },
+        {
+          "finding": "Left arm radiation",
+          "status": "reported",
+          "quote": "going into my left arm"
+        },
+        {
+          "finding": "Diaphoresis",
+          "status": "reported",
+          "quote": "feel sweaty"
+        },
+        {
+          "finding": "Nausea",
+          "status": "reported",
+          "quote": "a bit sick to my stomach"
+        },
+        {
+          "finding": "High cholesterol",
+          "status": "reported",
+          "quote": "have high cholesterol"
+        }
+      ],
+      "question": null
+    },
+    "safety": {
+      "action": "EMS_NOW",
+      "basis": [
+        {
+          "quote": "crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach",
+          "interpretation": "Classic acute coronary syndrome presentation with central chest pressure radiating to left arm, diaphoresis, and nausea in a patient with cardiac risk factor (high cholesterol)",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "I called 911; the ambulance is coming; the chest pressure is still present",
+          "interpretation": "Patient has already activated emergency medical services; ongoing acute symptoms confirm emergency transport is appropriate and already underway",
+          "currentPatient": true,
+          "present": true
+        }
+      ],
+      "actionBasis": {
+        "indices": [
+          0,
+          1
+        ],
+        "sufficient": true
+      },
+      "reason": "Acute coronary syndrome is a life-threatening emergency requiring immediate hospital cardiac evaluation; 911 has been appropriately activated.",
+      "patientMessage": "",
+      "physicalRequirement": null
+    },
+    "safetyAdmission": {
+      "status": "admitted",
+      "code": "ACTION_ADMITTED",
+      "proposedAction": "EMS_NOW",
+      "basisMode": "explicit",
+      "supportingBasisIndices": [
+        0,
+        1
+      ],
+      "contextualBasisIndices": [],
+      "clinicalValidation": false
+    },
+    "questionPublication": {
+      "status": "not_proposed",
+      "blocksRouting": false
+    },
+    "retrieval": [
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "chest pressure left arm sweating nausea",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "575b71f9a6f96d2b9d9aa5586fa84978660a00743e5e42bfead957fa698639d0",
+              "end": 1673,
+              "hash": "05e6098a47836d6671312fbc47fcf06cab23eb38c32ec7d4acb74609d770a294",
+              "text": "1. **Anchoring on \"GERD\" or \"musculoskeletal\" without completing ACS workup.** Reproducible chest wall tenderness is present in 5-15% of patients with ACS. A response to antacids does not rule out ACS. Always obtain ECG and troponin regardless of initial impression.\n\n2. **Failure to consider aortic dissection in the patient treated for ACS.** Giving anticoagulation and thrombolytics to a patient with aortic dissection is lethal. Check bilateral arm pressures on every chest pain patient. Dissection can cause ST elevation by occluding coronary ostia.\n\n3. **Dismissing PE because chest pain is not pleuritic.** Up to 50% of PE patients have non-pleuritic chest pain. Dyspnea with tachycardia should trigger PE evaluation regardless of pain character.\n\n4. **Over-reliance on negative initial troponin.** High-sensitivity troponin can be negative in the first 1-3 hours of symptom onset. Serial testing is mandatory for moderate-risk patients. A single negative troponin does not rule out ACS.\n\n5. **Premature closure on musculoskeletal diagnosis in young patients.** Spontaneous coronary artery dissection affects young women. Type A aortic dissection occurs in Marfan syndrome in the 20s-30s. Myocarditis affects young adults.\n\n6. **Missing posterior STEMI.** Standard 12-lead ECG misses posterior MI. ST depression in V1-V3 should prompt posterior leads (V7-V9). This is the most commonly missed STEMI territory.\n\n7. **Cocaine-associated chest pain mismanagement.** Do NOT give beta-blockers (unopposed alpha stimulation → coronary vasospasm and hypertension). Use benzodiazepines, nitroglycerin, and calcium channel blockers. Phentolamine for refractory hypertension.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:chest-pain",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Chest Pain — Emergency Evaluation\nchest pain; thoracic pain; anterior chest pain; chest discomfort\nPitfalls\n1. **Anchoring on \"GERD\" or \"musculoskeletal\" without completing ACS workup.** Reproducible chest wall tenderness is present in 5-15% of patients with ACS. A response to antacids does not rule out ACS. Always obtain ECG and troponin regardless of initial impression.\n\n2. **Failure to consider aortic dissection in the patient treated for ACS.** Giving anticoagulation and thrombolytics to a patient with aortic dissection is lethal. Check bilateral arm pressures on every chest pain patient. Dissection can cause ST elevation by occluding coronary ostia.\n\n3. **Dismissing PE because chest pain is not pleuritic.** Up to 50% of PE patients have non-pleuritic chest pain. Dyspnea with tachycardia should trigger PE evaluation regardless of pain character.\n\n4. **Over-reliance on negative initial troponin.** High-sensitivity troponin can be negative in the first 1-3 hours of symptom onset. Serial testing is mandatory for moderate-risk patients. A single negative troponin does not rule out ACS.\n\n5. **Premature closure on musculoskeletal diagnosis in young patients.** Spontaneous coronary artery dissection affects young women. Type A aortic dissection occurs in Marfan syndrome in the 20s-30s. Myocarditis affects young adults.\n\n6. **Missing posterior STEMI.** Standard 12-lead ECG misses posterior MI. ST depression in V1-V3 should prompt posterior leads (V7-V9). This is the most commonly missed STEMI territory.\n\n7. **Cocaine-associated chest pain mismanagement.** Do NOT give beta-blockers (unopposed alpha stimulation → coronary vasospasm and hypertension). Use benzodiazepines, nitroglycerin, and calcium channel blockers. Phentolamine for refractory hypertension.\n"
+            },
+            "document": {
+              "id": "openem:chest-pain",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Chest Pain — Emergency Evaluation",
+              "aliases": [
+                "chest pain",
+                "thoracic pain",
+                "anterior chest pain",
+                "chest discomfort"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.030798389007344232,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n8. **Attributing chest pain to anxiety in women and young patients.** Women are more likely to be diagnosed with anxiety when presenting with ACS. Complete objective workup before considering psychiatric diagnosis."
+            }
+          },
+          {
+            "chunk": {
+              "id": "19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+              "end": 1267,
+              "hash": "34e2b67bcc7402aa854897a64bda2e3acba3f6ef414d369c44e42fbbe59179e9",
+              "text": "Chest pain accounts for approximately 6-8 million ED visits annually in the US (5-8% of all ED visits). Fewer than 25% have an acute coronary syndrome; the challenge is identifying the minority with life-threatening causes.\n\n**Key history elements:**\n- Onset: sudden vs gradual; activity at onset\n- Character: pressure/squeezing (ACS), tearing/ripping (dissection), sharp/pleuritic (PE, pneumothorax, pericarditis)\n- Radiation: arm/jaw (ACS), back/interscapular (dissection), unilateral (pleuritic)\n- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)\n- Associated symptoms: diaphoresis, dyspnea, syncope, nausea\n- Positional: worse supine/improved leaning forward (pericarditis)\n- Prior history: known CAD, PE, DVT, connective tissue disease, recent procedures/immobilization\n- Cocaine or stimulant use within 72 hours\n\n**High-risk populations for atypical presentations:**\n- Women: more likely to present with dyspnea, nausea, fatigue, back/jaw pain\n- Elderly (> 75): painless MI in up to 60%\n- Diabetics: autonomic neuropathy masks angina\n- Post-surgical/immobilized: PE risk\n\n**Epidemiology of serious causes:**\n- ACS: 10-15% of ED chest pain presentations\n- PE: 2-5%\n- Aortic dissection: < 1% but > 25% mortality if missed\n- Pneumothorax: 1-2%",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:chest-pain",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Chest Pain — Emergency Evaluation\nchest pain; thoracic pain; anterior chest pain; chest discomfort\nRecognition\nChest pain accounts for approximately 6-8 million ED visits annually in the US (5-8% of all ED visits). Fewer than 25% have an acute coronary syndrome; the challenge is identifying the minority with life-threatening causes.\n\n**Key history elements:**\n- Onset: sudden vs gradual; activity at onset\n- Character: pressure/squeezing (ACS), tearing/ripping (dissection), sharp/pleuritic (PE, pneumothorax, pericarditis)\n- Radiation: arm/jaw (ACS), back/interscapular (dissection), unilateral (pleuritic)\n- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)\n- Associated symptoms: diaphoresis, dyspnea, syncope, nausea\n- Positional: worse supine/improved leaning forward (pericarditis)\n- Prior history: known CAD, PE, DVT, connective tissue disease, recent procedures/immobilization\n- Cocaine or stimulant use within 72 hours\n\n**High-risk populations for atypical presentations:**\n- Women: more likely to present with dyspnea, nausea, fatigue, back/jaw pain\n- Elderly (> 75): painless MI in up to 60%\n- Diabetics: autonomic neuropathy masks angina\n- Post-surgical/immobilized: PE risk\n\n**Epidemiology of serious causes:**\n- ACS: 10-15% of ED chest pain presentations\n- PE: 2-5%\n- Aortic dissection: < 1% but > 25% mortality if missed\n- Pneumothorax: 1-2%"
+            },
+            "document": {
+              "id": "openem:chest-pain",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Chest Pain — Emergency Evaluation",
+              "aliases": [
+                "chest pain",
+                "thoracic pain",
+                "anterior chest pain",
+                "chest discomfort"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.029877369007803793,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+              "end": 686,
+              "hash": "3c4f7db5a65ad5bc93659ca9dd5bf3d34dde62438bafe5aaf972dddc31ee68bc",
+              "text": "Having a pain in your chest can be scary. It does not always mean that you are having a heart attack . There can be many other causes, including: \n Other heart problems, such as angina \n Panic attacks \n Digestive problems, such as heartburn or esophagus disorders \n Sore muscles \n Lung diseases, such as pneumonia , pleurisy , or pulmonary embolism \n Costochondritis - an inflammation of joints in your chest \n \n\n Some of these problems can be serious. Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath. Treatment depends on the cause of the pain.",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:4744",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Chest Pain\n\nHealth-topic summary\nHaving a pain in your chest can be scary. It does not always mean that you are having a heart attack . There can be many other causes, including: \n Other heart problems, such as angina \n Panic attacks \n Digestive problems, such as heartburn or esophagus disorders \n Sore muscles \n Lung diseases, such as pneumonia , pleurisy , or pulmonary embolism \n Costochondritis - an inflammation of joints in your chest \n \n\n Some of these problems can be serious. Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath. Treatment depends on the cause of the pain."
+            },
+            "document": {
+              "id": "medlineplus:4744",
+              "url": "https://medlineplus.gov/chestpain.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Chest Pain",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "7b170b3bcd033cd1fe978fd52e16baf1463a93b60ca6c006fef0ef1ab61175cc",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:142",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1653",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Chest Pain"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.02623004235907462,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "8808b72ab7acb784199d07a71084e54e016029af8c753e7922c6f286d3a61c08",
+              "end": 5932,
+              "hash": "86ac9210b5342fad1a50b5c66bd54333633de67d46dcd9d77df135be1bbfdfca",
+              "text": " if you need any heart tests to help catch heart disease early. \n\n\n What are the symptoms of heart disease and heart attack in women? \n When women have symptoms of heart disease , they may include: \n \n Pain or discomfort in the chest that may be dull and heavy or sharp \n Pain in the neck, jaw, throat, upper belly, or back \n Nausea or vomiting \n Unusual fatigue \n Shortness of breath (feeling like you can't get enough air) during physical activity \n \n\n Women who have coronary artery disease are more likely than men to have chest pain when resting or doing daily activities, rather than during exercise. They're also more likely than men to feel chest pain from mental stress. \n Symptoms of a heart attack in women may also be different than in men. Chest pain is the most common symptom for both sexes. It may feel like crushing or squeezing. But women are somewhat less likely than men to have chest pain. \n\n During a heart attack , women may feel: \n \n Pressure or tightness in the chest \n Pain in the upper back, arms, neck, jaw or throat \n Dizziness \n Unusual fatigue \n Indigestion , heartburn , nausea, or vomiting \n Stomach pain \n Shortness of breath \n \n\n Heart attacks usually don't look like the sudden, dramatic events we see in the movies. The symptoms may be mild or strong. They may start slowly. They can stop and then come back. \n\n Can heart disease in women be prevented? \n You can help lower your risk by: \n \n Learning how to prevent heart disease and making heart-healthy habits part of your daily life. \n Asking your provider about your personal risk for heart disease and the best way to manage your heart health. \n \n",
+              "start": 4293,
+              "section": 0,
+              "documentId": "medlineplus:4212",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Heart Disease in Women\n\nHealth-topic summary\n if you need any heart tests to help catch heart disease early. \n\n\n What are the symptoms of heart disease and heart attack in women? \n When women have symptoms of heart disease , they may include: \n \n Pain or discomfort in the chest that may be dull and heavy or sharp \n Pain in the neck, jaw, throat, upper belly, or back \n Nausea or vomiting \n Unusual fatigue \n Shortness of breath (feeling like you can't get enough air) during physical activity \n \n\n Women who have coronary artery disease are more likely than men to have chest pain when resting or doing daily activities, rather than during exercise. They're also more likely than men to feel chest pain from mental stress. \n Symptoms of a heart attack in women may also be different than in men. Chest pain is the most common symptom for both sexes. It may feel like crushing or squeezing. But women are somewhat less likely than men to have chest pain. \n\n During a heart attack , women may feel: \n \n Pressure or tightness in the chest \n Pain in the upper back, arms, neck, jaw or throat \n Dizziness \n Unusual fatigue \n Indigestion , heartburn , nausea, or vomiting \n Stomach pain \n Shortness of breath \n \n\n Heart attacks usually don't look like the sudden, dramatic events we see in the movies. The symptoms may be mild or strong. They may start slowly. They can stop and then come back. \n\n Can heart disease in women be prevented? \n You can help lower your risk by: \n \n Learning how to prevent heart disease and making heart-healthy habits part of your daily life. \n Asking your provider about your personal risk for heart disease and the best way to manage your heart health. \n \n"
+            },
+            "document": {
+              "id": "medlineplus:4212",
+              "url": "https://medlineplus.gov/heartdiseaseinwomen.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Heart Disease in Women",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "16aa334e7e698f6401aae8bbf569b0e4333a299ad10ece126f9d8854707770b8",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3167",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:147",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:198",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:202",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:199",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6452",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:279",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Heart Diseases"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.019048455056179775,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "Health risks from a lack physical activity . \n Obesity or being overweight. \n Diabetes . \n Low HDL cholesterol levels . \n Mild to moderate high blood pressure . \n Smoking . \n \n\n If you have one or more risks for heart disease, ask your health care provider for help understanding your risk level. Ask",
+              "after": "\n Remember, women can have heart disease without symptoms. But if you pay attention to your risk for heart disease, you can take action to prevent problems or keep them from getting worse. \n\n NIH: National Heart, Lung, and Blood Institute"
+            }
+          },
+          {
+            "chunk": {
+              "id": "00943c45f05d907fd25398cc1bad30ed1f1cf6d4e9e986cf1e7512cc2aea482b",
+              "end": 3298,
+              "hash": "cb8b22b41f2e70017a5f2cd0ba83c9214f59a910c0b45a9fb91f7e9706a16037",
+              "text": "hat heart attack risk factors can't be changed? \n\n There are other risk factors you can't change , which include: \n\n \n Age \n Sex \n Family history \n Race or ethnicity \n \n\n What causes a heart attack? \n\n The most common cause of heart attacks is coronary artery disease (CAD). With CAD, there is a buildup of cholesterol and other material, called plaque, on the inner walls or the arteries. This is atherosclerosis . It can build up for years. Eventually an area of plaque can rupture (break open). A blood clot can form around the plaque and block the artery. \n\n A less common cause of heart attack is a severe spasm (tightening) of a coronary artery. The spasm cuts off blood flow through the artery. \n\n What are the symptoms of a heart attack? \n\n Heart attack symptoms can vary from mild to severe. The symptoms one person has may not be the same as someone else's. \n\n The most common symptoms include: \n\n \n Chest discomfort. It is often in the center or left side of the chest. It usually lasts more than a few minutes and may go away and come back. It can feel like pressure, squeezing, fullness, or pain . It also can feel like heartburn or indigestion. \n Shortness of breath . Sometimes this is your only symptom. You may get it before or during the chest discomfort. It can happen when you are resting or doing a little bit of physical activity. \n Discomfort in the upper body. You may feel pain or discomfort in one or both arms, the back, shoulders, neck, jaw, or upper part of the stomach. \n \n\n You may also have other symptoms, such as nausea, vomiting , dizziness , palpitations (racing or pounding heart), and lightheadedness. You may break out in a cold sweat. Sometimes women will have different symptoms then men. For example, they are more likely to feel tired for no reason. \n",
+              "start": 1504,
+              "section": 0,
+              "documentId": "medlineplus:5",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Heart Attack\nMI; Myocardial infarction\nHealth-topic summary\nhat heart attack risk factors can't be changed? \n\n There are other risk factors you can't change , which include: \n\n \n Age \n Sex \n Family history \n Race or ethnicity \n \n\n What causes a heart attack? \n\n The most common cause of heart attacks is coronary artery disease (CAD). With CAD, there is a buildup of cholesterol and other material, called plaque, on the inner walls or the arteries. This is atherosclerosis . It can build up for years. Eventually an area of plaque can rupture (break open). A blood clot can form around the plaque and block the artery. \n\n A less common cause of heart attack is a severe spasm (tightening) of a coronary artery. The spasm cuts off blood flow through the artery. \n\n What are the symptoms of a heart attack? \n\n Heart attack symptoms can vary from mild to severe. The symptoms one person has may not be the same as someone else's. \n\n The most common symptoms include: \n\n \n Chest discomfort. It is often in the center or left side of the chest. It usually lasts more than a few minutes and may go away and come back. It can feel like pressure, squeezing, fullness, or pain . It also can feel like heartburn or indigestion. \n Shortness of breath . Sometimes this is your only symptom. You may get it before or during the chest discomfort. It can happen when you are resting or doing a little bit of physical activity. \n Discomfort in the upper body. You may feel pain or discomfort in one or both arms, the back, shoulders, neck, jaw, or upper part of the stomach. \n \n\n You may also have other symptoms, such as nausea, vomiting , dizziness , palpitations (racing or pounding heart), and lightheadedness. You may break out in a cold sweat. Sometimes women will have different symptoms then men. For example, they are more likely to feel tired for no reason. \n"
+            },
+            "document": {
+              "id": "medlineplus:5",
+              "url": "https://medlineplus.gov/heartattack.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Heart Attack",
+              "aliases": [
+                "MI",
+                "Myocardial infarction"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "4308b1a4d4e4d4c9f3dcb1351452e29fc93493314533760e0bf6c0e03205fe0d",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:142",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5617",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:202",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1276",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6452",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Myocardial Infarction"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.018901660280970626,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "start, smoking. \n High cholesterol and high blood pressure . Manage both with diet , exercise , and medicine. \n Diabetes . Manage your blood glucose (also called blood sugar). \n Inactivity and obesity . Stay active and keep a healthy weight . \n Stress . Learn healthy ways to cope with stress. \n \n\n W",
+              "after": "\n How is a heart attack diagnosed? \n\n At the hospital, health care providers make a diagnosis based on your symptoms, blood tests, and different heart imaging tests . \n\n What is the treatment for a heart attack? \n\n Treatments may include medicines including blood thinners to break up and prevent clo"
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 31.54920799995307,
+          "embeddingMs": 0.024375000037252903,
+          "vectorMs": 7.594665999989957,
+          "totalMs": 84.6696660000016
+        },
+        "warnings": [],
+        "embeddingTokens": 0,
+        "embeddingCacheHit": true
+      },
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "cardiac risk factors hyperlipidemia",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "bebd60643f6cc3806e5bec68bae9a952abc29171cdac43299963585a5401db2d",
+              "end": 1669,
+              "hash": "b2d6c483d93048f4712736e530517cd9d33ec35f965b11b39c0a0fcf8fe57099",
+              "text": "Heart disease is the leading cause of the death in the United States. It is also a major cause of disability. But you can take steps to improve your health and help prevent heart disease. The first step is understanding your risk of heart disease. Your risk depends on many factors, some of which are changeable and others that are not. Learning about them and working on the things that you can change can lower your risk of heart disease. \n\n What are the heart disease risk factors that I cannot change? \n There are some risk factors for heart disease that you cannot change: \n \n Your age. Your risk of heart disease increases as you get older. The risk is higher in:\n \n Men age 45 and older \n Women age 55 and older \n \n \n\n Your sex. Some risk factors may affect heart disease risk differently in women than in men. For example: \n \n The hormone estrogen provides women some protection against heart disease \n Diabetes raises the risk of heart disease more in women than in men. \n \n \n\n Your race or ethnicity. Certain groups have higher risks than others. For example:\n \n African Americans are more likely than Whites to die of heart disease, while Hispanic Americans are less likely to die of it \n Asian Americans as a group have lower rates of heart disease than other groups, but South Asian Americans have higher rates \n \n \n\n Your family history. You have a greater risk if you have a close family member who had heart disease at an early age, for example if:\n \n Your father or brother was diagnosed before age 55 \n Your mother or sister was diagnosed before age 65 \n \n \n \n\n What are the heart disease risk factors I can change and what can I do to lower my risk? ",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:1598",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "How to Prevent Heart Disease\n\nHealth-topic summary\nHeart disease is the leading cause of the death in the United States. It is also a major cause of disability. But you can take steps to improve your health and help prevent heart disease. The first step is understanding your risk of heart disease. Your risk depends on many factors, some of which are changeable and others that are not. Learning about them and working on the things that you can change can lower your risk of heart disease. \n\n What are the heart disease risk factors that I cannot change? \n There are some risk factors for heart disease that you cannot change: \n \n Your age. Your risk of heart disease increases as you get older. The risk is higher in:\n \n Men age 45 and older \n Women age 55 and older \n \n \n\n Your sex. Some risk factors may affect heart disease risk differently in women than in men. For example: \n \n The hormone estrogen provides women some protection against heart disease \n Diabetes raises the risk of heart disease more in women than in men. \n \n \n\n Your race or ethnicity. Certain groups have higher risks than others. For example:\n \n African Americans are more likely than Whites to die of heart disease, while Hispanic Americans are less likely to die of it \n Asian Americans as a group have lower rates of heart disease than other groups, but South Asian Americans have higher rates \n \n \n\n Your family history. You have a greater risk if you have a close family member who had heart disease at an early age, for example if:\n \n Your father or brother was diagnosed before age 55 \n Your mother or sister was diagnosed before age 65 \n \n \n \n\n What are the heart disease risk factors I can change and what can I do to lower my risk? "
+            },
+            "document": {
+              "id": "medlineplus:1598",
+              "url": "https://medlineplus.gov/howtopreventheartdisease.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "How to Prevent Heart Disease",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "1dd3032fc52dc4f84b6fdbf6a40b7f9c34a2ccd6e2dc01ee426e6bf67715d18f",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4861",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:26",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6452",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6809",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6450",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Heart Diseases prevention & control"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.030017921146953404,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n There are many heart disease risk factors that you can change. If you make these changes, you don't just help protect your heart. You can also improve your overall health and well-being. \n\n You may have a lot of changes to make. If you need to, you can make the changes gradually, one at a time. Wh"
+            }
+          },
+          {
+            "chunk": {
+              "id": "874099773e899c8525671a6513196b11c8a6c451641af341d2609052f138df00",
+              "end": 3158,
+              "hash": "c880e50c31a7bd46f139aa24b3820544e146cb7e7fa74fde2d59a84869f9db27",
+              "text": "our father or brother was diagnosed before age 55 \n Your mother or sister was diagnosed before age 65 \n \n \n \n\n What are the heart disease risk factors I can change and what can I do to lower my risk? \n There are many heart disease risk factors that you can change. If you make these changes, you don't just help protect your heart. You can also improve your overall health and well-being. \n\n You may have a lot of changes to make. If you need to, you can make the changes gradually, one at a time. What's most important is that you make them. Depending on your lifestyle, these changes could include: \n \n Controlling your blood pressure. High blood pressure is a major risk factor for heart disease. It is important to get your blood pressure checked regularly - at least once a year for most adults, and more often if you have high blood pressure. You can also take steps, including lifestyle changes, to prevent or control high blood pressure. \n\n Keeping your cholesterol and triglyceride levels under control: \n \n High levels of cholesterol can clog your arteries and raise your risk of coronary artery disease and heart attack . Lifestyle changes and medicines (if needed) can lower your cholesterol. \n Triglycerides are another type of fat in the blood. High levels of triglyceride may also raise the risk of coronary artery disease, especially in women. \n \n \n\n Staying at a healthy weight. Being overweight or having obesity can increase your risk of heart disease. This is mostly because they are linked to other heart disease risk factors, including high blood cholesterol and triglyceride levels, high blood pressure, and diabetes. Controlling your weight can lower these risks. \n",
+              "start": 1469,
+              "section": 0,
+              "documentId": "medlineplus:1598",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "How to Prevent Heart Disease\n\nHealth-topic summary\nour father or brother was diagnosed before age 55 \n Your mother or sister was diagnosed before age 65 \n \n \n \n\n What are the heart disease risk factors I can change and what can I do to lower my risk? \n There are many heart disease risk factors that you can change. If you make these changes, you don't just help protect your heart. You can also improve your overall health and well-being. \n\n You may have a lot of changes to make. If you need to, you can make the changes gradually, one at a time. What's most important is that you make them. Depending on your lifestyle, these changes could include: \n \n Controlling your blood pressure. High blood pressure is a major risk factor for heart disease. It is important to get your blood pressure checked regularly - at least once a year for most adults, and more often if you have high blood pressure. You can also take steps, including lifestyle changes, to prevent or control high blood pressure. \n\n Keeping your cholesterol and triglyceride levels under control: \n \n High levels of cholesterol can clog your arteries and raise your risk of coronary artery disease and heart attack . Lifestyle changes and medicines (if needed) can lower your cholesterol. \n Triglycerides are another type of fat in the blood. High levels of triglyceride may also raise the risk of coronary artery disease, especially in women. \n \n \n\n Staying at a healthy weight. Being overweight or having obesity can increase your risk of heart disease. This is mostly because they are linked to other heart disease risk factors, including high blood cholesterol and triglyceride levels, high blood pressure, and diabetes. Controlling your weight can lower these risks. \n"
+            },
+            "document": {
+              "id": "medlineplus:1598",
+              "url": "https://medlineplus.gov/howtopreventheartdisease.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "How to Prevent Heart Disease",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "1dd3032fc52dc4f84b6fdbf6a40b7f9c34a2ccd6e2dc01ee426e6bf67715d18f",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4861",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:26",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6452",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6809",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6450",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Heart Diseases prevention & control"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.025694893341952164,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "are less likely to die of it \n Asian Americans as a group have lower rates of heart disease than other groups, but South Asian Americans have higher rates \n \n \n\n Your family history. You have a greater risk if you have a close family member who had heart disease at an early age, for example if:\n \n Y",
+              "after": "\n Eating a healthy diet. Try to limit saturated fats , foods high in sodium (salt), and added sugars . Instead, eat plenty of fresh fruit, vegetables, and whole grains. The DASH diet is an example of an eating plan that can help you to lower your blood pressure and cholesterol, two things that can l"
+            }
+          },
+          {
+            "chunk": {
+              "id": "b18f45c7d9132b69070fec28c4184599b15d7d4bbccc00a5832cab85a01da9ec",
+              "end": 3342,
+              "hash": "ab432a9853eae31d5c5927b61252ffe11b6764ee077393b315a17ec32c9503ec",
+              "text": "these factors you can change, but others you cannot. \n\n \n Age. Your risk of heart disease goes up as you get older. \n Sex. Some factors may affect heart disease risk differently in women than in men. \n Family history and genetics. A family history of early heart disease raises your risk. And research has shown that some genes are linked to a higher risk of certain heart diseases. \n Race/ethnicity. Heart disease is the leading cause of death in most racial and ethnic groups in the United States. However, certain groups have higher risks than others. This includes Black people, White people, and American Indian/Alaska Native people. \n Lifestyle habits. Over time, unhealthy lifestyle habits can raise your risk of heart disease. These can include: \n \n Eating a diet high in saturated fats , refined carbohydrates, and salt . \n Not getting enough physical activity . \n Drinking too much alcohol . \n Smoking and exposure to secondhand smoke . \n Too much stress . \n \n \n Having other medical conditions can raise your risk of heart diseases. These conditions include:\n \n High blood pressure . \n High cholesterol levels . \n Diabetes . \n Obesity . \n Autoimmune and inflammatory diseases. \n Chronic kidney disease . \n Metabolic syndrome . \n \n \n \n\n What are the symptoms of heart disease? \n Your symptoms will depend on the type of heart disease you have. You may not have symptoms at first. In some cases, you may not know you have heart disease until you have a complication such as a heart attack. \n\n How are heart diseases diagnosed? \n To find out if you have heart disease, your health care provider will: \n \n Ask about your medical history , including your symptoms \n Ask about your family health history , including relatives who have had heart disease \n Do a physical exam ",
+              "start": 1563,
+              "section": 0,
+              "documentId": "medlineplus:277",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Heart Diseases\nCardiac diseases\nHealth-topic summary\nthese factors you can change, but others you cannot. \n\n \n Age. Your risk of heart disease goes up as you get older. \n Sex. Some factors may affect heart disease risk differently in women than in men. \n Family history and genetics. A family history of early heart disease raises your risk. And research has shown that some genes are linked to a higher risk of certain heart diseases. \n Race/ethnicity. Heart disease is the leading cause of death in most racial and ethnic groups in the United States. However, certain groups have higher risks than others. This includes Black people, White people, and American Indian/Alaska Native people. \n Lifestyle habits. Over time, unhealthy lifestyle habits can raise your risk of heart disease. These can include: \n \n Eating a diet high in saturated fats , refined carbohydrates, and salt . \n Not getting enough physical activity . \n Drinking too much alcohol . \n Smoking and exposure to secondhand smoke . \n Too much stress . \n \n \n Having other medical conditions can raise your risk of heart diseases. These conditions include:\n \n High blood pressure . \n High cholesterol levels . \n Diabetes . \n Obesity . \n Autoimmune and inflammatory diseases. \n Chronic kidney disease . \n Metabolic syndrome . \n \n \n \n\n What are the symptoms of heart disease? \n Your symptoms will depend on the type of heart disease you have. You may not have symptoms at first. In some cases, you may not know you have heart disease until you have a complication such as a heart attack. \n\n How are heart diseases diagnosed? \n To find out if you have heart disease, your health care provider will: \n \n Ask about your medical history , including your symptoms \n Ask about your family health history , including relatives who have had heart disease \n Do a physical exam "
+            },
+            "document": {
+              "id": "medlineplus:277",
+              "url": "https://medlineplus.gov/heartdiseases.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Heart Diseases",
+              "aliases": [
+                "Cardiac diseases"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "3ec38449c2cd16f36ed79a9c81072ccc8b6de5b892561598745e2e5cc6786952",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:142",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:147",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5617",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3754",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:198",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1276",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6011",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4316",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:199",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6452",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4119",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:279",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1598",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5664",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4266",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Heart Diseases"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.025007766387076732,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "The causes of heart disease depend on the type of disease. Some possible causes include lifestyle, genetics, infections, medicines, and other diseases. \n\n Who is more likely to develop heart diseases? \n There are many different factors that can make you more likely to develop heart disease. Some of ",
+              "after": "\n Likely run heart tests and blood tests \n \n\n In some cases, your provider may refer you to a cardiologist (a doctor who specializes in heart diseases) for tests, diagnosis, and care. \n\n What are the treatments for heart disease? \n Treatment plans for heart disease depend on the type of heart diseas"
+            }
+          },
+          {
+            "chunk": {
+              "id": "dd2627641d3088e2361136543d66a88114b1222a6d1cc36c2dd2d2106978fe6b",
+              "end": 3354,
+              "hash": "6d4d5ca510145694d0289023c750774ef0ba68ac50d6b3a58f73145da72dddd9",
+              "text": "rent; VLDL mainly carries triglycerides and LDL mainly carries cholesterol. \n \n\n What causes high cholesterol? \n The most common cause of high cholesterol is an unhealthy lifestyle. This can include: \n Unhealthy eating habits, such as eating lots of saturated fats . These fats are found in red meats, full-fat dairy products, chocolate, some baked goods, and many deep-fried and processed foods. Eating too much saturated fat can raise your LDL (bad) cholesterol. \n Lack of physical activity , with lots of sitting and little exercise. This lowers your HDL (good) cholesterol. \n Smoking , which lowers HDL cholesterol, especially in women. It also raises your LDL cholesterol. \n Stress , which may raise levels of certain hormones such as corticosteroids. These can cause your body to make more cholesterol. \n Drinking too much alcohol , which can raise your total cholesterol level. \n \n\n Genetics may also cause people to have high cholesterol. For example, familial hypercholesterolemia (FH) is an inherited condition that causes very high levels of cholesterol in the blood. Other medical conditions and certain medicines may also raise LDL cholesterol levels or lower HDL cholesterol levels. \n\n What can raise my risk of high cholesterol? \n A variety of things can raise your risk of high cholesterol: \n Age. Your cholesterol levels tend to rise as you get older. Even though it is less common, younger people, including children and teens , can also have high cholesterol. \n Sex. Between ages 20 and 39, men have a greater risk of high total cholesterol than women. But after menopause , a woman's risk goes up. This happens because menopause lowers levels of female hormones that may protect against high blood cholesterol. \n Family history. High blood cholesterol can run in families. ",
+              "start": 1561,
+              "section": 0,
+              "documentId": "medlineplus:26",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Cholesterol\nHypercholesterolemia; Hyperlipidemia; Hyperlipoproteinemia\nHealth-topic summary\nrent; VLDL mainly carries triglycerides and LDL mainly carries cholesterol. \n \n\n What causes high cholesterol? \n The most common cause of high cholesterol is an unhealthy lifestyle. This can include: \n Unhealthy eating habits, such as eating lots of saturated fats . These fats are found in red meats, full-fat dairy products, chocolate, some baked goods, and many deep-fried and processed foods. Eating too much saturated fat can raise your LDL (bad) cholesterol. \n Lack of physical activity , with lots of sitting and little exercise. This lowers your HDL (good) cholesterol. \n Smoking , which lowers HDL cholesterol, especially in women. It also raises your LDL cholesterol. \n Stress , which may raise levels of certain hormones such as corticosteroids. These can cause your body to make more cholesterol. \n Drinking too much alcohol , which can raise your total cholesterol level. \n \n\n Genetics may also cause people to have high cholesterol. For example, familial hypercholesterolemia (FH) is an inherited condition that causes very high levels of cholesterol in the blood. Other medical conditions and certain medicines may also raise LDL cholesterol levels or lower HDL cholesterol levels. \n\n What can raise my risk of high cholesterol? \n A variety of things can raise your risk of high cholesterol: \n Age. Your cholesterol levels tend to rise as you get older. Even though it is less common, younger people, including children and teens , can also have high cholesterol. \n Sex. Between ages 20 and 39, men have a greater risk of high total cholesterol than women. But after menopause , a woman's risk goes up. This happens because menopause lowers levels of female hormones that may protect against high blood cholesterol. \n Family history. High blood cholesterol can run in families. "
+            },
+            "document": {
+              "id": "medlineplus:26",
+              "url": "https://medlineplus.gov/cholesterol.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Cholesterol",
+              "aliases": [
+                "Hypercholesterolemia",
+                "Hyperlipidemia",
+                "Hyperlipoproteinemia"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "d79cb0ade765cd502a2160cc514dbd0bbac6b72fa5f05e586e47a3d649f7ec72",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6781",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6811",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3593",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6785",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6809",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6807",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6783",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:36",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6909",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Cholesterol",
+                "Hypercholesterolemia"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.024493705528188286,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "sometimes called \"bad\" cholesterol because a high LDL level leads to the buildup of plaque in your arteries. \n VLDL stands for very low-density lipoprotein. Some people also call VLDL a \"bad\" cholesterol because it too contributes to the buildup of plaque in your arteries. But VLDL and LDL are diffe",
+              "after": "\n Other health conditions. Conditions such as diabetes , chronic kidney disease , HIV , and lupus can raise your risk of high cholesterol.\n Medicines. Certain medicines can raise your level of LDL cholesterol or lower your level of HDL cholesterol, including:\n \n Steroids \n Some chemotherapy medicine"
+            }
+          },
+          {
+            "chunk": {
+              "id": "89138b15d9db3ed4a66e7c19e939865360d919f002daff747d4f68418b7e70d7",
+              "end": 4717,
+              "hash": "4dc13cab9c1a8e240efdec26c12b484f464b4b0ed8641c466ff9ea0cf2ab5a2e",
+              "text": " a woman's risk goes up. This happens because menopause lowers levels of female hormones that may protect against high blood cholesterol. \n Family history. High blood cholesterol can run in families. \n Other health conditions. Conditions such as diabetes , chronic kidney disease , HIV , and lupus can raise your risk of high cholesterol.\n Medicines. Certain medicines can raise your level of LDL cholesterol or lower your level of HDL cholesterol, including:\n \n Steroids \n Some chemotherapy medicines \n Medicines taken after an organ transplant \n Medicines for certain heart conditions \n Certain acne medicines \n \n \n Race or ethnicity. People from certain racial or ethnic groups may have an increased risk of high cholesterol. For example, Asian Americans are more likely to have high levels of LDL cholesterol than other groups. And non-Hispanic White people are more likely than other groups to have high levels of total cholesterol. \n Weight. Being overweight or having obesity raises your cholesterol level. \n \n\n What other health problems can high cholesterol cause? \n Undiagnosed or untreated high blood cholesterol can lead to serious health problems: \n \n If you have large deposits of plaque in your arteries, an area of plaque can rupture (break open). This can cause a blood clot to form on the surface of the plaque. If the clot becomes large enough, it can mostly or completely block blood flow in a coronary artery. \n If the flow of oxygen-rich blood to your heart muscle is reduced or blocked, it can cause angina (chest pain) or a heart attack . ",
+              "start": 3154,
+              "section": 0,
+              "documentId": "medlineplus:26",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Cholesterol\nHypercholesterolemia; Hyperlipidemia; Hyperlipoproteinemia\nHealth-topic summary\n a woman's risk goes up. This happens because menopause lowers levels of female hormones that may protect against high blood cholesterol. \n Family history. High blood cholesterol can run in families. \n Other health conditions. Conditions such as diabetes , chronic kidney disease , HIV , and lupus can raise your risk of high cholesterol.\n Medicines. Certain medicines can raise your level of LDL cholesterol or lower your level of HDL cholesterol, including:\n \n Steroids \n Some chemotherapy medicines \n Medicines taken after an organ transplant \n Medicines for certain heart conditions \n Certain acne medicines \n \n \n Race or ethnicity. People from certain racial or ethnic groups may have an increased risk of high cholesterol. For example, Asian Americans are more likely to have high levels of LDL cholesterol than other groups. And non-Hispanic White people are more likely than other groups to have high levels of total cholesterol. \n Weight. Being overweight or having obesity raises your cholesterol level. \n \n\n What other health problems can high cholesterol cause? \n Undiagnosed or untreated high blood cholesterol can lead to serious health problems: \n \n If you have large deposits of plaque in your arteries, an area of plaque can rupture (break open). This can cause a blood clot to form on the surface of the plaque. If the clot becomes large enough, it can mostly or completely block blood flow in a coronary artery. \n If the flow of oxygen-rich blood to your heart muscle is reduced or blocked, it can cause angina (chest pain) or a heart attack . "
+            },
+            "document": {
+              "id": "medlineplus:26",
+              "url": "https://medlineplus.gov/cholesterol.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Cholesterol",
+              "aliases": [
+                "Hypercholesterolemia",
+                "Hyperlipidemia",
+                "Hyperlipoproteinemia"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "d79cb0ade765cd502a2160cc514dbd0bbac6b72fa5f05e586e47a3d649f7ec72",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6781",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6811",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3593",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6785",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6809",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6807",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6783",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:36",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6909",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Cholesterol",
+                "Hypercholesterolemia"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.024329950559458757,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": " cholesterol: \n Age. Your cholesterol levels tend to rise as you get older. Even though it is less common, younger people, including children and teens , can also have high cholesterol. \n Sex. Between ages 20 and 39, men have a greater risk of high total cholesterol than women. But after menopause ,",
+              "after": "\n Plaque also can build up in other arteries in your body, including the arteries that bring oxygen-rich blood to your brain and limbs. This can lead to problems such as carotid artery disease , stroke , and peripheral arterial disease . \n \n\n How is high cholesterol diagnosed? \n There are usually no"
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 57.33237499999814,
+          "embeddingMs": 827.7562089999556,
+          "vectorMs": 15.548875000036787,
+          "totalMs": 921.6028330000117
+        },
+        "warnings": [],
+        "embeddingTokens": 8,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "acute coronary syndrome",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "35489cc86908017c68eae2c9153d9d390615bb1f48ac411ea6b628413a4eb2f9",
+              "end": 1410,
+              "hash": "a98cb4e7f260dc75bb434ea56f2eda2dc6a0f9b3645eb3619627ca19e7fb7db9",
+              "text": "| Condition | Distinguishing Features |\n|-----------|------------------------|\n| Atherosclerotic ACS (STEMI/NSTEMI) | Older patients; traditional risk factors (HTN, DM, hyperlipidemia, smoking, family history); angiography shows plaque rupture/erosion with thrombus; calcified vessels |\n| Takotsubo cardiomyopathy | Apical ballooning on echo not following single coronary territory; normal coronary angiography; emotional precipitant; transient ST elevation; troponin elevation modest relative to wall motion abnormality |\n| Myocarditis | Viral prodrome; diffuse ST changes (not single territory); troponin elevation; cardiac MRI shows subepicardial/mid-wall late gadolinium enhancement; normal coronary angiography |\n| Coronary vasospasm (Prinzmetal) | Transient ST elevation resolving with nitroglycerin; normal angiography (or provoked spasm with acetylcholine/ergonovine); no intramural hematoma |\n| Aortic dissection with coronary extension | Tearing chest/back pain; pulse deficits; widened mediastinum on CXR; CT shows aortic dissection flap extending into coronary ostium (usually RCA) |\n| Pulmonary embolism | Dyspnea predominant; S1Q3T3 or right heart strain on ECG; CTA shows filling defect; troponin elevation from RV strain |\n| Coronary artery embolism | Atrial fibrillation, prosthetic valve, or endocarditis; abrupt vessel cutoff on angiography without dissection plane; no intramural hematoma |",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:spontaneous-coronary-artery-dissection",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Spontaneous Coronary Artery Dissection\nSCAD; coronary artery dissection; spontaneous coronary dissection\nDifferential Diagnosis\n| Condition | Distinguishing Features |\n|-----------|------------------------|\n| Atherosclerotic ACS (STEMI/NSTEMI) | Older patients; traditional risk factors (HTN, DM, hyperlipidemia, smoking, family history); angiography shows plaque rupture/erosion with thrombus; calcified vessels |\n| Takotsubo cardiomyopathy | Apical ballooning on echo not following single coronary territory; normal coronary angiography; emotional precipitant; transient ST elevation; troponin elevation modest relative to wall motion abnormality |\n| Myocarditis | Viral prodrome; diffuse ST changes (not single territory); troponin elevation; cardiac MRI shows subepicardial/mid-wall late gadolinium enhancement; normal coronary angiography |\n| Coronary vasospasm (Prinzmetal) | Transient ST elevation resolving with nitroglycerin; normal angiography (or provoked spasm with acetylcholine/ergonovine); no intramural hematoma |\n| Aortic dissection with coronary extension | Tearing chest/back pain; pulse deficits; widened mediastinum on CXR; CT shows aortic dissection flap extending into coronary ostium (usually RCA) |\n| Pulmonary embolism | Dyspnea predominant; S1Q3T3 or right heart strain on ECG; CTA shows filling defect; troponin elevation from RV strain |\n| Coronary artery embolism | Atrial fibrillation, prosthetic valve, or endocarditis; abrupt vessel cutoff on angiography without dissection plane; no intramural hematoma |"
+            },
+            "document": {
+              "id": "openem:spontaneous-coronary-artery-dissection",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/spontaneous-coronary-artery-dissection.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Spontaneous Coronary Artery Dissection",
+              "aliases": [
+                "SCAD",
+                "coronary artery dissection",
+                "spontaneous coronary dissection"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "8c049559cea489309136d7ae749c265f4bd8a764eff5567638e66f7e559ec477",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:stemi",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:takotsubo-cardiomyopathy",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "cardiovascular"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-26"
+            },
+            "score": 0.02363150867823765,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "5489b39dc59208f5fd1c4910a112c861a8057bd832431a2fed984f367f9b194e",
+              "end": 1745,
+              "hash": "280f966ee849f3e4a9fc179aed022012ab92dde2cf299aa6f9b7c6a91d1b26a3",
+              "text": "**Definition:** Non-atherosclerotic, non-traumatic, non-iatrogenic separation of the coronary artery wall by intramural hemorrhage or intimal tear, causing luminal compromise and myocardial ischemia. Distinct from atherosclerotic plaque rupture and iatrogenic dissection during PCI.\n\n**Epidemiology:**\n- Accounts for 1-4% of all ACS presentations\n- Most common cause of MI in women <50 years old (up to 35% of MI in this population)\n- Female predominance: 90-95% female\n- Median age: 44-53 years\n- Peripartum SCAD: 5-10% of all SCAD cases (highest risk in third trimester and first weeks postpartum)\n\n**Associated conditions:**\n- **Fibromuscular dysplasia (FMD):** Present in 25-86% of SCAD patients when systematically screened. Most commonly renal and iliac arteries.\n- **Connective tissue disorders:** Marfan syndrome, Ehlers-Danlos type IV, Loeys-Dietz syndrome\n- **Pregnancy/postpartum:** Hormonal and hemodynamic changes weaken arterial wall\n- **Systemic inflammatory conditions:** SLE, polyarteritis nodosa, sarcoidosis, IBD\n- **Hormonal therapy:** Oral contraceptives, fertility treatments, hormone replacement\n\n**Precipitants:**\n- Intense physical exertion (isometric exercise, Valsalva, heavy lifting)\n- Intense emotional stress\n- Labor and delivery\n- Recreational drug use (cocaine, amphetamines)\n- Retching/vomiting\n- Coughing paroxysms\n\n**Presentation:** Indistinguishable from atherosclerotic ACS at the bedside.\n- Acute chest pain (96%) — typical or atypical\n- STEMI pattern on ECG (26-87%)\n- NSTEMI pattern (13-74%)\n- Cardiogenic shock (2-5%)\n- Ventricular arrhythmia/sudden cardiac death (2-4%)\n\n**Coronary angiography classification (Saw classification):**\n\n| Type | Description | Frequency |\n|------|-------------|-----------|",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:spontaneous-coronary-artery-dissection",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Spontaneous Coronary Artery Dissection\nSCAD; coronary artery dissection; spontaneous coronary dissection\nRecognition\n**Definition:** Non-atherosclerotic, non-traumatic, non-iatrogenic separation of the coronary artery wall by intramural hemorrhage or intimal tear, causing luminal compromise and myocardial ischemia. Distinct from atherosclerotic plaque rupture and iatrogenic dissection during PCI.\n\n**Epidemiology:**\n- Accounts for 1-4% of all ACS presentations\n- Most common cause of MI in women <50 years old (up to 35% of MI in this population)\n- Female predominance: 90-95% female\n- Median age: 44-53 years\n- Peripartum SCAD: 5-10% of all SCAD cases (highest risk in third trimester and first weeks postpartum)\n\n**Associated conditions:**\n- **Fibromuscular dysplasia (FMD):** Present in 25-86% of SCAD patients when systematically screened. Most commonly renal and iliac arteries.\n- **Connective tissue disorders:** Marfan syndrome, Ehlers-Danlos type IV, Loeys-Dietz syndrome\n- **Pregnancy/postpartum:** Hormonal and hemodynamic changes weaken arterial wall\n- **Systemic inflammatory conditions:** SLE, polyarteritis nodosa, sarcoidosis, IBD\n- **Hormonal therapy:** Oral contraceptives, fertility treatments, hormone replacement\n\n**Precipitants:**\n- Intense physical exertion (isometric exercise, Valsalva, heavy lifting)\n- Intense emotional stress\n- Labor and delivery\n- Recreational drug use (cocaine, amphetamines)\n- Retching/vomiting\n- Coughing paroxysms\n\n**Presentation:** Indistinguishable from atherosclerotic ACS at the bedside.\n- Acute chest pain (96%) — typical or atypical\n- STEMI pattern on ECG (26-87%)\n- NSTEMI pattern (13-74%)\n- Cardiogenic shock (2-5%)\n- Ventricular arrhythmia/sudden cardiac death (2-4%)\n\n**Coronary angiography classification (Saw classification):**\n\n| Type | Description | Frequency |\n|------|-------------|-----------|"
+            },
+            "document": {
+              "id": "openem:spontaneous-coronary-artery-dissection",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/spontaneous-coronary-artery-dissection.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Spontaneous Coronary Artery Dissection",
+              "aliases": [
+                "SCAD",
+                "coronary artery dissection",
+                "spontaneous coronary dissection"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "8c049559cea489309136d7ae749c265f4bd8a764eff5567638e66f7e559ec477",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:stemi",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:takotsubo-cardiomyopathy",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "cardiovascular"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-26"
+            },
+            "score": 0.020676691729323307,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n| Type 1 | Multiple radiolucent lumen with contrast staining of arterial wall (pathognomonic) | 29-48% |\n| Type 2a | Diffuse narrowing (>20 mm) with abrupt caliber change returning to normal | Most common |\n| Type 2b | Diffuse narrowing extending to distal tip of artery | Common |\n| Type 3 | Focal "
+            }
+          },
+          {
+            "chunk": {
+              "id": "42fed638a04fc79be12f567a2affcb797313eeba973635301a57fef3b94bb601",
+              "end": 1350,
+              "hash": "956022fc0489ab1da6fcf4686f7d87af67357e469655cdc7b098a71acfdbf79c",
+              "text": "1. **Excluding ACS based on a single normal troponin.** A single troponin at presentation may be falsely negative early after symptom onset. Serial troponins (0h/1h or 0h/3h protocol) are required. hs-cTn rises within 1-3 hours of ischemia but may not reach diagnostic threshold at time of initial draw.\n\n2. **Stress testing a patient with Wellens syndrome.** Biphasic or deeply inverted T waves in V2-V3 indicate critical proximal LAD stenosis (Wellens). Stress testing can precipitate acute LAD occlusion and STEMI. These patients require direct coronary angiography.\n\n3. **Failing to distinguish type 1 from type 2 MI.** Type 2 MI (demand ischemia from anemia, sepsis, tachycardia, hypotension) requires treatment of the underlying condition, not emergent revascularization. Troponin elevation in a septic patient does not automatically warrant anticoagulation and cath lab activation.\n\n4. **Discharging moderate-risk chest pain without adequate observation.** HEART score 4-6 patients have 12-16% risk of MACE. These patients require serial troponins, observation, and often further testing before safe discharge.\n\n5. **Omitting high-intensity statin in the ED.** Early high-intensity statin (atorvastatin 80 mg) has pleiotropic effects that reduce periprocedural MI risk and improve outcomes. Initiate in the ED, not as a discharge afterthought.",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:acute-coronary-syndrome-nstemi",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Non-ST-Elevation Myocardial Infarction\nNSTEMI; non-STEMI; NSTE-ACS; acute coronary syndrome without ST elevation; type 1 NSTEMI\nPitfalls\n1. **Excluding ACS based on a single normal troponin.** A single troponin at presentation may be falsely negative early after symptom onset. Serial troponins (0h/1h or 0h/3h protocol) are required. hs-cTn rises within 1-3 hours of ischemia but may not reach diagnostic threshold at time of initial draw.\n\n2. **Stress testing a patient with Wellens syndrome.** Biphasic or deeply inverted T waves in V2-V3 indicate critical proximal LAD stenosis (Wellens). Stress testing can precipitate acute LAD occlusion and STEMI. These patients require direct coronary angiography.\n\n3. **Failing to distinguish type 1 from type 2 MI.** Type 2 MI (demand ischemia from anemia, sepsis, tachycardia, hypotension) requires treatment of the underlying condition, not emergent revascularization. Troponin elevation in a septic patient does not automatically warrant anticoagulation and cath lab activation.\n\n4. **Discharging moderate-risk chest pain without adequate observation.** HEART score 4-6 patients have 12-16% risk of MACE. These patients require serial troponins, observation, and often further testing before safe discharge.\n\n5. **Omitting high-intensity statin in the ED.** Early high-intensity statin (atorvastatin 80 mg) has pleiotropic effects that reduce periprocedural MI risk and improve outcomes. Initiate in the ED, not as a discharge afterthought."
+            },
+            "document": {
+              "id": "openem:acute-coronary-syndrome-nstemi",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-coronary-syndrome-nstemi.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Non-ST-Elevation Myocardial Infarction",
+              "aliases": [
+                "NSTEMI",
+                "non-STEMI",
+                "NSTE-ACS",
+                "acute coronary syndrome without ST elevation",
+                "type 1 NSTEMI"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "00362d46000245201b4650b00aa6a0d8e061f7458b94a9566901c015a8195416",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:stemi",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:pulmonary-embolism",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:pericarditis-myocarditis",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "cardiovascular"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.01996512641673932,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "375171d2ae41dbe0f3ab0fc303de3d99a9b46c95f16fb46af5e36cb852a34b09",
+              "end": 2166,
+              "hash": "45b899b0ba559f82590fba28b25713f620ae50435e387ef2d419d3192d731ddb",
+              "text": "ar-syncope + harsh systolic crescendo-decrescendo murmur at right upper sternal border radiating to carotids\n- Triad of symptoms: syncope, angina, heart failure (each marks progressive mortality risk)\n- Syncope in critical AS = 50% 1-year mortality without intervention\n- Pulsus parvus et tardus (delayed, diminished carotid upstroke)\n- S4 gallop, narrow pulse pressure\n- Decompensation: flash pulmonary edema, cardiogenic shock\n\n**Bedside echo:** Calcified aortic valve with restricted opening, aortic valve area < 1.0 cm2, peak velocity > 4 m/s, mean gradient > 40 mmHg.",
+              "start": 1594,
+              "section": 0,
+              "documentId": "openem:acute-valvular-emergency",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Acute Valvular Emergency\nacute aortic regurgitation; acute mitral regurgitation; critical aortic stenosis; acute valvular dysfunction; papillary muscle rupture; chordae tendineae rupture\nRecognition\nar-syncope + harsh systolic crescendo-decrescendo murmur at right upper sternal border radiating to carotids\n- Triad of symptoms: syncope, angina, heart failure (each marks progressive mortality risk)\n- Syncope in critical AS = 50% 1-year mortality without intervention\n- Pulsus parvus et tardus (delayed, diminished carotid upstroke)\n- S4 gallop, narrow pulse pressure\n- Decompensation: flash pulmonary edema, cardiogenic shock\n\n**Bedside echo:** Calcified aortic valve with restricted opening, aortic valve area < 1.0 cm2, peak velocity > 4 m/s, mean gradient > 40 mmHg."
+            },
+            "document": {
+              "id": "openem:acute-valvular-emergency",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-valvular-emergency.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Valvular Emergency",
+              "aliases": [
+                "acute aortic regurgitation",
+                "acute mitral regurgitation",
+                "critical aortic stenosis",
+                "acute valvular dysfunction",
+                "papillary muscle rupture",
+                "chordae tendineae rupture"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "fc33d1c0eceab36249aedb53ade1c5439e72d400ea3d6f5d02feb03c67650b54",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:acute-heart-failure",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:sepsis",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:pulmonary-embolism",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "cardiovascular"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.018621503201887428,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "eral rales\n- Abrupt deterioration in post-MI patient\n\n**Bedside echo:** Flail mitral leaflet, ruptured papillary muscle head, eccentric regurgitant jet on color Doppler, hyperdynamic LV (volume not yet dilated).\n\n### Critical Aortic Stenosis (AS) with Decompensation\n**Presentation:**\n- Syncope or ne",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "70fbf494c42ba503ccd21cdd5fd91565b83d27e7a3924c8f43a15c7534426fda",
+              "end": 913,
+              "hash": "f0903d6d1e352a64363b51d7f57980c4f09c7589115e5b259659c2dd0001220c",
+              "text": "| Action | Target |\n|---|---|\n| 12-lead ECG | < 10 minutes |\n| Troponin | < 30 minutes |\n| Treat as ACS until proven otherwise | Immediate |\n| Echocardiography | < 2 hours |\n\n1. **Treat as ACS initially** — STEMI-like presentation requires cath lab activation per STEMI protocol\n2. **Coronary angiography** — required to exclude acute coronary occlusion; typically shows normal coronaries or non-obstructive disease\n3. **Left ventriculography** during cath — classic apical ballooning pattern confirms diagnosis\n4. **Echocardiography** — if cath lab not immediately available; document wall motion abnormality pattern\n5. **Hemodynamic monitoring** — risk of LVOT obstruction (10-25%), cardiogenic shock (5-10%), LV thrombus\n6. **Monitor for QTc prolongation** — risk of torsades de pointes; avoid QT-prolonging medications\n7. **Correct underlying stressor** if physical trigger (sepsis, surgery, pheochromocytoma)",
+              "start": 0,
+              "section": 1,
+              "documentId": "openem:takotsubo-cardiomyopathy",
+              "sectionTitle": "Critical Actions",
+              "embeddingText": "Takotsubo Cardiomyopathy\nstress cardiomyopathy; broken heart syndrome; apical ballooning syndrome; takotsubo syndrome\nCritical Actions\n| Action | Target |\n|---|---|\n| 12-lead ECG | < 10 minutes |\n| Troponin | < 30 minutes |\n| Treat as ACS until proven otherwise | Immediate |\n| Echocardiography | < 2 hours |\n\n1. **Treat as ACS initially** — STEMI-like presentation requires cath lab activation per STEMI protocol\n2. **Coronary angiography** — required to exclude acute coronary occlusion; typically shows normal coronaries or non-obstructive disease\n3. **Left ventriculography** during cath — classic apical ballooning pattern confirms diagnosis\n4. **Echocardiography** — if cath lab not immediately available; document wall motion abnormality pattern\n5. **Hemodynamic monitoring** — risk of LVOT obstruction (10-25%), cardiogenic shock (5-10%), LV thrombus\n6. **Monitor for QTc prolongation** — risk of torsades de pointes; avoid QT-prolonging medications\n7. **Correct underlying stressor** if physical trigger (sepsis, surgery, pheochromocytoma)"
+            },
+            "document": {
+              "id": "openem:takotsubo-cardiomyopathy",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/takotsubo-cardiomyopathy.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Takotsubo Cardiomyopathy",
+              "aliases": [
+                "stress cardiomyopathy",
+                "broken heart syndrome",
+                "apical ballooning syndrome",
+                "takotsubo syndrome"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "fea6f2d02a245b0a3b8f8041c5ae6826a24988bcc4ee454da6568c153e1858e7",
+              "related": [],
+              "concepts": [
+                "cardiovascular"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.017902621722846443,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 75.1164169999538,
+          "embeddingMs": 626.6437910000095,
+          "vectorMs": 15.742582999984734,
+          "totalMs": 722.1537919999682
+        },
+        "warnings": [],
+        "embeddingTokens": 3,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "accept",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "Persistent crushing chest pressure with arm radiation, sweating and nausea requires immediate emergency assessment. The draft preserves ambulance transport already underway without waiting for messaging or measurements.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I called 911; the ambulance is coming; the chest pressure is still present."
+            },
+            {
+              "unit": "draft",
+              "quote": "Stay with your current plan — the ambulance is on the way; do not drive yourself and do not delay."
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "Immediate emergency assessment and continued EMS transport are proportionate to ongoing symptoms concerning for acute coronary syndrome. A lower-intensity messaging or outpatient pathway would not meet the clinical need; no additional access prerequisite is assumed.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach"
+            },
+            {
+              "unit": "draft",
+              "quote": "needs emergency assessment now."
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "The draft accurately represents the reported symptoms and activated ambulance response. It does not invent vital signs or treat unreported breathlessness or syncope as absent.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "45M."
+            },
+            {
+              "unit": "draft",
+              "quote": "No vital signs reported: no blood pressure, heart rate, oxygen saturation or temperature provided."
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "pass",
+          "reason": "The supplied passages support immediate care for this symptom cluster and concern for ACS. The draft presents heart attack as a possibility rather than a confirmed diagnosis, accurately qualifies its sources, and gives reasonable supportive precautions while EMS is coming.",
+          "anchors": [
+            {
+              "unit": "source:07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+              "quote": "Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath."
+            },
+            {
+              "unit": "draft",
+              "quote": "Your ongoing crushing chest pressure with arm radiation, sweating and nausea can signal a heart attack"
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "pass",
+          "reason": "The draft maintains immediate care and directs renewed emergency contact for deterioration or ambulance delay. This does not postpone the existing emergency response.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "If you feel faint, collapse, or the ambulance is delayed, call 911 back immediately."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No issued question is supplied, and the draft asks no questions or requires an answer before emergency care.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"questions\":[]"
+            },
+            {
+              "unit": "draft",
+              "quote": "do not drive yourself and do not delay."
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "Emergency services appropriately own the immediate response. Ambulance activation is patient-reported, not fabricated acceptance, and the draft does not introduce a competing Counsel queue or promise an arrival time.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I called 911; the ambulance is coming"
+            },
+            {
+              "unit": "draft",
+              "quote": "Stay with your current plan — the ambulance is on the way"
+            }
+          ]
+        }
+      ],
+      "earlyAction": "supported",
+      "earlyCorrection": null,
+      "correction": "",
+      "evidenceQueries": []
+    },
+    "release": "clinician_required",
+    "clinicalApproval": false,
+    "corrections": 0,
+    "careCorrectionReleased": false,
+    "sourceIntegrity": true,
+    "citations": []
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "clinical-evidence-graph",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "e00d14e0-137d-49ba-a0af-c9e18b749f7e",
+  "traceId": "0b9c785192f8b4846ceff780566b9c59",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "45M. I've had crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach. I have high cholesterol.\n\nAdditional patient information: I called 911; the ambulance is coming; the chest pressure is still present.",
+  "inputHash": "248ac0723ec9cb26c1d035177299fe43fe0dbd9f85d114b3f47d559810c76455",
+  "answerHash": "7b9b7264cee83a72cc5ef714bac21c2f13208f5be836bf51e0492728817178e3",
+  "promptHash": "f1545c4b41997192c600d2f9dcfe8e5a888fa1413136297c7a50a443a7b3a1e5",
+  "guidanceHash": "0340fce3b11f2c32d153bbf644e2db6d9b8451566b3e67bf51d48042c1736761",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-14T06:20:14.715Z",
+  "durationMs": 42779,
+  "workflowDurationMs": 42693,
+  "tracePersistenceDurationMs": 85,
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 0
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 6829
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 21477
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 21189
+    }
+  ],
+  "responseEvents": [
+    {
+      "kind": "action",
+      "notice": {
+        "disposition": "EMERGENCY_NOW",
+        "directive": "Call 911 now. Do not drive yourself or wait for a message reply.",
+        "source": "emergency_agent"
+      },
+      "elapsedMs": 6830,
+      "sequence": 1
+    }
+  ],
+  "safetyNotices": [
+    {
+      "disposition": "EMERGENCY_NOW",
+      "directive": "Call 911 now. Do not drive yourself or wait for a message reply.",
+      "source": "emergency_agent"
+    }
+  ],
+  "firstActionMs": 6830,
+  "firstPatientReplyMs": null,
+  "firstQuestionMs": null
+}

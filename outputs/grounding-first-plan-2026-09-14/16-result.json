@@ -1,0 +1,164 @@
+{
+  "id": "activeEMS",
+  "arm": "baseline",
+  "role": "judge",
+  "execution": {
+    "output": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "accept",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "Persistent crushing chest pressure with arm radiation, sweating and nausea requires immediate emergency assessment. The draft continues the already activated emergency response without waiting for messaging or measurements; no essential routing prerequisite remains unresolved.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I've had crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach."
+            },
+            {
+              "unit": "draft",
+              "quote": "Stay where you are and continue with the 911 response already on the way, following the dispatcher's instructions until the crew arrives."
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "Immediate emergency care and continuation of dispatched EMS are proportionate to the ongoing possible acute coronary syndrome. A lower-intensity pathway would not meet the immediate assessment requirement, and the transport plan follows the patient's reported dispatcher instructions.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I called 911. The ambulance has been dispatched for me and the dispatcher told me to wait here. The chest pressure is still present."
+            },
+            {
+              "unit": "draft",
+              "quote": "Do not drive yourself."
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "The symptom narrative and active EMS status match the original patient report. Alternative diagnoses remain possibilities, and unreported symptoms and vital-sign measurement status are explicitly unknown.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "45-year-old with 30 minutes of ongoing crushing central chest pressure radiating to the left arm with diaphoresis and nausea"
+            },
+            {
+              "unit": "patient",
+              "quote": "45M. I've had crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach."
+            },
+            {
+              "unit": "draft",
+              "quote": "No vital signs reported: no blood pressure, heart rate, respiratory rate, temperature or oxygen saturation given, and whether any measurement was taken is unknown."
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "pass",
+          "reason": "Supplied passages support immediate emergency care for persistent crushing chest pressure with associated symptoms and concern for ACS with prolonged pain. The draft appropriately limits these claims to concern rather than diagnosis and acknowledges source limitations.",
+          "anchors": [
+            {
+              "unit": "source:07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+              "quote": "Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath."
+            },
+            {
+              "unit": "source:19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+              "quote": "- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)"
+            },
+            {
+              "unit": "source:d7b0583624de341d300313fc3d298f799f19f6779b771da5e3caffae41194822",
+              "quote": "Get emergency help right away if you have chest pain or discomfort that does not go away or happens while you are resting. This may be a sign of a heart attack. Call 911."
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "pass",
+          "reason": "The draft maintains current emergency care and instructs immediate dispatcher contact for worsening or feeling faint. Feeling faint does not itself render the patient incapable of calling; no instruction requires an unconscious patient to act.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "If your symptoms worsen or you feel faint before they arrive, call 911 back immediately."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No issued question is supplied, and the draft requests no clarification or measurements before continuing emergency care.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"questions\":[]"
+            },
+            {
+              "unit": "draft",
+              "quote": "which needs emergency assessment right now."
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "Emergency services appropriately own the immediate response. The draft acknowledges patient-reported dispatch rather than inventing an operational handoff, appointment or clinician commitment.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "He reports 911 called and an ambulance dispatched, so the existing emergency response should continue."
+            },
+            {
+              "unit": "patient",
+              "quote": "The ambulance has been dispatched for me and the dispatcher told me to wait here."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "supported",
+      "earlyCorrection": null,
+      "transportReview": {
+        "mode": "continue_ems",
+        "verdict": "supported",
+        "draftQuote": "Stay where you are and continue with the 911 response already on the way, following the dispatcher's instructions until the crew arrives.",
+        "activation": {
+          "quote": "I called 911. The ambulance has been dispatched for me and the dispatcher told me to wait here.",
+          "currentPatient": true,
+          "currentEpisode": true,
+          "active": true
+        }
+      },
+      "ownershipTaskReview": [],
+      "correction": "No repair required.",
+      "repairTargets": [],
+      "evidenceQueries": []
+    },
+    "usage": {
+      "inputTokens": 9449,
+      "outputTokens": 1352
+    },
+    "failure": null,
+    "firstTextDeltaMs": 1734,
+    "streamProgress": {
+      "lastTextDeltaMs": 21395,
+      "textDeltaCount": 1345,
+      "textCharacters": 6015
+    },
+    "transportTimings": {
+      "startResolvedMs": 1,
+      "objectResolvedMs": 21456,
+      "usageResolvedMs": 21659,
+      "finishReasonResolvedMs": 21659,
+      "streamEndMs": 21659
+    },
+    "cacheUsage": {
+      "cachedInputTokens": 4202,
+      "cacheCreationInputTokens": 5244
+    },
+    "durationMs": 21659
+  },
+  "estimatedUSD": 0.16209,
+  "accountedUSD": 2.21509
+}

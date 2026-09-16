@@ -1,0 +1,250 @@
+{
+  "protocol": "immutable-gui-capture/v1",
+  "label": "C02",
+  "runId": "8bdfda25-e247-4d3e-9cd3-b5a875ad6b61",
+  "files": {
+    "run": {
+      "source": "apps/evaluation/.local/clinical-evidence-graph-v1/runs/8bdfda25-e247-4d3e-9cd3-b5a875ad6b61.json",
+      "copied": "outputs/candidate-concise-gui-2026-09-14/runs/8bdfda25-e247-4d3e-9cd3-b5a875ad6b61.json",
+      "sha256": "576970a2341c78b9731c438197ada1a300a6f96be29b125af5a4bee6403355c3",
+      "bytes": 166135
+    },
+    "events": {
+      "source": "apps/evaluation/.local/clinical-evidence-graph-v1/events/8bdfda25-e247-4d3e-9cd3-b5a875ad6b61.jsonl",
+      "copied": "outputs/candidate-concise-gui-2026-09-14/events/8bdfda25-e247-4d3e-9cd3-b5a875ad6b61.jsonl",
+      "sha256": "b205e31e412752f213b8357e084854a0b46cd8c977428e453280f7436fd36fc8",
+      "bytes": 14805
+    }
+  },
+  "sourceCompletedAt": "2026-09-14T15:15:28.863Z",
+  "graphVersion": "evidence-graph/v15",
+  "runVersion": "disposition-agent/v3",
+  "clinicalPolicyVersion": "disposition-clinical-policy/v1",
+  "config": {
+    "models": {
+      "context": "anthropic/claude-haiku-4-5",
+      "safety": "anthropic/claude-haiku-4-5",
+      "disposition": "anthropic/claude-opus-5",
+      "judge": "openai/gpt-6-astra"
+    },
+    "factGraphMode": "off",
+    "judgeStyle": "concise"
+  },
+  "promptHash": "a6a85b8316e2a64cd1b6cddadf0111e223efe3bb92dc0d679a97be4976b341d7",
+  "inputHash": "75e3de9dfe3eea7b98979483ea19030386bdd039342bcbc7e32108a5b00de88e",
+  "answerHash": "16c5a93cae4b233d4ac41195078fb39b231cc4a34c6f66dd8bcc9dcedb7561de",
+  "status": "complete",
+  "release": "model_reviewed",
+  "failure": null,
+  "disposition": "EMERGENCY_NOW",
+  "reviewPriority": null,
+  "patientMessage": "Call 911 now and stay resting until help arrives — do not drive yourself. Crushing central chest pressure spreading to your left arm with sweating and nausea can mean a heart attack, and this needs emergency heart testing right away. Tell the dispatcher your symptoms started 30 minutes ago and that you have high cholesterol; follow their instructions while you wait.",
+  "reason": "45-year-old with 30 minutes of crushing substernal chest pressure radiating to the left arm with diaphoresis and nausea — a presentation requiring immediate emergency evaluation for acute coronary syndrome; ECG and troponin cannot be obtained remotely.",
+  "earlyNotices": [
+    {
+      "disposition": "EMERGENCY_NOW",
+      "directive": "Call 911 now. Do not drive yourself or wait for a message reply.",
+      "source": "emergency_agent"
+    }
+  ],
+  "transportAdmission": {
+    "status": "admitted",
+    "code": "TRANSPORT_ADMITTED",
+    "clinicalValidation": false,
+    "binding": {
+      "mode": "activate_ems",
+      "activationQuote": null,
+      "directive": "Call 911 now and stay resting until help arrives — do not drive yourself. Crushing central chest pressure spreading to your left arm with sweating and nausea can mean a heart attack, and this needs emergency heart testing right away. Tell the dispatcher your symptoms started 30 minutes ago and that you have high cholesterol; follow their instructions while you wait.",
+      "review": "independent_model"
+    }
+  },
+  "careCorrectionReleased": false,
+  "finalJudge": {
+    "reviewScope": "draft-and-issued-question/v2",
+    "verdict": "accept",
+    "criteria": [
+      {
+        "id": "undertriage",
+        "verdict": "pass",
+        "reason": "Immediate EMS meets suspected ACS assessment needs.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Call 911 now and stay resting until help arrives — do not drive yourself."
+          }
+        ]
+      },
+      {
+        "id": "overtriage",
+        "verdict": "pass",
+        "reason": "Ongoing classic ACS symptoms justify emergency ambulance access.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "I've had crushing pressure in the center of my chest for the last 30 minutes, it's going into my left arm and I feel sweaty and a bit sick to my stomach."
+          }
+        ]
+      },
+      {
+        "id": "patient_grounding",
+        "verdict": "pass",
+        "reason": "Reported symptoms preserved; unreported measurements remain unknown.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "No vital signs reported: blood pressure, heart rate, respiratory rate, oxygen saturation and temperature are all unreported, and whether any measurement was taken is unknown."
+          }
+        ]
+      },
+      {
+        "id": "claim_support",
+        "verdict": "pass",
+        "reason": "Sources support urgent assessment; ACS remains a possibility.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Crushing central chest pressure spreading to your left arm with sweating and nausea can mean a heart attack, and this needs emergency heart testing right away."
+          },
+          {
+            "unit": "source:07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+            "quote": "Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath."
+          }
+        ]
+      },
+      {
+        "id": "safety_net",
+        "verdict": "pass",
+        "reason": "Immediate activation and dispatcher guidance cover waiting period.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Tell the dispatcher your symptoms started 30 minutes ago and that you have high cholesterol; follow their instructions while you wait."
+          }
+        ]
+      },
+      {
+        "id": "clarification_delay",
+        "verdict": "pass",
+        "reason": "No issued question delays immediate emergency action.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Call 911 now"
+          }
+        ]
+      },
+      {
+        "id": "ownership",
+        "verdict": "pass",
+        "reason": "Emergency services directed without fabricated dispatch or acceptance.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Call 911 now and stay resting until help arrives — do not drive yourself."
+          }
+        ]
+      }
+    ],
+    "earlyAction": "supported",
+    "earlyCorrection": null,
+    "transportReview": {
+      "mode": "activate_ems",
+      "verdict": "supported",
+      "draftQuote": "Call 911 now and stay resting until help arrives — do not drive yourself.",
+      "activation": null
+    },
+    "ownershipTaskReview": [],
+    "correction": "",
+    "evidenceQueries": []
+  },
+  "failedApplicationChecks": [],
+  "timing": {
+    "firstActionMs": 8798,
+    "firstQuestionMs": null,
+    "firstPatientReplyMs": 40873,
+    "finalMs": 41207,
+    "workflowMs": 40886,
+    "tracePersistenceMs": 321
+  },
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 1
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 8788
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 25778
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 15084
+    }
+  ],
+  "modelCalls": 4,
+  "repairs": 0,
+  "agentTimings": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "calls": 1,
+      "durationMs": 4392,
+      "firstTextDeltaMs": 2210,
+      "usage": {
+        "inputTokens": 1089,
+        "outputTokens": 186
+      },
+      "failure": null
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "calls": 1,
+      "durationMs": 19892,
+      "firstTextDeltaMs": 1912,
+      "usage": {
+        "inputTokens": 17984,
+        "outputTokens": 1240
+      },
+      "failure": null
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "calls": 1,
+      "durationMs": 8777,
+      "firstTextDeltaMs": 1863,
+      "usage": {
+        "inputTokens": 2522,
+        "outputTokens": 268
+      },
+      "failure": null
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "calls": 1,
+      "durationMs": 15060,
+      "firstTextDeltaMs": 2705,
+      "usage": {
+        "inputTokens": 8890,
+        "outputTokens": 778
+      },
+      "failure": null
+    }
+  ],
+  "traceId": "a600ff72c5a9a683a45de418158e011b",
+  "tracePersisted": true,
+  "eventLogPersisted": true,
+  "estimatedUSD": 0.25460099999999997,
+  "pricingVersion": "clinical-study-pricing-2026-09-13/v1",
+  "clinicalApproval": false,
+  "limitation": "Exact runtime artifact capture, not an independent observation of browser rendering, patient receipt, clinical correctness or delivered care. All supplied attempts are retained, including failures. Cost is the standard token estimate, not an invoice; embedding and cache-specific charges are not included."
+}

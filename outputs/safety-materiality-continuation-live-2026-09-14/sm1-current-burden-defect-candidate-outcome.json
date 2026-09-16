@@ -1,0 +1,124 @@
+{
+  "id": "sm1-current-burden-defect",
+  "role": "judge",
+  "arm": "candidate",
+  "expected": "fail",
+  "criterion": "overtriage",
+  "observed": "fail",
+  "matched": true,
+  "valid": true,
+  "judge": {
+    "reviewScope": "draft-and-issued-question/v2",
+    "verdict": "revise",
+    "criteria": [
+      {
+        "id": "undertriage",
+        "verdict": "pass",
+        "reason": "The reported forearm rash does not establish a necessary urgent examination or treatment capability. The draft does not defer necessary care; its same-day assessment instruction exceeds rather than falls short of the supported requirement.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "Itchy blistery rash on both forearms, spreading a bit within that area. No fever, no trouble breathing."
+          },
+          {
+            "unit": "draft",
+            "quote": "Seek clinician assessment today"
+          }
+        ]
+      },
+      {
+        "id": "overtriage",
+        "verdict": "fail",
+        "reason": "Unconditional same-day clinician assessment and a same-day alternative-service fallback impose an unsupported urgency burden. Limited evolution within the forearms, without reported treatment failure or functional impairment, does not establish a necessary clinician task. Self-care with actionable conditional escalation is a feasible lower-intENSI­",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Seek clinician assessment today; if timely Counsel review is unavailable, use another same-day service."
+          },
+          {
+            "unit": "patient",
+            "quote": "Itchy blistery rash on both forearms, spreading a bit within that area."
+          }
+        ]
+      },
+      {
+        "id": "patient_grounding",
+        "verdict": "pass",
+        "reason": "The draft preserves the reported distribution and symptom denials, leaves other distribution unknown, and does not infer whether temperature was measured.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Rash is reported on both forearms; distribution elsewhere is unreported."
+          },
+          {
+            "unit": "draft",
+            "quote": "No measured temperature value or measurement method is reported."
+          },
+          {
+            "unit": "patient",
+            "quote": "No fever, no trouble breathing."
+          }
+        ]
+      },
+      {
+        "id": "claim_support",
+        "verdict": "pass",
+        "reason": "The contact-dermatitis differential and pharmacist-guidance attribution are supported. Emergency escalation for new airway symptoms is a reasonable safety inference, not a claim that this patient currently has airway involvement. The unnecessary assessment urgency is addressed under overtriage.",
+        "anchors": [
+          {
+            "unit": "source:7b9d6c2ce5e9c2e81ec950fbbdda4aeb97d82fe9b567284f8864780be31b945e",
+            "quote": "You get the rash where you have touched an irritant, such as a chemical, or something you are allergic to, like poison ivy ."
+          },
+          {
+            "unit": "source:aa002ceebadc425d3c4415a54e0a899f36ea7c83091fba1af786ae6bd921e862",
+            "quote": "If you develop a rash, ask your pharmacist about over-the-counter medicines. For severe rashes, see your doctor."
+          }
+        ]
+      },
+      {
+        "id": "safety_net",
+        "verdict": "pass",
+        "reason": "The current draft gives an immediate, feasible emergency action for important new airway symptoms without conditioning it on messaging availability.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Call 911 for trouble breathing or tongue swelling."
+          }
+        ]
+      },
+      {
+        "id": "clarification_delay",
+        "verdict": "pass",
+        "reason": "No issued question or answer-dependent delay is present.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "\"questions\":[]"
+          }
+        ]
+      },
+      {
+        "id": "ownership",
+        "verdict": "pass",
+        "reason": "The draft recommends assessment without asserting accepted review, booking, coordination, or a guaranteed response. Its clinical necessity is a separate overtriage defect.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Seek clinician assessment today; if timely Counsel review is unavailable, use another same-day service."
+          }
+        ]
+      }
+    ],
+    "earlyAction": "none",
+    "earlyCorrection": null,
+    "ownershipTaskReview": [],
+    "correction": "Retain SELF_CARE. Replace the unconditional same-day assessment and service-access fallback with practical self-care guidance, such as asking a pharmacist about over-the-counter symptom relief, and conditional clinician assessment if the rash becomes severe, develops infection signs, or does not improve. Preserve the emergency airway safety net.",
+    "repairTargets": [
+      "patientMessage"
+    ],
+    "evidenceQueries": []
+  },
+  "ms": 20702,
+  "tokens": 1191,
+  "packetHash": "7e735fb7002f9b6ed5e381156e41e95ab4a4cc93757eedffe89618bc238770e9"
+}

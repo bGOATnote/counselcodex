@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22.18.0
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run cqa:pilot:verify
+      - run: npm run cqa:demo -- --verify
+      - run: git diff --exit-code -- outputs/cqa-research-demo-v1.json
+      - run: npm run review:test
+      - run: npm run redteam
+      - run: npm run evaluate
+      - run: npm run pre-adjudication:eval
+      - run: node scripts/verify-archived-holdout.mjs
+      - run: npm run evaluation:readiness
+      - run: npm run mastra:eval
+      - run: npm run agent:eval
+      - run: npm run mastra:smoke
+      # Build the actual Next-hosted candidate and the separately named native incumbent once each.
+      - run: npm run build
+      # Verify the generated runtime lock can be installed independently of the
+      # workspace install; never silently deploy a fresh, unlocked resolution.
+      - run: npm ci --prefix .mastra/output --omit=dev --no-audit --no-fund
+      - run: npm run build:mastra:verify

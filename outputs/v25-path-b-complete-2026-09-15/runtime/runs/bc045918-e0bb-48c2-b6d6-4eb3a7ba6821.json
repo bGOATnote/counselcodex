@@ -1,0 +1,1803 @@
+{
+  "status": "review_required",
+  "answer": {
+    "disposition": "SAME_DAY_IN_PERSON",
+    "reviewPriority": null,
+    "workType": null,
+    "reason": "The care instruction is retained; the complete explanation still needs clinician review.",
+    "patientMessage": "Arrange an in-person assessment today. Do not wait for an asynchronous reply.",
+    "differential": [],
+    "redFlags": [],
+    "vitalSigns": "The automated assessment has not established the vital-sign context.",
+    "questions": [],
+    "evidence": [],
+    "evidenceLimitations": "No model-reviewed clinical explanation has been released. The draft and review outcome are retained for clinician assessment."
+  },
+  "origin": "validation_safeguard",
+  "failure": "CLINICIAN_REVIEW_REQUIRED",
+  "safetyFloor": {
+    "disposition": "SAME_DAY_IN_PERSON",
+    "directive": "Arrange an in-person assessment today. Do not wait for an asynchronous reply."
+  },
+  "rejectedAnswer": {
+    "disposition": "SELF_CARE",
+    "reviewPriority": null,
+    "workType": null,
+    "reason": "A 28-year-old with sharp left chest pain worse on deep breathing two days after a heavy chest workout, with dyspnea and leg swelling denied and no smoking, fits a musculoskeletal chest wall pattern manageable with guidance and a clear escalation trigger.",
+    "patientMessage": "You can manage this at home for now: rest the chest muscles, avoid heavy pressing exercise, use heat or an over-the-counter pain reliever you tolerate, and keep breathing deeply despite discomfort. The timing after a heavy chest workout fits muscle or chest-wall strain. Go to an emergency department now if pain becomes crushing or constant, or you develop breathlessness, sweating, fainting, coughing blood or fever.",
+    "differential": [
+      "Chest wall / pectoral muscle strain after heavy workout",
+      "Pleuritic chest pain from another cause (e.g. pneumothorax, pericarditis) not excluded remotely"
+    ],
+    "redFlags": [
+      {
+        "concern": "Shortness of breath",
+        "status": "denied",
+        "quote": "No shortness of breath"
+      },
+      {
+        "concern": "Leg swelling suggesting DVT",
+        "status": "denied",
+        "quote": "no leg swelling"
+      },
+      {
+        "concern": "Smoking (pneumothorax/CAD risk)",
+        "status": "denied",
+        "quote": "I don't smoke"
+      },
+      {
+        "concern": "Fever, cough, syncope, sweating",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Chest wall tenderness on palpation",
+        "status": "unknown",
+        "quote": ""
+      }
+    ],
+    "vitalSigns": "No pulse, blood pressure, temperature, respiratory rate or oxygen saturation reported; whether any were measured is unknown.",
+    "questions": [],
+    "evidenceLimitations": "Sources are emergency-department synthesis and consumer summaries, so remote self-care suitability for this young patient is inferred rather than directly supported.",
+    "transportIntent": null,
+    "citations": [
+      {
+        "passageId": "c60c3cd2c2845c0ca2fc15b4efd9c3c99c34d32a1460912adb2214175552e578",
+        "quote": "- Musculoskeletal chest wall pain: reproducible with palpation, positional, no red flags",
+        "claim": "Musculoskeletal chest wall pain is characterized as positional and reproducible with palpation in the absence of red flags, consistent with this post-workout pleuritic pain.",
+        "applicability": "uncertain",
+        "limitation": "Listed as a diagnosis of exclusion in an ED reference; palpation tenderness was not reported here."
+      },
+      {
+        "passageId": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+        "quote": "Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath.",
+        "claim": "Immediate care is advised for chest pain that does not go away, crushing pain, or pain with nausea, sweating, dizziness or shortness of breath.",
+        "applicability": "applicable",
+        "limitation": "Consumer summary; general safety-net advice only."
+      }
+    ]
+  },
+  "modelCalls": 3,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "sharp left chest pain deep breathing worse musculoskeletal",
+          "pleurisy pleuritic chest pain pneumonia",
+          "chest pain post-exercise acute coronary syndrome risk"
+        ],
+        "findings": [
+          {
+            "finding": "Sharp left-sided chest pain",
+            "status": "reported",
+            "quote": "Sharp pain on the left side of my chest since yesterday"
+          },
+          {
+            "finding": "Pain worse with deep inspiration",
+            "status": "reported",
+            "quote": "worse when I take a deep breath"
+          },
+          {
+            "finding": "Heavy chest workout 2 days prior to symptom onset",
+            "status": "reported",
+            "quote": "I did a heavy chest workout two days ago"
+          },
+          {
+            "finding": "No dyspnea",
+            "status": "reported",
+            "quote": "No shortness of breath"
+          },
+          {
+            "finding": "No leg edema",
+            "status": "reported",
+            "quote": "no leg swelling"
+          },
+          {
+            "finding": "No active smoking",
+            "status": "reported",
+            "quote": "I don't smoke"
+          }
+        ],
+        "question": {
+          "text": "Does the pain hurt more when you press on the left side of your chest wall, or is it only with breathing and movement?",
+          "why": "Localized tenderness on palpation would favor musculoskeletal or pleuritic etiology; pain purely with respiration or trunk motion helps distinguish from deeper cardiac or pulmonary pathology.",
+          "quote": "Sharp pain on the left side of my chest"
+        }
+      },
+      "usage": {
+        "inputTokens": 1090,
+        "outputTokens": 280
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1359,
+      "streamProgress": {
+        "lastTextDeltaMs": 4923,
+        "textDeltaCount": 137,
+        "textCharacters": 1175
+      },
+      "transportTimings": {
+        "startResolvedMs": 1,
+        "objectResolvedMs": 5008,
+        "usageResolvedMs": 5019,
+        "finishReasonResolvedMs": 5019,
+        "streamEndMs": 5019
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 5019
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "SELF_CARE",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "A 28-year-old with sharp left chest pain worse on deep breathing two days after a heavy chest workout, with dyspnea and leg swelling denied and no smoking, fits a musculoskeletal chest wall pattern manageable with guidance and a clear escalation trigger.",
+        "patientMessage": "You can manage this at home for now: rest the chest muscles, avoid heavy pressing exercise, use heat or an over-the-counter pain reliever you tolerate, and keep breathing deeply despite discomfort. The timing after a heavy chest workout fits muscle or chest-wall strain. Go to an emergency department now if pain becomes crushing or constant, or you develop breathlessness, sweating, fainting, coughing blood or fever.",
+        "differential": [
+          "Chest wall / pectoral muscle strain after heavy workout",
+          "Pleuritic chest pain from another cause (e.g. pneumothorax, pericarditis) not excluded remotely"
+        ],
+        "redFlags": [
+          {
+            "concern": "Shortness of breath",
+            "status": "denied",
+            "quote": "No shortness of breath"
+          },
+          {
+            "concern": "Leg swelling suggesting DVT",
+            "status": "denied",
+            "quote": "no leg swelling"
+          },
+          {
+            "concern": "Smoking (pneumothorax/CAD risk)",
+            "status": "denied",
+            "quote": "I don't smoke"
+          },
+          {
+            "concern": "Fever, cough, syncope, sweating",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Chest wall tenderness on palpation",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No pulse, blood pressure, temperature, respiratory rate or oxygen saturation reported; whether any were measured is unknown.",
+        "questions": [],
+        "evidenceLimitations": "Sources are emergency-department synthesis and consumer summaries, so remote self-care suitability for this young patient is inferred rather than directly supported.",
+        "transportIntent": null,
+        "citations": [
+          {
+            "passageId": "c60c3cd2c2845c0ca2fc15b4efd9c3c99c34d32a1460912adb2214175552e578",
+            "quote": "- Musculoskeletal chest wall pain: reproducible with palpation, positional, no red flags",
+            "claim": "Musculoskeletal chest wall pain is characterized as positional and reproducible with palpation in the absence of red flags, consistent with this post-workout pleuritic pain.",
+            "applicability": "uncertain",
+            "limitation": "Listed as a diagnosis of exclusion in an ED reference; palpation tenderness was not reported here."
+          },
+          {
+            "passageId": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+            "quote": "Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath.",
+            "claim": "Immediate care is advised for chest pain that does not go away, crushing pain, or pain with nausea, sweating, dizziness or shortness of breath.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary; general safety-net advice only."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 19923,
+        "outputTokens": 1114
+      },
+      "failure": null,
+      "firstTextDeltaMs": 3201,
+      "streamProgress": {
+        "lastTextDeltaMs": 17025,
+        "textDeltaCount": 234,
+        "textCharacters": 2518
+      },
+      "transportTimings": {
+        "startResolvedMs": 2,
+        "objectResolvedMs": 17087,
+        "usageResolvedMs": 17100,
+        "finishReasonResolvedMs": 17100,
+        "streamEndMs": 17102
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 17102,
+      "rawOutput": {
+        "disposition": "SELF_CARE",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "A 28-year-old with sharp left chest pain worse on deep breathing two days after a heavy chest workout, with dyspnea and leg swelling denied and no smoking, fits a musculoskeletal chest wall pattern manageable with guidance and a clear escalation trigger.",
+        "patientMessage": "You can manage this at home for now: rest the chest muscles, avoid heavy pressing exercise, use heat or an over-the-counter pain reliever you tolerate, and keep breathing deeply despite discomfort. The timing after a heavy chest workout fits muscle or chest-wall strain. Go to an emergency department now if pain becomes crushing or constant, or you develop breathlessness, sweating, fainting, coughing blood or fever.",
+        "differential": [
+          "Chest wall / pectoral muscle strain after heavy workout",
+          "Pleuritic chest pain from another cause (e.g. pneumothorax, pericarditis) not excluded remotely"
+        ],
+        "redFlags": [
+          {
+            "concern": "Shortness of breath",
+            "status": "denied",
+            "quote": "No shortness of breath"
+          },
+          {
+            "concern": "Leg swelling suggesting DVT",
+            "status": "denied",
+            "quote": "no leg swelling"
+          },
+          {
+            "concern": "Smoking (pneumothorax/CAD risk)",
+            "status": "denied",
+            "quote": "I don't smoke"
+          },
+          {
+            "concern": "Fever, cough, syncope, sweating",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Chest wall tenderness on palpation",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No pulse, blood pressure, temperature, respiratory rate or oxygen saturation reported; whether any were measured is unknown.",
+        "questions": [],
+        "evidenceLimitations": "Sources are emergency-department synthesis and consumer summaries, so remote self-care suitability for this young patient is inferred rather than directly supported.",
+        "transportIntent": null,
+        "citations": [
+          {
+            "passageId": "c60c3cd2c2845c0ca2fc15b4efd9c3c99c34d32a1460912adb2214175552e578",
+            "claim": "Musculoskeletal chest wall pain is characterized as positional and reproducible with palpation in the absence of red flags, consistent with this post-workout pleuritic pain.",
+            "applicability": "uncertain",
+            "limitation": "Listed as a diagnosis of exclusion in an ED reference; palpation tenderness was not reported here.",
+            "quoteId": "q7"
+          },
+          {
+            "passageId": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+            "claim": "Immediate care is advised for chest pain that does not go away, crushing pain, or pain with nausea, sweating, dizziness or shortness of breath.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary; general safety-net advice only.",
+            "quoteId": "q10"
+          }
+        ]
+      }
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "action": "SAME_DAY_IN_PERSON",
+        "basis": [
+          {
+            "quote": "Sharp pain on the left side of my chest since yesterday, worse when I take a deep breath",
+            "interpretation": "Current pleuritic chest pain of 24+ hours duration requires immediate hands-on cardiac and pulmonary assessment to exclude acute coronary syndrome, pulmonary embolism, and other serious thoracic pathology despite benign context",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "I did a heavy chest workout two days ago",
+            "interpretation": "Recent intense pectoral exertion is consistent with musculoskeletal chest wall pain but does not exclude concurrent serious cardiopulmonary disease and cannot be used to rule out emergency diagnoses without direct examination",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "No shortness of breath, no leg swelling, I don't smoke",
+            "interpretation": "Absence of dyspnea, edema and smoking history reduce but do not exclude pulmonary embolism, acute coronary syndrome or other cardiopulmonary emergencies; these denials are not diagnostic exclusions",
+            "currentPatient": true,
+            "present": false
+          }
+        ],
+        "actionBasis": {
+          "indices": [
+            0,
+            1
+          ],
+          "sufficient": true
+        },
+        "reason": "Acute pleuritic chest pain requires same-day in-person evaluation to exclude life-threatening cardiopulmonary disease; exertional context does not permit remote assessment alone.",
+        "patientMessage": "",
+        "physicalRequirement": "Hands-on cardiopulmonary examination, ECG, and thoracic imaging to exclude acute coronary syndrome, pulmonary embolism, pneumothorax, and other serious causes of acute pleuritic chest pain.",
+        "activeEms": null
+      },
+      "usage": {
+        "inputTokens": 3443,
+        "outputTokens": 383
+      },
+      "failure": null,
+      "firstTextDeltaMs": 2647,
+      "streamProgress": {
+        "lastTextDeltaMs": 5800,
+        "textDeltaCount": 130,
+        "textCharacters": 1574
+      },
+      "transportTimings": {
+        "startResolvedMs": 1,
+        "objectResolvedMs": 5826,
+        "usageResolvedMs": 5844,
+        "finishReasonResolvedMs": 5844,
+        "streamEndMs": 5845
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 5845
+    }
+  ],
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "pass",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "pass",
+      "detail": "Checks explicit timing/destination tokens or exact independently reviewed emergency-transport binding; not clinical validation or verification of EMS activation."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen; a prescription/plan mention alone is not authority for a new instruction. Targeted prose finding, not prescribing validation."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "pass",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "transport_intent",
+      "status": "pass",
+      "detail": "Typed intent matches a bounded immediate directive. No independent review or external EMS activation is asserted."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Citation quotation and selected passage identity are checked; clinical support is not established."
+    },
+    {
+      "id": "evidence_packet",
+      "status": "pass",
+      "detail": "A nonempty integrity-valid evidence packet is required for a completed response. Missing evidence never cancels an issued action."
+    },
+    {
+      "id": "independent_review",
+      "status": "not_assessed",
+      "detail": "No model judge runs on gates-release. Clinical correctness and claim support remain unassessed."
+    },
+    {
+      "id": "care_reconciliation",
+      "status": "fail",
+      "detail": "An issued emergency/in-person instruction cannot be silently reduced. Disagreement is retained for clinician review."
+    }
+  ],
+  "guidance": [
+    {
+      "id": "575b71f9a6f96d2b9d9aa5586fa84978660a00743e5e42bfead957fa698639d0",
+      "title": "Chest Pain — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+      "section": "Pitfalls",
+      "summary": "1. **Anchoring on \"GERD\" or \"musculoskeletal\" without completing ACS workup.** Reproducible chest wall tenderness is present in 5-15% of patients with ACS. A response to antacids does not rule out ACS. Always obtain ECG and troponin regardless of initial impression.\n\n2. **Failure to consider aortic dissection in the patient treated for ACS.** Giving anticoagulation and thrombolytics to a patient with aortic dissection is lethal. Check bilateral arm pressures on every chest pain patient. Dissection can cause ST elevation by occluding coronary ostia.\n\n3. **Dismissing PE because chest pain is not pleuritic.** Up to 50% of PE patients have non-pleuritic chest pain. Dyspnea with tachycardia should trigger PE evaluation regardless of pain character.\n\n4. **Over-reliance on negative initial troponin.** High-sensitivity troponin can be negative in the first 1-3 hours of symptom onset. Serial testing is mandatory for moderate-risk patients. A single negative troponin does not rule out ACS.\n\n5. **Premature closure on musculoskeletal diagnosis in young patients.** Spontaneous coronary artery dissection affects young women. Type A aortic dissection occurs in Marfan syndrome in the 20s-30s. Myocarditis affects young adults.\n\n6. **Missing posterior STEMI.** Standard 12-lead ECG misses posterior MI. ST depression in V1-V3 should prompt posterior leads (V7-V9). This is the most commonly missed STEMI territory.\n\n7. **Cocaine-associated chest pain mismanagement.** Do NOT give beta-blockers (unopposed alpha stimulation → coronary vasospasm and hypertension). Use benzodiazepines, nitroglycerin, and calcium channel blockers. Phentolamine for refractory hypertension.\n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "575b71f9a6f96d2b9d9aa5586fa84978660a00743e5e42bfead957fa698639d0",
+          "sourceId": "openem:chest-pain",
+          "excerpt": "1. **Anchoring on \"GERD\" or \"musculoskeletal\" without completing ACS workup.** Reproducible chest wall tenderness is present in 5-15% of patients with ACS. A response to antacids does not rule out ACS. Always obtain ECG and troponin regardless of initial impression.\n\n2. **Failure to consider aortic dissection in the patient treated for ACS.** Giving anticoagulation and thrombolytics to a patient with aortic dissection is lethal. Check bilateral arm pressures on every chest pain patient. Dissection can cause ST elevation by occluding coronary ostia.\n\n3. **Dismissing PE because chest pain is not pleuritic.** Up to 50% of PE patients have non-pleuritic chest pain. Dyspnea with tachycardia should trigger PE evaluation regardless of pain character.\n\n4. **Over-reliance on negative initial troponin.** High-sensitivity troponin can be negative in the first 1-3 hours of symptom onset. Serial testing is mandatory for moderate-risk patients. A single negative troponin does not rule out ACS.\n\n5. **Premature closure on musculoskeletal diagnosis in young patients.** Spontaneous coronary artery dissection affects young women. Type A aortic dissection occurs in Marfan syndrome in the 20s-30s. Myocarditis affects young adults.\n\n6. **Missing posterior STEMI.** Standard 12-lead ECG misses posterior MI. ST depression in V1-V3 should prompt posterior leads (V7-V9). This is the most commonly missed STEMI territory.\n\n7. **Cocaine-associated chest pain mismanagement.** Do NOT give beta-blockers (unopposed alpha stimulation → coronary vasospasm and hypertension). Use benzodiazepines, nitroglycerin, and calcium channel blockers. Phentolamine for refractory hypertension.\n",
+          "excerptSha256": "05e6098a47836d6671312fbc47fcf06cab23eb38c32ec7d4acb74609d770a294",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "c60c3cd2c2845c0ca2fc15b4efd9c3c99c34d32a1460912adb2214175552e578",
+      "title": "Chest Pain — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+      "section": "Differential Diagnosis",
+      "summary": "imics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent\n- **Biliary disease** (`acute-cholecystitis`, `biliary-colic`): RUQ/epigastric pain, post-prandial, Murphy sign\n- **Acute pancreatitis** (`acute-pancreatitis`): epigastric pain radiating to back, nausea/vomiting, lipase elevation\n- **Pleural effusion** (`pleural-effusion-emergency`): dyspnea, decreased breath sounds at bases, dullness to percussion\n\n### Non-Emergent (diagnoses of exclusion)\n- Musculoskeletal chest wall pain: reproducible with palpation, positional, no red flags\n- GERD/esophageal spasm: burning, post-prandial, relief with antacids (but do NOT anchor on this without ruling out ACS)\n- Anxiety/panic: diagnosis of exclusion ONLY after cardiac evaluation complete (see `panic-attack`)",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "c60c3cd2c2845c0ca2fc15b4efd9c3c99c34d32a1460912adb2214175552e578",
+          "sourceId": "openem:chest-pain",
+          "excerpt": "imics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent\n- **Biliary disease** (`acute-cholecystitis`, `biliary-colic`): RUQ/epigastric pain, post-prandial, Murphy sign\n- **Acute pancreatitis** (`acute-pancreatitis`): epigastric pain radiating to back, nausea/vomiting, lipase elevation\n- **Pleural effusion** (`pleural-effusion-emergency`): dyspnea, decreased breath sounds at bases, dullness to percussion\n\n### Non-Emergent (diagnoses of exclusion)\n- Musculoskeletal chest wall pain: reproducible with palpation, positional, no red flags\n- GERD/esophageal spasm: burning, post-prandial, relief with antacids (but do NOT anchor on this without ruling out ACS)\n- Anxiety/panic: diagnosis of exclusion ONLY after cardiac evaluation complete (see `panic-attack`)",
+          "excerptSha256": "f44b2123ffbbc2ca5d8aff8aa7ae0ab2b3175f919c27aafeeabb800eefa03726",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "c7ba4eb389a45bff3f916dd98f5da2f0fc7774ad5a3bccab8b03fdd8b3bac3f8",
+      "title": "Chest Pain — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+      "section": "Differential Diagnosis",
+      "summary": "### Life-Threatening (must rule out immediately)\n- **STEMI / ACS** (`stemi`, `acute-coronary-syndrome-nstemi`, `unstable-angina`): substernal pressure, diaphoresis, ECG changes, troponin elevation\n- **Aortic dissection** (`aortic-dissection`): sudden tearing pain radiating to back, BP differential, widened mediastinum, aortic regurgitation murmur\n- **Pulmonary embolism** (`pulmonary-embolism`): pleuritic pain, dyspnea, tachycardia, risk factors for VTE, right heart strain on ECG\n- **Tension pneumothorax** (`tension-pneumothorax`): unilateral absent breath sounds, tracheal deviation, hypotension, distended neck veins\n- **Cardiac tamponade** (`cardiac-tamponade`): Beck triad (hypotension, JVD, muffled heart sounds), pulsus paradoxus, electrical alternans\n- **Esophageal rupture** (`boerhaave-syndrome`): post-emetic severe chest/epigastric pain, subcutaneous emphysema, pneumomediastinum\n\n### Emergent\n- **Spontaneous pneumothorax** (`spontaneous-pneumothorax`): sudden pleuritic pain, decreased breath sounds, tall thin habitus or COPD\n- **Pericarditis/myocarditis** (`pericarditis-myocarditis`): sharp pleuritic pain worse supine and improved leaning forward, diffuse ST elevation with PR depression, friction rub\n- **Acute heart failure** (`acute-heart-failure`): dyspnea, orthopnea, bilateral crackles, peripheral edema, BNP elevation\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with end-organ damage\n- **Takotsubo cardiomyopathy** (`takotsubo-cardiomyopathy`): post-emotional/physical stress, mimics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "c7ba4eb389a45bff3f916dd98f5da2f0fc7774ad5a3bccab8b03fdd8b3bac3f8",
+          "sourceId": "openem:chest-pain",
+          "excerpt": "### Life-Threatening (must rule out immediately)\n- **STEMI / ACS** (`stemi`, `acute-coronary-syndrome-nstemi`, `unstable-angina`): substernal pressure, diaphoresis, ECG changes, troponin elevation\n- **Aortic dissection** (`aortic-dissection`): sudden tearing pain radiating to back, BP differential, widened mediastinum, aortic regurgitation murmur\n- **Pulmonary embolism** (`pulmonary-embolism`): pleuritic pain, dyspnea, tachycardia, risk factors for VTE, right heart strain on ECG\n- **Tension pneumothorax** (`tension-pneumothorax`): unilateral absent breath sounds, tracheal deviation, hypotension, distended neck veins\n- **Cardiac tamponade** (`cardiac-tamponade`): Beck triad (hypotension, JVD, muffled heart sounds), pulsus paradoxus, electrical alternans\n- **Esophageal rupture** (`boerhaave-syndrome`): post-emetic severe chest/epigastric pain, subcutaneous emphysema, pneumomediastinum\n\n### Emergent\n- **Spontaneous pneumothorax** (`spontaneous-pneumothorax`): sudden pleuritic pain, decreased breath sounds, tall thin habitus or COPD\n- **Pericarditis/myocarditis** (`pericarditis-myocarditis`): sharp pleuritic pain worse supine and improved leaning forward, diffuse ST elevation with PR depression, friction rub\n- **Acute heart failure** (`acute-heart-failure`): dyspnea, orthopnea, bilateral crackles, peripheral edema, BNP elevation\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with end-organ damage\n- **Takotsubo cardiomyopathy** (`takotsubo-cardiomyopathy`): post-emotional/physical stress, mimics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent",
+          "excerptSha256": "277d14d675086210c6a0d344a59daa5a674625c206bdfb1f9762430d7febbd9e",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+      "title": "Chest Pain — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+      "section": "Recognition",
+      "summary": "Chest pain accounts for approximately 6-8 million ED visits annually in the US (5-8% of all ED visits). Fewer than 25% have an acute coronary syndrome; the challenge is identifying the minority with life-threatening causes.\n\n**Key history elements:**\n- Onset: sudden vs gradual; activity at onset\n- Character: pressure/squeezing (ACS), tearing/ripping (dissection), sharp/pleuritic (PE, pneumothorax, pericarditis)\n- Radiation: arm/jaw (ACS), back/interscapular (dissection), unilateral (pleuritic)\n- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)\n- Associated symptoms: diaphoresis, dyspnea, syncope, nausea\n- Positional: worse supine/improved leaning forward (pericarditis)\n- Prior history: known CAD, PE, DVT, connective tissue disease, recent procedures/immobilization\n- Cocaine or stimulant use within 72 hours\n\n**High-risk populations for atypical presentations:**\n- Women: more likely to present with dyspnea, nausea, fatigue, back/jaw pain\n- Elderly (> 75): painless MI in up to 60%\n- Diabetics: autonomic neuropathy masks angina\n- Post-surgical/immobilized: PE risk\n\n**Epidemiology of serious causes:**\n- ACS: 10-15% of ED chest pain presentations\n- PE: 2-5%\n- Aortic dissection: < 1% but > 25% mortality if missed\n- Pneumothorax: 1-2%",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+          "sourceId": "openem:chest-pain",
+          "excerpt": "Chest pain accounts for approximately 6-8 million ED visits annually in the US (5-8% of all ED visits). Fewer than 25% have an acute coronary syndrome; the challenge is identifying the minority with life-threatening causes.\n\n**Key history elements:**\n- Onset: sudden vs gradual; activity at onset\n- Character: pressure/squeezing (ACS), tearing/ripping (dissection), sharp/pleuritic (PE, pneumothorax, pericarditis)\n- Radiation: arm/jaw (ACS), back/interscapular (dissection), unilateral (pleuritic)\n- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)\n- Associated symptoms: diaphoresis, dyspnea, syncope, nausea\n- Positional: worse supine/improved leaning forward (pericarditis)\n- Prior history: known CAD, PE, DVT, connective tissue disease, recent procedures/immobilization\n- Cocaine or stimulant use within 72 hours\n\n**High-risk populations for atypical presentations:**\n- Women: more likely to present with dyspnea, nausea, fatigue, back/jaw pain\n- Elderly (> 75): painless MI in up to 60%\n- Diabetics: autonomic neuropathy masks angina\n- Post-surgical/immobilized: PE risk\n\n**Epidemiology of serious causes:**\n- ACS: 10-15% of ED chest pain presentations\n- PE: 2-5%\n- Aortic dissection: < 1% but > 25% mortality if missed\n- Pneumothorax: 1-2%",
+          "excerptSha256": "34e2b67bcc7402aa854897a64bda2e3acba3f6ef414d369c44e42fbbe59179e9",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "886530bc2b9437dff94df57dcec02212735c770ca604a4c8d3ab40e15b872d9f",
+      "title": "Back Pain — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/back-pain-emergency.md",
+      "section": "Recognition",
+      "summary": "Back pain accounts for 2-4% of ED visits. The vast majority (> 95%) is mechanical/musculoskeletal and self-limited. The ED task is to identify the 1-5% with life-threatening or emergent causes requiring immediate intervention — primarily vascular catastrophe, cord compression, and spinal infection.\n\n**Critical distinction:** The ED evaluation of back pain is a red-flag screening exercise, not a comprehensive back pain workup. If no red flags are present, the patient has mechanical back pain and imaging/labs are not indicated.\n\n**Red flag categories (must screen for ALL):**\n\n1. **Vascular:** AAA rupture, aortic dissection\n2. **Infection:** Spinal epidural abscess, discitis/osteomyelitis, pyelonephritis\n3. **Neurological compromise:** Cauda equina syndrome, cord compression, progressive motor deficit\n4. **Malignancy:** Spinal metastases with cord compression\n5. **Trauma:** Vertebral fracture (including osteoporotic)\n6. **Visceral referral:** Pancreatitis, renal colic, perforated viscus, retroperitoneal hemorrhage\n\n**Key history elements:**\n- Age: > 50 with new onset → consider malignancy, AAA, vertebral fracture\n- Onset and mechanism: trauma (fracture), insidious (infection, malignancy), sudden (vascular)\n- Location: midline (vertebral body, disc, cord) vs paraspinal (muscular) vs flank (renal)\n- Neurological symptoms: weakness, numbness, bowel/bladder dysfunction (cauda equina)\n- Constitutional symptoms: fever, weight loss, night sweats (infection, malignancy)\n- Risk factors: IVDU (epidural abscess), immunosuppression, cancer history, osteoporosis, anticoagulation\n- Nocturnal/rest pain: suggests malignancy or infection (not positional/mechanical)",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "886530bc2b9437dff94df57dcec02212735c770ca604a4c8d3ab40e15b872d9f",
+          "sourceId": "openem:back-pain-emergency",
+          "excerpt": "Back pain accounts for 2-4% of ED visits. The vast majority (> 95%) is mechanical/musculoskeletal and self-limited. The ED task is to identify the 1-5% with life-threatening or emergent causes requiring immediate intervention — primarily vascular catastrophe, cord compression, and spinal infection.\n\n**Critical distinction:** The ED evaluation of back pain is a red-flag screening exercise, not a comprehensive back pain workup. If no red flags are present, the patient has mechanical back pain and imaging/labs are not indicated.\n\n**Red flag categories (must screen for ALL):**\n\n1. **Vascular:** AAA rupture, aortic dissection\n2. **Infection:** Spinal epidural abscess, discitis/osteomyelitis, pyelonephritis\n3. **Neurological compromise:** Cauda equina syndrome, cord compression, progressive motor deficit\n4. **Malignancy:** Spinal metastases with cord compression\n5. **Trauma:** Vertebral fracture (including osteoporotic)\n6. **Visceral referral:** Pancreatitis, renal colic, perforated viscus, retroperitoneal hemorrhage\n\n**Key history elements:**\n- Age: > 50 with new onset → consider malignancy, AAA, vertebral fracture\n- Onset and mechanism: trauma (fracture), insidious (infection, malignancy), sudden (vascular)\n- Location: midline (vertebral body, disc, cord) vs paraspinal (muscular) vs flank (renal)\n- Neurological symptoms: weakness, numbness, bowel/bladder dysfunction (cauda equina)\n- Constitutional symptoms: fever, weight loss, night sweats (infection, malignancy)\n- Risk factors: IVDU (epidural abscess), immunosuppression, cancer history, osteoporosis, anticoagulation\n- Nocturnal/rest pain: suggests malignancy or infection (not positional/mechanical)",
+          "excerptSha256": "315e785ad5aacc7b9604f2196872b3a0d79468f2ef0e4784c4bbc574a999582d",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "0d59084597f4a7abec523e16ad0a53caa34aa858debc1f6f3262c72f01a622cb",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "f26f41cd1a9db0b40e89e2db7b5423c89d315b594f25d70be7f05e76552702f0",
+      "title": "Pneumonia",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/pneumonia.md",
+      "section": "Recognition",
+      "summary": "### Classification\n\n| Type | Definition |\n|---|---|\n| Community-acquired pneumonia (CAP) | Acquired outside hospital or < 48 hours after admission |\n| Hospital-acquired pneumonia (HAP) | Onset >= 48 hours after admission, not incubating at admission |\n| Ventilator-associated pneumonia (VAP) | Onset >= 48 hours after endotracheal intubation |\n| Aspiration pneumonia | Pneumonia following witnessed or suspected aspiration event; commonly in right lower lobe |\n\n### Clinical Presentation\n- Cough (productive or dry), dyspnea, pleuritic chest pain\n- Fever (may be absent in elderly or immunocompromised)\n- Tachypnea, tachycardia, hypoxia\n- Lung exam: crackles, bronchial breath sounds, egophony, dullness to percussion\n- Elderly: altered mental status, falls, or functional decline may be the only presenting signs\n\n### CURB-65 Severity Score (1 point each)\n| Criterion | Definition |\n|---|---|\n| **C**onfusion | New altered mental status |\n| **U**rea | BUN > 20 mg/dL (> 7 mmol/L) |\n| **R**espiratory rate | >= 30/min |\n| **B**lood pressure | SBP < 90 or DBP <= 60 mmHg |\n| **65** | Age >= 65 years |\n\n| Score | Mortality | Disposition |\n|---|---|---|\n| 0-1 | 1.5% | Outpatient |\n| 2 | 9.2% | Admit (short inpatient stay or close outpatient follow-up) |\n| 3-5 | 22% | Admit; score >= 4 evaluate for ICU |\n\n### PSI/PORT Score\n- Validated for identifying low-risk patients safe for outpatient treatment\n- Class I-II: outpatient. Class III: short observation or admit. Class IV-V: inpatient, consider ICU.\n- Incorporates age, comorbidities, vital signs, labs, imaging\n\n### ATS/IDSA Criteria for Severe CAP (ICU admission)\n**Major criteria (1 = ICU):**\n- Septic shock requiring vasopressors\n- Respiratory failure requiring mechanical ventilation\n\n**Minor criteria (>= 3 = ICU):**\n- RR >= 30/min",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "f26f41cd1a9db0b40e89e2db7b5423c89d315b594f25d70be7f05e76552702f0",
+          "sourceId": "openem:pneumonia",
+          "excerpt": "### Classification\n\n| Type | Definition |\n|---|---|\n| Community-acquired pneumonia (CAP) | Acquired outside hospital or < 48 hours after admission |\n| Hospital-acquired pneumonia (HAP) | Onset >= 48 hours after admission, not incubating at admission |\n| Ventilator-associated pneumonia (VAP) | Onset >= 48 hours after endotracheal intubation |\n| Aspiration pneumonia | Pneumonia following witnessed or suspected aspiration event; commonly in right lower lobe |\n\n### Clinical Presentation\n- Cough (productive or dry), dyspnea, pleuritic chest pain\n- Fever (may be absent in elderly or immunocompromised)\n- Tachypnea, tachycardia, hypoxia\n- Lung exam: crackles, bronchial breath sounds, egophony, dullness to percussion\n- Elderly: altered mental status, falls, or functional decline may be the only presenting signs\n\n### CURB-65 Severity Score (1 point each)\n| Criterion | Definition |\n|---|---|\n| **C**onfusion | New altered mental status |\n| **U**rea | BUN > 20 mg/dL (> 7 mmol/L) |\n| **R**espiratory rate | >= 30/min |\n| **B**lood pressure | SBP < 90 or DBP <= 60 mmHg |\n| **65** | Age >= 65 years |\n\n| Score | Mortality | Disposition |\n|---|---|---|\n| 0-1 | 1.5% | Outpatient |\n| 2 | 9.2% | Admit (short inpatient stay or close outpatient follow-up) |\n| 3-5 | 22% | Admit; score >= 4 evaluate for ICU |\n\n### PSI/PORT Score\n- Validated for identifying low-risk patients safe for outpatient treatment\n- Class I-II: outpatient. Class III: short observation or admit. Class IV-V: inpatient, consider ICU.\n- Incorporates age, comorbidities, vital signs, labs, imaging\n\n### ATS/IDSA Criteria for Severe CAP (ICU admission)\n**Major criteria (1 = ICU):**\n- Septic shock requiring vasopressors\n- Respiratory failure requiring mechanical ventilation\n\n**Minor criteria (>= 3 = ICU):**\n- RR >= 30/min",
+          "excerptSha256": "c88fa74203283e5a8b120730e912d069cbae39e298e45016f0cafc585d7b9506",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "86a1aa7b54f385e8a5fa3c94da50dfe6419cf29246f230ed163364ebdae88845",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "d7b0583624de341d300313fc3d298f799f19f6779b771da5e3caffae41194822",
+      "title": "Coronary Artery Disease",
+      "url": "https://medlineplus.gov/coronaryarterydisease.html",
+      "section": "Health-topic summary",
+      "summary": "abetes ) \n Have a family history of heart disease, especially in a parent or sibling who had it before age 50 \n Are getting older, especially men, who tend to develop CAD earlier in life than women \n \n Your health care provider may use a risk calculator to estimate your chance of having a heart attack or stroke in the next 10 years. Talk with your provider about your personal risk. \n\n What are symptoms of coronary artery disease? \n Symptoms of CAD vary from person to person. Some people have no symptoms at all. Others do not know they have CAD until they have a heart attack or their heart suddenly stops beating ( cardiac arrest ). \n When symptoms do occur, they may include: \n \n Chest pain , pressure, tightness, or discomfort that may spread to your neck, jaw, shoulder or arm \n Shortness of breath \n Feeling unusually fatigued \n \n These symptoms may start or get worse when you are active or under stress and may go away with rest. They can also get worse over time as plaque continues to build up. \n Get emergency help right away if you have chest pain or discomfort that does not go away or happens while you are resting. This may be a sign of a heart attack. Call 911. \n\n What other problems does coronary artery disease cause? \n Over time, reduced blood flow from CAD can lead to serious heart problems, including: \n \n Angina , which is chest pain or discomfort caused by reduced blood flow to your heart \n Heart attack, which occurs when a blood clot suddenly blocks blood flow to part of your heart, causing permanent damage to your heart muscle \n Heart failure , which occurs when your heart can't pump enough blood to meet your body's needs \n Arrhythmia , which is a problem with the rate or rhythm of your heartbeat \n \n\n How is coronary artery disease diagnosed? ",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "d7b0583624de341d300313fc3d298f799f19f6779b771da5e3caffae41194822",
+          "sourceId": "medlineplus:1276",
+          "excerpt": "abetes ) \n Have a family history of heart disease, especially in a parent or sibling who had it before age 50 \n Are getting older, especially men, who tend to develop CAD earlier in life than women \n \n Your health care provider may use a risk calculator to estimate your chance of having a heart attack or stroke in the next 10 years. Talk with your provider about your personal risk. \n\n What are symptoms of coronary artery disease? \n Symptoms of CAD vary from person to person. Some people have no symptoms at all. Others do not know they have CAD until they have a heart attack or their heart suddenly stops beating ( cardiac arrest ). \n When symptoms do occur, they may include: \n \n Chest pain , pressure, tightness, or discomfort that may spread to your neck, jaw, shoulder or arm \n Shortness of breath \n Feeling unusually fatigued \n \n These symptoms may start or get worse when you are active or under stress and may go away with rest. They can also get worse over time as plaque continues to build up. \n Get emergency help right away if you have chest pain or discomfort that does not go away or happens while you are resting. This may be a sign of a heart attack. Call 911. \n\n What other problems does coronary artery disease cause? \n Over time, reduced blood flow from CAD can lead to serious heart problems, including: \n \n Angina , which is chest pain or discomfort caused by reduced blood flow to your heart \n Heart attack, which occurs when a blood clot suddenly blocks blood flow to part of your heart, causing permanent damage to your heart muscle \n Heart failure , which occurs when your heart can't pump enough blood to meet your body's needs \n Arrhythmia , which is a problem with the rate or rhythm of your heartbeat \n \n\n How is coronary artery disease diagnosed? ",
+          "excerptSha256": "ea6d85644410b9905604d1dbfa149d627bd7e5f4bd76b58e4a6c6dafc669911c",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "7f0a8a9aff4c1f9f47daa18e1b9a97666adef183ae0552d6772394e927a902fe",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+      "title": "Chest Pain",
+      "url": "https://medlineplus.gov/chestpain.html",
+      "section": "Health-topic summary",
+      "summary": "Having a pain in your chest can be scary. It does not always mean that you are having a heart attack . There can be many other causes, including: \n Other heart problems, such as angina \n Panic attacks \n Digestive problems, such as heartburn or esophagus disorders \n Sore muscles \n Lung diseases, such as pneumonia , pleurisy , or pulmonary embolism \n Costochondritis - an inflammation of joints in your chest \n \n\n Some of these problems can be serious. Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath. Treatment depends on the cause of the pain.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+          "sourceId": "medlineplus:4744",
+          "excerpt": "Having a pain in your chest can be scary. It does not always mean that you are having a heart attack . There can be many other causes, including: \n Other heart problems, such as angina \n Panic attacks \n Digestive problems, such as heartburn or esophagus disorders \n Sore muscles \n Lung diseases, such as pneumonia , pleurisy , or pulmonary embolism \n Costochondritis - an inflammation of joints in your chest \n \n\n Some of these problems can be serious. Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath. Treatment depends on the cause of the pain.",
+          "excerptSha256": "3c4f7db5a65ad5bc93659ca9dd5bf3d34dde62438bafe5aaf972dddc31ee68bc",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "7b170b3bcd033cd1fe978fd52e16baf1463a93b60ca6c006fef0ef1ab61175cc",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "9fbe0bf01b70bb79b0716f766f18a9b2d0203cdf310db938f5d594bcfc627e46",
+      "title": "Pneumonia",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/pneumonia.md",
+      "section": "Pitfalls",
+      "summary": "1. **Discharging elderly patients with pneumonia based solely on CURB-65 = 1.** Elderly patients with baseline comorbidities may deteriorate rapidly. Integrate clinical judgment, functional status, and social support into disposition decisions.\n\n2. **Missing sepsis in pneumonia patients.** Screen every pneumonia patient for sepsis. Tachycardia, hypotension, altered mental status, or lactate >= 2 mmol/L requires aggressive resuscitation and antibiotics within 1 hour.\n\n3. **Relying on a normal CXR to exclude pneumonia.** Chest X-ray sensitivity for pneumonia is 60-75%. Early disease, dehydration, and neutropenia reduce sensitivity. If clinical suspicion is high and CXR is negative, obtain CT chest or treat empirically and repeat imaging in 24-48 hours.\n\n4. **Treating aspiration pneumonitis with antibiotics.** Witnessed aspiration with chemical pneumonitis (fever, infiltrate within hours) does not require antibiotics unless the patient fails to improve at 48 hours or develops new fever/infiltrate suggesting superinfection.\n\n5. **Using azithromycin monotherapy for inpatient CAP.** Macrolide monotherapy is inadequate for inpatient pneumonia. Always pair with a beta-lactam (ceftriaxone) or use a respiratory fluoroquinolone for inpatient treatment.\n\n6. **Not covering for MRSA in severe necrotizing or cavitary pneumonia.** Cavitary infiltrates, rapidly progressive disease, or concurrent influenza should prompt addition of vancomycin or linezolid for MRSA coverage.\n\n7. **Forgetting to test for influenza and COVID-19 during respiratory illness season.** Specific antiviral therapy (oseltamivir, nirmatrelvir-ritonavir) changes management. Isolation prevents nosocomial transmission.\n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "9fbe0bf01b70bb79b0716f766f18a9b2d0203cdf310db938f5d594bcfc627e46",
+          "sourceId": "openem:pneumonia",
+          "excerpt": "1. **Discharging elderly patients with pneumonia based solely on CURB-65 = 1.** Elderly patients with baseline comorbidities may deteriorate rapidly. Integrate clinical judgment, functional status, and social support into disposition decisions.\n\n2. **Missing sepsis in pneumonia patients.** Screen every pneumonia patient for sepsis. Tachycardia, hypotension, altered mental status, or lactate >= 2 mmol/L requires aggressive resuscitation and antibiotics within 1 hour.\n\n3. **Relying on a normal CXR to exclude pneumonia.** Chest X-ray sensitivity for pneumonia is 60-75%. Early disease, dehydration, and neutropenia reduce sensitivity. If clinical suspicion is high and CXR is negative, obtain CT chest or treat empirically and repeat imaging in 24-48 hours.\n\n4. **Treating aspiration pneumonitis with antibiotics.** Witnessed aspiration with chemical pneumonitis (fever, infiltrate within hours) does not require antibiotics unless the patient fails to improve at 48 hours or develops new fever/infiltrate suggesting superinfection.\n\n5. **Using azithromycin monotherapy for inpatient CAP.** Macrolide monotherapy is inadequate for inpatient pneumonia. Always pair with a beta-lactam (ceftriaxone) or use a respiratory fluoroquinolone for inpatient treatment.\n\n6. **Not covering for MRSA in severe necrotizing or cavitary pneumonia.** Cavitary infiltrates, rapidly progressive disease, or concurrent influenza should prompt addition of vancomycin or linezolid for MRSA coverage.\n\n7. **Forgetting to test for influenza and COVID-19 during respiratory illness season.** Specific antiviral therapy (oseltamivir, nirmatrelvir-ritonavir) changes management. Isolation prevents nosocomial transmission.\n",
+          "excerptSha256": "e9eed357f202d64ba0c0fc8924071109effee360586d3411f4cb2d93e1b39535",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "86a1aa7b54f385e8a5fa3c94da50dfe6419cf29246f230ed163364ebdae88845",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    }
+  ],
+  "routingPolicy": "five-route-queue/v2",
+  "usage": {
+    "inputTokens": 24456,
+    "outputTokens": 1777
+  },
+  "graph": {
+    "version": "evidence-graph/v25",
+    "mode": "gates-release",
+    "frozenPacketHash": "6761cbb4496b16efc0b09f170b1dfff6e43bfa4046e1c87d688aca2d9b79803d",
+    "gatesAdmission": {
+      "policy": "gates-release/v1",
+      "packetHash": "6761cbb4496b16efc0b09f170b1dfff6e43bfa4046e1c87d688aca2d9b79803d",
+      "draftHash": "b4d3e23c3125940bdffdcdafe883c2adf307c705cfb07cbebb6051ce3b3fc8ec",
+      "contractOk": true,
+      "packetOk": true,
+      "lowerThanEarly": true,
+      "aborted": false,
+      "released": false
+    },
+    "clinicalPolicyVersion": "disposition-clinical-policy/v2",
+    "context": {
+      "queries": [
+        "sharp left chest pain deep breathing worse musculoskeletal",
+        "pleurisy pleuritic chest pain pneumonia",
+        "chest pain post-exercise acute coronary syndrome risk"
+      ],
+      "findings": [
+        {
+          "finding": "Sharp left-sided chest pain",
+          "status": "reported",
+          "quote": "Sharp pain on the left side of my chest since yesterday"
+        },
+        {
+          "finding": "Pain worse with deep inspiration",
+          "status": "reported",
+          "quote": "worse when I take a deep breath"
+        },
+        {
+          "finding": "Heavy chest workout 2 days prior to symptom onset",
+          "status": "reported",
+          "quote": "I did a heavy chest workout two days ago"
+        },
+        {
+          "finding": "No dyspnea",
+          "status": "reported",
+          "quote": "No shortness of breath"
+        },
+        {
+          "finding": "No leg edema",
+          "status": "reported",
+          "quote": "no leg swelling"
+        },
+        {
+          "finding": "No active smoking",
+          "status": "reported",
+          "quote": "I don't smoke"
+        }
+      ],
+      "question": {
+        "text": "Does the pain hurt more when you press on the left side of your chest wall, or is it only with breathing and movement?",
+        "why": "Localized tenderness on palpation would favor musculoskeletal or pleuritic etiology; pain purely with respiration or trunk motion helps distinguish from deeper cardiac or pulmonary pathology.",
+        "quote": "Sharp pain on the left side of my chest"
+      }
+    },
+    "contextAdmission": {
+      "clinicalContextAccepted": true,
+      "querySource": "accepted_context",
+      "queries": [
+        "sharp left chest pain deep breathing worse musculoskeletal",
+        "pleurisy pleuritic chest pain pneumonia",
+        "chest pain post-exercise acute coronary syndrome risk"
+      ],
+      "clinicalValidation": false
+    },
+    "safety": {
+      "action": "SAME_DAY_IN_PERSON",
+      "basis": [
+        {
+          "quote": "Sharp pain on the left side of my chest since yesterday, worse when I take a deep breath",
+          "interpretation": "Current pleuritic chest pain of 24+ hours duration requires immediate hands-on cardiac and pulmonary assessment to exclude acute coronary syndrome, pulmonary embolism, and other serious thoracic pathology despite benign context",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "I did a heavy chest workout two days ago",
+          "interpretation": "Recent intense pectoral exertion is consistent with musculoskeletal chest wall pain but does not exclude concurrent serious cardiopulmonary disease and cannot be used to rule out emergency diagnoses without direct examination",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "No shortness of breath, no leg swelling, I don't smoke",
+          "interpretation": "Absence of dyspnea, edema and smoking history reduce but do not exclude pulmonary embolism, acute coronary syndrome or other cardiopulmonary emergencies; these denials are not diagnostic exclusions",
+          "currentPatient": true,
+          "present": false
+        }
+      ],
+      "actionBasis": {
+        "indices": [
+          0,
+          1
+        ],
+        "sufficient": true
+      },
+      "reason": "Acute pleuritic chest pain requires same-day in-person evaluation to exclude life-threatening cardiopulmonary disease; exertional context does not permit remote assessment alone.",
+      "patientMessage": "",
+      "physicalRequirement": "Hands-on cardiopulmonary examination, ECG, and thoracic imaging to exclude acute coronary syndrome, pulmonary embolism, pneumothorax, and other serious causes of acute pleuritic chest pain.",
+      "activeEms": null
+    },
+    "safetyAdmission": {
+      "status": "admitted",
+      "code": "ACTION_ADMITTED",
+      "proposedAction": "SAME_DAY_IN_PERSON",
+      "basisMode": "explicit",
+      "supportingBasisIndices": [
+        0,
+        1
+      ],
+      "contextualBasisIndices": [
+        2
+      ],
+      "clinicalValidation": false
+    },
+    "questionPublication": {
+      "status": "published",
+      "blocksRouting": false
+    },
+    "retrieval": [
+      {
+        "corpusHash": "af7e4a8c239c4b084525aba008d56ce833b3a08144cea6237319bf996aa30dbd",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "sharp left chest pain deep breathing worse musculoskeletal",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "575b71f9a6f96d2b9d9aa5586fa84978660a00743e5e42bfead957fa698639d0",
+              "end": 1673,
+              "hash": "05e6098a47836d6671312fbc47fcf06cab23eb38c32ec7d4acb74609d770a294",
+              "text": "1. **Anchoring on \"GERD\" or \"musculoskeletal\" without completing ACS workup.** Reproducible chest wall tenderness is present in 5-15% of patients with ACS. A response to antacids does not rule out ACS. Always obtain ECG and troponin regardless of initial impression.\n\n2. **Failure to consider aortic dissection in the patient treated for ACS.** Giving anticoagulation and thrombolytics to a patient with aortic dissection is lethal. Check bilateral arm pressures on every chest pain patient. Dissection can cause ST elevation by occluding coronary ostia.\n\n3. **Dismissing PE because chest pain is not pleuritic.** Up to 50% of PE patients have non-pleuritic chest pain. Dyspnea with tachycardia should trigger PE evaluation regardless of pain character.\n\n4. **Over-reliance on negative initial troponin.** High-sensitivity troponin can be negative in the first 1-3 hours of symptom onset. Serial testing is mandatory for moderate-risk patients. A single negative troponin does not rule out ACS.\n\n5. **Premature closure on musculoskeletal diagnosis in young patients.** Spontaneous coronary artery dissection affects young women. Type A aortic dissection occurs in Marfan syndrome in the 20s-30s. Myocarditis affects young adults.\n\n6. **Missing posterior STEMI.** Standard 12-lead ECG misses posterior MI. ST depression in V1-V3 should prompt posterior leads (V7-V9). This is the most commonly missed STEMI territory.\n\n7. **Cocaine-associated chest pain mismanagement.** Do NOT give beta-blockers (unopposed alpha stimulation → coronary vasospasm and hypertension). Use benzodiazepines, nitroglycerin, and calcium channel blockers. Phentolamine for refractory hypertension.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:chest-pain",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Chest Pain — Emergency Evaluation\nchest pain; thoracic pain; anterior chest pain; chest discomfort\nPitfalls\n1. **Anchoring on \"GERD\" or \"musculoskeletal\" without completing ACS workup.** Reproducible chest wall tenderness is present in 5-15% of patients with ACS. A response to antacids does not rule out ACS. Always obtain ECG and troponin regardless of initial impression.\n\n2. **Failure to consider aortic dissection in the patient treated for ACS.** Giving anticoagulation and thrombolytics to a patient with aortic dissection is lethal. Check bilateral arm pressures on every chest pain patient. Dissection can cause ST elevation by occluding coronary ostia.\n\n3. **Dismissing PE because chest pain is not pleuritic.** Up to 50% of PE patients have non-pleuritic chest pain. Dyspnea with tachycardia should trigger PE evaluation regardless of pain character.\n\n4. **Over-reliance on negative initial troponin.** High-sensitivity troponin can be negative in the first 1-3 hours of symptom onset. Serial testing is mandatory for moderate-risk patients. A single negative troponin does not rule out ACS.\n\n5. **Premature closure on musculoskeletal diagnosis in young patients.** Spontaneous coronary artery dissection affects young women. Type A aortic dissection occurs in Marfan syndrome in the 20s-30s. Myocarditis affects young adults.\n\n6. **Missing posterior STEMI.** Standard 12-lead ECG misses posterior MI. ST depression in V1-V3 should prompt posterior leads (V7-V9). This is the most commonly missed STEMI territory.\n\n7. **Cocaine-associated chest pain mismanagement.** Do NOT give beta-blockers (unopposed alpha stimulation → coronary vasospasm and hypertension). Use benzodiazepines, nitroglycerin, and calcium channel blockers. Phentolamine for refractory hypertension.\n"
+            },
+            "document": {
+              "id": "openem:chest-pain",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Chest Pain — Emergency Evaluation",
+              "aliases": [
+                "chest pain",
+                "thoracic pain",
+                "anterior chest pain",
+                "chest discomfort"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03252247488101534,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n8. **Attributing chest pain to anxiety in women and young patients.** Women are more likely to be diagnosed with anxiety when presenting with ACS. Complete objective workup before considering psychiatric diagnosis."
+            }
+          },
+          {
+            "chunk": {
+              "id": "c7ba4eb389a45bff3f916dd98f5da2f0fc7774ad5a3bccab8b03fdd8b3bac3f8",
+              "end": 1730,
+              "hash": "277d14d675086210c6a0d344a59daa5a674625c206bdfb1f9762430d7febbd9e",
+              "text": "### Life-Threatening (must rule out immediately)\n- **STEMI / ACS** (`stemi`, `acute-coronary-syndrome-nstemi`, `unstable-angina`): substernal pressure, diaphoresis, ECG changes, troponin elevation\n- **Aortic dissection** (`aortic-dissection`): sudden tearing pain radiating to back, BP differential, widened mediastinum, aortic regurgitation murmur\n- **Pulmonary embolism** (`pulmonary-embolism`): pleuritic pain, dyspnea, tachycardia, risk factors for VTE, right heart strain on ECG\n- **Tension pneumothorax** (`tension-pneumothorax`): unilateral absent breath sounds, tracheal deviation, hypotension, distended neck veins\n- **Cardiac tamponade** (`cardiac-tamponade`): Beck triad (hypotension, JVD, muffled heart sounds), pulsus paradoxus, electrical alternans\n- **Esophageal rupture** (`boerhaave-syndrome`): post-emetic severe chest/epigastric pain, subcutaneous emphysema, pneumomediastinum\n\n### Emergent\n- **Spontaneous pneumothorax** (`spontaneous-pneumothorax`): sudden pleuritic pain, decreased breath sounds, tall thin habitus or COPD\n- **Pericarditis/myocarditis** (`pericarditis-myocarditis`): sharp pleuritic pain worse supine and improved leaning forward, diffuse ST elevation with PR depression, friction rub\n- **Acute heart failure** (`acute-heart-failure`): dyspnea, orthopnea, bilateral crackles, peripheral edema, BNP elevation\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with end-organ damage\n- **Takotsubo cardiomyopathy** (`takotsubo-cardiomyopathy`): post-emotional/physical stress, mimics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:chest-pain",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Chest Pain — Emergency Evaluation\nchest pain; thoracic pain; anterior chest pain; chest discomfort\nDifferential Diagnosis\n### Life-Threatening (must rule out immediately)\n- **STEMI / ACS** (`stemi`, `acute-coronary-syndrome-nstemi`, `unstable-angina`): substernal pressure, diaphoresis, ECG changes, troponin elevation\n- **Aortic dissection** (`aortic-dissection`): sudden tearing pain radiating to back, BP differential, widened mediastinum, aortic regurgitation murmur\n- **Pulmonary embolism** (`pulmonary-embolism`): pleuritic pain, dyspnea, tachycardia, risk factors for VTE, right heart strain on ECG\n- **Tension pneumothorax** (`tension-pneumothorax`): unilateral absent breath sounds, tracheal deviation, hypotension, distended neck veins\n- **Cardiac tamponade** (`cardiac-tamponade`): Beck triad (hypotension, JVD, muffled heart sounds), pulsus paradoxus, electrical alternans\n- **Esophageal rupture** (`boerhaave-syndrome`): post-emetic severe chest/epigastric pain, subcutaneous emphysema, pneumomediastinum\n\n### Emergent\n- **Spontaneous pneumothorax** (`spontaneous-pneumothorax`): sudden pleuritic pain, decreased breath sounds, tall thin habitus or COPD\n- **Pericarditis/myocarditis** (`pericarditis-myocarditis`): sharp pleuritic pain worse supine and improved leaning forward, diffuse ST elevation with PR depression, friction rub\n- **Acute heart failure** (`acute-heart-failure`): dyspnea, orthopnea, bilateral crackles, peripheral edema, BNP elevation\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with end-organ damage\n- **Takotsubo cardiomyopathy** (`takotsubo-cardiomyopathy`): post-emotional/physical stress, mimics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent"
+            },
+            "document": {
+              "id": "openem:chest-pain",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Chest Pain — Emergency Evaluation",
+              "aliases": [
+                "chest pain",
+                "thoracic pain",
+                "anterior chest pain",
+                "chest discomfort"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.031754032258064516,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- **Biliary disease** (`acute-cholecystitis`, `biliary-colic`): RUQ/epigastric pain, post-prandial, Murphy sign\n- **Acute pancreatitis** (`acute-pancreatitis`): epigastric pain radiating to back, nausea/vomiting, lipase elevation\n- **Pleural effusion** (`pleural-effusion-emergency`): dyspnea, decre"
+            }
+          },
+          {
+            "chunk": {
+              "id": "886530bc2b9437dff94df57dcec02212735c770ca604a4c8d3ab40e15b872d9f",
+              "end": 1673,
+              "hash": "315e785ad5aacc7b9604f2196872b3a0d79468f2ef0e4784c4bbc574a999582d",
+              "text": "Back pain accounts for 2-4% of ED visits. The vast majority (> 95%) is mechanical/musculoskeletal and self-limited. The ED task is to identify the 1-5% with life-threatening or emergent causes requiring immediate intervention — primarily vascular catastrophe, cord compression, and spinal infection.\n\n**Critical distinction:** The ED evaluation of back pain is a red-flag screening exercise, not a comprehensive back pain workup. If no red flags are present, the patient has mechanical back pain and imaging/labs are not indicated.\n\n**Red flag categories (must screen for ALL):**\n\n1. **Vascular:** AAA rupture, aortic dissection\n2. **Infection:** Spinal epidural abscess, discitis/osteomyelitis, pyelonephritis\n3. **Neurological compromise:** Cauda equina syndrome, cord compression, progressive motor deficit\n4. **Malignancy:** Spinal metastases with cord compression\n5. **Trauma:** Vertebral fracture (including osteoporotic)\n6. **Visceral referral:** Pancreatitis, renal colic, perforated viscus, retroperitoneal hemorrhage\n\n**Key history elements:**\n- Age: > 50 with new onset → consider malignancy, AAA, vertebral fracture\n- Onset and mechanism: trauma (fracture), insidious (infection, malignancy), sudden (vascular)\n- Location: midline (vertebral body, disc, cord) vs paraspinal (muscular) vs flank (renal)\n- Neurological symptoms: weakness, numbness, bowel/bladder dysfunction (cauda equina)\n- Constitutional symptoms: fever, weight loss, night sweats (infection, malignancy)\n- Risk factors: IVDU (epidural abscess), immunosuppression, cancer history, osteoporosis, anticoagulation\n- Nocturnal/rest pain: suggests malignancy or infection (not positional/mechanical)",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:back-pain-emergency",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Back Pain — Emergency Evaluation\nback pain; low back pain; thoracic back pain; spine pain; acute back pain ED\nRecognition\nBack pain accounts for 2-4% of ED visits. The vast majority (> 95%) is mechanical/musculoskeletal and self-limited. The ED task is to identify the 1-5% with life-threatening or emergent causes requiring immediate intervention — primarily vascular catastrophe, cord compression, and spinal infection.\n\n**Critical distinction:** The ED evaluation of back pain is a red-flag screening exercise, not a comprehensive back pain workup. If no red flags are present, the patient has mechanical back pain and imaging/labs are not indicated.\n\n**Red flag categories (must screen for ALL):**\n\n1. **Vascular:** AAA rupture, aortic dissection\n2. **Infection:** Spinal epidural abscess, discitis/osteomyelitis, pyelonephritis\n3. **Neurological compromise:** Cauda equina syndrome, cord compression, progressive motor deficit\n4. **Malignancy:** Spinal metastases with cord compression\n5. **Trauma:** Vertebral fracture (including osteoporotic)\n6. **Visceral referral:** Pancreatitis, renal colic, perforated viscus, retroperitoneal hemorrhage\n\n**Key history elements:**\n- Age: > 50 with new onset → consider malignancy, AAA, vertebral fracture\n- Onset and mechanism: trauma (fracture), insidious (infection, malignancy), sudden (vascular)\n- Location: midline (vertebral body, disc, cord) vs paraspinal (muscular) vs flank (renal)\n- Neurological symptoms: weakness, numbness, bowel/bladder dysfunction (cauda equina)\n- Constitutional symptoms: fever, weight loss, night sweats (infection, malignancy)\n- Risk factors: IVDU (epidural abscess), immunosuppression, cancer history, osteoporosis, anticoagulation\n- Nocturnal/rest pain: suggests malignancy or infection (not positional/mechanical)"
+            },
+            "document": {
+              "id": "openem:back-pain-emergency",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/back-pain-emergency.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Back Pain — Emergency Evaluation",
+              "aliases": [
+                "back pain",
+                "low back pain",
+                "thoracic back pain",
+                "spine pain",
+                "acute back pain ED"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "0d59084597f4a7abec523e16ad0a53caa34aa858debc1f6f3262c72f01a622cb",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.025278219395866455,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+              "end": 686,
+              "hash": "3c4f7db5a65ad5bc93659ca9dd5bf3d34dde62438bafe5aaf972dddc31ee68bc",
+              "text": "Having a pain in your chest can be scary. It does not always mean that you are having a heart attack . There can be many other causes, including: \n Other heart problems, such as angina \n Panic attacks \n Digestive problems, such as heartburn or esophagus disorders \n Sore muscles \n Lung diseases, such as pneumonia , pleurisy , or pulmonary embolism \n Costochondritis - an inflammation of joints in your chest \n \n\n Some of these problems can be serious. Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath. Treatment depends on the cause of the pain.",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:4744",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Chest Pain\n\nHealth-topic summary\nHaving a pain in your chest can be scary. It does not always mean that you are having a heart attack . There can be many other causes, including: \n Other heart problems, such as angina \n Panic attacks \n Digestive problems, such as heartburn or esophagus disorders \n Sore muscles \n Lung diseases, such as pneumonia , pleurisy , or pulmonary embolism \n Costochondritis - an inflammation of joints in your chest \n \n\n Some of these problems can be serious. Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath. Treatment depends on the cause of the pain."
+            },
+            "document": {
+              "id": "medlineplus:4744",
+              "url": "https://medlineplus.gov/chestpain.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Chest Pain",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "7b170b3bcd033cd1fe978fd52e16baf1463a93b60ca6c006fef0ef1ab61175cc",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:142",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1653",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Chest Pain"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.025089094796863866,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "1f484e1c44e1e851ddd6c655f0db0f871dac13fff30dfc4b7eb161f4ae5a4f5a",
+              "end": 1633,
+              "hash": "9a9c765352c082653d8b401f024dcee52af52f5a294786e5d107a2520695107f",
+              "text": "### Life-Threatening\n- **Ruptured AAA** (`ruptured-aaa`): age > 60, sudden onset back/abdominal/flank pain, hypotension, pulsatile mass. Often misdiagnosed as renal colic. Classic triad (pain, hypotension, pulsatile mass) present in < 50%.\n- **Aortic dissection** (`aortic-dissection`): tearing interscapular pain, hypertension, pulse deficits. Stanford B dissection presents primarily as back pain.\n- **Spinal epidural abscess** (`spinal-epidural-abscess`): IVDU, immunosuppressed, or recent spinal procedure + fever + back pain → progressive neurological deficit. MRI with gadolinium is diagnostic. 4-phase progression: back pain → radiculopathy → motor deficit → paralysis. Time from onset to paralysis can be hours.\n- **Cauda equina syndrome** (`cauda-equina-syndrome`): saddle anesthesia, urinary retention (most sensitive early finding), bilateral sciatica, decreased rectal tone. Surgical decompression within 48 hours of onset of urinary symptoms for best outcomes.\n- **Spinal cord compression** (`spinal-cord-compression`): known malignancy + new back pain + neurological deficit. MRI entire spine (skip lesions in 10%). Dexamethasone 10 mg IV loading dose + emergent radiation oncology/neurosurgery.\n- **Spinal cord injury** (`spinal-cord-injury`): trauma mechanism, midline tenderness, neurological deficit. Immobilize, CT then MRI.\n\n### Emergent\n- **Pyelonephritis** (`pyelonephritis`): flank pain, fever, CVA tenderness, pyuria, bacteriuria. Septic pyelonephritis requires IV antibiotics and admission.\n- **Acute pancreatitis** (`acute-pancreatitis`): epigastric pain radiating to back, nausea/vomiting, lipase elevation",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:back-pain-emergency",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Back Pain — Emergency Evaluation\nback pain; low back pain; thoracic back pain; spine pain; acute back pain ED\nDifferential Diagnosis\n### Life-Threatening\n- **Ruptured AAA** (`ruptured-aaa`): age > 60, sudden onset back/abdominal/flank pain, hypotension, pulsatile mass. Often misdiagnosed as renal colic. Classic triad (pain, hypotension, pulsatile mass) present in < 50%.\n- **Aortic dissection** (`aortic-dissection`): tearing interscapular pain, hypertension, pulse deficits. Stanford B dissection presents primarily as back pain.\n- **Spinal epidural abscess** (`spinal-epidural-abscess`): IVDU, immunosuppressed, or recent spinal procedure + fever + back pain → progressive neurological deficit. MRI with gadolinium is diagnostic. 4-phase progression: back pain → radiculopathy → motor deficit → paralysis. Time from onset to paralysis can be hours.\n- **Cauda equina syndrome** (`cauda-equina-syndrome`): saddle anesthesia, urinary retention (most sensitive early finding), bilateral sciatica, decreased rectal tone. Surgical decompression within 48 hours of onset of urinary symptoms for best outcomes.\n- **Spinal cord compression** (`spinal-cord-compression`): known malignancy + new back pain + neurological deficit. MRI entire spine (skip lesions in 10%). Dexamethasone 10 mg IV loading dose + emergent radiation oncology/neurosurgery.\n- **Spinal cord injury** (`spinal-cord-injury`): trauma mechanism, midline tenderness, neurological deficit. Immobilize, CT then MRI.\n\n### Emergent\n- **Pyelonephritis** (`pyelonephritis`): flank pain, fever, CVA tenderness, pyuria, bacteriuria. Septic pyelonephritis requires IV antibiotics and admission.\n- **Acute pancreatitis** (`acute-pancreatitis`): epigastric pain radiating to back, nausea/vomiting, lipase elevation"
+            },
+            "document": {
+              "id": "openem:back-pain-emergency",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/back-pain-emergency.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Back Pain — Emergency Evaluation",
+              "aliases": [
+                "back pain",
+                "low back pain",
+                "thoracic back pain",
+                "spine pain",
+                "acute back pain ED"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "0d59084597f4a7abec523e16ad0a53caa34aa858debc1f6f3262c72f01a622cb",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.02441520467836257,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- **Vertebral fracture** (`cervical-spine-fracture` for cervical): osteoporotic compression fracture (minimal/no trauma in elderly), burst fracture (axial load), chance fracture (flexion-distraction). CT for diagnosis. MRI if neurological symptoms.\n\n### Urgent\n- **Urolithiasis** (`urolithiasis`): c"
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 41.54337500000838,
+          "embeddingMs": 538.1363330000313,
+          "vectorMs": 10.286250000004657,
+          "totalMs": 650.2439169998979
+        },
+        "warnings": [],
+        "embeddingTokens": 10,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "af7e4a8c239c4b084525aba008d56ce833b3a08144cea6237319bf996aa30dbd",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "pleurisy pleuritic chest pain pneumonia",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "c60c3cd2c2845c0ca2fc15b4efd9c3c99c34d32a1460912adb2214175552e578",
+              "end": 2434,
+              "hash": "f44b2123ffbbc2ca5d8aff8aa7ae0ab2b3175f919c27aafeeabb800eefa03726",
+              "text": "imics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent\n- **Biliary disease** (`acute-cholecystitis`, `biliary-colic`): RUQ/epigastric pain, post-prandial, Murphy sign\n- **Acute pancreatitis** (`acute-pancreatitis`): epigastric pain radiating to back, nausea/vomiting, lipase elevation\n- **Pleural effusion** (`pleural-effusion-emergency`): dyspnea, decreased breath sounds at bases, dullness to percussion\n\n### Non-Emergent (diagnoses of exclusion)\n- Musculoskeletal chest wall pain: reproducible with palpation, positional, no red flags\n- GERD/esophageal spasm: burning, post-prandial, relief with antacids (but do NOT anchor on this without ruling out ACS)\n- Anxiety/panic: diagnosis of exclusion ONLY after cardiac evaluation complete (see `panic-attack`)",
+              "start": 1530,
+              "section": 2,
+              "documentId": "openem:chest-pain",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Chest Pain — Emergency Evaluation\nchest pain; thoracic pain; anterior chest pain; chest discomfort\nDifferential Diagnosis\nimics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent\n- **Biliary disease** (`acute-cholecystitis`, `biliary-colic`): RUQ/epigastric pain, post-prandial, Murphy sign\n- **Acute pancreatitis** (`acute-pancreatitis`): epigastric pain radiating to back, nausea/vomiting, lipase elevation\n- **Pleural effusion** (`pleural-effusion-emergency`): dyspnea, decreased breath sounds at bases, dullness to percussion\n\n### Non-Emergent (diagnoses of exclusion)\n- Musculoskeletal chest wall pain: reproducible with palpation, positional, no red flags\n- GERD/esophageal spasm: burning, post-prandial, relief with antacids (but do NOT anchor on this without ruling out ACS)\n- Anxiety/panic: diagnosis of exclusion ONLY after cardiac evaluation complete (see `panic-attack`)"
+            },
+            "document": {
+              "id": "openem:chest-pain",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Chest Pain — Emergency Evaluation",
+              "aliases": [
+                "chest pain",
+                "thoracic pain",
+                "anterior chest pain",
+                "chest discomfort"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.0288981288981289,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "ute heart failure** (`acute-heart-failure`): dyspnea, orthopnea, bilateral crackles, peripheral edema, BNP elevation\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with end-organ damage\n- **Takotsubo cardiomyopathy** (`takotsubo-cardiomyopathy`): post-emotional/physical stress, m",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+              "end": 1267,
+              "hash": "34e2b67bcc7402aa854897a64bda2e3acba3f6ef414d369c44e42fbbe59179e9",
+              "text": "Chest pain accounts for approximately 6-8 million ED visits annually in the US (5-8% of all ED visits). Fewer than 25% have an acute coronary syndrome; the challenge is identifying the minority with life-threatening causes.\n\n**Key history elements:**\n- Onset: sudden vs gradual; activity at onset\n- Character: pressure/squeezing (ACS), tearing/ripping (dissection), sharp/pleuritic (PE, pneumothorax, pericarditis)\n- Radiation: arm/jaw (ACS), back/interscapular (dissection), unilateral (pleuritic)\n- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)\n- Associated symptoms: diaphoresis, dyspnea, syncope, nausea\n- Positional: worse supine/improved leaning forward (pericarditis)\n- Prior history: known CAD, PE, DVT, connective tissue disease, recent procedures/immobilization\n- Cocaine or stimulant use within 72 hours\n\n**High-risk populations for atypical presentations:**\n- Women: more likely to present with dyspnea, nausea, fatigue, back/jaw pain\n- Elderly (> 75): painless MI in up to 60%\n- Diabetics: autonomic neuropathy masks angina\n- Post-surgical/immobilized: PE risk\n\n**Epidemiology of serious causes:**\n- ACS: 10-15% of ED chest pain presentations\n- PE: 2-5%\n- Aortic dissection: < 1% but > 25% mortality if missed\n- Pneumothorax: 1-2%",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:chest-pain",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Chest Pain — Emergency Evaluation\nchest pain; thoracic pain; anterior chest pain; chest discomfort\nRecognition\nChest pain accounts for approximately 6-8 million ED visits annually in the US (5-8% of all ED visits). Fewer than 25% have an acute coronary syndrome; the challenge is identifying the minority with life-threatening causes.\n\n**Key history elements:**\n- Onset: sudden vs gradual; activity at onset\n- Character: pressure/squeezing (ACS), tearing/ripping (dissection), sharp/pleuritic (PE, pneumothorax, pericarditis)\n- Radiation: arm/jaw (ACS), back/interscapular (dissection), unilateral (pleuritic)\n- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)\n- Associated symptoms: diaphoresis, dyspnea, syncope, nausea\n- Positional: worse supine/improved leaning forward (pericarditis)\n- Prior history: known CAD, PE, DVT, connective tissue disease, recent procedures/immobilization\n- Cocaine or stimulant use within 72 hours\n\n**High-risk populations for atypical presentations:**\n- Women: more likely to present with dyspnea, nausea, fatigue, back/jaw pain\n- Elderly (> 75): painless MI in up to 60%\n- Diabetics: autonomic neuropathy masks angina\n- Post-surgical/immobilized: PE risk\n\n**Epidemiology of serious causes:**\n- ACS: 10-15% of ED chest pain presentations\n- PE: 2-5%\n- Aortic dissection: < 1% but > 25% mortality if missed\n- Pneumothorax: 1-2%"
+            },
+            "document": {
+              "id": "openem:chest-pain",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Chest Pain — Emergency Evaluation",
+              "aliases": [
+                "chest pain",
+                "thoracic pain",
+                "anterior chest pain",
+                "chest discomfort"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.026862026862026864,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "f26f41cd1a9db0b40e89e2db7b5423c89d315b594f25d70be7f05e76552702f0",
+              "end": 1790,
+              "hash": "c88fa74203283e5a8b120730e912d069cbae39e298e45016f0cafc585d7b9506",
+              "text": "### Classification\n\n| Type | Definition |\n|---|---|\n| Community-acquired pneumonia (CAP) | Acquired outside hospital or < 48 hours after admission |\n| Hospital-acquired pneumonia (HAP) | Onset >= 48 hours after admission, not incubating at admission |\n| Ventilator-associated pneumonia (VAP) | Onset >= 48 hours after endotracheal intubation |\n| Aspiration pneumonia | Pneumonia following witnessed or suspected aspiration event; commonly in right lower lobe |\n\n### Clinical Presentation\n- Cough (productive or dry), dyspnea, pleuritic chest pain\n- Fever (may be absent in elderly or immunocompromised)\n- Tachypnea, tachycardia, hypoxia\n- Lung exam: crackles, bronchial breath sounds, egophony, dullness to percussion\n- Elderly: altered mental status, falls, or functional decline may be the only presenting signs\n\n### CURB-65 Severity Score (1 point each)\n| Criterion | Definition |\n|---|---|\n| **C**onfusion | New altered mental status |\n| **U**rea | BUN > 20 mg/dL (> 7 mmol/L) |\n| **R**espiratory rate | >= 30/min |\n| **B**lood pressure | SBP < 90 or DBP <= 60 mmHg |\n| **65** | Age >= 65 years |\n\n| Score | Mortality | Disposition |\n|---|---|---|\n| 0-1 | 1.5% | Outpatient |\n| 2 | 9.2% | Admit (short inpatient stay or close outpatient follow-up) |\n| 3-5 | 22% | Admit; score >= 4 evaluate for ICU |\n\n### PSI/PORT Score\n- Validated for identifying low-risk patients safe for outpatient treatment\n- Class I-II: outpatient. Class III: short observation or admit. Class IV-V: inpatient, consider ICU.\n- Incorporates age, comorbidities, vital signs, labs, imaging\n\n### ATS/IDSA Criteria for Severe CAP (ICU admission)\n**Major criteria (1 = ICU):**\n- Septic shock requiring vasopressors\n- Respiratory failure requiring mechanical ventilation\n\n**Minor criteria (>= 3 = ICU):**\n- RR >= 30/min",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:pneumonia",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Pneumonia\npneumonia; community-acquired pneumonia; CAP; hospital-acquired pneumonia; HAP; aspiration pneumonia; lower respiratory tract infection; LRTI\nRecognition\n### Classification\n\n| Type | Definition |\n|---|---|\n| Community-acquired pneumonia (CAP) | Acquired outside hospital or < 48 hours after admission |\n| Hospital-acquired pneumonia (HAP) | Onset >= 48 hours after admission, not incubating at admission |\n| Ventilator-associated pneumonia (VAP) | Onset >= 48 hours after endotracheal intubation |\n| Aspiration pneumonia | Pneumonia following witnessed or suspected aspiration event; commonly in right lower lobe |\n\n### Clinical Presentation\n- Cough (productive or dry), dyspnea, pleuritic chest pain\n- Fever (may be absent in elderly or immunocompromised)\n- Tachypnea, tachycardia, hypoxia\n- Lung exam: crackles, bronchial breath sounds, egophony, dullness to percussion\n- Elderly: altered mental status, falls, or functional decline may be the only presenting signs\n\n### CURB-65 Severity Score (1 point each)\n| Criterion | Definition |\n|---|---|\n| **C**onfusion | New altered mental status |\n| **U**rea | BUN > 20 mg/dL (> 7 mmol/L) |\n| **R**espiratory rate | >= 30/min |\n| **B**lood pressure | SBP < 90 or DBP <= 60 mmHg |\n| **65** | Age >= 65 years |\n\n| Score | Mortality | Disposition |\n|---|---|---|\n| 0-1 | 1.5% | Outpatient |\n| 2 | 9.2% | Admit (short inpatient stay or close outpatient follow-up) |\n| 3-5 | 22% | Admit; score >= 4 evaluate for ICU |\n\n### PSI/PORT Score\n- Validated for identifying low-risk patients safe for outpatient treatment\n- Class I-II: outpatient. Class III: short observation or admit. Class IV-V: inpatient, consider ICU.\n- Incorporates age, comorbidities, vital signs, labs, imaging\n\n### ATS/IDSA Criteria for Severe CAP (ICU admission)\n**Major criteria (1 = ICU):**\n- Septic shock requiring vasopressors\n- Respiratory failure requiring mechanical ventilation\n\n**Minor criteria (>= 3 = ICU):**\n- RR >= 30/min"
+            },
+            "document": {
+              "id": "openem:pneumonia",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/pneumonia.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Pneumonia",
+              "aliases": [
+                "pneumonia",
+                "community-acquired pneumonia",
+                "CAP",
+                "hospital-acquired pneumonia",
+                "HAP",
+                "aspiration pneumonia",
+                "lower respiratory tract infection",
+                "LRTI"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "86a1aa7b54f385e8a5fa3c94da50dfe6419cf29246f230ed163364ebdae88845",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:pulmonary-embolism",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:acute-heart-failure",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:covid-pneumonia-severe",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "respiratory"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.0260840108401084,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- PaO2/FiO2 <= 250\n- Multilobar infiltrates\n- Confusion\n- BUN >= 20 mg/dL\n- WBC < 4,000\n- Platelets < 100,000\n- Core temperature < 36C\n- Hypotension requiring aggressive fluid resuscitation\n\n### Microbiology by Setting\n| Setting | Common Pathogens |\n|---|---|\n| CAP (outpatient) | S. pneumoniae, M. "
+            }
+          },
+          {
+            "chunk": {
+              "id": "9fbe0bf01b70bb79b0716f766f18a9b2d0203cdf310db938f5d594bcfc627e46",
+              "end": 1699,
+              "hash": "e9eed357f202d64ba0c0fc8924071109effee360586d3411f4cb2d93e1b39535",
+              "text": "1. **Discharging elderly patients with pneumonia based solely on CURB-65 = 1.** Elderly patients with baseline comorbidities may deteriorate rapidly. Integrate clinical judgment, functional status, and social support into disposition decisions.\n\n2. **Missing sepsis in pneumonia patients.** Screen every pneumonia patient for sepsis. Tachycardia, hypotension, altered mental status, or lactate >= 2 mmol/L requires aggressive resuscitation and antibiotics within 1 hour.\n\n3. **Relying on a normal CXR to exclude pneumonia.** Chest X-ray sensitivity for pneumonia is 60-75%. Early disease, dehydration, and neutropenia reduce sensitivity. If clinical suspicion is high and CXR is negative, obtain CT chest or treat empirically and repeat imaging in 24-48 hours.\n\n4. **Treating aspiration pneumonitis with antibiotics.** Witnessed aspiration with chemical pneumonitis (fever, infiltrate within hours) does not require antibiotics unless the patient fails to improve at 48 hours or develops new fever/infiltrate suggesting superinfection.\n\n5. **Using azithromycin monotherapy for inpatient CAP.** Macrolide monotherapy is inadequate for inpatient pneumonia. Always pair with a beta-lactam (ceftriaxone) or use a respiratory fluoroquinolone for inpatient treatment.\n\n6. **Not covering for MRSA in severe necrotizing or cavitary pneumonia.** Cavitary infiltrates, rapidly progressive disease, or concurrent influenza should prompt addition of vancomycin or linezolid for MRSA coverage.\n\n7. **Forgetting to test for influenza and COVID-19 during respiratory illness season.** Specific antiviral therapy (oseltamivir, nirmatrelvir-ritonavir) changes management. Isolation prevents nosocomial transmission.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:pneumonia",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Pneumonia\npneumonia; community-acquired pneumonia; CAP; hospital-acquired pneumonia; HAP; aspiration pneumonia; lower respiratory tract infection; LRTI\nPitfalls\n1. **Discharging elderly patients with pneumonia based solely on CURB-65 = 1.** Elderly patients with baseline comorbidities may deteriorate rapidly. Integrate clinical judgment, functional status, and social support into disposition decisions.\n\n2. **Missing sepsis in pneumonia patients.** Screen every pneumonia patient for sepsis. Tachycardia, hypotension, altered mental status, or lactate >= 2 mmol/L requires aggressive resuscitation and antibiotics within 1 hour.\n\n3. **Relying on a normal CXR to exclude pneumonia.** Chest X-ray sensitivity for pneumonia is 60-75%. Early disease, dehydration, and neutropenia reduce sensitivity. If clinical suspicion is high and CXR is negative, obtain CT chest or treat empirically and repeat imaging in 24-48 hours.\n\n4. **Treating aspiration pneumonitis with antibiotics.** Witnessed aspiration with chemical pneumonitis (fever, infiltrate within hours) does not require antibiotics unless the patient fails to improve at 48 hours or develops new fever/infiltrate suggesting superinfection.\n\n5. **Using azithromycin monotherapy for inpatient CAP.** Macrolide monotherapy is inadequate for inpatient pneumonia. Always pair with a beta-lactam (ceftriaxone) or use a respiratory fluoroquinolone for inpatient treatment.\n\n6. **Not covering for MRSA in severe necrotizing or cavitary pneumonia.** Cavitary infiltrates, rapidly progressive disease, or concurrent influenza should prompt addition of vancomycin or linezolid for MRSA coverage.\n\n7. **Forgetting to test for influenza and COVID-19 during respiratory illness season.** Specific antiviral therapy (oseltamivir, nirmatrelvir-ritonavir) changes management. Isolation prevents nosocomial transmission.\n"
+            },
+            "document": {
+              "id": "openem:pneumonia",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/pneumonia.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Pneumonia",
+              "aliases": [
+                "pneumonia",
+                "community-acquired pneumonia",
+                "CAP",
+                "hospital-acquired pneumonia",
+                "HAP",
+                "aspiration pneumonia",
+                "lower respiratory tract infection",
+                "LRTI"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "86a1aa7b54f385e8a5fa3c94da50dfe6419cf29246f230ed163364ebdae88845",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:pulmonary-embolism",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:acute-heart-failure",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:covid-pneumonia-severe",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "respiratory"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.0251821349382325,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n8. **Not obtaining Legionella urinary antigen in severe CAP.** Legionella causes 2-15% of CAP requiring ICU admission. Urinary antigen detects serogroup 1 (70-80% of disease). Directs targeted therapy with fluoroquinolone or azithromycin.\n\n9. **Delaying intubation in a tiring patient with pneumonia"
+            }
+          },
+          {
+            "chunk": {
+              "id": "4a2aa2fb51783aaf7f1f4b86f4e93324a0cf1e4d184d87f2b38e0b626e3f7686",
+              "end": 479,
+              "hash": "41b4923f7d7d9596ab3a4ede0b7ec89c2263e9fbfc3a2ce455a7b39775275ff0",
+              "text": "- **COVID-19 pneumonia** — bilateral GGO, lymphopenia; PCR differentiates\n- **Community-acquired pneumonia (bacterial)** — focal consolidation, productive sputum, elevated procalcitonin\n- **RSV/parainfluenza pneumonia** — similar presentation; viral panel differentiates\n- **PJP** — immunocompromised, bilateral GGO, elevated LDH\n- **Acute eosinophilic pneumonia** — eosinophilia, rapid steroid response\n- **Pulmonary embolism** — pleuritic pain, elevated D-dimer; CTA diagnostic",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:influenza-pneumonia-severe",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Severe Influenza Pneumonia\ninfluenza pneumonia; flu pneumonia; influenza ARDS; viral influenza pneumonia; H1N1 pneumonia\nDifferential Diagnosis\n- **COVID-19 pneumonia** — bilateral GGO, lymphopenia; PCR differentiates\n- **Community-acquired pneumonia (bacterial)** — focal consolidation, productive sputum, elevated procalcitonin\n- **RSV/parainfluenza pneumonia** — similar presentation; viral panel differentiates\n- **PJP** — immunocompromised, bilateral GGO, elevated LDH\n- **Acute eosinophilic pneumonia** — eosinophilia, rapid steroid response\n- **Pulmonary embolism** — pleuritic pain, elevated D-dimer; CTA diagnostic"
+            },
+            "document": {
+              "id": "openem:influenza-pneumonia-severe",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/influenza-pneumonia-severe.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Severe Influenza Pneumonia",
+              "aliases": [
+                "influenza pneumonia",
+                "flu pneumonia",
+                "influenza ARDS",
+                "viral influenza pneumonia",
+                "H1N1 pneumonia"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "a52ad3428f1e41e2021a039ae4cd105fae4cb8830440536f99556e1368bfb1e3",
+              "related": [],
+              "concepts": [
+                "respiratory"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.022875816993464054,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 61.56541699997615,
+          "embeddingMs": 519.2955839999486,
+          "vectorMs": 15.598207999952137,
+          "totalMs": 638.1469999999972
+        },
+        "warnings": [],
+        "embeddingTokens": 9,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "af7e4a8c239c4b084525aba008d56ce833b3a08144cea6237319bf996aa30dbd",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "chest pain post-exercise acute coronary syndrome risk",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "c7ba4eb389a45bff3f916dd98f5da2f0fc7774ad5a3bccab8b03fdd8b3bac3f8",
+              "end": 1730,
+              "hash": "277d14d675086210c6a0d344a59daa5a674625c206bdfb1f9762430d7febbd9e",
+              "text": "### Life-Threatening (must rule out immediately)\n- **STEMI / ACS** (`stemi`, `acute-coronary-syndrome-nstemi`, `unstable-angina`): substernal pressure, diaphoresis, ECG changes, troponin elevation\n- **Aortic dissection** (`aortic-dissection`): sudden tearing pain radiating to back, BP differential, widened mediastinum, aortic regurgitation murmur\n- **Pulmonary embolism** (`pulmonary-embolism`): pleuritic pain, dyspnea, tachycardia, risk factors for VTE, right heart strain on ECG\n- **Tension pneumothorax** (`tension-pneumothorax`): unilateral absent breath sounds, tracheal deviation, hypotension, distended neck veins\n- **Cardiac tamponade** (`cardiac-tamponade`): Beck triad (hypotension, JVD, muffled heart sounds), pulsus paradoxus, electrical alternans\n- **Esophageal rupture** (`boerhaave-syndrome`): post-emetic severe chest/epigastric pain, subcutaneous emphysema, pneumomediastinum\n\n### Emergent\n- **Spontaneous pneumothorax** (`spontaneous-pneumothorax`): sudden pleuritic pain, decreased breath sounds, tall thin habitus or COPD\n- **Pericarditis/myocarditis** (`pericarditis-myocarditis`): sharp pleuritic pain worse supine and improved leaning forward, diffuse ST elevation with PR depression, friction rub\n- **Acute heart failure** (`acute-heart-failure`): dyspnea, orthopnea, bilateral crackles, peripheral edema, BNP elevation\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with end-organ damage\n- **Takotsubo cardiomyopathy** (`takotsubo-cardiomyopathy`): post-emotional/physical stress, mimics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:chest-pain",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Chest Pain — Emergency Evaluation\nchest pain; thoracic pain; anterior chest pain; chest discomfort\nDifferential Diagnosis\n### Life-Threatening (must rule out immediately)\n- **STEMI / ACS** (`stemi`, `acute-coronary-syndrome-nstemi`, `unstable-angina`): substernal pressure, diaphoresis, ECG changes, troponin elevation\n- **Aortic dissection** (`aortic-dissection`): sudden tearing pain radiating to back, BP differential, widened mediastinum, aortic regurgitation murmur\n- **Pulmonary embolism** (`pulmonary-embolism`): pleuritic pain, dyspnea, tachycardia, risk factors for VTE, right heart strain on ECG\n- **Tension pneumothorax** (`tension-pneumothorax`): unilateral absent breath sounds, tracheal deviation, hypotension, distended neck veins\n- **Cardiac tamponade** (`cardiac-tamponade`): Beck triad (hypotension, JVD, muffled heart sounds), pulsus paradoxus, electrical alternans\n- **Esophageal rupture** (`boerhaave-syndrome`): post-emetic severe chest/epigastric pain, subcutaneous emphysema, pneumomediastinum\n\n### Emergent\n- **Spontaneous pneumothorax** (`spontaneous-pneumothorax`): sudden pleuritic pain, decreased breath sounds, tall thin habitus or COPD\n- **Pericarditis/myocarditis** (`pericarditis-myocarditis`): sharp pleuritic pain worse supine and improved leaning forward, diffuse ST elevation with PR depression, friction rub\n- **Acute heart failure** (`acute-heart-failure`): dyspnea, orthopnea, bilateral crackles, peripheral edema, BNP elevation\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with end-organ damage\n- **Takotsubo cardiomyopathy** (`takotsubo-cardiomyopathy`): post-emotional/physical stress, mimics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent"
+            },
+            "document": {
+              "id": "openem:chest-pain",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Chest Pain — Emergency Evaluation",
+              "aliases": [
+                "chest pain",
+                "thoracic pain",
+                "anterior chest pain",
+                "chest discomfort"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.032266458495966696,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- **Biliary disease** (`acute-cholecystitis`, `biliary-colic`): RUQ/epigastric pain, post-prandial, Murphy sign\n- **Acute pancreatitis** (`acute-pancreatitis`): epigastric pain radiating to back, nausea/vomiting, lipase elevation\n- **Pleural effusion** (`pleural-effusion-emergency`): dyspnea, decre"
+            }
+          },
+          {
+            "chunk": {
+              "id": "575b71f9a6f96d2b9d9aa5586fa84978660a00743e5e42bfead957fa698639d0",
+              "end": 1673,
+              "hash": "05e6098a47836d6671312fbc47fcf06cab23eb38c32ec7d4acb74609d770a294",
+              "text": "1. **Anchoring on \"GERD\" or \"musculoskeletal\" without completing ACS workup.** Reproducible chest wall tenderness is present in 5-15% of patients with ACS. A response to antacids does not rule out ACS. Always obtain ECG and troponin regardless of initial impression.\n\n2. **Failure to consider aortic dissection in the patient treated for ACS.** Giving anticoagulation and thrombolytics to a patient with aortic dissection is lethal. Check bilateral arm pressures on every chest pain patient. Dissection can cause ST elevation by occluding coronary ostia.\n\n3. **Dismissing PE because chest pain is not pleuritic.** Up to 50% of PE patients have non-pleuritic chest pain. Dyspnea with tachycardia should trigger PE evaluation regardless of pain character.\n\n4. **Over-reliance on negative initial troponin.** High-sensitivity troponin can be negative in the first 1-3 hours of symptom onset. Serial testing is mandatory for moderate-risk patients. A single negative troponin does not rule out ACS.\n\n5. **Premature closure on musculoskeletal diagnosis in young patients.** Spontaneous coronary artery dissection affects young women. Type A aortic dissection occurs in Marfan syndrome in the 20s-30s. Myocarditis affects young adults.\n\n6. **Missing posterior STEMI.** Standard 12-lead ECG misses posterior MI. ST depression in V1-V3 should prompt posterior leads (V7-V9). This is the most commonly missed STEMI territory.\n\n7. **Cocaine-associated chest pain mismanagement.** Do NOT give beta-blockers (unopposed alpha stimulation → coronary vasospasm and hypertension). Use benzodiazepines, nitroglycerin, and calcium channel blockers. Phentolamine for refractory hypertension.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:chest-pain",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Chest Pain — Emergency Evaluation\nchest pain; thoracic pain; anterior chest pain; chest discomfort\nPitfalls\n1. **Anchoring on \"GERD\" or \"musculoskeletal\" without completing ACS workup.** Reproducible chest wall tenderness is present in 5-15% of patients with ACS. A response to antacids does not rule out ACS. Always obtain ECG and troponin regardless of initial impression.\n\n2. **Failure to consider aortic dissection in the patient treated for ACS.** Giving anticoagulation and thrombolytics to a patient with aortic dissection is lethal. Check bilateral arm pressures on every chest pain patient. Dissection can cause ST elevation by occluding coronary ostia.\n\n3. **Dismissing PE because chest pain is not pleuritic.** Up to 50% of PE patients have non-pleuritic chest pain. Dyspnea with tachycardia should trigger PE evaluation regardless of pain character.\n\n4. **Over-reliance on negative initial troponin.** High-sensitivity troponin can be negative in the first 1-3 hours of symptom onset. Serial testing is mandatory for moderate-risk patients. A single negative troponin does not rule out ACS.\n\n5. **Premature closure on musculoskeletal diagnosis in young patients.** Spontaneous coronary artery dissection affects young women. Type A aortic dissection occurs in Marfan syndrome in the 20s-30s. Myocarditis affects young adults.\n\n6. **Missing posterior STEMI.** Standard 12-lead ECG misses posterior MI. ST depression in V1-V3 should prompt posterior leads (V7-V9). This is the most commonly missed STEMI territory.\n\n7. **Cocaine-associated chest pain mismanagement.** Do NOT give beta-blockers (unopposed alpha stimulation → coronary vasospasm and hypertension). Use benzodiazepines, nitroglycerin, and calcium channel blockers. Phentolamine for refractory hypertension.\n"
+            },
+            "document": {
+              "id": "openem:chest-pain",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Chest Pain — Emergency Evaluation",
+              "aliases": [
+                "chest pain",
+                "thoracic pain",
+                "anterior chest pain",
+                "chest discomfort"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03225806451612903,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n8. **Attributing chest pain to anxiety in women and young patients.** Women are more likely to be diagnosed with anxiety when presenting with ACS. Complete objective workup before considering psychiatric diagnosis."
+            }
+          },
+          {
+            "chunk": {
+              "id": "d7b0583624de341d300313fc3d298f799f19f6779b771da5e3caffae41194822",
+              "end": 3381,
+              "hash": "ea6d85644410b9905604d1dbfa149d627bd7e5f4bd76b58e4a6c6dafc669911c",
+              "text": "abetes ) \n Have a family history of heart disease, especially in a parent or sibling who had it before age 50 \n Are getting older, especially men, who tend to develop CAD earlier in life than women \n \n Your health care provider may use a risk calculator to estimate your chance of having a heart attack or stroke in the next 10 years. Talk with your provider about your personal risk. \n\n What are symptoms of coronary artery disease? \n Symptoms of CAD vary from person to person. Some people have no symptoms at all. Others do not know they have CAD until they have a heart attack or their heart suddenly stops beating ( cardiac arrest ). \n When symptoms do occur, they may include: \n \n Chest pain , pressure, tightness, or discomfort that may spread to your neck, jaw, shoulder or arm \n Shortness of breath \n Feeling unusually fatigued \n \n These symptoms may start or get worse when you are active or under stress and may go away with rest. They can also get worse over time as plaque continues to build up. \n Get emergency help right away if you have chest pain or discomfort that does not go away or happens while you are resting. This may be a sign of a heart attack. Call 911. \n\n What other problems does coronary artery disease cause? \n Over time, reduced blood flow from CAD can lead to serious heart problems, including: \n \n Angina , which is chest pain or discomfort caused by reduced blood flow to your heart \n Heart attack, which occurs when a blood clot suddenly blocks blood flow to part of your heart, causing permanent damage to your heart muscle \n Heart failure , which occurs when your heart can't pump enough blood to meet your body's needs \n Arrhythmia , which is a problem with the rate or rhythm of your heartbeat \n \n\n How is coronary artery disease diagnosed? ",
+              "start": 1599,
+              "section": 0,
+              "documentId": "medlineplus:1276",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Coronary Artery Disease\nCAD; Coronary arteriosclerosis; Coronary atherosclerosis; Coronary heart disease\nHealth-topic summary\nabetes ) \n Have a family history of heart disease, especially in a parent or sibling who had it before age 50 \n Are getting older, especially men, who tend to develop CAD earlier in life than women \n \n Your health care provider may use a risk calculator to estimate your chance of having a heart attack or stroke in the next 10 years. Talk with your provider about your personal risk. \n\n What are symptoms of coronary artery disease? \n Symptoms of CAD vary from person to person. Some people have no symptoms at all. Others do not know they have CAD until they have a heart attack or their heart suddenly stops beating ( cardiac arrest ). \n When symptoms do occur, they may include: \n \n Chest pain , pressure, tightness, or discomfort that may spread to your neck, jaw, shoulder or arm \n Shortness of breath \n Feeling unusually fatigued \n \n These symptoms may start or get worse when you are active or under stress and may go away with rest. They can also get worse over time as plaque continues to build up. \n Get emergency help right away if you have chest pain or discomfort that does not go away or happens while you are resting. This may be a sign of a heart attack. Call 911. \n\n What other problems does coronary artery disease cause? \n Over time, reduced blood flow from CAD can lead to serious heart problems, including: \n \n Angina , which is chest pain or discomfort caused by reduced blood flow to your heart \n Heart attack, which occurs when a blood clot suddenly blocks blood flow to part of your heart, causing permanent damage to your heart muscle \n Heart failure , which occurs when your heart can't pump enough blood to meet your body's needs \n Arrhythmia , which is a problem with the rate or rhythm of your heartbeat \n \n\n How is coronary artery disease diagnosed? "
+            },
+            "document": {
+              "id": "medlineplus:1276",
+              "url": "https://medlineplus.gov/coronaryarterydisease.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Coronary Artery Disease",
+              "aliases": [
+                "CAD",
+                "Coronary arteriosclerosis",
+                "Coronary atherosclerosis",
+                "Coronary heart disease"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "7f0a8a9aff4c1f9f47daa18e1b9a97666adef183ae0552d6772394e927a902fe",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:142",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5400",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5617",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:202",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6452",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Coronary Artery Disease"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.01803751803751804,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "is more likely to have coronary artery disease? \n You may be more likely to develop CAD if you: \n \n Eat a diet high in saturated fat \n Smoke or use tobacco products \n Are not physically active \n Are overweight or have obesity \n Have high blood pressure , high cholesterol , or high blood glucose ( di",
+              "after": "\n To find out if you have CAD, your provider may: \n \n Ask about your symptoms \n Ask about your personal and family health history \n Review your risk factors and lifestyle habits \n Do a physical exam, including checking your blood pressure \n Order blood tests, including checking your cholesterol and "
+            }
+          },
+          {
+            "chunk": {
+              "id": "0ad07a0610e33c890a7b319f14ebb829964371514c646280e57e41b7617fcb13",
+              "end": 1053,
+              "hash": "a5c7c2b7aed8e155de1b8bdc5a83d03c9d1927ccfa57cda4666e9d86d7cbfdc8",
+              "text": "| Condition | Distinguishing Features |\n|-----------|------------------------|\n| Fracture pain (uncomplicated) | Pain improves with immobilization; no pain with passive stretch; compartments soft |\n| Deep vein thrombosis | Swelling, calf tenderness, but compartments not tense; Doppler positive; no pain with passive stretch |\n| Arterial occlusion | Pulselessness, pallor, cool extremity — but compartment syndrome has intact pulses until very late. Assess ankle-brachial index. |\n| Rhabdomyolysis without compartment syndrome | Elevated CK, myoglobinuria, diffuse myalgias; but compartments are soft and non-tense |\n| Neuropraxia / nerve injury | Sensory/motor deficit from direct nerve injury at fracture site; no compartment tension |\n| Cellulitis | Erythema, warmth, but no compartment tension, no pain with passive stretch |\n| Chronic exertional compartment syndrome | Recurrent exercise-induced leg pain that resolves with rest; not an emergency |\n| Complex regional pain syndrome | Chronic, burning pain, allodynia; no acute compartment tension |",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:compartment-syndrome",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Acute Compartment Syndrome\nacute compartment syndrome; compartment syndrome; acute extremity compartment syndrome; exercise-induced compartment syndrome\nDifferential Diagnosis\n| Condition | Distinguishing Features |\n|-----------|------------------------|\n| Fracture pain (uncomplicated) | Pain improves with immobilization; no pain with passive stretch; compartments soft |\n| Deep vein thrombosis | Swelling, calf tenderness, but compartments not tense; Doppler positive; no pain with passive stretch |\n| Arterial occlusion | Pulselessness, pallor, cool extremity — but compartment syndrome has intact pulses until very late. Assess ankle-brachial index. |\n| Rhabdomyolysis without compartment syndrome | Elevated CK, myoglobinuria, diffuse myalgias; but compartments are soft and non-tense |\n| Neuropraxia / nerve injury | Sensory/motor deficit from direct nerve injury at fracture site; no compartment tension |\n| Cellulitis | Erythema, warmth, but no compartment tension, no pain with passive stretch |\n| Chronic exertional compartment syndrome | Recurrent exercise-induced leg pain that resolves with rest; not an emergency |\n| Complex regional pain syndrome | Chronic, burning pain, allodynia; no acute compartment tension |"
+            },
+            "document": {
+              "id": "openem:compartment-syndrome",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/compartment-syndrome.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Compartment Syndrome",
+              "aliases": [
+                "acute compartment syndrome",
+                "compartment syndrome",
+                "acute extremity compartment syndrome",
+                "exercise-induced compartment syndrome"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "a9a039f8006141380eb840164846ed0eeac217d0eec8868a813749ce0eadd4e4",
+              "related": [],
+              "concepts": [
+                "musculoskeletal"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.015873015873015872,
+            "channels": [
+              "lexical"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "133fe55cffc86c8e14268a26325ec63bddc7a40cef6e9d41a4a61bdc064925ed",
+              "end": 1496,
+              "hash": "979b15ab7763e305959affee9a56cae5bc3424c5c404de8956bf48acbd1019fc",
+              "text": "1. **Relying on pulselessness to diagnose compartment syndrome.** Compartment syndrome is tissue-level ischemia within a closed space. Arterial inflow is preserved until very late. A palpable dorsalis pedis pulse does NOT exclude the diagnosis.\n\n2. **Placing a regional nerve block in a patient at risk for compartment syndrome.** Nerve blocks (femoral, sciatic, popliteal) abolish the pain signal that is the earliest and most reliable indicator. Avoid or use with extreme caution in tibial fractures and other high-risk injuries.\n\n3. **Attributing escalating pain to fracture alone and undertreating rather than reassessing.** Pain out of proportion that worsens despite appropriate opioid doses and immobilization is compartment syndrome until proven otherwise.\n\n4. **Failing to measure compartment pressures in obtunded or intubated patients.** Unreliable exam (altered mental status, intoxication, sedation, spinal cord injury) mandates objective pressure monitoring at serial intervals.\n\n5. **Not checking all compartments.** The leg has 4 compartments. Measuring only the anterior compartment misses deep posterior compartment syndrome. All compartments must be measured.\n\n6. **Elevating the limb above the heart.** Elevation reduces arterial perfusion pressure to the compartment. Keep the limb at heart level — not above, not below.\n\n7. **Applying ice to the affected limb.** Ice causes vasoconstriction, reducing already compromised tissue perfusion. External cooling worsens ischemia.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:compartment-syndrome",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Acute Compartment Syndrome\nacute compartment syndrome; compartment syndrome; acute extremity compartment syndrome; exercise-induced compartment syndrome\nPitfalls\n1. **Relying on pulselessness to diagnose compartment syndrome.** Compartment syndrome is tissue-level ischemia within a closed space. Arterial inflow is preserved until very late. A palpable dorsalis pedis pulse does NOT exclude the diagnosis.\n\n2. **Placing a regional nerve block in a patient at risk for compartment syndrome.** Nerve blocks (femoral, sciatic, popliteal) abolish the pain signal that is the earliest and most reliable indicator. Avoid or use with extreme caution in tibial fractures and other high-risk injuries.\n\n3. **Attributing escalating pain to fracture alone and undertreating rather than reassessing.** Pain out of proportion that worsens despite appropriate opioid doses and immobilization is compartment syndrome until proven otherwise.\n\n4. **Failing to measure compartment pressures in obtunded or intubated patients.** Unreliable exam (altered mental status, intoxication, sedation, spinal cord injury) mandates objective pressure monitoring at serial intervals.\n\n5. **Not checking all compartments.** The leg has 4 compartments. Measuring only the anterior compartment misses deep posterior compartment syndrome. All compartments must be measured.\n\n6. **Elevating the limb above the heart.** Elevation reduces arterial perfusion pressure to the compartment. Keep the limb at heart level — not above, not below.\n\n7. **Applying ice to the affected limb.** Ice causes vasoconstriction, reducing already compromised tissue perfusion. External cooling worsens ischemia.\n"
+            },
+            "document": {
+              "id": "openem:compartment-syndrome",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/compartment-syndrome.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Compartment Syndrome",
+              "aliases": [
+                "acute compartment syndrome",
+                "compartment syndrome",
+                "acute extremity compartment syndrome",
+                "exercise-induced compartment syndrome"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "a9a039f8006141380eb840164846ed0eeac217d0eec8868a813749ce0eadd4e4",
+              "related": [],
+              "concepts": [
+                "musculoskeletal"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.015151515151515152,
+            "channels": [
+              "lexical"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n8. **Missing compartment syndrome in children with supracondylar humerus fractures.** Forearm compartment syndrome occurs in 0.1-0.3% of supracondylar fractures. Children are unreliable historians — increasing analgesic requirements, excessive pain with finger extension, and tense forearm are red f"
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 100.18383400002494,
+          "embeddingMs": 582.4591250000522,
+          "vectorMs": 9.7101660000626,
+          "totalMs": 697.7284999999683
+        },
+        "warnings": [],
+        "embeddingTokens": 9,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": null,
+    "release": "clinician_required",
+    "clinicalApproval": false,
+    "corrections": 0,
+    "careCorrectionReleased": false,
+    "sourceIntegrity": true,
+    "citations": []
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "clinical-evidence-graph",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "bc045918-e0bb-48c2-b6d6-4eb3a7ba6821",
+  "traceId": "3249f58cac177c5a6571c644c96b1f4d",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "28M. Sharp pain on the left side of my chest since yesterday, worse when I take a deep breath. I did a heavy chest workout two days ago. No shortness of breath, no leg swelling, I don't smoke.",
+  "inputHash": "e617eea8912e73574abfa54050b69052d9611a3bbca97f379454261cbeec9cab",
+  "answerHash": "eb476cc23c77fb0ab157836bba6beeb691d576937dbc5c247bb508ccf6281075",
+  "promptHash": "adb8c2cea95f09d101fe0e8ec7c3366e110a78501306053ef0df01a637cf8338",
+  "guidanceHash": "2265620f9ab9d3bcfc8f92d3901c42d1e6fa1547bf28c9c51317d9294e2aac25",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-15T05:51:16.464Z",
+  "durationMs": 22899,
+  "workflowDurationMs": 22865,
+  "tracePersistenceDurationMs": 35,
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 0
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 5857
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 22845
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 3
+    }
+  ],
+  "responseEvents": [
+    {
+      "kind": "action",
+      "notice": {
+        "disposition": "SAME_DAY_IN_PERSON",
+        "directive": "Arrange an in-person assessment today. Do not wait for an asynchronous reply.",
+        "source": "emergency_agent"
+      },
+      "elapsedMs": 5855,
+      "sequence": 1
+    },
+    {
+      "kind": "intake_question",
+      "questionId": "adaptive-ca533ebe92d89bdd",
+      "quote": "Sharp pain on the left side of my chest",
+      "text": "Does the pain hurt more when you press on the left side of your chest wall, or is it only with breathing and movement?",
+      "why": "Localized tenderness on palpation would favor musculoskeletal or pleuritic etiology; pain purely with respiration or trunk motion helps distinguish from deeper cardiac or pulmonary pathology.",
+      "blocksRouting": false,
+      "elapsedMs": 5859,
+      "sequence": 2,
+      "runId": "bc045918-e0bb-48c2-b6d6-4eb3a7ba6821"
+    }
+  ],
+  "safetyNotices": [
+    {
+      "disposition": "SAME_DAY_IN_PERSON",
+      "directive": "Arrange an in-person assessment today. Do not wait for an asynchronous reply.",
+      "source": "emergency_agent"
+    }
+  ],
+  "firstActionMs": 5855,
+  "firstPatientReplyMs": null,
+  "firstQuestionMs": 5859
+}

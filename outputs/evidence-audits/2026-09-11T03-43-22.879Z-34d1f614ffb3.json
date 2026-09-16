@@ -1,0 +1,3422 @@
+{
+  "version": "evidence-retrieval-audit/v1",
+  "createdAt": "2026-09-11T03:43:22.879Z",
+  "asOf": "2026-09-11",
+  "node": "v24.3.0",
+  "inputSha256": "d17771ed706c6866d2b13f2d7f5344824acf51aaf281b8af6368637586d71a15",
+  "libraryHash": "77c04270b516db7c973ae567887b2d42abe741b7f499646b9f00ec3b63b7a749",
+  "retrievalVersion": "scoped-lexical/v1",
+  "codeHashes": {
+    "src/evidence/library.ts": "7c8c043a5ff37dafbc718e66ba66c1ac2f4cc8987e6dd71f4215b3b1710bef5a",
+    "src/evidence/source-catalog.ts": "885ccda2b39c35428036f5174daeb9d1e52dc426c156cdcf530a54e31c30979a",
+    "src/evidence/legacy-notes.ts": "1a17f56ba0bb78906aa021b2b1a3e3484b751f7758616dd7067c5a750258be92",
+    "src/evidence/retrieval.ts": "dc7342337f74b0413aeac464cbdd5f28fccf2d078168d12c6c141d37e04c16d0",
+    "src/disposition/intake.ts": "ade0eadf30f0c9dbcf9cc6a75fe9a1bf9a3607ea6b128b7085ec2f35c40a76ab",
+    "src/evaluation/evidence-legacy-baseline.ts": "eb9d3d1be2e7b1069390416ae13be1d5a0a5c452c2286eced20843a17451895e",
+    "src/evaluation/evidence-sentinels.ts": "1b14817c229203a74257ac27f78d405d4cee5658b91c252cb23f0dc0953491aa",
+    "scripts/evidence-audit.ts": "fcc567785dd02ffcbd51d0607d474e76f9a572379c4f6e60b51a7717f6954f36"
+  },
+  "limitations": [
+    "Development sentinels, not held-out data or clinical truth.",
+    "Candidate retrieval is not full claim support or correct disposition.",
+    "No model calls or measured patient-answer noninferiority.",
+    "Original disposition labels are never used.",
+    "Macro precision excludes empty retrievals; recall includes missed relevant sets. Abstention errors reported separately."
+  ],
+  "externalCalls": 0,
+  "comparisons": {
+    "frozen_keyword_10": {
+      "cases": [
+        {
+          "id": "cardiac",
+          "selectedIds": [
+            "aha-heart-attack",
+            "afp-pleuritic-2017"
+          ],
+          "relevant": [
+            "aha-heart-attack"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 0.5,
+          "recallAtFive": 1,
+          "forbiddenHits": [
+            "afp-pleuritic-2017"
+          ],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "cardiac-paraphrase",
+          "selectedIds": [],
+          "relevant": [
+            "aha-heart-attack"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "stroke",
+          "selectedIds": [
+            "asa-stroke"
+          ],
+          "relevant": [
+            "asa-stroke"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "stroke-paraphrase",
+          "selectedIds": [],
+          "relevant": [
+            "asa-stroke"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "foot",
+          "selectedIds": [
+            "idsa-dfi-2023",
+            "nice-ng19"
+          ],
+          "relevant": [
+            "idsa-dfi-2023",
+            "nice-ng19"
+          ],
+          "hits": 2,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "allergic-not-cardiac",
+          "selectedIds": [
+            "aha-heart-attack",
+            "afp-pleuritic-2017"
+          ],
+          "relevant": [
+            "nhs-anaphylaxis"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": 0,
+          "recallAtFive": 0,
+          "forbiddenHits": [
+            "aha-heart-attack",
+            "afp-pleuritic-2017"
+          ],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "menopause",
+          "selectedIds": [
+            "aha-heart-attack"
+          ],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": 0,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": true,
+          "retrievalFailure": false
+        },
+        {
+          "id": "denied-chest",
+          "selectedIds": [
+            "aha-heart-attack",
+            "afp-pleuritic-2017"
+          ],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": 0,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": true,
+          "retrievalFailure": false
+        },
+        {
+          "id": "cold",
+          "selectedIds": [
+            "cdc-common-cold",
+            "mayo-cranial-csf"
+          ],
+          "relevant": [
+            "cdc-common-cold",
+            "mayo-cranial-csf"
+          ],
+          "hits": 2,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "postoperative-nose",
+          "selectedIds": [
+            "mayo-cranial-csf",
+            "cuh-pituitary-aftercare"
+          ],
+          "relevant": [
+            "mayo-cranial-csf",
+            "cuh-pituitary-aftercare"
+          ],
+          "hits": 2,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "breathing",
+          "selectedIds": [
+            "nhs-breathlessness"
+          ],
+          "relevant": [
+            "nhs-breathlessness"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "thunderclap-adult",
+          "selectedIds": [],
+          "relevant": [
+            "headache"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "adult-source-child",
+          "selectedIds": [],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "dka",
+          "selectedIds": [],
+          "relevant": [
+            "dka"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "meningococcal",
+          "selectedIds": [],
+          "relevant": [
+            "meningococcal"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "suicidal",
+          "selectedIds": [],
+          "relevant": [
+            "suicide"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "refill-gap",
+          "selectedIds": [],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "veterinary",
+          "selectedIds": [
+            "idsa-dfi-2023",
+            "nice-ng19"
+          ],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": 0,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": true,
+          "retrievalFailure": false
+        },
+        {
+          "id": "label-leak",
+          "selectedIds": [],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "cardiac-euphemism-gap",
+          "selectedIds": [],
+          "relevant": [
+            "aha-heart-attack"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "stroke-language-gap",
+          "selectedIds": [],
+          "relevant": [
+            "asa-stroke"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "third-person-context",
+          "selectedIds": [
+            "asa-stroke"
+          ],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": 0,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": true,
+          "retrievalFailure": false
+        },
+        {
+          "id": "meningococcal-paraphrase-gap",
+          "selectedIds": [],
+          "relevant": [
+            "meningococcal"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "mixed-subject-gap",
+          "selectedIds": [
+            "aha-heart-attack",
+            "afp-pleuritic-2017"
+          ],
+          "relevant": [
+            "aha-heart-attack"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 0.5,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        }
+      ],
+      "macroRecallAtFive": 0.4117647058823529,
+      "macroPrecisionAmongReturned": 0.5,
+      "forbiddenRetrievals": 3,
+      "failedAbstentions": 4,
+      "failedCases": [
+        "cardiac",
+        "cardiac-paraphrase",
+        "stroke-paraphrase",
+        "allergic-not-cardiac",
+        "menopause",
+        "denied-chest",
+        "thunderclap-adult",
+        "dka",
+        "meningococcal",
+        "suicidal",
+        "veterinary",
+        "cardiac-euphemism-gap",
+        "stroke-language-gap",
+        "third-person-context",
+        "meningococcal-paraphrase-gap"
+      ],
+      "localRetrievalMs": {
+        "p50": 0.0005829999999917845,
+        "p95": 0.0014159999999918682,
+        "samples": 480
+      },
+      "inputCoverage": {
+        "total": 50,
+        "withAnyCandidate": 14,
+        "withAnInspectedPassage": 0,
+        "noCandidate": [
+          "C03",
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09",
+          "C10",
+          "C11",
+          "C15",
+          "C16",
+          "C18",
+          "C21",
+          "C22",
+          "C24",
+          "C25",
+          "C26",
+          "C27",
+          "C28",
+          "C29",
+          "C30",
+          "C31",
+          "C32",
+          "C33",
+          "C34",
+          "C35",
+          "C36",
+          "C37",
+          "C38",
+          "C39",
+          "C40",
+          "C41",
+          "C45",
+          "C46",
+          "C47",
+          "C48",
+          "C50"
+        ],
+        "maxPromptBytes": 1623,
+        "rows": [
+          {
+            "id": "C01",
+            "queryHash": "0881f57f013ca6a7b53a322a424ca773d60e965cd13fcf66ab58c0dafde5bb2c",
+            "selectedIds": [
+              "cdc-common-cold",
+              "mayo-cranial-csf"
+            ],
+            "promptBytes": 1547,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C02",
+            "queryHash": "75e3de9dfe3eea7b98979483ea19030386bdd039342bcbc7e32108a5b00de88e",
+            "selectedIds": [
+              "aha-heart-attack",
+              "afp-pleuritic-2017"
+            ],
+            "promptBytes": 1623,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C03",
+            "queryHash": "9b51c9e5fee93ea7e8bebe97b91e7807416d2f06b7ec9c286a33a4fffc0dc7bb",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C04",
+            "queryHash": "4d307ea5fff71d10992dfebb600c1d805c5bbc88fef2a39c94515cf4eb8855d1",
+            "selectedIds": [
+              "idsa-dfi-2023",
+              "nice-ng19"
+            ],
+            "promptBytes": 1405,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C05",
+            "queryHash": "6a9ad551d64efda6b5f6ee2d2dc58fba2c24f9a128c790fc9ead0dbf4e0eb2d7",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C06",
+            "queryHash": "8c70d1536a066e9ee571355a02171145268c655586bf746bf45235924646cced",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C07",
+            "queryHash": "9ce2f33af6b7880c3936da3c07fe2302ecd75a53163af691a612511d30f9ee2d",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C08",
+            "queryHash": "30c31683c0c03b5a432fcd86d71ac7ae66522a79b2f948dad068a99f33c18447",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C09",
+            "queryHash": "61e8b48550817a1bb7a8c62a53555d1466afb9671f864c747343faa96034cecd",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C10",
+            "queryHash": "0c8fd0a89a9a929960050e132ef1aa7383aab56efa5ba0f4cbfc0bab379d80a7",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C11",
+            "queryHash": "48dd949ddaddaf2ac622e1f2bdf4f3170b3bffc4a28a4ecedec67a87cd82c814",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C12",
+            "queryHash": "76698f74d90715201a8bf80ae633d162145a0fea59c2639871a02a6db86ce5c4",
+            "selectedIds": [
+              "nhs-breathlessness"
+            ],
+            "promptBytes": 793,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C13",
+            "queryHash": "5111bddf95a14bd4755ec8ee19ce23d151627e377ead402a381fdaac0cec952b",
+            "selectedIds": [
+              "asa-stroke"
+            ],
+            "promptBytes": 557,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C14",
+            "queryHash": "6be49bab48a7259e183e38b9035f1941f55f4185da5354e387f5332799c0b8f4",
+            "selectedIds": [
+              "aha-heart-attack",
+              "afp-pleuritic-2017"
+            ],
+            "promptBytes": 1623,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C15",
+            "queryHash": "fa387f9f80425cdbe67ae7870daa5be6eaec945e2203efb8129aaa514c37c934",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C16",
+            "queryHash": "a7b869d7bf10801b9aa8086aa0fe9a52adcf2a0fecbdfe85df6423501c3c4fc7",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C17",
+            "queryHash": "56059131a193e0c0c7c266211a06f34d8a8aa8fd0dcedfb685dbe6d0fd20310b",
+            "selectedIds": [
+              "asa-stroke"
+            ],
+            "promptBytes": 557,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C18",
+            "queryHash": "cbe6f232c4c0ff05b0f6fb8fb11faf709c394930b7337fe294ac7e88fd9f4c4c",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C19",
+            "queryHash": "15d311ec2d50bccf3b68805cd6e6cf868456c13751d3a945e0d117acab84ebba",
+            "selectedIds": [
+              "aha-heart-attack",
+              "afp-pleuritic-2017"
+            ],
+            "promptBytes": 1623,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C20",
+            "queryHash": "e09d9675992313489d794903652b706fa594688c16e90f126cdf97c72231808b",
+            "selectedIds": [
+              "nhs-head-injury"
+            ],
+            "promptBytes": 727,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C21",
+            "queryHash": "8be9a95c494050808daab2687661acab4bc1620fce2516ce0396e91e0ac7458d",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C22",
+            "queryHash": "ef08088fc4e333c9dd43be7643e210f70dd338e5c97e2031b49de40568f6a71d",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C23",
+            "queryHash": "fafcc12a29fc8d5d9ca0b4cf6f77ed95ee50eaa5069ea54da237a99132d04b6b",
+            "selectedIds": [
+              "asa-stroke"
+            ],
+            "promptBytes": 557,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C24",
+            "queryHash": "d55a83fd4485c96d802fee252c1315035d91a6de3746f69cbfa22877958d5051",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C25",
+            "queryHash": "c27abf9be2123439aafceef82f8551fc2a42ef214a47a5a9182f9f1b29252f94",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C26",
+            "queryHash": "56c55ebac2f50864a223aac7c816e482201f68f2a6e881e7caa28b716723d8c5",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C27",
+            "queryHash": "7fd3e3d094520511017b904c89712d4982b1db54d03f1388e6965ecfba9e692a",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C28",
+            "queryHash": "359f2fab19a3538ced37dd948c088b36327c94ca2b02e0924f0b9a535698e8d8",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C29",
+            "queryHash": "b95fff4d36b2cca130c6400f9b6146cd1e157778dd32d39205f28f1273e28fc8",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C30",
+            "queryHash": "9e1db2d0712a2fb3ee4a7542f19fb181102946b1ab059ac8f09063dde4b4b5bb",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C31",
+            "queryHash": "a9a3c4edc4414712dd96458ba9f9323cd2847a5c7d6fac4de29ad925d26091a1",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C32",
+            "queryHash": "8a7e21b8bb719aae31ebc7cd0fa5444c07f396591dab97cf4145e4ce6e29fca1",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C33",
+            "queryHash": "67199ed3cc826af5d9efc9f9b0d01af4927333824092cf8d77a87360572749b0",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C34",
+            "queryHash": "6416cba039f20fbda8f35889bbc6afe941c08366d78db47d85b8af78f0f7e910",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C35",
+            "queryHash": "2bc73c1bc3f8d0f68af8a2ce72d8c43a2b0ca3e53b069595817b6bb63f6863ed",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C36",
+            "queryHash": "dcf37634ddb7f2573b6d70b48977078123bd518b09ccf8f9477efb2b7f7c7ba0",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C37",
+            "queryHash": "f027f10005972e4982876d203afa4ce957017ef7095608e07a834c2614136ee1",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C38",
+            "queryHash": "14187def66b19e9c60c11d8763664e2845e491d242f6f9350ef58ceb701de6fe",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C39",
+            "queryHash": "287c89602206eb42a595f6b44131e711ec13c70886096b3eb4d0b61d7b66015f",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C40",
+            "queryHash": "c98118eb74b68b3c09ba946fe60e94131e57121d5614fb7e5c3a32d1c39c9701",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C41",
+            "queryHash": "386d8473737fad7fb0929a5efde1525bd9492ef314203d263f7913e265e7b84d",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C42",
+            "queryHash": "531952a97636f0f397517c21b812c271fccae30e251a290c17b5422836749784",
+            "selectedIds": [
+              "aha-heart-attack"
+            ],
+            "promptBytes": 733,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C43",
+            "queryHash": "09068e1f6be344be3040d4eadc60eb24c36f9ae351e44d3b8b4cf5381af1f218",
+            "selectedIds": [
+              "aha-heart-attack"
+            ],
+            "promptBytes": 733,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C44",
+            "queryHash": "adfcbb420c9dbbf1659cef5c2025e26f1b6d9330106a81ed3b041973f8c4dc36",
+            "selectedIds": [
+              "nhs-breathlessness"
+            ],
+            "promptBytes": 793,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C45",
+            "queryHash": "e660f563712f02e5c16d7b6596cd72ef3770f3d74a7826d9ab2c8bd76745fab2",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C46",
+            "queryHash": "1f95346e788fdf8d2ebc600ce3689b564692f648b01579d8c2bf809787e0b2b4",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C47",
+            "queryHash": "eb18163721c69f2d876309e47f1b98b28dcd728022039e472662221b042b3057",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C48",
+            "queryHash": "8ebe43a1771127a9297ad7e2266907fc00d253ca1b485a2c87cd21c15e6a4e25",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C49",
+            "queryHash": "e617eea8912e73574abfa54050b69052d9611a3bbca97f379454261cbeec9cab",
+            "selectedIds": [
+              "aha-heart-attack",
+              "afp-pleuritic-2017"
+            ],
+            "promptBytes": 1623,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C50",
+            "queryHash": "0ede5c086d3ea812a589febf64e2b33fcde3c4795b2b686a9b02453986a0b81e",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          }
+        ]
+      }
+    },
+    "scoped_lexical_10": {
+      "cases": [
+        {
+          "id": "cardiac",
+          "selectedIds": [
+            "aha-heart-attack"
+          ],
+          "relevant": [
+            "aha-heart-attack"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "cardiac-paraphrase",
+          "selectedIds": [
+            "aha-heart-attack"
+          ],
+          "relevant": [
+            "aha-heart-attack"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "stroke",
+          "selectedIds": [
+            "asa-stroke"
+          ],
+          "relevant": [
+            "asa-stroke"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "stroke-paraphrase",
+          "selectedIds": [
+            "asa-stroke"
+          ],
+          "relevant": [
+            "asa-stroke"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "foot",
+          "selectedIds": [
+            "nice-ng19",
+            "idsa-dfi-2023"
+          ],
+          "relevant": [
+            "idsa-dfi-2023",
+            "nice-ng19"
+          ],
+          "hits": 2,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "allergic-not-cardiac",
+          "selectedIds": [
+            "aha-heart-attack"
+          ],
+          "relevant": [
+            "nhs-anaphylaxis"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": 0,
+          "recallAtFive": 0,
+          "forbiddenHits": [
+            "aha-heart-attack"
+          ],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "menopause",
+          "selectedIds": [],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "denied-chest",
+          "selectedIds": [],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "cold",
+          "selectedIds": [
+            "cdc-common-cold",
+            "mayo-cranial-csf"
+          ],
+          "relevant": [
+            "cdc-common-cold",
+            "mayo-cranial-csf"
+          ],
+          "hits": 2,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "postoperative-nose",
+          "selectedIds": [
+            "cuh-pituitary-aftercare",
+            "mayo-cranial-csf"
+          ],
+          "relevant": [
+            "mayo-cranial-csf",
+            "cuh-pituitary-aftercare"
+          ],
+          "hits": 2,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "breathing",
+          "selectedIds": [
+            "nhs-breathlessness"
+          ],
+          "relevant": [
+            "nhs-breathlessness"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "thunderclap-adult",
+          "selectedIds": [],
+          "relevant": [
+            "headache"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "adult-source-child",
+          "selectedIds": [],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "dka",
+          "selectedIds": [],
+          "relevant": [
+            "dka"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "meningococcal",
+          "selectedIds": [],
+          "relevant": [
+            "meningococcal"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "suicidal",
+          "selectedIds": [],
+          "relevant": [
+            "suicide"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "refill-gap",
+          "selectedIds": [],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "veterinary",
+          "selectedIds": [],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "label-leak",
+          "selectedIds": [],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "cardiac-euphemism-gap",
+          "selectedIds": [],
+          "relevant": [
+            "aha-heart-attack"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "stroke-language-gap",
+          "selectedIds": [],
+          "relevant": [
+            "asa-stroke"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "third-person-context",
+          "selectedIds": [
+            "asa-stroke"
+          ],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": 0,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": true,
+          "retrievalFailure": false
+        },
+        {
+          "id": "meningococcal-paraphrase-gap",
+          "selectedIds": [],
+          "relevant": [
+            "meningococcal"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "mixed-subject-gap",
+          "selectedIds": [],
+          "relevant": [
+            "aha-heart-attack"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        }
+      ],
+      "macroRecallAtFive": 0.47058823529411764,
+      "macroPrecisionAmongReturned": 0.8,
+      "forbiddenRetrievals": 1,
+      "failedAbstentions": 1,
+      "failedCases": [
+        "allergic-not-cardiac",
+        "thunderclap-adult",
+        "dka",
+        "meningococcal",
+        "suicidal",
+        "cardiac-euphemism-gap",
+        "stroke-language-gap",
+        "third-person-context",
+        "meningococcal-paraphrase-gap",
+        "mixed-subject-gap"
+      ],
+      "localRetrievalMs": {
+        "p50": 0.14683299999998667,
+        "p95": 0.20658400000000654,
+        "samples": 480
+      },
+      "inputCoverage": {
+        "total": 50,
+        "withAnyCandidate": 10,
+        "withAnInspectedPassage": 0,
+        "noCandidate": [
+          "C03",
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09",
+          "C10",
+          "C11",
+          "C13",
+          "C15",
+          "C16",
+          "C17",
+          "C18",
+          "C19",
+          "C21",
+          "C22",
+          "C24",
+          "C25",
+          "C27",
+          "C28",
+          "C29",
+          "C30",
+          "C31",
+          "C32",
+          "C33",
+          "C34",
+          "C35",
+          "C36",
+          "C37",
+          "C38",
+          "C39",
+          "C40",
+          "C41",
+          "C42",
+          "C43",
+          "C45",
+          "C46",
+          "C47",
+          "C48",
+          "C50"
+        ],
+        "maxPromptBytes": 1735,
+        "rows": [
+          {
+            "id": "C01",
+            "queryHash": "0881f57f013ca6a7b53a322a424ca773d60e965cd13fcf66ab58c0dafde5bb2c",
+            "selectedIds": [
+              "cdc-common-cold",
+              "mayo-cranial-csf"
+            ],
+            "promptBytes": 1633,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C02",
+            "queryHash": "75e3de9dfe3eea7b98979483ea19030386bdd039342bcbc7e32108a5b00de88e",
+            "selectedIds": [
+              "aha-heart-attack"
+            ],
+            "promptBytes": 776,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C03",
+            "queryHash": "9b51c9e5fee93ea7e8bebe97b91e7807416d2f06b7ec9c286a33a4fffc0dc7bb",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C04",
+            "queryHash": "4d307ea5fff71d10992dfebb600c1d805c5bbc88fef2a39c94515cf4eb8855d1",
+            "selectedIds": [
+              "nice-ng19",
+              "idsa-dfi-2023"
+            ],
+            "promptBytes": 1517,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C05",
+            "queryHash": "6a9ad551d64efda6b5f6ee2d2dc58fba2c24f9a128c790fc9ead0dbf4e0eb2d7",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C06",
+            "queryHash": "8c70d1536a066e9ee571355a02171145268c655586bf746bf45235924646cced",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C07",
+            "queryHash": "9ce2f33af6b7880c3936da3c07fe2302ecd75a53163af691a612511d30f9ee2d",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C08",
+            "queryHash": "30c31683c0c03b5a432fcd86d71ac7ae66522a79b2f948dad068a99f33c18447",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C09",
+            "queryHash": "61e8b48550817a1bb7a8c62a53555d1466afb9671f864c747343faa96034cecd",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C10",
+            "queryHash": "0c8fd0a89a9a929960050e132ef1aa7383aab56efa5ba0f4cbfc0bab379d80a7",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C11",
+            "queryHash": "48dd949ddaddaf2ac622e1f2bdf4f3170b3bffc4a28a4ecedec67a87cd82c814",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C12",
+            "queryHash": "76698f74d90715201a8bf80ae633d162145a0fea59c2639871a02a6db86ce5c4",
+            "selectedIds": [
+              "nhs-breathlessness"
+            ],
+            "promptBytes": 836,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C13",
+            "queryHash": "5111bddf95a14bd4755ec8ee19ce23d151627e377ead402a381fdaac0cec952b",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C14",
+            "queryHash": "6be49bab48a7259e183e38b9035f1941f55f4185da5354e387f5332799c0b8f4",
+            "selectedIds": [
+              "aha-heart-attack"
+            ],
+            "promptBytes": 776,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C15",
+            "queryHash": "fa387f9f80425cdbe67ae7870daa5be6eaec945e2203efb8129aaa514c37c934",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C16",
+            "queryHash": "a7b869d7bf10801b9aa8086aa0fe9a52adcf2a0fecbdfe85df6423501c3c4fc7",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C17",
+            "queryHash": "56059131a193e0c0c7c266211a06f34d8a8aa8fd0dcedfb685dbe6d0fd20310b",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C18",
+            "queryHash": "cbe6f232c4c0ff05b0f6fb8fb11faf709c394930b7337fe294ac7e88fd9f4c4c",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C19",
+            "queryHash": "15d311ec2d50bccf3b68805cd6e6cf868456c13751d3a945e0d117acab84ebba",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C20",
+            "queryHash": "e09d9675992313489d794903652b706fa594688c16e90f126cdf97c72231808b",
+            "selectedIds": [
+              "nhs-head-injury"
+            ],
+            "promptBytes": 770,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C21",
+            "queryHash": "8be9a95c494050808daab2687661acab4bc1620fce2516ce0396e91e0ac7458d",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C22",
+            "queryHash": "ef08088fc4e333c9dd43be7643e210f70dd338e5c97e2031b49de40568f6a71d",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C23",
+            "queryHash": "fafcc12a29fc8d5d9ca0b4cf6f77ed95ee50eaa5069ea54da237a99132d04b6b",
+            "selectedIds": [
+              "asa-stroke"
+            ],
+            "promptBytes": 600,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C24",
+            "queryHash": "d55a83fd4485c96d802fee252c1315035d91a6de3746f69cbfa22877958d5051",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C25",
+            "queryHash": "c27abf9be2123439aafceef82f8551fc2a42ef214a47a5a9182f9f1b29252f94",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C26",
+            "queryHash": "56c55ebac2f50864a223aac7c816e482201f68f2a6e881e7caa28b716723d8c5",
+            "selectedIds": [
+              "cdc-common-cold"
+            ],
+            "promptBytes": 803,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C27",
+            "queryHash": "7fd3e3d094520511017b904c89712d4982b1db54d03f1388e6965ecfba9e692a",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C28",
+            "queryHash": "359f2fab19a3538ced37dd948c088b36327c94ca2b02e0924f0b9a535698e8d8",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C29",
+            "queryHash": "b95fff4d36b2cca130c6400f9b6146cd1e157778dd32d39205f28f1273e28fc8",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C30",
+            "queryHash": "9e1db2d0712a2fb3ee4a7542f19fb181102946b1ab059ac8f09063dde4b4b5bb",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C31",
+            "queryHash": "a9a3c4edc4414712dd96458ba9f9323cd2847a5c7d6fac4de29ad925d26091a1",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C32",
+            "queryHash": "8a7e21b8bb719aae31ebc7cd0fa5444c07f396591dab97cf4145e4ce6e29fca1",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C33",
+            "queryHash": "67199ed3cc826af5d9efc9f9b0d01af4927333824092cf8d77a87360572749b0",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C34",
+            "queryHash": "6416cba039f20fbda8f35889bbc6afe941c08366d78db47d85b8af78f0f7e910",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C35",
+            "queryHash": "2bc73c1bc3f8d0f68af8a2ce72d8c43a2b0ca3e53b069595817b6bb63f6863ed",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C36",
+            "queryHash": "dcf37634ddb7f2573b6d70b48977078123bd518b09ccf8f9477efb2b7f7c7ba0",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C37",
+            "queryHash": "f027f10005972e4982876d203afa4ce957017ef7095608e07a834c2614136ee1",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C38",
+            "queryHash": "14187def66b19e9c60c11d8763664e2845e491d242f6f9350ef58ceb701de6fe",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C39",
+            "queryHash": "287c89602206eb42a595f6b44131e711ec13c70886096b3eb4d0b61d7b66015f",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C40",
+            "queryHash": "c98118eb74b68b3c09ba946fe60e94131e57121d5614fb7e5c3a32d1c39c9701",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C41",
+            "queryHash": "386d8473737fad7fb0929a5efde1525bd9492ef314203d263f7913e265e7b84d",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C42",
+            "queryHash": "531952a97636f0f397517c21b812c271fccae30e251a290c17b5422836749784",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C43",
+            "queryHash": "09068e1f6be344be3040d4eadc60eb24c36f9ae351e44d3b8b4cf5381af1f218",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C44",
+            "queryHash": "adfcbb420c9dbbf1659cef5c2025e26f1b6d9330106a81ed3b041973f8c4dc36",
+            "selectedIds": [
+              "nhs-breathlessness"
+            ],
+            "promptBytes": 836,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C45",
+            "queryHash": "e660f563712f02e5c16d7b6596cd72ef3770f3d74a7826d9ab2c8bd76745fab2",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C46",
+            "queryHash": "1f95346e788fdf8d2ebc600ce3689b564692f648b01579d8c2bf809787e0b2b4",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C47",
+            "queryHash": "eb18163721c69f2d876309e47f1b98b28dcd728022039e472662221b042b3057",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C48",
+            "queryHash": "8ebe43a1771127a9297ad7e2266907fc00d253ca1b485a2c87cd21c15e6a4e25",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C49",
+            "queryHash": "e617eea8912e73574abfa54050b69052d9611a3bbca97f379454261cbeec9cab",
+            "selectedIds": [
+              "afp-pleuritic-2017",
+              "aha-heart-attack"
+            ],
+            "promptBytes": 1735,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C50",
+            "queryHash": "0ede5c086d3ea812a589febf64e2b33fcde3c4795b2b686a9b02453986a0b81e",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          }
+        ]
+      }
+    },
+    "unscoped_lexical_15": {
+      "cases": [
+        {
+          "id": "cardiac",
+          "selectedIds": [
+            "aha-heart-attack",
+            "afp-pleuritic-2017"
+          ],
+          "relevant": [
+            "aha-heart-attack"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 0.5,
+          "recallAtFive": 1,
+          "forbiddenHits": [
+            "afp-pleuritic-2017"
+          ],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "cardiac-paraphrase",
+          "selectedIds": [
+            "aha-heart-attack"
+          ],
+          "relevant": [
+            "aha-heart-attack"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "stroke",
+          "selectedIds": [
+            "asa-stroke"
+          ],
+          "relevant": [
+            "asa-stroke"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "stroke-paraphrase",
+          "selectedIds": [
+            "nhs-anaphylaxis",
+            "nhs-breathlessness",
+            "asa-stroke"
+          ],
+          "relevant": [
+            "asa-stroke"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 0.3333333333333333,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "foot",
+          "selectedIds": [
+            "nice-ng19",
+            "idsa-dfi-2023"
+          ],
+          "relevant": [
+            "idsa-dfi-2023",
+            "nice-ng19"
+          ],
+          "hits": 2,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "allergic-not-cardiac",
+          "selectedIds": [
+            "nhs-anaphylaxis",
+            "afp-pleuritic-2017",
+            "aha-heart-attack"
+          ],
+          "relevant": [
+            "nhs-anaphylaxis"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 0.3333333333333333,
+          "recallAtFive": 1,
+          "forbiddenHits": [
+            "afp-pleuritic-2017",
+            "aha-heart-attack"
+          ],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "menopause",
+          "selectedIds": [
+            "cdc-common-cold",
+            "aha-heart-attack",
+            "asa-stroke",
+            "mayo-cranial-csf"
+          ],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": 0,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": true,
+          "retrievalFailure": false
+        },
+        {
+          "id": "denied-chest",
+          "selectedIds": [
+            "afp-pleuritic-2017",
+            "asa-stroke",
+            "aha-heart-attack",
+            "cdc-common-cold"
+          ],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": 0,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": true,
+          "retrievalFailure": false
+        },
+        {
+          "id": "cold",
+          "selectedIds": [
+            "cdc-common-cold",
+            "nhs-anaphylaxis",
+            "nhs-head-injury",
+            "mayo-cranial-csf"
+          ],
+          "relevant": [
+            "cdc-common-cold",
+            "mayo-cranial-csf"
+          ],
+          "hits": 2,
+          "precisionAmongReturned": 0.5,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "postoperative-nose",
+          "selectedIds": [
+            "cuh-pituitary-aftercare",
+            "nhs-head-injury",
+            "mayo-cranial-csf",
+            "nice-ng19",
+            "asa-stroke"
+          ],
+          "relevant": [
+            "mayo-cranial-csf",
+            "cuh-pituitary-aftercare"
+          ],
+          "hits": 2,
+          "precisionAmongReturned": 0.4,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "breathing",
+          "selectedIds": [
+            "nhs-breathlessness",
+            "aha-heart-attack"
+          ],
+          "relevant": [
+            "nhs-breathlessness"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 0.5,
+          "recallAtFive": 1,
+          "forbiddenHits": [
+            "aha-heart-attack"
+          ],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "thunderclap-adult",
+          "selectedIds": [
+            "headache",
+            "nhs-anaphylaxis",
+            "meningococcal",
+            "nhs-breathlessness",
+            "asa-stroke"
+          ],
+          "relevant": [
+            "headache"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 0.2,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "adult-source-child",
+          "selectedIds": [
+            "meningococcal",
+            "cuh-pituitary-aftercare"
+          ],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": 0,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": true,
+          "retrievalFailure": false
+        },
+        {
+          "id": "dka",
+          "selectedIds": [
+            "dka",
+            "cuh-pituitary-aftercare"
+          ],
+          "relevant": [
+            "dka"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 0.5,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "meningococcal",
+          "selectedIds": [
+            "meningococcal",
+            "aha-heart-attack",
+            "asa-stroke",
+            "cuh-pituitary-aftercare"
+          ],
+          "relevant": [
+            "meningococcal"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 0.25,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "suicidal",
+          "selectedIds": [
+            "mayo-cranial-csf",
+            "aha-heart-attack"
+          ],
+          "relevant": [
+            "suicide"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": 0,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "refill-gap",
+          "selectedIds": [
+            "cuh-pituitary-aftercare",
+            "meningococcal",
+            "aha-heart-attack",
+            "nhs-anaphylaxis",
+            "asa-stroke"
+          ],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": 0,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": true,
+          "retrievalFailure": false
+        },
+        {
+          "id": "veterinary",
+          "selectedIds": [
+            "nice-ng19",
+            "idsa-dfi-2023"
+          ],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": 0,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": true,
+          "retrievalFailure": false
+        },
+        {
+          "id": "label-leak",
+          "selectedIds": [
+            "nhs-breathlessness",
+            "idsa-dfi-2023"
+          ],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": 0,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": true,
+          "retrievalFailure": false
+        },
+        {
+          "id": "cardiac-euphemism-gap",
+          "selectedIds": [],
+          "relevant": [
+            "aha-heart-attack"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "stroke-language-gap",
+          "selectedIds": [
+            "asa-stroke",
+            "aha-heart-attack"
+          ],
+          "relevant": [
+            "asa-stroke"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 0.5,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "third-person-context",
+          "selectedIds": [
+            "asa-stroke",
+            "meningococcal"
+          ],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": 0,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": true,
+          "retrievalFailure": false
+        },
+        {
+          "id": "meningococcal-paraphrase-gap",
+          "selectedIds": [
+            "meningococcal",
+            "cuh-pituitary-aftercare"
+          ],
+          "relevant": [
+            "meningococcal"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 0.5,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "mixed-subject-gap",
+          "selectedIds": [
+            "aha-heart-attack",
+            "nhs-head-injury",
+            "afp-pleuritic-2017"
+          ],
+          "relevant": [
+            "aha-heart-attack"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 0.3333333333333333,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        }
+      ],
+      "macroRecallAtFive": 0.8823529411764706,
+      "macroPrecisionAmongReturned": 0.341304347826087,
+      "forbiddenRetrievals": 4,
+      "failedAbstentions": 7,
+      "failedCases": [
+        "cardiac",
+        "allergic-not-cardiac",
+        "menopause",
+        "denied-chest",
+        "breathing",
+        "adult-source-child",
+        "suicidal",
+        "refill-gap",
+        "veterinary",
+        "label-leak",
+        "cardiac-euphemism-gap",
+        "third-person-context"
+      ],
+      "localRetrievalMs": {
+        "p50": 0.08241699999999241,
+        "p95": 0.13037499999998658,
+        "samples": 480
+      },
+      "inputCoverage": {
+        "total": 50,
+        "withAnyCandidate": 47,
+        "withAnInspectedPassage": 33,
+        "noCandidate": [
+          "C36",
+          "C39",
+          "C42"
+        ],
+        "maxPromptBytes": 4295,
+        "rows": [
+          {
+            "id": "C01",
+            "queryHash": "0881f57f013ca6a7b53a322a424ca773d60e965cd13fcf66ab58c0dafde5bb2c",
+            "selectedIds": [
+              "cdc-common-cold",
+              "nhs-anaphylaxis",
+              "meningococcal",
+              "nhs-head-injury",
+              "mayo-cranial-csf"
+            ],
+            "promptBytes": 4005,
+            "inspectedPassages": 2
+          },
+          {
+            "id": "C02",
+            "queryHash": "75e3de9dfe3eea7b98979483ea19030386bdd039342bcbc7e32108a5b00de88e",
+            "selectedIds": [
+              "aha-heart-attack",
+              "afp-pleuritic-2017",
+              "asa-stroke"
+            ],
+            "promptBytes": 2334,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C03",
+            "queryHash": "9b51c9e5fee93ea7e8bebe97b91e7807416d2f06b7ec9c286a33a4fffc0dc7bb",
+            "selectedIds": [
+              "afp-pleuritic-2017",
+              "meningococcal",
+              "asa-stroke",
+              "nice-ng19",
+              "aha-heart-attack"
+            ],
+            "promptBytes": 3945,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C04",
+            "queryHash": "4d307ea5fff71d10992dfebb600c1d805c5bbc88fef2a39c94515cf4eb8855d1",
+            "selectedIds": [
+              "nice-ng19",
+              "asa-stroke",
+              "idsa-dfi-2023",
+              "nhs-breathlessness",
+              "meningococcal"
+            ],
+            "promptBytes": 3772,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C05",
+            "queryHash": "6a9ad551d64efda6b5f6ee2d2dc58fba2c24f9a128c790fc9ead0dbf4e0eb2d7",
+            "selectedIds": [
+              "aha-heart-attack",
+              "asa-stroke",
+              "mayo-cranial-csf",
+              "suicide",
+              "dka"
+            ],
+            "promptBytes": 3600,
+            "inspectedPassages": 2
+          },
+          {
+            "id": "C06",
+            "queryHash": "8c70d1536a066e9ee571355a02171145268c655586bf746bf45235924646cced",
+            "selectedIds": [
+              "nice-ng19",
+              "cuh-pituitary-aftercare",
+              "headache",
+              "dka",
+              "aha-heart-attack"
+            ],
+            "promptBytes": 3862,
+            "inspectedPassages": 2
+          },
+          {
+            "id": "C07",
+            "queryHash": "9ce2f33af6b7880c3936da3c07fe2302ecd75a53163af691a612511d30f9ee2d",
+            "selectedIds": [
+              "meningococcal",
+              "asa-stroke",
+              "idsa-dfi-2023",
+              "cuh-pituitary-aftercare",
+              "nice-ng19"
+            ],
+            "promptBytes": 3847,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C08",
+            "queryHash": "30c31683c0c03b5a432fcd86d71ac7ae66522a79b2f948dad068a99f33c18447",
+            "selectedIds": [
+              "headache",
+              "meningococcal",
+              "cuh-pituitary-aftercare",
+              "nice-ng19"
+            ],
+            "promptBytes": 3198,
+            "inspectedPassages": 2
+          },
+          {
+            "id": "C09",
+            "queryHash": "61e8b48550817a1bb7a8c62a53555d1466afb9671f864c747343faa96034cecd",
+            "selectedIds": [
+              "asa-stroke",
+              "aha-heart-attack",
+              "headache",
+              "meningococcal",
+              "cuh-pituitary-aftercare"
+            ],
+            "promptBytes": 3782,
+            "inspectedPassages": 2
+          },
+          {
+            "id": "C10",
+            "queryHash": "0c8fd0a89a9a929960050e132ef1aa7383aab56efa5ba0f4cbfc0bab379d80a7",
+            "selectedIds": [
+              "cuh-pituitary-aftercare",
+              "nhs-breathlessness",
+              "afp-pleuritic-2017",
+              "nhs-head-injury",
+              "meningococcal"
+            ],
+            "promptBytes": 4295,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C11",
+            "queryHash": "48dd949ddaddaf2ac622e1f2bdf4f3170b3bffc4a28a4ecedec67a87cd82c814",
+            "selectedIds": [
+              "meningococcal",
+              "asa-stroke",
+              "dka",
+              "nhs-breathlessness",
+              "nhs-anaphylaxis"
+            ],
+            "promptBytes": 3748,
+            "inspectedPassages": 3
+          },
+          {
+            "id": "C12",
+            "queryHash": "76698f74d90715201a8bf80ae633d162145a0fea59c2639871a02a6db86ce5c4",
+            "selectedIds": [
+              "nhs-breathlessness",
+              "nice-ng19",
+              "idsa-dfi-2023",
+              "afp-pleuritic-2017",
+              "aha-heart-attack"
+            ],
+            "promptBytes": 4086,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C13",
+            "queryHash": "5111bddf95a14bd4755ec8ee19ce23d151627e377ead402a381fdaac0cec952b",
+            "selectedIds": [
+              "asa-stroke",
+              "aha-heart-attack"
+            ],
+            "promptBytes": 1375,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C14",
+            "queryHash": "6be49bab48a7259e183e38b9035f1941f55f4185da5354e387f5332799c0b8f4",
+            "selectedIds": [
+              "nhs-anaphylaxis",
+              "afp-pleuritic-2017",
+              "aha-heart-attack"
+            ],
+            "promptBytes": 2517,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C15",
+            "queryHash": "fa387f9f80425cdbe67ae7870daa5be6eaec945e2203efb8129aaa514c37c934",
+            "selectedIds": [
+              "nhs-head-injury",
+              "cdc-common-cold",
+              "aha-heart-attack",
+              "asa-stroke",
+              "mayo-cranial-csf"
+            ],
+            "promptBytes": 3776,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C16",
+            "queryHash": "a7b869d7bf10801b9aa8086aa0fe9a52adcf2a0fecbdfe85df6423501c3c4fc7",
+            "selectedIds": [
+              "asa-stroke",
+              "nhs-breathlessness",
+              "meningococcal",
+              "cuh-pituitary-aftercare",
+              "aha-heart-attack"
+            ],
+            "promptBytes": 3941,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C17",
+            "queryHash": "56059131a193e0c0c7c266211a06f34d8a8aa8fd0dcedfb685dbe6d0fd20310b",
+            "selectedIds": [
+              "suicide",
+              "nhs-head-injury",
+              "asa-stroke",
+              "cdc-common-cold"
+            ],
+            "promptBytes": 2856,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C18",
+            "queryHash": "cbe6f232c4c0ff05b0f6fb8fb11faf709c394930b7337fe294ac7e88fd9f4c4c",
+            "selectedIds": [
+              "suicide",
+              "afp-pleuritic-2017",
+              "meningococcal",
+              "aha-heart-attack",
+              "nhs-anaphylaxis"
+            ],
+            "promptBytes": 4023,
+            "inspectedPassages": 3
+          },
+          {
+            "id": "C19",
+            "queryHash": "15d311ec2d50bccf3b68805cd6e6cf868456c13751d3a945e0d117acab84ebba",
+            "selectedIds": [
+              "afp-pleuritic-2017",
+              "asa-stroke",
+              "nhs-head-injury",
+              "headache",
+              "mayo-cranial-csf"
+            ],
+            "promptBytes": 3834,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C20",
+            "queryHash": "e09d9675992313489d794903652b706fa594688c16e90f126cdf97c72231808b",
+            "selectedIds": [
+              "nhs-head-injury",
+              "headache",
+              "mayo-cranial-csf",
+              "meningococcal",
+              "cuh-pituitary-aftercare"
+            ],
+            "promptBytes": 4007,
+            "inspectedPassages": 2
+          },
+          {
+            "id": "C21",
+            "queryHash": "8be9a95c494050808daab2687661acab4bc1620fce2516ce0396e91e0ac7458d",
+            "selectedIds": [
+              "asa-stroke",
+              "aha-heart-attack",
+              "afp-pleuritic-2017"
+            ],
+            "promptBytes": 2334,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C22",
+            "queryHash": "ef08088fc4e333c9dd43be7643e210f70dd338e5c97e2031b49de40568f6a71d",
+            "selectedIds": [
+              "asa-stroke",
+              "nhs-anaphylaxis",
+              "cuh-pituitary-aftercare",
+              "meningococcal",
+              "aha-heart-attack"
+            ],
+            "promptBytes": 3888,
+            "inspectedPassages": 2
+          },
+          {
+            "id": "C23",
+            "queryHash": "fafcc12a29fc8d5d9ca0b4cf6f77ed95ee50eaa5069ea54da237a99132d04b6b",
+            "selectedIds": [
+              "asa-stroke",
+              "mayo-cranial-csf",
+              "aha-heart-attack"
+            ],
+            "promptBytes": 2205,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C24",
+            "queryHash": "d55a83fd4485c96d802fee252c1315035d91a6de3746f69cbfa22877958d5051",
+            "selectedIds": [
+              "nice-ng19",
+              "asa-stroke",
+              "mayo-cranial-csf"
+            ],
+            "promptBytes": 2220,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C25",
+            "queryHash": "c27abf9be2123439aafceef82f8551fc2a42ef214a47a5a9182f9f1b29252f94",
+            "selectedIds": [
+              "nice-ng19",
+              "dka",
+              "asa-stroke",
+              "mayo-cranial-csf",
+              "cuh-pituitary-aftercare"
+            ],
+            "promptBytes": 3840,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C26",
+            "queryHash": "56c55ebac2f50864a223aac7c816e482201f68f2a6e881e7caa28b716723d8c5",
+            "selectedIds": [
+              "nhs-anaphylaxis",
+              "meningococcal",
+              "cdc-common-cold",
+              "cuh-pituitary-aftercare",
+              "aha-heart-attack"
+            ],
+            "promptBytes": 4091,
+            "inspectedPassages": 2
+          },
+          {
+            "id": "C27",
+            "queryHash": "7fd3e3d094520511017b904c89712d4982b1db54d03f1388e6965ecfba9e692a",
+            "selectedIds": [
+              "afp-pleuritic-2017",
+              "idsa-dfi-2023",
+              "nhs-breathlessness",
+              "asa-stroke",
+              "aha-heart-attack"
+            ],
+            "promptBytes": 3895,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C28",
+            "queryHash": "359f2fab19a3538ced37dd948c088b36327c94ca2b02e0924f0b9a535698e8d8",
+            "selectedIds": [
+              "nhs-breathlessness",
+              "cuh-pituitary-aftercare",
+              "aha-heart-attack"
+            ],
+            "promptBytes": 2521,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C29",
+            "queryHash": "b95fff4d36b2cca130c6400f9b6146cd1e157778dd32d39205f28f1273e28fc8",
+            "selectedIds": [
+              "meningococcal",
+              "nhs-anaphylaxis",
+              "cuh-pituitary-aftercare",
+              "aha-heart-attack",
+              "asa-stroke"
+            ],
+            "promptBytes": 3888,
+            "inspectedPassages": 2
+          },
+          {
+            "id": "C30",
+            "queryHash": "9e1db2d0712a2fb3ee4a7542f19fb181102946b1ab059ac8f09063dde4b4b5bb",
+            "selectedIds": [
+              "meningococcal",
+              "nice-ng19",
+              "cdc-common-cold",
+              "cuh-pituitary-aftercare",
+              "nhs-breathlessness"
+            ],
+            "promptBytes": 4159,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C31",
+            "queryHash": "a9a3c4edc4414712dd96458ba9f9323cd2847a5c7d6fac4de29ad925d26091a1",
+            "selectedIds": [
+              "meningococcal",
+              "cuh-pituitary-aftercare",
+              "headache"
+            ],
+            "promptBytes": 2408,
+            "inspectedPassages": 2
+          },
+          {
+            "id": "C32",
+            "queryHash": "8a7e21b8bb719aae31ebc7cd0fa5444c07f396591dab97cf4145e4ce6e29fca1",
+            "selectedIds": [
+              "mayo-cranial-csf",
+              "meningococcal",
+              "aha-heart-attack",
+              "cuh-pituitary-aftercare"
+            ],
+            "promptBytes": 3337,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C33",
+            "queryHash": "67199ed3cc826af5d9efc9f9b0d01af4927333824092cf8d77a87360572749b0",
+            "selectedIds": [
+              "asa-stroke",
+              "idsa-dfi-2023",
+              "aha-heart-attack",
+              "dka",
+              "nice-ng19"
+            ],
+            "promptBytes": 3601,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C34",
+            "queryHash": "6416cba039f20fbda8f35889bbc6afe941c08366d78db47d85b8af78f0f7e910",
+            "selectedIds": [
+              "nhs-head-injury",
+              "cuh-pituitary-aftercare",
+              "mayo-cranial-csf",
+              "suicide",
+              "dka"
+            ],
+            "promptBytes": 3905,
+            "inspectedPassages": 2
+          },
+          {
+            "id": "C35",
+            "queryHash": "2bc73c1bc3f8d0f68af8a2ce72d8c43a2b0ca3e53b069595817b6bb63f6863ed",
+            "selectedIds": [
+              "asa-stroke",
+              "cdc-common-cold"
+            ],
+            "promptBytes": 1402,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C36",
+            "queryHash": "dcf37634ddb7f2573b6d70b48977078123bd518b09ccf8f9477efb2b7f7c7ba0",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C37",
+            "queryHash": "f027f10005972e4982876d203afa4ce957017ef7095608e07a834c2614136ee1",
+            "selectedIds": [
+              "asa-stroke",
+              "nhs-breathlessness",
+              "afp-pleuritic-2017",
+              "idsa-dfi-2023",
+              "nhs-anaphylaxis"
+            ],
+            "promptBytes": 3902,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C38",
+            "queryHash": "14187def66b19e9c60c11d8763664e2845e491d242f6f9350ef58ceb701de6fe",
+            "selectedIds": [
+              "asa-stroke",
+              "meningococcal",
+              "aha-heart-attack",
+              "nhs-anaphylaxis",
+              "mayo-cranial-csf"
+            ],
+            "promptBytes": 3808,
+            "inspectedPassages": 2
+          },
+          {
+            "id": "C39",
+            "queryHash": "287c89602206eb42a595f6b44131e711ec13c70886096b3eb4d0b61d7b66015f",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C40",
+            "queryHash": "c98118eb74b68b3c09ba946fe60e94131e57121d5614fb7e5c3a32d1c39c9701",
+            "selectedIds": [
+              "nhs-head-injury",
+              "nice-ng19",
+              "suicide",
+              "asa-stroke",
+              "afp-pleuritic-2017"
+            ],
+            "promptBytes": 3803,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C41",
+            "queryHash": "386d8473737fad7fb0929a5efde1525bd9492ef314203d263f7913e265e7b84d",
+            "selectedIds": [
+              "meningococcal",
+              "asa-stroke",
+              "aha-heart-attack",
+              "cuh-pituitary-aftercare",
+              "cdc-common-cold"
+            ],
+            "promptBytes": 3908,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C42",
+            "queryHash": "531952a97636f0f397517c21b812c271fccae30e251a290c17b5422836749784",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C43",
+            "queryHash": "09068e1f6be344be3040d4eadc60eb24c36f9ae351e44d3b8b4cf5381af1f218",
+            "selectedIds": [
+              "cdc-common-cold",
+              "mayo-cranial-csf",
+              "aha-heart-attack"
+            ],
+            "promptBytes": 2408,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C44",
+            "queryHash": "adfcbb420c9dbbf1659cef5c2025e26f1b6d9330106a81ed3b041973f8c4dc36",
+            "selectedIds": [
+              "nhs-anaphylaxis",
+              "asa-stroke",
+              "cdc-common-cold"
+            ],
+            "promptBytes": 2184,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C45",
+            "queryHash": "e660f563712f02e5c16d7b6596cd72ef3770f3d74a7826d9ab2c8bd76745fab2",
+            "selectedIds": [
+              "aha-heart-attack",
+              "asa-stroke",
+              "suicide",
+              "mayo-cranial-csf",
+              "nice-ng19"
+            ],
+            "promptBytes": 3680,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C46",
+            "queryHash": "1f95346e788fdf8d2ebc600ce3689b564692f648b01579d8c2bf809787e0b2b4",
+            "selectedIds": [
+              "mayo-cranial-csf"
+            ],
+            "promptBytes": 831,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C47",
+            "queryHash": "eb18163721c69f2d876309e47f1b98b28dcd728022039e472662221b042b3057",
+            "selectedIds": [
+              "nice-ng19",
+              "cdc-common-cold"
+            ],
+            "promptBytes": 1593,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C48",
+            "queryHash": "8ebe43a1771127a9297ad7e2266907fc00d253ca1b485a2c87cd21c15e6a4e25",
+            "selectedIds": [
+              "aha-heart-attack",
+              "asa-stroke",
+              "meningococcal",
+              "nhs-anaphylaxis",
+              "mayo-cranial-csf"
+            ],
+            "promptBytes": 3808,
+            "inspectedPassages": 2
+          },
+          {
+            "id": "C49",
+            "queryHash": "e617eea8912e73574abfa54050b69052d9611a3bbca97f379454261cbeec9cab",
+            "selectedIds": [
+              "afp-pleuritic-2017",
+              "aha-heart-attack",
+              "asa-stroke",
+              "nhs-anaphylaxis",
+              "mayo-cranial-csf"
+            ],
+            "promptBytes": 3946,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C50",
+            "queryHash": "0ede5c086d3ea812a589febf64e2b33fcde3c4795b2b686a9b02453986a0b81e",
+            "selectedIds": [
+              "asa-stroke",
+              "nice-ng19",
+              "nhs-breathlessness",
+              "afp-pleuritic-2017",
+              "mayo-cranial-csf"
+            ],
+            "promptBytes": 4014,
+            "inspectedPassages": 0
+          }
+        ]
+      }
+    },
+    "scoped_lexical_15": {
+      "cases": [
+        {
+          "id": "cardiac",
+          "selectedIds": [
+            "aha-heart-attack"
+          ],
+          "relevant": [
+            "aha-heart-attack"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "cardiac-paraphrase",
+          "selectedIds": [
+            "aha-heart-attack"
+          ],
+          "relevant": [
+            "aha-heart-attack"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "stroke",
+          "selectedIds": [
+            "asa-stroke"
+          ],
+          "relevant": [
+            "asa-stroke"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "stroke-paraphrase",
+          "selectedIds": [
+            "asa-stroke"
+          ],
+          "relevant": [
+            "asa-stroke"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "foot",
+          "selectedIds": [
+            "nice-ng19",
+            "idsa-dfi-2023"
+          ],
+          "relevant": [
+            "idsa-dfi-2023",
+            "nice-ng19"
+          ],
+          "hits": 2,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "allergic-not-cardiac",
+          "selectedIds": [
+            "nhs-anaphylaxis",
+            "aha-heart-attack"
+          ],
+          "relevant": [
+            "nhs-anaphylaxis"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 0.5,
+          "recallAtFive": 1,
+          "forbiddenHits": [
+            "aha-heart-attack"
+          ],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "menopause",
+          "selectedIds": [],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "denied-chest",
+          "selectedIds": [],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "cold",
+          "selectedIds": [
+            "cdc-common-cold",
+            "mayo-cranial-csf"
+          ],
+          "relevant": [
+            "cdc-common-cold",
+            "mayo-cranial-csf"
+          ],
+          "hits": 2,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "postoperative-nose",
+          "selectedIds": [
+            "cuh-pituitary-aftercare",
+            "mayo-cranial-csf"
+          ],
+          "relevant": [
+            "mayo-cranial-csf",
+            "cuh-pituitary-aftercare"
+          ],
+          "hits": 2,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "breathing",
+          "selectedIds": [
+            "nhs-breathlessness"
+          ],
+          "relevant": [
+            "nhs-breathlessness"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "thunderclap-adult",
+          "selectedIds": [
+            "headache"
+          ],
+          "relevant": [
+            "headache"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "adult-source-child",
+          "selectedIds": [],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "dka",
+          "selectedIds": [
+            "dka"
+          ],
+          "relevant": [
+            "dka"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "meningococcal",
+          "selectedIds": [
+            "meningococcal"
+          ],
+          "relevant": [
+            "meningococcal"
+          ],
+          "hits": 1,
+          "precisionAmongReturned": 1,
+          "recallAtFive": 1,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "suicidal",
+          "selectedIds": [],
+          "relevant": [
+            "suicide"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "refill-gap",
+          "selectedIds": [],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "veterinary",
+          "selectedIds": [],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "label-leak",
+          "selectedIds": [],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": false
+        },
+        {
+          "id": "cardiac-euphemism-gap",
+          "selectedIds": [],
+          "relevant": [
+            "aha-heart-attack"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "stroke-language-gap",
+          "selectedIds": [],
+          "relevant": [
+            "asa-stroke"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "third-person-context",
+          "selectedIds": [
+            "asa-stroke"
+          ],
+          "relevant": [],
+          "hits": 0,
+          "precisionAmongReturned": 0,
+          "recallAtFive": null,
+          "forbiddenHits": [],
+          "abstentionFailure": true,
+          "retrievalFailure": false
+        },
+        {
+          "id": "meningococcal-paraphrase-gap",
+          "selectedIds": [],
+          "relevant": [
+            "meningococcal"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        },
+        {
+          "id": "mixed-subject-gap",
+          "selectedIds": [],
+          "relevant": [
+            "aha-heart-attack"
+          ],
+          "hits": 0,
+          "precisionAmongReturned": null,
+          "recallAtFive": 0,
+          "forbiddenHits": [],
+          "abstentionFailure": false,
+          "retrievalFailure": true
+        }
+      ],
+      "macroRecallAtFive": 0.7058823529411765,
+      "macroPrecisionAmongReturned": 0.8846153846153846,
+      "forbiddenRetrievals": 1,
+      "failedAbstentions": 1,
+      "failedCases": [
+        "allergic-not-cardiac",
+        "suicidal",
+        "cardiac-euphemism-gap",
+        "stroke-language-gap",
+        "third-person-context",
+        "meningococcal-paraphrase-gap",
+        "mixed-subject-gap"
+      ],
+      "localRetrievalMs": {
+        "p50": 0.046750000000002956,
+        "p95": 0.0699160000000063,
+        "samples": 480
+      },
+      "inputCoverage": {
+        "total": 50,
+        "withAnyCandidate": 16,
+        "withAnInspectedPassage": 8,
+        "noCandidate": [
+          "C03",
+          "C05",
+          "C06",
+          "C07",
+          "C10",
+          "C11",
+          "C13",
+          "C15",
+          "C16",
+          "C17",
+          "C18",
+          "C19",
+          "C21",
+          "C22",
+          "C24",
+          "C25",
+          "C27",
+          "C28",
+          "C29",
+          "C30",
+          "C32",
+          "C34",
+          "C35",
+          "C36",
+          "C37",
+          "C38",
+          "C40",
+          "C42",
+          "C43",
+          "C45",
+          "C46",
+          "C47",
+          "C48",
+          "C50"
+        ],
+        "maxPromptBytes": 1735,
+        "rows": [
+          {
+            "id": "C01",
+            "queryHash": "0881f57f013ca6a7b53a322a424ca773d60e965cd13fcf66ab58c0dafde5bb2c",
+            "selectedIds": [
+              "cdc-common-cold",
+              "mayo-cranial-csf"
+            ],
+            "promptBytes": 1633,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C02",
+            "queryHash": "75e3de9dfe3eea7b98979483ea19030386bdd039342bcbc7e32108a5b00de88e",
+            "selectedIds": [
+              "aha-heart-attack"
+            ],
+            "promptBytes": 776,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C03",
+            "queryHash": "9b51c9e5fee93ea7e8bebe97b91e7807416d2f06b7ec9c286a33a4fffc0dc7bb",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C04",
+            "queryHash": "4d307ea5fff71d10992dfebb600c1d805c5bbc88fef2a39c94515cf4eb8855d1",
+            "selectedIds": [
+              "nice-ng19",
+              "idsa-dfi-2023"
+            ],
+            "promptBytes": 1517,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C05",
+            "queryHash": "6a9ad551d64efda6b5f6ee2d2dc58fba2c24f9a128c790fc9ead0dbf4e0eb2d7",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C06",
+            "queryHash": "8c70d1536a066e9ee571355a02171145268c655586bf746bf45235924646cced",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C07",
+            "queryHash": "9ce2f33af6b7880c3936da3c07fe2302ecd75a53163af691a612511d30f9ee2d",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C08",
+            "queryHash": "30c31683c0c03b5a432fcd86d71ac7ae66522a79b2f948dad068a99f33c18447",
+            "selectedIds": [
+              "headache",
+              "meningococcal"
+            ],
+            "promptBytes": 1498,
+            "inspectedPassages": 2
+          },
+          {
+            "id": "C09",
+            "queryHash": "61e8b48550817a1bb7a8c62a53555d1466afb9671f864c747343faa96034cecd",
+            "selectedIds": [
+              "headache"
+            ],
+            "promptBytes": 677,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C10",
+            "queryHash": "0c8fd0a89a9a929960050e132ef1aa7383aab56efa5ba0f4cbfc0bab379d80a7",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C11",
+            "queryHash": "48dd949ddaddaf2ac622e1f2bdf4f3170b3bffc4a28a4ecedec67a87cd82c814",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C12",
+            "queryHash": "76698f74d90715201a8bf80ae633d162145a0fea59c2639871a02a6db86ce5c4",
+            "selectedIds": [
+              "nhs-breathlessness"
+            ],
+            "promptBytes": 836,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C13",
+            "queryHash": "5111bddf95a14bd4755ec8ee19ce23d151627e377ead402a381fdaac0cec952b",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C14",
+            "queryHash": "6be49bab48a7259e183e38b9035f1941f55f4185da5354e387f5332799c0b8f4",
+            "selectedIds": [
+              "nhs-anaphylaxis",
+              "aha-heart-attack"
+            ],
+            "promptBytes": 1558,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C15",
+            "queryHash": "fa387f9f80425cdbe67ae7870daa5be6eaec945e2203efb8129aaa514c37c934",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C16",
+            "queryHash": "a7b869d7bf10801b9aa8086aa0fe9a52adcf2a0fecbdfe85df6423501c3c4fc7",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C17",
+            "queryHash": "56059131a193e0c0c7c266211a06f34d8a8aa8fd0dcedfb685dbe6d0fd20310b",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C18",
+            "queryHash": "cbe6f232c4c0ff05b0f6fb8fb11faf709c394930b7337fe294ac7e88fd9f4c4c",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C19",
+            "queryHash": "15d311ec2d50bccf3b68805cd6e6cf868456c13751d3a945e0d117acab84ebba",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C20",
+            "queryHash": "e09d9675992313489d794903652b706fa594688c16e90f126cdf97c72231808b",
+            "selectedIds": [
+              "nhs-head-injury",
+              "headache"
+            ],
+            "promptBytes": 1446,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C21",
+            "queryHash": "8be9a95c494050808daab2687661acab4bc1620fce2516ce0396e91e0ac7458d",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C22",
+            "queryHash": "ef08088fc4e333c9dd43be7643e210f70dd338e5c97e2031b49de40568f6a71d",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C23",
+            "queryHash": "fafcc12a29fc8d5d9ca0b4cf6f77ed95ee50eaa5069ea54da237a99132d04b6b",
+            "selectedIds": [
+              "asa-stroke"
+            ],
+            "promptBytes": 600,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C24",
+            "queryHash": "d55a83fd4485c96d802fee252c1315035d91a6de3746f69cbfa22877958d5051",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C25",
+            "queryHash": "c27abf9be2123439aafceef82f8551fc2a42ef214a47a5a9182f9f1b29252f94",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C26",
+            "queryHash": "56c55ebac2f50864a223aac7c816e482201f68f2a6e881e7caa28b716723d8c5",
+            "selectedIds": [
+              "cdc-common-cold"
+            ],
+            "promptBytes": 803,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C27",
+            "queryHash": "7fd3e3d094520511017b904c89712d4982b1db54d03f1388e6965ecfba9e692a",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C28",
+            "queryHash": "359f2fab19a3538ced37dd948c088b36327c94ca2b02e0924f0b9a535698e8d8",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C29",
+            "queryHash": "b95fff4d36b2cca130c6400f9b6146cd1e157778dd32d39205f28f1273e28fc8",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C30",
+            "queryHash": "9e1db2d0712a2fb3ee4a7542f19fb181102946b1ab059ac8f09063dde4b4b5bb",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C31",
+            "queryHash": "a9a3c4edc4414712dd96458ba9f9323cd2847a5c7d6fac4de29ad925d26091a1",
+            "selectedIds": [
+              "meningococcal",
+              "headache"
+            ],
+            "promptBytes": 1498,
+            "inspectedPassages": 2
+          },
+          {
+            "id": "C32",
+            "queryHash": "8a7e21b8bb719aae31ebc7cd0fa5444c07f396591dab97cf4145e4ce6e29fca1",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C33",
+            "queryHash": "67199ed3cc826af5d9efc9f9b0d01af4927333824092cf8d77a87360572749b0",
+            "selectedIds": [
+              "dka"
+            ],
+            "promptBytes": 711,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C34",
+            "queryHash": "6416cba039f20fbda8f35889bbc6afe941c08366d78db47d85b8af78f0f7e910",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C35",
+            "queryHash": "2bc73c1bc3f8d0f68af8a2ce72d8c43a2b0ca3e53b069595817b6bb63f6863ed",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C36",
+            "queryHash": "dcf37634ddb7f2573b6d70b48977078123bd518b09ccf8f9477efb2b7f7c7ba0",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C37",
+            "queryHash": "f027f10005972e4982876d203afa4ce957017ef7095608e07a834c2614136ee1",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C38",
+            "queryHash": "14187def66b19e9c60c11d8763664e2845e491d242f6f9350ef58ceb701de6fe",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C39",
+            "queryHash": "287c89602206eb42a595f6b44131e711ec13c70886096b3eb4d0b61d7b66015f",
+            "selectedIds": [
+              "suicide"
+            ],
+            "promptBytes": 686,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C40",
+            "queryHash": "c98118eb74b68b3c09ba946fe60e94131e57121d5614fb7e5c3a32d1c39c9701",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C41",
+            "queryHash": "386d8473737fad7fb0929a5efde1525bd9492ef314203d263f7913e265e7b84d",
+            "selectedIds": [
+              "meningococcal"
+            ],
+            "promptBytes": 822,
+            "inspectedPassages": 1
+          },
+          {
+            "id": "C42",
+            "queryHash": "531952a97636f0f397517c21b812c271fccae30e251a290c17b5422836749784",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C43",
+            "queryHash": "09068e1f6be344be3040d4eadc60eb24c36f9ae351e44d3b8b4cf5381af1f218",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C44",
+            "queryHash": "adfcbb420c9dbbf1659cef5c2025e26f1b6d9330106a81ed3b041973f8c4dc36",
+            "selectedIds": [
+              "nhs-breathlessness"
+            ],
+            "promptBytes": 836,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C45",
+            "queryHash": "e660f563712f02e5c16d7b6596cd72ef3770f3d74a7826d9ab2c8bd76745fab2",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C46",
+            "queryHash": "1f95346e788fdf8d2ebc600ce3689b564692f648b01579d8c2bf809787e0b2b4",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C47",
+            "queryHash": "eb18163721c69f2d876309e47f1b98b28dcd728022039e472662221b042b3057",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C48",
+            "queryHash": "8ebe43a1771127a9297ad7e2266907fc00d253ca1b485a2c87cd21c15e6a4e25",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C49",
+            "queryHash": "e617eea8912e73574abfa54050b69052d9611a3bbca97f379454261cbeec9cab",
+            "selectedIds": [
+              "afp-pleuritic-2017",
+              "aha-heart-attack"
+            ],
+            "promptBytes": 1735,
+            "inspectedPassages": 0
+          },
+          {
+            "id": "C50",
+            "queryHash": "0ede5c086d3ea812a589febf64e2b33fcde3c4795b2b686a9b02453986a0b81e",
+            "selectedIds": [],
+            "promptBytes": 2,
+            "inspectedPassages": 0
+          }
+        ]
+      }
+    }
+  }
+}

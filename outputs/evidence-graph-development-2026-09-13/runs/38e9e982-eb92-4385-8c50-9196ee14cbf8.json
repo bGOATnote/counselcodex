@@ -1,0 +1,1147 @@
+{
+  "status": "review_required",
+  "answer": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "reviewPriority": "priority",
+    "workType": "clinical_review",
+    "reason": "The automated assessment needs clinician review; this is a conservative workflow fallback, not a new clinical finding.",
+    "patientMessage": "Priority review by the Counsel clinician in this thread is needed today. This recommendation does not confirm a clinician has accepted the request.",
+    "differential": [],
+    "redFlags": [],
+    "vitalSigns": "The automated assessment has not established the vital-sign context.",
+    "questions": [],
+    "evidence": [],
+    "evidenceLimitations": "No model-reviewed clinical explanation has been released. The draft and review outcome are retained for clinician assessment."
+  },
+  "origin": "validation_safeguard",
+  "modelCalls": 6,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "usual migraine recurrence with sumatriptan refill request",
+          "migraine triptan renewal eligibility"
+        ],
+        "findings": [
+          {
+            "finding": "Established migraine pattern",
+            "status": "reported",
+            "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get"
+          },
+          {
+            "finding": "Current migraine attack present",
+            "status": "reported",
+            "quote": "My usual migraine started this morning"
+          },
+          {
+            "finding": "Sumatriptan currently unavailable",
+            "status": "reported",
+            "quote": "I'm out of sumatriptan"
+          },
+          {
+            "finding": "Photophobia",
+            "status": "reported",
+            "quote": "light sensitivity I always get"
+          },
+          {
+            "finding": "Unilateral headache",
+            "status": "reported",
+            "quote": "one-sided throbbing"
+          },
+          {
+            "finding": "Requesting triptan refill",
+            "status": "reported",
+            "quote": "would like a refill"
+          }
+        ],
+        "question": null
+      },
+      "usage": {
+        "inputTokens": 1700,
+        "outputTokens": 242
+      },
+      "failure": null,
+      "firstTextDeltaMs": 4949,
+      "streamProgress": {
+        "lastTextDeltaMs": 9666,
+        "textDeltaCount": 176,
+        "textCharacters": 833
+      },
+      "durationMs": 10024
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "priority",
+        "workType": "medication_request",
+        "reason": "40F reports an active attack this morning matching her usual migraine pattern (one-sided throbbing, photophobia) and has exhausted her sumatriptan. Active symptoms plus an immediate medication interruption make this time-sensitive for remote prescribing review. No reported thunderclap onset, deficit, fever/neck stiffness or trauma was described; those features are unknown rather than denied, and no reported feature requires a physical examination today.",
+        "patientMessage": "I'm routing your message for prompt clinician review today to assess a sumatriptan refill, since you're having your usual attack now and have run out. Meanwhile, rest in a dark quiet room and keep fluids up. I can't prescribe or promise a timeline here. If this headache becomes sudden and worst-ever, or you develop weakness, numbness, speech or vision changes, confusion, fever with neck stiffness, or follow a head injury, seek emergency care immediately.",
+        "differential": [
+          "Recurrence of established migraine without aura, patient's usual pattern",
+          "Medication-overuse or rebound headache if acute treatment frequency is high",
+          "Secondary headache — unknown, no reported features either way"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thunderclap/worst-ever sudden onset",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Focal neurological deficit or speech/vision change",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Fever or neck stiffness",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Recent head trauma",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Change from usual headache pattern",
+            "status": "denied",
+            "quote": "same one-sided throbbing and light sensitivity I always get"
+          }
+        ],
+        "vitalSigns": "No vital signs reported: blood pressure, heart rate, temperature and oxygen saturation were not measured or provided in this message.",
+        "questions": [],
+        "evidenceLimitations": "Retrieved passages are 2021 narrative guideline text on acute and preventive migraine treatment; currency not assessed and they do not address telehealth routing, refill eligibility or remote versus in-person care. No source establishes whether this patient can safely receive a triptan renewal; cardiovascular history, pregnancy status, attack frequency and prior response are unknown. Context extraction matched the original message; original wording prevails.",
+        "citations": [
+          {
+            "passageId": "bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+            "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild",
+            "claim": "Timing matters for triptan effectiveness, supporting prompt rather than delayed prescribing review during an active attack.",
+            "applicability": "applicable",
+            "limitation": "Concerns drug timing only; says nothing about care setting, refill eligibility or contraindication screening for this patient."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 5360,
+        "outputTokens": 992
+      },
+      "failure": null,
+      "firstTextDeltaMs": 3528,
+      "streamProgress": {
+        "lastTextDeltaMs": 18383,
+        "textDeltaCount": 252,
+        "textCharacters": 2882
+      },
+      "durationMs": 18471
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": null,
+      "usage": {
+        "inputTokens": null,
+        "outputTokens": null
+      },
+      "failure": "MODEL_OR_SCHEMA_FAILURE",
+      "firstTextDeltaMs": 4351,
+      "streamProgress": {
+        "lastTextDeltaMs": 11421,
+        "textDeltaCount": 267,
+        "textCharacters": 1436
+      },
+      "durationMs": 11424,
+      "failureDetails": {
+        "stage": "structured-output",
+        "finishReason": null,
+        "httpStatus": null
+      }
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "verdict": "revise",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Priority asynchronous medication review fits an active usual migraine with exhausted requested medication. No reported feature independently requires in-person or emergency care.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get."
+              },
+              {
+                "unit": "patient",
+                "quote": "I'm out of sumatriptan and would like a refill."
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "The selected route appropriately distinguishes time-sensitive remote prescribing review from a required physical visit.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"disposition\":\"ASYNC_PHYSICIAN\",\"reviewPriority\":\"priority\",\"workType\":\"medication_request\""
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "fail",
+            "reason": "The differential adds an unsupported migraine subtype. The patient describes a usual migraine but does not establish absence of aura. Otherwise the draft correctly treats unasked warning signs as unknown.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Recurrence of established migraine without aura, patient's usual pattern"
+              },
+              {
+                "unit": "patient",
+                "quote": "same one-sided throbbing and light sensitivity I always get"
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "The supplied primary-guideline passage supports early-attack triptan effectiveness, not refill eligibility or care setting. The draft explicitly preserves that distinction and acknowledges the source's date and unassessed currency. The unrelated preventive-treatment passage is not used.",
+            "anchors": [
+              {
+                "unit": "source:bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+                "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild"
+              },
+              {
+                "unit": "draft",
+                "quote": "Concerns drug timing only; says nothing about care setting, refill eligibility or contraindication screening for this patient."
+              },
+              {
+                "unit": "draft",
+                "quote": "currency not assessed"
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "fail",
+            "reason": "Relevant emergency warning signs are included, but the instruction does not specify 911 for possible acute neurological emergencies or explicitly direct immediate ED evaluation when appropriate.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "If this headache becomes sudden and worst-ever, or you develop weakness, numbness, speech or vision changes, confusion, fever with neck stiffness, or follow a head injury, seek emergency care immediately."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No clarification blocks clinician review or requires completion of prescribing checks before routing.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "fail",
+            "reason": "The patient message claims routing is occurring despite no established handoff. It should identify Counsel as the intended reviewer and leave refill eligibility and any follow-up plan with that clinician, without implying delivery or guaranteed review today.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I'm routing your message for prompt clinician review today to assess a sumatriptan refill"
+              },
+              {
+                "unit": "draft",
+                "quote": "I can't prescribe or promise a timeline here."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "correction": "Keep priority ASYNC_PHYSICIAN with medication_request. Remove 'without aura.' Specify calling 911 for new stroke-like symptoms or sudden worst-ever headache, and immediate ED evaluation for other concerning emergency features without waiting for messaging review. Replace the claimed routing with a recommendation for priority review by Counsel; state that Counsel must determine refill eligibility and any follow-up plan, without claiming a completed handoff or guaranteed timing."
+      },
+      "usage": {
+        "inputTokens": 2985,
+        "outputTokens": 991
+      },
+      "failure": null,
+      "firstTextDeltaMs": 2399,
+      "streamProgress": {
+        "lastTextDeltaMs": 17266,
+        "textDeltaCount": 984,
+        "textCharacters": 4613
+      },
+      "durationMs": 18231
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "priority",
+        "workType": "medication_request",
+        "reason": "40F reports an active attack this morning matching her usual migraine pattern (one-sided throbbing, photophobia) and has run out of sumatriptan. Active symptoms plus an immediate medication interruption make this time-sensitive for remote prescribing review by Counsel. Thunderclap onset, focal deficit, fever/neck stiffness and trauma were not mentioned and are unknown rather than denied; no reported feature requires a physical examination today.",
+        "patientMessage": "My recommendation is priority same-day asynchronous review by Counsel for your sumatriptan refill, since you're having your usual attack now and have run out. Counsel decides refill eligibility and any follow-up; I can't prescribe, confirm receipt or promise timing. Meanwhile rest in a dark, quiet room and keep fluids up. Call 911 for sudden worst-ever headache or new weakness, numbness, speech or vision changes or confusion. Go to an ED immediately for fever with neck stiffness, or headache after head injury — don't wait for messaging review.",
+        "differential": [
+          "Recurrence of established migraine, patient's usual pattern",
+          "Medication-overuse or rebound headache if acute treatment frequency is high",
+          "Secondary headache — unknown, no reported features either way"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thunderclap/worst-ever sudden onset",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Focal neurological deficit or speech/vision change",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Fever or neck stiffness",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Recent head trauma",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Change from usual headache pattern",
+            "status": "denied",
+            "quote": "same one-sided throbbing and light sensitivity I always get"
+          }
+        ],
+        "vitalSigns": "No vital signs reported: blood pressure, heart rate, temperature and oxygen saturation were not measured or provided in this message.",
+        "questions": [],
+        "evidenceLimitations": "Retrieved passages are narrative primary guideline text on acute and preventive migraine treatment; currency not assessed and they do not address telehealth routing, refill eligibility or remote versus in-person care. No source establishes whether this patient can safely receive a triptan renewal; cardiovascular history, pregnancy status, aura, attack frequency and prior response are unknown. Original patient wording prevails over any extracted context.",
+        "citations": [
+          {
+            "passageId": "bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+            "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild",
+            "claim": "Timing matters for triptan effectiveness, supporting prompt rather than delayed prescribing review during an active attack.",
+            "applicability": "applicable",
+            "limitation": "Concerns drug timing only; says nothing about care setting, refill eligibility or contraindication screening for this patient."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 7037,
+        "outputTokens": 1026
+      },
+      "failure": null,
+      "firstTextDeltaMs": 2447,
+      "streamProgress": {
+        "lastTextDeltaMs": 14562,
+        "textDeltaCount": 23,
+        "textCharacters": 2947
+      },
+      "durationMs": 14592
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "verdict": "accept",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Priority asynchronous prescribing review fits an active usual migraine with the requested medication exhausted. No reported feature independently requires immediate emergency or same-day physical care.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get."
+              },
+              {
+                "unit": "draft",
+                "quote": "\"disposition\":\"ASYNC_PHYSICIAN\",\"reviewPriority\":\"priority\",\"workType\":\"medication_request\""
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "The draft appropriately distinguishes queue priority from physical care and does not escalate solely because this is a sumatriptan refill.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I'm out of sumatriptan and would like a refill."
+              },
+              {
+                "unit": "draft",
+                "quote": "Active symptoms plus an immediate medication interruption make this time-sensitive for remote prescribing review by Counsel."
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "The assessment reflects the reported usual symptom pattern and medication request. Unasked red flags remain unknown, and exhaustion of sumatriptan is not treated as exhaustion of every treatment option.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Thunderclap onset, focal deficit, fever/neck stiffness and trauma were not mentioned and are unknown rather than denied"
+              },
+              {
+                "unit": "patient",
+                "quote": "same one-sided throbbing and light sensitivity I always get"
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "The supplied primary-guideline passage supports the narrow claim about early triptan effectiveness. The draft explicitly limits its relevance and does not use it to establish individual refill eligibility or telehealth routing. Source currency is appropriately acknowledged as unassessed.",
+            "anchors": [
+              {
+                "unit": "source:bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+                "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild"
+              },
+              {
+                "unit": "draft",
+                "quote": "Concerns drug timing only; says nothing about care setting, refill eligibility or contraindication screening for this patient."
+              },
+              {
+                "unit": "draft",
+                "quote": "currency not assessed"
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "The response provides explicit emergency transport and immediate ED instructions for concerning new features, without allowing messaging review to delay emergency care.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Call 911 for sudden worst-ever headache or new weakness, numbness, speech or vision changes or confusion."
+              },
+              {
+                "unit": "draft",
+                "quote": "Go to an ED immediately for fever with neck stiffness, or headache after head injury — don't wait for messaging review."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No clarification blocks routing. Missing prescribing history is appropriately left for clinician assessment rather than made a prerequisite for initial review.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              },
+              {
+                "unit": "draft",
+                "quote": "Counsel decides refill eligibility and any follow-up"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "Counsel retains responsibility for prescribing and follow-up decisions. The response recommends review without claiming a completed handoff, guaranteed timing, or resolution.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Counsel decides refill eligibility and any follow-up; I can't prescribe, confirm receipt or promise timing."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "correction": ""
+      },
+      "usage": {
+        "inputTokens": 2996,
+        "outputTokens": 1004
+      },
+      "failure": null,
+      "firstTextDeltaMs": 2002,
+      "streamProgress": {
+        "lastTextDeltaMs": 15328,
+        "textDeltaCount": 972,
+        "textCharacters": 4477
+      },
+      "durationMs": 15420
+    }
+  ],
+  "guidance": [
+    {
+      "id": "bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+      "title": "Diagnosis and management of migraine in ten steps",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+      "section": "Full-text body / Step 4: Acute treatment / Second-line medication",
+      "summary": "Patients for whom over-the-counter analgesics provide inadequate headache relief should be offered a triptan. All triptans have well-documented effectiveness, but availability of and access to each vary between countries. Triptans are most effective when taken early in an attack, when the headache is still mild49,50. However, no evidence supports the use of triptans during the aura phase of a migraine attack. If one triptan is ineffective, others might still provide relief51,52. When all other triptans have failed or in patients who rapidly reach peak headache intensity or cannot take oral triptans because of vomiting, sumatriptan by subcutaneous injection can be useful53.\n\nSome patients can experience relapses, which are defined as a return of symptoms within 48 h after apparently successful treatment. Upon relapse, patients can repeat their triptan treatment or combine the triptan with simultaneous intake of fast-acting formulations of naproxen sodium, ibuprofen lysine or diclofenac potassium54,55. However, patients should be informed that repeating the treatment does not preclude further relapses and ultimately increases the risk of developing MOH.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "primary_guideline; publisher_reviewed. Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval.",
+      "retrievedPassages": [
+        {
+          "id": "bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+          "sourceId": "pmc:PMC8321897",
+          "excerpt": "Patients for whom over-the-counter analgesics provide inadequate headache relief should be offered a triptan. All triptans have well-documented effectiveness, but availability of and access to each vary between countries. Triptans are most effective when taken early in an attack, when the headache is still mild49,50. However, no evidence supports the use of triptans during the aura phase of a migraine attack. If one triptan is ineffective, others might still provide relief51,52. When all other triptans have failed or in patients who rapidly reach peak headache intensity or cannot take oral triptans because of vomiting, sumatriptan by subcutaneous injection can be useful53.\n\nSome patients can experience relapses, which are defined as a return of symptoms within 48 h after apparently successful treatment. Upon relapse, patients can repeat their triptan treatment or combine the triptan with simultaneous intake of fast-acting formulations of naproxen sodium, ibuprofen lysine or diclofenac potassium54,55. However, patients should be informed that repeating the treatment does not preclude further relapses and ultimately increases the risk of developing MOH.",
+          "excerptSha256": "8e63bcc868a69d119df885e906aa5386f5c4c1d8753586d5e179796d3473711c",
+          "retrievedAt": "2026-09-13T22:56:17.095Z",
+          "sourceContentHash": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+          "kind": "primary_guideline",
+          "limitations": "Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval."
+        }
+      ]
+    },
+    {
+      "id": "a39d13ec043ef20dd0392fae090a8440eb3554bb4893fe931279eab64cf30a89",
+      "title": "Diagnosis and management of migraine in ten steps",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+      "section": "Full-text body / Step 5: Preventive treatment / Initiation and termination",
+      "summary": "male and of childbearing potentialThird-line medicationBotulinum toxinOnabotulinumtoxinA155–195 units to 31–39 sites every 12 weeksInfection at injection siteCalcitonin gene-related peptide monoclonal antibodiesErenumab70 or 140 mg subcutaneous once monthlyHypersensitivityNot recommended in patients with a history of stroke, subarachnoid haemorrhage, coronary heart disease, inflammatory bowel disease, chronic obstructive pulmonary disease or impaired wound healingFremanezumab225 mg subcutaneous once monthly or 675 mg subcutaneous once quarterlyGalcanezumab240 mg subcutaneous, then 120 mg subcutaneous once monthlyEptinezumab100 or 300 mg intravenous quarterlySSRI, selective serotonin reuptake inhibitor. aSodium valproate is absolutely contraindicated in women of childbearing potential.\n\nEfficacy of preventive therapy is rarely observed immediately. Only after several weeks or months can efficacy be ascertained, so patients should be discouraged from abandoning the treatment in these early stages on the grounds of apparent inefficacy32. If a therapeutic dose of an oral preventive medication is ineffective after 2–3 months, an alternative should be tried32,61,62. For monoclonal antibody treatments that target calcitonin gene-related peptide (CGRP) or its receptor, efficacy should be assessed only after 3–6 months. For onabotulinumtoxinA, efficacy should be assessed after 6–9 months.\n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "primary_guideline; publisher_reviewed. Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval.",
+      "retrievedPassages": [
+        {
+          "id": "a39d13ec043ef20dd0392fae090a8440eb3554bb4893fe931279eab64cf30a89",
+          "sourceId": "pmc:PMC8321897",
+          "excerpt": "male and of childbearing potentialThird-line medicationBotulinum toxinOnabotulinumtoxinA155–195 units to 31–39 sites every 12 weeksInfection at injection siteCalcitonin gene-related peptide monoclonal antibodiesErenumab70 or 140 mg subcutaneous once monthlyHypersensitivityNot recommended in patients with a history of stroke, subarachnoid haemorrhage, coronary heart disease, inflammatory bowel disease, chronic obstructive pulmonary disease or impaired wound healingFremanezumab225 mg subcutaneous once monthly or 675 mg subcutaneous once quarterlyGalcanezumab240 mg subcutaneous, then 120 mg subcutaneous once monthlyEptinezumab100 or 300 mg intravenous quarterlySSRI, selective serotonin reuptake inhibitor. aSodium valproate is absolutely contraindicated in women of childbearing potential.\n\nEfficacy of preventive therapy is rarely observed immediately. Only after several weeks or months can efficacy be ascertained, so patients should be discouraged from abandoning the treatment in these early stages on the grounds of apparent inefficacy32. If a therapeutic dose of an oral preventive medication is ineffective after 2–3 months, an alternative should be tried32,61,62. For monoclonal antibody treatments that target calcitonin gene-related peptide (CGRP) or its receptor, efficacy should be assessed only after 3–6 months. For onabotulinumtoxinA, efficacy should be assessed after 6–9 months.\n",
+          "excerptSha256": "8801af177a7c6f69faf4bfcaefc8118ff9698cc25d054aca87614618be0d8091",
+          "retrievedAt": "2026-09-13T22:56:17.095Z",
+          "sourceContentHash": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+          "kind": "primary_guideline",
+          "limitations": "Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval."
+        }
+      ]
+    }
+  ],
+  "safetyFloor": null,
+  "rejectedAnswer": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "reviewPriority": "priority",
+    "workType": "medication_request",
+    "reason": "40F reports an active attack this morning matching her usual migraine pattern (one-sided throbbing, photophobia) and has run out of sumatriptan. Active symptoms plus an immediate medication interruption make this time-sensitive for remote prescribing review by Counsel. Thunderclap onset, focal deficit, fever/neck stiffness and trauma were not mentioned and are unknown rather than denied; no reported feature requires a physical examination today.",
+    "patientMessage": "My recommendation is priority same-day asynchronous review by Counsel for your sumatriptan refill, since you're having your usual attack now and have run out. Counsel decides refill eligibility and any follow-up; I can't prescribe, confirm receipt or promise timing. Meanwhile rest in a dark, quiet room and keep fluids up. Call 911 for sudden worst-ever headache or new weakness, numbness, speech or vision changes or confusion. Go to an ED immediately for fever with neck stiffness, or headache after head injury — don't wait for messaging review.",
+    "differential": [
+      "Recurrence of established migraine, patient's usual pattern",
+      "Medication-overuse or rebound headache if acute treatment frequency is high",
+      "Secondary headache — unknown, no reported features either way"
+    ],
+    "redFlags": [
+      {
+        "concern": "Thunderclap/worst-ever sudden onset",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Focal neurological deficit or speech/vision change",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Fever or neck stiffness",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Recent head trauma",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Change from usual headache pattern",
+        "status": "denied",
+        "quote": "same one-sided throbbing and light sensitivity I always get"
+      }
+    ],
+    "vitalSigns": "No vital signs reported: blood pressure, heart rate, temperature and oxygen saturation were not measured or provided in this message.",
+    "questions": [],
+    "evidenceLimitations": "Retrieved passages are narrative primary guideline text on acute and preventive migraine treatment; currency not assessed and they do not address telehealth routing, refill eligibility or remote versus in-person care. No source establishes whether this patient can safely receive a triptan renewal; cardiovascular history, pregnancy status, aura, attack frequency and prior response are unknown. Original patient wording prevails over any extracted context.",
+    "citations": [
+      {
+        "passageId": "bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+        "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild",
+        "claim": "Timing matters for triptan effectiveness, supporting prompt rather than delayed prescribing review during an active attack.",
+        "applicability": "applicable",
+        "limitation": "Concerns drug timing only; says nothing about care setting, refill eligibility or contraindication screening for this patient."
+      }
+    ]
+  },
+  "failure": "CLINICIAN_REVIEW_REQUIRED",
+  "routingPolicy": "five-route-queue/v2",
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "pass",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "fail",
+      "detail": "Checks explicit timing/destination tokens, not the clinical correctness or complete consistency of the message."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen from a COPD diagnosis alone; targeted medication-instruction check."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "pass",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Cited passage identity and exact quote match; this does not establish claim support or applicability."
+    },
+    {
+      "id": "independent_review",
+      "status": "fail",
+      "detail": "No accepted independent review; clinician assessment is required."
+    }
+  ],
+  "usage": {
+    "inputTokens": null,
+    "outputTokens": null
+  },
+  "graph": {
+    "version": "evidence-graph/v1",
+    "mode": "hybrid",
+    "context": {
+      "queries": [
+        "usual migraine recurrence with sumatriptan refill request",
+        "migraine triptan renewal eligibility"
+      ],
+      "findings": [
+        {
+          "finding": "Established migraine pattern",
+          "status": "reported",
+          "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get"
+        },
+        {
+          "finding": "Current migraine attack present",
+          "status": "reported",
+          "quote": "My usual migraine started this morning"
+        },
+        {
+          "finding": "Sumatriptan currently unavailable",
+          "status": "reported",
+          "quote": "I'm out of sumatriptan"
+        },
+        {
+          "finding": "Photophobia",
+          "status": "reported",
+          "quote": "light sensitivity I always get"
+        },
+        {
+          "finding": "Unilateral headache",
+          "status": "reported",
+          "quote": "one-sided throbbing"
+        },
+        {
+          "finding": "Requesting triptan refill",
+          "status": "reported",
+          "quote": "would like a refill"
+        }
+      ],
+      "question": null
+    },
+    "safety": null,
+    "retrieval": [
+      {
+        "corpusHash": "97a6937780adb29ab86f9223cf296e16e05f553a2d197010663584539358df1c",
+        "query": "usual migraine recurrence with sumatriptan refill request",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+              "end": 1169,
+              "hash": "8e63bcc868a69d119df885e906aa5386f5c4c1d8753586d5e179796d3473711c",
+              "text": "Patients for whom over-the-counter analgesics provide inadequate headache relief should be offered a triptan. All triptans have well-documented effectiveness, but availability of and access to each vary between countries. Triptans are most effective when taken early in an attack, when the headache is still mild49,50. However, no evidence supports the use of triptans during the aura phase of a migraine attack. If one triptan is ineffective, others might still provide relief51,52. When all other triptans have failed or in patients who rapidly reach peak headache intensity or cannot take oral triptans because of vomiting, sumatriptan by subcutaneous injection can be useful53.\n\nSome patients can experience relapses, which are defined as a return of symptoms within 48 h after apparently successful treatment. Upon relapse, patients can repeat their triptan treatment or combine the triptan with simultaneous intake of fast-acting formulations of naproxen sodium, ibuprofen lysine or diclofenac potassium54,55. However, patients should be informed that repeating the treatment does not preclude further relapses and ultimately increases the risk of developing MOH.",
+              "start": 0,
+              "section": 24,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Full-text body / Step 4: Acute treatment / Second-line medication",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nFull-text body / Step 4: Acute treatment / Second-line medication\nPatients for whom over-the-counter analgesics provide inadequate headache relief should be offered a triptan. All triptans have well-documented effectiveness, but availability of and access to each vary between countries. Triptans are most effective when taken early in an attack, when the headache is still mild49,50. However, no evidence supports the use of triptans during the aura phase of a migraine attack. If one triptan is ineffective, others might still provide relief51,52. When all other triptans have failed or in patients who rapidly reach peak headache intensity or cannot take oral triptans because of vomiting, sumatriptan by subcutaneous injection can be useful53.\n\nSome patients can experience relapses, which are defined as a return of symptoms within 48 h after apparently successful treatment. Upon relapse, patients can repeat their triptan treatment or combine the triptan with simultaneous intake of fast-acting formulations of naproxen sodium, ibuprofen lysine or diclofenac potassium54,55. However, patients should be informed that repeating the treatment does not preclude further relapses and ultimately increases the risk of developing MOH."
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; tables, figures and references omitted.",
+              "retrievedAt": "2026-09-13T22:56:17.095Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+              "publicationDate": "2021"
+            },
+            "score": 0.01639344262295082,
+            "channels": [
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "a39d13ec043ef20dd0392fae090a8440eb3554bb4893fe931279eab64cf30a89",
+              "end": 3001,
+              "hash": "8801af177a7c6f69faf4bfcaefc8118ff9698cc25d054aca87614618be0d8091",
+              "text": "male and of childbearing potentialThird-line medicationBotulinum toxinOnabotulinumtoxinA155–195 units to 31–39 sites every 12 weeksInfection at injection siteCalcitonin gene-related peptide monoclonal antibodiesErenumab70 or 140 mg subcutaneous once monthlyHypersensitivityNot recommended in patients with a history of stroke, subarachnoid haemorrhage, coronary heart disease, inflammatory bowel disease, chronic obstructive pulmonary disease or impaired wound healingFremanezumab225 mg subcutaneous once monthly or 675 mg subcutaneous once quarterlyGalcanezumab240 mg subcutaneous, then 120 mg subcutaneous once monthlyEptinezumab100 or 300 mg intravenous quarterlySSRI, selective serotonin reuptake inhibitor. aSodium valproate is absolutely contraindicated in women of childbearing potential.\n\nEfficacy of preventive therapy is rarely observed immediately. Only after several weeks or months can efficacy be ascertained, so patients should be discouraged from abandoning the treatment in these early stages on the grounds of apparent inefficacy32. If a therapeutic dose of an oral preventive medication is ineffective after 2–3 months, an alternative should be tried32,61,62. For monoclonal antibody treatments that target calcitonin gene-related peptide (CGRP) or its receptor, efficacy should be assessed only after 3–6 months. For onabotulinumtoxinA, efficacy should be assessed after 6–9 months.\n",
+              "start": 1598,
+              "section": 29,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Full-text body / Step 5: Preventive treatment / Initiation and termination",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nFull-text body / Step 5: Preventive treatment / Initiation and termination\nmale and of childbearing potentialThird-line medicationBotulinum toxinOnabotulinumtoxinA155–195 units to 31–39 sites every 12 weeksInfection at injection siteCalcitonin gene-related peptide monoclonal antibodiesErenumab70 or 140 mg subcutaneous once monthlyHypersensitivityNot recommended in patients with a history of stroke, subarachnoid haemorrhage, coronary heart disease, inflammatory bowel disease, chronic obstructive pulmonary disease or impaired wound healingFremanezumab225 mg subcutaneous once monthly or 675 mg subcutaneous once quarterlyGalcanezumab240 mg subcutaneous, then 120 mg subcutaneous once monthlyEptinezumab100 or 300 mg intravenous quarterlySSRI, selective serotonin reuptake inhibitor. aSodium valproate is absolutely contraindicated in women of childbearing potential.\n\nEfficacy of preventive therapy is rarely observed immediately. Only after several weeks or months can efficacy be ascertained, so patients should be discouraged from abandoning the treatment in these early stages on the grounds of apparent inefficacy32. If a therapeutic dose of an oral preventive medication is ineffective after 2–3 months, an alternative should be tried32,61,62. For monoclonal antibody treatments that target calcitonin gene-related peptide (CGRP) or its receptor, efficacy should be assessed only after 3–6 months. For onabotulinumtoxinA, efficacy should be assessed after 6–9 months.\n"
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; tables, figures and references omitted.",
+              "retrievedAt": "2026-09-13T22:56:17.095Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+              "publicationDate": "2021"
+            },
+            "score": 0.016129032258064516,
+            "channels": [
+              "vector"
+            ],
+            "context": {
+              "before": "ptyline10–100 mg oral at nightAge <6 years, heart failure, co-administration with monoamine oxidase inhibitors and SSRIs, glaucomaCalcium antagonistFlunarizine5–10 mg oral once dailyParkinsonism, depressionAnticonvulsantSodium valproatea600–1,500 mg oral once dailyLiver disease, thrombocytopenia, fe",
+              "after": "\nFailure of one preventive treatment does not predict failure of treatment with other drug classes, except when failure is due to poor adherence. Treatment adherence is often very poor but can be improved by simplified dosing schedules (once daily or less)32. For most preventive medications, clinica"
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 21.440999999998894,
+          "embeddingMs": 1314.3439579999977,
+          "vectorMs": 41.59683400000358,
+          "totalMs": 1387.193041999999
+        },
+        "warnings": [],
+        "embeddingTokens": 10,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "97a6937780adb29ab86f9223cf296e16e05f553a2d197010663584539358df1c",
+        "query": "migraine triptan renewal eligibility",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "a39d13ec043ef20dd0392fae090a8440eb3554bb4893fe931279eab64cf30a89",
+              "end": 3001,
+              "hash": "8801af177a7c6f69faf4bfcaefc8118ff9698cc25d054aca87614618be0d8091",
+              "text": "male and of childbearing potentialThird-line medicationBotulinum toxinOnabotulinumtoxinA155–195 units to 31–39 sites every 12 weeksInfection at injection siteCalcitonin gene-related peptide monoclonal antibodiesErenumab70 or 140 mg subcutaneous once monthlyHypersensitivityNot recommended in patients with a history of stroke, subarachnoid haemorrhage, coronary heart disease, inflammatory bowel disease, chronic obstructive pulmonary disease or impaired wound healingFremanezumab225 mg subcutaneous once monthly or 675 mg subcutaneous once quarterlyGalcanezumab240 mg subcutaneous, then 120 mg subcutaneous once monthlyEptinezumab100 or 300 mg intravenous quarterlySSRI, selective serotonin reuptake inhibitor. aSodium valproate is absolutely contraindicated in women of childbearing potential.\n\nEfficacy of preventive therapy is rarely observed immediately. Only after several weeks or months can efficacy be ascertained, so patients should be discouraged from abandoning the treatment in these early stages on the grounds of apparent inefficacy32. If a therapeutic dose of an oral preventive medication is ineffective after 2–3 months, an alternative should be tried32,61,62. For monoclonal antibody treatments that target calcitonin gene-related peptide (CGRP) or its receptor, efficacy should be assessed only after 3–6 months. For onabotulinumtoxinA, efficacy should be assessed after 6–9 months.\n",
+              "start": 1598,
+              "section": 29,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Full-text body / Step 5: Preventive treatment / Initiation and termination",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nFull-text body / Step 5: Preventive treatment / Initiation and termination\nmale and of childbearing potentialThird-line medicationBotulinum toxinOnabotulinumtoxinA155–195 units to 31–39 sites every 12 weeksInfection at injection siteCalcitonin gene-related peptide monoclonal antibodiesErenumab70 or 140 mg subcutaneous once monthlyHypersensitivityNot recommended in patients with a history of stroke, subarachnoid haemorrhage, coronary heart disease, inflammatory bowel disease, chronic obstructive pulmonary disease or impaired wound healingFremanezumab225 mg subcutaneous once monthly or 675 mg subcutaneous once quarterlyGalcanezumab240 mg subcutaneous, then 120 mg subcutaneous once monthlyEptinezumab100 or 300 mg intravenous quarterlySSRI, selective serotonin reuptake inhibitor. aSodium valproate is absolutely contraindicated in women of childbearing potential.\n\nEfficacy of preventive therapy is rarely observed immediately. Only after several weeks or months can efficacy be ascertained, so patients should be discouraged from abandoning the treatment in these early stages on the grounds of apparent inefficacy32. If a therapeutic dose of an oral preventive medication is ineffective after 2–3 months, an alternative should be tried32,61,62. For monoclonal antibody treatments that target calcitonin gene-related peptide (CGRP) or its receptor, efficacy should be assessed only after 3–6 months. For onabotulinumtoxinA, efficacy should be assessed after 6–9 months.\n"
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; tables, figures and references omitted.",
+              "retrievedAt": "2026-09-13T22:56:17.095Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+              "publicationDate": "2021"
+            },
+            "score": 0.01639344262295082,
+            "channels": [
+              "vector"
+            ],
+            "context": {
+              "before": "ptyline10–100 mg oral at nightAge <6 years, heart failure, co-administration with monoamine oxidase inhibitors and SSRIs, glaucomaCalcium antagonistFlunarizine5–10 mg oral once dailyParkinsonism, depressionAnticonvulsantSodium valproatea600–1,500 mg oral once dailyLiver disease, thrombocytopenia, fe",
+              "after": "\nFailure of one preventive treatment does not predict failure of treatment with other drug classes, except when failure is due to poor adherence. Treatment adherence is often very poor but can be improved by simplified dosing schedules (once daily or less)32. For most preventive medications, clinica"
+            }
+          },
+          {
+            "chunk": {
+              "id": "bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+              "end": 1169,
+              "hash": "8e63bcc868a69d119df885e906aa5386f5c4c1d8753586d5e179796d3473711c",
+              "text": "Patients for whom over-the-counter analgesics provide inadequate headache relief should be offered a triptan. All triptans have well-documented effectiveness, but availability of and access to each vary between countries. Triptans are most effective when taken early in an attack, when the headache is still mild49,50. However, no evidence supports the use of triptans during the aura phase of a migraine attack. If one triptan is ineffective, others might still provide relief51,52. When all other triptans have failed or in patients who rapidly reach peak headache intensity or cannot take oral triptans because of vomiting, sumatriptan by subcutaneous injection can be useful53.\n\nSome patients can experience relapses, which are defined as a return of symptoms within 48 h after apparently successful treatment. Upon relapse, patients can repeat their triptan treatment or combine the triptan with simultaneous intake of fast-acting formulations of naproxen sodium, ibuprofen lysine or diclofenac potassium54,55. However, patients should be informed that repeating the treatment does not preclude further relapses and ultimately increases the risk of developing MOH.",
+              "start": 0,
+              "section": 24,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Full-text body / Step 4: Acute treatment / Second-line medication",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nFull-text body / Step 4: Acute treatment / Second-line medication\nPatients for whom over-the-counter analgesics provide inadequate headache relief should be offered a triptan. All triptans have well-documented effectiveness, but availability of and access to each vary between countries. Triptans are most effective when taken early in an attack, when the headache is still mild49,50. However, no evidence supports the use of triptans during the aura phase of a migraine attack. If one triptan is ineffective, others might still provide relief51,52. When all other triptans have failed or in patients who rapidly reach peak headache intensity or cannot take oral triptans because of vomiting, sumatriptan by subcutaneous injection can be useful53.\n\nSome patients can experience relapses, which are defined as a return of symptoms within 48 h after apparently successful treatment. Upon relapse, patients can repeat their triptan treatment or combine the triptan with simultaneous intake of fast-acting formulations of naproxen sodium, ibuprofen lysine or diclofenac potassium54,55. However, patients should be informed that repeating the treatment does not preclude further relapses and ultimately increases the risk of developing MOH."
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; tables, figures and references omitted.",
+              "retrievedAt": "2026-09-13T22:56:17.095Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+              "publicationDate": "2021"
+            },
+            "score": 0.016129032258064516,
+            "channels": [
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 22.63358299999527,
+          "embeddingMs": 948.2118340000015,
+          "vectorMs": 362.49104200000147,
+          "totalMs": 1344.4866249999977
+        },
+        "warnings": [],
+        "embeddingTokens": 8,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": {
+      "verdict": "accept",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "Priority asynchronous prescribing review fits an active usual migraine with the requested medication exhausted. No reported feature independently requires immediate emergency or same-day physical care.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get."
+            },
+            {
+              "unit": "draft",
+              "quote": "\"disposition\":\"ASYNC_PHYSICIAN\",\"reviewPriority\":\"priority\",\"workType\":\"medication_request\""
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "The draft appropriately distinguishes queue priority from physical care and does not escalate solely because this is a sumatriptan refill.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I'm out of sumatriptan and would like a refill."
+            },
+            {
+              "unit": "draft",
+              "quote": "Active symptoms plus an immediate medication interruption make this time-sensitive for remote prescribing review by Counsel."
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "The assessment reflects the reported usual symptom pattern and medication request. Unasked red flags remain unknown, and exhaustion of sumatriptan is not treated as exhaustion of every treatment option.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Thunderclap onset, focal deficit, fever/neck stiffness and trauma were not mentioned and are unknown rather than denied"
+            },
+            {
+              "unit": "patient",
+              "quote": "same one-sided throbbing and light sensitivity I always get"
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "pass",
+          "reason": "The supplied primary-guideline passage supports the narrow claim about early triptan effectiveness. The draft explicitly limits its relevance and does not use it to establish individual refill eligibility or telehealth routing. Source currency is appropriately acknowledged as unassessed.",
+          "anchors": [
+            {
+              "unit": "source:bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+              "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild"
+            },
+            {
+              "unit": "draft",
+              "quote": "Concerns drug timing only; says nothing about care setting, refill eligibility or contraindication screening for this patient."
+            },
+            {
+              "unit": "draft",
+              "quote": "currency not assessed"
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "pass",
+          "reason": "The response provides explicit emergency transport and immediate ED instructions for concerning new features, without allowing messaging review to delay emergency care.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Call 911 for sudden worst-ever headache or new weakness, numbness, speech or vision changes or confusion."
+            },
+            {
+              "unit": "draft",
+              "quote": "Go to an ED immediately for fever with neck stiffness, or headache after head injury — don't wait for messaging review."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No clarification blocks routing. Missing prescribing history is appropriately left for clinician assessment rather than made a prerequisite for initial review.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"questions\":[]"
+            },
+            {
+              "unit": "draft",
+              "quote": "Counsel decides refill eligibility and any follow-up"
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "Counsel retains responsibility for prescribing and follow-up decisions. The response recommends review without claiming a completed handoff, guaranteed timing, or resolution.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Counsel decides refill eligibility and any follow-up; I can't prescribe, confirm receipt or promise timing."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "none",
+      "earlyCorrection": null,
+      "correction": ""
+    },
+    "release": "clinician_required",
+    "clinicalApproval": false,
+    "corrections": 1,
+    "sourceIntegrity": true
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "counsel-disposition-agent",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "38e9e982-eb92-4385-8c50-9196ee14cbf8",
+  "traceId": "30400ee2a6b6c06af511bfde489541c8",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "40F. My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get. I'm out of sumatriptan and would like a refill.",
+  "inputHash": "0ede5c086d3ea812a589febf64e2b33fcde3c4795b2b686a9b02453986a0b81e",
+  "answerHash": "cba974fa31aa7cbe32221e2fa46d98fb1c431b3736588d2d962326d54a596a32",
+  "promptHash": "df7d98d90103753cb8bf1af159bec02210f210dfdf7383fb5bda02f74c594acf",
+  "guidanceHash": "eaca6ef49357b4df51fd9a913dfb01e48946358ece698f24195c7d99311101f4",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-13T23:16:06.523Z",
+  "durationMs": 78288,
+  "workflowDurationMs": 78173,
+  "tracePersistenceDurationMs": 115,
+  "steps": [
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 11426
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 29889
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 48251
+    }
+  ],
+  "responseEvents": [],
+  "safetyNotices": [],
+  "firstActionMs": null,
+  "firstPatientReplyMs": null,
+  "firstQuestionMs": null
+}

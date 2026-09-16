@@ -1,0 +1,156 @@
+{
+  "output": {
+    "reviewScope": "draft-and-issued-question/v2",
+    "verdict": "revise",
+    "criteria": [
+      {
+        "id": "undertriage",
+        "verdict": "pass",
+        "reason": "An active usual migraine with sumatriptan exhausted supports prescribing review today starting in messaging. No reported finding establishes a mandatory physical encounter; onset remains unknown and must not be treated as cleared.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "I'm out of sumatriptan and would like a refill."
+          },
+          {
+            "unit": "draft",
+            "quote": "I recommend a Counsel clinician review your refill request in this thread today"
+          }
+        ]
+      },
+      {
+        "id": "overtriage",
+        "verdict": "pass",
+        "reason": "Priority messaging meets the time-sensitive medication-access need without imposing unnecessary physical care. The same-day alternative is conditional on inability to obtain review, not an automatic physical-care requirement.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "If today's review can't be obtained, seek a same-day option for rescue treatment."
+          },
+          {
+            "unit": "patient",
+            "quote": "My usual migraine started this morning"
+          }
+        ]
+      },
+      {
+        "id": "patient_grounding",
+        "verdict": "fail",
+        "reason": "The draft converts a hypothetical gradual onset into a patient finding in the reason and differential and falsely marks thunderclap onset denied. The patient explicitly says onset has not been described.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "I have not said how it began."
+          },
+          {
+            "unit": "draft",
+            "quote": "Active attack matching her usual migraine pattern with gradual onset"
+          },
+          {
+            "unit": "draft",
+            "quote": "Less likely secondary headache given gradual onset typical of prior attacks"
+          }
+        ]
+      },
+      {
+        "id": "claim_support",
+        "verdict": "fail",
+        "reason": "The source supports gradual onset as a typical migraine feature, not its occurrence in this attack. The citation's case-specific claim and applicable label improperly extend that general description to an explicitly unknown onset.",
+        "anchors": [
+          {
+            "unit": "source:5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+            "quote": "A migraine usually starts gradually and then becomes more severe."
+          },
+          {
+            "unit": "draft",
+            "quote": "Migraine typically starts gradually with throbbing one-sided pain and light sensitivity, consistent with the reported attack."
+          },
+          {
+            "unit": "patient",
+            "quote": "I have not said how it began."
+          }
+        ]
+      },
+      {
+        "id": "safety_net",
+        "verdict": "fail",
+        "reason": "Emergency advice covers only a sudden headache that develops subsequently. Because this attack's onset is explicitly unknown, the message should also direct immediate emergency assessment if the current headache began suddenly and reached maximum intensity within seconds, without waiting for messaging review.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Call 911 if you develop new weakness, trouble speaking, or a sudden worst-ever headache."
+          },
+          {
+            "unit": "patient",
+            "quote": "I have not said how it began."
+          },
+          {
+            "unit": "source:7408fb0ff3fc2f3710ff81646d2e5720a318f0bc05ca1f025cd52bdd709cee56",
+            "quote": "\"Worst headache of my life\" — sudden onset, maximal intensity within seconds to one minute (thunderclap headache)"
+          }
+        ]
+      },
+      {
+        "id": "clarification_delay",
+        "verdict": "pass",
+        "reason": "No issued question or instruction to wait for an answer is present. The onset clarification can accompany review and immediate conditional emergency guidance.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "\"questions\":[]"
+          }
+        ]
+      },
+      {
+        "id": "ownership",
+        "verdict": "pass",
+        "reason": "Counsel review is recommended rather than promised, with an actionable access fallback and no invented acceptance or prescribing.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "I recommend a Counsel clinician review your refill request in this thread today"
+          },
+          {
+            "unit": "draft",
+            "quote": "If today's review can't be obtained, seek a same-day option for rescue treatment."
+          }
+        ]
+      }
+    ],
+    "earlyAction": "none",
+    "earlyCorrection": null,
+    "ownershipTaskReview": [],
+    "correction": "Retain priority medication-request review. Remove asserted gradual onset from reason and differential; mark thunderclap onset unknown in redFlags. Limit citation applicability to reported one-sided throbbing and light sensitivity, explicitly leaving onset unknown. In patientMessage clarify onset and state that sudden maximal onset of this current headache requires emergency assessment now without waiting for a reply; retain the existing new-neurologic-symptom precautions and access fallback.",
+    "repairTargets": [
+      "patientMessage",
+      "reason",
+      "differential",
+      "redFlags",
+      "citations"
+    ],
+    "evidenceQueries": []
+  },
+  "usage": {
+    "inputTokens": 10146,
+    "outputTokens": 1132
+  },
+  "failure": null,
+  "firstTextDeltaMs": 2557,
+  "streamProgress": {
+    "lastTextDeltaMs": 20832,
+    "textDeltaCount": 1125,
+    "textCharacters": 4970
+  },
+  "transportTimings": {
+    "startResolvedMs": 4,
+    "objectResolvedMs": 20899,
+    "usageResolvedMs": 20957,
+    "finishReasonResolvedMs": 20957,
+    "streamEndMs": 20957
+  },
+  "cacheUsage": {
+    "cachedInputTokens": 4918,
+    "cacheCreationInputTokens": 5225
+  },
+  "durationMs": 20957
+}

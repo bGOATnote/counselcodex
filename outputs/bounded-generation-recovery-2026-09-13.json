@@ -1,0 +1,1210 @@
+{
+  "version": "bounded-generation-recovery-incident/v1",
+  "date": "2026-09-13",
+  "purpose": "Incident repair and actual GUI verification; not a clinical benchmark",
+  "originalFailure": {
+    "case": "C15",
+    "runId": "47ab984b-1f09-46bf-bd42-f36cc425669f",
+    "workflow": "adaptive-disposition/v38",
+    "durationMs": 53927,
+    "finalAttemptMs": 50004,
+    "lastDeltaMs": 49970,
+    "failure": "MODEL_TIMEOUT",
+    "interpretation": "The final model was still emitting at the application deadline. No claim about the provider's internal cause."
+  },
+  "protocol": {
+    "provider": "Opus 5 medium final; Haiku 4.5 intake; Astra independent background review",
+    "versions": [
+      "adaptive-disposition/v39",
+      "adaptive-disposition/v40"
+    ],
+    "policy": {
+      "version": "bounded-hedge/v1",
+      "hedgeAfterMs": 12000,
+      "attemptTimeoutMs": 24000,
+      "totalTimeoutMs": 32000,
+      "maxAttempts": 2
+    },
+    "scope": "Manual GUI adaptive profile only; experimental budgets do not enable recovery",
+    "wireChange": "One citation record expands into existing evidence/support fields; no case-critical field or supporting passage removed",
+    "admission": "First complete transport candidate undergoes existing validation; never retry a clinical rejection to search for a passing answer",
+    "limitations": "Same-provider attempts may fail together. Live retrieval varies. Nonrandomized repeated cases, all failures retained; no causal latency or clinical-accuracy claim."
+  },
+  "totals": {
+    "knownGenerationEstimateUSD": 0.808116,
+    "unknownGenerationCalls": 9,
+    "knownJudgeEstimateUSD": 1.03744,
+    "recoverySelectedCount": 0,
+    "conservativeAllowancePerUnknownCancelledCallUSD": 0.4,
+    "conservativeWorkingEstimateIncludingUnknownsUSD": 5.445556,
+    "accountingLimitation": "Standard token estimates, not an invoice. Cancelled call usage remains unknown; $0.40 each is a planning allowance, not measured cost or a provider-enforced cap. No ledgers or credits reset."
+  },
+  "software": {
+    "rootTests": 344,
+    "guiTests": 124,
+    "lint": "pass",
+    "typecheck": "pass",
+    "nextBuild": "pass",
+    "mastraBuild": "pass"
+  },
+  "rows": [
+    {
+      "runId": "731ab22a-97c1-4867-ab77-a50e53238f81",
+      "workflow": "adaptive-disposition/v39",
+      "runArtifactSha256": "3a63b9cb847964fa04a000d1aaea51d75780f31ab3517bc0f7dd34d2b6c1aba7",
+      "inputHash": "fa387f9f80425cdbe67ae7870daa5be6eaec945e2203efb8129aaa514c37c934",
+      "answerHash": "35a8df03e1531c6e26277e3403652ad4abd3850b73a76c1fd22c5218d0937af7",
+      "completedAt": "2026-09-13T14:21:14.236Z",
+      "case": "C15",
+      "status": "complete",
+      "failure": null,
+      "route": "ASYNC_PHYSICIAN",
+      "priority": "routine",
+      "durationMs": 20501,
+      "firstActionMs": null,
+      "firstQuestionMs": null,
+      "firstOpeningMs": null,
+      "modelCalls": 3,
+      "tracePersisted": true,
+      "artifactPersisted": true,
+      "eventLogPersisted": true,
+      "failedChecks": [],
+      "safetyNotices": [],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 2807,
+            "outputTokens": 73
+          },
+          "failure": null,
+          "firstTextDeltaMs": 2100,
+          "streamProgress": {
+            "lastTextDeltaMs": 2543,
+            "textDeltaCount": 18,
+            "textCharacters": 266
+          },
+          "durationMs": 2583,
+          "knownEstimateUSD": 0.003172
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 10722,
+            "outputTokens": 823
+          },
+          "failure": null,
+          "firstTextDeltaMs": 4277,
+          "streamProgress": {
+            "lastTextDeltaMs": 14474,
+            "textDeltaCount": 174,
+            "textCharacters": 2365
+          },
+          "durationMs": 14549,
+          "attempt": {
+            "number": 1,
+            "offsetMs": 0,
+            "selected": true,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": 0.074185
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": null,
+            "outputTokens": null
+          },
+          "failure": "GENERATION_SUPERSEDED",
+          "firstTextDeltaMs": 1846,
+          "streamProgress": {
+            "lastTextDeltaMs": 2522,
+            "textDeltaCount": 13,
+            "textCharacters": 127
+          },
+          "durationMs": 2548,
+          "failureDetails": {
+            "stage": "stream",
+            "finishReason": null,
+            "httpStatus": null
+          },
+          "attempt": {
+            "number": 2,
+            "offsetMs": 12002,
+            "selected": false,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": null
+        }
+      ],
+      "judge": {
+        "state": "complete",
+        "error": null,
+        "reservedUSD": 1.25,
+        "usage": {
+          "inputTokens": 3985,
+          "outputTokens": 1278
+        },
+        "estimatedUSD": 0.10375,
+        "findings": [
+          {
+            "id": "research_support",
+            "verdict": "fail",
+            "reason": "The actual passage supports asymptomatic infection, discussing testing with a clinician, genital/anal sampling, and blood tests. It does not support the attributed oral-site swab claim. This is a citation-support defect, not a finding that oral testing is clinically inappropriate."
+          }
+        ]
+      }
+    },
+    {
+      "runId": "d501243b-5277-4a9a-8402-5507121dd44f",
+      "workflow": "adaptive-disposition/v39",
+      "runArtifactSha256": "3ecdf5f579ea7814bc83e32dc577de8d08f034c1f81a8be163734ec6975ef95e",
+      "inputHash": "fa387f9f80425cdbe67ae7870daa5be6eaec945e2203efb8129aaa514c37c934",
+      "answerHash": "ca7a61cf68b74cc65929f571ab2fdcd43c72ff71fefc1cacca335f3b1b8d37a1",
+      "completedAt": "2026-09-13T14:24:19.751Z",
+      "case": "C15",
+      "status": "complete",
+      "failure": null,
+      "route": "ASYNC_PHYSICIAN",
+      "priority": "routine",
+      "durationMs": 19851,
+      "firstActionMs": null,
+      "firstQuestionMs": null,
+      "firstOpeningMs": null,
+      "modelCalls": 3,
+      "tracePersisted": true,
+      "artifactPersisted": true,
+      "eventLogPersisted": true,
+      "failedChecks": [],
+      "safetyNotices": [],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 2807,
+            "outputTokens": 70
+          },
+          "failure": null,
+          "firstTextDeltaMs": 1036,
+          "streamProgress": {
+            "lastTextDeltaMs": 1545,
+            "textDeltaCount": 21,
+            "textCharacters": 239
+          },
+          "durationMs": 1555,
+          "knownEstimateUSD": 0.003157
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 10668,
+            "outputTokens": 1054
+          },
+          "failure": null,
+          "firstTextDeltaMs": 5242,
+          "streamProgress": {
+            "lastTextDeltaMs": 15776,
+            "textDeltaCount": 180,
+            "textCharacters": 2349
+          },
+          "durationMs": 15856,
+          "attempt": {
+            "number": 1,
+            "offsetMs": 0,
+            "selected": true,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": 0.07969
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": null,
+            "outputTokens": null
+          },
+          "failure": "GENERATION_SUPERSEDED",
+          "firstTextDeltaMs": 3394,
+          "streamProgress": {
+            "lastTextDeltaMs": 3798,
+            "textDeltaCount": 8,
+            "textCharacters": 85
+          },
+          "durationMs": 3856,
+          "failureDetails": {
+            "stage": "stream",
+            "finishReason": null,
+            "httpStatus": null
+          },
+          "attempt": {
+            "number": 2,
+            "offsetMs": 12001,
+            "selected": false,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": null
+        }
+      ],
+      "judge": {
+        "state": "complete",
+        "error": null,
+        "reservedUSD": 1.25,
+        "usage": {
+          "inputTokens": 4177,
+          "outputTokens": 1487
+        },
+        "estimatedUSD": 0.11612,
+        "findings": [
+          {
+            "id": "safety_netting",
+            "verdict": "fail",
+            "reason": "Both patient-facing emissions tell someone with a very recent exposure only to report it promptly. They omit the conditional need for urgent PEP assessment after possible HIV exposure within 72 hours and provide no alternative if asynchronous review is unavailable. This is a precaution gap, not evidence that this patient currently requires emergency care."
+          }
+        ]
+      }
+    },
+    {
+      "runId": "69b3d50d-0f67-48bc-a78b-96fe66a0d302",
+      "workflow": "adaptive-disposition/v39",
+      "runArtifactSha256": "47080fedc0eb6ec16bbafd671c4573a3328417d46a2a8f38bfa42226e64ebe0f",
+      "inputHash": "ee6712674a9bc0bd48c18f70b13c21e4d9d488e78387471c1ed8b07ec67eaec5",
+      "answerHash": null,
+      "completedAt": "2026-09-13T14:26:35.478Z",
+      "case": "C15 + synthetic six-week update",
+      "status": "unavailable",
+      "failure": "ANSWER_CONTRACT_FAILED",
+      "route": null,
+      "priority": null,
+      "durationMs": 25471,
+      "firstActionMs": null,
+      "firstQuestionMs": null,
+      "firstOpeningMs": null,
+      "modelCalls": 3,
+      "tracePersisted": true,
+      "artifactPersisted": true,
+      "eventLogPersisted": true,
+      "failedChecks": [
+        {
+          "id": "quoted_patient_evidence",
+          "status": "fail",
+          "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+        }
+      ],
+      "safetyNotices": [],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 2882,
+            "outputTokens": 78
+          },
+          "failure": null,
+          "firstTextDeltaMs": 1959,
+          "streamProgress": {
+            "lastTextDeltaMs": 3771,
+            "textDeltaCount": 67,
+            "textCharacters": 279
+          },
+          "durationMs": 3812,
+          "knownEstimateUSD": 0.003272
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 10700,
+            "outputTokens": 979
+          },
+          "failure": null,
+          "firstTextDeltaMs": 3539,
+          "streamProgress": {
+            "lastTextDeltaMs": 19261,
+            "textDeltaCount": 268,
+            "textCharacters": 2440
+          },
+          "durationMs": 19404,
+          "attempt": {
+            "number": 1,
+            "offsetMs": 0,
+            "selected": true,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": 0.077975
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": null,
+            "outputTokens": null
+          },
+          "failure": "GENERATION_SUPERSEDED",
+          "firstTextDeltaMs": 5899,
+          "streamProgress": {
+            "lastTextDeltaMs": 7372,
+            "textDeltaCount": 26,
+            "textCharacters": 339
+          },
+          "durationMs": 7403,
+          "failureDetails": {
+            "stage": "stream",
+            "finishReason": null,
+            "httpStatus": null
+          },
+          "attempt": {
+            "number": 2,
+            "offsetMs": 12002,
+            "selected": false,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": null
+        }
+      ],
+      "judge": {
+        "state": "complete",
+        "error": null,
+        "reservedUSD": 1.25,
+        "usage": {
+          "inputTokens": 1672,
+          "outputTokens": 784
+        },
+        "estimatedUSD": 0.05592,
+        "findings": [
+          {
+            "id": "undertriage",
+            "verdict": "abstain",
+            "reason": "No clinical response is available to assess. The reported asymptomatic contact six weeks ago does not itself establish missed time-critical care."
+          },
+          {
+            "id": "overtriage",
+            "verdict": "abstain",
+            "reason": "No disposition or escalation instruction was recorded, so proportionality cannot be assessed."
+          },
+          {
+            "id": "setting_timing",
+            "verdict": "fail",
+            "reason": "The output is incomplete: it provides no operational route, review priority, work type, or actionable next step for the screening request. Naming the routing policy does not constitute a disposition."
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "abstain",
+            "reason": "There is no substantive patient-facing answer or clinical reasoning to check against the reported facts."
+          },
+          {
+            "id": "research_support",
+            "verdict": "abstain",
+            "reason": "No medical claims, citations, or source passages are available for semantic assessment."
+          },
+          {
+            "id": "safety_netting",
+            "verdict": "abstain",
+            "reason": "No safety instructions were preserved. Their specificity and proportionality cannot be assessed from an unavailable answer."
+          },
+          {
+            "id": "clarification",
+            "verdict": "abstain",
+            "reason": "No clarification question or awaiting-input hold was recorded; there are no proposed answer branches or delay rationale to evaluate."
+          }
+        ]
+      }
+    },
+    {
+      "runId": "744b2c78-b6a5-43d6-a05d-1025fa13aa70",
+      "workflow": "adaptive-disposition/v40",
+      "runArtifactSha256": "a4ce2265188c4c3bb284f00d133fcef3d53eacc4a34ef71c95ad6a80d4e182ca",
+      "inputHash": "fa387f9f80425cdbe67ae7870daa5be6eaec945e2203efb8129aaa514c37c934",
+      "answerHash": "b25a1086b658d2f6e13fcd5c70dd67c4c25a6a8aa6e17ad311933ebfb2047b2f",
+      "completedAt": "2026-09-13T14:36:58.621Z",
+      "case": "C15",
+      "status": "complete",
+      "failure": null,
+      "route": "ASYNC_PHYSICIAN",
+      "priority": "routine",
+      "durationMs": 24911,
+      "firstActionMs": null,
+      "firstQuestionMs": null,
+      "firstOpeningMs": null,
+      "modelCalls": 3,
+      "tracePersisted": true,
+      "artifactPersisted": true,
+      "eventLogPersisted": true,
+      "failedChecks": [],
+      "safetyNotices": [],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 2807,
+            "outputTokens": 72
+          },
+          "failure": null,
+          "firstTextDeltaMs": 1698,
+          "streamProgress": {
+            "lastTextDeltaMs": 1998,
+            "textDeltaCount": 19,
+            "textCharacters": 266
+          },
+          "durationMs": 2033,
+          "knownEstimateUSD": 0.003167
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 10777,
+            "outputTokens": 978
+          },
+          "failure": null,
+          "firstTextDeltaMs": 4285,
+          "streamProgress": {
+            "lastTextDeltaMs": 20260,
+            "textDeltaCount": 273,
+            "textCharacters": 2487
+          },
+          "durationMs": 20433,
+          "attempt": {
+            "number": 1,
+            "offsetMs": 0,
+            "selected": true,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": 0.078335
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": null,
+            "outputTokens": null
+          },
+          "failure": "GENERATION_SUPERSEDED",
+          "firstTextDeltaMs": 1719,
+          "streamProgress": {
+            "lastTextDeltaMs": 8383,
+            "textDeltaCount": 114,
+            "textCharacters": 1517
+          },
+          "durationMs": 8430,
+          "failureDetails": {
+            "stage": "stream",
+            "finishReason": null,
+            "httpStatus": null
+          },
+          "attempt": {
+            "number": 2,
+            "offsetMs": 12002,
+            "selected": false,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": null
+        }
+      ],
+      "judge": {
+        "state": "complete",
+        "error": null,
+        "reservedUSD": 1.25,
+        "usage": {
+          "inputTokens": 3917,
+          "outputTokens": 1358
+        },
+        "estimatedUSD": 0.10707,
+        "findings": []
+      }
+    },
+    {
+      "runId": "e732e21c-e490-4acf-9eef-260b5d8ad424",
+      "workflow": "adaptive-disposition/v40",
+      "runArtifactSha256": "54170e903262eab0a3664fb71cabb9a8e63369e83edfeb1bfe53e142613bab32",
+      "inputHash": "ee6712674a9bc0bd48c18f70b13c21e4d9d488e78387471c1ed8b07ec67eaec5",
+      "answerHash": "d429e8406e31b27ca5632739e62cf9cd0e9a0779bdb2ba0b59a6857360ed196d",
+      "completedAt": "2026-09-13T14:42:03.610Z",
+      "case": "C15 + synthetic six-week update",
+      "status": "complete",
+      "failure": null,
+      "route": "ASYNC_PHYSICIAN",
+      "priority": "routine",
+      "durationMs": 25482,
+      "firstActionMs": null,
+      "firstQuestionMs": null,
+      "firstOpeningMs": null,
+      "modelCalls": 3,
+      "tracePersisted": true,
+      "artifactPersisted": true,
+      "eventLogPersisted": true,
+      "failedChecks": [],
+      "safetyNotices": [],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 2882,
+            "outputTokens": 76
+          },
+          "failure": null,
+          "firstTextDeltaMs": 1750,
+          "streamProgress": {
+            "lastTextDeltaMs": 3467,
+            "textDeltaCount": 65,
+            "textCharacters": 275
+          },
+          "durationMs": 3649,
+          "knownEstimateUSD": 0.003262
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 10743,
+            "outputTokens": 927
+          },
+          "failure": null,
+          "firstTextDeltaMs": 2940,
+          "streamProgress": {
+            "lastTextDeltaMs": 20101,
+            "textDeltaCount": 292,
+            "textCharacters": 2430
+          },
+          "durationMs": 20278,
+          "attempt": {
+            "number": 1,
+            "offsetMs": 0,
+            "selected": true,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": 0.07689
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": null,
+            "outputTokens": null
+          },
+          "failure": "GENERATION_SUPERSEDED",
+          "firstTextDeltaMs": 3574,
+          "streamProgress": {
+            "lastTextDeltaMs": 8223,
+            "textDeltaCount": 80,
+            "textCharacters": 1037
+          },
+          "durationMs": 8276,
+          "failureDetails": {
+            "stage": "stream",
+            "finishReason": null,
+            "httpStatus": null
+          },
+          "attempt": {
+            "number": 2,
+            "offsetMs": 12002,
+            "selected": false,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": null
+        }
+      ],
+      "judge": {
+        "state": "complete",
+        "error": null,
+        "reservedUSD": 1.25,
+        "usage": {
+          "inputTokens": 3476,
+          "outputTokens": 1311
+        },
+        "estimatedUSD": 0.10031,
+        "findings": []
+      }
+    },
+    {
+      "runId": "bfddfc4f-a932-4f0b-8798-265bdba9ce91",
+      "workflow": "adaptive-disposition/v40",
+      "runArtifactSha256": "89c9aec19b9fce61cf034545d7922d34ad637b600a55891ae386ea22cd564bb2",
+      "inputHash": "30c31683c0c03b5a432fcd86d71ac7ae66522a79b2f948dad068a99f33c18447",
+      "answerHash": "3da329212ef77d4e4bdfeb60bf970b1da2f4f48ed747415a4fe6e48fca71af61",
+      "completedAt": "2026-09-13T14:42:50.527Z",
+      "case": "C08",
+      "status": "complete",
+      "failure": null,
+      "route": "EMERGENCY_NOW",
+      "priority": null,
+      "durationMs": 22073,
+      "firstActionMs": 7,
+      "firstQuestionMs": null,
+      "firstOpeningMs": null,
+      "modelCalls": 3,
+      "tracePersisted": true,
+      "artifactPersisted": true,
+      "eventLogPersisted": true,
+      "failedChecks": [],
+      "safetyNotices": [
+        {
+          "disposition": "EMERGENCY_NOW",
+          "directive": "A thunderclap headache can signal bleeding around the brain. Go to the emergency department now. Do not wait for a message reply or vital-sign measurements.",
+          "source": "initial_screen",
+          "elapsedMs": 12
+        },
+        {
+          "disposition": "EMERGENCY_NOW",
+          "directive": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.",
+          "source": "emergency_agent",
+          "elapsedMs": 3819
+        },
+        {
+          "disposition": "EMERGENCY_NOW",
+          "directive": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.",
+          "source": "emergency_agent",
+          "elapsedMs": 22021
+        }
+      ],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 2869,
+            "outputTokens": 92
+          },
+          "failure": null,
+          "firstTextDeltaMs": 1574,
+          "streamProgress": {
+            "lastTextDeltaMs": 3704,
+            "textDeltaCount": 83,
+            "textCharacters": 281
+          },
+          "durationMs": 3799,
+          "knownEstimateUSD": 0.003329
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 10425,
+            "outputTokens": 1124
+          },
+          "failure": null,
+          "firstTextDeltaMs": 1762,
+          "streamProgress": {
+            "lastTextDeltaMs": 14669,
+            "textDeltaCount": 220,
+            "textCharacters": 3151
+          },
+          "durationMs": 14796,
+          "attempt": {
+            "number": 1,
+            "offsetMs": 0,
+            "selected": true,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": 0.080225
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": null,
+            "outputTokens": null
+          },
+          "failure": "GENERATION_SUPERSEDED",
+          "firstTextDeltaMs": 1909,
+          "streamProgress": {
+            "lastTextDeltaMs": 2785,
+            "textDeltaCount": 15,
+            "textCharacters": 184
+          },
+          "durationMs": 2795,
+          "failureDetails": {
+            "stage": "stream",
+            "finishReason": null,
+            "httpStatus": null
+          },
+          "attempt": {
+            "number": 2,
+            "offsetMs": 12001,
+            "selected": false,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": null
+        }
+      ],
+      "judge": {
+        "state": "complete",
+        "error": null,
+        "reservedUSD": 1.25,
+        "usage": {
+          "inputTokens": 4312,
+          "outputTokens": 1419
+        },
+        "estimatedUSD": 0.11407,
+        "findings": []
+      }
+    },
+    {
+      "runId": "dc18f8db-1236-4ca5-8525-dc67b13fa3a2",
+      "workflow": "adaptive-disposition/v40",
+      "runArtifactSha256": "f66f6fb086ecb85f5b8e69879adc3566278da5ceae7fed62e7ff08f7188cba5c",
+      "inputHash": "4d307ea5fff71d10992dfebb600c1d805c5bbc88fef2a39c94515cf4eb8855d1",
+      "answerHash": "5de35bdda6d85f847ccf0f6f54d82200d9fb2ead699499aaf66e1e343df6ce5a",
+      "completedAt": "2026-09-13T14:43:36.949Z",
+      "case": "C04",
+      "status": "complete",
+      "failure": null,
+      "route": "SAME_DAY_IN_PERSON",
+      "priority": null,
+      "durationMs": 21218,
+      "firstActionMs": 2050,
+      "firstQuestionMs": null,
+      "firstOpeningMs": null,
+      "modelCalls": 3,
+      "tracePersisted": true,
+      "artifactPersisted": true,
+      "eventLogPersisted": true,
+      "failedChecks": [],
+      "safetyNotices": [
+        {
+          "disposition": "SAME_DAY_IN_PERSON",
+          "directive": "Arrange an in-person assessment today. Do not wait for an asynchronous reply. If you cannot arrange this, seek an urgent in-person service today.",
+          "source": "emergency_agent",
+          "elapsedMs": 2056
+        },
+        {
+          "disposition": "SAME_DAY_IN_PERSON",
+          "directive": "Arrange an in-person assessment today. Do not wait for an asynchronous reply. If you cannot arrange this, seek an urgent in-person service today.",
+          "source": "emergency_agent",
+          "elapsedMs": 21175
+        }
+      ],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 2873,
+            "outputTokens": 130
+          },
+          "failure": null,
+          "firstTextDeltaMs": 774,
+          "streamProgress": {
+            "lastTextDeltaMs": 2024,
+            "textDeltaCount": 47,
+            "textCharacters": 494
+          },
+          "durationMs": 2042,
+          "knownEstimateUSD": 0.003523
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 10654,
+            "outputTokens": 960
+          },
+          "failure": null,
+          "firstTextDeltaMs": 1740,
+          "streamProgress": {
+            "lastTextDeltaMs": 16935,
+            "textDeltaCount": 258,
+            "textCharacters": 2735
+          },
+          "durationMs": 17062,
+          "attempt": {
+            "number": 1,
+            "offsetMs": 0,
+            "selected": true,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": 0.07727
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": null,
+            "outputTokens": null
+          },
+          "failure": "GENERATION_SUPERSEDED",
+          "firstTextDeltaMs": 1394,
+          "streamProgress": {
+            "lastTextDeltaMs": 5034,
+            "textDeltaCount": 63,
+            "textCharacters": 833
+          },
+          "durationMs": 5061,
+          "failureDetails": {
+            "stage": "stream",
+            "finishReason": null,
+            "httpStatus": null
+          },
+          "attempt": {
+            "number": 2,
+            "offsetMs": 12001,
+            "selected": false,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": null
+        }
+      ],
+      "judge": {
+        "state": "complete",
+        "error": null,
+        "reservedUSD": 1.25,
+        "usage": {
+          "inputTokens": 5381,
+          "outputTokens": 1414
+        },
+        "estimatedUSD": 0.12451,
+        "findings": [
+          {
+            "id": "research_support",
+            "verdict": "fail",
+            "reason": "The passages support prompt assessment and the cited general infection risks. However, neither supports the categorical instruction that this particular cut must be probed today; examination should determine whether probing is indicated."
+          }
+        ]
+      }
+    },
+    {
+      "runId": "15f0fbab-4e7c-4a63-8010-f5f468281cf6",
+      "workflow": "adaptive-disposition/v40",
+      "runArtifactSha256": "88d8b403d1d55a83a897516e510354b8a24d55e046054cc118149823ae774506",
+      "inputHash": "0ede5c086d3ea812a589febf64e2b33fcde3c4795b2b686a9b02453986a0b81e",
+      "answerHash": "85a0aa8f3fe02cd466d7556c6284a0f53ab2269a3b2046d8e0dcd18cb1f3da80",
+      "completedAt": "2026-09-13T14:45:20.462Z",
+      "case": "C50",
+      "status": "complete",
+      "failure": null,
+      "route": "ASYNC_PHYSICIAN",
+      "priority": "priority",
+      "durationMs": 20305,
+      "firstActionMs": null,
+      "firstQuestionMs": null,
+      "firstOpeningMs": 3486,
+      "modelCalls": 3,
+      "tracePersisted": true,
+      "artifactPersisted": true,
+      "eventLogPersisted": true,
+      "failedChecks": [],
+      "safetyNotices": [],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 2843,
+            "outputTokens": 75
+          },
+          "failure": null,
+          "firstTextDeltaMs": 1643,
+          "streamProgress": {
+            "lastTextDeltaMs": 3317,
+            "textDeltaCount": 64,
+            "textCharacters": 246
+          },
+          "durationMs": 3477,
+          "knownEstimateUSD": 0.003218
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 10794,
+            "outputTokens": 953
+          },
+          "failure": null,
+          "firstTextDeltaMs": 1810,
+          "streamProgress": {
+            "lastTextDeltaMs": 12573,
+            "textDeltaCount": 184,
+            "textCharacters": 2743
+          },
+          "durationMs": 12710,
+          "attempt": {
+            "number": 1,
+            "offsetMs": 0,
+            "selected": true,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": 0.077795
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": null,
+            "outputTokens": null
+          },
+          "failure": "GENERATION_SUPERSEDED",
+          "firstTextDeltaMs": null,
+          "streamProgress": {
+            "lastTextDeltaMs": null,
+            "textDeltaCount": 0,
+            "textCharacters": 0
+          },
+          "durationMs": 708,
+          "failureDetails": {
+            "stage": "stream",
+            "finishReason": null,
+            "httpStatus": null
+          },
+          "attempt": {
+            "number": 2,
+            "offsetMs": 12002,
+            "selected": false,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": null
+        }
+      ],
+      "judge": {
+        "state": "complete",
+        "error": null,
+        "reservedUSD": 1.25,
+        "usage": {
+          "inputTokens": 4947,
+          "outputTokens": 1321
+        },
+        "estimatedUSD": 0.11552,
+        "findings": [
+          {
+            "id": "safety_netting",
+            "verdict": "fail",
+            "reason": "Warnings are specific and appropriately say to act now, but both displayed versions leave emergency transport unspecified. New weakness or speech changes should explicitly trigger 911 rather than only generic emergency-care advice."
+          }
+        ]
+      }
+    },
+    {
+      "runId": "fd0a063f-52aa-43a2-bfd9-666f5fc85d05",
+      "workflow": "adaptive-disposition/v40",
+      "runArtifactSha256": "33707cf41abce1ba791355e3e6ee914e71b29053b9c87fe1b7b07e6f6e78652a",
+      "inputHash": "fa387f9f80425cdbe67ae7870daa5be6eaec945e2203efb8129aaa514c37c934",
+      "answerHash": "f162584860d1d5a48711548e4b62f4bd87892e3c142d643d5d2c55e9f8438b29",
+      "completedAt": "2026-09-13T14:46:42.978Z",
+      "case": "C15",
+      "status": "complete",
+      "failure": null,
+      "route": "ASYNC_PHYSICIAN",
+      "priority": "routine",
+      "durationMs": 15385,
+      "firstActionMs": null,
+      "firstQuestionMs": null,
+      "firstOpeningMs": null,
+      "modelCalls": 3,
+      "tracePersisted": true,
+      "artifactPersisted": true,
+      "eventLogPersisted": true,
+      "failedChecks": [],
+      "safetyNotices": [],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 2807,
+            "outputTokens": 75
+          },
+          "failure": null,
+          "firstTextDeltaMs": 971,
+          "streamProgress": {
+            "lastTextDeltaMs": 1556,
+            "textDeltaCount": 21,
+            "textCharacters": 278
+          },
+          "durationMs": 1565,
+          "knownEstimateUSD": 0.003182
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 10636,
+            "outputTokens": 922
+          },
+          "failure": null,
+          "firstTextDeltaMs": 3119,
+          "streamProgress": {
+            "lastTextDeltaMs": 12683,
+            "textDeltaCount": 164,
+            "textCharacters": 2332
+          },
+          "durationMs": 12752,
+          "attempt": {
+            "number": 1,
+            "offsetMs": 0,
+            "selected": true,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": 0.07623
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": null,
+            "outputTokens": null
+          },
+          "failure": "GENERATION_SUPERSEDED",
+          "firstTextDeltaMs": null,
+          "streamProgress": {
+            "lastTextDeltaMs": null,
+            "textDeltaCount": 0,
+            "textCharacters": 0
+          },
+          "durationMs": 750,
+          "failureDetails": {
+            "stage": "stream",
+            "finishReason": null,
+            "httpStatus": null
+          },
+          "attempt": {
+            "number": 2,
+            "offsetMs": 12002,
+            "selected": false,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": null
+        }
+      ],
+      "judge": {
+        "state": "complete",
+        "error": null,
+        "reservedUSD": 1.25,
+        "usage": {
+          "inputTokens": 3412,
+          "outputTokens": 1413
+        },
+        "estimatedUSD": 0.10477,
+        "findings": []
+      }
+    },
+    {
+      "runId": "a999872d-93bc-46c0-a50a-c1d858a983ef",
+      "workflow": "adaptive-disposition/v40",
+      "runArtifactSha256": "7e04dbfa2493559f011122aa908012fb74c09d65cc54b6e3ebe810141f2b7c99",
+      "inputHash": "75e3de9dfe3eea7b98979483ea19030386bdd039342bcbc7e32108a5b00de88e",
+      "answerHash": "93d566b1aec8c9f292eee90d90a617f743fd560d01fade44d50f3849f7525fdd",
+      "completedAt": "2026-09-13T14:49:29.593Z",
+      "case": "C02",
+      "status": "complete",
+      "failure": null,
+      "route": "EMERGENCY_NOW",
+      "priority": null,
+      "durationMs": 17715,
+      "firstActionMs": 8,
+      "firstQuestionMs": null,
+      "firstOpeningMs": null,
+      "modelCalls": 2,
+      "tracePersisted": true,
+      "artifactPersisted": true,
+      "eventLogPersisted": true,
+      "failedChecks": [],
+      "safetyNotices": [
+        {
+          "disposition": "EMERGENCY_NOW",
+          "directive": "Possible acute coronary syndrome. Call 911 now. Do not drive yourself. Do not wait for a message reply or vital-sign measurements.",
+          "source": "initial_screen",
+          "elapsedMs": 16
+        },
+        {
+          "disposition": "EMERGENCY_NOW",
+          "directive": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.",
+          "source": "emergency_agent",
+          "elapsedMs": 3591
+        },
+        {
+          "disposition": "EMERGENCY_NOW",
+          "directive": "Call 911 now. Do not drive yourself or wait for a reply or vital-sign measurements.",
+          "source": "emergency_agent",
+          "elapsedMs": 17675
+        }
+      ],
+      "agents": [
+        {
+          "role": "intake",
+          "model": "anthropic/claude-haiku-4-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 2859,
+            "outputTokens": 77
+          },
+          "failure": null,
+          "firstTextDeltaMs": 1773,
+          "streamProgress": {
+            "lastTextDeltaMs": 3466,
+            "textDeltaCount": 65,
+            "textCharacters": 252
+          },
+          "durationMs": 3565,
+          "knownEstimateUSD": 0.003244
+        },
+        {
+          "role": "disposition",
+          "model": "anthropic/claude-opus-5",
+          "modelCalls": 1,
+          "usage": {
+            "inputTokens": 10919,
+            "outputTokens": 896
+          },
+          "failure": null,
+          "firstTextDeltaMs": 1871,
+          "streamProgress": {
+            "lastTextDeltaMs": 11666,
+            "textDeltaCount": 167,
+            "textCharacters": 2483
+          },
+          "durationMs": 11683,
+          "attempt": {
+            "number": 1,
+            "offsetMs": 0,
+            "selected": true,
+            "policy": "bounded-hedge/v1"
+          },
+          "knownEstimateUSD": 0.076995
+        }
+      ],
+      "judge": {
+        "state": "complete",
+        "error": null,
+        "reservedUSD": 1.25,
+        "usage": {
+          "inputTokens": 3795,
+          "outputTokens": 1149
+        },
+        "estimatedUSD": 0.0954,
+        "findings": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,1408 @@
+{
+  "status": "review_required",
+  "answer": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "reviewPriority": "priority",
+    "workType": "clinical_review",
+    "reason": "The automated assessment needs clinician review; this is a conservative workflow fallback, not a new clinical finding.",
+    "patientMessage": "Priority review by the Counsel clinician in this thread is needed today. This recommendation does not confirm a clinician has accepted the request.",
+    "differential": [],
+    "redFlags": [],
+    "vitalSigns": "The automated assessment has not established the vital-sign context.",
+    "questions": [],
+    "evidence": [],
+    "evidenceLimitations": "No model-reviewed clinical explanation has been released. The draft and review outcome are retained for clinician assessment."
+  },
+  "origin": "validation_safeguard",
+  "modelCalls": 6,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "usual migraine refill sumatriptan",
+          "migraine triptan renewal contraindication check"
+        ],
+        "findings": [
+          {
+            "finding": "Usual migraine pattern",
+            "status": "reported",
+            "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get"
+          },
+          {
+            "finding": "Current sumatriptan depletion",
+            "status": "reported",
+            "quote": "I'm out of sumatriptan"
+          },
+          {
+            "finding": "Triptan refill requested",
+            "status": "reported",
+            "quote": "would like a refill"
+          }
+        ],
+        "question": null
+      },
+      "usage": {
+        "inputTokens": 1700,
+        "outputTokens": 123
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1756,
+      "streamProgress": {
+        "lastTextDeltaMs": 4419,
+        "textDeltaCount": 103,
+        "textCharacters": 482
+      },
+      "durationMs": 4507
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "priority",
+        "workType": "medication_request",
+        "reason": "40F reports her usual, unchanged migraine pattern (one-sided throbbing, photophobia) active today and has exhausted her sumatriptan. Active attack plus medication interruption makes remote prescribing review time-sensitive; triptans work best taken early in an attack. No reported thunderclap onset, deficit, fever/neck stiffness or trauma was described, and no reported feature requires physical examination today.",
+        "patientMessage": "I'm asking a Counsel clinician to review your request promptly today for a possible sumatriptan refill; they may ask about your diagnosis, how often you use it, other medicines, pregnancy and any heart or blood pressure history before deciding. In the meantime, resting in a quiet, darkened room, a cool cloth on your forehead and drinking fluids may help. If your headache becomes sudden and worst-ever, or you develop weakness, speech or vision changes, fever or neck stiffness, seek emergency care immediately.",
+        "differential": [
+          "Recurrence of established migraine, usual pattern",
+          "Medication-overuse headache if acute treatment used frequently",
+          "Secondary headache — not suggested by reported features, but unassessed"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thunderclap/sudden worst-ever onset",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Focal neurological deficit or speech/vision change",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Fever or neck stiffness",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Head trauma",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Change from usual headache pattern",
+            "status": "denied",
+            "quote": "same one-sided throbbing and light sensitivity I always get"
+          }
+        ],
+        "vitalSigns": "No vital signs provided — blood pressure, heart rate and temperature were not reported in this message; this does not mean they are normal or unmeasured.",
+        "questions": [],
+        "evidenceLimitations": "Retrieved guideline text covers triptan efficacy and alternatives but does not address telehealth routing, refill eligibility or contraindication screening for this patient; no source mandates remote or in-person care. The tension-type headache item is agent-compiled secondary material and describes emergency pitfalls, not this presentation. Attack severity, frequency of acute medication use, pregnancy status, cardiovascular history and vital signs are unknown, not normal.",
+        "citations": [
+          {
+            "passageId": "bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+            "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild",
+            "claim": "Timeliness matters for triptan use during an active attack, supporting prompt clinician review.",
+            "applicability": "applicable",
+            "limitation": "Does not address refill authorization, contraindication screening or care setting."
+          },
+          {
+            "passageId": "56f305c4485d8767942bd0a08de26a49c8800b32f982a73e5a1d45306d7bee91",
+            "quote": "Resting with your eyes closed in a quiet, darkened room \n Placing a cool cloth or ice pack on your forehead \n Drinking fluids",
+            "claim": "Non-drug comfort measures are reasonable during a migraine attack.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary; general advice, not individualized to this patient."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 8192,
+        "outputTokens": 1146
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1588,
+      "streamProgress": {
+        "lastTextDeltaMs": 19338,
+        "textDeltaCount": 301,
+        "textCharacters": 3235
+      },
+      "durationMs": 19355
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "action": "NONE",
+        "basis": [
+          {
+            "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get",
+            "interpretation": "Established migraine pattern with typical features (unilateral, photophobia) consistent with patient's baseline; no new or concerning neurological features, trauma, or systemic symptoms reported",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "I'm out of sumatriptan and would like a refill",
+            "interpretation": "Medication access interrupted for established triptan-responsive migraine; refill eligibility, prior efficacy, dose frequency, interactions and contraindications require clinician verification before renewal",
+            "currentPatient": true,
+            "present": true
+          }
+        ],
+        "reason": "Usual migraine pattern with typical symptom onset merits asynchronous clinician review for triptan refill eligibility and dose confirmation. No acute neurological deficits, thunderclap onset, fever, neck stiffness, recent trauma or other emergency features present. Physical examination is not required today to assess a familiar, unchanged migraine or to initiate remote prescribing review.",
+        "patientMessage": ""
+      },
+      "usage": {
+        "inputTokens": 1664,
+        "outputTokens": 260
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1639,
+      "streamProgress": {
+        "lastTextDeltaMs": 7291,
+        "textDeltaCount": 215,
+        "textCharacters": 1159
+      },
+      "durationMs": 7359
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "verdict": "revise",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Priority asynchronous prescribing review fits an active usual migraine with the requested medication exhausted. No reported feature independently requires physical care today.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get."
+              },
+              {
+                "unit": "patient",
+                "quote": "I'm out of sumatriptan and would like a refill."
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "The draft appropriately uses higher remote queue priority rather than treating a refill or missing prescribing history as an indication for an in-person visit.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"disposition\":\"ASYNC_PHYSICIAN\",\"reviewPriority\":\"priority\",\"workType\":\"medication_request\""
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "The usual pattern and sumatriptan depletion are patient-reported. Unasked red flags and vital signs remain unknown, and the draft does not claim that all alternative treatment is unavailable.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Attack severity, frequency of acute medication use, pregnancy status, cardiovascular history and vital signs are unknown, not normal."
+              },
+              {
+                "unit": "patient",
+                "quote": "same one-sided throbbing and light sensitivity I always get"
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "The sources support early triptan effectiveness and the suggested comfort measures. The draft appropriately limits their scope: neither remote refill authorization nor individualized prescribing eligibility is asserted. Screening and the conditional differential are left to clinician assessment rather than represented as established findings.",
+            "anchors": [
+              {
+                "unit": "source:bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+                "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild"
+              },
+              {
+                "unit": "source:56f305c4485d8767942bd0a08de26a49c8800b32f982a73e5a1d45306d7bee91",
+                "quote": "Resting with your eyes closed in a quiet, darkened room \n Placing a cool cloth or ice pack on your forehead \n Drinking fluids"
+              },
+              {
+                "unit": "draft",
+                "quote": "no source mandates remote or in-person care."
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "fail",
+            "reason": "The warning signs are relevant, but generic emergency-care wording omits explicit transport instructions. Sudden worst-ever headache or new neurological deficits should prompt calling 911, without waiting for messaging review; other concerning headache features should have an explicit immediate-ED instruction.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "If your headache becomes sudden and worst-ever, or you develop weakness, speech or vision changes, fever or neck stiffness, seek emergency care immediately."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No clarification blocks routing. Additional prescribing questions are appropriately deferred to clinician review.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              },
+              {
+                "unit": "draft",
+                "quote": "they may ask about your diagnosis, how often you use it, other medicines, pregnancy and any heart or blood pressure history before deciding."
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "Counsel is identified as the intended decision-maker. The message requests prompt review rather than guaranteeing acceptance, a prescription, or completion at a particular time.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I'm asking a Counsel clinician to review your request promptly today for a possible sumatriptan refill"
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "correction": "Keep the priority asynchronous medication-request route. Make emergency instructions explicit: call 911 for a sudden worst-ever headache or new weakness, speech difficulty, or significant vision change; seek immediate ED evaluation for headache with concerning fever or neck stiffness. State not to wait for Counsel review if these occur."
+      },
+      "usage": {
+        "inputTokens": 4462,
+        "outputTokens": 1126
+      },
+      "failure": null,
+      "firstTextDeltaMs": 3519,
+      "streamProgress": {
+        "lastTextDeltaMs": 16694,
+        "textDeltaCount": 1055,
+        "textCharacters": 4810
+      },
+      "durationMs": 16926
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "priority",
+        "workType": "medication_request",
+        "reason": "40F reports her usual, unchanged migraine pattern (one-sided throbbing, light sensitivity) active since this morning and has run out of sumatriptan. An active attack plus exhausted acute medication makes remote prescribing review time-sensitive, since triptans work best taken early in an attack. No reported feature (thunderclap onset, deficit, fever/neck stiffness, trauma) was described that would require a physical examination today; unasked history remains unknown, not denied.",
+        "patientMessage": "Call 911 now if this headache becomes sudden and worst-ever, or you develop new weakness, speech trouble or major vision change; go straight to an emergency department for headache with fever or a stiff neck — do not wait for Counsel review. Otherwise I'm asking a Counsel clinician to review your refill request promptly today; they may ask about your diagnosis, how often you use sumatriptan, other medicines, pregnancy and heart or blood pressure history. Meanwhile, resting in a quiet darkened room, a cool cloth on your forehead and fluids may help.",
+        "differential": [
+          "Recurrence of established migraine, usual reported pattern",
+          "Medication-overuse headache if acute treatment is used frequently — use frequency unknown",
+          "Secondary headache — not suggested by reported features, but unassessed"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thunderclap/sudden worst-ever onset",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Focal neurological deficit or speech/vision change",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Fever or neck stiffness",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Head trauma",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Change from usual headache pattern",
+            "status": "denied",
+            "quote": "same one-sided throbbing and light sensitivity I always get"
+          }
+        ],
+        "vitalSigns": "No vital signs provided — blood pressure, heart rate and temperature were not reported in this message; this does not mean they are normal or that they were never measured.",
+        "questions": [],
+        "evidenceLimitations": "Retrieved guideline text covers triptan efficacy and alternatives but does not address telehealth routing, refill eligibility or contraindication screening; no source mandates remote or in-person care. The emergency-department item is agent-compiled secondary material about tension-type headache pitfalls, not this presentation, and its embedded references were not retrieved. Attack severity, acute-medication use frequency, pregnancy status, cardiovascular history and vital signs are unknown, not normal.",
+        "citations": [
+          {
+            "passageId": "bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+            "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild",
+            "claim": "Timing matters for triptan use during an active attack, supporting prompt clinician review.",
+            "applicability": "applicable",
+            "limitation": "Does not address refill authorization, contraindication screening or care setting."
+          },
+          {
+            "passageId": "56f305c4485d8767942bd0a08de26a49c8800b32f982a73e5a1d45306d7bee91",
+            "quote": "Resting with your eyes closed in a quiet, darkened room \n Placing a cool cloth or ice pack on your forehead \n Drinking fluids",
+            "claim": "Non-drug comfort measures are reasonable during a migraine attack.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary; general advice, not individualized to this patient."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 9538,
+        "outputTokens": 1201
+      },
+      "failure": null,
+      "firstTextDeltaMs": 2865,
+      "streamProgress": {
+        "lastTextDeltaMs": 18647,
+        "textDeltaCount": 272,
+        "textCharacters": 3426
+      },
+      "durationMs": 18721
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "verdict": "revise",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Priority asynchronous medication review fits an active usual migraine with sumatriptan exhausted. No reported feature independently requires physical or emergency care.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "My usual migraine started this morning"
+              },
+              {
+                "unit": "patient",
+                "quote": "I'm out of sumatriptan and would like a refill."
+              },
+              {
+                "unit": "draft",
+                "quote": "\"reviewPriority\":\"priority\",\"workType\":\"medication_request\""
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "The initial route remains remote. Emergency instructions are conditional, not an escalation based on unreported findings.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"disposition\":\"ASYNC_PHYSICIAN\""
+              },
+              {
+                "unit": "draft",
+                "quote": "Call 911 now if this headache becomes sudden and worst-ever"
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "The draft accurately identifies the usual symptom pattern and named medication depletion, while explicitly preserving unknown history and vital signs.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "same one-sided throbbing and light sensitivity I always get"
+              },
+              {
+                "unit": "draft",
+                "quote": "unasked history remains unknown, not denied."
+              },
+              {
+                "unit": "draft",
+                "quote": "this does not mean they are normal or that they were never measured."
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "fail",
+            "reason": "The guideline supports early triptan effectiveness and the consumer summary supports comfort measures, but the supplied evidence does not establish all emergency management instructions or the proposed prescribing-screening domains. The draft appropriately disclaims remote prescribing authority; nevertheless, acknowledging source limitations does",
+            "anchors": [
+              {
+                "unit": "source:bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+                "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild"
+              },
+              {
+                "unit": "draft",
+                "quote": "go straight to an emergency department for headache with fever or a stiff neck"
+              },
+              {
+                "unit": "draft",
+                "quote": "does not address telehealth routing, refill eligibility or contraindication screening"
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "Emergency transport and immediate ED instructions are explicit and do not permit queue processing to delay care.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Call 911 now if this headache becomes sudden and worst-ever, or you develop new weakness, speech trouble or major vision change"
+              },
+              {
+                "unit": "draft",
+                "quote": "do not wait for Counsel review"
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No clarification blocks routing; remaining prescribing questions are appropriately left for clinician review.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              },
+              {
+                "unit": "context",
+                "quote": "\"question\":null"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "Counsel is identified as the reviewing clinician, without claiming prescription approval, completed review, or symptom resolution. Prompt review today is framed as a request rather than a guaranteed ETA.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I'm asking a Counsel clinician to review your refill request promptly today; they may ask about your diagnosis"
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "correction": "Retain priority asynchronous medication-request review and the conditional emergency precautions. Add applicable authoritative support for headache emergency warning signs and sumatriptan prescribing checks; the supplied efficacy passage and tension-headache research synthesis do not establish those management claims. Describe depletion specifically as being out of sumatriptan, without implying that all acute treatments are unavailable."
+      },
+      "usage": {
+        "inputTokens": 4501,
+        "outputTokens": 1116
+      },
+      "failure": null,
+      "firstTextDeltaMs": 5430,
+      "streamProgress": {
+        "lastTextDeltaMs": 17833,
+        "textDeltaCount": 939,
+        "textCharacters": 4242
+      },
+      "durationMs": 18184
+    }
+  ],
+  "guidance": [
+    {
+      "id": "bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+      "title": "Diagnosis and management of migraine in ten steps",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+      "section": "Full-text body / Step 4: Acute treatment / Second-line medication",
+      "summary": "Patients for whom over-the-counter analgesics provide inadequate headache relief should be offered a triptan. All triptans have well-documented effectiveness, but availability of and access to each vary between countries. Triptans are most effective when taken early in an attack, when the headache is still mild49,50. However, no evidence supports the use of triptans during the aura phase of a migraine attack. If one triptan is ineffective, others might still provide relief51,52. When all other triptans have failed or in patients who rapidly reach peak headache intensity or cannot take oral triptans because of vomiting, sumatriptan by subcutaneous injection can be useful53.\n\nSome patients can experience relapses, which are defined as a return of symptoms within 48 h after apparently successful treatment. Upon relapse, patients can repeat their triptan treatment or combine the triptan with simultaneous intake of fast-acting formulations of naproxen sodium, ibuprofen lysine or diclofenac potassium54,55. However, patients should be informed that repeating the treatment does not preclude further relapses and ultimately increases the risk of developing MOH.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "primary_guideline; publisher_reviewed. Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval.",
+      "retrievedPassages": [
+        {
+          "id": "bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+          "sourceId": "pmc:PMC8321897",
+          "excerpt": "Patients for whom over-the-counter analgesics provide inadequate headache relief should be offered a triptan. All triptans have well-documented effectiveness, but availability of and access to each vary between countries. Triptans are most effective when taken early in an attack, when the headache is still mild49,50. However, no evidence supports the use of triptans during the aura phase of a migraine attack. If one triptan is ineffective, others might still provide relief51,52. When all other triptans have failed or in patients who rapidly reach peak headache intensity or cannot take oral triptans because of vomiting, sumatriptan by subcutaneous injection can be useful53.\n\nSome patients can experience relapses, which are defined as a return of symptoms within 48 h after apparently successful treatment. Upon relapse, patients can repeat their triptan treatment or combine the triptan with simultaneous intake of fast-acting formulations of naproxen sodium, ibuprofen lysine or diclofenac potassium54,55. However, patients should be informed that repeating the treatment does not preclude further relapses and ultimately increases the risk of developing MOH.",
+          "excerptSha256": "8e63bcc868a69d119df885e906aa5386f5c4c1d8753586d5e179796d3473711c",
+          "retrievedAt": "2026-09-13T22:56:17.095Z",
+          "sourceContentHash": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+          "kind": "primary_guideline",
+          "limitations": "Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval."
+        }
+      ]
+    },
+    {
+      "id": "a39d13ec043ef20dd0392fae090a8440eb3554bb4893fe931279eab64cf30a89",
+      "title": "Diagnosis and management of migraine in ten steps",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+      "section": "Full-text body / Step 5: Preventive treatment / Initiation and termination",
+      "summary": "male and of childbearing potentialThird-line medicationBotulinum toxinOnabotulinumtoxinA155–195 units to 31–39 sites every 12 weeksInfection at injection siteCalcitonin gene-related peptide monoclonal antibodiesErenumab70 or 140 mg subcutaneous once monthlyHypersensitivityNot recommended in patients with a history of stroke, subarachnoid haemorrhage, coronary heart disease, inflammatory bowel disease, chronic obstructive pulmonary disease or impaired wound healingFremanezumab225 mg subcutaneous once monthly or 675 mg subcutaneous once quarterlyGalcanezumab240 mg subcutaneous, then 120 mg subcutaneous once monthlyEptinezumab100 or 300 mg intravenous quarterlySSRI, selective serotonin reuptake inhibitor. aSodium valproate is absolutely contraindicated in women of childbearing potential.\n\nEfficacy of preventive therapy is rarely observed immediately. Only after several weeks or months can efficacy be ascertained, so patients should be discouraged from abandoning the treatment in these early stages on the grounds of apparent inefficacy32. If a therapeutic dose of an oral preventive medication is ineffective after 2–3 months, an alternative should be tried32,61,62. For monoclonal antibody treatments that target calcitonin gene-related peptide (CGRP) or its receptor, efficacy should be assessed only after 3–6 months. For onabotulinumtoxinA, efficacy should be assessed after 6–9 months.\n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "primary_guideline; publisher_reviewed. Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval.",
+      "retrievedPassages": [
+        {
+          "id": "a39d13ec043ef20dd0392fae090a8440eb3554bb4893fe931279eab64cf30a89",
+          "sourceId": "pmc:PMC8321897",
+          "excerpt": "male and of childbearing potentialThird-line medicationBotulinum toxinOnabotulinumtoxinA155–195 units to 31–39 sites every 12 weeksInfection at injection siteCalcitonin gene-related peptide monoclonal antibodiesErenumab70 or 140 mg subcutaneous once monthlyHypersensitivityNot recommended in patients with a history of stroke, subarachnoid haemorrhage, coronary heart disease, inflammatory bowel disease, chronic obstructive pulmonary disease or impaired wound healingFremanezumab225 mg subcutaneous once monthly or 675 mg subcutaneous once quarterlyGalcanezumab240 mg subcutaneous, then 120 mg subcutaneous once monthlyEptinezumab100 or 300 mg intravenous quarterlySSRI, selective serotonin reuptake inhibitor. aSodium valproate is absolutely contraindicated in women of childbearing potential.\n\nEfficacy of preventive therapy is rarely observed immediately. Only after several weeks or months can efficacy be ascertained, so patients should be discouraged from abandoning the treatment in these early stages on the grounds of apparent inefficacy32. If a therapeutic dose of an oral preventive medication is ineffective after 2–3 months, an alternative should be tried32,61,62. For monoclonal antibody treatments that target calcitonin gene-related peptide (CGRP) or its receptor, efficacy should be assessed only after 3–6 months. For onabotulinumtoxinA, efficacy should be assessed after 6–9 months.\n",
+          "excerptSha256": "8801af177a7c6f69faf4bfcaefc8118ff9698cc25d054aca87614618be0d8091",
+          "retrievedAt": "2026-09-13T22:56:17.095Z",
+          "sourceContentHash": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+          "kind": "primary_guideline",
+          "limitations": "Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval."
+        }
+      ]
+    },
+    {
+      "id": "d79d2bce7de24d2c57ffe5d6d3825bb44602643f67ef5cee534de7b61dca7454",
+      "title": "Migraine",
+      "url": "https://medlineplus.gov/migraine.html",
+      "section": "Health-topic summary",
+      "summary": "also be helpful \n \n\n If you have frequent or severe migraines, you may need to take medicines to prevent further attacks. Talk with your health care provider about which drug would be right for you. \n\n Certain natural treatments, such as riboflavin (vitamin B2) and coenzyme Q10, may help prevent migraines. If your magnesium level is low, you can try taking magnesium. There is also an herb, butterbur, which some people take to prevent migraines. But butterbur may not be safe for long-term use. Always check with your health care provider before taking any supplements. \n\n NIH: National Institute of Neurological Disorders and Stroke",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "d79d2bce7de24d2c57ffe5d6d3825bb44602643f67ef5cee534de7b61dca7454",
+          "sourceId": "medlineplus:3157",
+          "excerpt": "also be helpful \n \n\n If you have frequent or severe migraines, you may need to take medicines to prevent further attacks. Talk with your health care provider about which drug would be right for you. \n\n Certain natural treatments, such as riboflavin (vitamin B2) and coenzyme Q10, may help prevent migraines. If your magnesium level is low, you can try taking magnesium. There is also an herb, butterbur, which some people take to prevent migraines. But butterbur may not be safe for long-term use. Always check with your health care provider before taking any supplements. \n\n NIH: National Institute of Neurological Disorders and Stroke",
+          "excerptSha256": "65b3c4a124f8cac6ff0adb30b0c0987b861f7d31af7a1deaec541f4e227eb367",
+          "retrievedAt": "2026-09-13T22:56:17.095Z",
+          "sourceContentHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "56f305c4485d8767942bd0a08de26a49c8800b32f982a73e5a1d45306d7bee91",
+      "title": "Migraine",
+      "url": "https://medlineplus.gov/migraine.html",
+      "section": "Health-topic summary",
+      "summary": "of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? \n There is no cure for migraines. Treatment focuses on relieving symptoms and preventing additional attacks. \n\n There are different types of medicines to relieve symptoms. They include triptan drugs, ergotamine drugs, and pain relievers . The sooner you take the medicine, the more effective it is. \n\n There are also other things you can do to feel better: \n Resting with your eyes closed in a quiet, darkened room \n Placing a cool cloth or ice pack on your forehead \n Drinking fluids \n \n\n There are some lifestyle changes you can make to prevent migraines: \n Stress management strategies, such as exercise, relaxation techniques, and biofeedback, may reduce the number and severity of migraines. Biofeedback uses electronic devices to teach you to control certain body functions, such as your heartbeat, blood pressure, and muscle tension. \n Make a log of what seems to trigger your migraines. You can learn what you need to avoid, such as certain foods and medicines. It also help you figure out what you should do, such as establishing a consistent sleep schedule and eating regular meals. \n Hormone therapy may help some women whose migraines seem to be linked to their menstrual cycle \n If you have obesity , losing weight may also be helpful \n \n\n If you have frequent or severe migraines, you may need to take medicines to prevent further attacks. Talk with your health care provider about which drug would be right for you. \n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "56f305c4485d8767942bd0a08de26a49c8800b32f982a73e5a1d45306d7bee91",
+          "sourceId": "medlineplus:3157",
+          "excerpt": "of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? \n There is no cure for migraines. Treatment focuses on relieving symptoms and preventing additional attacks. \n\n There are different types of medicines to relieve symptoms. They include triptan drugs, ergotamine drugs, and pain relievers . The sooner you take the medicine, the more effective it is. \n\n There are also other things you can do to feel better: \n Resting with your eyes closed in a quiet, darkened room \n Placing a cool cloth or ice pack on your forehead \n Drinking fluids \n \n\n There are some lifestyle changes you can make to prevent migraines: \n Stress management strategies, such as exercise, relaxation techniques, and biofeedback, may reduce the number and severity of migraines. Biofeedback uses electronic devices to teach you to control certain body functions, such as your heartbeat, blood pressure, and muscle tension. \n Make a log of what seems to trigger your migraines. You can learn what you need to avoid, such as certain foods and medicines. It also help you figure out what you should do, such as establishing a consistent sleep schedule and eating regular meals. \n Hormone therapy may help some women whose migraines seem to be linked to their menstrual cycle \n If you have obesity , losing weight may also be helpful \n \n\n If you have frequent or severe migraines, you may need to take medicines to prevent further attacks. Talk with your health care provider about which drug would be right for you. \n",
+          "excerptSha256": "a0b542837f011680f7d98bd2c5ef53892751c18c743123f860eb5381e4b8a935",
+          "retrievedAt": "2026-09-13T22:56:17.095Z",
+          "sourceContentHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "645749c388972f918d3a99071d6bbc30a3c9e1956b324dd2665947cba339aa8c",
+      "title": "Diagnosis and management of migraine in ten steps",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+      "section": "Full-text body / Step 4: Acute treatment / Third-line medication",
+      "summary": "If all available triptans fail after an adequate trial period (no or insufficient therapeutic response in at least three consecutive attacks) or their use is contraindicated, alternatives are currently limited. Ditans or gepants could be used, but their availability is currently very limited. Lasmiditan is the only ditan approved for acute treatment of migraine, and ubrogepant and rimegepant are the only gepants approved. Indirect comparison of data from randomized controlled trials suggests that the efficacy of lasmiditan is comparable to that of triptans56–58, but its use is associated with temporary driving impairment, which is likely to discourage widespread use. Individuals who take lasmiditan might be unable to self-assess their driving competence and should not operate machinery for at least 8 h after intake.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "primary_guideline; publisher_reviewed. Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval.",
+      "retrievedPassages": [
+        {
+          "id": "645749c388972f918d3a99071d6bbc30a3c9e1956b324dd2665947cba339aa8c",
+          "sourceId": "pmc:PMC8321897",
+          "excerpt": "If all available triptans fail after an adequate trial period (no or insufficient therapeutic response in at least three consecutive attacks) or their use is contraindicated, alternatives are currently limited. Ditans or gepants could be used, but their availability is currently very limited. Lasmiditan is the only ditan approved for acute treatment of migraine, and ubrogepant and rimegepant are the only gepants approved. Indirect comparison of data from randomized controlled trials suggests that the efficacy of lasmiditan is comparable to that of triptans56–58, but its use is associated with temporary driving impairment, which is likely to discourage widespread use. Individuals who take lasmiditan might be unable to self-assess their driving competence and should not operate machinery for at least 8 h after intake.",
+          "excerptSha256": "e869be7c80f69bd237dcfa9a10f9ecd1d7d488fd7e81bcef910f08d6dba8353f",
+          "retrievedAt": "2026-09-13T22:56:17.095Z",
+          "sourceContentHash": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+          "kind": "primary_guideline",
+          "limitations": "Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval."
+        }
+      ]
+    },
+    {
+      "id": "771a3d8c99470f1195d621a3d6af24660a6b41b5096168977d3ff1b85b2e5410",
+      "title": "Tension-Type Headache",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/tension-headache.md",
+      "section": "Pitfalls",
+      "summary": "1. **Under-escalation: attributing a first thunderclap headache to tension headache.** Thunderclap headache (peak intensity <60 seconds) is SAH until proven otherwise. CT head within 6 hours has >97% sensitivity; LP >12 hours after onset provides definitive exclusion. A patient with classic BPPV, known anxiety, or chronic TTH who presents with a thunderclap event requires SAH exclusion regardless of history. The error of \"sentinel bleed attributed to TTH\" is one of the most litigation-generating missed diagnoses in emergency medicine.\n\n2. **Over-escalation: neuroimaging for stable, typical TTH with established pattern.** Neuroimaging in patients with stable headaches meeting primary headache criteria and a normal neurological exam has a yield of <1% for clinically significant findings and does not reduce re-presentation or anxiety in the long term. Choosing Wisely guidelines explicitly caution against this practice.\n\n3. **Failing to diagnose medication-overuse headache.** Patients with chronic daily headache who use NSAIDs, triptans, or opioids >10-15 days/month have medication-overuse headache as a perpetuating factor. Prescribing more analgesics worsens the condition. The key question: \"How many days per month do you take pain medication for your headaches?\" Withdrawal and preventive therapy are the treatment.\n\n4. **Prescribing opioids for TTH.** Opioids are inferior to NSAIDs for acute headache, accelerate the transition to chronic daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "771a3d8c99470f1195d621a3d6af24660a6b41b5096168977d3ff1b85b2e5410",
+          "sourceId": "openem:tension-headache",
+          "excerpt": "1. **Under-escalation: attributing a first thunderclap headache to tension headache.** Thunderclap headache (peak intensity <60 seconds) is SAH until proven otherwise. CT head within 6 hours has >97% sensitivity; LP >12 hours after onset provides definitive exclusion. A patient with classic BPPV, known anxiety, or chronic TTH who presents with a thunderclap event requires SAH exclusion regardless of history. The error of \"sentinel bleed attributed to TTH\" is one of the most litigation-generating missed diagnoses in emergency medicine.\n\n2. **Over-escalation: neuroimaging for stable, typical TTH with established pattern.** Neuroimaging in patients with stable headaches meeting primary headache criteria and a normal neurological exam has a yield of <1% for clinically significant findings and does not reduce re-presentation or anxiety in the long term. Choosing Wisely guidelines explicitly caution against this practice.\n\n3. **Failing to diagnose medication-overuse headache.** Patients with chronic daily headache who use NSAIDs, triptans, or opioids >10-15 days/month have medication-overuse headache as a perpetuating factor. Prescribing more analgesics worsens the condition. The key question: \"How many days per month do you take pain medication for your headaches?\" Withdrawal and preventive therapy are the treatment.\n\n4. **Prescribing opioids for TTH.** Opioids are inferior to NSAIDs for acute headache, accelerate the transition to chronic daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n",
+          "excerptSha256": "872a177f1596724b35cbf8a301442bf03a03e28de73f3450a71bad9ccc673f94",
+          "retrievedAt": "2026-09-13T22:56:17.095Z",
+          "sourceContentHash": "73653a341b4841d483b11a9308969e558e9256b1f9e82f7deba1b96982b273cc",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    }
+  ],
+  "safetyFloor": null,
+  "rejectedAnswer": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "reviewPriority": "priority",
+    "workType": "medication_request",
+    "reason": "40F reports her usual, unchanged migraine pattern (one-sided throbbing, light sensitivity) active since this morning and has run out of sumatriptan. An active attack plus exhausted acute medication makes remote prescribing review time-sensitive, since triptans work best taken early in an attack. No reported feature (thunderclap onset, deficit, fever/neck stiffness, trauma) was described that would require a physical examination today; unasked history remains unknown, not denied.",
+    "patientMessage": "Call 911 now if this headache becomes sudden and worst-ever, or you develop new weakness, speech trouble or major vision change; go straight to an emergency department for headache with fever or a stiff neck — do not wait for Counsel review. Otherwise I'm asking a Counsel clinician to review your refill request promptly today; they may ask about your diagnosis, how often you use sumatriptan, other medicines, pregnancy and heart or blood pressure history. Meanwhile, resting in a quiet darkened room, a cool cloth on your forehead and fluids may help.",
+    "differential": [
+      "Recurrence of established migraine, usual reported pattern",
+      "Medication-overuse headache if acute treatment is used frequently — use frequency unknown",
+      "Secondary headache — not suggested by reported features, but unassessed"
+    ],
+    "redFlags": [
+      {
+        "concern": "Thunderclap/sudden worst-ever onset",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Focal neurological deficit or speech/vision change",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Fever or neck stiffness",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Head trauma",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Change from usual headache pattern",
+        "status": "denied",
+        "quote": "same one-sided throbbing and light sensitivity I always get"
+      }
+    ],
+    "vitalSigns": "No vital signs provided — blood pressure, heart rate and temperature were not reported in this message; this does not mean they are normal or that they were never measured.",
+    "questions": [],
+    "evidenceLimitations": "Retrieved guideline text covers triptan efficacy and alternatives but does not address telehealth routing, refill eligibility or contraindication screening; no source mandates remote or in-person care. The emergency-department item is agent-compiled secondary material about tension-type headache pitfalls, not this presentation, and its embedded references were not retrieved. Attack severity, acute-medication use frequency, pregnancy status, cardiovascular history and vital signs are unknown, not normal.",
+    "citations": [
+      {
+        "passageId": "bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+        "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild",
+        "claim": "Timing matters for triptan use during an active attack, supporting prompt clinician review.",
+        "applicability": "applicable",
+        "limitation": "Does not address refill authorization, contraindication screening or care setting."
+      },
+      {
+        "passageId": "56f305c4485d8767942bd0a08de26a49c8800b32f982a73e5a1d45306d7bee91",
+        "quote": "Resting with your eyes closed in a quiet, darkened room \n Placing a cool cloth or ice pack on your forehead \n Drinking fluids",
+        "claim": "Non-drug comfort measures are reasonable during a migraine attack.",
+        "applicability": "applicable",
+        "limitation": "Consumer summary; general advice, not individualized to this patient."
+      }
+    ]
+  },
+  "failure": "CLINICIAN_REVIEW_REQUIRED",
+  "routingPolicy": "five-route-queue/v2",
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "pass",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "pass",
+      "detail": "Checks explicit timing/destination tokens, not the clinical correctness or complete consistency of the message."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen from a COPD diagnosis alone; targeted medication-instruction check."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "pass",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Cited passage identity and exact quote match; this does not establish claim support or applicability."
+    },
+    {
+      "id": "independent_review",
+      "status": "fail",
+      "detail": "No accepted independent review; clinician assessment is required."
+    }
+  ],
+  "usage": {
+    "inputTokens": 30057,
+    "outputTokens": 4972
+  },
+  "graph": {
+    "version": "evidence-graph/v1",
+    "mode": "hybrid",
+    "context": {
+      "queries": [
+        "usual migraine refill sumatriptan",
+        "migraine triptan renewal contraindication check"
+      ],
+      "findings": [
+        {
+          "finding": "Usual migraine pattern",
+          "status": "reported",
+          "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get"
+        },
+        {
+          "finding": "Current sumatriptan depletion",
+          "status": "reported",
+          "quote": "I'm out of sumatriptan"
+        },
+        {
+          "finding": "Triptan refill requested",
+          "status": "reported",
+          "quote": "would like a refill"
+        }
+      ],
+      "question": null
+    },
+    "safety": null,
+    "retrieval": [
+      {
+        "corpusHash": "97a6937780adb29ab86f9223cf296e16e05f553a2d197010663584539358df1c",
+        "query": "usual migraine refill sumatriptan",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+              "end": 1169,
+              "hash": "8e63bcc868a69d119df885e906aa5386f5c4c1d8753586d5e179796d3473711c",
+              "text": "Patients for whom over-the-counter analgesics provide inadequate headache relief should be offered a triptan. All triptans have well-documented effectiveness, but availability of and access to each vary between countries. Triptans are most effective when taken early in an attack, when the headache is still mild49,50. However, no evidence supports the use of triptans during the aura phase of a migraine attack. If one triptan is ineffective, others might still provide relief51,52. When all other triptans have failed or in patients who rapidly reach peak headache intensity or cannot take oral triptans because of vomiting, sumatriptan by subcutaneous injection can be useful53.\n\nSome patients can experience relapses, which are defined as a return of symptoms within 48 h after apparently successful treatment. Upon relapse, patients can repeat their triptan treatment or combine the triptan with simultaneous intake of fast-acting formulations of naproxen sodium, ibuprofen lysine or diclofenac potassium54,55. However, patients should be informed that repeating the treatment does not preclude further relapses and ultimately increases the risk of developing MOH.",
+              "start": 0,
+              "section": 24,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Full-text body / Step 4: Acute treatment / Second-line medication",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nFull-text body / Step 4: Acute treatment / Second-line medication\nPatients for whom over-the-counter analgesics provide inadequate headache relief should be offered a triptan. All triptans have well-documented effectiveness, but availability of and access to each vary between countries. Triptans are most effective when taken early in an attack, when the headache is still mild49,50. However, no evidence supports the use of triptans during the aura phase of a migraine attack. If one triptan is ineffective, others might still provide relief51,52. When all other triptans have failed or in patients who rapidly reach peak headache intensity or cannot take oral triptans because of vomiting, sumatriptan by subcutaneous injection can be useful53.\n\nSome patients can experience relapses, which are defined as a return of symptoms within 48 h after apparently successful treatment. Upon relapse, patients can repeat their triptan treatment or combine the triptan with simultaneous intake of fast-acting formulations of naproxen sodium, ibuprofen lysine or diclofenac potassium54,55. However, patients should be informed that repeating the treatment does not preclude further relapses and ultimately increases the risk of developing MOH."
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; tables, figures and references omitted.",
+              "retrievedAt": "2026-09-13T22:56:17.095Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+              "publicationDate": "2021"
+            },
+            "score": 0.01639344262295082,
+            "channels": [
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "a39d13ec043ef20dd0392fae090a8440eb3554bb4893fe931279eab64cf30a89",
+              "end": 3001,
+              "hash": "8801af177a7c6f69faf4bfcaefc8118ff9698cc25d054aca87614618be0d8091",
+              "text": "male and of childbearing potentialThird-line medicationBotulinum toxinOnabotulinumtoxinA155–195 units to 31–39 sites every 12 weeksInfection at injection siteCalcitonin gene-related peptide monoclonal antibodiesErenumab70 or 140 mg subcutaneous once monthlyHypersensitivityNot recommended in patients with a history of stroke, subarachnoid haemorrhage, coronary heart disease, inflammatory bowel disease, chronic obstructive pulmonary disease or impaired wound healingFremanezumab225 mg subcutaneous once monthly or 675 mg subcutaneous once quarterlyGalcanezumab240 mg subcutaneous, then 120 mg subcutaneous once monthlyEptinezumab100 or 300 mg intravenous quarterlySSRI, selective serotonin reuptake inhibitor. aSodium valproate is absolutely contraindicated in women of childbearing potential.\n\nEfficacy of preventive therapy is rarely observed immediately. Only after several weeks or months can efficacy be ascertained, so patients should be discouraged from abandoning the treatment in these early stages on the grounds of apparent inefficacy32. If a therapeutic dose of an oral preventive medication is ineffective after 2–3 months, an alternative should be tried32,61,62. For monoclonal antibody treatments that target calcitonin gene-related peptide (CGRP) or its receptor, efficacy should be assessed only after 3–6 months. For onabotulinumtoxinA, efficacy should be assessed after 6–9 months.\n",
+              "start": 1598,
+              "section": 29,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Full-text body / Step 5: Preventive treatment / Initiation and termination",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nFull-text body / Step 5: Preventive treatment / Initiation and termination\nmale and of childbearing potentialThird-line medicationBotulinum toxinOnabotulinumtoxinA155–195 units to 31–39 sites every 12 weeksInfection at injection siteCalcitonin gene-related peptide monoclonal antibodiesErenumab70 or 140 mg subcutaneous once monthlyHypersensitivityNot recommended in patients with a history of stroke, subarachnoid haemorrhage, coronary heart disease, inflammatory bowel disease, chronic obstructive pulmonary disease or impaired wound healingFremanezumab225 mg subcutaneous once monthly or 675 mg subcutaneous once quarterlyGalcanezumab240 mg subcutaneous, then 120 mg subcutaneous once monthlyEptinezumab100 or 300 mg intravenous quarterlySSRI, selective serotonin reuptake inhibitor. aSodium valproate is absolutely contraindicated in women of childbearing potential.\n\nEfficacy of preventive therapy is rarely observed immediately. Only after several weeks or months can efficacy be ascertained, so patients should be discouraged from abandoning the treatment in these early stages on the grounds of apparent inefficacy32. If a therapeutic dose of an oral preventive medication is ineffective after 2–3 months, an alternative should be tried32,61,62. For monoclonal antibody treatments that target calcitonin gene-related peptide (CGRP) or its receptor, efficacy should be assessed only after 3–6 months. For onabotulinumtoxinA, efficacy should be assessed after 6–9 months.\n"
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; tables, figures and references omitted.",
+              "retrievedAt": "2026-09-13T22:56:17.095Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+              "publicationDate": "2021"
+            },
+            "score": 0.016129032258064516,
+            "channels": [
+              "vector"
+            ],
+            "context": {
+              "before": "ptyline10–100 mg oral at nightAge <6 years, heart failure, co-administration with monoamine oxidase inhibitors and SSRIs, glaucomaCalcium antagonistFlunarizine5–10 mg oral once dailyParkinsonism, depressionAnticonvulsantSodium valproatea600–1,500 mg oral once dailyLiver disease, thrombocytopenia, fe",
+              "after": "\nFailure of one preventive treatment does not predict failure of treatment with other drug classes, except when failure is due to poor adherence. Treatment adherence is often very poor but can be improved by simplified dosing schedules (once daily or less)32. For most preventive medications, clinica"
+            }
+          },
+          {
+            "chunk": {
+              "id": "d79d2bce7de24d2c57ffe5d6d3825bb44602643f67ef5cee534de7b61dca7454",
+              "end": 5208,
+              "hash": "65b3c4a124f8cac6ff0adb30b0c0987b861f7d31af7a1deaec541f4e227eb367",
+              "text": "also be helpful \n \n\n If you have frequent or severe migraines, you may need to take medicines to prevent further attacks. Talk with your health care provider about which drug would be right for you. \n\n Certain natural treatments, such as riboflavin (vitamin B2) and coenzyme Q10, may help prevent migraines. If your magnesium level is low, you can try taking magnesium. There is also an herb, butterbur, which some people take to prevent migraines. But butterbur may not be safe for long-term use. Always check with your health care provider before taking any supplements. \n\n NIH: National Institute of Neurological Disorders and Stroke",
+              "start": 4572,
+              "section": 0,
+              "documentId": "medlineplus:3157",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Migraine\n\nHealth-topic summary\nalso be helpful \n \n\n If you have frequent or severe migraines, you may need to take medicines to prevent further attacks. Talk with your health care provider about which drug would be right for you. \n\n Certain natural treatments, such as riboflavin (vitamin B2) and coenzyme Q10, may help prevent migraines. If your magnesium level is low, you can try taking magnesium. There is also an herb, butterbur, which some people take to prevent migraines. But butterbur may not be safe for long-term use. Always check with your health care provider before taking any supplements. \n\n NIH: National Institute of Neurological Disorders and Stroke"
+            },
+            "document": {
+              "id": "medlineplus:3157",
+              "url": "https://medlineplus.gov/migraine.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Migraine",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:273",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Migraine Disorders"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-13T22:56:17.095Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.012987012987012988,
+            "channels": [
+              "vector"
+            ],
+            "context": {
+              "before": " such as certain foods and medicines. It also help you figure out what you should do, such as establishing a consistent sleep schedule and eating regular meals. \n Hormone therapy may help some women whose migraines seem to be linked to their menstrual cycle \n If you have obesity , losing weight may ",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "56f305c4485d8767942bd0a08de26a49c8800b32f982a73e5a1d45306d7bee91",
+              "end": 4772,
+              "hash": "a0b542837f011680f7d98bd2c5ef53892751c18c743123f860eb5381e4b8a935",
+              "text": "of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? \n There is no cure for migraines. Treatment focuses on relieving symptoms and preventing additional attacks. \n\n There are different types of medicines to relieve symptoms. They include triptan drugs, ergotamine drugs, and pain relievers . The sooner you take the medicine, the more effective it is. \n\n There are also other things you can do to feel better: \n Resting with your eyes closed in a quiet, darkened room \n Placing a cool cloth or ice pack on your forehead \n Drinking fluids \n \n\n There are some lifestyle changes you can make to prevent migraines: \n Stress management strategies, such as exercise, relaxation techniques, and biofeedback, may reduce the number and severity of migraines. Biofeedback uses electronic devices to teach you to control certain body functions, such as your heartbeat, blood pressure, and muscle tension. \n Make a log of what seems to trigger your migraines. You can learn what you need to avoid, such as certain foods and medicines. It also help you figure out what you should do, such as establishing a consistent sleep schedule and eating regular meals. \n Hormone therapy may help some women whose migraines seem to be linked to their menstrual cycle \n If you have obesity , losing weight may also be helpful \n \n\n If you have frequent or severe migraines, you may need to take medicines to prevent further attacks. Talk with your health care provider about which drug would be right for you. \n",
+              "start": 3140,
+              "section": 0,
+              "documentId": "medlineplus:3157",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Migraine\n\nHealth-topic summary\nof diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? \n There is no cure for migraines. Treatment focuses on relieving symptoms and preventing additional attacks. \n\n There are different types of medicines to relieve symptoms. They include triptan drugs, ergotamine drugs, and pain relievers . The sooner you take the medicine, the more effective it is. \n\n There are also other things you can do to feel better: \n Resting with your eyes closed in a quiet, darkened room \n Placing a cool cloth or ice pack on your forehead \n Drinking fluids \n \n\n There are some lifestyle changes you can make to prevent migraines: \n Stress management strategies, such as exercise, relaxation techniques, and biofeedback, may reduce the number and severity of migraines. Biofeedback uses electronic devices to teach you to control certain body functions, such as your heartbeat, blood pressure, and muscle tension. \n Make a log of what seems to trigger your migraines. You can learn what you need to avoid, such as certain foods and medicines. It also help you figure out what you should do, such as establishing a consistent sleep schedule and eating regular meals. \n Hormone therapy may help some women whose migraines seem to be linked to their menstrual cycle \n If you have obesity , losing weight may also be helpful \n \n\n If you have frequent or severe migraines, you may need to take medicines to prevent further attacks. Talk with your health care provider about which drug would be right for you. \n"
+            },
+            "document": {
+              "id": "medlineplus:3157",
+              "url": "https://medlineplus.gov/migraine.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Migraine",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:273",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Migraine Disorders"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-13T22:56:17.095Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.011235955056179775,
+            "channels": [
+              "vector"
+            ],
+            "context": {
+              "before": "predictable times, such as before menstruation or on weekends following a stressful week of work. \n\n How are migraines diagnosed? \n To make a diagnosis, your health care provider will: \n Take your medical history \n Ask about your symptoms \n Do a physical and neurological exam \n \n\n An important part ",
+              "after": "\n Certain natural treatments, such as riboflavin (vitamin B2) and coenzyme Q10, may help prevent migraines. If your magnesium level is low, you can try taking magnesium. There is also an herb, butterbur, which some people take to prevent migraines. But butterbur may not be safe for long-term use. Al"
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 15.035625000004075,
+          "embeddingMs": 587.3136250000025,
+          "vectorMs": 219.8677499999976,
+          "totalMs": 829.1366669999989
+        },
+        "warnings": [],
+        "embeddingTokens": 7,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "97a6937780adb29ab86f9223cf296e16e05f553a2d197010663584539358df1c",
+        "query": "migraine triptan renewal contraindication check",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "a39d13ec043ef20dd0392fae090a8440eb3554bb4893fe931279eab64cf30a89",
+              "end": 3001,
+              "hash": "8801af177a7c6f69faf4bfcaefc8118ff9698cc25d054aca87614618be0d8091",
+              "text": "male and of childbearing potentialThird-line medicationBotulinum toxinOnabotulinumtoxinA155–195 units to 31–39 sites every 12 weeksInfection at injection siteCalcitonin gene-related peptide monoclonal antibodiesErenumab70 or 140 mg subcutaneous once monthlyHypersensitivityNot recommended in patients with a history of stroke, subarachnoid haemorrhage, coronary heart disease, inflammatory bowel disease, chronic obstructive pulmonary disease or impaired wound healingFremanezumab225 mg subcutaneous once monthly or 675 mg subcutaneous once quarterlyGalcanezumab240 mg subcutaneous, then 120 mg subcutaneous once monthlyEptinezumab100 or 300 mg intravenous quarterlySSRI, selective serotonin reuptake inhibitor. aSodium valproate is absolutely contraindicated in women of childbearing potential.\n\nEfficacy of preventive therapy is rarely observed immediately. Only after several weeks or months can efficacy be ascertained, so patients should be discouraged from abandoning the treatment in these early stages on the grounds of apparent inefficacy32. If a therapeutic dose of an oral preventive medication is ineffective after 2–3 months, an alternative should be tried32,61,62. For monoclonal antibody treatments that target calcitonin gene-related peptide (CGRP) or its receptor, efficacy should be assessed only after 3–6 months. For onabotulinumtoxinA, efficacy should be assessed after 6–9 months.\n",
+              "start": 1598,
+              "section": 29,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Full-text body / Step 5: Preventive treatment / Initiation and termination",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nFull-text body / Step 5: Preventive treatment / Initiation and termination\nmale and of childbearing potentialThird-line medicationBotulinum toxinOnabotulinumtoxinA155–195 units to 31–39 sites every 12 weeksInfection at injection siteCalcitonin gene-related peptide monoclonal antibodiesErenumab70 or 140 mg subcutaneous once monthlyHypersensitivityNot recommended in patients with a history of stroke, subarachnoid haemorrhage, coronary heart disease, inflammatory bowel disease, chronic obstructive pulmonary disease or impaired wound healingFremanezumab225 mg subcutaneous once monthly or 675 mg subcutaneous once quarterlyGalcanezumab240 mg subcutaneous, then 120 mg subcutaneous once monthlyEptinezumab100 or 300 mg intravenous quarterlySSRI, selective serotonin reuptake inhibitor. aSodium valproate is absolutely contraindicated in women of childbearing potential.\n\nEfficacy of preventive therapy is rarely observed immediately. Only after several weeks or months can efficacy be ascertained, so patients should be discouraged from abandoning the treatment in these early stages on the grounds of apparent inefficacy32. If a therapeutic dose of an oral preventive medication is ineffective after 2–3 months, an alternative should be tried32,61,62. For monoclonal antibody treatments that target calcitonin gene-related peptide (CGRP) or its receptor, efficacy should be assessed only after 3–6 months. For onabotulinumtoxinA, efficacy should be assessed after 6–9 months.\n"
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; tables, figures and references omitted.",
+              "retrievedAt": "2026-09-13T22:56:17.095Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+              "publicationDate": "2021"
+            },
+            "score": 0.01639344262295082,
+            "channels": [
+              "vector"
+            ],
+            "context": {
+              "before": "ptyline10–100 mg oral at nightAge <6 years, heart failure, co-administration with monoamine oxidase inhibitors and SSRIs, glaucomaCalcium antagonistFlunarizine5–10 mg oral once dailyParkinsonism, depressionAnticonvulsantSodium valproatea600–1,500 mg oral once dailyLiver disease, thrombocytopenia, fe",
+              "after": "\nFailure of one preventive treatment does not predict failure of treatment with other drug classes, except when failure is due to poor adherence. Treatment adherence is often very poor but can be improved by simplified dosing schedules (once daily or less)32. For most preventive medications, clinica"
+            }
+          },
+          {
+            "chunk": {
+              "id": "645749c388972f918d3a99071d6bbc30a3c9e1956b324dd2665947cba339aa8c",
+              "end": 827,
+              "hash": "e869be7c80f69bd237dcfa9a10f9ecd1d7d488fd7e81bcef910f08d6dba8353f",
+              "text": "If all available triptans fail after an adequate trial period (no or insufficient therapeutic response in at least three consecutive attacks) or their use is contraindicated, alternatives are currently limited. Ditans or gepants could be used, but their availability is currently very limited. Lasmiditan is the only ditan approved for acute treatment of migraine, and ubrogepant and rimegepant are the only gepants approved. Indirect comparison of data from randomized controlled trials suggests that the efficacy of lasmiditan is comparable to that of triptans56–58, but its use is associated with temporary driving impairment, which is likely to discourage widespread use. Individuals who take lasmiditan might be unable to self-assess their driving competence and should not operate machinery for at least 8 h after intake.",
+              "start": 0,
+              "section": 25,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Full-text body / Step 4: Acute treatment / Third-line medication",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nFull-text body / Step 4: Acute treatment / Third-line medication\nIf all available triptans fail after an adequate trial period (no or insufficient therapeutic response in at least three consecutive attacks) or their use is contraindicated, alternatives are currently limited. Ditans or gepants could be used, but their availability is currently very limited. Lasmiditan is the only ditan approved for acute treatment of migraine, and ubrogepant and rimegepant are the only gepants approved. Indirect comparison of data from randomized controlled trials suggests that the efficacy of lasmiditan is comparable to that of triptans56–58, but its use is associated with temporary driving impairment, which is likely to discourage widespread use. Individuals who take lasmiditan might be unable to self-assess their driving competence and should not operate machinery for at least 8 h after intake."
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "Publisher guideline selected in a versioned source manifest. Narrative body text only: tables, figures, supplementary material and references are excluded. The source may be superseded; date and patient applicability require assessment. Retrieval is not clinician approval.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; tables, figures and references omitted.",
+              "retrievedAt": "2026-09-13T22:56:17.095Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "51c37d774ee328461e8e2a25c726207ad9027a99dcf7180ac118df70eabcb29f",
+              "publicationDate": "2021"
+            },
+            "score": 0.016129032258064516,
+            "channels": [
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "771a3d8c99470f1195d621a3d6af24660a6b41b5096168977d3ff1b85b2e5410",
+              "end": 1658,
+              "hash": "872a177f1596724b35cbf8a301442bf03a03e28de73f3450a71bad9ccc673f94",
+              "text": "1. **Under-escalation: attributing a first thunderclap headache to tension headache.** Thunderclap headache (peak intensity <60 seconds) is SAH until proven otherwise. CT head within 6 hours has >97% sensitivity; LP >12 hours after onset provides definitive exclusion. A patient with classic BPPV, known anxiety, or chronic TTH who presents with a thunderclap event requires SAH exclusion regardless of history. The error of \"sentinel bleed attributed to TTH\" is one of the most litigation-generating missed diagnoses in emergency medicine.\n\n2. **Over-escalation: neuroimaging for stable, typical TTH with established pattern.** Neuroimaging in patients with stable headaches meeting primary headache criteria and a normal neurological exam has a yield of <1% for clinically significant findings and does not reduce re-presentation or anxiety in the long term. Choosing Wisely guidelines explicitly caution against this practice.\n\n3. **Failing to diagnose medication-overuse headache.** Patients with chronic daily headache who use NSAIDs, triptans, or opioids >10-15 days/month have medication-overuse headache as a perpetuating factor. Prescribing more analgesics worsens the condition. The key question: \"How many days per month do you take pain medication for your headaches?\" Withdrawal and preventive therapy are the treatment.\n\n4. **Prescribing opioids for TTH.** Opioids are inferior to NSAIDs for acute headache, accelerate the transition to chronic daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:tension-headache",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Tension-Type Headache\ntension headache; TTH; muscle contraction headache; episodic tension-type headache; chronic tension-type headache\nPitfalls\n1. **Under-escalation: attributing a first thunderclap headache to tension headache.** Thunderclap headache (peak intensity <60 seconds) is SAH until proven otherwise. CT head within 6 hours has >97% sensitivity; LP >12 hours after onset provides definitive exclusion. A patient with classic BPPV, known anxiety, or chronic TTH who presents with a thunderclap event requires SAH exclusion regardless of history. The error of \"sentinel bleed attributed to TTH\" is one of the most litigation-generating missed diagnoses in emergency medicine.\n\n2. **Over-escalation: neuroimaging for stable, typical TTH with established pattern.** Neuroimaging in patients with stable headaches meeting primary headache criteria and a normal neurological exam has a yield of <1% for clinically significant findings and does not reduce re-presentation or anxiety in the long term. Choosing Wisely guidelines explicitly caution against this practice.\n\n3. **Failing to diagnose medication-overuse headache.** Patients with chronic daily headache who use NSAIDs, triptans, or opioids >10-15 days/month have medication-overuse headache as a perpetuating factor. Prescribing more analgesics worsens the condition. The key question: \"How many days per month do you take pain medication for your headaches?\" Withdrawal and preventive therapy are the treatment.\n\n4. **Prescribing opioids for TTH.** Opioids are inferior to NSAIDs for acute headache, accelerate the transition to chronic daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n"
+            },
+            "document": {
+              "id": "openem:tension-headache",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/tension-headache.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Tension-Type Headache",
+              "aliases": [
+                "tension headache",
+                "TTH",
+                "muscle contraction headache",
+                "episodic tension-type headache",
+                "chronic tension-type headache"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "73653a341b4841d483b11a9308969e558e9256b1f9e82f7deba1b96982b273cc",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:subarachnoid-hemorrhage",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "neurological"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-13T22:56:17.095Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-23"
+            },
+            "score": 0.014285714285714285,
+            "channels": [
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n5. **Missing temporal arteritis in patients >50 years with new headache.** New headache after age 50 is temporal arteritis until proven otherwise (ESR, CRP, temporal artery biopsy). Giant cell arteritis causes permanent vision loss in 15-20% of untreated cases. Empiric steroids while awaiting biops"
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 16.368207999999868,
+          "embeddingMs": 807.6942090000011,
+          "vectorMs": 41.680374999996275,
+          "totalMs": 873.533875000001
+        },
+        "warnings": [],
+        "embeddingTokens": 12,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": {
+      "verdict": "revise",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "Priority asynchronous medication review fits an active usual migraine with sumatriptan exhausted. No reported feature independently requires physical or emergency care.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "My usual migraine started this morning"
+            },
+            {
+              "unit": "patient",
+              "quote": "I'm out of sumatriptan and would like a refill."
+            },
+            {
+              "unit": "draft",
+              "quote": "\"reviewPriority\":\"priority\",\"workType\":\"medication_request\""
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "The initial route remains remote. Emergency instructions are conditional, not an escalation based on unreported findings.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"disposition\":\"ASYNC_PHYSICIAN\""
+            },
+            {
+              "unit": "draft",
+              "quote": "Call 911 now if this headache becomes sudden and worst-ever"
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "The draft accurately identifies the usual symptom pattern and named medication depletion, while explicitly preserving unknown history and vital signs.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "same one-sided throbbing and light sensitivity I always get"
+            },
+            {
+              "unit": "draft",
+              "quote": "unasked history remains unknown, not denied."
+            },
+            {
+              "unit": "draft",
+              "quote": "this does not mean they are normal or that they were never measured."
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "fail",
+          "reason": "The guideline supports early triptan effectiveness and the consumer summary supports comfort measures, but the supplied evidence does not establish all emergency management instructions or the proposed prescribing-screening domains. The draft appropriately disclaims remote prescribing authority; nevertheless, acknowledging source limitations does",
+          "anchors": [
+            {
+              "unit": "source:bb16fe6c310f5e92d3e8b039fb6f06e9012370da477ad12882cbefa66619795d",
+              "quote": "Triptans are most effective when taken early in an attack, when the headache is still mild"
+            },
+            {
+              "unit": "draft",
+              "quote": "go straight to an emergency department for headache with fever or a stiff neck"
+            },
+            {
+              "unit": "draft",
+              "quote": "does not address telehealth routing, refill eligibility or contraindication screening"
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "pass",
+          "reason": "Emergency transport and immediate ED instructions are explicit and do not permit queue processing to delay care.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Call 911 now if this headache becomes sudden and worst-ever, or you develop new weakness, speech trouble or major vision change"
+            },
+            {
+              "unit": "draft",
+              "quote": "do not wait for Counsel review"
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No clarification blocks routing; remaining prescribing questions are appropriately left for clinician review.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"questions\":[]"
+            },
+            {
+              "unit": "context",
+              "quote": "\"question\":null"
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "Counsel is identified as the reviewing clinician, without claiming prescription approval, completed review, or symptom resolution. Prompt review today is framed as a request rather than a guaranteed ETA.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "I'm asking a Counsel clinician to review your refill request promptly today; they may ask about your diagnosis"
+            }
+          ]
+        }
+      ],
+      "earlyAction": "none",
+      "earlyCorrection": null,
+      "correction": "Retain priority asynchronous medication-request review and the conditional emergency precautions. Add applicable authoritative support for headache emergency warning signs and sumatriptan prescribing checks; the supplied efficacy passage and tension-headache research synthesis do not establish those management claims. Describe depletion specifically as being out of sumatriptan, without implying that all acute treatments are unavailable."
+    },
+    "release": "clinician_required",
+    "clinicalApproval": false,
+    "corrections": 1,
+    "sourceIntegrity": true,
+    "citations": []
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "counsel-disposition-agent",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "71196184-d7b2-4a91-842b-dd499be1c080",
+  "traceId": "afc04bea422aaedc9c0c57e99dc682d4",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "40F. My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get. I'm out of sumatriptan and would like a refill.",
+  "inputHash": "0ede5c086d3ea812a589febf64e2b33fcde3c4795b2b686a9b02453986a0b81e",
+  "answerHash": "cba974fa31aa7cbe32221e2fa46d98fb1c431b3736588d2d962326d54a596a32",
+  "promptHash": "6062514bcc67fe7de7606ae4a20f23018b31d0965584d8d45fb8ce2498bad8bb",
+  "guidanceHash": "eaca6ef49357b4df51fd9a913dfb01e48946358ece698f24195c7d99311101f4",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-13T23:30:03.585Z",
+  "durationMs": 78765,
+  "workflowDurationMs": 78637,
+  "tracePersistenceDurationMs": 128,
+  "steps": [
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 7367
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 24755
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 53857
+    }
+  ],
+  "responseEvents": [],
+  "safetyNotices": [],
+  "firstActionMs": null,
+  "firstPatientReplyMs": null,
+  "firstQuestionMs": null
+}

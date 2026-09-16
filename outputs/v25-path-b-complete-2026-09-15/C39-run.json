@@ -1,0 +1,1944 @@
+{
+  "status": "review_required",
+  "answer": {
+    "disposition": "EMERGENCY_NOW",
+    "reviewPriority": null,
+    "workType": null,
+    "reason": "The care instruction is retained; the complete explanation still needs clinician review.",
+    "patientMessage": "Seek emergency department assessment now. Do not wait for a message reply; call 911 if you cannot travel safely.",
+    "differential": [],
+    "redFlags": [],
+    "vitalSigns": "The automated assessment has not established the vital-sign context.",
+    "questions": [],
+    "evidence": [],
+    "evidenceLimitations": "No model-reviewed clinical explanation has been released. The draft and review outcome are retained for clinician assessment."
+  },
+  "origin": "validation_safeguard",
+  "failure": "CLINICIAN_REVIEW_REQUIRED",
+  "safetyFloor": {
+    "disposition": "EMERGENCY_NOW",
+    "directive": "Seek emergency department assessment now. Do not wait for a message reply; call 911 if you cannot travel safely."
+  },
+  "rejectedAnswer": {
+    "disposition": "EMERGENCY_NOW",
+    "reviewPriority": null,
+    "workType": null,
+    "reason": "Two weeks postpartum with detachment, constant crying and new frightening thoughts of harming the baby requires immediate emergency psychiatric assessment to distinguish postpartum depression with intrusive thoughts from postpartum psychosis and to ensure infant safety today.",
+    "patientMessage": "Go to the emergency department now for an urgent mental health assessment, and have someone else care for and stay with the baby until you are seen. New thoughts of harming your baby so soon after birth need same-hour, in-person evaluation. Do not go alone if you can avoid it; if you feel you might act on these thoughts, or you start seeing or hearing things others don't, call 911 immediately.",
+    "differential": [
+      "Postpartum depression with intrusive thoughts",
+      "Postpartum psychosis"
+    ],
+    "redFlags": [
+      {
+        "concern": "Thoughts of harming the infant",
+        "status": "reported",
+        "quote": "I've started having thoughts about harming the baby that scare me"
+      },
+      {
+        "concern": "Emotional detachment",
+        "status": "reported",
+        "quote": "I feel detached from everything"
+      },
+      {
+        "concern": "Hallucinations or delusions",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Thoughts of self-harm or suicide",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Whether another adult is currently caring for the infant",
+        "status": "unknown",
+        "quote": ""
+      }
+    ],
+    "vitalSigns": "No vital signs reported; whether any were measured is unknown.",
+    "questions": [],
+    "evidenceLimitations": "Consumer summaries and an ED synthesis were available; no perinatal psychiatry guideline addresses this exact presentation.",
+    "transportIntent": {
+      "mode": "ed_now",
+      "activationQuote": null
+    },
+    "citations": [
+      {
+        "passageId": "ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+        "quote": "Call 911 or go to the nearest emergency room right away if this happens.",
+        "claim": "Postpartum psychosis is a medical emergency warranting 911 or immediate emergency room attendance.",
+        "applicability": "uncertain",
+        "limitation": "Consumer summary; psychosis features not reported by this patient, so applicability is uncertain."
+      },
+      {
+        "passageId": "f0f2eacc836f5102b1c9c2c9bdac1e1871e255fb94e2444bc4f48337b79b3991",
+        "quote": "If you or someone you know has thoughts of hurting themselves or attempting suicide, get help right away.",
+        "claim": "Thoughts of hurting someone warrant getting help right away, with 911 in an emergency.",
+        "applicability": "applicable",
+        "limitation": "General depression summary, not postpartum-specific triage guidance."
+      }
+    ]
+  },
+  "modelCalls": 3,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "postpartum depression intrusive thoughts harm infant",
+          "perinatal mood disorder risk assessment safety",
+          "postpartum psychosis command hallucinations delusions"
+        ],
+        "findings": [
+          {
+            "finding": "Intrusive thoughts about harming infant",
+            "status": "reported",
+            "quote": "I've started having thoughts about harming the baby that scare me"
+          },
+          {
+            "finding": "Emotional detachment",
+            "status": "reported",
+            "quote": "I feel detached from everything"
+          },
+          {
+            "finding": "Crying",
+            "status": "reported",
+            "quote": "I've been crying constantly"
+          },
+          {
+            "finding": "Distress regarding intrusive thoughts",
+            "status": "reported",
+            "quote": "thoughts about harming the baby that scare me"
+          },
+          {
+            "finding": "Current infant care status",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "finding": "Auditory or visual hallucinations",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "question": {
+          "text": "Are you hearing voices or seeing things that others don't see, or do you feel like someone is controlling your thoughts?",
+          "why": "Distinguishing postpartum depression with intrusive thoughts from postpartum psychosis is critical for safety and urgently changes management.",
+          "quote": "thoughts about harming the baby"
+        }
+      },
+      "usage": {
+        "inputTokens": 1079,
+        "outputTokens": 248
+      },
+      "failure": null,
+      "firstTextDeltaMs": 643,
+      "streamProgress": {
+        "lastTextDeltaMs": 2595,
+        "textDeltaCount": 76,
+        "textCharacters": 1125
+      },
+      "transportTimings": {
+        "startResolvedMs": 1,
+        "objectResolvedMs": 2602,
+        "usageResolvedMs": 2606,
+        "finishReasonResolvedMs": 2606,
+        "streamEndMs": 2607
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 2607
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "EMERGENCY_NOW",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "Two weeks postpartum with detachment, constant crying and new frightening thoughts of harming the baby requires immediate emergency psychiatric assessment to distinguish postpartum depression with intrusive thoughts from postpartum psychosis and to ensure infant safety today.",
+        "patientMessage": "Go to the emergency department now for an urgent mental health assessment, and have someone else care for and stay with the baby until you are seen. New thoughts of harming your baby so soon after birth need same-hour, in-person evaluation. Do not go alone if you can avoid it; if you feel you might act on these thoughts, or you start seeing or hearing things others don't, call 911 immediately.",
+        "differential": [
+          "Postpartum depression with intrusive thoughts",
+          "Postpartum psychosis"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thoughts of harming the infant",
+            "status": "reported",
+            "quote": "I've started having thoughts about harming the baby that scare me"
+          },
+          {
+            "concern": "Emotional detachment",
+            "status": "reported",
+            "quote": "I feel detached from everything"
+          },
+          {
+            "concern": "Hallucinations or delusions",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Thoughts of self-harm or suicide",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Whether another adult is currently caring for the infant",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported; whether any were measured is unknown.",
+        "questions": [],
+        "evidenceLimitations": "Consumer summaries and an ED synthesis were available; no perinatal psychiatry guideline addresses this exact presentation.",
+        "transportIntent": {
+          "mode": "ed_now",
+          "activationQuote": null
+        },
+        "citations": [
+          {
+            "passageId": "ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+            "quote": "Call 911 or go to the nearest emergency room right away if this happens.",
+            "claim": "Postpartum psychosis is a medical emergency warranting 911 or immediate emergency room attendance.",
+            "applicability": "uncertain",
+            "limitation": "Consumer summary; psychosis features not reported by this patient, so applicability is uncertain."
+          },
+          {
+            "passageId": "f0f2eacc836f5102b1c9c2c9bdac1e1871e255fb94e2444bc4f48337b79b3991",
+            "quote": "If you or someone you know has thoughts of hurting themselves or attempting suicide, get help right away.",
+            "claim": "Thoughts of hurting someone warrant getting help right away, with 911 in an emergency.",
+            "applicability": "applicable",
+            "limitation": "General depression summary, not postpartum-specific triage guidance."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 19358,
+        "outputTokens": 874
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1738,
+      "streamProgress": {
+        "lastTextDeltaMs": 14521,
+        "textDeltaCount": 217,
+        "textCharacters": 2328
+      },
+      "transportTimings": {
+        "startResolvedMs": 3,
+        "objectResolvedMs": 14532,
+        "usageResolvedMs": 14546,
+        "finishReasonResolvedMs": 14546,
+        "streamEndMs": 14548
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 14548,
+      "rawOutput": {
+        "disposition": "EMERGENCY_NOW",
+        "reviewPriority": null,
+        "workType": null,
+        "reason": "Two weeks postpartum with detachment, constant crying and new frightening thoughts of harming the baby requires immediate emergency psychiatric assessment to distinguish postpartum depression with intrusive thoughts from postpartum psychosis and to ensure infant safety today.",
+        "patientMessage": "Go to the emergency department now for an urgent mental health assessment, and have someone else care for and stay with the baby until you are seen. New thoughts of harming your baby so soon after birth need same-hour, in-person evaluation. Do not go alone if you can avoid it; if you feel you might act on these thoughts, or you start seeing or hearing things others don't, call 911 immediately.",
+        "differential": [
+          "Postpartum depression with intrusive thoughts",
+          "Postpartum psychosis"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thoughts of harming the infant",
+            "status": "reported",
+            "quote": "I've started having thoughts about harming the baby that scare me"
+          },
+          {
+            "concern": "Emotional detachment",
+            "status": "reported",
+            "quote": "I feel detached from everything"
+          },
+          {
+            "concern": "Hallucinations or delusions",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Thoughts of self-harm or suicide",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Whether another adult is currently caring for the infant",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported; whether any were measured is unknown.",
+        "questions": [],
+        "evidenceLimitations": "Consumer summaries and an ED synthesis were available; no perinatal psychiatry guideline addresses this exact presentation.",
+        "transportIntent": {
+          "mode": "ed_now",
+          "activationQuote": null
+        },
+        "citations": [
+          {
+            "passageId": "ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+            "claim": "Postpartum psychosis is a medical emergency warranting 911 or immediate emergency room attendance.",
+            "applicability": "uncertain",
+            "limitation": "Consumer summary; psychosis features not reported by this patient, so applicability is uncertain.",
+            "quoteId": "q1"
+          },
+          {
+            "passageId": "f0f2eacc836f5102b1c9c2c9bdac1e1871e255fb94e2444bc4f48337b79b3991",
+            "claim": "Thoughts of hurting someone warrant getting help right away, with 911 in an emergency.",
+            "applicability": "applicable",
+            "limitation": "General depression summary, not postpartum-specific triage guidance.",
+            "quoteId": "q8"
+          }
+        ]
+      }
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "action": "ED_NOW",
+        "basis": [
+          {
+            "quote": "I've started having thoughts about harming the baby that scare me",
+            "interpretation": "Intrusive thoughts about harming the infant in the immediate postpartum period constitute a psychiatric emergency requiring immediate safety assessment and inpatient psychiatric evaluation.",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "I feel detached from everything, I've been crying constantly",
+            "interpretation": "Severe depressive symptoms two weeks postpartum with emotional withdrawal and persistent crying indicate postpartum depression with concerning severity and trajectory.",
+            "currentPatient": true,
+            "present": true
+          }
+        ],
+        "actionBasis": {
+          "indices": [
+            0,
+            1
+          ],
+          "sufficient": true
+        },
+        "reason": "Postpartum intrusive harm thoughts with depressive symptoms require immediate psychiatric safety assessment and inpatient care.",
+        "patientMessage": "",
+        "physicalRequirement": "Immediate psychiatric assessment, safety evaluation, and inpatient stabilization capability.",
+        "activeEms": null
+      },
+      "usage": {
+        "inputTokens": 3432,
+        "outputTokens": 211
+      },
+      "failure": null,
+      "firstTextDeltaMs": 892,
+      "streamProgress": {
+        "lastTextDeltaMs": 2746,
+        "textDeltaCount": 72,
+        "textCharacters": 993
+      },
+      "transportTimings": {
+        "startResolvedMs": 1,
+        "objectResolvedMs": 2773,
+        "usageResolvedMs": 2781,
+        "finishReasonResolvedMs": 2781,
+        "streamEndMs": 2782
+      },
+      "cacheUsage": {
+        "cachedInputTokens": 0,
+        "cacheCreationInputTokens": 0
+      },
+      "durationMs": 2782
+    }
+  ],
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "pass",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "pass",
+      "detail": "Checks explicit timing/destination tokens or exact independently reviewed emergency-transport binding; not clinical validation or verification of EMS activation."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen; a prescription/plan mention alone is not authority for a new instruction. Targeted prose finding, not prescribing validation."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "pass",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "transport_intent",
+      "status": "fail",
+      "detail": "Typed intent matches a bounded immediate directive. No independent review or external EMS activation is asserted."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Citation quotation and selected passage identity are checked; clinical support is not established."
+    },
+    {
+      "id": "evidence_packet",
+      "status": "pass",
+      "detail": "A nonempty integrity-valid evidence packet is required for a completed response. Missing evidence never cancels an issued action."
+    },
+    {
+      "id": "independent_review",
+      "status": "not_assessed",
+      "detail": "No model judge runs on gates-release. Clinical correctness and claim support remain unassessed."
+    },
+    {
+      "id": "care_reconciliation",
+      "status": "not_assessed",
+      "detail": "An issued emergency/in-person instruction cannot be silently reduced. Disagreement is retained for clinician review."
+    }
+  ],
+  "guidance": [
+    {
+      "id": "d856a6cfc053bfc09d8e931f7ab85fd0ca1e5fbfee4389348eb71040bca1a5fb",
+      "title": "Postpartum Depression",
+      "url": "https://medlineplus.gov/postpartumdepression.html",
+      "section": "Health-topic summary",
+      "summary": "What is postpartum depression? \n Having a baby can be exciting, but it can also be stressful and bring many strong emotions. During the postpartum period, which is the time after you give birth , you may have mood swings, crying spells, or feel anxious. These feelings are common and are often called the postpartum \"baby blues\". The baby blues usually go away within a few days to a week. \n\n If your symptoms are more severe and last longer than two weeks, you may have postpartum depression. \n\n Postpartum depression is a common but serious mood disorder that can begin anytime within the first year after childbirth. Without treatment, symptoms may make it hard to care for your baby or manage daily tasks. \n\n What causes postpartum depression? \n The exact cause is unknown, but postpartum depression likely results from a combination of factors, including: \n \n Sudden changes in hormone levels after pregnancy \n Physical changes , such as dropping thyroid hormone levels \n Lifestyle factors, such as fatigue, lack of sleep, limited support, or recent stressful events \n \n\n Who is at risk for postpartum depression? \n Anyone can develop postpartum depression after childbirth. You might be at higher risk if you: \n \n Have a history of depression , bipolar disorder , or a family health history of these conditions \n Had a multiple birth (twins, triplets, or more) \n Gave birth while in your teens \n Had health problems during pregnancy \n Had preterm labor or other complications during childbirth \n Have a baby with special needs \n Have ever experienced domestic violence \n Are dealing with financial stress \n Had an unplanned pregnancy \n \n\n What are the symptoms of postpartum depression? \n Postpartum depression symptoms are more intense and last longer than the baby blues. \n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "d856a6cfc053bfc09d8e931f7ab85fd0ca1e5fbfee4389348eb71040bca1a5fb",
+          "sourceId": "medlineplus:1238",
+          "excerpt": "What is postpartum depression? \n Having a baby can be exciting, but it can also be stressful and bring many strong emotions. During the postpartum period, which is the time after you give birth , you may have mood swings, crying spells, or feel anxious. These feelings are common and are often called the postpartum \"baby blues\". The baby blues usually go away within a few days to a week. \n\n If your symptoms are more severe and last longer than two weeks, you may have postpartum depression. \n\n Postpartum depression is a common but serious mood disorder that can begin anytime within the first year after childbirth. Without treatment, symptoms may make it hard to care for your baby or manage daily tasks. \n\n What causes postpartum depression? \n The exact cause is unknown, but postpartum depression likely results from a combination of factors, including: \n \n Sudden changes in hormone levels after pregnancy \n Physical changes , such as dropping thyroid hormone levels \n Lifestyle factors, such as fatigue, lack of sleep, limited support, or recent stressful events \n \n\n Who is at risk for postpartum depression? \n Anyone can develop postpartum depression after childbirth. You might be at higher risk if you: \n \n Have a history of depression , bipolar disorder , or a family health history of these conditions \n Had a multiple birth (twins, triplets, or more) \n Gave birth while in your teens \n Had health problems during pregnancy \n Had preterm labor or other complications during childbirth \n Have a baby with special needs \n Have ever experienced domestic violence \n Are dealing with financial stress \n Had an unplanned pregnancy \n \n\n What are the symptoms of postpartum depression? \n Postpartum depression symptoms are more intense and last longer than the baby blues. \n",
+          "excerptSha256": "206e518d55774b52d2b416da11ae5036e3114421a4e894705fa936f6f2f3e17a",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "37f4526aa0d455e12576256256ae997321c05a9480158944e9bb4a5e0bab6e8d",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "e6c979d5688505ee9d2f1a465c3ec869e28824b63536b6ac293630be4d95d31c",
+      "title": "Acute Suicidality",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-suicidality.md",
+      "section": "Pitfalls",
+      "summary": "1. **Relying on \"safety contracts\" or \"no-suicide contracts.\"** These have zero evidence for reducing suicide risk. They create false reassurance and are not a substitute for proper risk assessment, Safety Planning Intervention, and disposition.\n\n2. **Discharging an intoxicated patient who denies suicidal ideation.** Alcohol and substances impair judgment and disinhibit. A patient who was suicidal while intoxicated must be reassessed after achieving sobriety. Suicidal ideation while intoxicated predicts future attempts.\n\n3. **Using the SAD PERSONS score as the primary risk stratification tool.** SAD PERSONS has poor sensitivity and specificity. Use the C-SSRS, clinical interview, and assessment of static and dynamic risk factors for disposition decisions.\n\n4. **Failing to ask about firearms.** Access to a firearm increases suicide completion risk 3-fold. Direct, nonjudgmental inquiry about firearm access is mandatory. Counsel on temporary off-site storage.\n\n5. **Skipping medical clearance.** Organic causes of suicidal behavior include hypoglycemia, intoxication, delirium, CNS lesions, and medication side effects. Point-of-care glucose, toxicology screen, and focused medical evaluation are required before attributing symptoms to primary psychiatric illness.\n\n6. **Not checking acetaminophen and salicylate levels after an ingestion.** Co-ingestion is common. Acetaminophen toxicity is clinically silent for 24-48 hours. Order levels on every patient with known or possible ingestion.\n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "e6c979d5688505ee9d2f1a465c3ec869e28824b63536b6ac293630be4d95d31c",
+          "sourceId": "openem:acute-suicidality",
+          "excerpt": "1. **Relying on \"safety contracts\" or \"no-suicide contracts.\"** These have zero evidence for reducing suicide risk. They create false reassurance and are not a substitute for proper risk assessment, Safety Planning Intervention, and disposition.\n\n2. **Discharging an intoxicated patient who denies suicidal ideation.** Alcohol and substances impair judgment and disinhibit. A patient who was suicidal while intoxicated must be reassessed after achieving sobriety. Suicidal ideation while intoxicated predicts future attempts.\n\n3. **Using the SAD PERSONS score as the primary risk stratification tool.** SAD PERSONS has poor sensitivity and specificity. Use the C-SSRS, clinical interview, and assessment of static and dynamic risk factors for disposition decisions.\n\n4. **Failing to ask about firearms.** Access to a firearm increases suicide completion risk 3-fold. Direct, nonjudgmental inquiry about firearm access is mandatory. Counsel on temporary off-site storage.\n\n5. **Skipping medical clearance.** Organic causes of suicidal behavior include hypoglycemia, intoxication, delirium, CNS lesions, and medication side effects. Point-of-care glucose, toxicology screen, and focused medical evaluation are required before attributing symptoms to primary psychiatric illness.\n\n6. **Not checking acetaminophen and salicylate levels after an ingestion.** Co-ingestion is common. Acetaminophen toxicity is clinically silent for 24-48 hours. Order levels on every patient with known or possible ingestion.\n",
+          "excerptSha256": "26e444ff82c673d083be9edab8a3f23ed467c88ce1929d149e33b281790a0e43",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "fe23d6912fccd067e49b7ec3faa9d8996cb7f406df0ae14088138f09f00d176b",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+      "title": "Postpartum Depression",
+      "url": "https://medlineplus.gov/postpartumdepression.html",
+      "section": "Health-topic summary",
+      "summary": "hallucinations (seeing or hearing things that aren't real), or dangerous behaviors. Call 911 or go to the nearest emergency room right away if this happens. \n\n How is postpartum depression diagnosed? \n Your provider may diagnose postpartum depression using: \n \n Screening questions or questionnaires, such as those about your mood, sleep, and thoughts. \n A clinical evaluation based on your symptoms. \n Blood tests, if needed, to check for physical conditions such as thyroid disorders, that can cause or worsen depression. \n \n\n What is the treatment for postpartum depression? \n If you think you have postpartum depression, talk with your provider. Treatments may include: \n \n Medicines, including antidepressants \n Talk therapy (counseling) \n \n\n Tell your provider if you are breastfeeding so they can choose the safest treatment options. \n \n Along with these treatment options, there are things you can do at home that may help you feel better, such as: \n \n Asking for help with caring for the baby and household chores \n Taking time for yourself \n Getting physical activity, such as walking \n Resting when the baby rests \n \n\n Can postpartum depression be prevented? \n You may be able to lower your risk for postpartum depression by: \n \n Talking with your provider during pregnancy about any history of depression \n Completing recommended screening questionnaires during pregnancy and after birth \n Getting support from family, friends, or support groups \n Attending early Physical changes so symptoms can be found and treated as soon as possible \n \n\n Dept. of Health and Human Services Office on Women's Health",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+          "sourceId": "medlineplus:1238",
+          "excerpt": "hallucinations (seeing or hearing things that aren't real), or dangerous behaviors. Call 911 or go to the nearest emergency room right away if this happens. \n\n How is postpartum depression diagnosed? \n Your provider may diagnose postpartum depression using: \n \n Screening questions or questionnaires, such as those about your mood, sleep, and thoughts. \n A clinical evaluation based on your symptoms. \n Blood tests, if needed, to check for physical conditions such as thyroid disorders, that can cause or worsen depression. \n \n\n What is the treatment for postpartum depression? \n If you think you have postpartum depression, talk with your provider. Treatments may include: \n \n Medicines, including antidepressants \n Talk therapy (counseling) \n \n\n Tell your provider if you are breastfeeding so they can choose the safest treatment options. \n \n Along with these treatment options, there are things you can do at home that may help you feel better, such as: \n \n Asking for help with caring for the baby and household chores \n Taking time for yourself \n Getting physical activity, such as walking \n Resting when the baby rests \n \n\n Can postpartum depression be prevented? \n You may be able to lower your risk for postpartum depression by: \n \n Talking with your provider during pregnancy about any history of depression \n Completing recommended screening questionnaires during pregnancy and after birth \n Getting support from family, friends, or support groups \n Attending early Physical changes so symptoms can be found and treated as soon as possible \n \n\n Dept. of Health and Human Services Office on Women's Health",
+          "excerptSha256": "b13591662b7f0b823a277048f75fedf64050d9c732fc8a91177ac748e0aef659",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "37f4526aa0d455e12576256256ae997321c05a9480158944e9bb4a5e0bab6e8d",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "ea3e1c8d50075cc4162321002683bca701afa1d02273040c759fa25015974ea2",
+      "title": "Acute Suicidality",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-suicidality.md",
+      "section": "Critical Actions",
+      "summary": "| Action | Target |\n|---|---|\n| Environmental safety | Immediately upon recognition |\n| C-SSRS assessment | Within first 30 minutes |\n| Medical clearance | Concurrent with psychiatric assessment |\n| 1:1 observation | Continuous until disposition |\n| Safety plan | Before any discharge |\n| Lethal means restriction | Discuss with patient and family before disposition |\n\n1. Secure the environment: remove sharps, cords, belts, shoelaces, plastic bags, medications from the room. Use ligature-resistant fixtures. Assign 1:1 continuous observation.\n2. Perform C-SSRS screening to stratify risk level.\n3. Medical clearance: rule out organic causes of psychiatric symptoms (hypoglycemia, thyrotoxicosis, intoxication, delirium, CNS lesion).\n4. Treat ingestion or self-harm injuries per standard protocols.\n5. Assess capacity. Determine if the patient meets criteria for involuntary psychiatric hold (danger to self).\n6. Conduct lethal means restriction counseling with patient and available family/support persons.\n7. Complete a Safety Planning Intervention (Stanley-Brown) if disposition is outpatient.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "ea3e1c8d50075cc4162321002683bca701afa1d02273040c759fa25015974ea2",
+          "sourceId": "openem:acute-suicidality",
+          "excerpt": "| Action | Target |\n|---|---|\n| Environmental safety | Immediately upon recognition |\n| C-SSRS assessment | Within first 30 minutes |\n| Medical clearance | Concurrent with psychiatric assessment |\n| 1:1 observation | Continuous until disposition |\n| Safety plan | Before any discharge |\n| Lethal means restriction | Discuss with patient and family before disposition |\n\n1. Secure the environment: remove sharps, cords, belts, shoelaces, plastic bags, medications from the room. Use ligature-resistant fixtures. Assign 1:1 continuous observation.\n2. Perform C-SSRS screening to stratify risk level.\n3. Medical clearance: rule out organic causes of psychiatric symptoms (hypoglycemia, thyrotoxicosis, intoxication, delirium, CNS lesion).\n4. Treat ingestion or self-harm injuries per standard protocols.\n5. Assess capacity. Determine if the patient meets criteria for involuntary psychiatric hold (danger to self).\n6. Conduct lethal means restriction counseling with patient and available family/support persons.\n7. Complete a Safety Planning Intervention (Stanley-Brown) if disposition is outpatient.",
+          "excerptSha256": "20f852949d601db49da8f7f19c0e442b5efc8e80344be8ecb14da5b7ebec6f4f",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "fe23d6912fccd067e49b7ec3faa9d8996cb7f406df0ae14088138f09f00d176b",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "96d4120716adf8744dae6b1afe8659cb243750856ead5e0535f31d46084faa18",
+      "title": "Depression",
+      "url": "https://medlineplus.gov/depression.html",
+      "section": "Health-topic summary",
+      "summary": "h symptoms of psychosis is a severe form of depression that also has delusions (false beliefs) or hallucinations (seeing, hearing, or feeling something that isn't there). \n \n\n What causes depression? \n There are a variety of things that may cause depression, including genetic, biological, environmental, and psychological factors. Depression can happen at any age and can affect anyone, but it's more common in women. This is often due to the physical and hormonal changes that women have during menstruation, pregnancy, the postpartum period , and menopause. Other mental disorders or chronic medical conditions such as diabetes , cancer , or heart disease may occur with depression. This may make the chronic condition or depression worse. \n In some cases, there is no clear cause for depression. \n\n Who is at risk of depression? \n You may be at a higher risk of depression if you have a close relative who has it or another mental health disorder. Going through trauma or stressful life events may raise your risk even more. \n\n What are the symptoms of depression? \n Depression doesn't look the same on everyone. The type and number of symptoms of depression can vary and don't always appear like sadness. Depression may affect you differently based on your: \n \n Age. The symptoms of depression may be different in a child, who may appear more irritable than sad. Teens may act out or have excessive sleepiness. The symptoms for an older adult may not be as obvious as other age groups. \n Sex. Men often show symptoms and coping behaviors differently than women. Rather than sad, men may appear angry or irritable. \n Medical conditions. Some medicines and medical conditions may cause symptoms that look like depression. Chronic conditions may make depression worse. \n \n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "96d4120716adf8744dae6b1afe8659cb243750856ead5e0535f31d46084faa18",
+          "sourceId": "medlineplus:113",
+          "excerpt": "h symptoms of psychosis is a severe form of depression that also has delusions (false beliefs) or hallucinations (seeing, hearing, or feeling something that isn't there). \n \n\n What causes depression? \n There are a variety of things that may cause depression, including genetic, biological, environmental, and psychological factors. Depression can happen at any age and can affect anyone, but it's more common in women. This is often due to the physical and hormonal changes that women have during menstruation, pregnancy, the postpartum period , and menopause. Other mental disorders or chronic medical conditions such as diabetes , cancer , or heart disease may occur with depression. This may make the chronic condition or depression worse. \n In some cases, there is no clear cause for depression. \n\n Who is at risk of depression? \n You may be at a higher risk of depression if you have a close relative who has it or another mental health disorder. Going through trauma or stressful life events may raise your risk even more. \n\n What are the symptoms of depression? \n Depression doesn't look the same on everyone. The type and number of symptoms of depression can vary and don't always appear like sadness. Depression may affect you differently based on your: \n \n Age. The symptoms of depression may be different in a child, who may appear more irritable than sad. Teens may act out or have excessive sleepiness. The symptoms for an older adult may not be as obvious as other age groups. \n Sex. Men often show symptoms and coping behaviors differently than women. Rather than sad, men may appear angry or irritable. \n Medical conditions. Some medicines and medical conditions may cause symptoms that look like depression. Chronic conditions may make depression worse. \n \n",
+          "excerptSha256": "00e2ea8f5f526209c344c9902ad2eb798dd90d1f1396932e2e5e5a15ca5e68db",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "f69689f88a8f8b0d53114f75f639fcfb4c2d56017956547bb6a22d6a9fe7256b",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "26beddabf3fc1a316926eca706fb3cb0ebd800de0244143128d5bd23565525a6",
+      "title": "Mental Disorders",
+      "url": "https://medlineplus.gov/mentaldisorders.html",
+      "section": "Health-topic summary",
+      "summary": "What are mental disorders? \n Mental disorders (or mental illnesses) are conditions that affect your thinking, feeling, mood, and behavior. They may happen over a short period of time or come and go. Some can be chronic (long-lasting). They can affect your ability to relate to others and function each day.. \n\n What are some types of mental disorders? \n There are many different types of mental disorders. Some common ones include: \n Anxiety disorders , including panic disorder , obsessive-compulsive disorder , and phobias \n Depression , bipolar disorder , and other mood disorders \n Eating disorders \n Personality disorders \n Post-traumatic stress disorder (PTSD) \n Psychotic disorders , including schizophrenia \n \n\n What causes mental disorders? \n There is no single cause for mental illness. A number of factors can contribute to risk for mental illness, such as: \n Your genes and family history \n Your life experiences, such as stress or a history of abuse, especially if they happen in childhood \n Biological factors such as chemical imbalances in the brain \n A traumatic brain injury (TBI) \n Prenatal (before birth) exposure to viruses , toxic chemicals , or other substances such as alcohol and drugs. \n Use of alcohol or recreational drugs \n Having a serious medical condition like cancer \n Having few friends, and feeling lonely or isolated \n \n\n Mental disorders are not caused by character flaws. They have nothing to do with being lazy or weak. \n\n Who is at risk for mental disorders? \n Mental disorders are common. Many Americans will be diagnosed with a mental disorder at some time in their life. \n\n How are mental disorders diagnosed? \n The steps to getting a diagnosis include: \n A medical history ",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "26beddabf3fc1a316926eca706fb3cb0ebd800de0244143128d5bd23565525a6",
+          "sourceId": "medlineplus:5676",
+          "excerpt": "What are mental disorders? \n Mental disorders (or mental illnesses) are conditions that affect your thinking, feeling, mood, and behavior. They may happen over a short period of time or come and go. Some can be chronic (long-lasting). They can affect your ability to relate to others and function each day.. \n\n What are some types of mental disorders? \n There are many different types of mental disorders. Some common ones include: \n Anxiety disorders , including panic disorder , obsessive-compulsive disorder , and phobias \n Depression , bipolar disorder , and other mood disorders \n Eating disorders \n Personality disorders \n Post-traumatic stress disorder (PTSD) \n Psychotic disorders , including schizophrenia \n \n\n What causes mental disorders? \n There is no single cause for mental illness. A number of factors can contribute to risk for mental illness, such as: \n Your genes and family history \n Your life experiences, such as stress or a history of abuse, especially if they happen in childhood \n Biological factors such as chemical imbalances in the brain \n A traumatic brain injury (TBI) \n Prenatal (before birth) exposure to viruses , toxic chemicals , or other substances such as alcohol and drugs. \n Use of alcohol or recreational drugs \n Having a serious medical condition like cancer \n Having few friends, and feeling lonely or isolated \n \n\n Mental disorders are not caused by character flaws. They have nothing to do with being lazy or weak. \n\n Who is at risk for mental disorders? \n Mental disorders are common. Many Americans will be diagnosed with a mental disorder at some time in their life. \n\n How are mental disorders diagnosed? \n The steps to getting a diagnosis include: \n A medical history ",
+          "excerptSha256": "ca7a16f7f88d608f5fc7090c78aa93da2152e35239239436c91131fd025d5f82",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "21fcc42c19a564888e124feb357036d58e001e753465110a4dbe0c5aa75f5e2c",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "623b95734d4f77a01c877110e0fc3b0bc1491e616548df94742ab42df208da84",
+      "title": "Acute Psychosis",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-psychosis.md",
+      "section": "Recognition",
+      "summary": "**Definition:** Acute onset of impaired reality testing characterized by delusions, hallucinations, disorganized thought/speech, or grossly disorganized/catatonic behavior. The ED role is to identify and treat medical causes, ensure safety, and initiate stabilization.\n\n**Primary Psychiatric Causes:**\n- Schizophrenia (first break or exacerbation)\n- Schizoaffective disorder\n- Bipolar disorder (manic psychosis)\n- Major depressive disorder with psychotic features\n- Brief psychotic disorder\n\n**Medical Causes (must be excluded):**\n- Substance intoxication: sympathomimetics (methamphetamine, cocaine, synthetic cathinones), PCP, ketamine, cannabis (especially high-THC/synthetic), hallucinogens (LSD, psilocybin)\n- Substance withdrawal: alcohol, benzodiazepines, barbiturates\n- CNS infection: meningitis, encephalitis, brain abscess\n- Metabolic: hypoglycemia, hypo/hypernatremia, hepatic encephalopathy, uremia, thyrotoxicosis, Addisonian crisis, hypercalcemia\n- Neurologic: stroke, seizure (postictal), CNS tumor, traumatic brain injury, autoimmune encephalitis (anti-NMDAR)\n- Medication-induced: corticosteroids, anticholinergics, dopamine agonists, fluoroquinolones\n- Delirium (any cause)\n\n**Red Flags for Medical Etiology:**\n- Age > 40 with no psychiatric history\n- Acute onset (hours, not days/weeks)\n- Visual hallucinations (more common in organic causes vs. auditory in primary psychosis)\n- Vital sign abnormalities (fever, tachycardia, hypertension, hypoxia)\n- Altered level of consciousness (waxing/waning = delirium)\n- Focal neurologic deficits\n- No prior psychiatric history",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "623b95734d4f77a01c877110e0fc3b0bc1491e616548df94742ab42df208da84",
+          "sourceId": "openem:acute-psychosis",
+          "excerpt": "**Definition:** Acute onset of impaired reality testing characterized by delusions, hallucinations, disorganized thought/speech, or grossly disorganized/catatonic behavior. The ED role is to identify and treat medical causes, ensure safety, and initiate stabilization.\n\n**Primary Psychiatric Causes:**\n- Schizophrenia (first break or exacerbation)\n- Schizoaffective disorder\n- Bipolar disorder (manic psychosis)\n- Major depressive disorder with psychotic features\n- Brief psychotic disorder\n\n**Medical Causes (must be excluded):**\n- Substance intoxication: sympathomimetics (methamphetamine, cocaine, synthetic cathinones), PCP, ketamine, cannabis (especially high-THC/synthetic), hallucinogens (LSD, psilocybin)\n- Substance withdrawal: alcohol, benzodiazepines, barbiturates\n- CNS infection: meningitis, encephalitis, brain abscess\n- Metabolic: hypoglycemia, hypo/hypernatremia, hepatic encephalopathy, uremia, thyrotoxicosis, Addisonian crisis, hypercalcemia\n- Neurologic: stroke, seizure (postictal), CNS tumor, traumatic brain injury, autoimmune encephalitis (anti-NMDAR)\n- Medication-induced: corticosteroids, anticholinergics, dopamine agonists, fluoroquinolones\n- Delirium (any cause)\n\n**Red Flags for Medical Etiology:**\n- Age > 40 with no psychiatric history\n- Acute onset (hours, not days/weeks)\n- Visual hallucinations (more common in organic causes vs. auditory in primary psychosis)\n- Vital sign abnormalities (fever, tachycardia, hypertension, hypoxia)\n- Altered level of consciousness (waxing/waning = delirium)\n- Focal neurologic deficits\n- No prior psychiatric history",
+          "excerptSha256": "df5f17216e32d1026cbc5416f1f06ab03b3bfae84f1211e0f26c56d87e3b4d05",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "ceedc04857fc9b35e0c895277ec485ef49853b58ae4e19073445a36662b09483",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "f0f2eacc836f5102b1c9c2c9bdac1e1871e255fb94e2444bc4f48337b79b3991",
+      "title": "Depression",
+      "url": "https://medlineplus.gov/depression.html",
+      "section": "Health-topic summary",
+      "summary": "pression be prevented? \n Most cases of depression can't be prevented, but healthy lifestyle changes can have long-term benefits for your mental health. These can include: \n \n Getting regular exercise \n Having a consistent sleep schedule \n Controlling stress \n \n\n If you, or someone you love is depressed, see your provider or a mental health provider. It's important to get treatment at the earliest sign of a problem. \n If you or someone you know has thoughts of hurting themselves or attempting suicide, get help right away. If it is an emergency, dial 911. \n\n NIH: National Institute of Mental Health",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "f0f2eacc836f5102b1c9c2c9bdac1e1871e255fb94e2444bc4f48337b79b3991",
+          "sourceId": "medlineplus:113",
+          "excerpt": "pression be prevented? \n Most cases of depression can't be prevented, but healthy lifestyle changes can have long-term benefits for your mental health. These can include: \n \n Getting regular exercise \n Having a consistent sleep schedule \n Controlling stress \n \n\n If you, or someone you love is depressed, see your provider or a mental health provider. It's important to get treatment at the earliest sign of a problem. \n If you or someone you know has thoughts of hurting themselves or attempting suicide, get help right away. If it is an emergency, dial 911. \n\n NIH: National Institute of Mental Health",
+          "excerptSha256": "6f6d11f1706e34f493f9f4d465516617b41287bb5e222e7cb61ab28aecec1a24",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "f69689f88a8f8b0d53114f75f639fcfb4c2d56017956547bb6a22d6a9fe7256b",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "441079b0d6fa6b1ef2bfbc12fe6f624b3b7dd61fb778ce1ab384dcecadd7c6da",
+      "title": "Bipolar Disorder",
+      "url": "https://medlineplus.gov/bipolardisorder.html",
+      "section": "Health-topic summary",
+      "summary": "What is bipolar disorder? \n Bipolar disorder is a mood disorder that can cause intense mood swings: \n \n Sometimes you may feel extremely \"up,\" elated, irritable, or energized. This is called a manic episode . \n Other times you may feel \"down,\" sad, indifferent, or hopeless. This is called a depressive episode . \n You may have both manic and depressive symptoms together. This is called a mixed episode . \n \n Along with mood swings, bipolar disorder causes changes in behavior, energy levels, and activity levels. \n\n Bipolar disorder used to be called other names, including manic depression and manic-depressive disorder. \n\n What are the types of bipolar disorder? \n There are three main types of bipolar disorder: \n \n Bipolar I disorder involves manic episodes that last at least 7 days or manic symptoms so severe that you need immediate hospital care. Depressive episodes are also common. Those often last at least two weeks. This type of bipolar disorder can also involve mixed episodes. \n Bipolar II disorder involves depressive episodes. But instead of full-blown manic episodes, there are episodes of hypomania. Hypomania is a less severe version of mania. \n Cyclothymic disorder , or cyclothymia, also involves hypomanic and depressive symptoms. But they are not as intense or as long-lasting as hypomanic or depressive episodes. The symptoms usually last for at least two years in adults and for one year in children and teenagers. \n \n With any of these types, having four or more episodes of mania or depression in a year is called \"rapid cycling.\" \n\n What causes bipolar disorder? \n The exact cause of bipolar disorder is unknown. Several factors likely play a role in the disorder. They include genetics , brain structure and function, and your environment. \n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "441079b0d6fa6b1ef2bfbc12fe6f624b3b7dd61fb778ce1ab384dcecadd7c6da",
+          "sourceId": "medlineplus:600",
+          "excerpt": "What is bipolar disorder? \n Bipolar disorder is a mood disorder that can cause intense mood swings: \n \n Sometimes you may feel extremely \"up,\" elated, irritable, or energized. This is called a manic episode . \n Other times you may feel \"down,\" sad, indifferent, or hopeless. This is called a depressive episode . \n You may have both manic and depressive symptoms together. This is called a mixed episode . \n \n Along with mood swings, bipolar disorder causes changes in behavior, energy levels, and activity levels. \n\n Bipolar disorder used to be called other names, including manic depression and manic-depressive disorder. \n\n What are the types of bipolar disorder? \n There are three main types of bipolar disorder: \n \n Bipolar I disorder involves manic episodes that last at least 7 days or manic symptoms so severe that you need immediate hospital care. Depressive episodes are also common. Those often last at least two weeks. This type of bipolar disorder can also involve mixed episodes. \n Bipolar II disorder involves depressive episodes. But instead of full-blown manic episodes, there are episodes of hypomania. Hypomania is a less severe version of mania. \n Cyclothymic disorder , or cyclothymia, also involves hypomanic and depressive symptoms. But they are not as intense or as long-lasting as hypomanic or depressive episodes. The symptoms usually last for at least two years in adults and for one year in children and teenagers. \n \n With any of these types, having four or more episodes of mania or depression in a year is called \"rapid cycling.\" \n\n What causes bipolar disorder? \n The exact cause of bipolar disorder is unknown. Several factors likely play a role in the disorder. They include genetics , brain structure and function, and your environment. \n",
+          "excerptSha256": "9d9ed3ed9ce664b10a6eaabeef83d1bf59c1327ed92a3d1974e63caabf69acfa",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "999a741e0259316120e98a4c78a559dc8ad1c43ee8fb0daa8d90a238c67f9461",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    }
+  ],
+  "routingPolicy": "five-route-queue/v2",
+  "usage": {
+    "inputTokens": 23869,
+    "outputTokens": 1333
+  },
+  "graph": {
+    "version": "evidence-graph/v25",
+    "mode": "gates-release",
+    "frozenPacketHash": "f071de3d21b331d27d1d773ffcb75c8a9be5cf74632a72c040892257de5a4fac",
+    "gatesAdmission": {
+      "policy": "gates-release/v1",
+      "packetHash": "f071de3d21b331d27d1d773ffcb75c8a9be5cf74632a72c040892257de5a4fac",
+      "draftHash": "f62ed409befd5b1d865c9eaa1d805e76b94ee9f08f08172fedec22fe96c3ee44",
+      "contractOk": false,
+      "packetOk": true,
+      "lowerThanEarly": false,
+      "aborted": false,
+      "released": false
+    },
+    "clinicalPolicyVersion": "disposition-clinical-policy/v2",
+    "context": {
+      "queries": [
+        "postpartum depression intrusive thoughts harm infant",
+        "perinatal mood disorder risk assessment safety",
+        "postpartum psychosis command hallucinations delusions"
+      ],
+      "findings": [
+        {
+          "finding": "Intrusive thoughts about harming infant",
+          "status": "reported",
+          "quote": "I've started having thoughts about harming the baby that scare me"
+        },
+        {
+          "finding": "Emotional detachment",
+          "status": "reported",
+          "quote": "I feel detached from everything"
+        },
+        {
+          "finding": "Crying",
+          "status": "reported",
+          "quote": "I've been crying constantly"
+        },
+        {
+          "finding": "Distress regarding intrusive thoughts",
+          "status": "reported",
+          "quote": "thoughts about harming the baby that scare me"
+        },
+        {
+          "finding": "Current infant care status",
+          "status": "unknown",
+          "quote": ""
+        },
+        {
+          "finding": "Auditory or visual hallucinations",
+          "status": "unknown",
+          "quote": ""
+        }
+      ],
+      "question": {
+        "text": "Are you hearing voices or seeing things that others don't see, or do you feel like someone is controlling your thoughts?",
+        "why": "Distinguishing postpartum depression with intrusive thoughts from postpartum psychosis is critical for safety and urgently changes management.",
+        "quote": "thoughts about harming the baby"
+      }
+    },
+    "contextAdmission": {
+      "clinicalContextAccepted": true,
+      "querySource": "accepted_context",
+      "queries": [
+        "postpartum depression intrusive thoughts harm infant",
+        "perinatal mood disorder risk assessment safety",
+        "postpartum psychosis command hallucinations delusions"
+      ],
+      "clinicalValidation": false
+    },
+    "safety": {
+      "action": "ED_NOW",
+      "basis": [
+        {
+          "quote": "I've started having thoughts about harming the baby that scare me",
+          "interpretation": "Intrusive thoughts about harming the infant in the immediate postpartum period constitute a psychiatric emergency requiring immediate safety assessment and inpatient psychiatric evaluation.",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "I feel detached from everything, I've been crying constantly",
+          "interpretation": "Severe depressive symptoms two weeks postpartum with emotional withdrawal and persistent crying indicate postpartum depression with concerning severity and trajectory.",
+          "currentPatient": true,
+          "present": true
+        }
+      ],
+      "actionBasis": {
+        "indices": [
+          0,
+          1
+        ],
+        "sufficient": true
+      },
+      "reason": "Postpartum intrusive harm thoughts with depressive symptoms require immediate psychiatric safety assessment and inpatient care.",
+      "patientMessage": "",
+      "physicalRequirement": "Immediate psychiatric assessment, safety evaluation, and inpatient stabilization capability.",
+      "activeEms": null
+    },
+    "safetyAdmission": {
+      "status": "admitted",
+      "code": "ACTION_ADMITTED",
+      "proposedAction": "ED_NOW",
+      "basisMode": "explicit",
+      "supportingBasisIndices": [
+        0,
+        1
+      ],
+      "contextualBasisIndices": [],
+      "clinicalValidation": false
+    },
+    "questionPublication": {
+      "status": "suppressed_emergency",
+      "blocksRouting": false
+    },
+    "retrieval": [
+      {
+        "corpusHash": "af7e4a8c239c4b084525aba008d56ce833b3a08144cea6237319bf996aa30dbd",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "postpartum depression intrusive thoughts harm infant",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "d856a6cfc053bfc09d8e931f7ab85fd0ca1e5fbfee4389348eb71040bca1a5fb",
+              "end": 1781,
+              "hash": "206e518d55774b52d2b416da11ae5036e3114421a4e894705fa936f6f2f3e17a",
+              "text": "What is postpartum depression? \n Having a baby can be exciting, but it can also be stressful and bring many strong emotions. During the postpartum period, which is the time after you give birth , you may have mood swings, crying spells, or feel anxious. These feelings are common and are often called the postpartum \"baby blues\". The baby blues usually go away within a few days to a week. \n\n If your symptoms are more severe and last longer than two weeks, you may have postpartum depression. \n\n Postpartum depression is a common but serious mood disorder that can begin anytime within the first year after childbirth. Without treatment, symptoms may make it hard to care for your baby or manage daily tasks. \n\n What causes postpartum depression? \n The exact cause is unknown, but postpartum depression likely results from a combination of factors, including: \n \n Sudden changes in hormone levels after pregnancy \n Physical changes , such as dropping thyroid hormone levels \n Lifestyle factors, such as fatigue, lack of sleep, limited support, or recent stressful events \n \n\n Who is at risk for postpartum depression? \n Anyone can develop postpartum depression after childbirth. You might be at higher risk if you: \n \n Have a history of depression , bipolar disorder , or a family health history of these conditions \n Had a multiple birth (twins, triplets, or more) \n Gave birth while in your teens \n Had health problems during pregnancy \n Had preterm labor or other complications during childbirth \n Have a baby with special needs \n Have ever experienced domestic violence \n Are dealing with financial stress \n Had an unplanned pregnancy \n \n\n What are the symptoms of postpartum depression? \n Postpartum depression symptoms are more intense and last longer than the baby blues. \n",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:1238",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Postpartum Depression\nPost-pregnancy depression\nHealth-topic summary\nWhat is postpartum depression? \n Having a baby can be exciting, but it can also be stressful and bring many strong emotions. During the postpartum period, which is the time after you give birth , you may have mood swings, crying spells, or feel anxious. These feelings are common and are often called the postpartum \"baby blues\". The baby blues usually go away within a few days to a week. \n\n If your symptoms are more severe and last longer than two weeks, you may have postpartum depression. \n\n Postpartum depression is a common but serious mood disorder that can begin anytime within the first year after childbirth. Without treatment, symptoms may make it hard to care for your baby or manage daily tasks. \n\n What causes postpartum depression? \n The exact cause is unknown, but postpartum depression likely results from a combination of factors, including: \n \n Sudden changes in hormone levels after pregnancy \n Physical changes , such as dropping thyroid hormone levels \n Lifestyle factors, such as fatigue, lack of sleep, limited support, or recent stressful events \n \n\n Who is at risk for postpartum depression? \n Anyone can develop postpartum depression after childbirth. You might be at higher risk if you: \n \n Have a history of depression , bipolar disorder , or a family health history of these conditions \n Had a multiple birth (twins, triplets, or more) \n Gave birth while in your teens \n Had health problems during pregnancy \n Had preterm labor or other complications during childbirth \n Have a baby with special needs \n Have ever experienced domestic violence \n Are dealing with financial stress \n Had an unplanned pregnancy \n \n\n What are the symptoms of postpartum depression? \n Postpartum depression symptoms are more intense and last longer than the baby blues. \n"
+            },
+            "document": {
+              "id": "medlineplus:1238",
+              "url": "https://medlineplus.gov/postpartumdepression.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Postpartum Depression",
+              "aliases": [
+                "Post-pregnancy depression"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "37f4526aa0d455e12576256256ae997321c05a9480158944e9bb4a5e0bab6e8d",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:113",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Depression, Postpartum"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.031746031746031744,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n Symptoms may include: \n \n Feeling sad or empty most of the time \n Eating too much or too little \n Sleeping too much or too little \n Crying more than usual or for no clear reason \n Feeling unusually angry \n Pulling away from family and friends \n Feeling worried or anxious often \n Feeling little or "
+            }
+          },
+          {
+            "chunk": {
+              "id": "ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+              "end": 4760,
+              "hash": "b13591662b7f0b823a277048f75fedf64050d9c732fc8a91177ac748e0aef659",
+              "text": "hallucinations (seeing or hearing things that aren't real), or dangerous behaviors. Call 911 or go to the nearest emergency room right away if this happens. \n\n How is postpartum depression diagnosed? \n Your provider may diagnose postpartum depression using: \n \n Screening questions or questionnaires, such as those about your mood, sleep, and thoughts. \n A clinical evaluation based on your symptoms. \n Blood tests, if needed, to check for physical conditions such as thyroid disorders, that can cause or worsen depression. \n \n\n What is the treatment for postpartum depression? \n If you think you have postpartum depression, talk with your provider. Treatments may include: \n \n Medicines, including antidepressants \n Talk therapy (counseling) \n \n\n Tell your provider if you are breastfeeding so they can choose the safest treatment options. \n \n Along with these treatment options, there are things you can do at home that may help you feel better, such as: \n \n Asking for help with caring for the baby and household chores \n Taking time for yourself \n Getting physical activity, such as walking \n Resting when the baby rests \n \n\n Can postpartum depression be prevented? \n You may be able to lower your risk for postpartum depression by: \n \n Talking with your provider during pregnancy about any history of depression \n Completing recommended screening questionnaires during pregnancy and after birth \n Getting support from family, friends, or support groups \n Attending early Physical changes so symptoms can be found and treated as soon as possible \n \n\n Dept. of Health and Human Services Office on Women's Health",
+              "start": 3146,
+              "section": 0,
+              "documentId": "medlineplus:1238",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Postpartum Depression\nPost-pregnancy depression\nHealth-topic summary\nhallucinations (seeing or hearing things that aren't real), or dangerous behaviors. Call 911 or go to the nearest emergency room right away if this happens. \n\n How is postpartum depression diagnosed? \n Your provider may diagnose postpartum depression using: \n \n Screening questions or questionnaires, such as those about your mood, sleep, and thoughts. \n A clinical evaluation based on your symptoms. \n Blood tests, if needed, to check for physical conditions such as thyroid disorders, that can cause or worsen depression. \n \n\n What is the treatment for postpartum depression? \n If you think you have postpartum depression, talk with your provider. Treatments may include: \n \n Medicines, including antidepressants \n Talk therapy (counseling) \n \n\n Tell your provider if you are breastfeeding so they can choose the safest treatment options. \n \n Along with these treatment options, there are things you can do at home that may help you feel better, such as: \n \n Asking for help with caring for the baby and household chores \n Taking time for yourself \n Getting physical activity, such as walking \n Resting when the baby rests \n \n\n Can postpartum depression be prevented? \n You may be able to lower your risk for postpartum depression by: \n \n Talking with your provider during pregnancy about any history of depression \n Completing recommended screening questionnaires during pregnancy and after birth \n Getting support from family, friends, or support groups \n Attending early Physical changes so symptoms can be found and treated as soon as possible \n \n\n Dept. of Health and Human Services Office on Women's Health"
+            },
+            "document": {
+              "id": "medlineplus:1238",
+              "url": "https://medlineplus.gov/postpartumdepression.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Postpartum Depression",
+              "aliases": [
+                "Post-pregnancy depression"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "37f4526aa0d455e12576256256ae997321c05a9480158944e9bb4a5e0bab6e8d",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:113",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Depression, Postpartum"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.0315136476426799,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "pregnancy and continue after childbirth, it's called perinatal depression. Without treatment, it can affect bonding with your baby and may contribute to feeding or sleeping problems. \n\n Very rarely, a new mother may develop postpartum psychosis , a medical emergency. Symptoms may include confusion, ",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "96d4120716adf8744dae6b1afe8659cb243750856ead5e0535f31d46084faa18",
+              "end": 3076,
+              "hash": "00e2ea8f5f526209c344c9902ad2eb798dd90d1f1396932e2e5e5a15ca5e68db",
+              "text": "h symptoms of psychosis is a severe form of depression that also has delusions (false beliefs) or hallucinations (seeing, hearing, or feeling something that isn't there). \n \n\n What causes depression? \n There are a variety of things that may cause depression, including genetic, biological, environmental, and psychological factors. Depression can happen at any age and can affect anyone, but it's more common in women. This is often due to the physical and hormonal changes that women have during menstruation, pregnancy, the postpartum period , and menopause. Other mental disorders or chronic medical conditions such as diabetes , cancer , or heart disease may occur with depression. This may make the chronic condition or depression worse. \n In some cases, there is no clear cause for depression. \n\n Who is at risk of depression? \n You may be at a higher risk of depression if you have a close relative who has it or another mental health disorder. Going through trauma or stressful life events may raise your risk even more. \n\n What are the symptoms of depression? \n Depression doesn't look the same on everyone. The type and number of symptoms of depression can vary and don't always appear like sadness. Depression may affect you differently based on your: \n \n Age. The symptoms of depression may be different in a child, who may appear more irritable than sad. Teens may act out or have excessive sleepiness. The symptoms for an older adult may not be as obvious as other age groups. \n Sex. Men often show symptoms and coping behaviors differently than women. Rather than sad, men may appear angry or irritable. \n Medical conditions. Some medicines and medical conditions may cause symptoms that look like depression. Chronic conditions may make depression worse. \n \n",
+              "start": 1302,
+              "section": 0,
+              "documentId": "medlineplus:113",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Depression\nClinical depression; Dysthymic disorder; Major depressive disorder; Unipolar depression\nHealth-topic summary\nh symptoms of psychosis is a severe form of depression that also has delusions (false beliefs) or hallucinations (seeing, hearing, or feeling something that isn't there). \n \n\n What causes depression? \n There are a variety of things that may cause depression, including genetic, biological, environmental, and psychological factors. Depression can happen at any age and can affect anyone, but it's more common in women. This is often due to the physical and hormonal changes that women have during menstruation, pregnancy, the postpartum period , and menopause. Other mental disorders or chronic medical conditions such as diabetes , cancer , or heart disease may occur with depression. This may make the chronic condition or depression worse. \n In some cases, there is no clear cause for depression. \n\n Who is at risk of depression? \n You may be at a higher risk of depression if you have a close relative who has it or another mental health disorder. Going through trauma or stressful life events may raise your risk even more. \n\n What are the symptoms of depression? \n Depression doesn't look the same on everyone. The type and number of symptoms of depression can vary and don't always appear like sadness. Depression may affect you differently based on your: \n \n Age. The symptoms of depression may be different in a child, who may appear more irritable than sad. Teens may act out or have excessive sleepiness. The symptoms for an older adult may not be as obvious as other age groups. \n Sex. Men often show symptoms and coping behaviors differently than women. Rather than sad, men may appear angry or irritable. \n Medical conditions. Some medicines and medical conditions may cause symptoms that look like depression. Chronic conditions may make depression worse. \n \n"
+            },
+            "document": {
+              "id": "medlineplus:113",
+              "url": "https://medlineplus.gov/depression.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Depression",
+              "aliases": [
+                "Clinical depression",
+                "Dysthymic disorder",
+                "Major depressive disorder",
+                "Unipolar depression"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "f69689f88a8f8b0d53114f75f639fcfb4c2d56017956547bb6a22d6a9fe7256b",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4146",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:600",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5676",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6063",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1238",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3140",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:424",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6931",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Depression"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.02946236559139785,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "ession can include: \n \n Seasonal affective disorder comes and goes with the seasons. It usually starts in late fall and early winter and goes away during the spring and summer. \n Bipolar disorder is sometimes called manic depression. This mood disorder can cause intense mood swings. \n Depression wit",
+              "after": "\n Symptoms of depression are ongoing and affect your day-to-day life. They can include: \n \n Feeling sad or \"empty\" \n Losing interest in favorite activities \n Overeating, or not wanting to eat at all \n Sleeping too much, or not enough \n Feeling very tired \n Feeling hopeless, irritable, anxious, or gu"
+            }
+          },
+          {
+            "chunk": {
+              "id": "f0f2eacc836f5102b1c9c2c9bdac1e1871e255fb94e2444bc4f48337b79b3991",
+              "end": 6549,
+              "hash": "6f6d11f1706e34f493f9f4d465516617b41287bb5e222e7cb61ab28aecec1a24",
+              "text": "pression be prevented? \n Most cases of depression can't be prevented, but healthy lifestyle changes can have long-term benefits for your mental health. These can include: \n \n Getting regular exercise \n Having a consistent sleep schedule \n Controlling stress \n \n\n If you, or someone you love is depressed, see your provider or a mental health provider. It's important to get treatment at the earliest sign of a problem. \n If you or someone you know has thoughts of hurting themselves or attempting suicide, get help right away. If it is an emergency, dial 911. \n\n NIH: National Institute of Mental Health",
+              "start": 5946,
+              "section": 0,
+              "documentId": "medlineplus:113",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Depression\nClinical depression; Dysthymic disorder; Major depressive disorder; Unipolar depression\nHealth-topic summary\npression be prevented? \n Most cases of depression can't be prevented, but healthy lifestyle changes can have long-term benefits for your mental health. These can include: \n \n Getting regular exercise \n Having a consistent sleep schedule \n Controlling stress \n \n\n If you, or someone you love is depressed, see your provider or a mental health provider. It's important to get treatment at the earliest sign of a problem. \n If you or someone you know has thoughts of hurting themselves or attempting suicide, get help right away. If it is an emergency, dial 911. \n\n NIH: National Institute of Mental Health"
+            },
+            "document": {
+              "id": "medlineplus:113",
+              "url": "https://medlineplus.gov/depression.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Depression",
+              "aliases": [
+                "Clinical depression",
+                "Dysthymic disorder",
+                "Major depressive disorder",
+                "Unipolar depression"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "f69689f88a8f8b0d53114f75f639fcfb4c2d56017956547bb6a22d6a9fe7256b",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4146",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:600",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5676",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6063",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:1238",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3140",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:424",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6931",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Depression"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.024705882352941175,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "ments. \n Repetitive transcranial magnetic stimulation (rTMS) is a brain stimulation procedure that uses magnetic waves to relieve depression. It's not as powerful as ECT, but with rTMS, you don't need anesthesia. It also has a low risk of negative effects on your memory and thinking. \n \n \n \n\n Can de",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "35d3a9114455d2ccae3ebeadad31df9625f3933791230823fb1ad9a282433359",
+              "end": 1774,
+              "hash": "9f54201757c4f7b4e5e7d23db5258b9cf037d22710b4e2478cea72e2f86f04fb",
+              "text": "1. **Obtain 12-lead ECG, portable CXR, and point-of-care BNP or NT-proBNP simultaneously.** Do not wait for formal echocardiography before initiating diuresis in a patient with obvious pulmonary edema. BNP >100 pg/mL or NT-proBNP >300 pg/mL in a peripartum woman requires immediate echocardiography.\n\n2. **Urgent cardiology and OB/MFM consultation.** PPCM management requires multidisciplinary care. Cardiology for heart failure management; OB/MFM if antepartum for fetal monitoring and delivery planning.\n\n3. **Echocardiography** as soon as possible. Confirms diagnosis, quantifies LVEF, identifies LV thrombus (present in up to 17% when EF <30%), guides treatment intensity.\n\n4. **Diuresis for pulmonary edema.** Furosemide 20–40 mg IV. Repeat 40–80 mg IV in 1 hour if inadequate diuresis (urine output <0.5 mL/kg/hr). Reduce preload without overcorrecting volume in antepartum patients (risk of placental hypoperfusion).\n\n5. **Vasodilators.** Hydralazine 10–25 mg PO q6–8h (safe in pregnancy) plus nitrates 0.5 mg SL PRN for acute dyspnea; isosorbide dinitrate 20–40 mg PO q8h (postpartum preferred). Do NOT use ACE inhibitors, ARBs, or spironolactone during pregnancy.\n\n6. **Anticoagulation if LVEF <30%.** Unfractionated heparin IV (antepartum or immediate peripartum) or enoxaparin 1 mg/kg SC q12h (postpartum) — LV thrombus and systemic embolism risk is high with severely reduced EF. Warfarin postpartum (INR 2–3).\n\n7. **Bromocriptine 2.5 mg PO BID x 2 weeks, then 2.5 mg PO daily x 6 weeks.** Inhibits prolactin cleavage to 16-kDa cardiotoxic fragment. Suppress lactation if patient elects to use bromocriptine (not compatible with breastfeeding). Ensure adequate contraception — anticoagulate while on bromocriptine (prolactin inhibition carries thrombotic risk).\n",
+              "start": 0,
+              "section": 1,
+              "documentId": "openem:peripartum-cardiomyopathy",
+              "sectionTitle": "Critical Actions",
+              "embeddingText": "Peripartum Cardiomyopathy\nPPCM; pregnancy-associated cardiomyopathy; postpartum cardiomyopathy\nCritical Actions\n1. **Obtain 12-lead ECG, portable CXR, and point-of-care BNP or NT-proBNP simultaneously.** Do not wait for formal echocardiography before initiating diuresis in a patient with obvious pulmonary edema. BNP >100 pg/mL or NT-proBNP >300 pg/mL in a peripartum woman requires immediate echocardiography.\n\n2. **Urgent cardiology and OB/MFM consultation.** PPCM management requires multidisciplinary care. Cardiology for heart failure management; OB/MFM if antepartum for fetal monitoring and delivery planning.\n\n3. **Echocardiography** as soon as possible. Confirms diagnosis, quantifies LVEF, identifies LV thrombus (present in up to 17% when EF <30%), guides treatment intensity.\n\n4. **Diuresis for pulmonary edema.** Furosemide 20–40 mg IV. Repeat 40–80 mg IV in 1 hour if inadequate diuresis (urine output <0.5 mL/kg/hr). Reduce preload without overcorrecting volume in antepartum patients (risk of placental hypoperfusion).\n\n5. **Vasodilators.** Hydralazine 10–25 mg PO q6–8h (safe in pregnancy) plus nitrates 0.5 mg SL PRN for acute dyspnea; isosorbide dinitrate 20–40 mg PO q8h (postpartum preferred). Do NOT use ACE inhibitors, ARBs, or spironolactone during pregnancy.\n\n6. **Anticoagulation if LVEF <30%.** Unfractionated heparin IV (antepartum or immediate peripartum) or enoxaparin 1 mg/kg SC q12h (postpartum) — LV thrombus and systemic embolism risk is high with severely reduced EF. Warfarin postpartum (INR 2–3).\n\n7. **Bromocriptine 2.5 mg PO BID x 2 weeks, then 2.5 mg PO daily x 6 weeks.** Inhibits prolactin cleavage to 16-kDa cardiotoxic fragment. Suppress lactation if patient elects to use bromocriptine (not compatible with breastfeeding). Ensure adequate contraception — anticoagulate while on bromocriptine (prolactin inhibition carries thrombotic risk).\n"
+            },
+            "document": {
+              "id": "openem:peripartum-cardiomyopathy",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/peripartum-cardiomyopathy.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Peripartum Cardiomyopathy",
+              "aliases": [
+                "PPCM",
+                "pregnancy-associated cardiomyopathy",
+                "postpartum cardiomyopathy"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "7ef6ea9418112802ab595551e934159166506099c0a11d0d76b23fbfd642e7d3",
+              "related": [],
+              "concepts": [
+                "obstetric-gynecologic"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-23"
+            },
+            "score": 0.023934382143337367,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n8. **Admit all patients with new PPCM.** Even patients who appear hemodynamically stable require inpatient monitoring — LVEF can deteriorate rapidly."
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 26.519667000044137,
+          "embeddingMs": 527.7783340000315,
+          "vectorMs": 14.101541999960318,
+          "totalMs": 606.5576669999864
+        },
+        "warnings": [],
+        "embeddingTokens": 8,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "af7e4a8c239c4b084525aba008d56ce833b3a08144cea6237319bf996aa30dbd",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "perinatal mood disorder risk assessment safety",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "e6c979d5688505ee9d2f1a465c3ec869e28824b63536b6ac293630be4d95d31c",
+              "end": 1503,
+              "hash": "26e444ff82c673d083be9edab8a3f23ed467c88ce1929d149e33b281790a0e43",
+              "text": "1. **Relying on \"safety contracts\" or \"no-suicide contracts.\"** These have zero evidence for reducing suicide risk. They create false reassurance and are not a substitute for proper risk assessment, Safety Planning Intervention, and disposition.\n\n2. **Discharging an intoxicated patient who denies suicidal ideation.** Alcohol and substances impair judgment and disinhibit. A patient who was suicidal while intoxicated must be reassessed after achieving sobriety. Suicidal ideation while intoxicated predicts future attempts.\n\n3. **Using the SAD PERSONS score as the primary risk stratification tool.** SAD PERSONS has poor sensitivity and specificity. Use the C-SSRS, clinical interview, and assessment of static and dynamic risk factors for disposition decisions.\n\n4. **Failing to ask about firearms.** Access to a firearm increases suicide completion risk 3-fold. Direct, nonjudgmental inquiry about firearm access is mandatory. Counsel on temporary off-site storage.\n\n5. **Skipping medical clearance.** Organic causes of suicidal behavior include hypoglycemia, intoxication, delirium, CNS lesions, and medication side effects. Point-of-care glucose, toxicology screen, and focused medical evaluation are required before attributing symptoms to primary psychiatric illness.\n\n6. **Not checking acetaminophen and salicylate levels after an ingestion.** Co-ingestion is common. Acetaminophen toxicity is clinically silent for 24-48 hours. Order levels on every patient with known or possible ingestion.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:acute-suicidality",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Acute Suicidality\nsuicidal ideation; suicidal patient; suicide attempt; active suicidal ideation; suicide risk assessment; self-harm with suicidal intent\nPitfalls\n1. **Relying on \"safety contracts\" or \"no-suicide contracts.\"** These have zero evidence for reducing suicide risk. They create false reassurance and are not a substitute for proper risk assessment, Safety Planning Intervention, and disposition.\n\n2. **Discharging an intoxicated patient who denies suicidal ideation.** Alcohol and substances impair judgment and disinhibit. A patient who was suicidal while intoxicated must be reassessed after achieving sobriety. Suicidal ideation while intoxicated predicts future attempts.\n\n3. **Using the SAD PERSONS score as the primary risk stratification tool.** SAD PERSONS has poor sensitivity and specificity. Use the C-SSRS, clinical interview, and assessment of static and dynamic risk factors for disposition decisions.\n\n4. **Failing to ask about firearms.** Access to a firearm increases suicide completion risk 3-fold. Direct, nonjudgmental inquiry about firearm access is mandatory. Counsel on temporary off-site storage.\n\n5. **Skipping medical clearance.** Organic causes of suicidal behavior include hypoglycemia, intoxication, delirium, CNS lesions, and medication side effects. Point-of-care glucose, toxicology screen, and focused medical evaluation are required before attributing symptoms to primary psychiatric illness.\n\n6. **Not checking acetaminophen and salicylate levels after an ingestion.** Co-ingestion is common. Acetaminophen toxicity is clinically silent for 24-48 hours. Order levels on every patient with known or possible ingestion.\n"
+            },
+            "document": {
+              "id": "openem:acute-suicidality",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-suicidality.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Suicidality",
+              "aliases": [
+                "suicidal ideation",
+                "suicidal patient",
+                "suicide attempt",
+                "active suicidal ideation",
+                "suicide risk assessment",
+                "self-harm with suicidal intent"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "fe23d6912fccd067e49b7ec3faa9d8996cb7f406df0ae14088138f09f00d176b",
+              "related": [],
+              "concepts": [
+                "psychiatric"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.030090497737556562,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n7. **Discharging without a Safety Planning Intervention and confirmed follow-up.** The Stanley-Brown Safety Planning Intervention is the only evidence-based brief intervention shown to reduce suicidal behavior post-ED visit. Outpatient follow-up within 72 hours halves reattempt rates. Both are requ"
+            }
+          },
+          {
+            "chunk": {
+              "id": "ea3e1c8d50075cc4162321002683bca701afa1d02273040c759fa25015974ea2",
+              "end": 1098,
+              "hash": "20f852949d601db49da8f7f19c0e442b5efc8e80344be8ecb14da5b7ebec6f4f",
+              "text": "| Action | Target |\n|---|---|\n| Environmental safety | Immediately upon recognition |\n| C-SSRS assessment | Within first 30 minutes |\n| Medical clearance | Concurrent with psychiatric assessment |\n| 1:1 observation | Continuous until disposition |\n| Safety plan | Before any discharge |\n| Lethal means restriction | Discuss with patient and family before disposition |\n\n1. Secure the environment: remove sharps, cords, belts, shoelaces, plastic bags, medications from the room. Use ligature-resistant fixtures. Assign 1:1 continuous observation.\n2. Perform C-SSRS screening to stratify risk level.\n3. Medical clearance: rule out organic causes of psychiatric symptoms (hypoglycemia, thyrotoxicosis, intoxication, delirium, CNS lesion).\n4. Treat ingestion or self-harm injuries per standard protocols.\n5. Assess capacity. Determine if the patient meets criteria for involuntary psychiatric hold (danger to self).\n6. Conduct lethal means restriction counseling with patient and available family/support persons.\n7. Complete a Safety Planning Intervention (Stanley-Brown) if disposition is outpatient.",
+              "start": 0,
+              "section": 1,
+              "documentId": "openem:acute-suicidality",
+              "sectionTitle": "Critical Actions",
+              "embeddingText": "Acute Suicidality\nsuicidal ideation; suicidal patient; suicide attempt; active suicidal ideation; suicide risk assessment; self-harm with suicidal intent\nCritical Actions\n| Action | Target |\n|---|---|\n| Environmental safety | Immediately upon recognition |\n| C-SSRS assessment | Within first 30 minutes |\n| Medical clearance | Concurrent with psychiatric assessment |\n| 1:1 observation | Continuous until disposition |\n| Safety plan | Before any discharge |\n| Lethal means restriction | Discuss with patient and family before disposition |\n\n1. Secure the environment: remove sharps, cords, belts, shoelaces, plastic bags, medications from the room. Use ligature-resistant fixtures. Assign 1:1 continuous observation.\n2. Perform C-SSRS screening to stratify risk level.\n3. Medical clearance: rule out organic causes of psychiatric symptoms (hypoglycemia, thyrotoxicosis, intoxication, delirium, CNS lesion).\n4. Treat ingestion or self-harm injuries per standard protocols.\n5. Assess capacity. Determine if the patient meets criteria for involuntary psychiatric hold (danger to self).\n6. Conduct lethal means restriction counseling with patient and available family/support persons.\n7. Complete a Safety Planning Intervention (Stanley-Brown) if disposition is outpatient."
+            },
+            "document": {
+              "id": "openem:acute-suicidality",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-suicidality.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Suicidality",
+              "aliases": [
+                "suicidal ideation",
+                "suicidal patient",
+                "suicide attempt",
+                "active suicidal ideation",
+                "suicide risk assessment",
+                "self-harm with suicidal intent"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "fe23d6912fccd067e49b7ec3faa9d8996cb7f406df0ae14088138f09f00d176b",
+              "related": [],
+              "concepts": [
+                "psychiatric"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.028949545078577336,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "26beddabf3fc1a316926eca706fb3cb0ebd800de0244143128d5bd23565525a6",
+              "end": 1716,
+              "hash": "ca7a16f7f88d608f5fc7090c78aa93da2152e35239239436c91131fd025d5f82",
+              "text": "What are mental disorders? \n Mental disorders (or mental illnesses) are conditions that affect your thinking, feeling, mood, and behavior. They may happen over a short period of time or come and go. Some can be chronic (long-lasting). They can affect your ability to relate to others and function each day.. \n\n What are some types of mental disorders? \n There are many different types of mental disorders. Some common ones include: \n Anxiety disorders , including panic disorder , obsessive-compulsive disorder , and phobias \n Depression , bipolar disorder , and other mood disorders \n Eating disorders \n Personality disorders \n Post-traumatic stress disorder (PTSD) \n Psychotic disorders , including schizophrenia \n \n\n What causes mental disorders? \n There is no single cause for mental illness. A number of factors can contribute to risk for mental illness, such as: \n Your genes and family history \n Your life experiences, such as stress or a history of abuse, especially if they happen in childhood \n Biological factors such as chemical imbalances in the brain \n A traumatic brain injury (TBI) \n Prenatal (before birth) exposure to viruses , toxic chemicals , or other substances such as alcohol and drugs. \n Use of alcohol or recreational drugs \n Having a serious medical condition like cancer \n Having few friends, and feeling lonely or isolated \n \n\n Mental disorders are not caused by character flaws. They have nothing to do with being lazy or weak. \n\n Who is at risk for mental disorders? \n Mental disorders are common. Many Americans will be diagnosed with a mental disorder at some time in their life. \n\n How are mental disorders diagnosed? \n The steps to getting a diagnosis include: \n A medical history ",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:5676",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Mental Disorders\nMental illness\nHealth-topic summary\nWhat are mental disorders? \n Mental disorders (or mental illnesses) are conditions that affect your thinking, feeling, mood, and behavior. They may happen over a short period of time or come and go. Some can be chronic (long-lasting). They can affect your ability to relate to others and function each day.. \n\n What are some types of mental disorders? \n There are many different types of mental disorders. Some common ones include: \n Anxiety disorders , including panic disorder , obsessive-compulsive disorder , and phobias \n Depression , bipolar disorder , and other mood disorders \n Eating disorders \n Personality disorders \n Post-traumatic stress disorder (PTSD) \n Psychotic disorders , including schizophrenia \n \n\n What causes mental disorders? \n There is no single cause for mental illness. A number of factors can contribute to risk for mental illness, such as: \n Your genes and family history \n Your life experiences, such as stress or a history of abuse, especially if they happen in childhood \n Biological factors such as chemical imbalances in the brain \n A traumatic brain injury (TBI) \n Prenatal (before birth) exposure to viruses , toxic chemicals , or other substances such as alcohol and drugs. \n Use of alcohol or recreational drugs \n Having a serious medical condition like cancer \n Having few friends, and feeling lonely or isolated \n \n\n Mental disorders are not caused by character flaws. They have nothing to do with being lazy or weak. \n\n Who is at risk for mental disorders? \n Mental disorders are common. Many Americans will be diagnosed with a mental disorder at some time in their life. \n\n How are mental disorders diagnosed? \n The steps to getting a diagnosis include: \n A medical history "
+            },
+            "document": {
+              "id": "medlineplus:5676",
+              "url": "https://medlineplus.gov/mentaldisorders.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Mental Disorders",
+              "aliases": [
+                "Mental illness"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "21fcc42c19a564888e124feb357036d58e001e753465110a4dbe0c5aa75f5e2c",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:144",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:600",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3162",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4308",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5562",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:113",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:237",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:35",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6063",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:471",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:7427",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:601",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4117",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:360",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:367",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4180",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:392",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6091",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:424",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3637",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Mental Disorders",
+                "Psychiatric Rehabilitation"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.01639344262295082,
+            "channels": [
+              "lexical"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n A physical exam and possibly lab tests, if your provider thinks that other medical conditions could be causing your symptoms \n A psychological evaluation . You will answer questions about your thinking, feelings, and behaviors. \n \n\n What are the treatments for mental disorders? \n Treatment depends"
+            }
+          },
+          {
+            "chunk": {
+              "id": "441079b0d6fa6b1ef2bfbc12fe6f624b3b7dd61fb778ce1ab384dcecadd7c6da",
+              "end": 1773,
+              "hash": "9d9ed3ed9ce664b10a6eaabeef83d1bf59c1327ed92a3d1974e63caabf69acfa",
+              "text": "What is bipolar disorder? \n Bipolar disorder is a mood disorder that can cause intense mood swings: \n \n Sometimes you may feel extremely \"up,\" elated, irritable, or energized. This is called a manic episode . \n Other times you may feel \"down,\" sad, indifferent, or hopeless. This is called a depressive episode . \n You may have both manic and depressive symptoms together. This is called a mixed episode . \n \n Along with mood swings, bipolar disorder causes changes in behavior, energy levels, and activity levels. \n\n Bipolar disorder used to be called other names, including manic depression and manic-depressive disorder. \n\n What are the types of bipolar disorder? \n There are three main types of bipolar disorder: \n \n Bipolar I disorder involves manic episodes that last at least 7 days or manic symptoms so severe that you need immediate hospital care. Depressive episodes are also common. Those often last at least two weeks. This type of bipolar disorder can also involve mixed episodes. \n Bipolar II disorder involves depressive episodes. But instead of full-blown manic episodes, there are episodes of hypomania. Hypomania is a less severe version of mania. \n Cyclothymic disorder , or cyclothymia, also involves hypomanic and depressive symptoms. But they are not as intense or as long-lasting as hypomanic or depressive episodes. The symptoms usually last for at least two years in adults and for one year in children and teenagers. \n \n With any of these types, having four or more episodes of mania or depression in a year is called \"rapid cycling.\" \n\n What causes bipolar disorder? \n The exact cause of bipolar disorder is unknown. Several factors likely play a role in the disorder. They include genetics , brain structure and function, and your environment. \n",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:600",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Bipolar Disorder\nManic depression; Manic-depressive illness\nHealth-topic summary\nWhat is bipolar disorder? \n Bipolar disorder is a mood disorder that can cause intense mood swings: \n \n Sometimes you may feel extremely \"up,\" elated, irritable, or energized. This is called a manic episode . \n Other times you may feel \"down,\" sad, indifferent, or hopeless. This is called a depressive episode . \n You may have both manic and depressive symptoms together. This is called a mixed episode . \n \n Along with mood swings, bipolar disorder causes changes in behavior, energy levels, and activity levels. \n\n Bipolar disorder used to be called other names, including manic depression and manic-depressive disorder. \n\n What are the types of bipolar disorder? \n There are three main types of bipolar disorder: \n \n Bipolar I disorder involves manic episodes that last at least 7 days or manic symptoms so severe that you need immediate hospital care. Depressive episodes are also common. Those often last at least two weeks. This type of bipolar disorder can also involve mixed episodes. \n Bipolar II disorder involves depressive episodes. But instead of full-blown manic episodes, there are episodes of hypomania. Hypomania is a less severe version of mania. \n Cyclothymic disorder , or cyclothymia, also involves hypomanic and depressive symptoms. But they are not as intense or as long-lasting as hypomanic or depressive episodes. The symptoms usually last for at least two years in adults and for one year in children and teenagers. \n \n With any of these types, having four or more episodes of mania or depression in a year is called \"rapid cycling.\" \n\n What causes bipolar disorder? \n The exact cause of bipolar disorder is unknown. Several factors likely play a role in the disorder. They include genetics , brain structure and function, and your environment. \n"
+            },
+            "document": {
+              "id": "medlineplus:600",
+              "url": "https://medlineplus.gov/bipolardisorder.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Bipolar Disorder",
+              "aliases": [
+                "Manic depression",
+                "Manic-depressive illness"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "999a741e0259316120e98a4c78a559dc8ad1c43ee8fb0daa8d90a238c67f9461",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:113",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Bipolar Disorder"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.016129032258064516,
+            "channels": [
+              "lexical"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n Who is at risk for bipolar disorder? \n You are at higher risk for bipolar disorder if you have a close relative who has it. Going through trauma or stressful life events may raise this risk even more. \n\n What are the symptoms of bipolar disorder? \n The symptoms of bipolar disorder can vary. But th"
+            }
+          },
+          {
+            "chunk": {
+              "id": "33d8bb104fc081c963891b30eeb795c60064bff1083602ff29352c3c99b4e670",
+              "end": 489,
+              "hash": "9ce92d2e7863a9686f9369e4f4ad6d86493c091edd937d13d4bd46c76721623f",
+              "text": "Every year thousands of people in the U.S. die from motor vehicle crashes. Trying to prevent these crashes is one part of motor vehicle safety. Here are some things you can do to be safer on the road: \n\n \n Make sure your vehicle is safe and in working order \n Use car seats for children \n Wear your seat belt \n Don't speed or drive aggressively \n Don't drive impaired \n \n\n Safety also involves being aware of others. Share the road with bicycles and motorcycles, and watch for pedestrians.",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:155",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Motor Vehicle Safety\nAutomobile safety; Car safety; Vehicle safety\nHealth-topic summary\nEvery year thousands of people in the U.S. die from motor vehicle crashes. Trying to prevent these crashes is one part of motor vehicle safety. Here are some things you can do to be safer on the road: \n\n \n Make sure your vehicle is safe and in working order \n Use car seats for children \n Wear your seat belt \n Don't speed or drive aggressively \n Don't drive impaired \n \n\n Safety also involves being aware of others. Share the road with bicycles and motorcycles, and watch for pedestrians."
+            },
+            "document": {
+              "id": "medlineplus:155",
+              "url": "https://medlineplus.gov/motorvehiclesafety.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Motor Vehicle Safety",
+              "aliases": [
+                "Automobile safety",
+                "Car safety",
+                "Vehicle safety"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "dd08bd27984d103649b5223ef1cde5cdad0d4b628c6f2a2f21d748bd5469ce14",
+              "related": [],
+              "concepts": [
+                "Automobile Driving",
+                "Safety",
+                "Accidents, Traffic prevention & control"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.015873015873015872,
+            "channels": [
+              "lexical"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 52.06874999997672,
+          "embeddingMs": 607.0209999999497,
+          "vectorMs": 14.806041999952868,
+          "totalMs": 688.1095000000205
+        },
+        "warnings": [],
+        "embeddingTokens": 8,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "af7e4a8c239c4b084525aba008d56ce833b3a08144cea6237319bf996aa30dbd",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "postpartum psychosis command hallucinations delusions",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "d856a6cfc053bfc09d8e931f7ab85fd0ca1e5fbfee4389348eb71040bca1a5fb",
+              "end": 1781,
+              "hash": "206e518d55774b52d2b416da11ae5036e3114421a4e894705fa936f6f2f3e17a",
+              "text": "What is postpartum depression? \n Having a baby can be exciting, but it can also be stressful and bring many strong emotions. During the postpartum period, which is the time after you give birth , you may have mood swings, crying spells, or feel anxious. These feelings are common and are often called the postpartum \"baby blues\". The baby blues usually go away within a few days to a week. \n\n If your symptoms are more severe and last longer than two weeks, you may have postpartum depression. \n\n Postpartum depression is a common but serious mood disorder that can begin anytime within the first year after childbirth. Without treatment, symptoms may make it hard to care for your baby or manage daily tasks. \n\n What causes postpartum depression? \n The exact cause is unknown, but postpartum depression likely results from a combination of factors, including: \n \n Sudden changes in hormone levels after pregnancy \n Physical changes , such as dropping thyroid hormone levels \n Lifestyle factors, such as fatigue, lack of sleep, limited support, or recent stressful events \n \n\n Who is at risk for postpartum depression? \n Anyone can develop postpartum depression after childbirth. You might be at higher risk if you: \n \n Have a history of depression , bipolar disorder , or a family health history of these conditions \n Had a multiple birth (twins, triplets, or more) \n Gave birth while in your teens \n Had health problems during pregnancy \n Had preterm labor or other complications during childbirth \n Have a baby with special needs \n Have ever experienced domestic violence \n Are dealing with financial stress \n Had an unplanned pregnancy \n \n\n What are the symptoms of postpartum depression? \n Postpartum depression symptoms are more intense and last longer than the baby blues. \n",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:1238",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Postpartum Depression\nPost-pregnancy depression\nHealth-topic summary\nWhat is postpartum depression? \n Having a baby can be exciting, but it can also be stressful and bring many strong emotions. During the postpartum period, which is the time after you give birth , you may have mood swings, crying spells, or feel anxious. These feelings are common and are often called the postpartum \"baby blues\". The baby blues usually go away within a few days to a week. \n\n If your symptoms are more severe and last longer than two weeks, you may have postpartum depression. \n\n Postpartum depression is a common but serious mood disorder that can begin anytime within the first year after childbirth. Without treatment, symptoms may make it hard to care for your baby or manage daily tasks. \n\n What causes postpartum depression? \n The exact cause is unknown, but postpartum depression likely results from a combination of factors, including: \n \n Sudden changes in hormone levels after pregnancy \n Physical changes , such as dropping thyroid hormone levels \n Lifestyle factors, such as fatigue, lack of sleep, limited support, or recent stressful events \n \n\n Who is at risk for postpartum depression? \n Anyone can develop postpartum depression after childbirth. You might be at higher risk if you: \n \n Have a history of depression , bipolar disorder , or a family health history of these conditions \n Had a multiple birth (twins, triplets, or more) \n Gave birth while in your teens \n Had health problems during pregnancy \n Had preterm labor or other complications during childbirth \n Have a baby with special needs \n Have ever experienced domestic violence \n Are dealing with financial stress \n Had an unplanned pregnancy \n \n\n What are the symptoms of postpartum depression? \n Postpartum depression symptoms are more intense and last longer than the baby blues. \n"
+            },
+            "document": {
+              "id": "medlineplus:1238",
+              "url": "https://medlineplus.gov/postpartumdepression.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Postpartum Depression",
+              "aliases": [
+                "Post-pregnancy depression"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "37f4526aa0d455e12576256256ae997321c05a9480158944e9bb4a5e0bab6e8d",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:113",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Depression, Postpartum"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.032266458495966696,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n Symptoms may include: \n \n Feeling sad or empty most of the time \n Eating too much or too little \n Sleeping too much or too little \n Crying more than usual or for no clear reason \n Feeling unusually angry \n Pulling away from family and friends \n Feeling worried or anxious often \n Feeling little or "
+            }
+          },
+          {
+            "chunk": {
+              "id": "ea43b42b43720caddd5b189ce89ada5868b655f82989cba1aaf60396f17956d2",
+              "end": 4760,
+              "hash": "b13591662b7f0b823a277048f75fedf64050d9c732fc8a91177ac748e0aef659",
+              "text": "hallucinations (seeing or hearing things that aren't real), or dangerous behaviors. Call 911 or go to the nearest emergency room right away if this happens. \n\n How is postpartum depression diagnosed? \n Your provider may diagnose postpartum depression using: \n \n Screening questions or questionnaires, such as those about your mood, sleep, and thoughts. \n A clinical evaluation based on your symptoms. \n Blood tests, if needed, to check for physical conditions such as thyroid disorders, that can cause or worsen depression. \n \n\n What is the treatment for postpartum depression? \n If you think you have postpartum depression, talk with your provider. Treatments may include: \n \n Medicines, including antidepressants \n Talk therapy (counseling) \n \n\n Tell your provider if you are breastfeeding so they can choose the safest treatment options. \n \n Along with these treatment options, there are things you can do at home that may help you feel better, such as: \n \n Asking for help with caring for the baby and household chores \n Taking time for yourself \n Getting physical activity, such as walking \n Resting when the baby rests \n \n\n Can postpartum depression be prevented? \n You may be able to lower your risk for postpartum depression by: \n \n Talking with your provider during pregnancy about any history of depression \n Completing recommended screening questionnaires during pregnancy and after birth \n Getting support from family, friends, or support groups \n Attending early Physical changes so symptoms can be found and treated as soon as possible \n \n\n Dept. of Health and Human Services Office on Women's Health",
+              "start": 3146,
+              "section": 0,
+              "documentId": "medlineplus:1238",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Postpartum Depression\nPost-pregnancy depression\nHealth-topic summary\nhallucinations (seeing or hearing things that aren't real), or dangerous behaviors. Call 911 or go to the nearest emergency room right away if this happens. \n\n How is postpartum depression diagnosed? \n Your provider may diagnose postpartum depression using: \n \n Screening questions or questionnaires, such as those about your mood, sleep, and thoughts. \n A clinical evaluation based on your symptoms. \n Blood tests, if needed, to check for physical conditions such as thyroid disorders, that can cause or worsen depression. \n \n\n What is the treatment for postpartum depression? \n If you think you have postpartum depression, talk with your provider. Treatments may include: \n \n Medicines, including antidepressants \n Talk therapy (counseling) \n \n\n Tell your provider if you are breastfeeding so they can choose the safest treatment options. \n \n Along with these treatment options, there are things you can do at home that may help you feel better, such as: \n \n Asking for help with caring for the baby and household chores \n Taking time for yourself \n Getting physical activity, such as walking \n Resting when the baby rests \n \n\n Can postpartum depression be prevented? \n You may be able to lower your risk for postpartum depression by: \n \n Talking with your provider during pregnancy about any history of depression \n Completing recommended screening questionnaires during pregnancy and after birth \n Getting support from family, friends, or support groups \n Attending early Physical changes so symptoms can be found and treated as soon as possible \n \n\n Dept. of Health and Human Services Office on Women's Health"
+            },
+            "document": {
+              "id": "medlineplus:1238",
+              "url": "https://medlineplus.gov/postpartumdepression.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Postpartum Depression",
+              "aliases": [
+                "Post-pregnancy depression"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "37f4526aa0d455e12576256256ae997321c05a9480158944e9bb4a5e0bab6e8d",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:113",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Depression, Postpartum"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.031099324975891997,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "pregnancy and continue after childbirth, it's called perinatal depression. Without treatment, it can affect bonding with your baby and may contribute to feeding or sleeping problems. \n\n Very rarely, a new mother may develop postpartum psychosis , a medical emergency. Symptoms may include confusion, ",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "623b95734d4f77a01c877110e0fc3b0bc1491e616548df94742ab42df208da84",
+              "end": 1585,
+              "hash": "df5f17216e32d1026cbc5416f1f06ab03b3bfae84f1211e0f26c56d87e3b4d05",
+              "text": "**Definition:** Acute onset of impaired reality testing characterized by delusions, hallucinations, disorganized thought/speech, or grossly disorganized/catatonic behavior. The ED role is to identify and treat medical causes, ensure safety, and initiate stabilization.\n\n**Primary Psychiatric Causes:**\n- Schizophrenia (first break or exacerbation)\n- Schizoaffective disorder\n- Bipolar disorder (manic psychosis)\n- Major depressive disorder with psychotic features\n- Brief psychotic disorder\n\n**Medical Causes (must be excluded):**\n- Substance intoxication: sympathomimetics (methamphetamine, cocaine, synthetic cathinones), PCP, ketamine, cannabis (especially high-THC/synthetic), hallucinogens (LSD, psilocybin)\n- Substance withdrawal: alcohol, benzodiazepines, barbiturates\n- CNS infection: meningitis, encephalitis, brain abscess\n- Metabolic: hypoglycemia, hypo/hypernatremia, hepatic encephalopathy, uremia, thyrotoxicosis, Addisonian crisis, hypercalcemia\n- Neurologic: stroke, seizure (postictal), CNS tumor, traumatic brain injury, autoimmune encephalitis (anti-NMDAR)\n- Medication-induced: corticosteroids, anticholinergics, dopamine agonists, fluoroquinolones\n- Delirium (any cause)\n\n**Red Flags for Medical Etiology:**\n- Age > 40 with no psychiatric history\n- Acute onset (hours, not days/weeks)\n- Visual hallucinations (more common in organic causes vs. auditory in primary psychosis)\n- Vital sign abnormalities (fever, tachycardia, hypertension, hypoxia)\n- Altered level of consciousness (waxing/waning = delirium)\n- Focal neurologic deficits\n- No prior psychiatric history",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:acute-psychosis",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Acute Psychosis\npsychotic episode; acute psychotic episode; first-break psychosis; psychotic agitation; acute psychotic disorder\nRecognition\n**Definition:** Acute onset of impaired reality testing characterized by delusions, hallucinations, disorganized thought/speech, or grossly disorganized/catatonic behavior. The ED role is to identify and treat medical causes, ensure safety, and initiate stabilization.\n\n**Primary Psychiatric Causes:**\n- Schizophrenia (first break or exacerbation)\n- Schizoaffective disorder\n- Bipolar disorder (manic psychosis)\n- Major depressive disorder with psychotic features\n- Brief psychotic disorder\n\n**Medical Causes (must be excluded):**\n- Substance intoxication: sympathomimetics (methamphetamine, cocaine, synthetic cathinones), PCP, ketamine, cannabis (especially high-THC/synthetic), hallucinogens (LSD, psilocybin)\n- Substance withdrawal: alcohol, benzodiazepines, barbiturates\n- CNS infection: meningitis, encephalitis, brain abscess\n- Metabolic: hypoglycemia, hypo/hypernatremia, hepatic encephalopathy, uremia, thyrotoxicosis, Addisonian crisis, hypercalcemia\n- Neurologic: stroke, seizure (postictal), CNS tumor, traumatic brain injury, autoimmune encephalitis (anti-NMDAR)\n- Medication-induced: corticosteroids, anticholinergics, dopamine agonists, fluoroquinolones\n- Delirium (any cause)\n\n**Red Flags for Medical Etiology:**\n- Age > 40 with no psychiatric history\n- Acute onset (hours, not days/weeks)\n- Visual hallucinations (more common in organic causes vs. auditory in primary psychosis)\n- Vital sign abnormalities (fever, tachycardia, hypertension, hypoxia)\n- Altered level of consciousness (waxing/waning = delirium)\n- Focal neurologic deficits\n- No prior psychiatric history"
+            },
+            "document": {
+              "id": "openem:acute-psychosis",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-psychosis.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Psychosis",
+              "aliases": [
+                "psychotic episode",
+                "acute psychotic episode",
+                "first-break psychosis",
+                "psychotic agitation",
+                "acute psychotic disorder"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "ceedc04857fc9b35e0c895277ec485ef49853b58ae4e19073445a36662b09483",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:catatonic-emergency",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:anticholinergic-toxidrome",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:hsv-encephalitis",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "psychiatric"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.030834914611005692,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "fdf4b5714a38c3bb0e52d3d22a7b3b0db33185a6d246091da2f41b2c9c1ce099",
+              "end": 1587,
+              "hash": "5a1780398d7836aa2ad7b659dd94853acb45a11ea1568bca471c51665d565f2d",
+              "text": "1. **Assuming psychosis is psychiatric without excluding medical causes.** Hypoglycemia, CNS infection, intoxication, anti-NMDAR encephalitis, and metabolic derangements all present with psychosis. A glucose check takes 5 seconds. A missed encephalitis kills. New-onset psychosis after age 40 has a medical cause until proven otherwise.\n\n2. **Delaying sedation in a dangerous patient.** Verbal de-escalation is first-line, but an actively violent patient poses immediate risk to staff, other patients, and themselves. Prompt chemical sedation with IM medications (olanzapine 10 mg IM, or haloperidol 5 mg + diphenhydramine 50 mg + lorazepam 2 mg IM) prevents injury. Waiting too long to medicate causes harm.\n\n3. **Combining IM olanzapine with IM benzodiazepines.** This combination carries significant risk of respiratory depression, hypotension, and death. The package insert contraindicates concurrent IM administration. Use haloperidol-based IM regimens if a benzodiazepine is also needed.\n\n4. **Prone restraint causing positional asphyxia.** Restraining agitated patients in the prone position, especially obese patients or those intoxicated with stimulants, causes positional asphyxia and death. Restrain in supine or lateral decubitus position only. Continuous monitoring of respiratory effort is mandatory.\n\n5. **Forgetting dystonia prophylaxis with haloperidol.** Acute dystonia (laryngospasm, torticollis, oculogyric crisis) occurs in up to 10% of patients receiving haloperidol, particularly young males. Co-administer diphenhydramine 50 mg IM/IV with every haloperidol dose.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:acute-psychosis",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Acute Psychosis\npsychotic episode; acute psychotic episode; first-break psychosis; psychotic agitation; acute psychotic disorder\nPitfalls\n1. **Assuming psychosis is psychiatric without excluding medical causes.** Hypoglycemia, CNS infection, intoxication, anti-NMDAR encephalitis, and metabolic derangements all present with psychosis. A glucose check takes 5 seconds. A missed encephalitis kills. New-onset psychosis after age 40 has a medical cause until proven otherwise.\n\n2. **Delaying sedation in a dangerous patient.** Verbal de-escalation is first-line, but an actively violent patient poses immediate risk to staff, other patients, and themselves. Prompt chemical sedation with IM medications (olanzapine 10 mg IM, or haloperidol 5 mg + diphenhydramine 50 mg + lorazepam 2 mg IM) prevents injury. Waiting too long to medicate causes harm.\n\n3. **Combining IM olanzapine with IM benzodiazepines.** This combination carries significant risk of respiratory depression, hypotension, and death. The package insert contraindicates concurrent IM administration. Use haloperidol-based IM regimens if a benzodiazepine is also needed.\n\n4. **Prone restraint causing positional asphyxia.** Restraining agitated patients in the prone position, especially obese patients or those intoxicated with stimulants, causes positional asphyxia and death. Restrain in supine or lateral decubitus position only. Continuous monitoring of respiratory effort is mandatory.\n\n5. **Forgetting dystonia prophylaxis with haloperidol.** Acute dystonia (laryngospasm, torticollis, oculogyric crisis) occurs in up to 10% of patients receiving haloperidol, particularly young males. Co-administer diphenhydramine 50 mg IM/IV with every haloperidol dose.\n"
+            },
+            "document": {
+              "id": "openem:acute-psychosis",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/acute-psychosis.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Psychosis",
+              "aliases": [
+                "psychotic episode",
+                "acute psychotic episode",
+                "first-break psychosis",
+                "psychotic agitation",
+                "acute psychotic disorder"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "ceedc04857fc9b35e0c895277ec485ef49853b58ae4e19073445a36662b09483",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:catatonic-emergency",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:anticholinergic-toxidrome",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:hsv-encephalitis",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "psychiatric"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-18"
+            },
+            "score": 0.03076923076923077,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n6. **Not checking QTc.** Haloperidol, droperidol, and ziprasidone prolong the QT interval. Torsades de pointes from antipsychotic-induced QTc prolongation is a preventable death. Obtain an ECG; if QTc > 500 ms, use benzodiazepines instead.\n\n7. **Missing anti-NMDAR encephalitis.** Young women presen"
+            }
+          },
+          {
+            "chunk": {
+              "id": "fdd857eb0a84dd5e957511c88c9a3d0aef1087cb1c61d62f10d25cb1194abc97",
+              "end": 880,
+              "hash": "6a8b28090ccd581f78132852bd6c7dcd0b61e48ba461f3271538ebafe9761643",
+              "text": "Psychotic disorders are severe mental disorders that cause abnormal thinking and perceptions. People with psychoses lose touch with reality. Two of the main symptoms are delusions and hallucinations. Delusions are false beliefs, such as thinking that someone is plotting against you or that the TV is sending you secret messages. Hallucinations are false perceptions, such as hearing, seeing, or feeling something that is not there. \n\n\n Schizophrenia is one type of psychotic disorder. People with bipolar disorder may also have psychotic symptoms. Other problems that can cause psychosis include alcohol and some drugs, brain tumors, brain infections, and stroke. \n\n Treatment depends on the cause of the psychosis. It might involve drugs to control symptoms and talk therapy. Hospitalization is an option for serious cases where a person might be dangerous to himself or others.",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:4180",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Psychotic Disorders\nPsychoses\nHealth-topic summary\nPsychotic disorders are severe mental disorders that cause abnormal thinking and perceptions. People with psychoses lose touch with reality. Two of the main symptoms are delusions and hallucinations. Delusions are false beliefs, such as thinking that someone is plotting against you or that the TV is sending you secret messages. Hallucinations are false perceptions, such as hearing, seeing, or feeling something that is not there. \n\n\n Schizophrenia is one type of psychotic disorder. People with bipolar disorder may also have psychotic symptoms. Other problems that can cause psychosis include alcohol and some drugs, brain tumors, brain infections, and stroke. \n\n Treatment depends on the cause of the psychosis. It might involve drugs to control symptoms and talk therapy. Hospitalization is an option for serious cases where a person might be dangerous to himself or others."
+            },
+            "document": {
+              "id": "medlineplus:4180",
+              "url": "https://medlineplus.gov/psychoticdisorders.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Psychotic Disorders",
+              "aliases": [
+                "Psychoses"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "5bcc3da5f6625cc03d0d5e2eea65fee033ece1b93a3bb2a3670e867f5d2effbc",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:5676",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:392",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Psychotic Disorders"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.026387470207694927,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 62.743999999947846,
+          "embeddingMs": 459.84158399992157,
+          "vectorMs": 17.543541999999434,
+          "totalMs": 544.8487079999177
+        },
+        "warnings": [],
+        "embeddingTokens": 9,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": null,
+    "release": "clinician_required",
+    "clinicalApproval": false,
+    "corrections": 0,
+    "careCorrectionReleased": false,
+    "sourceIntegrity": true,
+    "citations": []
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "clinical-evidence-graph",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "bd98c51d-51e8-49a9-bfb6-9975e563106d",
+  "traceId": "859574555cba0a885047cdec65f4daee",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "39F, two weeks postpartum. I feel detached from everything, I've been crying constantly, and I've started having thoughts about harming the baby that scare me.",
+  "inputHash": "287c89602206eb42a595f6b44131e711ec13c70886096b3eb4d0b61d7b66015f",
+  "answerHash": "bef215e0b2a74ccbaa5e2c4b68349ff96893c6a35e1c3f1a38c8fb99a4c0f03a",
+  "promptHash": "adb8c2cea95f09d101fe0e8ec7c3366e110a78501306053ef0df01a637cf8338",
+  "guidanceHash": "2265620f9ab9d3bcfc8f92d3901c42d1e6fa1547bf28c9c51317d9294e2aac25",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-15T05:48:05.439Z",
+  "durationMs": 17919,
+  "workflowDurationMs": 17895,
+  "tracePersistenceDurationMs": 25,
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 0
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 2791
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 17870
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 4
+    }
+  ],
+  "responseEvents": [
+    {
+      "kind": "action",
+      "notice": {
+        "disposition": "EMERGENCY_NOW",
+        "directive": "Seek emergency department assessment now. Do not wait for a message reply; call 911 if you cannot travel safely.",
+        "source": "emergency_agent"
+      },
+      "elapsedMs": 2792,
+      "sequence": 1
+    }
+  ],
+  "safetyNotices": [
+    {
+      "disposition": "EMERGENCY_NOW",
+      "directive": "Seek emergency department assessment now. Do not wait for a message reply; call 911 if you cannot travel safely.",
+      "source": "emergency_agent"
+    }
+  ],
+  "firstActionMs": 2792,
+  "firstPatientReplyMs": null,
+  "firstQuestionMs": null
+}

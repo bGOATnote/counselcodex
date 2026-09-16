@@ -1,0 +1,229 @@
+{
+  "id": "f4f9a7a9-a138-4845-898f-a4f119f05210",
+  "arm": "field_patch",
+  "admission": {
+    "protocol": "field-local-repair/v1",
+    "baseDraftHash": "9a64d30505e876c4fbb2de7d2104fdbf7fd45929be1ecc59ef4db1bc622053a7",
+    "evidenceHash": "cb7a29342dda688a96d8bb27a2a72c27cc4404227b980a8db93186f9e9889eda",
+    "allowedFields": [
+      "patientMessage"
+    ],
+    "changedFields": [
+      "patientMessage"
+    ],
+    "resultDraftHash": "cde9e29ff3f173af083bc5a47e9f7eadb558a69639ce635a884a101e0fd7ae99",
+    "status": "applied",
+    "failure": null
+  },
+  "draft": {
+    "disposition": "EMERGENCY_NOW",
+    "reviewPriority": null,
+    "workType": null,
+    "reason": "New lip and tongue swelling with reported difficulty breathing indicates possible airway-threatening angioedema/anaphylaxis requiring immediate emergency assessment; no EMS activation is reported by the patient.",
+    "patientMessage": "Call 911 now — do not drive yourself and do not wait for a reply here. Swelling of your lips and tongue with struggling to breathe can block your airway quickly and needs emergency assessment immediately. Tell the dispatcher about the swelling and breathing difficulty, and follow the dispatcher's instructions until help arrives.",
+    "differential": [
+      "Histamine-mediated angioedema/anaphylaxis with airway involvement",
+      "Bradykinin-mediated angioedema (cause not established)",
+      "Prior poison ivy contact dermatitis on forearms — separate, non-urgent issue"
+    ],
+    "redFlags": [
+      {
+        "concern": "Lip and tongue swelling",
+        "status": "reported",
+        "quote": "Now my lips and tongue are swelling"
+      },
+      {
+        "concern": "Difficulty breathing (current)",
+        "status": "reported",
+        "quote": "I am struggling to breathe"
+      },
+      {
+        "concern": "Trouble breathing at initial presentation",
+        "status": "denied",
+        "quote": "no trouble breathing"
+      },
+      {
+        "concern": "Fever",
+        "status": "denied",
+        "quote": "No fever"
+      },
+      {
+        "concern": "Face, eye or genital rash involvement",
+        "status": "denied",
+        "quote": "No face, eye or genital involvement"
+      },
+      {
+        "concern": "Stridor, voice change or inability to swallow secretions",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "EMS already activated",
+        "status": "unknown",
+        "quote": ""
+      }
+    ],
+    "vitalSigns": "No vital signs reported: no blood pressure, heart rate, respiratory rate, oxygen saturation or temperature values given, and whether any measurement occurred is unknown. Patient states no fever but no measured temperature is reported.",
+    "questions": [],
+    "evidenceLimitations": "Sources are emergency-department reference syntheses and a consumer summary, not telehealth protocols; mechanism of swelling cannot be determined remotely and no examination or measurements are available.",
+    "transportIntent": {
+      "mode": "activate_ems",
+      "activationQuote": null
+    },
+    "citations": [
+      {
+        "passageId": "742641891f355c28b1d15a5696f20477f1611e194f861ab583dca769fd1ba3e4",
+        "quote": "- Stridor, drooling, inability to lie flat = impending airway loss",
+        "claim": "Tongue swelling with voice change or stridor signals impending airway loss requiring immediate intervention.",
+        "applicability": "uncertain",
+        "limitation": "Stridor, drooling and voice change were not reported; staging cannot be applied remotely."
+      },
+      {
+        "passageId": "d46557f47ba34dd42b5cf5c4e712d2156be42460ba119536215d1105ae7eb268",
+        "quote": "| Pre-anaphylactic | Rapidly spreading urticaria, progressive angioedema (tongue, uvula), throat tightness, voice change, early wheeze, lightheadedness | High — treat as anaphylaxis (see [anaphylaxis.md](anaphylaxis.md)) |",
+        "claim": "Progressive angioedema of the tongue with airway symptoms is high risk and treated as anaphylaxis.",
+        "applicability": "applicable",
+        "limitation": "Severity table is an ED reference, not a remote triage tool."
+      }
+    ]
+  },
+  "judge": {
+    "reviewScope": "draft-and-issued-question/v2",
+    "verdict": "accept",
+    "criteria": [
+      {
+        "id": "undertriage",
+        "verdict": "pass",
+        "reason": "Current tongue/lip swelling with respiratory difficulty requires immediate airway-capable emergency assessment. The draft directs immediate EMS activation without waiting; no prerequisite delays care.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "Now my lips and tongue are swelling and I am struggling to breathe."
+          },
+          {
+            "unit": "draft",
+            "quote": "Call 911 now — do not drive yourself and do not wait for a reply here."
+          }
+        ]
+      },
+      {
+        "id": "overtriage",
+        "verdict": "pass",
+        "reason": "Immediate emergency assessment and ambulance activation are proportionate to reported active breathing difficulty with tongue swelling. A messaging or self-transport pathway would not adequately address possible rapid airway deterioration.",
+        "anchors": [
+          {
+            "unit": "patient",
+            "quote": "Now my lips and tongue are swelling and I am struggling to breathe."
+          },
+          {
+            "unit": "draft",
+            "quote": "Call 911 now — do not drive yourself and do not wait for a reply here."
+          }
+        ]
+      },
+      {
+        "id": "patient_grounding",
+        "verdict": "pass",
+        "reason": "The draft prioritizes the latest respiratory symptoms over the earlier denial, preserves unknown vital-sign measurement status, and presents mechanisms as differential possibilities rather than confirmed diagnoses.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "New lip and tongue swelling with reported difficulty breathing indicates possible airway-threatening angioedema/anaphylaxis requiring immediate emergency assessment; no EMS activation is reported by the patient."
+          },
+          {
+            "unit": "draft",
+            "quote": "No vital signs reported: no blood pressure, heart rate, respiratory rate, oxygen saturation or temperature values given, and whether any measurement occurred is unknown."
+          },
+          {
+            "unit": "patient",
+            "quote": "Now my lips and tongue are swelling and I am struggling to breathe."
+          }
+        ]
+      },
+      {
+        "id": "claim_support",
+        "verdict": "pass",
+        "reason": "Supplied passages support potentially rapidly progressive airway compromise from tongue angioedema and immediate airway intervention for laryngeal involvement. The emergency and transport recommendations are justified case-specific inferences, not claims of a source-defined telehealth protocol.",
+        "anchors": [
+          {
+            "unit": "source:742641891f355c28b1d15a5696f20477f1611e194f861ab583dca769fd1ba3e4",
+            "quote": "- Stage 2: soft palate/tongue edema — prepare for intubation\n- Stage 3: laryngeal involvement (voice change, stridor) — immediate airway intervention"
+          },
+          {
+            "unit": "source:b57965d5e6d5abf478a98a597b09d3bce75ef03f3728bcd776e6d4b17a078e24",
+            "quote": "Edema progresses rapidly and makes repeated attempts dangerous."
+          },
+          {
+            "unit": "draft",
+            "quote": "Swelling of your lips and tongue with struggling to breathe can block your airway quickly and needs emergency assessment immediately."
+          }
+        ]
+      },
+      {
+        "id": "safety_net",
+        "verdict": "pass",
+        "reason": "The emergency action already applies now, without requiring further worsening. Dispatcher instructions provide an appropriate immediate contingency while awaiting help.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Tell the dispatcher about the swelling and breathing difficulty, and follow the dispatcher's instructions until help arrives."
+          },
+          {
+            "unit": "draft",
+            "quote": "Call 911 now — do not drive yourself and do not wait for a reply here."
+          }
+        ]
+      },
+      {
+        "id": "clarification_delay",
+        "verdict": "pass",
+        "reason": "No issued question is supplied, and the draft asks none. It explicitly prohibits waiting for a message reply.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "\"questions\":[]"
+          },
+          {
+            "unit": "draft",
+            "quote": "do not wait for a reply here"
+          }
+        ]
+      },
+      {
+        "id": "ownership",
+        "verdict": "pass",
+        "reason": "Emergency services appropriately own the immediate care requirement. The draft recommends calling the dispatcher without asserting completed activation, accepted handoff, or unavailable coordination.",
+        "anchors": [
+          {
+            "unit": "draft",
+            "quote": "Call 911 now"
+          },
+          {
+            "unit": "draft",
+            "quote": "Tell the dispatcher about the swelling and breathing difficulty, and follow the dispatcher's instructions until help arrives."
+          }
+        ]
+      }
+    ],
+    "earlyAction": "supported",
+    "earlyCorrection": null,
+    "transportReview": {
+      "mode": "activate_ems",
+      "verdict": "supported",
+      "draftQuote": "Call 911 now — do not drive yourself and do not wait for a reply here.",
+      "activation": null
+    },
+    "ownershipTaskReview": [],
+    "correction": "No changes required.",
+    "repairTargets": [],
+    "evidenceQueries": []
+  },
+  "changedFields": [
+    "patientMessage"
+  ],
+  "sourceIdentity": true,
+  "repairMs": 4370,
+  "reviewMs": 28233,
+  "reviewExecuted": true,
+  "clinicalApproval": false
+}

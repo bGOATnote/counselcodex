@@ -1,0 +1,2011 @@
+{
+  "status": "review_required",
+  "answer": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "reviewPriority": "priority",
+    "workType": "clinical_review",
+    "reason": "The automated assessment needs clinician review; this is a conservative workflow fallback, not a new clinical finding.",
+    "patientMessage": "Priority review by the Counsel clinician in this thread is needed today. This recommendation does not confirm a clinician has accepted the request.",
+    "differential": [],
+    "redFlags": [],
+    "vitalSigns": "The automated assessment has not established the vital-sign context.",
+    "questions": [],
+    "evidence": [],
+    "evidenceLimitations": "No model-reviewed clinical explanation has been released. The draft and review outcome are retained for clinician assessment."
+  },
+  "origin": "validation_safeguard",
+  "modelCalls": 6,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "cholesterol result discussion lipid management",
+          "chest pain sweating palpitations exertional dyspnea"
+        ],
+        "findings": [],
+        "question": null
+      },
+      "usage": {
+        "inputTokens": 992,
+        "outputTokens": 39
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1673,
+      "streamProgress": {
+        "lastTextDeltaMs": 2138,
+        "textDeltaCount": 18,
+        "textCharacters": 146
+      },
+      "durationMs": 2152
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "routine",
+        "workType": "clinical_review",
+        "reason": "Patient requests discussion of a cholesterol result and reports no chest pain or breathing difficulty; the father's symptoms are historical and belong to another person. Lipid interpretation and family-history risk assessment are clinician tasks that can be done asynchronously without urgent or in-person features.",
+        "patientMessage": "I recommend a standard (non-urgent) message review with a Counsel clinician in this thread today during service hours to go over your cholesterol numbers and what your father's heart attack means for your own risk. Please share the actual lab values and any medicines you take. If you develop chest pressure, sweating, or breathlessness, seek emergency care right away rather than waiting for a reply.",
+        "differential": [
+          "Lipid result interpretation with family history of premature/established coronary disease",
+          "Possible familial hypercholesterolaemia if values are markedly elevated (values not provided)",
+          "No reported current cardiac symptoms to suggest acute coronary syndrome"
+        ],
+        "redFlags": [
+          {
+            "concern": "Chest pain",
+            "status": "denied",
+            "quote": "I have no chest pain or trouble breathing."
+          },
+          {
+            "concern": "Shortness of breath",
+            "status": "denied",
+            "quote": "I have no chest pain or trouble breathing."
+          },
+          {
+            "concern": "Diaphoresis, syncope, palpitations",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Family history of heart attack (father, 5 years ago)",
+            "status": "reported",
+            "quote": "My father had crushing chest pain and sweating during his heart attack five years ago."
+          }
+        ],
+        "vitalSigns": "No vital signs reported: no blood pressure, heart rate or other measurements provided. Actual cholesterol values were not included in the message.",
+        "questions": [],
+        "evidenceLimitations": "Available sources are consumer health summaries about cholesterol and emergency-department chest pain/palpitation references; none address telehealth routing or prescribing eligibility, and the patient's lipid values, age and risk factors are unknown, so no individual treatment threshold can be applied.",
+        "citations": [
+          {
+            "passageId": "dd2627641d3088e2361136543d66a88114b1222a6d1cc36c2dd2d2106978fe6b",
+            "quote": "High blood cholesterol can run in families.",
+            "claim": "Family history is relevant to cholesterol risk assessment, as high blood cholesterol can run in families.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary; does not establish this patient's risk level or treatment need."
+          },
+          {
+            "passageId": "669b7350ca9d53154e4e7bdd2ecca4ef11312f4c61766d9f9d5745055e470590",
+            "quote": "The numbers that are best for you may depend on your age, race, blood pressure, weight, family history, and more.",
+            "claim": "Interpreting cholesterol numbers requires a clinician discussion because target levels depend on individual factors.",
+            "applicability": "applicable",
+            "limitation": "General consumer guidance, not a routing or prescribing protocol."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 19088,
+        "outputTokens": 973
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1549,
+      "streamProgress": {
+        "lastTextDeltaMs": 16446,
+        "textDeltaCount": 250,
+        "textCharacters": 2786
+      },
+      "durationMs": 16453,
+      "rawOutput": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "routine",
+        "workType": "clinical_review",
+        "reason": "Patient requests discussion of a cholesterol result and reports no chest pain or breathing difficulty; the father's symptoms are historical and belong to another person. Lipid interpretation and family-history risk assessment are clinician tasks that can be done asynchronously without urgent or in-person features.",
+        "patientMessage": "I recommend a standard (non-urgent) message review with a Counsel clinician in this thread today during service hours to go over your cholesterol numbers and what your father's heart attack means for your own risk. Please share the actual lab values and any medicines you take. If you develop chest pressure, sweating, or breathlessness, seek emergency care right away rather than waiting for a reply.",
+        "differential": [
+          "Lipid result interpretation with family history of premature/established coronary disease",
+          "Possible familial hypercholesterolaemia if values are markedly elevated (values not provided)",
+          "No reported current cardiac symptoms to suggest acute coronary syndrome"
+        ],
+        "redFlags": [
+          {
+            "concern": "Chest pain",
+            "status": "denied",
+            "quote": "I have no chest pain or trouble breathing."
+          },
+          {
+            "concern": "Shortness of breath",
+            "status": "denied",
+            "quote": "I have no chest pain or trouble breathing."
+          },
+          {
+            "concern": "Diaphoresis, syncope, palpitations",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Family history of heart attack (father, 5 years ago)",
+            "status": "reported",
+            "quote": "My father had crushing chest pain and sweating during his heart attack five years ago."
+          }
+        ],
+        "vitalSigns": "No vital signs reported: no blood pressure, heart rate or other measurements provided. Actual cholesterol values were not included in the message.",
+        "questions": [],
+        "evidenceLimitations": "Available sources are consumer health summaries about cholesterol and emergency-department chest pain/palpitation references; none address telehealth routing or prescribing eligibility, and the patient's lipid values, age and risk factors are unknown, so no individual treatment threshold can be applied.",
+        "citations": [
+          {
+            "passageId": "dd2627641d3088e2361136543d66a88114b1222a6d1cc36c2dd2d2106978fe6b",
+            "claim": "Family history is relevant to cholesterol risk assessment, as high blood cholesterol can run in families.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary; does not establish this patient's risk level or treatment need.",
+            "quoteId": "q27"
+          },
+          {
+            "passageId": "669b7350ca9d53154e4e7bdd2ecca4ef11312f4c61766d9f9d5745055e470590",
+            "claim": "Interpreting cholesterol numbers requires a clinician discussion because target levels depend on individual factors.",
+            "applicability": "applicable",
+            "limitation": "General consumer guidance, not a routing or prescribing protocol.",
+            "quoteId": "q24"
+          }
+        ]
+      }
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "action": "STANDARD_ASYNC",
+        "basis": [
+          {
+            "quote": "My father had crushing chest pain and sweating during his heart attack five years ago",
+            "interpretation": "Family history of myocardial infarction is a cardiovascular risk factor, but this describes another person's past event, not current patient symptoms or findings",
+            "currentPatient": false,
+            "present": false
+          },
+          {
+            "quote": "I have no chest pain or trouble breathing",
+            "interpretation": "Patient explicitly denies acute cardiopulmonary symptoms at present",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "I want to discuss my cholesterol result with a clinician",
+            "interpretation": "Patient requests clinician review of a laboratory result for risk stratification and potential management",
+            "currentPatient": true,
+            "present": true
+          }
+        ],
+        "actionBasis": null,
+        "reason": "Patient reports no acute symptoms and requests routine clinician review of cholesterol results; family history warrants appropriate assessment but does not establish time-critical need.",
+        "patientMessage": "",
+        "physicalRequirement": null
+      },
+      "usage": {
+        "inputTokens": 2425,
+        "outputTokens": 217
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1838,
+      "streamProgress": {
+        "lastTextDeltaMs": 7070,
+        "textDeltaCount": 197,
+        "textCharacters": 1027
+      },
+      "durationMs": 7085
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "revise",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Cholesterol interpretation and family-history assessment require clinician review, but the reported facts do not require urgent testing or physical assessment. Routine asynchronous review meets this need.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I have no chest pain or trouble breathing. I want to discuss my cholesterol result with a clinician."
+              },
+              {
+                "unit": "draft",
+                "quote": "\"reviewPriority\":\"routine\",\"workType\":\"clinical_review\""
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "The current disposition appropriately uses routine messaging rather than emergency or in-person assessment for another person's historical symptoms. The conditional safety-net wording needs a separate repair.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I recommend a standard (non-urgent) message review with a Counsel clinician in this thread today during service hours"
+              },
+              {
+                "unit": "patient",
+                "quote": "My father had crushing chest pain and sweating during his heart attack five years ago."
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "fail",
+            "reason": "The draft correctly separates the father's symptoms from the patient's, but introduces premature coronary disease without knowing the father's age at his heart attack.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Lipid result interpretation with family history of premature/established coronary disease"
+              },
+              {
+                "unit": "patient",
+                "quote": "My father had crushing chest pain and sweating during his heart attack five years ago."
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "fail",
+            "reason": "The cholesterol claims are supported, but the emergency instruction treats any sweating alone as an emergency threshold. The supplied chest-pain references describe diaphoresis in concerning clinical contexts, not this blanket rule.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "If you develop chest pressure, sweating, or breathlessness, seek emergency care right away rather than waiting for a reply."
+              },
+              {
+                "unit": "source:19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+                "quote": "Associated symptoms: diaphoresis, dyspnea, syncope, nausea"
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "fail",
+            "reason": "Immediate action for new concerning chest or breathing symptoms is appropriate, but unqualified sweating as an independent emergency trigger is too broad. Tie sweating to a concerning symptom cluster.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "If you develop chest pressure, sweating, or breathlessness, seek emergency care right away rather than waiting for a reply."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No issued question is supplied. Requesting lab values and medicines is relevant to clinician interpretation and does not hold up the routing recommendation.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Please share the actual lab values and any medicines you take."
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "The draft recommends Counsel clinician ownership in this thread without claiming acceptance or guaranteed availability. Today during service hours is framed as a recommendation, consistent with the routine queue target.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I recommend a standard (non-urgent) message review with a Counsel clinician in this thread today during service hours to go over your cholesterol numbers and what your father's heart attack means for your own risk."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "correction": "Retain routine asynchronous clinician review. Replace 'premature/established coronary disease' with 'heart attack in father; age at event unknown.' Revise the safety net to recommend immediate emergency care for new chest pressure or difficulty breathing, particularly with sweating, rather than for sweating alone. No additional timing repair is needed: the draft already recommends review today during service hours.",
+        "evidenceQueries": []
+      },
+      "usage": {
+        "inputTokens": 7857,
+        "outputTokens": 1013
+      },
+      "failure": null,
+      "firstTextDeltaMs": 2994,
+      "streamProgress": {
+        "lastTextDeltaMs": 23042,
+        "textDeltaCount": 964,
+        "textCharacters": 4417
+      },
+      "durationMs": 23062
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "routine",
+        "workType": "clinical_review",
+        "reason": "Patient requests discussion of a cholesterol result and reports no chest pain or breathing difficulty; the father's symptoms are historical and belong to another person. Lipid interpretation and family-history risk assessment are clinician tasks suited to asynchronous review.",
+        "patientMessage": "I recommend a standard (non-urgent) message review with a Counsel clinician in this thread today during service hours to go over your cholesterol numbers and what your father's heart attack means for your own risk. Sharing the actual lab values and any medicines you take will help. If you develop new chest pressure or difficulty breathing, especially with sweating, seek emergency care right away rather than waiting for a reply.",
+        "differential": [
+          "Lipid result interpretation with family history of heart attack in father; age at event unknown",
+          "Possible inherited cholesterol disorder if values are markedly elevated (values not provided)",
+          "No reported current cardiac symptoms"
+        ],
+        "redFlags": [
+          {
+            "concern": "Chest pain",
+            "status": "denied",
+            "quote": "I have no chest pain or trouble breathing."
+          },
+          {
+            "concern": "Shortness of breath",
+            "status": "denied",
+            "quote": "I have no chest pain or trouble breathing."
+          },
+          {
+            "concern": "Diaphoresis, syncope, palpitations",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Family history of heart attack (father, 5 years ago)",
+            "status": "reported",
+            "quote": "My father had crushing chest pain and sweating during his heart attack five years ago."
+          }
+        ],
+        "vitalSigns": "No vital signs reported: no blood pressure, heart rate or other measurements provided. Actual cholesterol values were not included in the message.",
+        "questions": [],
+        "evidenceLimitations": "Available sources are consumer cholesterol summaries and emergency-department chest pain references; none address telehealth routing or prescribing eligibility. The patient's lipid values, age and other risk factors are unknown, so no individual treatment threshold can be applied.",
+        "citations": [
+          {
+            "passageId": "dd2627641d3088e2361136543d66a88114b1222a6d1cc36c2dd2d2106978fe6b",
+            "quote": "High blood cholesterol can run in families.",
+            "claim": "Family history is relevant to cholesterol risk assessment, as high blood cholesterol can run in families.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary; does not establish this patient's risk level or treatment need."
+          },
+          {
+            "passageId": "669b7350ca9d53154e4e7bdd2ecca4ef11312f4c61766d9f9d5745055e470590",
+            "quote": "The numbers that are best for you may depend on your age, race, blood pressure, weight, family history, and more.",
+            "claim": "Interpreting cholesterol numbers requires clinician discussion because target levels depend on individual factors.",
+            "applicability": "applicable",
+            "limitation": "General consumer guidance, not a routing or prescribing protocol."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 19894,
+        "outputTokens": 954
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1618,
+      "streamProgress": {
+        "lastTextDeltaMs": 27973,
+        "textDeltaCount": 442,
+        "textCharacters": 2723
+      },
+      "durationMs": 28141,
+      "rawOutput": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "routine",
+        "workType": "clinical_review",
+        "reason": "Patient requests discussion of a cholesterol result and reports no chest pain or breathing difficulty; the father's symptoms are historical and belong to another person. Lipid interpretation and family-history risk assessment are clinician tasks suited to asynchronous review.",
+        "patientMessage": "I recommend a standard (non-urgent) message review with a Counsel clinician in this thread today during service hours to go over your cholesterol numbers and what your father's heart attack means for your own risk. Sharing the actual lab values and any medicines you take will help. If you develop new chest pressure or difficulty breathing, especially with sweating, seek emergency care right away rather than waiting for a reply.",
+        "differential": [
+          "Lipid result interpretation with family history of heart attack in father; age at event unknown",
+          "Possible inherited cholesterol disorder if values are markedly elevated (values not provided)",
+          "No reported current cardiac symptoms"
+        ],
+        "redFlags": [
+          {
+            "concern": "Chest pain",
+            "status": "denied",
+            "quote": "I have no chest pain or trouble breathing."
+          },
+          {
+            "concern": "Shortness of breath",
+            "status": "denied",
+            "quote": "I have no chest pain or trouble breathing."
+          },
+          {
+            "concern": "Diaphoresis, syncope, palpitations",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Family history of heart attack (father, 5 years ago)",
+            "status": "reported",
+            "quote": "My father had crushing chest pain and sweating during his heart attack five years ago."
+          }
+        ],
+        "vitalSigns": "No vital signs reported: no blood pressure, heart rate or other measurements provided. Actual cholesterol values were not included in the message.",
+        "questions": [],
+        "evidenceLimitations": "Available sources are consumer cholesterol summaries and emergency-department chest pain references; none address telehealth routing or prescribing eligibility. The patient's lipid values, age and other risk factors are unknown, so no individual treatment threshold can be applied.",
+        "citations": [
+          {
+            "passageId": "dd2627641d3088e2361136543d66a88114b1222a6d1cc36c2dd2d2106978fe6b",
+            "claim": "Family history is relevant to cholesterol risk assessment, as high blood cholesterol can run in families.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary; does not establish this patient's risk level or treatment need.",
+            "quoteId": "q27"
+          },
+          {
+            "passageId": "669b7350ca9d53154e4e7bdd2ecca4ef11312f4c61766d9f9d5745055e470590",
+            "claim": "Interpreting cholesterol numbers requires clinician discussion because target levels depend on individual factors.",
+            "applicability": "applicable",
+            "limitation": "General consumer guidance, not a routing or prescribing protocol.",
+            "quoteId": "q24"
+          }
+        ]
+      }
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "accept",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Cholesterol interpretation requires clinician review, but the reported facts establish no time-sensitive physical-care requirement. Standard asynchronous review meets that need; missing lipid values can be obtained during review.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I have no chest pain or trouble breathing. I want to discuss my cholesterol result with a clinician."
+              },
+              {
+                "unit": "draft",
+                "quote": "I recommend a standard (non-urgent) message review with a Counsel clinician in this thread today during service hours"
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "The draft uses a low-burden clinician pathway appropriate to result interpretation, without imposing emergency assessment for the father's historical symptoms. Emergency advice is conditional on new concerning symptoms.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "the father's symptoms are historical and belong to another person"
+              },
+              {
+                "unit": "draft",
+                "quote": "\"disposition\":\"ASYNC_PHYSICIAN\",\"reviewPriority\":\"routine\",\"workType\":\"clinical_review\""
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "Symptoms are attributed to the correct person and time. Unreported values and risk factors remain unknown, and inherited disease is presented only as a conditional possibility.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "My father had crushing chest pain and sweating during his heart attack five years ago."
+              },
+              {
+                "unit": "draft",
+                "quote": "Possible inherited cholesterol disorder if values are markedly elevated (values not provided)"
+              },
+              {
+                "unit": "draft",
+                "quote": "The patient's lipid values, age and other risk factors are unknown"
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "The supplied passages support individualized lipid interpretation, familial cholesterol disorders, and the significance of new pressure, dyspnea and sweating. Routing and clinician ownership are project-policy judgments, not falsely attributed source recommendations.",
+            "anchors": [
+              {
+                "unit": "source:669b7350ca9d53154e4e7bdd2ecca4ef11312f4c61766d9f9d5745055e470590",
+                "quote": "Talk with your healthcare provider about what your cholesterol numbers should be."
+              },
+              {
+                "unit": "source:dd2627641d3088e2361136543d66a88114b1222a6d1cc36c2dd2d2106978fe6b",
+                "quote": "familial hypercholesterolemia (FH) is an inherited condition that causes very high levels of cholesterol in the blood."
+              },
+              {
+                "unit": "source:19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+                "quote": "Associated symptoms: diaphoresis, dyspnea, syncope, nausea"
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "pass",
+            "reason": "The draft gives an immediate emergency action for important new symptoms and explicitly says not to wait for messaging.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "If you develop new chest pressure or difficulty breathing, especially with sweating, seek emergency care right away rather than waiting for a reply."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "No issued question is supplied. Requesting lab values and medication information supports the clinician task without making routing conditional on a response.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Sharing the actual lab values and any medicines you take will help."
+              },
+              {
+                "unit": "draft",
+                "quote": "\"questions\":[]"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "Counsel clinician review is recommended in this thread, without claiming acceptance or guaranteed delivery. The service-hours wording expresses a review recommendation, not invented opening hours. The timing phrase also addresses the application check's concern.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "I recommend a standard (non-urgent) message review with a Counsel clinician in this thread today during service hours to go over your cholesterol numbers and what your father's heart attack means for your own risk."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "none",
+        "earlyCorrection": null,
+        "correction": "",
+        "evidenceQueries": []
+      },
+      "usage": {
+        "inputTokens": 7842,
+        "outputTokens": 1052
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1897,
+      "streamProgress": {
+        "lastTextDeltaMs": 20358,
+        "textDeltaCount": 1045,
+        "textCharacters": 4500
+      },
+      "durationMs": 20585
+    }
+  ],
+  "guidance": [
+    {
+      "id": "669b7350ca9d53154e4e7bdd2ecca4ef11312f4c61766d9f9d5745055e470590",
+      "title": "Cholesterol Levels: What You Need to Know",
+      "url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html",
+      "section": "Health-topic summary",
+      "summary": "What is cholesterol? \n Cholesterol is a waxy, fat-like substance that's found in all the cells in your body. Your body needs some cholesterol to work properly. But if you have too much of it in your blood, it can stick to the walls of your arteries and narrow or even block them. This puts you at risk of coronary artery disease and other heart diseases . \n \n How do you measure cholesterol levels? \n A blood test called a lipoprotein or lipid panel can measure your cholesterol levels. Before the test, you'll need to fast (not eat or drink anything but water) for 9 to 12 hours. The test gives information about your: \n Total cholesterol . This is a measure of the total amount of cholesterol in your blood. It includes both low-density lipoprotein ( LDL ) cholesterol and high-density lipoprotein ( HDL ) cholesterol. \n LDL cholesterol. LDL is often called \"bad\" cholesterol because it is the main source of cholesterol buildup and blockage in the arteries. \n HDL cholesterol. HDL is often called \"good\" cholesterol because it helps remove cholesterol from your arteries. \n Non-HDL. This number is your total cholesterol minus your HDL. Your non-HDL includes LDL and other types of cholesterol such as VLDL (very-low-density lipoprotein). \n Triglycerides . This is another type of fat in your blood that can raise the risk of heart disease, especially in women . \n \n\n What do my cholesterol numbers mean? \n Cholesterol numbers are measured in milligrams per deciliter (mg/dL). Talk with your healthcare provider about what your cholesterol numbers should be. The numbers that are best for you may depend on your age, race, blood pressure, weight, family history, and more. However, here are some general guidelines showing the desirable levels (levels that are healthy for most people): \n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "669b7350ca9d53154e4e7bdd2ecca4ef11312f4c61766d9f9d5745055e470590",
+          "sourceId": "medlineplus:6781",
+          "excerpt": "What is cholesterol? \n Cholesterol is a waxy, fat-like substance that's found in all the cells in your body. Your body needs some cholesterol to work properly. But if you have too much of it in your blood, it can stick to the walls of your arteries and narrow or even block them. This puts you at risk of coronary artery disease and other heart diseases . \n \n How do you measure cholesterol levels? \n A blood test called a lipoprotein or lipid panel can measure your cholesterol levels. Before the test, you'll need to fast (not eat or drink anything but water) for 9 to 12 hours. The test gives information about your: \n Total cholesterol . This is a measure of the total amount of cholesterol in your blood. It includes both low-density lipoprotein ( LDL ) cholesterol and high-density lipoprotein ( HDL ) cholesterol. \n LDL cholesterol. LDL is often called \"bad\" cholesterol because it is the main source of cholesterol buildup and blockage in the arteries. \n HDL cholesterol. HDL is often called \"good\" cholesterol because it helps remove cholesterol from your arteries. \n Non-HDL. This number is your total cholesterol minus your HDL. Your non-HDL includes LDL and other types of cholesterol such as VLDL (very-low-density lipoprotein). \n Triglycerides . This is another type of fat in your blood that can raise the risk of heart disease, especially in women . \n \n\n What do my cholesterol numbers mean? \n Cholesterol numbers are measured in milligrams per deciliter (mg/dL). Talk with your healthcare provider about what your cholesterol numbers should be. The numbers that are best for you may depend on your age, race, blood pressure, weight, family history, and more. However, here are some general guidelines showing the desirable levels (levels that are healthy for most people): \n",
+          "excerptSha256": "03c9c11f4d541ccd82c248e18e93b694c7213d685770a889bf111801d1863791",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "a9c2a1afe0119a6407791438a803c8cae3f20713173cce39ef70078dab816760",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+      "title": "Chest Pain — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+      "section": "Recognition",
+      "summary": "Chest pain accounts for approximately 6-8 million ED visits annually in the US (5-8% of all ED visits). Fewer than 25% have an acute coronary syndrome; the challenge is identifying the minority with life-threatening causes.\n\n**Key history elements:**\n- Onset: sudden vs gradual; activity at onset\n- Character: pressure/squeezing (ACS), tearing/ripping (dissection), sharp/pleuritic (PE, pneumothorax, pericarditis)\n- Radiation: arm/jaw (ACS), back/interscapular (dissection), unilateral (pleuritic)\n- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)\n- Associated symptoms: diaphoresis, dyspnea, syncope, nausea\n- Positional: worse supine/improved leaning forward (pericarditis)\n- Prior history: known CAD, PE, DVT, connective tissue disease, recent procedures/immobilization\n- Cocaine or stimulant use within 72 hours\n\n**High-risk populations for atypical presentations:**\n- Women: more likely to present with dyspnea, nausea, fatigue, back/jaw pain\n- Elderly (> 75): painless MI in up to 60%\n- Diabetics: autonomic neuropathy masks angina\n- Post-surgical/immobilized: PE risk\n\n**Epidemiology of serious causes:**\n- ACS: 10-15% of ED chest pain presentations\n- PE: 2-5%\n- Aortic dissection: < 1% but > 25% mortality if missed\n- Pneumothorax: 1-2%",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+          "sourceId": "openem:chest-pain",
+          "excerpt": "Chest pain accounts for approximately 6-8 million ED visits annually in the US (5-8% of all ED visits). Fewer than 25% have an acute coronary syndrome; the challenge is identifying the minority with life-threatening causes.\n\n**Key history elements:**\n- Onset: sudden vs gradual; activity at onset\n- Character: pressure/squeezing (ACS), tearing/ripping (dissection), sharp/pleuritic (PE, pneumothorax, pericarditis)\n- Radiation: arm/jaw (ACS), back/interscapular (dissection), unilateral (pleuritic)\n- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)\n- Associated symptoms: diaphoresis, dyspnea, syncope, nausea\n- Positional: worse supine/improved leaning forward (pericarditis)\n- Prior history: known CAD, PE, DVT, connective tissue disease, recent procedures/immobilization\n- Cocaine or stimulant use within 72 hours\n\n**High-risk populations for atypical presentations:**\n- Women: more likely to present with dyspnea, nausea, fatigue, back/jaw pain\n- Elderly (> 75): painless MI in up to 60%\n- Diabetics: autonomic neuropathy masks angina\n- Post-surgical/immobilized: PE risk\n\n**Epidemiology of serious causes:**\n- ACS: 10-15% of ED chest pain presentations\n- PE: 2-5%\n- Aortic dissection: < 1% but > 25% mortality if missed\n- Pneumothorax: 1-2%",
+          "excerptSha256": "34e2b67bcc7402aa854897a64bda2e3acba3f6ef414d369c44e42fbbe59179e9",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "a54abc3a955126cf2f4930fa144739a57cb0086ff7d0b5d7198760c06bf704e2",
+      "title": "Cholesterol Medicines",
+      "url": "https://medlineplus.gov/cholesterolmedicines.html",
+      "section": "Health-topic summary",
+      "summary": "What is cholesterol? \n Cholesterol is a waxy, fat-like substance that's found in all the cells in your body. Your body needs some cholesterol to work properly. But if you have too much of it in your blood, it can stick to the walls of your arteries and narrow or even block them. This puts you at risk for coronary artery disease and other heart diseases . \n\n Cholesterol is made by your liver. It travels through the blood on proteins called lipoproteins. One type of lipoprotein, LDL , is sometimes called the \"bad\" cholesterol. A high LDL level leads to a buildup of cholesterol in your arteries. Another type, HDL , is sometimes called the \"good\" cholesterol. It carries cholesterol from other parts of your body back to your liver. Then your liver removes the cholesterol from your body. \n\n What are the treatments for high cholesterol? \n If you have high cholesterol, lifestyle changes can help you lower your cholesterol levels . But sometimes the lifestyle changes are not enough, and you need to take cholesterol medicines. But you should still continue with the lifestyle changes even though you are taking medicines. \n\n Who needs cholesterol medicines? \n Your health care provider may prescribe cholesterol medicines for you if: \n You have already had a heart attack or stroke , or you have peripheral arterial disease \n Your LDL (bad) cholesterol level is 190 mg/dL or higher \n You are 40-75 years old, you have diabetes, and your LDL cholesterol level is 70 mg/dL or higher \n You are 40-75 years old, you have a high risk of developing heart disease or stroke, and your LDL cholesterol level is 70 mg/dL or higher \n \n\n What are the different types of cholesterol medicines? \n There are several types of cholesterol-lowering drugs available, including: \n ",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "a54abc3a955126cf2f4930fa144739a57cb0086ff7d0b5d7198760c06bf704e2",
+          "sourceId": "medlineplus:6811",
+          "excerpt": "What is cholesterol? \n Cholesterol is a waxy, fat-like substance that's found in all the cells in your body. Your body needs some cholesterol to work properly. But if you have too much of it in your blood, it can stick to the walls of your arteries and narrow or even block them. This puts you at risk for coronary artery disease and other heart diseases . \n\n Cholesterol is made by your liver. It travels through the blood on proteins called lipoproteins. One type of lipoprotein, LDL , is sometimes called the \"bad\" cholesterol. A high LDL level leads to a buildup of cholesterol in your arteries. Another type, HDL , is sometimes called the \"good\" cholesterol. It carries cholesterol from other parts of your body back to your liver. Then your liver removes the cholesterol from your body. \n\n What are the treatments for high cholesterol? \n If you have high cholesterol, lifestyle changes can help you lower your cholesterol levels . But sometimes the lifestyle changes are not enough, and you need to take cholesterol medicines. But you should still continue with the lifestyle changes even though you are taking medicines. \n\n Who needs cholesterol medicines? \n Your health care provider may prescribe cholesterol medicines for you if: \n You have already had a heart attack or stroke , or you have peripheral arterial disease \n Your LDL (bad) cholesterol level is 190 mg/dL or higher \n You are 40-75 years old, you have diabetes, and your LDL cholesterol level is 70 mg/dL or higher \n You are 40-75 years old, you have a high risk of developing heart disease or stroke, and your LDL cholesterol level is 70 mg/dL or higher \n \n\n What are the different types of cholesterol medicines? \n There are several types of cholesterol-lowering drugs available, including: \n ",
+          "excerptSha256": "55fb3150bad8ec7d2f09525196ed2b58ae46cb6e0b66b003085f5c507bac85c3",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "4848eeaa0309eb05af00b928b5c35d96de3a9ebec40b4831cf726c6ed14f1af1",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "c7ba4eb389a45bff3f916dd98f5da2f0fc7774ad5a3bccab8b03fdd8b3bac3f8",
+      "title": "Chest Pain — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+      "section": "Differential Diagnosis",
+      "summary": "### Life-Threatening (must rule out immediately)\n- **STEMI / ACS** (`stemi`, `acute-coronary-syndrome-nstemi`, `unstable-angina`): substernal pressure, diaphoresis, ECG changes, troponin elevation\n- **Aortic dissection** (`aortic-dissection`): sudden tearing pain radiating to back, BP differential, widened mediastinum, aortic regurgitation murmur\n- **Pulmonary embolism** (`pulmonary-embolism`): pleuritic pain, dyspnea, tachycardia, risk factors for VTE, right heart strain on ECG\n- **Tension pneumothorax** (`tension-pneumothorax`): unilateral absent breath sounds, tracheal deviation, hypotension, distended neck veins\n- **Cardiac tamponade** (`cardiac-tamponade`): Beck triad (hypotension, JVD, muffled heart sounds), pulsus paradoxus, electrical alternans\n- **Esophageal rupture** (`boerhaave-syndrome`): post-emetic severe chest/epigastric pain, subcutaneous emphysema, pneumomediastinum\n\n### Emergent\n- **Spontaneous pneumothorax** (`spontaneous-pneumothorax`): sudden pleuritic pain, decreased breath sounds, tall thin habitus or COPD\n- **Pericarditis/myocarditis** (`pericarditis-myocarditis`): sharp pleuritic pain worse supine and improved leaning forward, diffuse ST elevation with PR depression, friction rub\n- **Acute heart failure** (`acute-heart-failure`): dyspnea, orthopnea, bilateral crackles, peripheral edema, BNP elevation\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with end-organ damage\n- **Takotsubo cardiomyopathy** (`takotsubo-cardiomyopathy`): post-emotional/physical stress, mimics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "c7ba4eb389a45bff3f916dd98f5da2f0fc7774ad5a3bccab8b03fdd8b3bac3f8",
+          "sourceId": "openem:chest-pain",
+          "excerpt": "### Life-Threatening (must rule out immediately)\n- **STEMI / ACS** (`stemi`, `acute-coronary-syndrome-nstemi`, `unstable-angina`): substernal pressure, diaphoresis, ECG changes, troponin elevation\n- **Aortic dissection** (`aortic-dissection`): sudden tearing pain radiating to back, BP differential, widened mediastinum, aortic regurgitation murmur\n- **Pulmonary embolism** (`pulmonary-embolism`): pleuritic pain, dyspnea, tachycardia, risk factors for VTE, right heart strain on ECG\n- **Tension pneumothorax** (`tension-pneumothorax`): unilateral absent breath sounds, tracheal deviation, hypotension, distended neck veins\n- **Cardiac tamponade** (`cardiac-tamponade`): Beck triad (hypotension, JVD, muffled heart sounds), pulsus paradoxus, electrical alternans\n- **Esophageal rupture** (`boerhaave-syndrome`): post-emetic severe chest/epigastric pain, subcutaneous emphysema, pneumomediastinum\n\n### Emergent\n- **Spontaneous pneumothorax** (`spontaneous-pneumothorax`): sudden pleuritic pain, decreased breath sounds, tall thin habitus or COPD\n- **Pericarditis/myocarditis** (`pericarditis-myocarditis`): sharp pleuritic pain worse supine and improved leaning forward, diffuse ST elevation with PR depression, friction rub\n- **Acute heart failure** (`acute-heart-failure`): dyspnea, orthopnea, bilateral crackles, peripheral edema, BNP elevation\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with end-organ damage\n- **Takotsubo cardiomyopathy** (`takotsubo-cardiomyopathy`): post-emotional/physical stress, mimics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent",
+          "excerptSha256": "277d14d675086210c6a0d344a59daa5a674625c206bdfb1f9762430d7febbd9e",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "01def3d631171e136b3662b63f98a15f11c0cc27c2e72219b175ccdacd7e3649",
+      "title": "Cholesterol",
+      "url": "https://medlineplus.gov/cholesterol.html",
+      "section": "Health-topic summary",
+      "summary": "What is cholesterol? \n Cholesterol is a waxy, fat-like substance that's found in all the cells in your body. Your body needs some cholesterol to make hormones , vitamin D , and substances that help you digest foods. Your body makes all the cholesterol it needs. Cholesterol is also found in foods from animal sources, such as egg yolks, meat, and cheese. \n\n If you have too much cholesterol in your blood, it can combine with other substances in the blood to form plaque. Plaque sticks to the walls of your arteries. This buildup of plaque is known as atherosclerosis . It can lead to coronary artery disease , a condition in which your coronary arteries become narrow or even blocked. \n\n What are HDL, LDL, and VLDL? \n HDL, LDL, and VLDL are lipoproteins. They are a combination of fat (lipid) and protein. The lipids need to be attached to the proteins so they can move through the blood. Different types of lipoproteins have different purposes: \n HDL stands for high-density lipoprotein. It is sometimes called \"good\" cholesterol because it helps your body get rid of cholesterol. It carries cholesterol from other parts of your body back to your liver. Your liver then removes the cholesterol from your body. \n LDL stands for low-density lipoprotein. It is sometimes called \"bad\" cholesterol because a high LDL level leads to the buildup of plaque in your arteries. \n VLDL stands for very low-density lipoprotein. Some people also call VLDL a \"bad\" cholesterol because it too contributes to the buildup of plaque in your arteries. But VLDL and LDL are different; VLDL mainly carries triglycerides and LDL mainly carries cholesterol. \n \n\n What causes high cholesterol? \n The most common cause of high cholesterol is an unhealthy lifestyle. This can include: ",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "01def3d631171e136b3662b63f98a15f11c0cc27c2e72219b175ccdacd7e3649",
+          "sourceId": "medlineplus:26",
+          "excerpt": "What is cholesterol? \n Cholesterol is a waxy, fat-like substance that's found in all the cells in your body. Your body needs some cholesterol to make hormones , vitamin D , and substances that help you digest foods. Your body makes all the cholesterol it needs. Cholesterol is also found in foods from animal sources, such as egg yolks, meat, and cheese. \n\n If you have too much cholesterol in your blood, it can combine with other substances in the blood to form plaque. Plaque sticks to the walls of your arteries. This buildup of plaque is known as atherosclerosis . It can lead to coronary artery disease , a condition in which your coronary arteries become narrow or even blocked. \n\n What are HDL, LDL, and VLDL? \n HDL, LDL, and VLDL are lipoproteins. They are a combination of fat (lipid) and protein. The lipids need to be attached to the proteins so they can move through the blood. Different types of lipoproteins have different purposes: \n HDL stands for high-density lipoprotein. It is sometimes called \"good\" cholesterol because it helps your body get rid of cholesterol. It carries cholesterol from other parts of your body back to your liver. Your liver then removes the cholesterol from your body. \n LDL stands for low-density lipoprotein. It is sometimes called \"bad\" cholesterol because a high LDL level leads to the buildup of plaque in your arteries. \n VLDL stands for very low-density lipoprotein. Some people also call VLDL a \"bad\" cholesterol because it too contributes to the buildup of plaque in your arteries. But VLDL and LDL are different; VLDL mainly carries triglycerides and LDL mainly carries cholesterol. \n \n\n What causes high cholesterol? \n The most common cause of high cholesterol is an unhealthy lifestyle. This can include: ",
+          "excerptSha256": "1c39d5e288dfd50dcc4ab10acf863c1035e449bdd2c39a39acc294edda4be854",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "d79cb0ade765cd502a2160cc514dbd0bbac6b72fa5f05e586e47a3d649f7ec72",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "f2fb508685acac7ac034cf41220ea4c2efb9adda1bb5f9dcfc06f8fc25953691",
+      "title": "Benign Palpitations",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/benign-palpitations.md",
+      "section": "Recognition",
+      "summary": " (concern for exercise-induced VT or HCM); at rest; with position change (common for AVRT)\n- **Structural heart disease**: prior MI, known cardiomyopathy, HF — single strongest predictor of arrhythmia\n- **Family history**: sudden cardiac death, inherited channelopathy (Long QT, Brugada)\n- **Medications and substances**: QT-prolonging drugs, stimulants, cocaine, amphetamines, thyroid medication\n\n### High-Risk vs. Low-Risk Features\n\n| Feature | Low-Risk (Likely Benign) | High-Risk (Arrhythmia Concern) |\n|---------|--------------------------|-------------------------------|\n| Associated symptoms | None or anxiety | Syncope, presyncope, chest pain, dyspnea |\n| Duration | Brief, seconds | Sustained, minutes |\n| Onset/offset | Gradual | Abrupt |\n| During exercise | No | Yes |\n| Structural heart disease | No | Yes |\n| Family history sudden death | No | Yes |\n| ECG | Normal | WPW, QTc >500ms, delta waves, BBB |",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "f2fb508685acac7ac034cf41220ea4c2efb9adda1bb5f9dcfc06f8fc25953691",
+          "sourceId": "openem:benign-palpitations",
+          "excerpt": " (concern for exercise-induced VT or HCM); at rest; with position change (common for AVRT)\n- **Structural heart disease**: prior MI, known cardiomyopathy, HF — single strongest predictor of arrhythmia\n- **Family history**: sudden cardiac death, inherited channelopathy (Long QT, Brugada)\n- **Medications and substances**: QT-prolonging drugs, stimulants, cocaine, amphetamines, thyroid medication\n\n### High-Risk vs. Low-Risk Features\n\n| Feature | Low-Risk (Likely Benign) | High-Risk (Arrhythmia Concern) |\n|---------|--------------------------|-------------------------------|\n| Associated symptoms | None or anxiety | Syncope, presyncope, chest pain, dyspnea |\n| Duration | Brief, seconds | Sustained, minutes |\n| Onset/offset | Gradual | Abrupt |\n| During exercise | No | Yes |\n| Structural heart disease | No | Yes |\n| Family history sudden death | No | Yes |\n| ECG | Normal | WPW, QTc >500ms, delta waves, BBB |",
+          "excerptSha256": "6798fc921bc69d7f67583b86c9e647e1e0575bc5a59fd0e4eb3590624957c980",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "95e4ef78048087858a581eb3adf0f3ba2400158c2beb07dc24ce2a2b73ec8961",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "dd2627641d3088e2361136543d66a88114b1222a6d1cc36c2dd2d2106978fe6b",
+      "title": "Cholesterol",
+      "url": "https://medlineplus.gov/cholesterol.html",
+      "section": "Health-topic summary",
+      "summary": "rent; VLDL mainly carries triglycerides and LDL mainly carries cholesterol. \n \n\n What causes high cholesterol? \n The most common cause of high cholesterol is an unhealthy lifestyle. This can include: \n Unhealthy eating habits, such as eating lots of saturated fats . These fats are found in red meats, full-fat dairy products, chocolate, some baked goods, and many deep-fried and processed foods. Eating too much saturated fat can raise your LDL (bad) cholesterol. \n Lack of physical activity , with lots of sitting and little exercise. This lowers your HDL (good) cholesterol. \n Smoking , which lowers HDL cholesterol, especially in women. It also raises your LDL cholesterol. \n Stress , which may raise levels of certain hormones such as corticosteroids. These can cause your body to make more cholesterol. \n Drinking too much alcohol , which can raise your total cholesterol level. \n \n\n Genetics may also cause people to have high cholesterol. For example, familial hypercholesterolemia (FH) is an inherited condition that causes very high levels of cholesterol in the blood. Other medical conditions and certain medicines may also raise LDL cholesterol levels or lower HDL cholesterol levels. \n\n What can raise my risk of high cholesterol? \n A variety of things can raise your risk of high cholesterol: \n Age. Your cholesterol levels tend to rise as you get older. Even though it is less common, younger people, including children and teens , can also have high cholesterol. \n Sex. Between ages 20 and 39, men have a greater risk of high total cholesterol than women. But after menopause , a woman's risk goes up. This happens because menopause lowers levels of female hormones that may protect against high blood cholesterol. \n Family history. High blood cholesterol can run in families. ",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "dd2627641d3088e2361136543d66a88114b1222a6d1cc36c2dd2d2106978fe6b",
+          "sourceId": "medlineplus:26",
+          "excerpt": "rent; VLDL mainly carries triglycerides and LDL mainly carries cholesterol. \n \n\n What causes high cholesterol? \n The most common cause of high cholesterol is an unhealthy lifestyle. This can include: \n Unhealthy eating habits, such as eating lots of saturated fats . These fats are found in red meats, full-fat dairy products, chocolate, some baked goods, and many deep-fried and processed foods. Eating too much saturated fat can raise your LDL (bad) cholesterol. \n Lack of physical activity , with lots of sitting and little exercise. This lowers your HDL (good) cholesterol. \n Smoking , which lowers HDL cholesterol, especially in women. It also raises your LDL cholesterol. \n Stress , which may raise levels of certain hormones such as corticosteroids. These can cause your body to make more cholesterol. \n Drinking too much alcohol , which can raise your total cholesterol level. \n \n\n Genetics may also cause people to have high cholesterol. For example, familial hypercholesterolemia (FH) is an inherited condition that causes very high levels of cholesterol in the blood. Other medical conditions and certain medicines may also raise LDL cholesterol levels or lower HDL cholesterol levels. \n\n What can raise my risk of high cholesterol? \n A variety of things can raise your risk of high cholesterol: \n Age. Your cholesterol levels tend to rise as you get older. Even though it is less common, younger people, including children and teens , can also have high cholesterol. \n Sex. Between ages 20 and 39, men have a greater risk of high total cholesterol than women. But after menopause , a woman's risk goes up. This happens because menopause lowers levels of female hormones that may protect against high blood cholesterol. \n Family history. High blood cholesterol can run in families. ",
+          "excerptSha256": "6d4d5ca510145694d0289023c750774ef0ba68ac50d6b3a58f73145da72dddd9",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "d79cb0ade765cd502a2160cc514dbd0bbac6b72fa5f05e586e47a3d649f7ec72",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "637ffbab71e3955de1d32c70244c9cd5d3fa5187647abede00262ed3d17a22be",
+      "title": "Palpitations — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/palpitations-evaluation.md",
+      "section": "Recognition",
+      "summary": "Palpitations account for approximately 1-2% of ED visits. The majority (85-90%) are benign (PACs, PVCs, sinus tachycardia, anxiety). However, 10-15% have a cardiac arrhythmia, and a subset of these are life-threatening. The ED task is to capture the rhythm during symptoms, identify high-risk features, and distinguish benign from dangerous causes.\n\n**Patient description mapping:**\n- \"Skipped beats\" or \"flip-flops\" → PACs/PVCs (most common)\n- \"Racing\" or \"pounding\" with sudden onset/offset → SVT, AF, VT\n- \"Fluttering\" → AF, atrial flutter, SVT\n- \"Regular rapid\" → SVT, VT, sinus tachycardia\n- \"Irregular\" → AF, multifocal atrial tachycardia, frequent PACs\n\n**Key history elements:**\n- Onset and offset: sudden (SVT, VT, AF paroxysm) vs gradual (sinus tachycardia, anxiety)\n- Duration: seconds (PACs/PVCs), minutes-hours (SVT, AF), persistent (sinus tachycardia)\n- Triggers: caffeine, alcohol, exercise, dehydration, stress, medications\n- Associated symptoms: syncope/near-syncope (hemodynamic compromise → VT, SVT, high-degree block), chest pain (ACS, SVT with demand ischemia), dyspnea (AF with RVR, PE, HF)\n- Prior episodes: recurrent paroxysmal palpitations with sudden termination by vagal maneuvers = SVT\n- Structural heart disease: prior MI, HF, cardiomyopathy, valvular disease → VT risk\n- Family history: sudden death, cardiomyopathy, long QT, Brugada, HCM\n- Medications: digoxin, QTc-prolonging drugs, stimulants, decongestants, herbal supplements\n- Substances: cocaine, amphetamines, energy drinks, alcohol, cannabis\n\n**Physical exam during symptoms:**\n- Rapid regular rhythm → SVT or VT\n- Irregularly irregular → AF\n- Cannon A waves in JVP → AV dissociation (VT or complete heart block)\n- Systolic murmur worsening with Valsalva → HCM",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "637ffbab71e3955de1d32c70244c9cd5d3fa5187647abede00262ed3d17a22be",
+          "sourceId": "openem:palpitations-evaluation",
+          "excerpt": "Palpitations account for approximately 1-2% of ED visits. The majority (85-90%) are benign (PACs, PVCs, sinus tachycardia, anxiety). However, 10-15% have a cardiac arrhythmia, and a subset of these are life-threatening. The ED task is to capture the rhythm during symptoms, identify high-risk features, and distinguish benign from dangerous causes.\n\n**Patient description mapping:**\n- \"Skipped beats\" or \"flip-flops\" → PACs/PVCs (most common)\n- \"Racing\" or \"pounding\" with sudden onset/offset → SVT, AF, VT\n- \"Fluttering\" → AF, atrial flutter, SVT\n- \"Regular rapid\" → SVT, VT, sinus tachycardia\n- \"Irregular\" → AF, multifocal atrial tachycardia, frequent PACs\n\n**Key history elements:**\n- Onset and offset: sudden (SVT, VT, AF paroxysm) vs gradual (sinus tachycardia, anxiety)\n- Duration: seconds (PACs/PVCs), minutes-hours (SVT, AF), persistent (sinus tachycardia)\n- Triggers: caffeine, alcohol, exercise, dehydration, stress, medications\n- Associated symptoms: syncope/near-syncope (hemodynamic compromise → VT, SVT, high-degree block), chest pain (ACS, SVT with demand ischemia), dyspnea (AF with RVR, PE, HF)\n- Prior episodes: recurrent paroxysmal palpitations with sudden termination by vagal maneuvers = SVT\n- Structural heart disease: prior MI, HF, cardiomyopathy, valvular disease → VT risk\n- Family history: sudden death, cardiomyopathy, long QT, Brugada, HCM\n- Medications: digoxin, QTc-prolonging drugs, stimulants, decongestants, herbal supplements\n- Substances: cocaine, amphetamines, energy drinks, alcohol, cannabis\n\n**Physical exam during symptoms:**\n- Rapid regular rhythm → SVT or VT\n- Irregularly irregular → AF\n- Cannon A waves in JVP → AV dissociation (VT or complete heart block)\n- Systolic murmur worsening with Valsalva → HCM",
+          "excerptSha256": "7401fc9a91c805155ba903537aaeb8c4aaddc146ea676a03d7080a11b261594a",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "bcf2f044d22a78b838a5e1f96586c2158c4ecf62615a226ca46e72aecbbc8935",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "90198b1217c1e0841374c579196212a3383bd2caa1feee7645923374ca3be889",
+      "title": "How to Lower Cholesterol with Diet",
+      "url": "https://medlineplus.gov/howtolowercholesterolwithdiet.html",
+      "section": "Health-topic summary",
+      "summary": "What is cholesterol? \n Cholesterol is a waxy, fat-like substance that's found in all the cells in your body. Your body needs some cholesterol to work properly. But if you have too much of it in your blood, it can stick to the walls of your arteries and narrow or even block them. This puts you at risk for coronary artery disease and other heart diseases . \n\n Cholesterol is made by your liver. It travels through the blood on proteins called lipoproteins. One type of lipoprotein, LDL , is sometimes called the \"bad\" cholesterol. A high LDL level leads to a buildup of cholesterol in your arteries. Another type, HDL , is sometimes called the \"good\" cholesterol. It carries cholesterol from other parts of your body back to your liver. Then your liver removes the cholesterol from your body. \n\n What are the treatments for high cholesterol? \n The main treatments for high cholesterol are heart-healthy lifestyle changes and medicines . The lifestyle changes include healthy eating, weight management, and regular physical activity. \n\n How can I lower cholesterol with diet? \n Heart-healthy lifestyle changes include a diet to lower your cholesterol. The DASH eating plan is one example. Another is the Therapeutic Lifestyle Changes (TLC) diet, which recommends that you: \n\n Choose healthier fats. You should limit both total fat and saturated fat. No more than 25 to 35% of your daily calories should come from dietary fats , and less than 7% of your daily calories should come from saturated fat. Depending upon how many calories you eat per day, here are the maximum amounts of saturated fats that you should eat: \n\n \n \n \n Calories per Day \n Saturated Fat \n \n \n \n \n 1,200 \n 8 grams \n \n \n 1,500 \n 10 grams \n \n \n 2,000 13 grams \n \n \n 2,500 \n 17 grams \n \n \n \n\n \n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "90198b1217c1e0841374c579196212a3383bd2caa1feee7645923374ca3be889",
+          "sourceId": "medlineplus:6807",
+          "excerpt": "What is cholesterol? \n Cholesterol is a waxy, fat-like substance that's found in all the cells in your body. Your body needs some cholesterol to work properly. But if you have too much of it in your blood, it can stick to the walls of your arteries and narrow or even block them. This puts you at risk for coronary artery disease and other heart diseases . \n\n Cholesterol is made by your liver. It travels through the blood on proteins called lipoproteins. One type of lipoprotein, LDL , is sometimes called the \"bad\" cholesterol. A high LDL level leads to a buildup of cholesterol in your arteries. Another type, HDL , is sometimes called the \"good\" cholesterol. It carries cholesterol from other parts of your body back to your liver. Then your liver removes the cholesterol from your body. \n\n What are the treatments for high cholesterol? \n The main treatments for high cholesterol are heart-healthy lifestyle changes and medicines . The lifestyle changes include healthy eating, weight management, and regular physical activity. \n\n How can I lower cholesterol with diet? \n Heart-healthy lifestyle changes include a diet to lower your cholesterol. The DASH eating plan is one example. Another is the Therapeutic Lifestyle Changes (TLC) diet, which recommends that you: \n\n Choose healthier fats. You should limit both total fat and saturated fat. No more than 25 to 35% of your daily calories should come from dietary fats , and less than 7% of your daily calories should come from saturated fat. Depending upon how many calories you eat per day, here are the maximum amounts of saturated fats that you should eat: \n\n \n \n \n Calories per Day \n Saturated Fat \n \n \n \n \n 1,200 \n 8 grams \n \n \n 1,500 \n 10 grams \n \n \n 2,000 13 grams \n \n \n 2,500 \n 17 grams \n \n \n \n\n \n",
+          "excerptSha256": "98cf4c089450270eaa05d7bef8a4335af3b3355cf0620a6e0ccd009b0c16ccd9",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "d702e783aa8360825cb7e68b08939bdbf93a64f2c23406f16913cebfeb0ec576",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    }
+  ],
+  "safetyFloor": null,
+  "rejectedAnswer": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "reviewPriority": "routine",
+    "workType": "clinical_review",
+    "reason": "Patient requests discussion of a cholesterol result and reports no chest pain or breathing difficulty; the father's symptoms are historical and belong to another person. Lipid interpretation and family-history risk assessment are clinician tasks suited to asynchronous review.",
+    "patientMessage": "I recommend a standard (non-urgent) message review with a Counsel clinician in this thread today during service hours to go over your cholesterol numbers and what your father's heart attack means for your own risk. Sharing the actual lab values and any medicines you take will help. If you develop new chest pressure or difficulty breathing, especially with sweating, seek emergency care right away rather than waiting for a reply.",
+    "differential": [
+      "Lipid result interpretation with family history of heart attack in father; age at event unknown",
+      "Possible inherited cholesterol disorder if values are markedly elevated (values not provided)",
+      "No reported current cardiac symptoms"
+    ],
+    "redFlags": [
+      {
+        "concern": "Chest pain",
+        "status": "denied",
+        "quote": "I have no chest pain or trouble breathing."
+      },
+      {
+        "concern": "Shortness of breath",
+        "status": "denied",
+        "quote": "I have no chest pain or trouble breathing."
+      },
+      {
+        "concern": "Diaphoresis, syncope, palpitations",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Family history of heart attack (father, 5 years ago)",
+        "status": "reported",
+        "quote": "My father had crushing chest pain and sweating during his heart attack five years ago."
+      }
+    ],
+    "vitalSigns": "No vital signs reported: no blood pressure, heart rate or other measurements provided. Actual cholesterol values were not included in the message.",
+    "questions": [],
+    "evidenceLimitations": "Available sources are consumer cholesterol summaries and emergency-department chest pain references; none address telehealth routing or prescribing eligibility. The patient's lipid values, age and other risk factors are unknown, so no individual treatment threshold can be applied.",
+    "citations": [
+      {
+        "passageId": "dd2627641d3088e2361136543d66a88114b1222a6d1cc36c2dd2d2106978fe6b",
+        "quote": "High blood cholesterol can run in families.",
+        "claim": "Family history is relevant to cholesterol risk assessment, as high blood cholesterol can run in families.",
+        "applicability": "applicable",
+        "limitation": "Consumer summary; does not establish this patient's risk level or treatment need."
+      },
+      {
+        "passageId": "669b7350ca9d53154e4e7bdd2ecca4ef11312f4c61766d9f9d5745055e470590",
+        "quote": "The numbers that are best for you may depend on your age, race, blood pressure, weight, family history, and more.",
+        "claim": "Interpreting cholesterol numbers requires clinician discussion because target levels depend on individual factors.",
+        "applicability": "applicable",
+        "limitation": "General consumer guidance, not a routing or prescribing protocol."
+      }
+    ]
+  },
+  "failure": "CLINICIAN_REVIEW_REQUIRED",
+  "routingPolicy": "five-route-queue/v2",
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "pass",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "fail",
+      "detail": "Checks explicit timing/destination tokens, not the clinical correctness or complete consistency of the message."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen from a COPD diagnosis alone; targeted medication-instruction check."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "pass",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Cited passage identity and exact quote match; this does not establish claim support or applicability."
+    },
+    {
+      "id": "independent_review",
+      "status": "pass",
+      "detail": "Cross-vendor reviewer accepted this draft against seven criteria; application contract and care-reconciliation gates are separate. Not physician calibration or clinical approval."
+    },
+    {
+      "id": "care_reconciliation",
+      "status": "not_assessed",
+      "detail": "No reduction of already-issued care setting or emergency transport was requested."
+    }
+  ],
+  "usage": {
+    "inputTokens": 58098,
+    "outputTokens": 4248
+  },
+  "graph": {
+    "version": "evidence-graph/v11",
+    "mode": "hybrid",
+    "clinicalPolicyVersion": "disposition-clinical-policy/v1",
+    "context": {
+      "queries": [
+        "cholesterol result discussion lipid management",
+        "chest pain sweating palpitations exertional dyspnea"
+      ],
+      "findings": [],
+      "question": null
+    },
+    "safety": {
+      "action": "STANDARD_ASYNC",
+      "basis": [
+        {
+          "quote": "My father had crushing chest pain and sweating during his heart attack five years ago",
+          "interpretation": "Family history of myocardial infarction is a cardiovascular risk factor, but this describes another person's past event, not current patient symptoms or findings",
+          "currentPatient": false,
+          "present": false
+        },
+        {
+          "quote": "I have no chest pain or trouble breathing",
+          "interpretation": "Patient explicitly denies acute cardiopulmonary symptoms at present",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "I want to discuss my cholesterol result with a clinician",
+          "interpretation": "Patient requests clinician review of a laboratory result for risk stratification and potential management",
+          "currentPatient": true,
+          "present": true
+        }
+      ],
+      "actionBasis": null,
+      "reason": "Patient reports no acute symptoms and requests routine clinician review of cholesterol results; family history warrants appropriate assessment but does not establish time-critical need.",
+      "patientMessage": "",
+      "physicalRequirement": null
+    },
+    "safetyAdmission": {
+      "status": "not_requested",
+      "code": "NO_EARLY_ACTION",
+      "proposedAction": "STANDARD_ASYNC",
+      "basisMode": null,
+      "supportingBasisIndices": [],
+      "contextualBasisIndices": [],
+      "clinicalValidation": false
+    },
+    "questionPublication": {
+      "status": "not_proposed",
+      "blocksRouting": false
+    },
+    "retrieval": [
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "cholesterol result discussion lipid management",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "669b7350ca9d53154e4e7bdd2ecca4ef11312f4c61766d9f9d5745055e470590",
+              "end": 1791,
+              "hash": "03c9c11f4d541ccd82c248e18e93b694c7213d685770a889bf111801d1863791",
+              "text": "What is cholesterol? \n Cholesterol is a waxy, fat-like substance that's found in all the cells in your body. Your body needs some cholesterol to work properly. But if you have too much of it in your blood, it can stick to the walls of your arteries and narrow or even block them. This puts you at risk of coronary artery disease and other heart diseases . \n \n How do you measure cholesterol levels? \n A blood test called a lipoprotein or lipid panel can measure your cholesterol levels. Before the test, you'll need to fast (not eat or drink anything but water) for 9 to 12 hours. The test gives information about your: \n Total cholesterol . This is a measure of the total amount of cholesterol in your blood. It includes both low-density lipoprotein ( LDL ) cholesterol and high-density lipoprotein ( HDL ) cholesterol. \n LDL cholesterol. LDL is often called \"bad\" cholesterol because it is the main source of cholesterol buildup and blockage in the arteries. \n HDL cholesterol. HDL is often called \"good\" cholesterol because it helps remove cholesterol from your arteries. \n Non-HDL. This number is your total cholesterol minus your HDL. Your non-HDL includes LDL and other types of cholesterol such as VLDL (very-low-density lipoprotein). \n Triglycerides . This is another type of fat in your blood that can raise the risk of heart disease, especially in women . \n \n\n What do my cholesterol numbers mean? \n Cholesterol numbers are measured in milligrams per deciliter (mg/dL). Talk with your healthcare provider about what your cholesterol numbers should be. The numbers that are best for you may depend on your age, race, blood pressure, weight, family history, and more. However, here are some general guidelines showing the desirable levels (levels that are healthy for most people): \n",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:6781",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Cholesterol Levels: What You Need to Know\n\nHealth-topic summary\nWhat is cholesterol? \n Cholesterol is a waxy, fat-like substance that's found in all the cells in your body. Your body needs some cholesterol to work properly. But if you have too much of it in your blood, it can stick to the walls of your arteries and narrow or even block them. This puts you at risk of coronary artery disease and other heart diseases . \n \n How do you measure cholesterol levels? \n A blood test called a lipoprotein or lipid panel can measure your cholesterol levels. Before the test, you'll need to fast (not eat or drink anything but water) for 9 to 12 hours. The test gives information about your: \n Total cholesterol . This is a measure of the total amount of cholesterol in your blood. It includes both low-density lipoprotein ( LDL ) cholesterol and high-density lipoprotein ( HDL ) cholesterol. \n LDL cholesterol. LDL is often called \"bad\" cholesterol because it is the main source of cholesterol buildup and blockage in the arteries. \n HDL cholesterol. HDL is often called \"good\" cholesterol because it helps remove cholesterol from your arteries. \n Non-HDL. This number is your total cholesterol minus your HDL. Your non-HDL includes LDL and other types of cholesterol such as VLDL (very-low-density lipoprotein). \n Triglycerides . This is another type of fat in your blood that can raise the risk of heart disease, especially in women . \n \n\n What do my cholesterol numbers mean? \n Cholesterol numbers are measured in milligrams per deciliter (mg/dL). Talk with your healthcare provider about what your cholesterol numbers should be. The numbers that are best for you may depend on your age, race, blood pressure, weight, family history, and more. However, here are some general guidelines showing the desirable levels (levels that are healthy for most people): \n"
+            },
+            "document": {
+              "id": "medlineplus:6781",
+              "url": "https://medlineplus.gov/cholesterollevelswhatyouneedtoknow.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Cholesterol Levels: What You Need to Know",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "a9c2a1afe0119a6407791438a803c8cae3f20713173cce39ef70078dab816760",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:26",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6811",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3593",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6785",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6907",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6809",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6807",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6783",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4909",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6909",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Cholesterol blood",
+                "Hypercholesterolemia"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.03252247488101534,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n Anyone age 19 or younger: \n \n \n \n Type of Cholesterol \n Healthy Level \n \n \n \n \n Total Cholesterol \n Less than 170 mg/dL \n \n \n Non-HDL \n Less than 120 mg/dL \n \n \n LDL \n Less than 110 mg/dL \n \n \n HDL \n More than 45 mg/dL \n \n \n \n \n\n Men age 20 or older: \n \n \n \n Type of Cholesterol \n Healthy Level \n \n"
+            }
+          },
+          {
+            "chunk": {
+              "id": "a54abc3a955126cf2f4930fa144739a57cb0086ff7d0b5d7198760c06bf704e2",
+              "end": 1767,
+              "hash": "55fb3150bad8ec7d2f09525196ed2b58ae46cb6e0b66b003085f5c507bac85c3",
+              "text": "What is cholesterol? \n Cholesterol is a waxy, fat-like substance that's found in all the cells in your body. Your body needs some cholesterol to work properly. But if you have too much of it in your blood, it can stick to the walls of your arteries and narrow or even block them. This puts you at risk for coronary artery disease and other heart diseases . \n\n Cholesterol is made by your liver. It travels through the blood on proteins called lipoproteins. One type of lipoprotein, LDL , is sometimes called the \"bad\" cholesterol. A high LDL level leads to a buildup of cholesterol in your arteries. Another type, HDL , is sometimes called the \"good\" cholesterol. It carries cholesterol from other parts of your body back to your liver. Then your liver removes the cholesterol from your body. \n\n What are the treatments for high cholesterol? \n If you have high cholesterol, lifestyle changes can help you lower your cholesterol levels . But sometimes the lifestyle changes are not enough, and you need to take cholesterol medicines. But you should still continue with the lifestyle changes even though you are taking medicines. \n\n Who needs cholesterol medicines? \n Your health care provider may prescribe cholesterol medicines for you if: \n You have already had a heart attack or stroke , or you have peripheral arterial disease \n Your LDL (bad) cholesterol level is 190 mg/dL or higher \n You are 40-75 years old, you have diabetes, and your LDL cholesterol level is 70 mg/dL or higher \n You are 40-75 years old, you have a high risk of developing heart disease or stroke, and your LDL cholesterol level is 70 mg/dL or higher \n \n\n What are the different types of cholesterol medicines? \n There are several types of cholesterol-lowering drugs available, including: \n ",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:6811",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Cholesterol Medicines\n\nHealth-topic summary\nWhat is cholesterol? \n Cholesterol is a waxy, fat-like substance that's found in all the cells in your body. Your body needs some cholesterol to work properly. But if you have too much of it in your blood, it can stick to the walls of your arteries and narrow or even block them. This puts you at risk for coronary artery disease and other heart diseases . \n\n Cholesterol is made by your liver. It travels through the blood on proteins called lipoproteins. One type of lipoprotein, LDL , is sometimes called the \"bad\" cholesterol. A high LDL level leads to a buildup of cholesterol in your arteries. Another type, HDL , is sometimes called the \"good\" cholesterol. It carries cholesterol from other parts of your body back to your liver. Then your liver removes the cholesterol from your body. \n\n What are the treatments for high cholesterol? \n If you have high cholesterol, lifestyle changes can help you lower your cholesterol levels . But sometimes the lifestyle changes are not enough, and you need to take cholesterol medicines. But you should still continue with the lifestyle changes even though you are taking medicines. \n\n Who needs cholesterol medicines? \n Your health care provider may prescribe cholesterol medicines for you if: \n You have already had a heart attack or stroke , or you have peripheral arterial disease \n Your LDL (bad) cholesterol level is 190 mg/dL or higher \n You are 40-75 years old, you have diabetes, and your LDL cholesterol level is 70 mg/dL or higher \n You are 40-75 years old, you have a high risk of developing heart disease or stroke, and your LDL cholesterol level is 70 mg/dL or higher \n \n\n What are the different types of cholesterol medicines? \n There are several types of cholesterol-lowering drugs available, including: \n "
+            },
+            "document": {
+              "id": "medlineplus:6811",
+              "url": "https://medlineplus.gov/cholesterolmedicines.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Cholesterol Medicines",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "4848eeaa0309eb05af00b928b5c35d96de3a9ebec40b4831cf726c6ed14f1af1",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:26",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6781",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6809",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4909",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4277",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Nicotinic Acids",
+                "Hydroxymethylglutaryl-CoA Reductase Inhibitors",
+                "Fibric Acids",
+                "Hypolipidemic Agents",
+                "Hypercholesterolemia drug therapy",
+                "Ezetimibe"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.031024531024531024,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n Statins . They reduce the amount of cholesterol made in the liver. They also increase your liver's ability to remove LDL cholesterol that is already in the blood. Statins are the most common medicines used to treat high cholesterol. \n Bile acid sequestrants. They keep bile acids, which digest fats"
+            }
+          },
+          {
+            "chunk": {
+              "id": "01def3d631171e136b3662b63f98a15f11c0cc27c2e72219b175ccdacd7e3649",
+              "end": 1761,
+              "hash": "1c39d5e288dfd50dcc4ab10acf863c1035e449bdd2c39a39acc294edda4be854",
+              "text": "What is cholesterol? \n Cholesterol is a waxy, fat-like substance that's found in all the cells in your body. Your body needs some cholesterol to make hormones , vitamin D , and substances that help you digest foods. Your body makes all the cholesterol it needs. Cholesterol is also found in foods from animal sources, such as egg yolks, meat, and cheese. \n\n If you have too much cholesterol in your blood, it can combine with other substances in the blood to form plaque. Plaque sticks to the walls of your arteries. This buildup of plaque is known as atherosclerosis . It can lead to coronary artery disease , a condition in which your coronary arteries become narrow or even blocked. \n\n What are HDL, LDL, and VLDL? \n HDL, LDL, and VLDL are lipoproteins. They are a combination of fat (lipid) and protein. The lipids need to be attached to the proteins so they can move through the blood. Different types of lipoproteins have different purposes: \n HDL stands for high-density lipoprotein. It is sometimes called \"good\" cholesterol because it helps your body get rid of cholesterol. It carries cholesterol from other parts of your body back to your liver. Your liver then removes the cholesterol from your body. \n LDL stands for low-density lipoprotein. It is sometimes called \"bad\" cholesterol because a high LDL level leads to the buildup of plaque in your arteries. \n VLDL stands for very low-density lipoprotein. Some people also call VLDL a \"bad\" cholesterol because it too contributes to the buildup of plaque in your arteries. But VLDL and LDL are different; VLDL mainly carries triglycerides and LDL mainly carries cholesterol. \n \n\n What causes high cholesterol? \n The most common cause of high cholesterol is an unhealthy lifestyle. This can include: ",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:26",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Cholesterol\nHypercholesterolemia; Hyperlipidemia; Hyperlipoproteinemia\nHealth-topic summary\nWhat is cholesterol? \n Cholesterol is a waxy, fat-like substance that's found in all the cells in your body. Your body needs some cholesterol to make hormones , vitamin D , and substances that help you digest foods. Your body makes all the cholesterol it needs. Cholesterol is also found in foods from animal sources, such as egg yolks, meat, and cheese. \n\n If you have too much cholesterol in your blood, it can combine with other substances in the blood to form plaque. Plaque sticks to the walls of your arteries. This buildup of plaque is known as atherosclerosis . It can lead to coronary artery disease , a condition in which your coronary arteries become narrow or even blocked. \n\n What are HDL, LDL, and VLDL? \n HDL, LDL, and VLDL are lipoproteins. They are a combination of fat (lipid) and protein. The lipids need to be attached to the proteins so they can move through the blood. Different types of lipoproteins have different purposes: \n HDL stands for high-density lipoprotein. It is sometimes called \"good\" cholesterol because it helps your body get rid of cholesterol. It carries cholesterol from other parts of your body back to your liver. Your liver then removes the cholesterol from your body. \n LDL stands for low-density lipoprotein. It is sometimes called \"bad\" cholesterol because a high LDL level leads to the buildup of plaque in your arteries. \n VLDL stands for very low-density lipoprotein. Some people also call VLDL a \"bad\" cholesterol because it too contributes to the buildup of plaque in your arteries. But VLDL and LDL are different; VLDL mainly carries triglycerides and LDL mainly carries cholesterol. \n \n\n What causes high cholesterol? \n The most common cause of high cholesterol is an unhealthy lifestyle. This can include: "
+            },
+            "document": {
+              "id": "medlineplus:26",
+              "url": "https://medlineplus.gov/cholesterol.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Cholesterol",
+              "aliases": [
+                "Hypercholesterolemia",
+                "Hyperlipidemia",
+                "Hyperlipoproteinemia"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "d79cb0ade765cd502a2160cc514dbd0bbac6b72fa5f05e586e47a3d649f7ec72",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6781",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6811",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3593",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6785",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6809",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6807",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6783",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:36",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6909",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Cholesterol",
+                "Hypercholesterolemia"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.029631255487269532,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n Unhealthy eating habits, such as eating lots of saturated fats . These fats are found in red meats, full-fat dairy products, chocolate, some baked goods, and many deep-fried and processed foods. Eating too much saturated fat can raise your LDL (bad) cholesterol. \n Lack of physical activity , with "
+            }
+          },
+          {
+            "chunk": {
+              "id": "dd2627641d3088e2361136543d66a88114b1222a6d1cc36c2dd2d2106978fe6b",
+              "end": 3354,
+              "hash": "6d4d5ca510145694d0289023c750774ef0ba68ac50d6b3a58f73145da72dddd9",
+              "text": "rent; VLDL mainly carries triglycerides and LDL mainly carries cholesterol. \n \n\n What causes high cholesterol? \n The most common cause of high cholesterol is an unhealthy lifestyle. This can include: \n Unhealthy eating habits, such as eating lots of saturated fats . These fats are found in red meats, full-fat dairy products, chocolate, some baked goods, and many deep-fried and processed foods. Eating too much saturated fat can raise your LDL (bad) cholesterol. \n Lack of physical activity , with lots of sitting and little exercise. This lowers your HDL (good) cholesterol. \n Smoking , which lowers HDL cholesterol, especially in women. It also raises your LDL cholesterol. \n Stress , which may raise levels of certain hormones such as corticosteroids. These can cause your body to make more cholesterol. \n Drinking too much alcohol , which can raise your total cholesterol level. \n \n\n Genetics may also cause people to have high cholesterol. For example, familial hypercholesterolemia (FH) is an inherited condition that causes very high levels of cholesterol in the blood. Other medical conditions and certain medicines may also raise LDL cholesterol levels or lower HDL cholesterol levels. \n\n What can raise my risk of high cholesterol? \n A variety of things can raise your risk of high cholesterol: \n Age. Your cholesterol levels tend to rise as you get older. Even though it is less common, younger people, including children and teens , can also have high cholesterol. \n Sex. Between ages 20 and 39, men have a greater risk of high total cholesterol than women. But after menopause , a woman's risk goes up. This happens because menopause lowers levels of female hormones that may protect against high blood cholesterol. \n Family history. High blood cholesterol can run in families. ",
+              "start": 1561,
+              "section": 0,
+              "documentId": "medlineplus:26",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Cholesterol\nHypercholesterolemia; Hyperlipidemia; Hyperlipoproteinemia\nHealth-topic summary\nrent; VLDL mainly carries triglycerides and LDL mainly carries cholesterol. \n \n\n What causes high cholesterol? \n The most common cause of high cholesterol is an unhealthy lifestyle. This can include: \n Unhealthy eating habits, such as eating lots of saturated fats . These fats are found in red meats, full-fat dairy products, chocolate, some baked goods, and many deep-fried and processed foods. Eating too much saturated fat can raise your LDL (bad) cholesterol. \n Lack of physical activity , with lots of sitting and little exercise. This lowers your HDL (good) cholesterol. \n Smoking , which lowers HDL cholesterol, especially in women. It also raises your LDL cholesterol. \n Stress , which may raise levels of certain hormones such as corticosteroids. These can cause your body to make more cholesterol. \n Drinking too much alcohol , which can raise your total cholesterol level. \n \n\n Genetics may also cause people to have high cholesterol. For example, familial hypercholesterolemia (FH) is an inherited condition that causes very high levels of cholesterol in the blood. Other medical conditions and certain medicines may also raise LDL cholesterol levels or lower HDL cholesterol levels. \n\n What can raise my risk of high cholesterol? \n A variety of things can raise your risk of high cholesterol: \n Age. Your cholesterol levels tend to rise as you get older. Even though it is less common, younger people, including children and teens , can also have high cholesterol. \n Sex. Between ages 20 and 39, men have a greater risk of high total cholesterol than women. But after menopause , a woman's risk goes up. This happens because menopause lowers levels of female hormones that may protect against high blood cholesterol. \n Family history. High blood cholesterol can run in families. "
+            },
+            "document": {
+              "id": "medlineplus:26",
+              "url": "https://medlineplus.gov/cholesterol.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Cholesterol",
+              "aliases": [
+                "Hypercholesterolemia",
+                "Hyperlipidemia",
+                "Hyperlipoproteinemia"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "d79cb0ade765cd502a2160cc514dbd0bbac6b72fa5f05e586e47a3d649f7ec72",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6781",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6811",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3593",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6785",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6809",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6807",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6783",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:36",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4277",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6909",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Cholesterol",
+                "Hypercholesterolemia"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.029513888888888888,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "sometimes called \"bad\" cholesterol because a high LDL level leads to the buildup of plaque in your arteries. \n VLDL stands for very low-density lipoprotein. Some people also call VLDL a \"bad\" cholesterol because it too contributes to the buildup of plaque in your arteries. But VLDL and LDL are diffe",
+              "after": "\n Other health conditions. Conditions such as diabetes , chronic kidney disease , HIV , and lupus can raise your risk of high cholesterol.\n Medicines. Certain medicines can raise your level of LDL cholesterol or lower your level of HDL cholesterol, including:\n \n Steroids \n Some chemotherapy medicine"
+            }
+          },
+          {
+            "chunk": {
+              "id": "90198b1217c1e0841374c579196212a3383bd2caa1feee7645923374ca3be889",
+              "end": 1762,
+              "hash": "98cf4c089450270eaa05d7bef8a4335af3b3355cf0620a6e0ccd009b0c16ccd9",
+              "text": "What is cholesterol? \n Cholesterol is a waxy, fat-like substance that's found in all the cells in your body. Your body needs some cholesterol to work properly. But if you have too much of it in your blood, it can stick to the walls of your arteries and narrow or even block them. This puts you at risk for coronary artery disease and other heart diseases . \n\n Cholesterol is made by your liver. It travels through the blood on proteins called lipoproteins. One type of lipoprotein, LDL , is sometimes called the \"bad\" cholesterol. A high LDL level leads to a buildup of cholesterol in your arteries. Another type, HDL , is sometimes called the \"good\" cholesterol. It carries cholesterol from other parts of your body back to your liver. Then your liver removes the cholesterol from your body. \n\n What are the treatments for high cholesterol? \n The main treatments for high cholesterol are heart-healthy lifestyle changes and medicines . The lifestyle changes include healthy eating, weight management, and regular physical activity. \n\n How can I lower cholesterol with diet? \n Heart-healthy lifestyle changes include a diet to lower your cholesterol. The DASH eating plan is one example. Another is the Therapeutic Lifestyle Changes (TLC) diet, which recommends that you: \n\n Choose healthier fats. You should limit both total fat and saturated fat. No more than 25 to 35% of your daily calories should come from dietary fats , and less than 7% of your daily calories should come from saturated fat. Depending upon how many calories you eat per day, here are the maximum amounts of saturated fats that you should eat: \n\n \n \n \n Calories per Day \n Saturated Fat \n \n \n \n \n 1,200 \n 8 grams \n \n \n 1,500 \n 10 grams \n \n \n 2,000 13 grams \n \n \n 2,500 \n 17 grams \n \n \n \n\n \n",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:6807",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "How to Lower Cholesterol with Diet\nLow Cholesterol Diet; TLC Diet; Therapeutic Lifestyle Changes Diet\nHealth-topic summary\nWhat is cholesterol? \n Cholesterol is a waxy, fat-like substance that's found in all the cells in your body. Your body needs some cholesterol to work properly. But if you have too much of it in your blood, it can stick to the walls of your arteries and narrow or even block them. This puts you at risk for coronary artery disease and other heart diseases . \n\n Cholesterol is made by your liver. It travels through the blood on proteins called lipoproteins. One type of lipoprotein, LDL , is sometimes called the \"bad\" cholesterol. A high LDL level leads to a buildup of cholesterol in your arteries. Another type, HDL , is sometimes called the \"good\" cholesterol. It carries cholesterol from other parts of your body back to your liver. Then your liver removes the cholesterol from your body. \n\n What are the treatments for high cholesterol? \n The main treatments for high cholesterol are heart-healthy lifestyle changes and medicines . The lifestyle changes include healthy eating, weight management, and regular physical activity. \n\n How can I lower cholesterol with diet? \n Heart-healthy lifestyle changes include a diet to lower your cholesterol. The DASH eating plan is one example. Another is the Therapeutic Lifestyle Changes (TLC) diet, which recommends that you: \n\n Choose healthier fats. You should limit both total fat and saturated fat. No more than 25 to 35% of your daily calories should come from dietary fats , and less than 7% of your daily calories should come from saturated fat. Depending upon how many calories you eat per day, here are the maximum amounts of saturated fats that you should eat: \n\n \n \n \n Calories per Day \n Saturated Fat \n \n \n \n \n 1,200 \n 8 grams \n \n \n 1,500 \n 10 grams \n \n \n 2,000 13 grams \n \n \n 2,500 \n 17 grams \n \n \n \n\n \n"
+            },
+            "document": {
+              "id": "medlineplus:6807",
+              "url": "https://medlineplus.gov/howtolowercholesterolwithdiet.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "How to Lower Cholesterol with Diet",
+              "aliases": [
+                "Low Cholesterol Diet",
+                "TLC Diet",
+                "Therapeutic Lifestyle Changes Diet"
+              ],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "d702e783aa8360825cb7e68b08939bdbf93a64f2c23406f16913cebfeb0ec576",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:26",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3593",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:3059",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6785",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6809",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:6783",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:36",
+                  "relation": "related_topic"
+                },
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:4277",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Hypercholesterolemia diet therapy"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.029083245521601686,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n Saturated fat is a bad fat because it raises your LDL (bad cholesterol) level more than anything else in your diet. It is found in some meats, dairy products, chocolate, baked goods, and deep-fried and processed foods. \n\n Instead of saturated fats, switch to foods with healthier fats, such as lean"
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 29.935040999902412,
+          "embeddingMs": 757.1560410000384,
+          "vectorMs": 19.040000000037253,
+          "totalMs": 830.8454159998801
+        },
+        "warnings": [],
+        "embeddingTokens": 7,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "chest pain sweating palpitations exertional dyspnea",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+              "end": 1267,
+              "hash": "34e2b67bcc7402aa854897a64bda2e3acba3f6ef414d369c44e42fbbe59179e9",
+              "text": "Chest pain accounts for approximately 6-8 million ED visits annually in the US (5-8% of all ED visits). Fewer than 25% have an acute coronary syndrome; the challenge is identifying the minority with life-threatening causes.\n\n**Key history elements:**\n- Onset: sudden vs gradual; activity at onset\n- Character: pressure/squeezing (ACS), tearing/ripping (dissection), sharp/pleuritic (PE, pneumothorax, pericarditis)\n- Radiation: arm/jaw (ACS), back/interscapular (dissection), unilateral (pleuritic)\n- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)\n- Associated symptoms: diaphoresis, dyspnea, syncope, nausea\n- Positional: worse supine/improved leaning forward (pericarditis)\n- Prior history: known CAD, PE, DVT, connective tissue disease, recent procedures/immobilization\n- Cocaine or stimulant use within 72 hours\n\n**High-risk populations for atypical presentations:**\n- Women: more likely to present with dyspnea, nausea, fatigue, back/jaw pain\n- Elderly (> 75): painless MI in up to 60%\n- Diabetics: autonomic neuropathy masks angina\n- Post-surgical/immobilized: PE risk\n\n**Epidemiology of serious causes:**\n- ACS: 10-15% of ED chest pain presentations\n- PE: 2-5%\n- Aortic dissection: < 1% but > 25% mortality if missed\n- Pneumothorax: 1-2%",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:chest-pain",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Chest Pain — Emergency Evaluation\nchest pain; thoracic pain; anterior chest pain; chest discomfort\nRecognition\nChest pain accounts for approximately 6-8 million ED visits annually in the US (5-8% of all ED visits). Fewer than 25% have an acute coronary syndrome; the challenge is identifying the minority with life-threatening causes.\n\n**Key history elements:**\n- Onset: sudden vs gradual; activity at onset\n- Character: pressure/squeezing (ACS), tearing/ripping (dissection), sharp/pleuritic (PE, pneumothorax, pericarditis)\n- Radiation: arm/jaw (ACS), back/interscapular (dissection), unilateral (pleuritic)\n- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)\n- Associated symptoms: diaphoresis, dyspnea, syncope, nausea\n- Positional: worse supine/improved leaning forward (pericarditis)\n- Prior history: known CAD, PE, DVT, connective tissue disease, recent procedures/immobilization\n- Cocaine or stimulant use within 72 hours\n\n**High-risk populations for atypical presentations:**\n- Women: more likely to present with dyspnea, nausea, fatigue, back/jaw pain\n- Elderly (> 75): painless MI in up to 60%\n- Diabetics: autonomic neuropathy masks angina\n- Post-surgical/immobilized: PE risk\n\n**Epidemiology of serious causes:**\n- ACS: 10-15% of ED chest pain presentations\n- PE: 2-5%\n- Aortic dissection: < 1% but > 25% mortality if missed\n- Pneumothorax: 1-2%"
+            },
+            "document": {
+              "id": "openem:chest-pain",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Chest Pain — Emergency Evaluation",
+              "aliases": [
+                "chest pain",
+                "thoracic pain",
+                "anterior chest pain",
+                "chest discomfort"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03225806451612903,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "c7ba4eb389a45bff3f916dd98f5da2f0fc7774ad5a3bccab8b03fdd8b3bac3f8",
+              "end": 1730,
+              "hash": "277d14d675086210c6a0d344a59daa5a674625c206bdfb1f9762430d7febbd9e",
+              "text": "### Life-Threatening (must rule out immediately)\n- **STEMI / ACS** (`stemi`, `acute-coronary-syndrome-nstemi`, `unstable-angina`): substernal pressure, diaphoresis, ECG changes, troponin elevation\n- **Aortic dissection** (`aortic-dissection`): sudden tearing pain radiating to back, BP differential, widened mediastinum, aortic regurgitation murmur\n- **Pulmonary embolism** (`pulmonary-embolism`): pleuritic pain, dyspnea, tachycardia, risk factors for VTE, right heart strain on ECG\n- **Tension pneumothorax** (`tension-pneumothorax`): unilateral absent breath sounds, tracheal deviation, hypotension, distended neck veins\n- **Cardiac tamponade** (`cardiac-tamponade`): Beck triad (hypotension, JVD, muffled heart sounds), pulsus paradoxus, electrical alternans\n- **Esophageal rupture** (`boerhaave-syndrome`): post-emetic severe chest/epigastric pain, subcutaneous emphysema, pneumomediastinum\n\n### Emergent\n- **Spontaneous pneumothorax** (`spontaneous-pneumothorax`): sudden pleuritic pain, decreased breath sounds, tall thin habitus or COPD\n- **Pericarditis/myocarditis** (`pericarditis-myocarditis`): sharp pleuritic pain worse supine and improved leaning forward, diffuse ST elevation with PR depression, friction rub\n- **Acute heart failure** (`acute-heart-failure`): dyspnea, orthopnea, bilateral crackles, peripheral edema, BNP elevation\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with end-organ damage\n- **Takotsubo cardiomyopathy** (`takotsubo-cardiomyopathy`): post-emotional/physical stress, mimics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:chest-pain",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Chest Pain — Emergency Evaluation\nchest pain; thoracic pain; anterior chest pain; chest discomfort\nDifferential Diagnosis\n### Life-Threatening (must rule out immediately)\n- **STEMI / ACS** (`stemi`, `acute-coronary-syndrome-nstemi`, `unstable-angina`): substernal pressure, diaphoresis, ECG changes, troponin elevation\n- **Aortic dissection** (`aortic-dissection`): sudden tearing pain radiating to back, BP differential, widened mediastinum, aortic regurgitation murmur\n- **Pulmonary embolism** (`pulmonary-embolism`): pleuritic pain, dyspnea, tachycardia, risk factors for VTE, right heart strain on ECG\n- **Tension pneumothorax** (`tension-pneumothorax`): unilateral absent breath sounds, tracheal deviation, hypotension, distended neck veins\n- **Cardiac tamponade** (`cardiac-tamponade`): Beck triad (hypotension, JVD, muffled heart sounds), pulsus paradoxus, electrical alternans\n- **Esophageal rupture** (`boerhaave-syndrome`): post-emetic severe chest/epigastric pain, subcutaneous emphysema, pneumomediastinum\n\n### Emergent\n- **Spontaneous pneumothorax** (`spontaneous-pneumothorax`): sudden pleuritic pain, decreased breath sounds, tall thin habitus or COPD\n- **Pericarditis/myocarditis** (`pericarditis-myocarditis`): sharp pleuritic pain worse supine and improved leaning forward, diffuse ST elevation with PR depression, friction rub\n- **Acute heart failure** (`acute-heart-failure`): dyspnea, orthopnea, bilateral crackles, peripheral edema, BNP elevation\n- **Hypertensive emergency** (`hypertensive-emergency`): SBP > 180 with end-organ damage\n- **Takotsubo cardiomyopathy** (`takotsubo-cardiomyopathy`): post-emotional/physical stress, mimics ACS, apical ballooning on echo\n- **Spontaneous coronary artery dissection** (`spontaneous-coronary-artery-dissection`): young women, peripartum, connective tissue disease, mimics ACS\n\n### Urgent"
+            },
+            "document": {
+              "id": "openem:chest-pain",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/chest-pain.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Chest Pain — Emergency Evaluation",
+              "aliases": [
+                "chest pain",
+                "thoracic pain",
+                "anterior chest pain",
+                "chest discomfort"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "b45346eec69c26e71b8d49ec6339ec53ece477cefde24950e22777d4ecc59705",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.031746031746031744,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- **Biliary disease** (`acute-cholecystitis`, `biliary-colic`): RUQ/epigastric pain, post-prandial, Murphy sign\n- **Acute pancreatitis** (`acute-pancreatitis`): epigastric pain radiating to back, nausea/vomiting, lipase elevation\n- **Pleural effusion** (`pleural-effusion-emergency`): dyspnea, decre"
+            }
+          },
+          {
+            "chunk": {
+              "id": "f2fb508685acac7ac034cf41220ea4c2efb9adda1bb5f9dcfc06f8fc25953691",
+              "end": 2493,
+              "hash": "6798fc921bc69d7f67583b86c9e647e1e0575bc5a59fd0e4eb3590624957c980",
+              "text": " (concern for exercise-induced VT or HCM); at rest; with position change (common for AVRT)\n- **Structural heart disease**: prior MI, known cardiomyopathy, HF — single strongest predictor of arrhythmia\n- **Family history**: sudden cardiac death, inherited channelopathy (Long QT, Brugada)\n- **Medications and substances**: QT-prolonging drugs, stimulants, cocaine, amphetamines, thyroid medication\n\n### High-Risk vs. Low-Risk Features\n\n| Feature | Low-Risk (Likely Benign) | High-Risk (Arrhythmia Concern) |\n|---------|--------------------------|-------------------------------|\n| Associated symptoms | None or anxiety | Syncope, presyncope, chest pain, dyspnea |\n| Duration | Brief, seconds | Sustained, minutes |\n| Onset/offset | Gradual | Abrupt |\n| During exercise | No | Yes |\n| Structural heart disease | No | Yes |\n| Family history sudden death | No | Yes |\n| ECG | Normal | WPW, QTc >500ms, delta waves, BBB |",
+              "start": 1577,
+              "section": 0,
+              "documentId": "openem:benign-palpitations",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Benign Palpitations\npalpitations; premature atrial contractions; PACs; premature ventricular contractions; PVCs; benign ectopy; functional palpitations\nRecognition\n (concern for exercise-induced VT or HCM); at rest; with position change (common for AVRT)\n- **Structural heart disease**: prior MI, known cardiomyopathy, HF — single strongest predictor of arrhythmia\n- **Family history**: sudden cardiac death, inherited channelopathy (Long QT, Brugada)\n- **Medications and substances**: QT-prolonging drugs, stimulants, cocaine, amphetamines, thyroid medication\n\n### High-Risk vs. Low-Risk Features\n\n| Feature | Low-Risk (Likely Benign) | High-Risk (Arrhythmia Concern) |\n|---------|--------------------------|-------------------------------|\n| Associated symptoms | None or anxiety | Syncope, presyncope, chest pain, dyspnea |\n| Duration | Brief, seconds | Sustained, minutes |\n| Onset/offset | Gradual | Abrupt |\n| During exercise | No | Yes |\n| Structural heart disease | No | Yes |\n| Family history sudden death | No | Yes |\n| ECG | Normal | WPW, QTc >500ms, delta waves, BBB |"
+            },
+            "document": {
+              "id": "openem:benign-palpitations",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/benign-palpitations.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Benign Palpitations",
+              "aliases": [
+                "palpitations",
+                "premature atrial contractions",
+                "PACs",
+                "premature ventricular contractions",
+                "PVCs",
+                "benign ectopy",
+                "functional palpitations"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "95e4ef78048087858a581eb3adf0f3ba2400158c2beb07dc24ce2a2b73ec8961",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:ventricular-tachycardia",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:svt",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "cardiovascular"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-23"
+            },
+            "score": 0.02116131670415048,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": " Stratify Risk\nHigh-yield questions:\n- **Onset/offset**: abrupt onset and offset = arrhythmia (SVT, AF); gradual = sinus tachycardia or ectopy\n- **Associated symptoms**: syncope or presyncope with palpitations = high-risk (admission); dyspnea alone = intermediate\n- **Circumstances**: during exercise",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "637ffbab71e3955de1d32c70244c9cd5d3fa5187647abede00262ed3d17a22be",
+              "end": 1749,
+              "hash": "7401fc9a91c805155ba903537aaeb8c4aaddc146ea676a03d7080a11b261594a",
+              "text": "Palpitations account for approximately 1-2% of ED visits. The majority (85-90%) are benign (PACs, PVCs, sinus tachycardia, anxiety). However, 10-15% have a cardiac arrhythmia, and a subset of these are life-threatening. The ED task is to capture the rhythm during symptoms, identify high-risk features, and distinguish benign from dangerous causes.\n\n**Patient description mapping:**\n- \"Skipped beats\" or \"flip-flops\" → PACs/PVCs (most common)\n- \"Racing\" or \"pounding\" with sudden onset/offset → SVT, AF, VT\n- \"Fluttering\" → AF, atrial flutter, SVT\n- \"Regular rapid\" → SVT, VT, sinus tachycardia\n- \"Irregular\" → AF, multifocal atrial tachycardia, frequent PACs\n\n**Key history elements:**\n- Onset and offset: sudden (SVT, VT, AF paroxysm) vs gradual (sinus tachycardia, anxiety)\n- Duration: seconds (PACs/PVCs), minutes-hours (SVT, AF), persistent (sinus tachycardia)\n- Triggers: caffeine, alcohol, exercise, dehydration, stress, medications\n- Associated symptoms: syncope/near-syncope (hemodynamic compromise → VT, SVT, high-degree block), chest pain (ACS, SVT with demand ischemia), dyspnea (AF with RVR, PE, HF)\n- Prior episodes: recurrent paroxysmal palpitations with sudden termination by vagal maneuvers = SVT\n- Structural heart disease: prior MI, HF, cardiomyopathy, valvular disease → VT risk\n- Family history: sudden death, cardiomyopathy, long QT, Brugada, HCM\n- Medications: digoxin, QTc-prolonging drugs, stimulants, decongestants, herbal supplements\n- Substances: cocaine, amphetamines, energy drinks, alcohol, cannabis\n\n**Physical exam during symptoms:**\n- Rapid regular rhythm → SVT or VT\n- Irregularly irregular → AF\n- Cannon A waves in JVP → AV dissociation (VT or complete heart block)\n- Systolic murmur worsening with Valsalva → HCM",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:palpitations-evaluation",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Palpitations — Emergency Evaluation\npalpitations; heart racing; heart pounding; heart fluttering; irregular heartbeat; skipped beats\nRecognition\nPalpitations account for approximately 1-2% of ED visits. The majority (85-90%) are benign (PACs, PVCs, sinus tachycardia, anxiety). However, 10-15% have a cardiac arrhythmia, and a subset of these are life-threatening. The ED task is to capture the rhythm during symptoms, identify high-risk features, and distinguish benign from dangerous causes.\n\n**Patient description mapping:**\n- \"Skipped beats\" or \"flip-flops\" → PACs/PVCs (most common)\n- \"Racing\" or \"pounding\" with sudden onset/offset → SVT, AF, VT\n- \"Fluttering\" → AF, atrial flutter, SVT\n- \"Regular rapid\" → SVT, VT, sinus tachycardia\n- \"Irregular\" → AF, multifocal atrial tachycardia, frequent PACs\n\n**Key history elements:**\n- Onset and offset: sudden (SVT, VT, AF paroxysm) vs gradual (sinus tachycardia, anxiety)\n- Duration: seconds (PACs/PVCs), minutes-hours (SVT, AF), persistent (sinus tachycardia)\n- Triggers: caffeine, alcohol, exercise, dehydration, stress, medications\n- Associated symptoms: syncope/near-syncope (hemodynamic compromise → VT, SVT, high-degree block), chest pain (ACS, SVT with demand ischemia), dyspnea (AF with RVR, PE, HF)\n- Prior episodes: recurrent paroxysmal palpitations with sudden termination by vagal maneuvers = SVT\n- Structural heart disease: prior MI, HF, cardiomyopathy, valvular disease → VT risk\n- Family history: sudden death, cardiomyopathy, long QT, Brugada, HCM\n- Medications: digoxin, QTc-prolonging drugs, stimulants, decongestants, herbal supplements\n- Substances: cocaine, amphetamines, energy drinks, alcohol, cannabis\n\n**Physical exam during symptoms:**\n- Rapid regular rhythm → SVT or VT\n- Irregularly irregular → AF\n- Cannon A waves in JVP → AV dissociation (VT or complete heart block)\n- Systolic murmur worsening with Valsalva → HCM"
+            },
+            "document": {
+              "id": "openem:palpitations-evaluation",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/palpitations-evaluation.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Palpitations — Emergency Evaluation",
+              "aliases": [
+                "palpitations",
+                "heart racing",
+                "heart pounding",
+                "heart fluttering",
+                "irregular heartbeat",
+                "skipped beats"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "bcf2f044d22a78b838a5e1f96586c2158c4ecf62615a226ca46e72aecbbc8935",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.020864661654135336,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- Thyromegaly, tremor, exophthalmos → hyperthyroidism"
+            }
+          },
+          {
+            "chunk": {
+              "id": "6cc37afea228a6e55370ac90c4b155522ef75a9eea50513a6e34318c17971080",
+              "end": 1777,
+              "hash": "e58204d6b3ab9636a5c5e4a11635d033afd1d9173ef1a3198b15e8f6d34560e6",
+              "text": "Palpitations — the subjective awareness of heartbeat — account for approximately 16% of primary care visits and a significant proportion of ED visits. The majority of palpitations arise from benign causes: premature atrial contractions (PACs), premature ventricular contractions (PVCs), anxiety, caffeine, or sinus tachycardia. The key emergency task is identifying the minority with life-threatening arrhythmia using a structured risk-stratification approach.\n\n### Common Benign Causes of Palpitations\n- **PACs (premature atrial contractions)**: most common; often described as a \"skipped beat\" or \"flip-flop\" — the pause after the ectopic beat and the strong compensatory sinus beat are what patients feel\n- **PVCs (premature ventricular contractions)**: similar sensation; uniform PVCs in structurally normal heart are benign; LBBB or RBBB morphology on ECG; compensatory pause; suppressed by exercise (distinguishes from exercise-induced arrhythmia)\n- **Sinus tachycardia**: anxiety, dehydration, caffeine, fever, anemia, thyrotoxicosis, stimulant use\n- **Anxiety/panic-related**: palpitations plus hyperventilation, chest tightness, paresthesias\n- **Alcohol, caffeine, or stimulant use**: common, dose-dependent, resolves with cessation\n\n### Clinical History Features That Stratify Risk\nHigh-yield questions:\n- **Onset/offset**: abrupt onset and offset = arrhythmia (SVT, AF); gradual = sinus tachycardia or ectopy\n- **Associated symptoms**: syncope or presyncope with palpitations = high-risk (admission); dyspnea alone = intermediate\n- **Circumstances**: during exercise (concern for exercise-induced VT or HCM); at rest; with position change (common for AVRT)\n- **Structural heart disease**: prior MI, known cardiomyopathy, HF — single strongest predictor of arrhythmia",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:benign-palpitations",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Benign Palpitations\npalpitations; premature atrial contractions; PACs; premature ventricular contractions; PVCs; benign ectopy; functional palpitations\nRecognition\nPalpitations — the subjective awareness of heartbeat — account for approximately 16% of primary care visits and a significant proportion of ED visits. The majority of palpitations arise from benign causes: premature atrial contractions (PACs), premature ventricular contractions (PVCs), anxiety, caffeine, or sinus tachycardia. The key emergency task is identifying the minority with life-threatening arrhythmia using a structured risk-stratification approach.\n\n### Common Benign Causes of Palpitations\n- **PACs (premature atrial contractions)**: most common; often described as a \"skipped beat\" or \"flip-flop\" — the pause after the ectopic beat and the strong compensatory sinus beat are what patients feel\n- **PVCs (premature ventricular contractions)**: similar sensation; uniform PVCs in structurally normal heart are benign; LBBB or RBBB morphology on ECG; compensatory pause; suppressed by exercise (distinguishes from exercise-induced arrhythmia)\n- **Sinus tachycardia**: anxiety, dehydration, caffeine, fever, anemia, thyrotoxicosis, stimulant use\n- **Anxiety/panic-related**: palpitations plus hyperventilation, chest tightness, paresthesias\n- **Alcohol, caffeine, or stimulant use**: common, dose-dependent, resolves with cessation\n\n### Clinical History Features That Stratify Risk\nHigh-yield questions:\n- **Onset/offset**: abrupt onset and offset = arrhythmia (SVT, AF); gradual = sinus tachycardia or ectopy\n- **Associated symptoms**: syncope or presyncope with palpitations = high-risk (admission); dyspnea alone = intermediate\n- **Circumstances**: during exercise (concern for exercise-induced VT or HCM); at rest; with position change (common for AVRT)\n- **Structural heart disease**: prior MI, known cardiomyopathy, HF — single strongest predictor of arrhythmia"
+            },
+            "document": {
+              "id": "openem:benign-palpitations",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/benign-palpitations.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Benign Palpitations",
+              "aliases": [
+                "palpitations",
+                "premature atrial contractions",
+                "PACs",
+                "premature ventricular contractions",
+                "PVCs",
+                "benign ectopy",
+                "functional palpitations"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "95e4ef78048087858a581eb3adf0f3ba2400158c2beb07dc24ce2a2b73ec8961",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:ventricular-tachycardia",
+                  "relation": "differential"
+                },
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:svt",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "cardiovascular"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-23"
+            },
+            "score": 0.020536635706914344,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n- **Family history**: sudden cardiac death, inherited channelopathy (Long QT, Brugada)\n- **Medications and substances**: QT-prolonging drugs, stimulants, cocaine, amphetamines, thyroid medication\n\n### High-Risk vs. Low-Risk Features\n\n| Feature | Low-Risk (Likely Benign) | High-Risk (Arrhythmia Conc"
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 52.65666600014083,
+          "embeddingMs": 656.8192499999423,
+          "vectorMs": 16.2148749998305,
+          "totalMs": 729.3731250001583
+        },
+        "warnings": [],
+        "embeddingTokens": 10,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "accept",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "Cholesterol interpretation requires clinician review, but the reported facts establish no time-sensitive physical-care requirement. Standard asynchronous review meets that need; missing lipid values can be obtained during review.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "I have no chest pain or trouble breathing. I want to discuss my cholesterol result with a clinician."
+            },
+            {
+              "unit": "draft",
+              "quote": "I recommend a standard (non-urgent) message review with a Counsel clinician in this thread today during service hours"
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "The draft uses a low-burden clinician pathway appropriate to result interpretation, without imposing emergency assessment for the father's historical symptoms. Emergency advice is conditional on new concerning symptoms.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "the father's symptoms are historical and belong to another person"
+            },
+            {
+              "unit": "draft",
+              "quote": "\"disposition\":\"ASYNC_PHYSICIAN\",\"reviewPriority\":\"routine\",\"workType\":\"clinical_review\""
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "Symptoms are attributed to the correct person and time. Unreported values and risk factors remain unknown, and inherited disease is presented only as a conditional possibility.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "My father had crushing chest pain and sweating during his heart attack five years ago."
+            },
+            {
+              "unit": "draft",
+              "quote": "Possible inherited cholesterol disorder if values are markedly elevated (values not provided)"
+            },
+            {
+              "unit": "draft",
+              "quote": "The patient's lipid values, age and other risk factors are unknown"
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "pass",
+          "reason": "The supplied passages support individualized lipid interpretation, familial cholesterol disorders, and the significance of new pressure, dyspnea and sweating. Routing and clinician ownership are project-policy judgments, not falsely attributed source recommendations.",
+          "anchors": [
+            {
+              "unit": "source:669b7350ca9d53154e4e7bdd2ecca4ef11312f4c61766d9f9d5745055e470590",
+              "quote": "Talk with your healthcare provider about what your cholesterol numbers should be."
+            },
+            {
+              "unit": "source:dd2627641d3088e2361136543d66a88114b1222a6d1cc36c2dd2d2106978fe6b",
+              "quote": "familial hypercholesterolemia (FH) is an inherited condition that causes very high levels of cholesterol in the blood."
+            },
+            {
+              "unit": "source:19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+              "quote": "Associated symptoms: diaphoresis, dyspnea, syncope, nausea"
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "pass",
+          "reason": "The draft gives an immediate emergency action for important new symptoms and explicitly says not to wait for messaging.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "If you develop new chest pressure or difficulty breathing, especially with sweating, seek emergency care right away rather than waiting for a reply."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No issued question is supplied. Requesting lab values and medication information supports the clinician task without making routing conditional on a response.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Sharing the actual lab values and any medicines you take will help."
+            },
+            {
+              "unit": "draft",
+              "quote": "\"questions\":[]"
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "Counsel clinician review is recommended in this thread, without claiming acceptance or guaranteed delivery. The service-hours wording expresses a review recommendation, not invented opening hours. The timing phrase also addresses the application check's concern.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "I recommend a standard (non-urgent) message review with a Counsel clinician in this thread today during service hours to go over your cholesterol numbers and what your father's heart attack means for your own risk."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "none",
+      "earlyCorrection": null,
+      "correction": "",
+      "evidenceQueries": []
+    },
+    "release": "clinician_required",
+    "clinicalApproval": false,
+    "corrections": 1,
+    "careCorrectionReleased": false,
+    "sourceIntegrity": true,
+    "citations": []
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "clinical-evidence-graph",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "7d2d3a68-dc1b-4eaf-a288-40813746f814",
+  "traceId": "ca65af8ed9b383b104eb2fed12fb0f3d",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "My father had crushing chest pain and sweating during his heart attack five years ago. I have no chest pain or trouble breathing. I want to discuss my cholesterol result with a clinician.",
+  "inputHash": "3dc9d28bf786cb4815dadf12f256bc77efac524d6d11eae4a16500d6c19f2bb8",
+  "answerHash": "cba974fa31aa7cbe32221e2fa46d98fb1c431b3736588d2d962326d54a596a32",
+  "promptHash": "f1545c4b41997192c600d2f9dcfe8e5a888fa1413136297c7a50a443a7b3a1e5",
+  "guidanceHash": "b2a430aa78a2ac793cb7d42fb98c1dfac0a0fe7e327af5e8258b6d8f0a14297b",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-14T06:40:39.771Z",
+  "durationMs": 91432,
+  "workflowDurationMs": 91286,
+  "tracePersistenceDurationMs": 146,
+  "steps": [
+    {
+      "id": "initialize-publication",
+      "status": "success",
+      "durationMs": 0
+    },
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 7090
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 19452
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 71810
+    }
+  ],
+  "responseEvents": [],
+  "safetyNotices": [],
+  "firstActionMs": null,
+  "firstPatientReplyMs": null,
+  "firstQuestionMs": null
+}

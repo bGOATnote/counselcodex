@@ -1,0 +1,1373 @@
+{
+  "status": "review_required",
+  "answer": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "reviewPriority": "priority",
+    "workType": "clinical_review",
+    "reason": "The automated assessment needs clinician review; this is a conservative workflow fallback, not a new clinical finding.",
+    "patientMessage": "Priority review by the Counsel clinician in this thread is needed today. This recommendation does not confirm a clinician has accepted the request.",
+    "differential": [],
+    "redFlags": [],
+    "vitalSigns": "The automated assessment has not established the vital-sign context.",
+    "questions": [],
+    "evidence": [],
+    "evidenceLimitations": "No model-reviewed clinical explanation has been released. The draft and review outcome are retained for clinician assessment."
+  },
+  "origin": "validation_safeguard",
+  "modelCalls": 4,
+  "agents": [
+    {
+      "role": "history",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "queries": [
+          "migraine with aura red flags sudden worst",
+          "unilateral throbbing headache new features change"
+        ],
+        "findings": [
+          {
+            "finding": "Patient reports typical migraine with unilateral throbbing",
+            "status": "reported",
+            "quote": "usual migraine started this morning — same one-sided throbbing"
+          },
+          {
+            "finding": "Patient reports photophobia",
+            "status": "reported",
+            "quote": "light sensitivity I always get"
+          },
+          {
+            "finding": "Patient has been on sumatriptan previously",
+            "status": "reported",
+            "quote": "out of sumatriptan"
+          }
+        ],
+        "question": {
+          "text": "Is this headache different in any way from your usual migraines, or is it the same pattern as always?",
+          "why": "Red-flag features (sudden onset, worst pain ever, new neurological signs, progressive worsening) would suggest secondary causes requiring urgent imaging rather than triptan refill.",
+          "quote": "usual migraine started this morning"
+        }
+      },
+      "usage": {
+        "inputTokens": 909,
+        "outputTokens": 220
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1787,
+      "streamProgress": {
+        "lastTextDeltaMs": 3989,
+        "textDeltaCount": 86,
+        "textCharacters": 884
+      },
+      "durationMs": 4031
+    },
+    {
+      "role": "disposition",
+      "model": "anthropic/claude-opus-5",
+      "modelCalls": 1,
+      "output": {
+        "disposition": "ASYNC_PHYSICIAN",
+        "reviewPriority": "priority",
+        "workType": "medication_request",
+        "reason": "40F reports an active attack matching her established pattern (one-sided throbbing, photophobia, 'same one I always get') with her usual acute medication exhausted, so treatment is interrupted during an ongoing attack — time-sensitive for remote prescribing review. No reported thunderclap onset, neurological deficit, fever/neck stiffness, trauma or pattern change that would independently require an examination today; those features are simply unreported, not excluded. Guideline red-flag lists apply to secondary-headache suspicion, which her described unchanged pattern does not raise on the facts given; a clinician in this thread can still verify diagnosis, prior triptan response, frequency of use and contraindications before deciding on renewal.",
+        "patientMessage": "I'm routing this for priority clinician review in this message thread today — a Counsel clinician will own the decision about your sumatriptan and any alternative relief. Your attack sounds like your usual pattern, so remote assessment is reasonable rather than an in-person visit. Please seek emergency care now if the pain becomes sudden and explosive, worst-ever, or you develop weakness, speech or vision changes, fever, neck stiffness, or confusion.",
+        "differential": [
+          "Acute migraine attack consistent with the patient's established pattern",
+          "Secondary headache (e.g. subarachnoid haemorrhage, meningitis) — not suggested by reported features but onset character and associated signs not fully detailed",
+          "Medication-overuse pattern if triptan use frequency is high — affects prescribing review, not setting"
+        ],
+        "redFlags": [
+          {
+            "concern": "Thunderclap/sudden maximal onset",
+            "status": "unknown",
+            "quote": "usual migraine started this morning"
+          },
+          {
+            "concern": "Pattern change from usual headaches",
+            "status": "denied",
+            "quote": "same one-sided throbbing and light sensitivity I always get"
+          },
+          {
+            "concern": "Focal neurological deficit or atypical aura",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Fever or neck stiffness",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Recent head trauma",
+            "status": "unknown",
+            "quote": ""
+          },
+          {
+            "concern": "Pregnancy status",
+            "status": "unknown",
+            "quote": ""
+          }
+        ],
+        "vitalSigns": "No vital signs reported — no blood pressure, heart rate, temperature or oxygen saturation provided, and none were measured or implied. Absence of values is not evidence of normal vitals.",
+        "questions": [],
+        "evidenceLimitations": "Routing rests on the patient's own account of an unchanged migraine pattern; onset character, neurological symptoms, fever, trauma and pregnancy status were not asked or reported and remain unknown. Sources cited are a 2021 consensus table and a consumer summary with uncertified currency; neither authorizes prescribing or confirms this patient's eligibility for a refill.",
+        "citations": [
+          {
+            "passageId": "4dc07d42df8d2579816619fd6483e91b8a1f6a7172a93844a7e77bd0592cbbe9",
+            "quote": "Red flag: Thunderclap headache\nIndication: Subarachnoid haemorrhage",
+            "claim": "Thunderclap onset is a recognised red flag prompting concern for secondary headache; none of the listed red flags was reported here.",
+            "applicability": "applicable",
+            "limitation": "2021 table, currentness not certified; absence of reported red flags is not the same as a documented negative examination."
+          },
+          {
+            "passageId": "5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+            "quote": "It typically causes throbbing or pulsing pain, which is often on one side of your head.",
+            "claim": "Unilateral throbbing pain with light sensitivity is a typical migraine presentation.",
+            "applicability": "applicable",
+            "limitation": "Consumer summary only; supports symptom pattern, not prescribing eligibility."
+          }
+        ]
+      },
+      "usage": {
+        "inputTokens": 12112,
+        "outputTokens": 1320
+      },
+      "failure": null,
+      "firstTextDeltaMs": 1570,
+      "streamProgress": {
+        "lastTextDeltaMs": 22294,
+        "textDeltaCount": 350,
+        "textCharacters": 3729
+      },
+      "durationMs": 22437
+    },
+    {
+      "role": "emergency",
+      "model": "anthropic/claude-haiku-4-5",
+      "modelCalls": 1,
+      "output": {
+        "action": "PRIORITY_ASYNC",
+        "basis": [
+          {
+            "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get.",
+            "interpretation": "Established migraine pattern with typical features recurring today; patient reports no change from usual presentation.",
+            "currentPatient": true,
+            "present": true
+          },
+          {
+            "quote": "I'm out of sumatriptan and would like a refill.",
+            "interpretation": "Current rescue medication exhausted; time-sensitive need for prescribing review to restore access to established effective therapy.",
+            "currentPatient": true,
+            "present": true
+          }
+        ],
+        "reason": "Established migraine with typical unchanged features and depleted rescue medication requires prompt clinician assessment for refill eligibility and prescribing.",
+        "patientMessage": "",
+        "physicalRequirement": null
+      },
+      "usage": {
+        "inputTokens": 1941,
+        "outputTokens": 173
+      },
+      "failure": null,
+      "firstTextDeltaMs": 4596,
+      "streamProgress": {
+        "lastTextDeltaMs": 8606,
+        "textDeltaCount": 150,
+        "textCharacters": 793
+      },
+      "durationMs": 8640
+    },
+    {
+      "role": "critic",
+      "model": "openai/gpt-6-astra",
+      "modelCalls": 1,
+      "output": {
+        "reviewScope": "draft-and-issued-question/v2",
+        "verdict": "revise",
+        "criteria": [
+          {
+            "id": "undertriage",
+            "verdict": "pass",
+            "reason": "Priority asynchronous medication review fits an active usual migraine with sumatriptan exhausted. No reported feature independently requires examination today.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get."
+              },
+              {
+                "unit": "draft",
+                "quote": "\"disposition\":\"ASYNC_PHYSICIAN\",\"reviewPriority\":\"priority\",\"workType\":\"medication_request\""
+              }
+            ]
+          },
+          {
+            "id": "overtriage",
+            "verdict": "pass",
+            "reason": "The current route appropriately separates time-sensitive prescribing review from a physical visit.",
+            "anchors": [
+              {
+                "unit": "patient",
+                "quote": "I'm out of sumatriptan and would like a refill."
+              },
+              {
+                "unit": "draft",
+                "quote": "Your attack sounds like your usual pattern, so remote assessment is reasonable rather than an in-person visit."
+              }
+            ]
+          },
+          {
+            "id": "patient_grounding",
+            "verdict": "pass",
+            "reason": "The draft preserves the reported unchanged pattern and explicitly treats unasked red flags as unknown. It does not assert that all alternative treatment is unavailable.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "those features are simply unreported, not excluded."
+              },
+              {
+                "unit": "patient",
+                "quote": "40F."
+              }
+            ]
+          },
+          {
+            "id": "claim_support",
+            "verdict": "pass",
+            "reason": "The supplied passages support the migraine symptom pattern and secondary-headache warning features. Remote review and queue priority follow project policy, not a claimed publisher authorization to prescribe.",
+            "anchors": [
+              {
+                "unit": "source:4dc07d42df8d2579816619fd6483e91b8a1f6a7172a93844a7e77bd0592cbbe9",
+                "quote": "Red flag: Thunderclap headache\nIndication: Subarachnoid haemorrhage"
+              },
+              {
+                "unit": "source:5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+                "quote": "It typically causes throbbing or pulsing pain, which is often on one side of your head."
+              },
+              {
+                "unit": "draft",
+                "quote": "neither authorizes prescribing or confirms this patient's eligibility for a refill."
+              }
+            ]
+          },
+          {
+            "id": "safety_net",
+            "verdict": "fail",
+            "reason": "Warning symptoms and immediate timing are present, but the transport instructions are insufficiently explicit for new stroke-like deficits or confusion: these should direct calling 911 rather than only seeking unspecified emergency care.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "Please seek emergency care now if the pain becomes sudden and explosive, worst-ever, or you develop weakness, speech or vision changes, fever, neck stiffness, or confusion."
+              }
+            ]
+          },
+          {
+            "id": "clarification_delay",
+            "verdict": "pass",
+            "reason": "The issued question redundantly confirms an already reported unchanged pattern, but is relevant to red-flag assessment and does not establish a hold on routing.",
+            "anchors": [
+              {
+                "unit": "issued_question",
+                "quote": "Is this headache different in any way from your usual migraines, or is it the same pattern as always?"
+              },
+              {
+                "unit": "issued_question",
+                "quote": "\"decisionChanging\":false"
+              }
+            ]
+          },
+          {
+            "id": "ownership",
+            "verdict": "pass",
+            "reason": "Counsel is identified as the intended decision owner without claiming an accepted handoff, prescription approval, or completed follow-up. Today's review language describes the intended queue target rather than a specific ETA.",
+            "anchors": [
+              {
+                "unit": "draft",
+                "quote": "a Counsel clinician will own the decision about your sumatriptan and any alternative relief."
+              }
+            ]
+          }
+        ],
+        "earlyAction": "supported",
+        "earlyCorrection": null,
+        "correction": "Keep the priority asynchronous medication-request route. Make the safety net explicit: call 911 for new weakness, trouble speaking, sudden vision loss, or confusion; direct immediate ED evaluation for sudden explosive or worst-ever headache or concerning fever/neck stiffness, without waiting for the messaging review.",
+        "evidenceQueries": []
+      },
+      "usage": {
+        "inputTokens": 7141,
+        "outputTokens": 1130
+      },
+      "failure": "JUDGE_CONTRACT_FAILED",
+      "firstTextDeltaMs": 4370,
+      "streamProgress": {
+        "lastTextDeltaMs": 24100,
+        "textDeltaCount": 1055,
+        "textCharacters": 4670
+      },
+      "durationMs": 24299
+    }
+  ],
+  "guidance": [
+    {
+      "id": "4dc07d42df8d2579816619fd6483e91b8a1f6a7172a93844a7e77bd0592cbbe9",
+      "title": "Diagnosis and management of migraine in ten steps",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+      "section": "Tab2: Red flags associated with secondary headaches31,32",
+      "summary": "When to look: Patient history\nRed flag: Thunderclap headache\nIndication: Subarachnoid haemorrhage\n\nWhen to look: Patient history\nRed flag: Atypical aura\nIndication: Transient ischaemic attack, stroke, epilepsy, arteriovenous malformations\n\nWhen to look: Patient history\nRed flag: Head trauma\nIndication: Subdural haematoma\n\nWhen to look: Patient history\nRed flag: Progressive headache\nIndication: Intracranial space-occupying lesion\n\nWhen to look: Patient history\nRed flag: Headache aggravated by postures or manoeuvres that raise intracranial pressure\nIndication: Intracranial hypertension or hypotension\n\nWhen to look: Patient history\nRed flag: Headache brought on by sneezing, coughing or exercise\nIndication: Intracranial space-occupying lesion\n\nWhen to look: Patient history\nRed flag: Headache associated with weight loss and/or change in memory or personality\nIndication: Suggests secondary headache\n\nWhen to look: Patient history\nRed flag: Headache onset at >50 years of age\nIndication: Suggests secondary headache; consider temporal arteritis\n\nWhen to look: Physical examination\nRed flag: Unexplained fever\nIndication: Meningitis\n\nWhen to look: Physical examination\nRed flag: Neck stiffness\nIndication: Meningitis, subarachnoid haemorrhage\n\nWhen to look: Physical examination\nRed flag: Focal neurological symptoms\nIndication: Suggests secondary headache\n\nWhen to look: Physical examination\nRed flag: Weight loss\nIndication: Suggests secondary headache",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "primary_guideline; publisher_reviewed. EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+      "retrievedPassages": [
+        {
+          "id": "4dc07d42df8d2579816619fd6483e91b8a1f6a7172a93844a7e77bd0592cbbe9",
+          "sourceId": "pmc:PMC8321897",
+          "excerpt": "When to look: Patient history\nRed flag: Thunderclap headache\nIndication: Subarachnoid haemorrhage\n\nWhen to look: Patient history\nRed flag: Atypical aura\nIndication: Transient ischaemic attack, stroke, epilepsy, arteriovenous malformations\n\nWhen to look: Patient history\nRed flag: Head trauma\nIndication: Subdural haematoma\n\nWhen to look: Patient history\nRed flag: Progressive headache\nIndication: Intracranial space-occupying lesion\n\nWhen to look: Patient history\nRed flag: Headache aggravated by postures or manoeuvres that raise intracranial pressure\nIndication: Intracranial hypertension or hypotension\n\nWhen to look: Patient history\nRed flag: Headache brought on by sneezing, coughing or exercise\nIndication: Intracranial space-occupying lesion\n\nWhen to look: Patient history\nRed flag: Headache associated with weight loss and/or change in memory or personality\nIndication: Suggests secondary headache\n\nWhen to look: Patient history\nRed flag: Headache onset at >50 years of age\nIndication: Suggests secondary headache; consider temporal arteritis\n\nWhen to look: Physical examination\nRed flag: Unexplained fever\nIndication: Meningitis\n\nWhen to look: Physical examination\nRed flag: Neck stiffness\nIndication: Meningitis, subarachnoid haemorrhage\n\nWhen to look: Physical examination\nRed flag: Focal neurological symptoms\nIndication: Suggests secondary headache\n\nWhen to look: Physical examination\nRed flag: Weight loss\nIndication: Suggests secondary headache",
+          "excerptSha256": "6f6d5e8673f0dcf32732a050f80f12ce41cc3436fdfb90e3299199d6ac1a2c62",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+          "kind": "primary_guideline",
+          "limitations": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion."
+        }
+      ]
+    },
+    {
+      "id": "ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+      "title": "Acute Headache — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/headache-acute.md",
+      "section": "Recognition",
+      "summary": "Headache accounts for 2-4% of ED visits. The vast majority (> 90%) are benign primary headache disorders (tension, migraine, cluster). The critical task is identifying the 1-5% with secondary, life-threatening causes. \"Worst headache of life\" mandates subarachnoid hemorrhage evaluation regardless of other features.\n\n**SNOOP red flag mnemonic:**\n- **S** — Systemic symptoms (fever, weight loss, HIV, cancer, pregnancy) or Systemic disease\n- **N** — Neurological deficit or dysfunction (confusion, seizure, papilledema, focal deficit)\n- **O** — Onset sudden (thunderclap: maximal intensity within seconds)\n- **O** — Older age (new headache onset > 50)\n- **P** — Pattern change (prior headache history with fundamentally different character), Positional (worse upright → low CSF pressure; worse supine → elevated ICP), Precipitated by Valsalva/exertion/sexual activity\n\n**Key history elements:**\n- Onset: thunderclap (SAH, CVT, RCVS, pituitary apoplexy, cervical artery dissection) vs gradual\n- Location: unilateral (migraine, cluster, temporal arteritis) vs bilateral vs occipital (posterior fossa lesion)\n- Character and severity: in the patient's context, not absolute scale\n- Associated symptoms: visual changes (temporal arteritis, AACG, migraine aura), nausea/vomiting (raised ICP, migraine), photophobia (SAH, meningitis), neck stiffness (SAH, meningitis)\n- Prior headache history: \"Is this headache different from your usual headaches?\"\n- Triggers: exertion, sex, Valsalva, head position change\n- Medications: anticoagulants, oral contraceptives, immunosuppressants\n- Recent trauma: even minor, especially in elderly or anticoagulated (subdural)\n- Pregnancy/postpartum: eclampsia, CVT, postpartum preeclampsia, PRES",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+          "sourceId": "openem:headache-acute",
+          "excerpt": "Headache accounts for 2-4% of ED visits. The vast majority (> 90%) are benign primary headache disorders (tension, migraine, cluster). The critical task is identifying the 1-5% with secondary, life-threatening causes. \"Worst headache of life\" mandates subarachnoid hemorrhage evaluation regardless of other features.\n\n**SNOOP red flag mnemonic:**\n- **S** — Systemic symptoms (fever, weight loss, HIV, cancer, pregnancy) or Systemic disease\n- **N** — Neurological deficit or dysfunction (confusion, seizure, papilledema, focal deficit)\n- **O** — Onset sudden (thunderclap: maximal intensity within seconds)\n- **O** — Older age (new headache onset > 50)\n- **P** — Pattern change (prior headache history with fundamentally different character), Positional (worse upright → low CSF pressure; worse supine → elevated ICP), Precipitated by Valsalva/exertion/sexual activity\n\n**Key history elements:**\n- Onset: thunderclap (SAH, CVT, RCVS, pituitary apoplexy, cervical artery dissection) vs gradual\n- Location: unilateral (migraine, cluster, temporal arteritis) vs bilateral vs occipital (posterior fossa lesion)\n- Character and severity: in the patient's context, not absolute scale\n- Associated symptoms: visual changes (temporal arteritis, AACG, migraine aura), nausea/vomiting (raised ICP, migraine), photophobia (SAH, meningitis), neck stiffness (SAH, meningitis)\n- Prior headache history: \"Is this headache different from your usual headaches?\"\n- Triggers: exertion, sex, Valsalva, head position change\n- Medications: anticoagulants, oral contraceptives, immunosuppressants\n- Recent trauma: even minor, especially in elderly or anticoagulated (subdural)\n- Pregnancy/postpartum: eclampsia, CVT, postpartum preeclampsia, PRES",
+          "excerptSha256": "98d4caf8e68381d6507fdebc4e3d9b6319cb2f3bc97e33070c12baf880ca1eb8",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "2a2d4d32c73f49ed333e23133c9fd5670dc6a30439200b209be9d475c1b23957",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "426f24a3bc93d78a642eb8d367b48dfcb2c71eac1b89ee0e88d1e1b4da3b5803",
+      "title": "Diagnosis and management of migraine in ten steps",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+      "section": "Full-text body / Step 1: When to suspect migraine / Migraine with aura",
+      "summary": "Approximately one third of individuals with migraine experience aura5, either with every attack or with some attacks. Aura is defined as transient focal neurological symptoms that usually precede, but sometimes accompany, the headache phase of a migraine attack4. In >90% of affected individuals, aura manifests visually4,16, classically as fortification spectra4. Sensory symptoms occur in ~31% of affected individuals and are usually experienced as predominantly unilateral paraesthesia (pins and needles and/or numbness) that spreads gradually in the face or arm16.\n\nLess common aura symptoms include aphasic speech disturbance, brainstem symptoms (such as dysarthria and vertigo), motor weakness (in hemiplegic migraine) and retinal symptoms (for example, repeated monocular visual disturbances)4. Aura symptoms can be similar to those of transient ischaemic attacks (TIA), but can be differentiated on the basis that aura symptoms often spread gradually (over ≥5 min) and occur in succession, whereas symptoms of a TIA have a sudden, simultaneous onset4.\n\nNotably, migraine with aura and migraine without aura can coexist. Many individuals with migraine with aura also experience attacks that are not preceded by aura4. In such cases, migraine with aura and migraine without aura should both be diagnosed.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "primary_guideline; publisher_reviewed. EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+      "retrievedPassages": [
+        {
+          "id": "426f24a3bc93d78a642eb8d367b48dfcb2c71eac1b89ee0e88d1e1b4da3b5803",
+          "sourceId": "pmc:PMC8321897",
+          "excerpt": "Approximately one third of individuals with migraine experience aura5, either with every attack or with some attacks. Aura is defined as transient focal neurological symptoms that usually precede, but sometimes accompany, the headache phase of a migraine attack4. In >90% of affected individuals, aura manifests visually4,16, classically as fortification spectra4. Sensory symptoms occur in ~31% of affected individuals and are usually experienced as predominantly unilateral paraesthesia (pins and needles and/or numbness) that spreads gradually in the face or arm16.\n\nLess common aura symptoms include aphasic speech disturbance, brainstem symptoms (such as dysarthria and vertigo), motor weakness (in hemiplegic migraine) and retinal symptoms (for example, repeated monocular visual disturbances)4. Aura symptoms can be similar to those of transient ischaemic attacks (TIA), but can be differentiated on the basis that aura symptoms often spread gradually (over ≥5 min) and occur in succession, whereas symptoms of a TIA have a sudden, simultaneous onset4.\n\nNotably, migraine with aura and migraine without aura can coexist. Many individuals with migraine with aura also experience attacks that are not preceded by aura4. In such cases, migraine with aura and migraine without aura should both be diagnosed.",
+          "excerptSha256": "1eeb4882d7b2f4282d17f76a9a9d2d5e28a6fca72857af3701861306dacd879e",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+          "kind": "primary_guideline",
+          "limitations": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion."
+        }
+      ]
+    },
+    {
+      "id": "7bde64c3667bac81307bbe9256cdbb192f30fde24bf0e1b763d9c507f30d4a96",
+      "title": "Acute Headache — Emergency Evaluation",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/headache-acute.md",
+      "section": "Pitfalls",
+      "summary": "1. **\"Migraine\" in a patient without prior migraine history.** First-worst headache in a patient with no established migraine pattern requires secondary headache evaluation. Do not diagnose new-onset migraine in the ED without imaging.\n\n2. **Relying on headache severity to rule out SAH.** SAH presents as mild or moderate headache in up to 30% of cases. The defining feature is thunderclap onset (maximum intensity within seconds), not absolute severity. A \"3/10\" thunderclap headache still requires SAH workup.\n\n3. **Skipping LP because CT is negative.** CT sensitivity for SAH drops below 95% beyond 6 hours from onset. LP is the definitive test after negative CT when clinical suspicion for SAH persists (ACEP Level B recommendation).\n\n4. **Missing temporal arteritis in patients > 50.** Untreated temporal arteritis causes permanent bilateral blindness. ESR can be normal in 4% of biopsy-proven cases — check both ESR and CRP. Jaw claudication has the highest positive likelihood ratio (~34) for temporal arteritis.\n\n5. **Attributing severe headache to hypertension without evaluating for SAH.** Hypertension is a common finding in SAH (catecholamine surge). A patient with BP 220/120 and thunderclap headache needs CT and LP for SAH before being managed as hypertensive emergency.\n\n6. **Missing CO poisoning in household headache clusters.** If multiple household members present with headache (especially in winter), check carboxyhemoglobin. Pulse oximetry is falsely reassuring.\n\n7. **Failure to consider postpartum/pregnancy-related causes.** Eclampsia, PRES, CVT, and postpartum preeclampsia can present up to 6 weeks postpartum. Any new headache in a pregnant or recently postpartum patient is an emergency until proven otherwise.\n",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "7bde64c3667bac81307bbe9256cdbb192f30fde24bf0e1b763d9c507f30d4a96",
+          "sourceId": "openem:headache-acute",
+          "excerpt": "1. **\"Migraine\" in a patient without prior migraine history.** First-worst headache in a patient with no established migraine pattern requires secondary headache evaluation. Do not diagnose new-onset migraine in the ED without imaging.\n\n2. **Relying on headache severity to rule out SAH.** SAH presents as mild or moderate headache in up to 30% of cases. The defining feature is thunderclap onset (maximum intensity within seconds), not absolute severity. A \"3/10\" thunderclap headache still requires SAH workup.\n\n3. **Skipping LP because CT is negative.** CT sensitivity for SAH drops below 95% beyond 6 hours from onset. LP is the definitive test after negative CT when clinical suspicion for SAH persists (ACEP Level B recommendation).\n\n4. **Missing temporal arteritis in patients > 50.** Untreated temporal arteritis causes permanent bilateral blindness. ESR can be normal in 4% of biopsy-proven cases — check both ESR and CRP. Jaw claudication has the highest positive likelihood ratio (~34) for temporal arteritis.\n\n5. **Attributing severe headache to hypertension without evaluating for SAH.** Hypertension is a common finding in SAH (catecholamine surge). A patient with BP 220/120 and thunderclap headache needs CT and LP for SAH before being managed as hypertensive emergency.\n\n6. **Missing CO poisoning in household headache clusters.** If multiple household members present with headache (especially in winter), check carboxyhemoglobin. Pulse oximetry is falsely reassuring.\n\n7. **Failure to consider postpartum/pregnancy-related causes.** Eclampsia, PRES, CVT, and postpartum preeclampsia can present up to 6 weeks postpartum. Any new headache in a pregnant or recently postpartum patient is an emergency until proven otherwise.\n",
+          "excerptSha256": "6fe5b10cd68ca756498065ffc903d4cea84dc7250766f7aeb139959a0a357eb6",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "2a2d4d32c73f49ed333e23133c9fd5670dc6a30439200b209be9d475c1b23957",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "ea5c7e1f4375052e5b119e2b73c8ccc1d426156900f87161a3375df25ba9c967",
+      "title": "Tension-Type Headache",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/tension-headache.md",
+      "section": "Pitfalls",
+      "summary": " daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n\n5. **Missing temporal arteritis in patients >50 years with new headache.** New headache after age 50 is temporal arteritis until proven otherwise (ESR, CRP, temporal artery biopsy). Giant cell arteritis causes permanent vision loss in 15-20% of untreated cases. Empiric steroids while awaiting biopsy are appropriate when clinical suspicion is high.\n\n6. **Anchoring on \"tension\" when meningismus is subtle.** Early bacterial meningitis may present with mild neck discomfort misattributed to muscle tension. Any headache with fever warrants careful assessment for meningeal signs. Jolt accentuation (worsening headache with horizontal head rotation at 2-3 Hz) has been described as a sensitive sign; absence does not exclude meningitis.",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "ea5c7e1f4375052e5b119e2b73c8ccc1d426156900f87161a3375df25ba9c967",
+          "sourceId": "openem:tension-headache",
+          "excerpt": " daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n\n5. **Missing temporal arteritis in patients >50 years with new headache.** New headache after age 50 is temporal arteritis until proven otherwise (ESR, CRP, temporal artery biopsy). Giant cell arteritis causes permanent vision loss in 15-20% of untreated cases. Empiric steroids while awaiting biopsy are appropriate when clinical suspicion is high.\n\n6. **Anchoring on \"tension\" when meningismus is subtle.** Early bacterial meningitis may present with mild neck discomfort misattributed to muscle tension. Any headache with fever warrants careful assessment for meningeal signs. Jolt accentuation (worsening headache with horizontal head rotation at 2-3 Hz) has been described as a sensitive sign; absence does not exclude meningitis.",
+          "excerptSha256": "b6aa941353f93796791b77b8e64e3aaa2ee3edce5bd0be33fe9d7929e57a42a7",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "73653a341b4841d483b11a9308969e558e9256b1f9e82f7deba1b96982b273cc",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+      "title": "Migraine",
+      "url": "https://medlineplus.gov/migraine.html",
+      "section": "Health-topic summary",
+      "summary": "er , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: \n Prodome. This phase starts up to 24 hours before you get the migraine. You have early signs and symptoms, such as food cravings, unexplained mood changes, uncontrollable yawning, fluid retention, and increased urination. \n Aura. If you have this phase, you might see flashing or bright lights or zig-zag lines. You may have muscle weakness or feel like you are being touched or grabbed. An aura can happen just before or during a migraine. \n Headache. A migraine usually starts gradually and then becomes more severe. It typically causes throbbing or pulsing pain, which is often on one side of your head. But sometimes you can have a migraine without a headache. Other migraine symptoms may include \n \n Increased sensitivity to light, noise, and odors \n Nausea and vomiting \n Worsened pain when you move, cough, or sneeze \n \n Postdrome (following the headache). You may feel exhausted, weak, and confused after a migraine. This can last up to a day. \n \n\n Migraines are more common in the morning; people often wake up with them. Some people have migraines at predictable times, such as before menstruation or on weekends following a stressful week of work. \n\n How are migraines diagnosed? \n To make a diagnosis, your health care provider will: \n Take your medical history \n Ask about your symptoms \n Do a physical and neurological exam \n \n\n An important part of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? ",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+          "sourceId": "medlineplus:3157",
+          "excerpt": "er , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: \n Prodome. This phase starts up to 24 hours before you get the migraine. You have early signs and symptoms, such as food cravings, unexplained mood changes, uncontrollable yawning, fluid retention, and increased urination. \n Aura. If you have this phase, you might see flashing or bright lights or zig-zag lines. You may have muscle weakness or feel like you are being touched or grabbed. An aura can happen just before or during a migraine. \n Headache. A migraine usually starts gradually and then becomes more severe. It typically causes throbbing or pulsing pain, which is often on one side of your head. But sometimes you can have a migraine without a headache. Other migraine symptoms may include \n \n Increased sensitivity to light, noise, and odors \n Nausea and vomiting \n Worsened pain when you move, cough, or sneeze \n \n Postdrome (following the headache). You may feel exhausted, weak, and confused after a migraine. This can last up to a day. \n \n\n Migraines are more common in the morning; people often wake up with them. Some people have migraines at predictable times, such as before menstruation or on weekends following a stressful week of work. \n\n How are migraines diagnosed? \n To make a diagnosis, your health care provider will: \n Take your medical history \n Ask about your symptoms \n Do a physical and neurological exam \n \n\n An important part of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? ",
+          "excerptSha256": "803dbd53505ae13a03c04a3e5916e34fe7ce5d3dfcd145977622ca0f766104da",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "68f61c213fc167dd5e91d2cd8568871b5351cc6f33d235a2b26d2c84135615dc",
+      "title": "Tension-Type Headache",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/tension-headache.md",
+      "section": "Differential Diagnosis",
+      "summary": "| Condition | Onset | Quality | Severity | Key Distinguishing Features |\n|-----------|-------|---------|----------|----------------------------|\n| **Tension-type headache** | Gradual (hours) | Pressing, bilateral, band-like | Mild-moderate | No nausea/vomiting, no photophobia + phonophobia together, not aggravated by activity |\n| **Subarachnoid hemorrhage** | Thunderclap (<60 seconds to peak) | Severe, often occipital | Worst of life | Meningeal signs (may take hours), nausea/vomiting, possible LOC, oculomotor palsy |\n| **Migraine without aura** | Gradual (1-72 hours) | Unilateral, pulsating | Moderate-severe | Nausea/vomiting, photophobia + phonophobia, aggravated by activity, may have prodrome |\n| **Cervicogenic headache** | Variable | Unilateral, neck-referred | Mild-moderate | Neck tenderness, restricted ROM, headache provoked by neck movement or palpation |\n| **Temporal arteritis** | Subacute | Temporal, aching | Moderate-severe | Age >50, ESR >50, tender temporal artery, jaw claudication, visual disturbance |\n| **Idiopathic intracranial hypertension (IIH)** | Progressive | Diffuse, worse lying flat | Moderate-severe | Obese female, papilledema, visual disturbance, pulsatile tinnitus |\n| **Medication-overuse headache** | Daily or near-daily | Variable, blends with baseline | Moderate | Analgesic or triptan use >10-15 days/month; headache improves with medication withdrawal |\n| **Bacterial meningitis** | Hours | Diffuse, severe | Severe | Fever, neck stiffness, photophobia, Kernig/Brudzinski, altered mental status, purpuric rash |\n| **Carbon monoxide poisoning** | Onset with exposure | Diffuse, bilateral | Moderate | Multiple affected household members, CO source, carboxyhemoglobin elevated |",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "research_synthesis; agent_compiled. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "68f61c213fc167dd5e91d2cd8568871b5351cc6f33d235a2b26d2c84135615dc",
+          "sourceId": "openem:tension-headache",
+          "excerpt": "| Condition | Onset | Quality | Severity | Key Distinguishing Features |\n|-----------|-------|---------|----------|----------------------------|\n| **Tension-type headache** | Gradual (hours) | Pressing, bilateral, band-like | Mild-moderate | No nausea/vomiting, no photophobia + phonophobia together, not aggravated by activity |\n| **Subarachnoid hemorrhage** | Thunderclap (<60 seconds to peak) | Severe, often occipital | Worst of life | Meningeal signs (may take hours), nausea/vomiting, possible LOC, oculomotor palsy |\n| **Migraine without aura** | Gradual (1-72 hours) | Unilateral, pulsating | Moderate-severe | Nausea/vomiting, photophobia + phonophobia, aggravated by activity, may have prodrome |\n| **Cervicogenic headache** | Variable | Unilateral, neck-referred | Mild-moderate | Neck tenderness, restricted ROM, headache provoked by neck movement or palpation |\n| **Temporal arteritis** | Subacute | Temporal, aching | Moderate-severe | Age >50, ESR >50, tender temporal artery, jaw claudication, visual disturbance |\n| **Idiopathic intracranial hypertension (IIH)** | Progressive | Diffuse, worse lying flat | Moderate-severe | Obese female, papilledema, visual disturbance, pulsatile tinnitus |\n| **Medication-overuse headache** | Daily or near-daily | Variable, blends with baseline | Moderate | Analgesic or triptan use >10-15 days/month; headache improves with medication withdrawal |\n| **Bacterial meningitis** | Hours | Diffuse, severe | Severe | Fever, neck stiffness, photophobia, Kernig/Brudzinski, altered mental status, purpuric rash |\n| **Carbon monoxide poisoning** | Onset with exposure | Diffuse, bilateral | Moderate | Multiple affected household members, CO source, carboxyhemoglobin elevated |",
+          "excerptSha256": "538349db0080e4ed827bcd028880b04e068fc42330cb704350badf3b6f868207",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "73653a341b4841d483b11a9308969e558e9256b1f9e82f7deba1b96982b273cc",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    },
+    {
+      "id": "611e18d63434ae5d6eb6bc7c2299149c532cb7655d9dfa827e1975d247df284b",
+      "title": "Migraine",
+      "url": "https://medlineplus.gov/migraine.html",
+      "section": "Health-topic summary",
+      "summary": "What are migraines? \n Migraines are a recurring type of headache. They cause moderate to severe pain that is throbbing or pulsing. The pain is often on one side of your head. You may also have other symptoms, such as nausea and weakness. You may be sensitive to light and sound. \n\n What causes migraines? \n Researchers believe that migraine has a genetic cause. There are also a number of factors that can trigger a migraine. These factors vary from person to person, and they include: \n Stress \n Anxiety \n Hormonal changes in women \n Bright or flashing lights \n Loud noises \n Strong smells \n Medicines \n Too much or not enough sleep \n Sudden changes in weather or environment \n Overexertion (too much physical activity) \n Tobacco \n Caffeine or caffeine withdrawal \n Skipped meals \n Medication overuse (taking medicine for migraines too often) \n \n\n Some people have found that certain foods or ingredients can trigger headaches, especially when they are combined with other triggers. These foods and ingredients include: \n Alcohol \n Chocolate \n Aged cheeses \n Monosodium glutamate (MSG) \n Some fruits and nuts \n Fermented or pickled goods \n Yeast \n Cured or processed meats \n \n\n\n Who is at risk for migraines? \n About 12% of Americans get migraines. They can affect anyone, but you are more likely to have them if you: \n Are a woman. Women are three times more likely than men to get migraines. \n Have a family history of migraines. Most people with migraines have family members who have migraines. \n Have other medical conditions, such as depression , anxiety , bipolar disorder , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: ",
+      "reviewedAt": "not assessed",
+      "projectInterpretation": "patient_summary; publisher_reviewed. Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+      "retrievedPassages": [
+        {
+          "id": "611e18d63434ae5d6eb6bc7c2299149c532cb7655d9dfa827e1975d247df284b",
+          "sourceId": "medlineplus:3157",
+          "excerpt": "What are migraines? \n Migraines are a recurring type of headache. They cause moderate to severe pain that is throbbing or pulsing. The pain is often on one side of your head. You may also have other symptoms, such as nausea and weakness. You may be sensitive to light and sound. \n\n What causes migraines? \n Researchers believe that migraine has a genetic cause. There are also a number of factors that can trigger a migraine. These factors vary from person to person, and they include: \n Stress \n Anxiety \n Hormonal changes in women \n Bright or flashing lights \n Loud noises \n Strong smells \n Medicines \n Too much or not enough sleep \n Sudden changes in weather or environment \n Overexertion (too much physical activity) \n Tobacco \n Caffeine or caffeine withdrawal \n Skipped meals \n Medication overuse (taking medicine for migraines too often) \n \n\n Some people have found that certain foods or ingredients can trigger headaches, especially when they are combined with other triggers. These foods and ingredients include: \n Alcohol \n Chocolate \n Aged cheeses \n Monosodium glutamate (MSG) \n Some fruits and nuts \n Fermented or pickled goods \n Yeast \n Cured or processed meats \n \n\n\n Who is at risk for migraines? \n About 12% of Americans get migraines. They can affect anyone, but you are more likely to have them if you: \n Are a woman. Women are three times more likely than men to get migraines. \n Have a family history of migraines. Most people with migraines have family members who have migraines. \n Have other medical conditions, such as depression , anxiety , bipolar disorder , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: ",
+          "excerptSha256": "f361e0cfb4280839d2eece36d6f9915ce3d38bcb26479b2c1137ea00e12f7bfa",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+          "kind": "patient_summary",
+          "limitations": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date."
+        }
+      ]
+    },
+    {
+      "id": "7408fb0ff3fc2f3710ff81646d2e5720a318f0bc05ca1f025cd52bdd709cee56",
+      "title": "Subarachnoid Hemorrhage",
+      "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/subarachnoid-hemorrhage.md",
+      "section": "Recognition",
+      "summary": "**Classic presentation:**\n- \"Worst headache of my life\" — sudden onset, maximal intensity within seconds to one minute (thunderclap headache)\n- Nausea, vomiting, photophobia\n- Neck stiffness/meningismus (may take hours to develop)\n- Brief loss of consciousness at onset (up to 50% of cases)\n\n**Associated findings:**\n- Focal neurological deficits (cranial nerve III palsy — posterior communicating artery aneurysm)\n- Seizure at onset (6-16%)\n- Retinal/subhyaloid hemorrhages (Terson syndrome)\n- Fever (chemical meningitis from subarachnoid blood)\n\n**Atypical presentations (missed SAH):**\n- Headache that has improved by ED arrival (\"sentinel headache\" from minor leak)\n- Isolated neck pain or stiffness\n- Syncope without headache\n- Acute confusional state\n- Headache with exertion, Valsalva, or coitus\n\n**Hunt-Hess grading:**\n- Grade I: Asymptomatic or mild headache\n- Grade II: Moderate-severe headache, nuchal rigidity, cranial nerve palsy\n- Grade III: Drowsiness, confusion, mild focal deficit\n- Grade IV: Stupor, moderate-severe hemiparesis\n- Grade V: Coma, decerebrate posturing\n\n**Ottawa SAH Rule (sensitivity ~100% for ruling out SAH in alert patients):**\nAny ONE of the following in patients >= 15 years with new severe headache reaching max intensity within 1 hour:\n- Age >= 40 years\n- Neck pain or stiffness\n- Witnessed loss of consciousness\n- Onset during exertion\n- Thunderclap headache (instant peak)\n- Limited neck flexion on exam",
+      "reviewedAt": "2026-02-27",
+      "projectInterpretation": "research_synthesis; upstream_physician_reviewed. Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+      "retrievedPassages": [
+        {
+          "id": "7408fb0ff3fc2f3710ff81646d2e5720a318f0bc05ca1f025cd52bdd709cee56",
+          "sourceId": "openem:subarachnoid-hemorrhage",
+          "excerpt": "**Classic presentation:**\n- \"Worst headache of my life\" — sudden onset, maximal intensity within seconds to one minute (thunderclap headache)\n- Nausea, vomiting, photophobia\n- Neck stiffness/meningismus (may take hours to develop)\n- Brief loss of consciousness at onset (up to 50% of cases)\n\n**Associated findings:**\n- Focal neurological deficits (cranial nerve III palsy — posterior communicating artery aneurysm)\n- Seizure at onset (6-16%)\n- Retinal/subhyaloid hemorrhages (Terson syndrome)\n- Fever (chemical meningitis from subarachnoid blood)\n\n**Atypical presentations (missed SAH):**\n- Headache that has improved by ED arrival (\"sentinel headache\" from minor leak)\n- Isolated neck pain or stiffness\n- Syncope without headache\n- Acute confusional state\n- Headache with exertion, Valsalva, or coitus\n\n**Hunt-Hess grading:**\n- Grade I: Asymptomatic or mild headache\n- Grade II: Moderate-severe headache, nuchal rigidity, cranial nerve palsy\n- Grade III: Drowsiness, confusion, mild focal deficit\n- Grade IV: Stupor, moderate-severe hemiparesis\n- Grade V: Coma, decerebrate posturing\n\n**Ottawa SAH Rule (sensitivity ~100% for ruling out SAH in alert patients):**\nAny ONE of the following in patients >= 15 years with new severe headache reaching max intensity within 1 hour:\n- Age >= 40 years\n- Neck pain or stiffness\n- Witnessed loss of consciousness\n- Onset during exertion\n- Thunderclap headache (instant peak)\n- Limited neck flexion on exam",
+          "excerptSha256": "3ae1746cfc87fb69650763fed75cf181607c1175e9d4b14f19d2307620baf99c",
+          "retrievedAt": "2026-09-14T00:19:02.332Z",
+          "sourceContentHash": "5e5a8cc8de44304b0dd81ddcf09340f7137cabe4a411c35eb53feb66edfcf1ad",
+          "kind": "research_synthesis",
+          "limitations": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved."
+        }
+      ]
+    }
+  ],
+  "safetyFloor": null,
+  "rejectedAnswer": {
+    "disposition": "ASYNC_PHYSICIAN",
+    "reviewPriority": "priority",
+    "workType": "medication_request",
+    "reason": "40F reports an active attack matching her established pattern (one-sided throbbing, photophobia, 'same one I always get') with her usual acute medication exhausted, so treatment is interrupted during an ongoing attack — time-sensitive for remote prescribing review. No reported thunderclap onset, neurological deficit, fever/neck stiffness, trauma or pattern change that would independently require an examination today; those features are simply unreported, not excluded. Guideline red-flag lists apply to secondary-headache suspicion, which her described unchanged pattern does not raise on the facts given; a clinician in this thread can still verify diagnosis, prior triptan response, frequency of use and contraindications before deciding on renewal.",
+    "patientMessage": "I'm routing this for priority clinician review in this message thread today — a Counsel clinician will own the decision about your sumatriptan and any alternative relief. Your attack sounds like your usual pattern, so remote assessment is reasonable rather than an in-person visit. Please seek emergency care now if the pain becomes sudden and explosive, worst-ever, or you develop weakness, speech or vision changes, fever, neck stiffness, or confusion.",
+    "differential": [
+      "Acute migraine attack consistent with the patient's established pattern",
+      "Secondary headache (e.g. subarachnoid haemorrhage, meningitis) — not suggested by reported features but onset character and associated signs not fully detailed",
+      "Medication-overuse pattern if triptan use frequency is high — affects prescribing review, not setting"
+    ],
+    "redFlags": [
+      {
+        "concern": "Thunderclap/sudden maximal onset",
+        "status": "unknown",
+        "quote": "usual migraine started this morning"
+      },
+      {
+        "concern": "Pattern change from usual headaches",
+        "status": "denied",
+        "quote": "same one-sided throbbing and light sensitivity I always get"
+      },
+      {
+        "concern": "Focal neurological deficit or atypical aura",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Fever or neck stiffness",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Recent head trauma",
+        "status": "unknown",
+        "quote": ""
+      },
+      {
+        "concern": "Pregnancy status",
+        "status": "unknown",
+        "quote": ""
+      }
+    ],
+    "vitalSigns": "No vital signs reported — no blood pressure, heart rate, temperature or oxygen saturation provided, and none were measured or implied. Absence of values is not evidence of normal vitals.",
+    "questions": [],
+    "evidenceLimitations": "Routing rests on the patient's own account of an unchanged migraine pattern; onset character, neurological symptoms, fever, trauma and pregnancy status were not asked or reported and remain unknown. Sources cited are a 2021 consensus table and a consumer summary with uncertified currency; neither authorizes prescribing or confirms this patient's eligibility for a refill.",
+    "citations": [
+      {
+        "passageId": "4dc07d42df8d2579816619fd6483e91b8a1f6a7172a93844a7e77bd0592cbbe9",
+        "quote": "Red flag: Thunderclap headache\nIndication: Subarachnoid haemorrhage",
+        "claim": "Thunderclap onset is a recognised red flag prompting concern for secondary headache; none of the listed red flags was reported here.",
+        "applicability": "applicable",
+        "limitation": "2021 table, currentness not certified; absence of reported red flags is not the same as a documented negative examination."
+      },
+      {
+        "passageId": "5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+        "quote": "It typically causes throbbing or pulsing pain, which is often on one side of your head.",
+        "claim": "Unilateral throbbing pain with light sensitivity is a typical migraine presentation.",
+        "applicability": "applicable",
+        "limitation": "Consumer summary only; supports symptom pattern, not prescribing eligibility."
+      }
+    ]
+  },
+  "failure": "CLINICIAN_REVIEW_REQUIRED",
+  "routingPolicy": "five-route-queue/v2",
+  "checks": [
+    {
+      "id": "escalation_floor",
+      "status": "pass",
+      "detail": "The answer must not downgrade a triggered safety rule."
+    },
+    {
+      "id": "quoted_patient_evidence",
+      "status": "pass",
+      "detail": "Reported and denied flags require an exact input quote; this does not prove correct interpretation."
+    },
+    {
+      "id": "citation_provenance",
+      "status": "pass",
+      "detail": "Every cited source must have been retrieved before generation."
+    },
+    {
+      "id": "no_blanket_clearance",
+      "status": "fail",
+      "detail": "Limited phrase check for unsupported blanket reassurance; not a complete hallucination detector."
+    },
+    {
+      "id": "unreported_symptoms_not_denied",
+      "status": "pass",
+      "detail": "A medication-only request does not establish that the patient is asymptomatic. Targeted assertion/provenance check, not full clinical entailment."
+    },
+    {
+      "id": "usual_pattern_not_onset_denial",
+      "status": "pass",
+      "detail": "A usual symptom pattern does not explicitly deny thunderclap onset. Targeted observed-error regression, not a complete semantic verifier."
+    },
+    {
+      "id": "action_timing_present",
+      "status": "pass",
+      "detail": "Checks explicit timing/destination tokens, not the clinical correctness or complete consistency of the message."
+    },
+    {
+      "id": "no_unconfirmed_handoff",
+      "status": "pass",
+      "detail": "No claim that a clinician will review when no appointment or handoff has been made; limited phrase regression."
+    },
+    {
+      "id": "no_unauthorized_medication_change",
+      "status": "pass",
+      "detail": "This disposition workflow cannot authorize starting, stopping or continuing medication; contraindications and prescribing review are not established. Targeted wording check, not a complete medication-safety assessment."
+    },
+    {
+      "id": "denial_scope",
+      "status": "pass",
+      "detail": "A denial of fever alone cannot clear chills, confusion or systemic infection; targeted regression, not full entailment."
+    },
+    {
+      "id": "intake_is_not_hydration_exam",
+      "status": "pass",
+      "detail": "Reported eating or drinking does not establish absence of dehydration; targeted regression, not a complete attribution check."
+    },
+    {
+      "id": "guideline_deadline_fidelity",
+      "status": "pass",
+      "detail": "NICE referral and further-working-day triage targets must not become a one-day assessment mandate; targeted regression."
+    },
+    {
+      "id": "no_unsupported_statistics",
+      "status": "pass",
+      "detail": "Numerical population-risk claims are not admitted without independent statistic verification. A number in an abstract is not patient-specific risk; this limited pattern check is not full entailment."
+    },
+    {
+      "id": "no_unsupported_risk_timeline",
+      "status": "pass",
+      "detail": "The retrieved stroke note does not support a highest-risk-in-first-hours claim; preserve emergency action without inventing a timeline."
+    },
+    {
+      "id": "source_interpretation_boundary",
+      "status": "pass",
+      "detail": "The NHS symptom page does not establish a normal/missing-oximetry rule; distinguish clinical interpretation from source claims."
+    },
+    {
+      "id": "unknown_breathing_not_cleared",
+      "status": "pass",
+      "detail": "An unknown breathing finding cannot become absent in the rationale; targeted cross-field consistency check."
+    },
+    {
+      "id": "no_unverified_inhaler_plan",
+      "status": "pass",
+      "detail": "Do not invent an inhaler or rescue regimen from a COPD diagnosis alone; targeted medication-instruction check."
+    },
+    {
+      "id": "no_patient_wound_probing",
+      "status": "pass",
+      "detail": "Do not ask the patient to palpate or probe a wound for bone; that examination belongs to a trained clinician."
+    },
+    {
+      "id": "wakefulness_not_neurologic_clearance",
+      "status": "pass",
+      "detail": "Reported wakefulness cannot establish absence of loss of consciousness or neurological injury; targeted observed-error check."
+    },
+    {
+      "id": "atraumatic_leak_not_excluded",
+      "status": "pass",
+      "detail": "Absence of surgery/trauma alone does not exclude spontaneous CSF leakage; limited causal-phrase regression, not full reasoning verification."
+    },
+    {
+      "id": "no_nosebleed_positioning_in_penetration",
+      "status": "pass",
+      "detail": "Do not import routine nosebleed positioning into suspected penetrating head injury; follow dispatcher instructions. Targeted regression."
+    },
+    {
+      "id": "worsening_not_deferred_ten_days",
+      "status": "pass",
+      "detail": "Worsening and ten-day persistence are separate reasons to seek care; targeted observed-wording check."
+    },
+    {
+      "id": "unmeasured_vitals_not_dismissed",
+      "status": "pass",
+      "detail": "Do not declare missing readings unnecessary from a brief message; their need is not established by this prototype."
+    },
+    {
+      "id": "irrigation_support_missing",
+      "status": "pass",
+      "detail": "This corpus does not supply nasal-irrigation technique/water-safety guidance. Do not recommend rinses without that support; not a claim that irrigation is always inappropriate."
+    },
+    {
+      "id": "research_support",
+      "status": "not_assessed",
+      "detail": "Citations are present. Whether they support each claim and apply to this patient has NOT been graded."
+    },
+    {
+      "id": "clinical_correctness",
+      "status": "not_assessed",
+      "detail": "No physician or calibrated independent judge has scored this exact answer."
+    },
+    {
+      "id": "rag_source_integrity",
+      "status": "pass",
+      "detail": "Cited passage identity and exact quote match; this does not establish claim support or applicability."
+    },
+    {
+      "id": "independent_review",
+      "status": "fail",
+      "detail": "No accepted independent review; clinician assessment is required."
+    }
+  ],
+  "usage": {
+    "inputTokens": 22103,
+    "outputTokens": 2843
+  },
+  "graph": {
+    "version": "evidence-graph/v2",
+    "mode": "hybrid",
+    "context": {
+      "queries": [
+        "migraine with aura red flags sudden worst",
+        "unilateral throbbing headache new features change"
+      ],
+      "findings": [
+        {
+          "finding": "Patient reports typical migraine with unilateral throbbing",
+          "status": "reported",
+          "quote": "usual migraine started this morning — same one-sided throbbing"
+        },
+        {
+          "finding": "Patient reports photophobia",
+          "status": "reported",
+          "quote": "light sensitivity I always get"
+        },
+        {
+          "finding": "Patient has been on sumatriptan previously",
+          "status": "reported",
+          "quote": "out of sumatriptan"
+        }
+      ],
+      "question": {
+        "text": "Is this headache different in any way from your usual migraines, or is it the same pattern as always?",
+        "why": "Red-flag features (sudden onset, worst pain ever, new neurological signs, progressive worsening) would suggest secondary causes requiring urgent imaging rather than triptan refill.",
+        "quote": "usual migraine started this morning"
+      }
+    },
+    "safety": {
+      "action": "PRIORITY_ASYNC",
+      "basis": [
+        {
+          "quote": "My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get.",
+          "interpretation": "Established migraine pattern with typical features recurring today; patient reports no change from usual presentation.",
+          "currentPatient": true,
+          "present": true
+        },
+        {
+          "quote": "I'm out of sumatriptan and would like a refill.",
+          "interpretation": "Current rescue medication exhausted; time-sensitive need for prescribing review to restore access to established effective therapy.",
+          "currentPatient": true,
+          "present": true
+        }
+      ],
+      "reason": "Established migraine with typical unchanged features and depleted rescue medication requires prompt clinician assessment for refill eligibility and prescribing.",
+      "patientMessage": "",
+      "physicalRequirement": null
+    },
+    "retrieval": [
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "migraine with aura red flags sudden worst",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "4dc07d42df8d2579816619fd6483e91b8a1f6a7172a93844a7e77bd0592cbbe9",
+              "end": 1459,
+              "hash": "6f6d5e8673f0dcf32732a050f80f12ce41cc3436fdfb90e3299199d6ac1a2c62",
+              "text": "When to look: Patient history\nRed flag: Thunderclap headache\nIndication: Subarachnoid haemorrhage\n\nWhen to look: Patient history\nRed flag: Atypical aura\nIndication: Transient ischaemic attack, stroke, epilepsy, arteriovenous malformations\n\nWhen to look: Patient history\nRed flag: Head trauma\nIndication: Subdural haematoma\n\nWhen to look: Patient history\nRed flag: Progressive headache\nIndication: Intracranial space-occupying lesion\n\nWhen to look: Patient history\nRed flag: Headache aggravated by postures or manoeuvres that raise intracranial pressure\nIndication: Intracranial hypertension or hypotension\n\nWhen to look: Patient history\nRed flag: Headache brought on by sneezing, coughing or exercise\nIndication: Intracranial space-occupying lesion\n\nWhen to look: Patient history\nRed flag: Headache associated with weight loss and/or change in memory or personality\nIndication: Suggests secondary headache\n\nWhen to look: Patient history\nRed flag: Headache onset at >50 years of age\nIndication: Suggests secondary headache; consider temporal arteritis\n\nWhen to look: Physical examination\nRed flag: Unexplained fever\nIndication: Meningitis\n\nWhen to look: Physical examination\nRed flag: Neck stiffness\nIndication: Meningitis, subarachnoid haemorrhage\n\nWhen to look: Physical examination\nRed flag: Focal neurological symptoms\nIndication: Suggests secondary headache\n\nWhen to look: Physical examination\nRed flag: Weight loss\nIndication: Suggests secondary headache",
+              "start": 0,
+              "section": 51,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Tab2: Red flags associated with secondary headaches31,32",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nTab2: Red flags associated with secondary headaches31,32\nWhen to look: Patient history\nRed flag: Thunderclap headache\nIndication: Subarachnoid haemorrhage\n\nWhen to look: Patient history\nRed flag: Atypical aura\nIndication: Transient ischaemic attack, stroke, epilepsy, arteriovenous malformations\n\nWhen to look: Patient history\nRed flag: Head trauma\nIndication: Subdural haematoma\n\nWhen to look: Patient history\nRed flag: Progressive headache\nIndication: Intracranial space-occupying lesion\n\nWhen to look: Patient history\nRed flag: Headache aggravated by postures or manoeuvres that raise intracranial pressure\nIndication: Intracranial hypertension or hypotension\n\nWhen to look: Patient history\nRed flag: Headache brought on by sneezing, coughing or exercise\nIndication: Intracranial space-occupying lesion\n\nWhen to look: Patient history\nRed flag: Headache associated with weight loss and/or change in memory or personality\nIndication: Suggests secondary headache\n\nWhen to look: Patient history\nRed flag: Headache onset at >50 years of age\nIndication: Suggests secondary headache; consider temporal arteritis\n\nWhen to look: Physical examination\nRed flag: Unexplained fever\nIndication: Meningitis\n\nWhen to look: Physical examination\nRed flag: Neck stiffness\nIndication: Meningitis, subarachnoid haemorrhage\n\nWhen to look: Physical examination\nRed flag: Focal neurological symptoms\nIndication: Suggests secondary headache\n\nWhen to look: Physical examination\nRed flag: Weight loss\nIndication: Suggests secondary headache"
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; selected tables Tab2, Tab3 normalized as header/value rows; other tables, figures and references omitted.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+              "publicationDate": "2021"
+            },
+            "score": 0.03278688524590164,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "426f24a3bc93d78a642eb8d367b48dfcb2c71eac1b89ee0e88d1e1b4da3b5803",
+              "end": 1310,
+              "hash": "1eeb4882d7b2f4282d17f76a9a9d2d5e28a6fca72857af3701861306dacd879e",
+              "text": "Approximately one third of individuals with migraine experience aura5, either with every attack or with some attacks. Aura is defined as transient focal neurological symptoms that usually precede, but sometimes accompany, the headache phase of a migraine attack4. In >90% of affected individuals, aura manifests visually4,16, classically as fortification spectra4. Sensory symptoms occur in ~31% of affected individuals and are usually experienced as predominantly unilateral paraesthesia (pins and needles and/or numbness) that spreads gradually in the face or arm16.\n\nLess common aura symptoms include aphasic speech disturbance, brainstem symptoms (such as dysarthria and vertigo), motor weakness (in hemiplegic migraine) and retinal symptoms (for example, repeated monocular visual disturbances)4. Aura symptoms can be similar to those of transient ischaemic attacks (TIA), but can be differentiated on the basis that aura symptoms often spread gradually (over ≥5 min) and occur in succession, whereas symptoms of a TIA have a sudden, simultaneous onset4.\n\nNotably, migraine with aura and migraine without aura can coexist. Many individuals with migraine with aura also experience attacks that are not preceded by aura4. In such cases, migraine with aura and migraine without aura should both be diagnosed.",
+              "start": 0,
+              "section": 4,
+              "documentId": "pmc:PMC8321897",
+              "sectionTitle": "Full-text body / Step 1: When to suspect migraine / Migraine with aura",
+              "embeddingText": "Diagnosis and management of migraine in ten steps\n\nFull-text body / Step 1: When to suspect migraine / Migraine with aura\nApproximately one third of individuals with migraine experience aura5, either with every attack or with some attacks. Aura is defined as transient focal neurological symptoms that usually precede, but sometimes accompany, the headache phase of a migraine attack4. In >90% of affected individuals, aura manifests visually4,16, classically as fortification spectra4. Sensory symptoms occur in ~31% of affected individuals and are usually experienced as predominantly unilateral paraesthesia (pins and needles and/or numbness) that spreads gradually in the face or arm16.\n\nLess common aura symptoms include aphasic speech disturbance, brainstem symptoms (such as dysarthria and vertigo), motor weakness (in hemiplegic migraine) and retinal symptoms (for example, repeated monocular visual disturbances)4. Aura symptoms can be similar to those of transient ischaemic attacks (TIA), but can be differentiated on the basis that aura symptoms often spread gradually (over ≥5 min) and occur in succession, whereas symptoms of a TIA have a sudden, simultaneous onset4.\n\nNotably, migraine with aura and migraine without aura can coexist. Many individuals with migraine with aura also experience attacks that are not preceded by aura4. In such cases, migraine with aura and migraine without aura should both be diagnosed."
+            },
+            "document": {
+              "id": "pmc:PMC8321897",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8321897/",
+              "kind": "primary_guideline",
+              "scope": "EHF/EAN-endorsed 2021 consensus. CC-BY article grant includes selected tables without a separate restrictive credit line. Table 2: red flags and indications; Table 3: acute treatments and contraindications. This is dated source evidence, not authorization to prescribe or a verified current drug formulary. Selected tables Tab2, Tab3 are normalized header/value rows with spanning cells propagated, not verbatim prose. Figures, supplementary material and references omitted. Currentness and patient applicability are not certified by ingestion.",
+              "title": "Diagnosis and management of migraine in ten steps",
+              "aliases": [],
+              "license": "CC-BY-4.0",
+              "rawHash": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+              "related": [],
+              "concepts": [
+                "Migraine",
+                "Migraine"
+              ],
+              "currency": "not_assessed",
+              "publisher": "Nature Reviews. Neurology",
+              "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+              "reviewDate": null,
+              "attribution": "Diagnosis and management of migraine in ten steps. © The Author(s) 2021 CC-BY-4.0. Text extracted from PMC JATS; selected tables Tab2, Tab3 normalized as header/value rows; other tables, figures and references omitted.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "8c39b66e3c3bbce1613b503cbd9c37455d367ea8d20c915ff5706d3d08577867",
+              "publicationDate": "2021"
+            },
+            "score": 0.030621785881252923,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+              "end": 1722,
+              "hash": "98d4caf8e68381d6507fdebc4e3d9b6319cb2f3bc97e33070c12baf880ca1eb8",
+              "text": "Headache accounts for 2-4% of ED visits. The vast majority (> 90%) are benign primary headache disorders (tension, migraine, cluster). The critical task is identifying the 1-5% with secondary, life-threatening causes. \"Worst headache of life\" mandates subarachnoid hemorrhage evaluation regardless of other features.\n\n**SNOOP red flag mnemonic:**\n- **S** — Systemic symptoms (fever, weight loss, HIV, cancer, pregnancy) or Systemic disease\n- **N** — Neurological deficit or dysfunction (confusion, seizure, papilledema, focal deficit)\n- **O** — Onset sudden (thunderclap: maximal intensity within seconds)\n- **O** — Older age (new headache onset > 50)\n- **P** — Pattern change (prior headache history with fundamentally different character), Positional (worse upright → low CSF pressure; worse supine → elevated ICP), Precipitated by Valsalva/exertion/sexual activity\n\n**Key history elements:**\n- Onset: thunderclap (SAH, CVT, RCVS, pituitary apoplexy, cervical artery dissection) vs gradual\n- Location: unilateral (migraine, cluster, temporal arteritis) vs bilateral vs occipital (posterior fossa lesion)\n- Character and severity: in the patient's context, not absolute scale\n- Associated symptoms: visual changes (temporal arteritis, AACG, migraine aura), nausea/vomiting (raised ICP, migraine), photophobia (SAH, meningitis), neck stiffness (SAH, meningitis)\n- Prior headache history: \"Is this headache different from your usual headaches?\"\n- Triggers: exertion, sex, Valsalva, head position change\n- Medications: anticoagulants, oral contraceptives, immunosuppressants\n- Recent trauma: even minor, especially in elderly or anticoagulated (subdural)\n- Pregnancy/postpartum: eclampsia, CVT, postpartum preeclampsia, PRES",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:headache-acute",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Acute Headache — Emergency Evaluation\nheadache; cephalgia; head pain; worst headache of life; thunderclap headache\nRecognition\nHeadache accounts for 2-4% of ED visits. The vast majority (> 90%) are benign primary headache disorders (tension, migraine, cluster). The critical task is identifying the 1-5% with secondary, life-threatening causes. \"Worst headache of life\" mandates subarachnoid hemorrhage evaluation regardless of other features.\n\n**SNOOP red flag mnemonic:**\n- **S** — Systemic symptoms (fever, weight loss, HIV, cancer, pregnancy) or Systemic disease\n- **N** — Neurological deficit or dysfunction (confusion, seizure, papilledema, focal deficit)\n- **O** — Onset sudden (thunderclap: maximal intensity within seconds)\n- **O** — Older age (new headache onset > 50)\n- **P** — Pattern change (prior headache history with fundamentally different character), Positional (worse upright → low CSF pressure; worse supine → elevated ICP), Precipitated by Valsalva/exertion/sexual activity\n\n**Key history elements:**\n- Onset: thunderclap (SAH, CVT, RCVS, pituitary apoplexy, cervical artery dissection) vs gradual\n- Location: unilateral (migraine, cluster, temporal arteritis) vs bilateral vs occipital (posterior fossa lesion)\n- Character and severity: in the patient's context, not absolute scale\n- Associated symptoms: visual changes (temporal arteritis, AACG, migraine aura), nausea/vomiting (raised ICP, migraine), photophobia (SAH, meningitis), neck stiffness (SAH, meningitis)\n- Prior headache history: \"Is this headache different from your usual headaches?\"\n- Triggers: exertion, sex, Valsalva, head position change\n- Medications: anticoagulants, oral contraceptives, immunosuppressants\n- Recent trauma: even minor, especially in elderly or anticoagulated (subdural)\n- Pregnancy/postpartum: eclampsia, CVT, postpartum preeclampsia, PRES"
+            },
+            "document": {
+              "id": "openem:headache-acute",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/headache-acute.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Headache — Emergency Evaluation",
+              "aliases": [
+                "headache",
+                "cephalgia",
+                "head pain",
+                "worst headache of life",
+                "thunderclap headache"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "2a2d4d32c73f49ed333e23133c9fd5670dc6a30439200b209be9d475c1b23957",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.026041666666666664,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "5f19ba58a2304ec13ee39735fded5a0a6720bd6458776ed48d801a0dbf3794c8",
+              "end": 3340,
+              "hash": "803dbd53505ae13a03c04a3e5916e34fe7ce5d3dfcd145977622ca0f766104da",
+              "text": "er , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: \n Prodome. This phase starts up to 24 hours before you get the migraine. You have early signs and symptoms, such as food cravings, unexplained mood changes, uncontrollable yawning, fluid retention, and increased urination. \n Aura. If you have this phase, you might see flashing or bright lights or zig-zag lines. You may have muscle weakness or feel like you are being touched or grabbed. An aura can happen just before or during a migraine. \n Headache. A migraine usually starts gradually and then becomes more severe. It typically causes throbbing or pulsing pain, which is often on one side of your head. But sometimes you can have a migraine without a headache. Other migraine symptoms may include \n \n Increased sensitivity to light, noise, and odors \n Nausea and vomiting \n Worsened pain when you move, cough, or sneeze \n \n Postdrome (following the headache). You may feel exhausted, weak, and confused after a migraine. This can last up to a day. \n \n\n Migraines are more common in the morning; people often wake up with them. Some people have migraines at predictable times, such as before menstruation or on weekends following a stressful week of work. \n\n How are migraines diagnosed? \n To make a diagnosis, your health care provider will: \n Take your medical history \n Ask about your symptoms \n Do a physical and neurological exam \n \n\n An important part of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? ",
+              "start": 1578,
+              "section": 0,
+              "documentId": "medlineplus:3157",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Migraine\n\nHealth-topic summary\ner , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: \n Prodome. This phase starts up to 24 hours before you get the migraine. You have early signs and symptoms, such as food cravings, unexplained mood changes, uncontrollable yawning, fluid retention, and increased urination. \n Aura. If you have this phase, you might see flashing or bright lights or zig-zag lines. You may have muscle weakness or feel like you are being touched or grabbed. An aura can happen just before or during a migraine. \n Headache. A migraine usually starts gradually and then becomes more severe. It typically causes throbbing or pulsing pain, which is often on one side of your head. But sometimes you can have a migraine without a headache. Other migraine symptoms may include \n \n Increased sensitivity to light, noise, and odors \n Nausea and vomiting \n Worsened pain when you move, cough, or sneeze \n \n Postdrome (following the headache). You may feel exhausted, weak, and confused after a migraine. This can last up to a day. \n \n\n Migraines are more common in the morning; people often wake up with them. Some people have migraines at predictable times, such as before menstruation or on weekends following a stressful week of work. \n\n How are migraines diagnosed? \n To make a diagnosis, your health care provider will: \n Take your medical history \n Ask about your symptoms \n Do a physical and neurological exam \n \n\n An important part of diagnosing migraines is to rule out other medical conditions which could be causing the symptoms. So you may also have blood tests, an MRI or CT scan, or other tests. \n\n How are migraines treated? "
+            },
+            "document": {
+              "id": "medlineplus:3157",
+              "url": "https://medlineplus.gov/migraine.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Migraine",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:273",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Migraine Disorders"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.025859192525859193,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "you are more likely to have them if you: \n Are a woman. Women are three times more likely than men to get migraines. \n Have a family history of migraines. Most people with migraines have family members who have migraines. \n Have other medical conditions, such as depression , anxiety , bipolar disord",
+              "after": "\n There is no cure for migraines. Treatment focuses on relieving symptoms and preventing additional attacks. \n\n There are different types of medicines to relieve symptoms. They include triptan drugs, ergotamine drugs, and pain relievers . The sooner you take the medicine, the more effective it is. \n"
+            }
+          },
+          {
+            "chunk": {
+              "id": "611e18d63434ae5d6eb6bc7c2299149c532cb7655d9dfa827e1975d247df284b",
+              "end": 1778,
+              "hash": "f361e0cfb4280839d2eece36d6f9915ce3d38bcb26479b2c1137ea00e12f7bfa",
+              "text": "What are migraines? \n Migraines are a recurring type of headache. They cause moderate to severe pain that is throbbing or pulsing. The pain is often on one side of your head. You may also have other symptoms, such as nausea and weakness. You may be sensitive to light and sound. \n\n What causes migraines? \n Researchers believe that migraine has a genetic cause. There are also a number of factors that can trigger a migraine. These factors vary from person to person, and they include: \n Stress \n Anxiety \n Hormonal changes in women \n Bright or flashing lights \n Loud noises \n Strong smells \n Medicines \n Too much or not enough sleep \n Sudden changes in weather or environment \n Overexertion (too much physical activity) \n Tobacco \n Caffeine or caffeine withdrawal \n Skipped meals \n Medication overuse (taking medicine for migraines too often) \n \n\n Some people have found that certain foods or ingredients can trigger headaches, especially when they are combined with other triggers. These foods and ingredients include: \n Alcohol \n Chocolate \n Aged cheeses \n Monosodium glutamate (MSG) \n Some fruits and nuts \n Fermented or pickled goods \n Yeast \n Cured or processed meats \n \n\n\n Who is at risk for migraines? \n About 12% of Americans get migraines. They can affect anyone, but you are more likely to have them if you: \n Are a woman. Women are three times more likely than men to get migraines. \n Have a family history of migraines. Most people with migraines have family members who have migraines. \n Have other medical conditions, such as depression , anxiety , bipolar disorder , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: ",
+              "start": 0,
+              "section": 0,
+              "documentId": "medlineplus:3157",
+              "sectionTitle": "Health-topic summary",
+              "embeddingText": "Migraine\n\nHealth-topic summary\nWhat are migraines? \n Migraines are a recurring type of headache. They cause moderate to severe pain that is throbbing or pulsing. The pain is often on one side of your head. You may also have other symptoms, such as nausea and weakness. You may be sensitive to light and sound. \n\n What causes migraines? \n Researchers believe that migraine has a genetic cause. There are also a number of factors that can trigger a migraine. These factors vary from person to person, and they include: \n Stress \n Anxiety \n Hormonal changes in women \n Bright or flashing lights \n Loud noises \n Strong smells \n Medicines \n Too much or not enough sleep \n Sudden changes in weather or environment \n Overexertion (too much physical activity) \n Tobacco \n Caffeine or caffeine withdrawal \n Skipped meals \n Medication overuse (taking medicine for migraines too often) \n \n\n Some people have found that certain foods or ingredients can trigger headaches, especially when they are combined with other triggers. These foods and ingredients include: \n Alcohol \n Chocolate \n Aged cheeses \n Monosodium glutamate (MSG) \n Some fruits and nuts \n Fermented or pickled goods \n Yeast \n Cured or processed meats \n \n\n\n Who is at risk for migraines? \n About 12% of Americans get migraines. They can affect anyone, but you are more likely to have them if you: \n Are a woman. Women are three times more likely than men to get migraines. \n Have a family history of migraines. Most people with migraines have family members who have migraines. \n Have other medical conditions, such as depression , anxiety , bipolar disorder , sleep disorders , and epilepsy . \n \n What are the symptoms of migraines? \n There are four different phases of migraines. You may not always go through every phase each time you have a migraine.: "
+            },
+            "document": {
+              "id": "medlineplus:3157",
+              "url": "https://medlineplus.gov/migraine.html",
+              "kind": "patient_summary",
+              "scope": "Public-domain consumer health-topic summary only. Not a specialty guideline, prescribing authority, or proof of individual patient applicability. XML snapshot date is not a clinical review date.",
+              "title": "Migraine",
+              "aliases": [],
+              "license": "US-PUBLIC-DOMAIN",
+              "rawHash": "3a1df275f049121cfdd30dfa68623c321a1fac0d850d1b8498ad7c9c8a648541",
+              "related": [
+                {
+                  "source": "NLM health-topic relationship",
+                  "target": "medlineplus:273",
+                  "relation": "related_topic"
+                }
+              ],
+              "concepts": [
+                "Migraine Disorders"
+              ],
+              "currency": "not_assessed",
+              "publisher": "MedlinePlus / US National Library of Medicine",
+              "licenseUrl": "https://medlineplus.gov/about/using/usingcontent/",
+              "reviewDate": null,
+              "attribution": "Source: MedlinePlus, US National Library of Medicine. Health-topic summary; no endorsement implied.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "publisher_reviewed",
+              "sourceVersion": "https://medlineplus.gov/xml/mplus_topics_2026-09-12.xml",
+              "publicationDate": null
+            },
+            "score": 0.025833333333333333,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n Prodome. This phase starts up to 24 hours before you get the migraine. You have early signs and symptoms, such as food cravings, unexplained mood changes, uncontrollable yawning, fluid retention, and increased urination. \n Aura. If you have this phase, you might see flashing or bright lights or zi"
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 42.12408300000243,
+          "embeddingMs": 1633.687082999997,
+          "vectorMs": 14.679250000001048,
+          "totalMs": 1728.2437500000087
+        },
+        "warnings": [],
+        "embeddingTokens": 9,
+        "embeddingCacheHit": false
+      },
+      {
+        "corpusHash": "1bb200918d063325df27bcc3b252c992220367482181a42e77e671305321b5ff",
+        "retrievalPolicy": "ranked-lexical-hybrid-bounded-graph/v2",
+        "query": "unilateral throbbing headache new features change",
+        "mode": "hybrid",
+        "hits": [
+          {
+            "chunk": {
+              "id": "ce17e14a9bd8602ddfc43ecd2108cad11ee4a2ee0474e0ace07d15d8c27141ad",
+              "end": 1722,
+              "hash": "98d4caf8e68381d6507fdebc4e3d9b6319cb2f3bc97e33070c12baf880ca1eb8",
+              "text": "Headache accounts for 2-4% of ED visits. The vast majority (> 90%) are benign primary headache disorders (tension, migraine, cluster). The critical task is identifying the 1-5% with secondary, life-threatening causes. \"Worst headache of life\" mandates subarachnoid hemorrhage evaluation regardless of other features.\n\n**SNOOP red flag mnemonic:**\n- **S** — Systemic symptoms (fever, weight loss, HIV, cancer, pregnancy) or Systemic disease\n- **N** — Neurological deficit or dysfunction (confusion, seizure, papilledema, focal deficit)\n- **O** — Onset sudden (thunderclap: maximal intensity within seconds)\n- **O** — Older age (new headache onset > 50)\n- **P** — Pattern change (prior headache history with fundamentally different character), Positional (worse upright → low CSF pressure; worse supine → elevated ICP), Precipitated by Valsalva/exertion/sexual activity\n\n**Key history elements:**\n- Onset: thunderclap (SAH, CVT, RCVS, pituitary apoplexy, cervical artery dissection) vs gradual\n- Location: unilateral (migraine, cluster, temporal arteritis) vs bilateral vs occipital (posterior fossa lesion)\n- Character and severity: in the patient's context, not absolute scale\n- Associated symptoms: visual changes (temporal arteritis, AACG, migraine aura), nausea/vomiting (raised ICP, migraine), photophobia (SAH, meningitis), neck stiffness (SAH, meningitis)\n- Prior headache history: \"Is this headache different from your usual headaches?\"\n- Triggers: exertion, sex, Valsalva, head position change\n- Medications: anticoagulants, oral contraceptives, immunosuppressants\n- Recent trauma: even minor, especially in elderly or anticoagulated (subdural)\n- Pregnancy/postpartum: eclampsia, CVT, postpartum preeclampsia, PRES",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:headache-acute",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Acute Headache — Emergency Evaluation\nheadache; cephalgia; head pain; worst headache of life; thunderclap headache\nRecognition\nHeadache accounts for 2-4% of ED visits. The vast majority (> 90%) are benign primary headache disorders (tension, migraine, cluster). The critical task is identifying the 1-5% with secondary, life-threatening causes. \"Worst headache of life\" mandates subarachnoid hemorrhage evaluation regardless of other features.\n\n**SNOOP red flag mnemonic:**\n- **S** — Systemic symptoms (fever, weight loss, HIV, cancer, pregnancy) or Systemic disease\n- **N** — Neurological deficit or dysfunction (confusion, seizure, papilledema, focal deficit)\n- **O** — Onset sudden (thunderclap: maximal intensity within seconds)\n- **O** — Older age (new headache onset > 50)\n- **P** — Pattern change (prior headache history with fundamentally different character), Positional (worse upright → low CSF pressure; worse supine → elevated ICP), Precipitated by Valsalva/exertion/sexual activity\n\n**Key history elements:**\n- Onset: thunderclap (SAH, CVT, RCVS, pituitary apoplexy, cervical artery dissection) vs gradual\n- Location: unilateral (migraine, cluster, temporal arteritis) vs bilateral vs occipital (posterior fossa lesion)\n- Character and severity: in the patient's context, not absolute scale\n- Associated symptoms: visual changes (temporal arteritis, AACG, migraine aura), nausea/vomiting (raised ICP, migraine), photophobia (SAH, meningitis), neck stiffness (SAH, meningitis)\n- Prior headache history: \"Is this headache different from your usual headaches?\"\n- Triggers: exertion, sex, Valsalva, head position change\n- Medications: anticoagulants, oral contraceptives, immunosuppressants\n- Recent trauma: even minor, especially in elderly or anticoagulated (subdural)\n- Pregnancy/postpartum: eclampsia, CVT, postpartum preeclampsia, PRES"
+            },
+            "document": {
+              "id": "openem:headache-acute",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/headache-acute.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Headache — Emergency Evaluation",
+              "aliases": [
+                "headache",
+                "cephalgia",
+                "head pain",
+                "worst headache of life",
+                "thunderclap headache"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "2a2d4d32c73f49ed333e23133c9fd5670dc6a30439200b209be9d475c1b23957",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03125763125763126,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "7bde64c3667bac81307bbe9256cdbb192f30fde24bf0e1b763d9c507f30d4a96",
+              "end": 1742,
+              "hash": "6fe5b10cd68ca756498065ffc903d4cea84dc7250766f7aeb139959a0a357eb6",
+              "text": "1. **\"Migraine\" in a patient without prior migraine history.** First-worst headache in a patient with no established migraine pattern requires secondary headache evaluation. Do not diagnose new-onset migraine in the ED without imaging.\n\n2. **Relying on headache severity to rule out SAH.** SAH presents as mild or moderate headache in up to 30% of cases. The defining feature is thunderclap onset (maximum intensity within seconds), not absolute severity. A \"3/10\" thunderclap headache still requires SAH workup.\n\n3. **Skipping LP because CT is negative.** CT sensitivity for SAH drops below 95% beyond 6 hours from onset. LP is the definitive test after negative CT when clinical suspicion for SAH persists (ACEP Level B recommendation).\n\n4. **Missing temporal arteritis in patients > 50.** Untreated temporal arteritis causes permanent bilateral blindness. ESR can be normal in 4% of biopsy-proven cases — check both ESR and CRP. Jaw claudication has the highest positive likelihood ratio (~34) for temporal arteritis.\n\n5. **Attributing severe headache to hypertension without evaluating for SAH.** Hypertension is a common finding in SAH (catecholamine surge). A patient with BP 220/120 and thunderclap headache needs CT and LP for SAH before being managed as hypertensive emergency.\n\n6. **Missing CO poisoning in household headache clusters.** If multiple household members present with headache (especially in winter), check carboxyhemoglobin. Pulse oximetry is falsely reassuring.\n\n7. **Failure to consider postpartum/pregnancy-related causes.** Eclampsia, PRES, CVT, and postpartum preeclampsia can present up to 6 weeks postpartum. Any new headache in a pregnant or recently postpartum patient is an emergency until proven otherwise.\n",
+              "start": 0,
+              "section": 6,
+              "documentId": "openem:headache-acute",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Acute Headache — Emergency Evaluation\nheadache; cephalgia; head pain; worst headache of life; thunderclap headache\nPitfalls\n1. **\"Migraine\" in a patient without prior migraine history.** First-worst headache in a patient with no established migraine pattern requires secondary headache evaluation. Do not diagnose new-onset migraine in the ED without imaging.\n\n2. **Relying on headache severity to rule out SAH.** SAH presents as mild or moderate headache in up to 30% of cases. The defining feature is thunderclap onset (maximum intensity within seconds), not absolute severity. A \"3/10\" thunderclap headache still requires SAH workup.\n\n3. **Skipping LP because CT is negative.** CT sensitivity for SAH drops below 95% beyond 6 hours from onset. LP is the definitive test after negative CT when clinical suspicion for SAH persists (ACEP Level B recommendation).\n\n4. **Missing temporal arteritis in patients > 50.** Untreated temporal arteritis causes permanent bilateral blindness. ESR can be normal in 4% of biopsy-proven cases — check both ESR and CRP. Jaw claudication has the highest positive likelihood ratio (~34) for temporal arteritis.\n\n5. **Attributing severe headache to hypertension without evaluating for SAH.** Hypertension is a common finding in SAH (catecholamine surge). A patient with BP 220/120 and thunderclap headache needs CT and LP for SAH before being managed as hypertensive emergency.\n\n6. **Missing CO poisoning in household headache clusters.** If multiple household members present with headache (especially in winter), check carboxyhemoglobin. Pulse oximetry is falsely reassuring.\n\n7. **Failure to consider postpartum/pregnancy-related causes.** Eclampsia, PRES, CVT, and postpartum preeclampsia can present up to 6 weeks postpartum. Any new headache in a pregnant or recently postpartum patient is an emergency until proven otherwise.\n"
+            },
+            "document": {
+              "id": "openem:headache-acute",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/headache-acute.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Acute Headache — Emergency Evaluation",
+              "aliases": [
+                "headache",
+                "cephalgia",
+                "head pain",
+                "worst headache of life",
+                "thunderclap headache"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "2a2d4d32c73f49ed333e23133c9fd5670dc6a30439200b209be9d475c1b23957",
+              "related": [],
+              "concepts": [
+                "presentations"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-03-01"
+            },
+            "score": 0.03055037313432836,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": "\n8. **Anchoring on \"sinus headache.\"** Most self-diagnosed sinus headaches are migraine. However, sphenoid sinusitis can cause deep midface/vertex headache and is difficult to diagnose clinically — complications include cavernous sinus thrombosis and meningitis. CT sinuses if clinical concern."
+            }
+          },
+          {
+            "chunk": {
+              "id": "ea5c7e1f4375052e5b119e2b73c8ccc1d426156900f87161a3375df25ba9c967",
+              "end": 2394,
+              "hash": "b6aa941353f93796791b77b8e64e3aaa2ee3edce5bd0be33fe9d7929e57a42a7",
+              "text": " daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n\n5. **Missing temporal arteritis in patients >50 years with new headache.** New headache after age 50 is temporal arteritis until proven otherwise (ESR, CRP, temporal artery biopsy). Giant cell arteritis causes permanent vision loss in 15-20% of untreated cases. Empiric steroids while awaiting biopsy are appropriate when clinical suspicion is high.\n\n6. **Anchoring on \"tension\" when meningismus is subtle.** Early bacterial meningitis may present with mild neck discomfort misattributed to muscle tension. Any headache with fever warrants careful assessment for meningeal signs. Jolt accentuation (worsening headache with horizontal head rotation at 2-3 Hz) has been described as a sensitive sign; absence does not exclude meningitis.",
+              "start": 1458,
+              "section": 6,
+              "documentId": "openem:tension-headache",
+              "sectionTitle": "Pitfalls",
+              "embeddingText": "Tension-Type Headache\ntension headache; TTH; muscle contraction headache; episodic tension-type headache; chronic tension-type headache\nPitfalls\n daily headache, and carry substantial addiction risk. They are not appropriate for TTH management at any stage. If the headache cannot be controlled with NSAIDs + caffeine, reconsider the diagnosis.\n\n5. **Missing temporal arteritis in patients >50 years with new headache.** New headache after age 50 is temporal arteritis until proven otherwise (ESR, CRP, temporal artery biopsy). Giant cell arteritis causes permanent vision loss in 15-20% of untreated cases. Empiric steroids while awaiting biopsy are appropriate when clinical suspicion is high.\n\n6. **Anchoring on \"tension\" when meningismus is subtle.** Early bacterial meningitis may present with mild neck discomfort misattributed to muscle tension. Any headache with fever warrants careful assessment for meningeal signs. Jolt accentuation (worsening headache with horizontal head rotation at 2-3 Hz) has been described as a sensitive sign; absence does not exclude meningitis."
+            },
+            "document": {
+              "id": "openem:tension-headache",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/tension-headache.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Tension-Type Headache",
+              "aliases": [
+                "tension headache",
+                "TTH",
+                "muscle contraction headache",
+                "episodic tension-type headache",
+                "chronic tension-type headache"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "73653a341b4841d483b11a9308969e558e9256b1f9e82f7deba1b96982b273cc",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:subarachnoid-hemorrhage",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "neurological"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-23"
+            },
+            "score": 0.02964426877470356,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "lgesics worsens the condition. The key question: \"How many days per month do you take pain medication for your headaches?\" Withdrawal and preventive therapy are the treatment.\n\n4. **Prescribing opioids for TTH.** Opioids are inferior to NSAIDs for acute headache, accelerate the transition to chronic",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "68f61c213fc167dd5e91d2cd8568871b5351cc6f33d235a2b26d2c84135615dc",
+              "end": 1725,
+              "hash": "538349db0080e4ed827bcd028880b04e068fc42330cb704350badf3b6f868207",
+              "text": "| Condition | Onset | Quality | Severity | Key Distinguishing Features |\n|-----------|-------|---------|----------|----------------------------|\n| **Tension-type headache** | Gradual (hours) | Pressing, bilateral, band-like | Mild-moderate | No nausea/vomiting, no photophobia + phonophobia together, not aggravated by activity |\n| **Subarachnoid hemorrhage** | Thunderclap (<60 seconds to peak) | Severe, often occipital | Worst of life | Meningeal signs (may take hours), nausea/vomiting, possible LOC, oculomotor palsy |\n| **Migraine without aura** | Gradual (1-72 hours) | Unilateral, pulsating | Moderate-severe | Nausea/vomiting, photophobia + phonophobia, aggravated by activity, may have prodrome |\n| **Cervicogenic headache** | Variable | Unilateral, neck-referred | Mild-moderate | Neck tenderness, restricted ROM, headache provoked by neck movement or palpation |\n| **Temporal arteritis** | Subacute | Temporal, aching | Moderate-severe | Age >50, ESR >50, tender temporal artery, jaw claudication, visual disturbance |\n| **Idiopathic intracranial hypertension (IIH)** | Progressive | Diffuse, worse lying flat | Moderate-severe | Obese female, papilledema, visual disturbance, pulsatile tinnitus |\n| **Medication-overuse headache** | Daily or near-daily | Variable, blends with baseline | Moderate | Analgesic or triptan use >10-15 days/month; headache improves with medication withdrawal |\n| **Bacterial meningitis** | Hours | Diffuse, severe | Severe | Fever, neck stiffness, photophobia, Kernig/Brudzinski, altered mental status, purpuric rash |\n| **Carbon monoxide poisoning** | Onset with exposure | Diffuse, bilateral | Moderate | Multiple affected household members, CO source, carboxyhemoglobin elevated |",
+              "start": 0,
+              "section": 2,
+              "documentId": "openem:tension-headache",
+              "sectionTitle": "Differential Diagnosis",
+              "embeddingText": "Tension-Type Headache\ntension headache; TTH; muscle contraction headache; episodic tension-type headache; chronic tension-type headache\nDifferential Diagnosis\n| Condition | Onset | Quality | Severity | Key Distinguishing Features |\n|-----------|-------|---------|----------|----------------------------|\n| **Tension-type headache** | Gradual (hours) | Pressing, bilateral, band-like | Mild-moderate | No nausea/vomiting, no photophobia + phonophobia together, not aggravated by activity |\n| **Subarachnoid hemorrhage** | Thunderclap (<60 seconds to peak) | Severe, often occipital | Worst of life | Meningeal signs (may take hours), nausea/vomiting, possible LOC, oculomotor palsy |\n| **Migraine without aura** | Gradual (1-72 hours) | Unilateral, pulsating | Moderate-severe | Nausea/vomiting, photophobia + phonophobia, aggravated by activity, may have prodrome |\n| **Cervicogenic headache** | Variable | Unilateral, neck-referred | Mild-moderate | Neck tenderness, restricted ROM, headache provoked by neck movement or palpation |\n| **Temporal arteritis** | Subacute | Temporal, aching | Moderate-severe | Age >50, ESR >50, tender temporal artery, jaw claudication, visual disturbance |\n| **Idiopathic intracranial hypertension (IIH)** | Progressive | Diffuse, worse lying flat | Moderate-severe | Obese female, papilledema, visual disturbance, pulsatile tinnitus |\n| **Medication-overuse headache** | Daily or near-daily | Variable, blends with baseline | Moderate | Analgesic or triptan use >10-15 days/month; headache improves with medication withdrawal |\n| **Bacterial meningitis** | Hours | Diffuse, severe | Severe | Fever, neck stiffness, photophobia, Kernig/Brudzinski, altered mental status, purpuric rash |\n| **Carbon monoxide poisoning** | Onset with exposure | Diffuse, bilateral | Moderate | Multiple affected household members, CO source, carboxyhemoglobin elevated |"
+            },
+            "document": {
+              "id": "openem:tension-headache",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/tension-headache.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Tension-Type Headache",
+              "aliases": [
+                "tension headache",
+                "TTH",
+                "muscle contraction headache",
+                "episodic tension-type headache",
+                "chronic tension-type headache"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "73653a341b4841d483b11a9308969e558e9256b1f9e82f7deba1b96982b273cc",
+              "related": [
+                {
+                  "source": "Upstream confusion_pairs metadata; a retrieval relationship, not a patient finding",
+                  "target": "openem:subarachnoid-hemorrhage",
+                  "relation": "differential"
+                }
+              ],
+              "concepts": [
+                "neurological"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": null,
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "agent_compiled",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-23"
+            },
+            "score": 0.028991596638655463,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          },
+          {
+            "chunk": {
+              "id": "7408fb0ff3fc2f3710ff81646d2e5720a318f0bc05ca1f025cd52bdd709cee56",
+              "end": 1445,
+              "hash": "3ae1746cfc87fb69650763fed75cf181607c1175e9d4b14f19d2307620baf99c",
+              "text": "**Classic presentation:**\n- \"Worst headache of my life\" — sudden onset, maximal intensity within seconds to one minute (thunderclap headache)\n- Nausea, vomiting, photophobia\n- Neck stiffness/meningismus (may take hours to develop)\n- Brief loss of consciousness at onset (up to 50% of cases)\n\n**Associated findings:**\n- Focal neurological deficits (cranial nerve III palsy — posterior communicating artery aneurysm)\n- Seizure at onset (6-16%)\n- Retinal/subhyaloid hemorrhages (Terson syndrome)\n- Fever (chemical meningitis from subarachnoid blood)\n\n**Atypical presentations (missed SAH):**\n- Headache that has improved by ED arrival (\"sentinel headache\" from minor leak)\n- Isolated neck pain or stiffness\n- Syncope without headache\n- Acute confusional state\n- Headache with exertion, Valsalva, or coitus\n\n**Hunt-Hess grading:**\n- Grade I: Asymptomatic or mild headache\n- Grade II: Moderate-severe headache, nuchal rigidity, cranial nerve palsy\n- Grade III: Drowsiness, confusion, mild focal deficit\n- Grade IV: Stupor, moderate-severe hemiparesis\n- Grade V: Coma, decerebrate posturing\n\n**Ottawa SAH Rule (sensitivity ~100% for ruling out SAH in alert patients):**\nAny ONE of the following in patients >= 15 years with new severe headache reaching max intensity within 1 hour:\n- Age >= 40 years\n- Neck pain or stiffness\n- Witnessed loss of consciousness\n- Onset during exertion\n- Thunderclap headache (instant peak)\n- Limited neck flexion on exam",
+              "start": 0,
+              "section": 0,
+              "documentId": "openem:subarachnoid-hemorrhage",
+              "sectionTitle": "Recognition",
+              "embeddingText": "Subarachnoid Hemorrhage\nSAH; aneurysmal SAH; aSAH; thunderclap headache; ruptured cerebral aneurysm\nRecognition\n**Classic presentation:**\n- \"Worst headache of my life\" — sudden onset, maximal intensity within seconds to one minute (thunderclap headache)\n- Nausea, vomiting, photophobia\n- Neck stiffness/meningismus (may take hours to develop)\n- Brief loss of consciousness at onset (up to 50% of cases)\n\n**Associated findings:**\n- Focal neurological deficits (cranial nerve III palsy — posterior communicating artery aneurysm)\n- Seizure at onset (6-16%)\n- Retinal/subhyaloid hemorrhages (Terson syndrome)\n- Fever (chemical meningitis from subarachnoid blood)\n\n**Atypical presentations (missed SAH):**\n- Headache that has improved by ED arrival (\"sentinel headache\" from minor leak)\n- Isolated neck pain or stiffness\n- Syncope without headache\n- Acute confusional state\n- Headache with exertion, Valsalva, or coitus\n\n**Hunt-Hess grading:**\n- Grade I: Asymptomatic or mild headache\n- Grade II: Moderate-severe headache, nuchal rigidity, cranial nerve palsy\n- Grade III: Drowsiness, confusion, mild focal deficit\n- Grade IV: Stupor, moderate-severe hemiparesis\n- Grade V: Coma, decerebrate posturing\n\n**Ottawa SAH Rule (sensitivity ~100% for ruling out SAH in alert patients):**\nAny ONE of the following in patients >= 15 years with new severe headache reaching max intensity within 1 hour:\n- Age >= 40 years\n- Neck pain or stiffness\n- Witnessed loss of consciousness\n- Onset during exertion\n- Thunderclap headache (instant peak)\n- Limited neck flexion on exam"
+            },
+            "document": {
+              "id": "openem:subarachnoid-hemorrhage",
+              "url": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/corpus/tier1/conditions/subarachnoid-hemorrhage.md",
+              "kind": "research_synthesis",
+              "scope": "Emergency-department reference synthesis, not a primary guideline or telehealth protocol. ESI, ICD codes and mortality metadata are excluded from route inference. Verify source claims independently; statistics, diagnoses and treatment recommendations are not pre-approved.",
+              "title": "Subarachnoid Hemorrhage",
+              "aliases": [
+                "SAH",
+                "aneurysmal SAH",
+                "aSAH",
+                "thunderclap headache",
+                "ruptured cerebral aneurysm"
+              ],
+              "license": "Apache-2.0",
+              "rawHash": "5e5a8cc8de44304b0dd81ddcf09340f7137cabe4a411c35eb53feb66edfcf1ad",
+              "related": [],
+              "concepts": [
+                "neurological"
+              ],
+              "currency": "not_assessed",
+              "publisher": "GOATnote-Inc / OpenEM",
+              "licenseUrl": "https://github.com/GOATnote-Inc/openem-corpus/blob/c913c62bc13158b0173272760e69ce55f16abc6e/LICENSE-APACHE",
+              "reviewDate": "2026-02-27",
+              "attribution": "Copyright 2026 GOATnote Inc. OpenEM Tier 1, Apache License 2.0. Content is agent-compiled synthesis; upstream review metadata is not approval of this system.",
+              "retrievedAt": "2026-09-14T00:19:02.332Z",
+              "reviewStatus": "upstream_physician_reviewed",
+              "sourceVersion": "c913c62bc13158b0173272760e69ce55f16abc6e",
+              "publicationDate": "2026-02-28"
+            },
+            "score": 0.024706420619185605,
+            "channels": [
+              "lexical",
+              "vector"
+            ],
+            "context": {
+              "before": "",
+              "after": ""
+            }
+          }
+        ],
+        "timings": {
+          "lexicalMs": 69.94233299999905,
+          "embeddingMs": 1959.5639999999985,
+          "vectorMs": 7.003291999993962,
+          "totalMs": 2045.2075829999958
+        },
+        "warnings": [],
+        "embeddingTokens": 8,
+        "embeddingCacheHit": false
+      }
+    ],
+    "judge": null,
+    "release": "clinician_required",
+    "clinicalApproval": false,
+    "corrections": 0,
+    "careCorrectionReleased": false,
+    "sourceIntegrity": true,
+    "citations": []
+  },
+  "version": "disposition-agent/v3",
+  "workflowId": "clinical-evidence-graph",
+  "profile": "evidence-graph-opus",
+  "spendPolicy": "manual-gui-v1",
+  "runId": "ead36793-3376-44fb-941c-2f5771123773",
+  "traceId": "066b918d4476f6082c846bc296ebe026",
+  "tracePersisted": true,
+  "artifactPersisted": true,
+  "eventLogPersisted": true,
+  "message": "40F. My usual migraine started this morning — same one-sided throbbing and light sensitivity I always get. I'm out of sumatriptan and would like a refill.",
+  "inputHash": "0ede5c086d3ea812a589febf64e2b33fcde3c4795b2b686a9b02453986a0b81e",
+  "answerHash": "cba974fa31aa7cbe32221e2fa46d98fb1c431b3736588d2d962326d54a596a32",
+  "promptHash": "ee03b50b1c3c87880340d371ef006999a21b6806f9e5112d2c0082efca307bd6",
+  "guidanceHash": "b2a430aa78a2ac793cb7d42fb98c1dfac0a0fe7e327af5e8258b6d8f0a14297b",
+  "model": "anthropic/claude-opus-5",
+  "completedAt": "2026-09-14T02:58:39.837Z",
+  "durationMs": 52973,
+  "workflowDurationMs": 52868,
+  "tracePersistenceDurationMs": 105,
+  "steps": [
+    {
+      "id": "independent-safety",
+      "status": "success",
+      "durationMs": 8646
+    },
+    {
+      "id": "context-evidence-disposition",
+      "status": "success",
+      "durationMs": 28537
+    },
+    {
+      "id": "review-and-release",
+      "status": "success",
+      "durationMs": 24309
+    }
+  ],
+  "responseEvents": [
+    {
+      "kind": "intake_question",
+      "questionId": "adaptive-bd40d476a2be34b9",
+      "quote": "usual migraine started this morning",
+      "text": "Is this headache different in any way from your usual migraines, or is it the same pattern as always?",
+      "why": "Red-flag features (sudden onset, worst pain ever, new neurological signs, progressive worsening) would suggest secondary causes requiring urgent imaging rather than triptan refill.",
+      "decisionChanging": false,
+      "elapsedMs": 4057,
+      "sequence": 1,
+      "runId": "ead36793-3376-44fb-941c-2f5771123773"
+    }
+  ],
+  "safetyNotices": [],
+  "firstActionMs": null,
+  "firstPatientReplyMs": null,
+  "firstQuestionMs": 4057
+}

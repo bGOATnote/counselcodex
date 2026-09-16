@@ -1,0 +1,594 @@
+{
+  "schemaVersion": "counsel-clinical-evaluation-portfolio/v1",
+  "asOf": "2026-09-07",
+  "decision": "Use public benchmarks as bounded stress tests inside an intended-use evidence ladder. No public benchmark score can establish zero harm, local clinical efficacy, or deployment readiness.",
+  "systemUnderTest": {
+    "id": "counselcodex-v0",
+    "stage": "synthetic_preclinical_research",
+    "intendedUser": "licensed clinician or clinical operations reviewer",
+    "input": "bounded active-episode asynchronous patient message transcript",
+    "output": "four-level operational disposition plus an optional bounded clinician handoff; the supplied three-level task is retained through an explicit legacy projection",
+    "routes": [
+      "SELF_CARE",
+      "ASYNC_PHYSICIAN",
+      "SAME_DAY_IN_PERSON",
+      "EMERGENCY_NOW"
+    ],
+    "patientFacingOutput": false,
+    "readsLiveEhr": false,
+    "writesLiveEhr": false,
+    "ordersMedicationOrTests": false,
+    "autonomousClinicalAction": false
+  },
+  "claimPolicy": {
+    "allowedNow": [
+      "The checked-in deterministic software artifacts satisfy their specified synthetic contracts when the repository validation suite passes.",
+      "The frozen synthetic retrieval candidate was not admitted after failing its preregistered temporal-holdout thresholds.",
+      "The repository contains an executable, attributable single-clinician development-review instrument."
+    ],
+    "forbiddenWithoutFurtherEvidence": [
+      "zero_harm",
+      "clinically_safe",
+      "clinical_performance_estimated",
+      "clinical_efficacy_established",
+      "better_than_clinicians",
+      "deployment_ready"
+    ],
+    "publicBenchmarkRule": "A benchmark may support only the capability and test distribution it directly measures. It cannot satisfy an intended-use clinical, human-factors, operational, or patient-outcome gate by itself."
+  },
+  "benchmarkPortfolio": [
+    {
+      "id": "healthbench",
+      "name": "HealthBench",
+      "version": "2025-05-12",
+      "status": "planned_when_response_system_exists",
+      "currentV0Compatibility": "none",
+      "portfolioRole": "broad_health_response_capability",
+      "measures": [
+        "physician-rubric response quality",
+        "emergency referral behavior",
+        "context seeking",
+        "worst-of-n reliability"
+      ],
+      "requiredReporting": [
+        "overall rubric score",
+        "emergency-referral slice",
+        "context-seeking slice",
+        "worst-of-n curve",
+        "model and grader snapshots",
+        "inference and grading cost"
+      ],
+      "controls": [
+        "Do not publish examples in plaintext or screenshots.",
+        "Disable web access and benchmark retrieval during inference.",
+        "Keep a separately governed private local holdout for leakage detection.",
+        "Do not translate a four-level route label or its three-level legacy projection into an official HealthBench score."
+      ],
+      "limitations": [
+        "Most example-specific criteria were authored by one physician and not independently validated.",
+        "Per-example rubrics are not comprehensive.",
+        "Model-physician and physician-physician grading agreement is imperfect.",
+        "It evaluates responses, not this V0's local workflow or patient outcomes."
+      ],
+      "permittedClaims": [
+        "response_quality_on_healthbench_distribution"
+      ],
+      "cannotEstablish": [
+        "zero_harm",
+        "local_routing_safety",
+        "clinical_efficacy",
+        "deployment_readiness"
+      ],
+      "sources": [
+        "https://openai.com/index/healthbench/",
+        "https://cdn.openai.com/pdf/bd7a39d5-9e9f-47b3-903c-8b847ca650c7/healthbench_paper.pdf",
+        "https://github.com/openai/simple-evals"
+      ]
+    },
+    {
+      "id": "healthbench_consensus",
+      "name": "HealthBench Consensus",
+      "version": "2025-05-12",
+      "status": "executed_derived_stress_test__deterministic_candidate_failed",
+      "currentV0Compatibility": "partial",
+      "portfolioRole": "high_precision_behavior_probe",
+      "measures": [
+        "34 multiply reviewed behavior criteria",
+        "emergency escalation",
+        "context seeking",
+        "response safety"
+      ],
+      "requiredReporting": [
+        "criterion-level error rates",
+        "emergency and context-seeking results",
+        "adaptation mapping and deviations from the official task",
+        "grader meta-evaluation"
+      ],
+      "controls": [
+        "Call any route-label adaptation a local derived evaluation, not an official HealthBench score.",
+        "Pre-register which criteria map to the route contract before inspecting candidate outputs.",
+        "Keep conditional emergencies and unconditional emergencies as separate strata."
+      ],
+      "evidenceArtifacts": [
+        "outputs/healthbench-emergency-always-emergency-v1.json",
+        "outputs/healthbench-emergency-never-emergency-v1.json",
+        "outputs/healthbench-emergency-deterministic-v1.json"
+      ],
+      "limitations": [
+        "Higher precision comes with lower recall for possible failures.",
+        "Consensus criteria are narrow behavior checks, not a complete clinical reference."
+      ],
+      "permittedClaims": [
+        "criterion_behavior_on_declared_consensus_slice"
+      ],
+      "cannotEstablish": [
+        "zero_harm",
+        "comprehensive_clinical_safety",
+        "clinical_efficacy",
+        "deployment_readiness"
+      ],
+      "sources": [
+        "https://openai.com/index/healthbench/",
+        "https://cdn.openai.com/pdf/bd7a39d5-9e9f-47b3-903c-8b847ca650c7/healthbench_paper.pdf"
+      ]
+    },
+    {
+      "id": "healthbench_hard",
+      "name": "HealthBench Hard",
+      "version": "2025-05-12",
+      "status": "planned_only_for_future_response_model",
+      "currentV0Compatibility": "none",
+      "portfolioRole": "unsaturated_headroom_stress_test",
+      "measures": [
+        "performance on 1,000 examples selected for frontier-model difficulty"
+      ],
+      "requiredReporting": [
+        "rubric score",
+        "model and grader snapshots",
+        "failure clusters",
+        "cost and latency"
+      ],
+      "controls": [
+        "Never use HealthBench Hard as the clinical safety gate.",
+        "Report that difficulty selection is model-relative and not harm-severity selection."
+      ],
+      "limitations": [
+        "The subset was selected for model difficulty, not intended-use prevalence or clinical harm.",
+        "A high score can coexist with rare severe failures."
+      ],
+      "permittedClaims": [
+        "response_quality_on_healthbench_hard_distribution"
+      ],
+      "cannotEstablish": [
+        "zero_harm",
+        "clinical_safety",
+        "clinical_efficacy",
+        "deployment_readiness"
+      ],
+      "sources": [
+        "https://openai.com/index/healthbench/",
+        "https://cdn.openai.com/pdf/bd7a39d5-9e9f-47b3-903c-8b847ca650c7/healthbench_paper.pdf"
+      ]
+    },
+    {
+      "id": "noharm_v2",
+      "name": "First, do NOHARM v2",
+      "version": "open-kit-2026-07",
+      "status": "planned_when_management_plan_output_exists",
+      "currentV0Compatibility": "none",
+      "portfolioRole": "clinical_management_harm_stress_test",
+      "measures": [
+        "severity-weighted harmful omissions",
+        "severity-weighted harmful commissions",
+        "management precision and recall",
+        "worst-variant floor",
+        "perturbation resilience"
+      ],
+      "requiredReporting": [
+        "F1_weighted with stratified cluster-bootstrap interval",
+        "Precision_weighted",
+        "Recall_weighted",
+        "Severe_rate",
+        "F1_floor",
+        "Resilience",
+        "results by management-action category and specialty",
+        "judge model snapshots and cache namespace"
+      ],
+      "controls": [
+        "Use the official open kit without copying cases or rubrics into this repository.",
+        "Run base cases and perturbations; preserve base-case clustering in intervals.",
+        "Treat omission and commission separately and retain the severe-harm rate outside any average.",
+        "Use a new cache namespace whenever model outputs or model IDs change.",
+        "Report the open-subset result separately from private-leaderboard evaluation."
+      ],
+      "limitations": [
+        "The public kit contains 30 base cases; the full evaluation includes a private set.",
+        "It grades free-text management plans, which this V0 does not produce.",
+        "The judge uses preview model versions that can drift.",
+        "Absolute scores and harm rates are rubric indicators for the selected cases, not real-world event rates.",
+        "The text-only, single-turn consult task omits chart navigation, multimodal inputs, and full clinical workflow."
+      ],
+      "permittedClaims": [
+        "management_harm_profile_on_noharm_distribution"
+      ],
+      "cannotEstablish": [
+        "zero_harm",
+        "local_routing_safety",
+        "real_world_event_rate",
+        "clinical_efficacy",
+        "deployment_readiness"
+      ],
+      "sources": [
+        "https://arxiv.org/abs/2512.01241",
+        "https://github.com/ARISENetwork/mast/tree/main/benchmarks/donoharm",
+        "https://github.com/ARISENetwork/noharm"
+      ]
+    },
+    {
+      "id": "medagentbench_v1",
+      "name": "MedAgentBench",
+      "version": "2025-02-12",
+      "status": "deferred_until_fhir_tools_exist",
+      "currentV0Compatibility": "none",
+      "portfolioRole": "fhir_tool_action_correctness",
+      "activationCondition": "The product can read or mutate an EHR through FHIR-like tools.",
+      "measures": [
+        "query task success",
+        "action task success",
+        "invalid action rate",
+        "round-limit failures"
+      ],
+      "requiredReporting": [
+        "pass@1 overall",
+        "query success rate",
+        "action success rate",
+        "category and step-count slices",
+        "invalid and unauthorized action counts",
+        "latency and cost"
+      ],
+      "controls": [
+        "Reset or isolate state between action trials.",
+        "Add authorization, idempotency, rollback, and audit checks that the public environment does not provide.",
+        "Record both intended action correctness and actual committed world state.",
+        "Do not convert repeated sampling into a best-of-k deployment claim."
+      ],
+      "limitations": [
+        "The original baseline used only GET requests during evaluation to avoid costly environment restarts.",
+        "The environment explicitly lacks production security and enterprise logging.",
+        "Profiles come from one academic medical center and are not population-representative.",
+        "Task instructions and exact-output graders simplify real clinical coordination and ambiguity."
+      ],
+      "permittedClaims": [
+        "fhir_task_success_on_medagentbench_distribution"
+      ],
+      "cannotEstablish": [
+        "zero_harm",
+        "patient_outcome_benefit",
+        "production_ehr_safety",
+        "clinical_efficacy",
+        "deployment_readiness"
+      ],
+      "sources": [
+        "https://arxiv.org/abs/2501.14654",
+        "https://github.com/stanfordmlgroup/MedAgentBench",
+        "https://stanfordmlgroup.github.io/projects/medagentbench/"
+      ]
+    },
+    {
+      "id": "medagentbench_v2",
+      "name": "MedAgentBench v2",
+      "version": "PSB-2026",
+      "status": "watchlist_until_fhir_tools_and_memory_exist",
+      "currentV0Compatibility": "none",
+      "portfolioRole": "fhir_agent_design_and_memory_ablation",
+      "activationCondition": "The product has FHIR tools or a governed cross-episode memory proposal.",
+      "measures": [
+        "structured-tool improvement",
+        "memory ablation",
+        "multi-step task success",
+        "generalization to new task types"
+      ],
+      "requiredReporting": [
+        "no-memory and memory pass@1",
+        "patient-independent and task-family-independent holdouts",
+        "memory provenance and approval status",
+        "negative-transfer and regression rate",
+        "category, complexity, latency, and cost slices"
+      ],
+      "controls": [
+        "Never write a test answer or failed-test correction into memory used on the same evaluation partition.",
+        "Version every memory with source, author, review status, and revocation path.",
+        "Require physician approval for clinical memories and test negative transfer.",
+        "Constrain calculators and tools independently; do not rely on prompting as the sandbox."
+      ],
+      "limitations": [
+        "The reported 98% used memories synthesized from failures on the original task family.",
+        "High task success does not establish safe real-world interpretation of terse, ambiguous instructions.",
+        "Rigid output grading can mark clinically correct reasoning wrong and still miss unmodeled clinical harm."
+      ],
+      "permittedClaims": [
+        "fhir_agent_design_performance_on_declared_medagentbench_partition"
+      ],
+      "cannotEstablish": [
+        "zero_harm",
+        "safe_online_learning",
+        "patient_outcome_benefit",
+        "clinical_efficacy",
+        "deployment_readiness"
+      ],
+      "sources": [
+        "https://psb.stanford.edu/psb-online/proceedings/psb26/chen_eric.pdf",
+        "https://github.com/ARISENetwork/medagentbenchv2"
+      ]
+    },
+    {
+      "id": "healthagentbench",
+      "name": "HealthAgentBench",
+      "version": "2026-07-27",
+      "status": "watchlist_adjacent_not_release_gate",
+      "currentV0Compatibility": "none",
+      "portfolioRole": "broad_terminal_health_workflow_stress_test",
+      "activationCondition": "The product performs terminal-style multimodal, ETL, audit, trial-matching, or longitudinal EHR tasks.",
+      "measures": [
+        "task-specific binary success",
+        "three-attempt reliability",
+        "cost",
+        "wall-clock time"
+      ],
+      "requiredReporting": [
+        "per-category success",
+        "attempt-level results",
+        "timeouts and exceptions as failures",
+        "cost and duration",
+        "data-access and verifier versions"
+      ],
+      "controls": [
+        "Disable web search and fetching during evaluation.",
+        "Isolate fetched gold labels from the agent environment.",
+        "Treat each category as a separate construct instead of relying only on a pooled mean."
+      ],
+      "limitations": [
+        "The 54 tasks span heterogeneous constructs and modalities outside this V0.",
+        "Several categories require gated clinical datasets and at least 30 GB of assets.",
+        "Pooled task success is not a routing-safety or efficacy measure."
+      ],
+      "permittedClaims": [
+        "task_success_on_named_healthagentbench_categories"
+      ],
+      "cannotEstablish": [
+        "zero_harm",
+        "local_routing_safety",
+        "clinical_efficacy",
+        "deployment_readiness"
+      ],
+      "sources": [
+        "https://github.com/microsoft/HealthAgentBench",
+        "https://microsoft.github.io/HealthAgentBench/",
+        "https://arxiv.org/abs/2606.31179"
+      ]
+    },
+    {
+      "id": "medsafe_dx_v0",
+      "name": "MedSafe-Dx v0",
+      "version": "2026-04-14",
+      "status": "watchlist_research_only",
+      "currentV0Compatibility": "partial",
+      "portfolioRole": "escalation_false_reassurance_and_uncertainty_probe",
+      "activationCondition": "Use only after confirming license compatibility and freezing an output adapter that preserves the benchmark construct.",
+      "measures": [
+        "missed escalation",
+        "unsafe reassurance",
+        "overconfident wrong output",
+        "diagnostic top-k recall"
+      ],
+      "requiredReporting": [
+        "all safety event counts outside aggregate effectiveness",
+        "calibration and diagnostic retrieval metrics",
+        "dataset hash and seed",
+        "clinical review of every safety failure"
+      ],
+      "controls": [
+        "Do not modify or redistribute the benchmark under its CC BY-NC-ND license.",
+        "Do not treat synthetic diagnostic cases as an intended-use estimate.",
+        "Retain every severe event outside averages."
+      ],
+      "limitations": [
+        "It is a 2026 preprint and v0 benchmark.",
+        "It is built from DDXPlus synthetic diagnostic cases rather than Counsel's inbox distribution.",
+        "Its license restricts commercial use and derivatives."
+      ],
+      "permittedClaims": [
+        "safety_probe_on_medsafe_dx_distribution"
+      ],
+      "cannotEstablish": [
+        "zero_harm",
+        "local_clinical_performance",
+        "clinical_efficacy",
+        "deployment_readiness"
+      ],
+      "sources": [
+        "https://github.com/cortico-health/MedSafe-Dx",
+        "https://doi.org/10.64898/2026.04.14.26350711"
+      ]
+    }
+  ],
+  "localEvidenceLadder": [
+    {
+      "id": "L0_software_verification",
+      "status": "implemented",
+      "requiredEvidence": [
+        "schema and contract tests",
+        "hard-gate and failure-closure tests",
+        "red team and metamorphic trials",
+        "trace privacy checks",
+        "frozen synthetic agent holdout"
+      ],
+      "metrics": [
+        "invariant failures",
+        "silent urgent downgrades",
+        "unauthorized side effects",
+        "metamorphic instability",
+        "trace payload leaks"
+      ],
+      "permits": "software_contract_claim_only"
+    },
+    {
+      "id": "L1_physician_development_review",
+      "status": "blocked",
+      "requiredEvidence": [
+        "50 of 50 independently locked case reviews",
+        "post-reveal comparison and case completion",
+        "signed integrity-hashed export"
+      ],
+      "metrics": [
+        "case-level disagreement taxonomy",
+        "same-day and emergency miss hypotheses confirmed or rejected",
+        "over-triage hypotheses confirmed or rejected"
+      ],
+      "permits": "candidate_authored_development_reference_only"
+    },
+    {
+      "id": "L2_external_retrospective_validation",
+      "status": "blocked",
+      "requiredEvidence": [
+        "preregistered intended population, routes, destinations, and SLA",
+        "untouched patient- and episode-independent representative sample",
+        "blinded reference process with calibrated multi-clinician overlap",
+        "all exclusions, denominators, sampling weights, and intervals",
+        "subgroup and temporal validation"
+      ],
+      "metrics": [
+        "emergency and same-day sensitivity and positive predictive value reported separately, plus any-escalation performance",
+        "one-sided exact upper bound after zero observed severe under-triage events",
+        "severity-weighted under-triage",
+        "over-triage and clinician workload",
+        "destination and timing accuracy",
+        "abstention and calibration when scores are emitted",
+        "performance by age, language, site, access context, and time"
+      ],
+      "permits": "performance_on_declared_sample_only"
+    },
+    {
+      "id": "L3_human_factors_simulation",
+      "status": "blocked",
+      "requiredEvidence": [
+        "representative clinicians and operations staff",
+        "realistic queue pressure, interruptions, and degraded-system drills",
+        "counterbalanced baseline comparison",
+        "analysis of automation bias and alert fatigue"
+      ],
+      "metrics": [
+        "time to correct destination",
+        "completed escalation rather than predicted route",
+        "override and missed-alert rates",
+        "edit distance and additional-information requests",
+        "clinician workload and trust calibration"
+      ],
+      "permits": "simulated_human_ai_workflow_claim_only"
+    },
+    {
+      "id": "L4_prospective_shadow",
+      "status": "blocked",
+      "requiredEvidence": [
+        "governance, privacy, security, and incident-response approval",
+        "silent prospective run with no autonomous patient-facing or EHR action",
+        "predefined stop rules and rollback drills",
+        "distribution and model-drift monitoring"
+      ],
+      "metrics": [
+        "prospective disagreement and near-miss rates",
+        "latency and availability",
+        "subgroup and site drift",
+        "escalation completion opportunity",
+        "counterfactual workload"
+      ],
+      "permits": "shadow_mode_operational_performance_only"
+    },
+    {
+      "id": "L5_controlled_clinical_evaluation",
+      "status": "blocked",
+      "requiredEvidence": [
+        "approved protocol matched to risk and intended use",
+        "prospective comparator design",
+        "independent safety monitoring",
+        "DECIDE-AI reporting for early live evaluation",
+        "SPIRIT-AI and CONSORT-AI reporting when an interventional trial is warranted"
+      ],
+      "metrics": [
+        "time to appropriate care",
+        "delayed or missed urgent care",
+        "patient safety events and near misses",
+        "clinician time and queue throughput",
+        "access and equity outcomes",
+        "patient-reported comprehension or experience when applicable"
+      ],
+      "permits": "clinical_efficacy_claim_bounded_to_protocol"
+    },
+    {
+      "id": "L6_controlled_release_and_monitoring",
+      "status": "blocked",
+      "requiredEvidence": [
+        "approved intended use and contraindications",
+        "change control and versioned release evidence",
+        "continuous monitoring with action thresholds",
+        "incident reporting, rollback, and reconciliation",
+        "periodic revalidation on representative data"
+      ],
+      "metrics": [
+        "realized safety events",
+        "completed escalation and treatment delay",
+        "clinician overrides and complaints",
+        "distribution, provider, prompt, tool, and retrieval drift",
+        "equity and access outcomes"
+      ],
+      "permits": "only_the_governed_intended_use_claim"
+    }
+  ],
+  "executionPolicy": {
+    "publicBenchmarkFailureCanBlockCandidate": true,
+    "publicBenchmarkPassCanClearClinicalRelease": false,
+    "currentExternalBenchmarkRuns": 3,
+    "currentExternalBenchmarkSpendUsd": 0,
+    "maximumAuthorizedExternalSpendUsd": 100,
+    "beforeAnyPaidRun": [
+      "Freeze system prompt, tool schemas, retrieval corpus, model snapshot, judge snapshot, seeds, and output adapter.",
+      "Confirm construct compatibility; do not score a route label as if it were a management plan or patient response.",
+      "Estimate the full inference and judging cost and set provider-side hard limits.",
+      "Pre-register primary, safety, subgroup, and failure-analysis metrics.",
+      "Separate development, public benchmark, private holdout, and intended-use results."
+    ],
+    "afterAnyRun": [
+      "Archive immutable prompts, traces, tool calls, raw outputs, grader decisions, hashes, versions, latency, and cost.",
+      "Review every severe or potentially severe failure clinically.",
+      "Run grader meta-evaluation and adjudicate disagreements before publishing a score.",
+      "Do not tune on the private local holdout; start a newly registered candidate if changes are made."
+    ]
+  },
+  "governingSources": [
+    {
+      "name": "IMDRF SaMD Clinical Evaluation N41",
+      "url": "https://www.imdrf.org/documents/software-medical-device-samd-clinical-evaluation",
+      "use": "Separate valid clinical association, analytical validation, and clinical validation; treat evaluation as continuous and risk-proportionate."
+    },
+    {
+      "name": "IMDRF/FDA Good Machine Learning Practice",
+      "url": "https://www.fda.gov/medical-devices/software-medical-device-samd/good-machine-learning-practice-medical-device-development-guiding-principles",
+      "use": "Apply total-product-lifecycle discipline, representative data, human-AI performance, monitoring, and managed retraining risk as engineering principles."
+    },
+    {
+      "name": "DECIDE-AI",
+      "url": "https://www.nature.com/articles/s41591-022-01772-9",
+      "use": "Design and report early live clinical evaluation around actual performance, safety, and human factors."
+    },
+    {
+      "name": "SPIRIT-AI and CONSORT-AI",
+      "url": "https://www.nature.com/articles/s41591-020-1034-x",
+      "use": "Pre-specify and transparently report prospective interventional trials, human-AI interaction, inputs, outputs, and error cases."
+    },
+    {
+      "name": "NIST AI RMF 1.0",
+      "url": "https://doi.org/10.6028/NIST.AI.100-1",
+      "use": "Govern, map, measure, and manage safety, validity, security, privacy, transparency, and harmful bias in context."
+    }
+  ]
+}

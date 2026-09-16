@@ -1,0 +1,151 @@
+{
+  "id": "C02",
+  "arm": "original",
+  "trial": 1,
+  "runId": "3549904a-47b8-48b5-9e35-8df1e0bc9224",
+  "execution": {
+    "output": {
+      "reviewScope": "draft-and-issued-question/v2",
+      "verdict": "revise",
+      "criteria": [
+        {
+          "id": "undertriage",
+          "verdict": "pass",
+          "reason": "Ongoing crushing chest pressure with arm radiation, sweating and nausea requires immediate emergency assessment. Calling 911 now meets that requirement without an unresolved access prerequisite.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "crushing pressure in the center of my chest for the last 30 minutes"
+            },
+            {
+              "unit": "draft",
+              "quote": "Call 911 now and stay resting until help arrives; do not drive yourself."
+            }
+          ]
+        },
+        {
+          "id": "overtriage",
+          "verdict": "pass",
+          "reason": "The active, prolonged ACS-compatible symptom pattern supports immediate emergency assessment and EMS transport rather than messaging or self-transport. No lower-intensity pathway adequately meets this time-critical need.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "it's going into my left arm and I feel sweaty and a bit sick to my stomach"
+            },
+            {
+              "unit": "draft",
+              "quote": "Call 911 now and stay resting until help arrives; do not drive yourself."
+            }
+          ]
+        },
+        {
+          "id": "patient_grounding",
+          "verdict": "pass",
+          "reason": "The symptoms and age match the original report. Unreported symptoms and measurements remain unknown, and the differential is not presented as a confirmed diagnosis.",
+          "anchors": [
+            {
+              "unit": "patient",
+              "quote": "45M."
+            },
+            {
+              "unit": "draft",
+              "quote": "No blood pressure, heart rate, oxygen saturation or temperature reported; whether any measurement was taken is unknown."
+            }
+          ]
+        },
+        {
+          "id": "claim_support",
+          "verdict": "pass",
+          "reason": "Supplied passages support immediate care for this symptom combination and concern for ACS with prolonged pressure and arm radiation. EMS is a justified case-specific emergency inference, not a falsely attributed source rule. The collapse instruction has a feasibility defect addressed under safety_net.",
+          "anchors": [
+            {
+              "unit": "source:07998fcde90a103a87bcbc973c0802f3ff03a7c9966f8a76ac741c87963014d2",
+              "quote": "Get immediate medical care if you have chest pain that does not go away, crushing pain or pressure in the chest, or chest pain along with nausea, sweating, dizziness or shortness of breath."
+            },
+            {
+              "unit": "source:19e5b42fc5c0b6b5c49955c69a1648bf2379b977947478fee75165aee3ca9718",
+              "quote": "- Duration: seconds (usually benign), > 20 minutes (concerning for ACS)"
+            }
+          ]
+        },
+        {
+          "id": "safety_net",
+          "verdict": "fail",
+          "reason": "The instruction requires the patient to update the dispatcher after collapse, when they may be unconscious and unable to act. Preserve immediate EMS activation; assign collapse-related dispatcher updates to a bystander only if present.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "If you become faint, short of breath, or collapse, tell the 911 dispatcher immediately and follow their instructions."
+            }
+          ]
+        },
+        {
+          "id": "clarification_delay",
+          "verdict": "pass",
+          "reason": "No question was issued and immediate emergency action is not conditional on an answer or measurements.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "\"questions\":[]"
+            },
+            {
+              "unit": "draft",
+              "quote": "Call 911 now"
+            }
+          ]
+        },
+        {
+          "id": "ownership",
+          "verdict": "pass",
+          "reason": "Emergency services are the appropriate owner. The draft instructs activation without claiming dispatch, acceptance or completed coordination.",
+          "anchors": [
+            {
+              "unit": "draft",
+              "quote": "Call 911 now and stay resting until help arrives; do not drive yourself."
+            }
+          ]
+        }
+      ],
+      "earlyAction": "supported",
+      "earlyCorrection": null,
+      "transportReview": {
+        "mode": "activate_ems",
+        "verdict": "supported",
+        "draftQuote": "Call 911 now and stay resting until help arrives; do not drive yourself.",
+        "activation": null
+      },
+      "ownershipTaskReview": [],
+      "correction": "Change only the ancillary safety-net instruction: tell the patient to report faintness or breathlessness while able, and state that a bystander, if present, should update the dispatcher if the patient collapses or becomes unresponsive. Preserve calling 911 now and not driving.",
+      "repairTargets": [
+        "patientMessage"
+      ],
+      "evidenceQueries": []
+    },
+    "usage": {
+      "inputTokens": 9539,
+      "outputTokens": 1054
+    },
+    "failure": null,
+    "firstTextDeltaMs": 3131,
+    "streamProgress": {
+      "lastTextDeltaMs": 18387,
+      "textDeltaCount": 1047,
+      "textCharacters": 4452
+    },
+    "transportTimings": {
+      "startResolvedMs": 2,
+      "objectResolvedMs": 18520,
+      "usageResolvedMs": 18719,
+      "finishReasonResolvedMs": 18719,
+      "streamEndMs": 18719
+    },
+    "cacheUsage": {
+      "cachedInputTokens": 4202,
+      "cacheCreationInputTokens": 5334
+    },
+    "durationMs": 18719
+  },
+  "estimatedBaseUSD": 0.14809,
+  "accountedInclusiveUSD": 0.1851125,
+  "accountedUSD": 1.6098125
+}
