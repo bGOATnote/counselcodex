@@ -2,7 +2,7 @@
 
 | Surface | Entry point | Behavior |
 | --- | --- | --- |
-| Saved four-model case review | [Public case viewer](https://bgoatnote.github.io/counselcodex/#C49) · [standalone HTML](../publication/medgemma-case-review/index.html) | Inspect all 50 synthetic messages and saved results; no model calls. |
+| Saved case review | [Public case viewer](https://bgoatnote.github.io/counselcodex/#C49) · [standalone HTML](../publication/medgemma-case-review/index.html) | Inspect all 50 synthetic messages and saved results; no model calls. |
 | Live three-bucket demonstration | [http://localhost:4120/stripped](http://localhost:4120/stripped) | Requires the local setup below; each submission makes one provider call. |
 
 The public viewer was verified on 16 September 2026 after successful CI and
@@ -11,23 +11,33 @@ download. Localhost refers to the viewing computer, not the presenter’s server
 The live launcher binds port 4120 to 127.0.0.1.
 [Publication and browser verification](CASE_REVIEW_HANDOFF_2026-09-16.md).
 
-## Saved four-model viewer
+## Saved comparison viewer
 
 Open [the standalone viewer](../publication/medgemma-case-review/index.html)
 directly in a browser. It needs no server, account, API key or internet connection.
 All messages and displayed results are embedded; source links require internet.
 
 Search or select a case, then compare its exact message, physician v3 accepted
-buckets, original CSV label, and saved Fable, MedGemma, Nemotron Nano and historical
-V25 outputs. **Presentation view** hides the index. C49 opens by default; links
-ending in `#C22`, `#C47` or `#C49` select those cases. The Disagreements filter
-specifically covers the six historical Fable/MedGemma differences.
+buckets, original CSV label, and saved Fable, MedGemma and Nemotron Nano responses.
+C49 opens by default; links ending in `#C22`, `#C47` or `#C49` select those cases.
+**Presentation view** hides the index. The fixed **Back to case index** button
+exits that view and focuses the visible index without changing the selected case
+or filters. **Clear filters** is a separate action.
 
-Nano shows unchanged baseline A repetition 1 by default; repetition 2 is selectable.
-V25 has 27 completed releases and 23 incomplete attempts. Missing releases remain
-incomplete, never self-care or agreement; separately issued early actions are
-identified. Its original 21/49 result is preserved separately from the viewer’s
-derived three-bucket comparison against physician v3.
+The Disagreements filter covers only the six historical Fable/MedGemma differences.
+Under/over-escalation filters use the three primary responses and selected Nano
+repetition; repetition 1 has six cases in each filter. Nano shows unchanged
+baseline A repetition 1 by default; repetition 2 is selectable.
+
+The collapsed **Historical pipeline · V25** section retains records for all 50
+cases without adding V25 to primary filters. V25 has 27 completed releases and
+23 incomplete attempts. Missing releases remain incomplete, never self-care or
+agreement; separately issued early actions are identified. Its original 21/49
+result is preserved separately from the viewer’s derived three-bucket comparison
+against physician v3. There is no incomplete-results filter in the primary view.
+
+The Counsel wordmark appears under **Prepared for**. The viewer is an independent
+research demonstration; the branding does not imply affiliation or endorsement.
 
 Physician v3 is a post-output, unblinded assessment of this known development set.
 CSV labels are separate discussion context. Under/over-escalation describes
@@ -104,7 +114,7 @@ Node is needed to run the helper; the documents can also be opened directly:
 - [Presentation PDF](../output/submission-2026-09-15/counsel-disposition-take-home.pdf)
 - [Revised adjudication workbook](../output/submission-2026-09-15/counsel-disposition-adjudication-v3.xlsx)
 - [Frozen Fable requests, outputs and scorecards](../outputs/stripped-3bucket-fable-2026-09-15/)
-- [Four-model case viewer](../publication/medgemma-case-review/index.html): all 50 assignment messages, saved dispositions and rationales, physician v3 and separate CSV labels
+- [Saved case viewer](../publication/medgemma-case-review/index.html): all 50 assignment messages, saved dispositions and rationales, physician v3 and separate CSV labels
 - [Offline workflow-study viewer](../publication/workflow-study-review/README.md): download `index.html` and open it directly in a browser; all 98 messages and 1,568 saved decisions are embedded, with no server, account or external request
 
 These are saved research artifacts, not a live replay or a new provider run.

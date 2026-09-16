@@ -9,7 +9,7 @@ export function buildMedgemmaCaseReview(verify = false) {
   const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
   const historical = loadHistoricalCaseReview(root);
   const data = addHistoricalModels(loadCaseReview(root), historical);
-  const paths = ["scripts/build-medgemma-case-review.mjs", "src/research/medgemma-case-review.mjs", "tests/medgemma-case-review.test.mjs", "scripts/load-historical-case-review.mjs", "tests/historical-case-review.test.mjs"];
+  const paths = ["scripts/build-medgemma-case-review.mjs", "src/research/medgemma-case-review.mjs", "tests/medgemma-case-review.test.mjs", "scripts/load-historical-case-review.mjs", "tests/historical-case-review.test.mjs", "output/submission-2026-09-15/content/assets/counsel-logo.svg", "output/submission-2026-09-15/content/assets/provenance.json"];
   const sourceHashes = Object.fromEntries(paths.map(path => [path, sha256(readFileSync(resolve(root, path)))]));
   publishCaseReview(resolve(root, "publication/medgemma-case-review"), caseReviewArtifacts(data, sourceHashes), verify);
   return { mode: verify ? "verified" : "built", path: "publication/medgemma-case-review/index.html", cases: data.cases.length, disagreementIds: data.disagreementIds, inferenceEnabled: false };

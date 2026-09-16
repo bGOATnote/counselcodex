@@ -95,10 +95,12 @@ found an urgent-reference miss exchanged for another despite an unchanged count.
 
 [Open the saved case review](https://bgoatnote.github.io/counselcodex/#C49): select
 one case to see the full message, physician v3, original CSV disposition, and
-saved responses from **Fable, MedGemma, Nemotron and V25**. Under-escalation,
-over-escalation and incomplete V25 releases are identified separately. The
-CSV remains a discussion reference. Search, deep links and presentation mode
-support a live walkthrough; no model calls or patient input are available.
+saved responses from **Fable, MedGemma and Nemotron**. A collapsed historical
+section retains V25 for examining the earlier pipeline, including its incomplete
+releases. Under/over-escalation filters apply to the three primary responses;
+the CSV remains a discussion reference. **Back to case index** restores navigation
+without losing the selected case or filters. Search, deep links and presentation
+mode support a walkthrough; no model calls or patient input are available.
 [Offline HTML and provenance](publication/medgemma-case-review/README.md).
 
 ## Separate MedGemma 27B comparison
