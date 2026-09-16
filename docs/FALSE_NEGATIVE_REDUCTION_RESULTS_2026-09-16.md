@@ -4,9 +4,11 @@
 
 ## Decision: do not promote the candidate
 
-The added missing-information paragraph **did not improve the observed safety profile**. On the known physician-v3 development set, exact agreement fell from **48/50 to 44/50**. The candidate corrected C47 but retained C22, introduced another clinician-action false negative (C07), and changed three accepted urgent decisions to async review (C04, C43, C49). The frozen GUI and V25 remain unchanged. This experiment stops here; no additional prompt tuning or automatic promotion follows.
+The added missing-information paragraph **did not reduce known missed physician referrals** and introduced three new urgent-reference disagreements. On the known physician-v3 development set, exact agreement fell from **48/50 to 44/50**. The candidate corrected C47 but retained C22, introduced another clinician-action false negative (C07), and changed three accepted urgent decisions to async review (C04, C43, C49). These are fixed-reference results, not observed delays or patient harms. The frozen GUI and V25 remain unchanged. This experiment stops here; no additional prompt tuning or automatic promotion follows.
 
-The 24-case authored challenge improved from 22/24 to 23/24 against **AI-authored, clinically unreviewed proposed labels**. That finding cannot offset the known-case regressions or establish clinical benefit. No patient outcomes, independent physician validation or emergency-action timing were measured.
+The 24-case authored challenge improved from 22/24 to 23/24 against **AI-authored, clinically unreviewed proposed labels**. That finding cannot offset the known-reference regressions or establish clinical benefit. No patient outcomes, independent physician validation or emergency-action timing were measured.
+
+**Service-context clarification:** async care is a communication channel and can be rapid. An async classification does not, by itself, establish delay or an inappropriate next contact. The [Counsel async-care context note](COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md) distinguishes published response-time information from unmeasured completion of examination, testing or treatment. The clinical reference must specify whether it grades next contact or definitive care setting/deadline. This clarification changes no label, score or output.
 
 ## What was tested
 
@@ -30,7 +32,7 @@ The known-set control is the historical 15 September baseline, not a contemporan
 | Outputs requesting clinician action | 41/50 | 42/50 |
 | Failed outputs | 0 | 0 |
 
-“False negative” names its endpoint. Async decisions on urgent-reference cases count as clinician-action positives but **urgent-action false negatives**. A stable 41/43 clinician-action sensitivity therefore hides the three new urgency misses. These statistics use one physician's unblinded post-output v3 reference, including its prior corrections; they are not estimates of deployment sensitivity. Original v2 results remain archived separately.
+“False negative” names its endpoint. Async decisions on urgent-reference cases count as clinician-action positives but **urgent-action false negatives under the frozen reference**. A stable 41/43 clinician-action sensitivity therefore omits the three new urgency disagreements. It does not establish that those async decisions would delay care in a rapid physician workflow. These statistics use one physician's unblinded post-output v3 reference, including its prior corrections; they are not estimates of deployment sensitivity. Original v2 results remain archived separately. Pediatric assignment cases remain in every original denominator despite the public service's adult-only scope, as discussed in the context note.
 
 There were six changed dispositions: C04, C07, C32, C43, C47 and C49. Five became disagreements and C47 became an agreement, a net loss of four. C22 stayed a disagreement. All seven cases appear below with exact messages and both saved rationales.
 
@@ -69,7 +71,7 @@ The following rationales are quoted verbatim for audit. They are model outputs, 
 
 > Diabetic foot wound with spreading redness, swelling, and tenderness suggests early infection needing clinician assessment and likely antibiotics, but no fever, systemic symptoms, or rapidly spreading signs reported to warrant emergency escalation.
 
-The accepted reference requires URGENT_ESCALATION. The candidate recognizes a diabetic foot wound needing assessment but frames the absence of reported emergency/systemic findings as a reason for async routing. The urgent bucket also covers same-day care. Both rationales add “spreading” redness, although the message only describes redness around the wound. The required care setting and turnaround remain matters for an explicit clinical policy; this report does not infer sepsis or a confirmed infection.
+The accepted reference requires URGENT_ESCALATION. The candidate recognizes a diabetic foot wound needing assessment but frames the absence of reported emergency/systemic findings as a reason for async routing. The urgent bucket also covers same-day care. Rapid physician review could coordinate that assessment if the required access and turnaround are available; this experiment did not test that workflow. Both rationales add “spreading” redness, although the message only describes redness around the wound. The required care setting and turnaround remain matters for an explicit clinical policy; this report does not infer sepsis or a confirmed infection.
 
 ### C07: New clinician-action false negative
 
@@ -141,7 +143,7 @@ The candidate requests assessment where the physician-v3 amendment accepts watch
 
 > Three-week cough with night sweats, unintentional weight loss, and TB-endemic origin warrant prompt clinician evaluation for possible TB, but no same-day red flags (hemoptysis, dyspnea, high fever) are reported.
 
-The candidate recognizes possible tuberculosis but selects async based on lack of reported additional acute findings. CDC lists prolonged cough, night sweats and weight loss among possible active-TB symptoms and advises contacting a clinician or health department about testing; it does not define this project’s three buckets. The urgent target is the existing physician reference, and the assessment/infection-control pathway needs explicit clinical-policy review. [CDC TB symptoms](https://www.cdc.gov/tb/signs-symptoms/index.html)
+The candidate recognizes possible tuberculosis but selects async based on lack of reported additional acute findings. CDC lists prolonged cough, night sweats and weight loss among possible active-TB symptoms and advises contacting a clinician or health department about testing; it does not define this project’s three buckets. The urgent target is the existing physician reference. Rapid physician contact might coordinate the assessment/infection-control pathway, but neither its timing nor completion was tested; the contract needs explicit clinical-policy review. [CDC TB symptoms](https://www.cdc.gov/tb/signs-symptoms/index.html)
 
 ### C47: Resolved clinician-action false negative
 
@@ -177,7 +179,7 @@ The candidate now selects the accepted async route and identifies assessment of 
 
 > Pleuritic chest pain in a young patient with a plausible musculoskeletal cause (recent heavy chest workout) and no dyspnea, leg swelling, or smoking. However, chest pain worse with deep breath can indicate pneumothorax, pericarditis, or PE, and key findings (vitals, exertional symptoms, pain reproducibility, recent immobility, oral contraceptive use N/A) are unknown, so clinician assessment is warranted, though reported findings do not meet emergency threshold.
 
-The candidate acknowledges potentially important alternative causes and missing examination information, but concludes the emergency threshold is not met and chooses async. The accepted urgent category includes same-day care as well as emergencies. That distinction merits clinical-policy clarification. No serious cause is diagnosed or ruled out by either message-based rationale.
+The candidate acknowledges potentially important alternative causes and missing examination information, but concludes the emergency threshold is not met and chooses async. The accepted urgent category includes same-day care as well as emergencies. Rapid physician review could be a timely initial contact in a suitable workflow, but the message's appropriate definitive assessment and deadline require clinical adjudication. Neither timeliness nor harmful delay was observed here. No serious cause is diagnosed or ruled out by either message-based rationale.
 
 ### F01: Resolved proposed-label clinician-action miss
 
@@ -255,9 +257,9 @@ The frozen original v2 result remains 44/49 for the selected baseline; 48/50 is 
 ## Next decision and work to complete
 
 1. **Retain the frozen baseline for the research demonstration.** Do not promote this candidate or iterate further within this experiment. Preservation of the baseline is an evidence-control decision, not a deployment recommendation.
-2. **Obtain clinical review of the boundaries.** Review every new and persistent miss above, including the distinction between same-day assessment and immediate emergency action. Define when async review is clinically sufficient and what actual response time and access it would require; do not assume those capabilities exist. Clarify material unknowns without making every missing detail a referral.
+2. **Obtain clinical review of the boundaries.** Review every new and persistent reference disagreement above. Separate the next contact channel, required response time, definitive care setting and completion deadline. Rapid async physician review can be compatible with same-day care; verify the capabilities needed for each use case. Preserve immediate emergency actions that should not wait for messaging. Clarify material unknowns without making every missing detail a referral.
 3. **Review wording and reference validity separately.** Evaluate the complete rationales for unsupported history, overconfident diagnoses and care-setting contradictions. Preserve the original scores and label any later clinical amendments explicitly. F02’s proposed urgent target, in particular, is not physician gold.
 4. **Use genuinely new independently sourced cases for the next clinical study.** Two clinicians label independently, with a third adjudicating disagreements, blinded to model outputs. Freeze the clinical reference, acceptance criteria, cohort and protocol before any generation on those cases. The [reviewer pack](../data/research/fn-reduction-v1/reviewer-pack/README.md) contains blank forms; no signatures or reviews have been fabricated.
 5. **Require independent evidence before a new implementation decision.** Report representative and enriched safety cohorts separately, action and urgency false negatives, false omission, over-referral, severity, subgroup effects and uncertainty. Prospective silent and human-AI workflow studies remain future work under the [validation plan](FALSE_NEGATIVE_REDUCTION_PLAN_2026-09-16.md).
 
-The practical finding is that a general instruction to preserve unknowns was insufficient. One familiar false negative resolved, another persisted, and clinically important routing disagreements appeared elsewhere. The next artifact should be an independently reviewed clinical decision contract and validation reference, rather than an unmeasured claim that more cautious wording makes triage safer.
+The practical finding is that a general instruction to preserve unknowns did not reduce missed physician referrals under the known reference. One familiar false negative resolved, another persisted, and additional routing disagreements appeared elsewhere. Their clinical consequences depend on the actual care workflow and remain unmeasured. The next artifact should be an independently reviewed, service-specific decision contract and validation reference. Any amended accepted routes belong in a new reference version; they must not retroactively replace the frozen evidence or be presented as improved model behavior.

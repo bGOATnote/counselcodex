@@ -6,8 +6,8 @@
 2. [Current physician-adjudication workbook](counsel-disposition-adjudication-v3.xlsx)
 3. [Physician v3 report](../../docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md), [requirements audit](../../docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md), and [evidence/failure review](../../docs/SUBMISSION_RED_TEAM_2026-09-15.md)
 
-Revision 20 contains 31 slides: 15 main slides, including a seven-minute live demo,
-planned for 35 minutes. Sixteen appendix slides support 25 further minutes of discussion.
+Revision 21 contains 32 slides: 15 main slides, including a seven-minute live demo,
+planned for 35 minutes. Seventeen appendix slides support 25 further minutes of discussion.
 [Full narrative and speaker notes](../../docs/INTERVIEW_DECK_2026-09-15.md).
 Current slides and notes contain no financial content or individual recipient names.
 The standard [PowerPoint](counsel-disposition-take-home.pptx) contains the same
@@ -58,7 +58,7 @@ not resolve its omitted pregnancy precautions.
 ## False-negative reduction experiment
 
 Appendix 29 reports a separate prompt experiment that **did not improve the
-known-case result**: agreement fell from 48/50 to 44/50, and three urgent cases
+known-case result**: agreement fell from 48/50 to 44/50, and three urgent-reference cases
 moved to async review. C47 improved, C22 remained missed, C07 became a new missed
 clinician referral, and C32 became an additional referral under the unchanged
 reference. The current GUI was not changed. All 98 planned new calls completed;
@@ -69,6 +69,10 @@ unreviewed labels**. That is not independent physician validation. Appendix 30
 specifies the clinical policy, new independently labeled cases and prospective
 evaluation still required. [Full results and exact paired outputs](../../docs/FALSE_NEGATIVE_REDUCTION_RESULTS_2026-09-16.md)
 and [clinical validation plan](../../docs/FALSE_NEGATIVE_REDUCTION_PLAN_2026-09-16.md).
+Appendix 32 explains that async care can provide same-day physician review.
+Required care timing, communication channel and examination access need separate
+definitions. The study measured label agreement, not treatment delay; see the
+[service-context clarification](../../docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md).
 
 ## Additional timing experiment
 

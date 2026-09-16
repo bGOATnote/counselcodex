@@ -1,6 +1,6 @@
 # Disposition take-home slide narrative
 
-15 main slides and 16 appendix slides. The 35-minute plan includes a seven-minute live demo; reserve 25 further minutes for Q&A.
+15 main slides and 17 appendix slides. The 35-minute plan includes a seven-minute live demo; reserve 25 further minutes for Q&A.
 
 Current demonstration: `/stripped`, Fable 5.1 low effort, three buckets. [PowerPoint](../output/submission-2026-09-15/counsel-disposition-take-home.pptx) · [PDF](../output/submission-2026-09-15/counsel-disposition-take-home.pdf) · [Demo script](DEMO_SCRIPT_2026-09-15.md)
 
@@ -137,7 +137,7 @@ Time: 2 minutes.
 
 | Assignment evidence | Implementation choice |
 | --- | --- |
-| An incoming patient message | Choose the next care setting |
+| An incoming patient message | Choose a care-route bucket |
 | Three supplied disposition labels | Keep the assignment interface |
 | 50 CSV rows; the brief describes 20 | Run and retain every supplied message |
 | Clinical disagreement with supplied labels | Use physician review for clinical evaluation |
@@ -148,11 +148,14 @@ Scope: CSV labels remain an archived discussion baseline. They do not select the
 
 The original file is byte-identical to the supplied CSV and contains 50 messages. I used every row and documented the mismatch with the brief. The CSV contains disagreements relevant to red-flag recognition, so agreement with it is not a model-selection objective. Its historical score is preserved separately for traceability. The clinical target is also subject to review: it must specify when guidance alone is sufficient and when physician action is needed. Internal service levels and access to patient records were not established in this exercise.
 
+The labels are the frozen research interface. They do not fully specify the receiving service or distinguish first physician contact from the location and deadline of definitive assessment. The later service-context review explains why async contact can still support same-day care. No saved label or output changes.
+
 ### Sources
 
 - [docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md](../docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md)
 - [outputs/submission-audit-2026-09-15/audit.json](../outputs/submission-audit-2026-09-15/audit.json)
 - [docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md](../docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md)
+- [docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md](../docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md)
 
 ## Slide 6: The frozen three-bucket contract
 
@@ -167,16 +170,19 @@ Time: 2 minutes.
 - Medication refill → ASYNC_PHYSICIAN unless clear same-day or emergency red flags require escalation.
 - Return one exact bucket and a short rationale as JSON.
 
-Scope: URGENT_ESCALATION merges two levels of urgency. Route agreement does not establish safe timing or transport.
+Scope: Async can provide same-day review. These buckets do not specify response deadlines or confirm completed care.
 
 ### Speaker notes
 
 This is the same three-bucket protocol used for the frozen experiments. It has no new clinical rules or prompt edits. The input is one patient message. The output is one bucket and a rationale. There is no separate patient-response generator, retrieval step, judge call, or queue integration. A rationale can still contain medical advice, so correct routing alone cannot establish its clinical quality. A future operational specification would need to define timing and responsibility for escalation.
 
+ASYNC_PHYSICIAN describes a communication channel, not an assumption of delayed care. Rapid async physician review can be compatible with same-day care, subject to the available clinical capabilities and the required deadline. The urgent bucket in this frozen evaluation still combines same-day in-person care and emergency action. Its saved labels and deterministic scores remain unchanged. The service-context correction does not make all async alternatives clinically interchangeable. A future clinical and operational contract must specify the next contact, necessary care setting, clinical deadline and who confirms completion. None of those service events was measured or implemented in the current prototype.
+
 ### Sources
 
 - [src/stripped/protocol.ts](../src/stripped/protocol.ts)
 - [data/evaluation/physician-adjudication-v3-2026-09-15.json](../data/evaluation/physician-adjudication-v3-2026-09-15.json)
+- [docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md](../docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md)
 
 ## Slide 7: Live demonstration
 
@@ -476,7 +482,7 @@ The original exact-route result was 35 of 49. Collapsing those predictions and t
 | Data and evaluation | All 50 messages; frozen runs; versioned physician scoring |
 | Technical explanation | TypeScript/Mastra workflow and inspectable traces |
 | Discuss tradeoffs and next steps | Case review, evidence limits, independent validation plan |
-| Presentation and demonstration | 15 main slides; 7-minute demo; 16 appendix slides |
+| Presentation and demonstration | 15 main slides; 7-minute demo; 17 appendix slides |
 
 Scope: The project exceeded the original timebox. A timed rehearsal and final submission remain presenter responsibilities.
 
@@ -689,21 +695,21 @@ These are the exact synthetic patient messages from the assignment CSV, shown to
 
 - [data/patient_messages.csv](../data/patient_messages.csv)
 
-## Slide 29: Development experiment: new urgent misses
+## Slide 29: Development: urgent-reference disagreements
 
 | Case set and endpoint | Baseline | New prompt |
 | --- | --- | --- |
 | Known physician reference: agreement | 48/50 | 44/50 |
 | Known: required clinician action missed | 2/43 | 2/43 |
-| Known: required urgent action missed | 0/25 | 3/25 |
+| Known: urgent-reference cases assigned async | 0/25 | 3/25 |
 | Known: unnecessary clinician review | 0/7 | 1/7 |
 | Authored challenge: agreement | 22/24 | 23/24 |
 | Authored challenge: clinician action missed | 1/18 | 0/18 |
-| Authored challenge: urgent action missed | 1/10 | 1/10 |
+| Challenge: urgent-reference cases not urgent | 1/10 | 1/10 |
 
-**Candidate not promoted. Three new urgent routing misses require review.**
+**Async does not imply delayed care. Clinical timing was not measured.**
 
-Scope: Known set: post-output physician reference. Challenge: AI-authored policy checks, no physician approval. GUI unchanged.
+Scope: Known set: unchanged physician reference. Challenge: AI-authored checks without physician approval. Candidate not promoted.
 
 ### Speaker notes
 
@@ -711,9 +717,11 @@ This separate September 16 development experiment retains the Fable 5.1 low-effo
 
 All 98 new calls completed with valid outputs: 50 known-case candidate calls and 24 calls in each authored-challenge arm. The known-case comparator is the previously frozen baseline, not a contemporaneous rerun. All references remained outside generation and scoring followed the completed output freeze. The known physician reference is still the unblinded, post-output v3 adjudication. The authored challenge labels are proposed policy expectations generated for development, with no independent physician approval. Its result must not be described as clinical validation.
 
-On the known set, C47 changes from self-care to the accepted async disposition, while C22 remains a missed review. C07 becomes a new self-care miss and C32 becomes an unnecessary async referral under the unchanged reference. C04, C43 and C49 change from accepted urgent escalation to async review. Their exact messages appear on slide 31. Thus the number of missed clinician-action cases stays at two, while missed urgent action increases from zero to three. The original frozen 48/50 result and the existing GUI remain unchanged.
+On the known set, C47 changes from self-care to the accepted async disposition, while C22 remains a missed review. C07 becomes a new self-care miss and C32 becomes an unnecessary async referral under the unchanged reference. C04, C43 and C49 change from the accepted urgent bucket to async review. Their exact messages appear on slide 31. The missed-clinician-action count stays at two. The frozen scorer counts the three urgent-to-async changes as false negatives against its urgent-reference endpoint. That remains the correct description of the scorer and its unchanged labels. It does not establish that a physician response, examination, investigation or treatment actually occurred late. No such outcomes were measured. The original 48/50 result and selected GUI remain unchanged.
 
-The new urgent errors are important because a generic instruction intended to prevent premature self-care can also shift the boundary between async review and urgent care. Several saved rationales focus on absence of emergency findings even though URGENT_ESCALATION includes same-day assessment. That is a hypothesis from these outputs, not an established causal mechanism. One run per arm does not isolate prompt effects from sampling variation, and related authored challenge cases are not independent samples of clinical prevalence. The authored challenge improvement cannot offset new urgent misses or establish safety. The candidate is not promoted. The next work requires approval of the clinical policy, independent reference labels and locked evaluation criteria before another clinical performance claim.
+ASYNC_PHYSICIAN describes a communication channel and can potentially provide rapid physician assessment and coordinate same-day care. The required time and care capability need separate definitions. These three model/reference disagreements therefore require a clinical and operational contract review before interpreting them as demonstrated undertriage in the actual service. Several saved rationales focus on emergency thresholds even though the frozen urgent bucket includes same-day assessment. That is a hypothesis about the disagreement, not an established causal mechanism or proof that async is inappropriate in every case.
+
+One run per arm does not isolate prompt effects from sampling variation. Related authored challenge cases do not independently sample clinical prevalence. Known-reference agreement falls from 48/50 to 44/50 and the two clinician-action false negatives remain, so this experiment establishes no improvement in the primary known-set missed-action endpoint. Authored checks cannot establish clinical safety. The candidate is not promoted. The next work requires approval of the routing contract, independent reference labels and prospectively defined evaluation criteria.
 
 ### Sources
 
@@ -721,12 +729,13 @@ The new urgent errors are important because a generic instruction intended to pr
 - [outputs/fn-reduction-2026-09-16/scorecard-known-development.json](../outputs/fn-reduction-2026-09-16/scorecard-known-development.json)
 - [outputs/fn-reduction-2026-09-16/scorecard-authored-challenge.json](../outputs/fn-reduction-2026-09-16/scorecard-authored-challenge.json)
 - [docs/FALSE_NEGATIVE_REDUCTION_RESULTS_2026-09-16.md](../docs/FALSE_NEGATIVE_REDUCTION_RESULTS_2026-09-16.md)
+- [docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md](../docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md)
 
 ## Slide 30: Independent validation remains pending
 
 | Owner and work | Evidence required |
 | --- | --- |
-| Clinical policy<br>Clinical lead | Approve self-care eligibility, care timing and handling of clinically material unknowns. |
+| Clinical policy<br>Clinical lead | Separate next contact, required care setting, clinical deadline and service capability before approving routing. |
 | Independent reference<br>Clinical evaluation lead | Two clinicians label new cases without model outputs. A third adjudicates disagreements. |
 | Locked evaluation<br>Evaluation + safety | Freeze new case sets, endpoints and limits. Report severe misses, uncertainty and referral burden. |
 | Prospective review<br>Care operations | After offline criteria pass, evaluate alongside usual care. Verify follow-through, workload and pause rules. |
@@ -735,9 +744,9 @@ Scope: Physician approval, independent clinical labels and prospective testing h
 
 ### Speaker notes
 
-The completed experiment implements a proposed policy as a development hypothesis. It does not establish that the policy is clinically approved, that the authored cases are an independent reference, or that any future workflow is safe for patient care. Those are separate accountable decisions. The prior general instruction did not reduce known-set missed clinician action and introduced urgent-routing disagreements. Avoid repeatedly tuning against these known misses while calling the same cases independent evidence. Preserve this negative result and freeze any future protocol before evaluation.
+The completed experiment implements a proposed policy as a development hypothesis. It does not establish that the policy is clinically approved, that the authored cases are an independent reference, or that any future workflow is safe for patient care. Those are separate accountable decisions. The prior general instruction did not reduce known-set missed clinician action and introduced urgent-routing disagreements. Avoid repeatedly tuning against these known misses while calling the same cases independent evidence. Preserve this result and freeze any future protocol before evaluation.
 
-The clinical lead must first define what evidence permits SELF_CARE, what information is material to that decision, and when urgent care means emergency action now versus in-person assessment today. Care operations must review whether the selected action can occur within the required interval. Missing information alone should not be treated as an emergency diagnosis. The operational policy needs a verified pathway when review is recommended.
+The clinical lead must first define what evidence permits SELF_CARE and what information is material to that decision. The routing contract must distinguish the next contact from the setting in which care must be completed, the required clinical deadline, and the capability of the available pathway. Async physician contact can be compatible with same-day care. It does not establish whether an examination, testing or treatment can actually occur within the needed interval. Care operations must verify that capability and the process for completing a recommended transfer or assessment. Missing information alone should not be treated as an emergency diagnosis. A response-time average cannot substitute for the required case-specific deadline.
 
 The clinical evaluation lead should obtain two independent clinician labels without showing model answers, with a third reviewer adjudicating disagreements. Freeze the reference and severity definitions before inference. Use a representative set for false reassurance and referral burden, plus a separately reported enriched set for rare or high-consequence misses. Neither a single aggregate agreement score nor zero misses in a small convenient sample establishes safety. Prespecify statistical uncertainty, relevant subgroup checks, run-to-run reliability and clinically approved acceptance limits. No numeric clinical threshold is asserted here.
 
@@ -749,8 +758,9 @@ Only after offline evidence supports continuation should the team assess the sug
 - [docs/FALSE_NEGATIVE_REDUCTION_RESULTS_2026-09-16.md](../docs/FALSE_NEGATIVE_REDUCTION_RESULTS_2026-09-16.md)
 - [https://www.imdrf.org/sites/default/files/2025-02/IMDRF_AIML%20WG_GMLP_N88%20Final.pdf](https://www.imdrf.org/sites/default/files/2025-02/IMDRF_AIML%20WG_GMLP_N88%20Final.pdf)
 - [https://www.nature.com/articles/s41591-022-01772-9](https://www.nature.com/articles/s41591-022-01772-9)
+- [docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md](../docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md)
 
-## Slide 31: Case text: new urgent-routing misses
+## Slide 31: Case text: care-setting disagreements
 
 | Case | Exact patient message |
 | --- | --- |
@@ -758,13 +768,45 @@ Only after offline evidence supports continuation should the team assess the sug
 | C43 | 34M. I've had a cough for about three weeks now with night sweats and I've lost maybe 10 pounds without trying. I moved here from a country where TB is common. |
 | C49 | 28M. Sharp pain on the left side of my chest since yesterday, worse when I take a deep breath. I did a heavy chest workout two days ago. No shortness of breath, no leg swelling, I don't smoke. |
 
-Scope: The new prompt assigns ASYNC_PHYSICIAN to all three. Frozen baseline and unchanged physician reference assign URGENT_ESCALATION.
+Scope: Candidate: ASYNC_PHYSICIAN. Frozen baseline and reference: URGENT_ESCALATION. Clinical timing and completed care were not measured.
 
 ### Speaker notes
 
-These are the exact synthetic assignment messages, reproduced from the labels-free input file verified against the frozen baseline requests. They entered the separate candidate generation without case IDs or reference labels. C04, C43 and C49 are three new urgent-action false negatives under the unchanged physician v3 reference: the candidate still requests clinician review but assigns async instead of urgent care. The table records a routing disagreement, not an observed patient outcome or a confirmed diagnosis. No case-specific runtime rule or label revision follows from this review. All three cases and rationales remain in the frozen development scorecard. No CSV label serves as a clinical target.
+These are the exact synthetic assignment messages, reproduced from the labels-free input file verified against the frozen baseline requests. They entered the separate candidate generation without case IDs or reference labels. For C04, C43 and C49, the candidate still requests clinician review but assigns async rather than the urgent bucket required by physician reference v3. The frozen scorer therefore counts all three as urgent-reference false negatives. This records a label disagreement. It does not show whether the next physician contact or necessary care would have been delayed.
+
+A rapid async pathway could potentially assess the presentation and coordinate same-day care when the required capabilities and deadline are confirmed. That conditional possibility requires clinical and operational validation. It does not make every async route acceptable and does not change the saved labels or this experiment’s 44/50 agreement. No observed patient outcome or confirmed diagnosis is established here. No case-specific runtime rule or label revision follows from this review. All three cases and rationales remain in the frozen development scorecard. No CSV label serves as a clinical target.
 
 ### Sources
 
 - [outputs/fn-reduction-2026-09-16/known-messages.json](../outputs/fn-reduction-2026-09-16/known-messages.json)
+- [outputs/fn-reduction-2026-09-16/scorecard-known-development.json](../outputs/fn-reduction-2026-09-16/scorecard-known-development.json)
+- [docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md](../docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md)
+
+## Slide 32: Async care and required clinical timing
+
+| Dimension | Question to specify | Evidence required |
+| --- | --- | --- |
+| Contact channel | How does the patient reach a clinician? | Observed time to an appropriate physician response |
+| Clinical timing | When must assessment or treatment occur? | A clinically approved deadline for the required action |
+| Care capability | What can the pathway complete or arrange? | Verified examination, testing or transfer when required |
+
+- Counsel reports an average 2-minute physician response. This is not a guarantee for a particular case.
+
+Scope: Physician response time does not measure time to examination, testing or completed care. No such timing was measured here.
+
+### Speaker notes
+
+The FAQ qualifies access by clinical hours, 8am–9pm daily. Informed consent describes primarily asynchronous care, with in-person limits and emergency instructions. Sources accessed 16 September 2026.
+
+This public service description provides context for interpreting a communication channel. It does not establish a guaranteed response for a particular case, an end-to-end clinical deadline, or verified availability of an examination, testing, treatment or transfer. The prototype measured provider inference latency, not those clinical events.
+
+For a future approved policy, rapid async physician assessment could be an appropriate first contact when the pathway can complete or arrange the clinically required next action within its deadline. This is a proposed conditional routing contract for evaluation, not a statement of Counsel’s internal clinical policy or a treatment recommendation for these synthetic cases. Emergency presentations still require a separately defined immediate-action policy. No queue, service-availability logic, new physician label or runtime promotion is implemented by this presentation.
+
+The next review should determine whether the bucket represents the first contact or the required final care setting. Future labels and measurement should then follow that definition. Frozen baseline and candidate predictions and reference scores remain intact, with the development disagreements reported transparently.
+
+### Sources
+
+- [https://www.counselhealth.com/](https://www.counselhealth.com/)
+- [https://www.counselhealth.com/informed-consent](https://www.counselhealth.com/informed-consent)
+- [docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md](../docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md)
 - [outputs/fn-reduction-2026-09-16/scorecard-known-development.json](../outputs/fn-reduction-2026-09-16/scorecard-known-development.json)

@@ -16,7 +16,7 @@ The frozen baseline produced 41 true positives, 7 true negatives, 0 false positi
 - False omission proportion among SELF_CARE outputs: **2/9**.
 - Urgent-bucket sensitivity: **25/25** on this development set.
 
-These are different endpoints. An async answer to an urgent case is positive for clinician action but can still dangerously delay care. The urgent bucket also combines immediate emergency action and same-day assessment; agreement cannot certify timing. These are synthetic cases with a single physician's post-output reference revision, not observed patient harm, an independent clinical study or an estimate of deployment safety.
+These are different endpoints. An async answer to an urgent-reference case is positive for clinician action and negative for that reference's urgent endpoint. It does not by itself establish delay: rapid physician messaging could coordinate appropriate same-day care. The urgent bucket combines immediate emergency action and same-day assessment, while async names a communication channel. The study measured neither actual care timing nor completion. These are synthetic cases with a single physician's post-output reference revision, not observed patient harm, an independent clinical study or an estimate of deployment safety. See the [service-context clarification](COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md).
 
 ## C22 and C47 hazard records
 
@@ -40,6 +40,8 @@ Sleep evaluation considers daytime effects and sleep, medical and psychiatric hi
 ## Proposed decision contract
 
 The clinical lead must approve or amend this contract before it becomes a clinical service policy. The present implementation can test it as an explicitly unapproved research hypothesis.
+
+For a service-specific contract, define whether the target is the next appropriate contact or the required definitive care setting and deadline. Specify response time, clinical capability and time to completed assessment separately. Published rapid-response descriptions are relevant context but are not proof of any particular patient's timely definitive care. C22/C47 self-care decisions still omit the physician referral required by the existing reference, regardless of how fast that physician channel could respond.
 
 | Bucket | Proposed decision boundary |
 | --- | --- |
@@ -82,7 +84,7 @@ The frozen study plan specifies the automated comparison endpoints. The addition
 | Exact bucket agreement | Prediction is in the frozen accepted bucket set. | Numerator, denominator and every disagreement; do not use as the sole safety metric. |
 | Clinician-action false negative | Reference requires async or urgent action; output is self-care. | TP, FN and sensitivity TP/(TP+FN); exact case IDs. |
 | False omission proportion | FN/(FN+TN), among model self-care outputs. | Numerator and denominator; undefined if no self-care output. Depends on case prevalence. |
-| Urgency false negative | Reference requires URGENT_ESCALATION; prediction is either other bucket. | Separate from clinician-action FN, including urgent-reference cases assigned async. |
+| Urgency false negative | Reference requires URGENT_ESCALATION; prediction is either other bucket. | Separate from clinician-action FN, including urgent-reference cases assigned async. This label comparison alone does not establish workflow delay or harm. |
 | Unnecessary clinician action | Reference accepts only self-care; prediction requests async or urgent care. | FP, specificity and referral fraction; inspect workload and harm from unnecessary escalation. |
 | Severity and timing | Clinical review of the potential consequence and delay associated with each miss. | Case-level assessments; no arbitrary weighted average that hides a severe miss. Three-bucket output cannot establish emergency timing. |
 | Unsupported negative findings | A rationale asserts absent findings not supported by input. | Independent clinical annotation of exact text spans; an automated phrase check is only a screening aid. |
@@ -102,6 +104,8 @@ The [reviewer pack](../data/research/fn-reduction-v1/reviewer-pack/README.md) se
 - **Prospective validation:** independently source new cases from a defined intended population, with an enriched safety cohort reported separately. Exclude C01–C50, F01–F24 and closely related paraphrase families. Handle related patients/episodes as clusters. Obtain required permissions and privacy review outside the public repository.
 
 For new cases, reviewer A and reviewer B first label independently without model outputs, proposed AI labels or each other's decisions. A third clinician adjudicates disagreements while blinded to model outputs. Retain disagreements and uncertainty rather than silently forcing consensus. Record actual reviewer identities/credentials, timestamps, source permissions, signed attestations and artifact hashes; never manufacture these fields. Freeze the reference, study protocol, approved acceptance criteria and prompt before generation. Revisions remain append-only with their effect separately reported. An unresolved reference has an explicit excluded/ambiguous denominator, not a conveniently chosen label after seeing a prediction.
+
+A service-specific review of the existing cases may conclude that rapid physician review is an acceptable next contact even where definitive same-day assessment is needed. Record such a conclusion with its capability/timing assumptions in a new clinical reference version. Do not silently change v3, the experiment scores or the original denominators. The assignment includes pediatric cases outside the public service's stated adult scope; retain their historical scores and define intended-use eligibility prospectively.
 
 ## Prospective silent evaluation and human-AI workflow
 

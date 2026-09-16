@@ -62,6 +62,13 @@ C07 became a new missed clinician referral, and C04/C43/C49 moved from urgent
 to async. C32 became an additional referral against its accepted self-care label.
 Required clinician action remained **41/43**; urgent routing fell **25/25 → 22/25**.
 
+These are disagreements with the frozen reference, not measured treatment
+delays. **Async describes a communication channel and can provide same-day
+physician review.** The [Counsel service-context clarification](docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md)
+separates physician response, required care timing and access to examination or
+testing. A revised service-specific policy requires prospective clinical review;
+the original scores and references remain unchanged.
+
 On a separate 24-case challenge, agreement changed **22/24 → 23/24** against
 **AI-authored, unreviewed proposed labels**. Those are development checks, not
 physician agreement or independent clinical validation. The experiment stopped

@@ -11,6 +11,7 @@
 7. [Project disclosures](../DISCLOSURES.md), [security boundary](../SECURITY.md) and [publication review](PUBLICATION_REVIEW_2026-09-16.md).
 8. [Presentation and repository red-team review](PRESENTATION_REPO_RED_TEAM_2026-09-16.md) and [Google Slides import guide](GOOGLE_SLIDES_IMPORT.md).
 9. [False-negative reduction results](FALSE_NEGATIVE_REDUCTION_RESULTS_2026-09-16.md), [clinical validation plan](FALSE_NEGATIVE_REDUCTION_PLAN_2026-09-16.md), and [clinician-review templates](../data/research/fn-reduction-v1/reviewer-pack/README.md). The separate candidate was not adopted into the GUI.
+10. [Counsel async service context](COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md): communication channel, clinical deadline and examination needs are separate dimensions. Frozen label disagreement alone does not establish a treatment delay.
 
 ## Current implementation
 
