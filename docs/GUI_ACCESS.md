@@ -1,11 +1,37 @@
-# Open the current demonstration
+# Open the demonstration and saved case review
 
-The canonical live address is [http://localhost:4120/stripped](http://localhost:4120/stripped).
-On another computer, follow the setup below; localhost refers to that computer,
-not the presenter’s server. The public repository and saved documents can be
-reviewed without starting a server.
-This is the current three-bucket synthetic-message demonstration.
-The launcher always uses port 4120 and binds the server to 127.0.0.1.
+| Surface | Entry point | Behavior |
+| --- | --- | --- |
+| Saved four-model case review | [Public publishing target](https://bgoatnote.github.io/counselcodex/#C49) · [standalone HTML](../publication/medgemma-case-review/index.html) | Inspect all 50 synthetic messages and saved results; no model calls. |
+| Live three-bucket demonstration | [http://localhost:4120/stripped](http://localhost:4120/stripped) | Requires the local setup below; each submission makes one provider call. |
+
+The public viewer URL is the deployment target; verify publication before sharing
+it as an available hosted service. The standalone HTML works now from a checkout
+or after download. Localhost refers to the viewing computer, not the presenter’s
+server. The live launcher binds port 4120 to 127.0.0.1.
+
+## Saved four-model viewer
+
+Open [the standalone viewer](../publication/medgemma-case-review/index.html)
+directly in a browser. It needs no server, account, API key or internet connection.
+All messages and displayed results are embedded; source links require internet.
+
+Search or select a case, then compare its exact message, physician v3 accepted
+buckets, original CSV label, and saved Fable, MedGemma, Nemotron Nano and historical
+V25 outputs. **Presentation view** hides the index. C49 opens by default; links
+ending in `#C22`, `#C47` or `#C49` select those cases. The Disagreements filter
+specifically covers the six historical Fable/MedGemma differences.
+
+Nano shows unchanged baseline A repetition 1 by default; repetition 2 is selectable.
+V25 has 27 completed releases and 23 incomplete attempts. Missing releases remain
+incomplete, never self-care or agreement; separately issued early actions are
+identified. Its original 21/49 result is preserved separately from the viewer’s
+derived three-bucket comparison against physician v3.
+
+Physician v3 is a post-output, unblinded assessment of this known development set.
+CSV labels are separate discussion context. Under/over-escalation describes
+completed route differences, not measured harm or independent clinical validation.
+See the [viewer methods and verification guide](../publication/medgemma-case-review/README.md).
 
 ## Live GUI
 
@@ -77,6 +103,7 @@ Node is needed to run the helper; the documents can also be opened directly:
 - [Presentation PDF](../output/submission-2026-09-15/counsel-disposition-take-home.pdf)
 - [Revised adjudication workbook](../output/submission-2026-09-15/counsel-disposition-adjudication-v3.xlsx)
 - [Frozen Fable requests, outputs and scorecards](../outputs/stripped-3bucket-fable-2026-09-15/)
+- [Four-model case viewer](../publication/medgemma-case-review/index.html): all 50 assignment messages, saved dispositions and rationales, physician v3 and separate CSV labels
 - [Offline workflow-study viewer](../publication/workflow-study-review/README.md): download `index.html` and open it directly in a browser; all 98 messages and 1,568 saved decisions are embedded, with no server, account or external request
 
 These are saved research artifacts, not a live replay or a new provider run.

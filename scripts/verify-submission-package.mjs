@@ -35,8 +35,18 @@ assert.equal(manifest.presentation.localDemoURL, canonicalURL);
 assert.equal(manifest.repository.canonicalLocalGUI, canonicalURL);
 assert.equal(manifest.repository.guiAccessGuide, guideURL);
 assert.deepEqual(manifest.presentation.coverLinks, [canonicalURL, guideURL]);
-assert.deepEqual(manifest.presentation.falseNegativeSlides, { C22: 2, C47: 3 });
-assert.equal(manifest.presentation.historicalArchitectureSlide, 4);
+assert.deepEqual(manifest.presentation.falseNegativeSlides, { C22: 2, C47: 3, C49: 4 });
+assert.equal(manifest.presentation.historicalArchitectureSlide, 5);
+const reviewURL = "https://bgoatnote.github.io/counselcodex/#C49";
+assert.equal(deck.slides[3].caseReviewLink.url, reviewURL);
+assert.equal(deck.slides[8].caseReviewLink.url, reviewURL);
+const c49 = json("outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/comparison-fable.json").rows.find(row => row.id === "C49");
+assert.equal(deck.slides[3].body[0], c49.message);
+for (const [index, model] of ["fable", "medgemma"].entries()) {
+  assert.equal(deck.slides[3].comparisons[index].disposition, c49[model].disposition);
+  assert.equal(deck.slides[3].comparisons[index].rationale, c49[model].rationale);
+}
+assert.deepEqual(c49.acceptedBuckets, ["URGENT_ESCALATION"]);
 
 // Only visible slide text counts as a reproduced case message, not speaker notes.
 const cases = new Map(parseCsv(read("data/patient_messages.csv").toString()).map((row) => [row.id, row.message]));

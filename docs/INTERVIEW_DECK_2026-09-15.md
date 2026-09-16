@@ -1,6 +1,6 @@
 # Disposition take-home slide narrative
 
-15 main slides and 30 appendix slides. The 35-minute plan includes a seven-minute live demo; reserve 25 further minutes for Q&A.
+16 main slides and 30 appendix slides. The 35-minute plan includes a seven-minute live demo; reserve 25 further minutes for Q&A.
 
 Current demonstration: `/stripped`, Fable 5.1 low effort, three buckets. [PowerPoint](../output/submission-2026-09-15/counsel-disposition-take-home.pptx) · [PDF](../output/submission-2026-09-15/counsel-disposition-take-home.pdf) · [Demo script](DEMO_SCRIPT_2026-09-15.md)
 
@@ -34,7 +34,7 @@ This is an independent synthetic prototype for the take-home assignment. I will 
 
 The September 16 study completed 1,568 one-shot calls with two models, four arms and two repetitions over 98 unique development messages. Its contemporaneous identical-request Fable baseline returned 45/50 and 46/50 against the unchanged physician v3 reference. Historical 48/50 remains an observation, not a stable or independently validated performance level. The demo retains the historical protocol; no new research arm is promoted. The original v2 result remains 44/49. Main slides show the current findings, and appendices preserve the historical comparisons.
 
-Open with the shared clinical problem: a reassuring routing error can delay necessary assessment, while unnecessary escalation consumes attention. I built the smallest executable contract and made its behavior inspectable. I tested added complexity, retained the failures and kept the demonstration simple because the additional components did not establish a reliable improvement. The expanded project exceeded the original assignment timebox; it is not presented as an eight-hour build. The first four slides establish the concrete failure and the historical architecture before discussing the proposed evaluation controls.
+Open with the shared clinical problem: a reassuring routing error can delay necessary assessment, while unnecessary escalation consumes attention. I built the smallest executable contract and made its behavior inspectable. I tested added complexity, retained the failures and kept the demonstration simple because the additional components did not establish a reliable improvement. The expanded project exceeded the original assignment timebox; it is not presented as an eight-hour build. The first five slides establish the concrete failures and the historical architecture before discussing the proposed evaluation controls.
 
 ### Sources
 
@@ -66,7 +66,7 @@ Physician: ASYNC_PHYSICIAN
 
 **Potential harm: delayed evaluation of an injury that could include a fracture.**
 
-Scope: C22’s text does not establish Ottawa criteria or a fracture diagnosis. Ottawa criteria are discussed in appendix 16.
+Scope: C22’s text does not establish Ottawa criteria or a fracture diagnosis. Ottawa criteria are discussed in appendix 17.
 
 ### Speaker notes
 
@@ -124,9 +124,49 @@ The new baseline and explicit care-pathway Fable arms repeat the SELF_CARE route
 - [docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md](../docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md)
 - [docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md](../docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md)
 
-## Slide 4: Prior architecture: results and roadmap
+## Slide 4: C49: urgent care classified as async
 
 Time: 2 minutes.
+
+[Interactive saved-case review](https://bgoatnote.github.io/counselcodex/#C49)
+
+- 28M. Sharp pain on the left side of my chest since yesterday, worse when I take a deep breath. I did a heavy chest workout two days ago. No shortness of breath, no leg swelling, I don't smoke.
+
+- **Physician gold (v3):** URGENT_ESCALATION
+- **Original CSV (discussion baseline):** ASYNC_PHYSICIAN
+
+**Fable 5.1 (historical): URGENT_ESCALATION**
+
+New chest pain requires same-day clinical evaluation despite likely musculoskeletal cause; cannot safely rule out cardiac or pulmonary causes via message.
+
+**MedGemma 27B (Q5_K_M): ASYNC_PHYSICIAN**
+
+Chest pain, but no red flags (SOB, leg swelling, smoking) and possible musculoskeletal cause (heavy workout).
+
+**Urgent false negative: MedGemma routes this message to async**
+
+Scope: Clinician review retained. Urgent care setting missed under physician v3. No observed patient harm.
+
+### Speaker notes
+
+Read the exact synthetic C49 message before comparing responses. The historical Fable low-effort run chose URGENT_ESCALATION. The local MedGemma 27B text-instruct Q5_K_M run chose ASYNC_PHYSICIAN. Both short rationales on this slide are verbatim saved outputs. Physician adjudication v3 accepts URGENT_ESCALATION, mapped from SAME_DAY_IN_PERSON, while the original assignment CSV says ASYNC_PHYSICIAN. The CSV label is a separate discussion baseline, not physician gold. MedGemma therefore has an urgent-endpoint false negative even though it retains clinician involvement. This distinction prevents zero missed clinician referrals from being misread as zero clinically important undertriage. An association with exercise does not resolve the uncertainty expressed in the physician reference. This slide establishes a disagreement with that reference, not a diagnosis or an observed adverse outcome.
+
+Across the 50 familiar development messages, MedGemma agreed on 46, resolved the historical C22/C47 missed clinician referrals, and added referrals on C32/C34/C38 plus this urgent-reference miss. Historical Fable agreed on 48; later identical-request repetitions produced 45 and 46. Model family, quantization, serialization and runtime differ, so this is not a controlled model-weight or latency comparison. The single-physician reference was revised after reviewing prior outputs and is not independent clinical validation. No candidate is promoted.
+
+The linked static viewer shows one case at a time, its full message, physician reference, original CSV label and saved model responses. Fable means the historical run, not the later study controls. Nemotron repetitions and the historical V25 contract are labeled separately. Incomplete V25 runs are not converted to a benign disposition or silently presented as completed model decisions. The viewer performs no inference and can be downloaded for offline use. Original generation requests and frozen references remain unchanged.
+
+### Sources
+
+- [data/patient_messages.csv](../data/patient_messages.csv)
+- [data/evaluation/physician-adjudication-v3-2026-09-15.json](../data/evaluation/physician-adjudication-v3-2026-09-15.json)
+- [outputs/stripped-3bucket-fable-2026-09-15/C49-parsed.json](../outputs/stripped-3bucket-fable-2026-09-15/C49-parsed.json)
+- [outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C49-parsed.json](../outputs/stripped-3bucket-medgemma-27b-q5-2026-09-16/C49-parsed.json)
+- [docs/MEDGEMMA_27B_COMPARISON_2026-09-16.md](../docs/MEDGEMMA_27B_COMPARISON_2026-09-16.md)
+- [https://bgoatnote.github.io/counselcodex/#C49](https://bgoatnote.github.io/counselcodex/#C49)
+
+## Slide 5: Prior architecture: results and roadmap
+
+Time: 1 minute.
 
 Next: test the simple baseline on unseen cases. Add one component only if it reduces clinically important misses.
 
@@ -138,7 +178,7 @@ Scope: Historical proposed design; not every component ran in V25. “Release/sh
 
 ### Speaker notes
 
-The user supplied this historical roadmap diagram. It records a proposed architecture, not the current implementation. Its Current Candidate, Release / Ship, and Gold Rubric labels are historical and must not be read as present claims. The diagram includes proposed components and is not evidence that every pictured component executed in frozen V25. In particular, the completed V25 audit reports zero judge calls. The earlier evaluated approach did not meet the intended full-response contract consistently. V25 completed 27 of 50 first attempts, delivered 21 exact-route agreements among 49 eligible cases, and had 22/49 post-hoc three-bucket agreement, with only C12 changing under the collapse. Median final latency among 27 completes was 18.63 seconds. These original v2 results remain unchanged and have not been rescored against v3 here. Release means an application output in this evaluation, not clinical deployment. The stripped baseline changes the contract, prompt, configuration, and responsibilities together, so the comparison does not isolate the effect of any individual component. The present producer receives only the frozen protocol and patient message; physician gold enters offline scoring after the outputs are frozen. This history motivates establishing a simple baseline early and adding complexity only against a prespecified failure mode. The current GUI does not replace or alter V25. Exact C12 text appears in appendix 27.
+The user supplied this historical roadmap diagram. It records a proposed architecture, not the current implementation. Its Current Candidate, Release / Ship, and Gold Rubric labels are historical and must not be read as present claims. The diagram includes proposed components and is not evidence that every pictured component executed in frozen V25. In particular, the completed V25 audit reports zero judge calls. The earlier evaluated approach did not meet the intended full-response contract consistently. V25 completed 27 of 50 first attempts, delivered 21 exact-route agreements among 49 eligible cases, and had 22/49 post-hoc three-bucket agreement, with only C12 changing under the collapse. Median final latency among 27 completes was 18.63 seconds. These original v2 results remain unchanged and have not been rescored against v3 here. Release means an application output in this evaluation, not clinical deployment. The stripped baseline changes the contract, prompt, configuration, and responsibilities together, so the comparison does not isolate the effect of any individual component. The present producer receives only the frozen protocol and patient message; physician gold enters offline scoring after the outputs are frozen. This history motivates establishing a simple baseline early and adding complexity only against a prespecified failure mode. The current GUI does not replace or alter V25. Exact C12 text appears in appendix 28.
 
 Describe the initial architecture as an overextended scope with incomplete delivery, then show the simpler contract and the subsequent bounded experiments. The accurate conclusion is that added components did not establish a reliable improvement. Do not suggest that the later expanded research was completed inside the original take-home timebox or that an unfinished feature is already integrated.
 
@@ -148,7 +188,7 @@ Describe the initial architecture as an overextended scope with incomplete deliv
 - [outputs/submission-audit-2026-09-15/audit.json](../outputs/submission-audit-2026-09-15/audit.json)
 - [output/submission-2026-09-15/content/assets/provenance.json](../output/submission-2026-09-15/content/assets/provenance.json)
 
-## Slide 5: Reduce missed care and unnecessary escalation
+## Slide 6: Reduce missed care and unnecessary escalation
 
 Time: 2 minutes.
 
@@ -178,7 +218,7 @@ Next, two physicians independently label new cases without seeing model outputs,
 - [docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md](../docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md)
 - [https://aci.health.nsw.gov.au/ecat/appendices/ottawa-ankle-adult](https://aci.health.nsw.gov.au/ecat/appendices/ottawa-ankle-adult)
 
-## Slide 6: Validate the judge before relying on it
+## Slide 7: Validate the judge before relying on it
 
 Time: 2 minutes.
 
@@ -214,7 +254,7 @@ Counsel’s supplied report describes specialized condition-specific judges over
 - [src/mastra/workflows/quality-audit-workflow.ts](../src/mastra/workflows/quality-audit-workflow.ts)
 - [src/evaluation/handoff-graders.mjs](../src/evaluation/handoff-graders.mjs)
 
-## Slide 7: Add RAG only for a demonstrated gap
+## Slide 8: Add RAG only for a demonstrated gap
 
 Time: 2 minutes.
 
@@ -249,9 +289,11 @@ The selected live GUI remains message-only and invokes no retrieval. These exper
 - [docs/WORKFLOW_EVIDENCE_REVIEW_2026-09-16.md](../docs/WORKFLOW_EVIDENCE_REVIEW_2026-09-16.md)
 - [docs/RETRIEVAL_CANDIDATE_AUDIT_2026-09-16.md](../docs/RETRIEVAL_CANDIDATE_AUDIT_2026-09-16.md)
 
-## Slide 8: Live demo: inspect the decision
+## Slide 9: Live demo: inspect the decision
 
 Time: 7 minutes.
+
+[Interactive saved-case review](https://bgoatnote.github.io/counselcodex/#C49)
 
 1. Run one message
 2. Inspect configuration
@@ -261,8 +303,6 @@ Time: 7 minutes.
 - Edit the message; confirm that the prior answer clears.
 
 **One message. One provider call. One bucket and rationale.**
-
-Scope: Live /stripped and saved offline review are separate. Exact inputs: appendix 23.
 
 ### Speaker notes
 
@@ -274,9 +314,11 @@ Keep the interface simple and use the demonstration to expose the implementation
 
 Suggested seven-minute sequence: one minute to establish the contract and choose the routine case, two minutes for urgent and refill submissions, one minute to edit and inspect stale-result handling, one minute for the frozen configuration and single-call implementation, and two minutes in the separate offline case viewer to compare saved failures and repetitions. Use actual live output; preserve unexpected answers. If provider timing prevents completion, explicitly switch to a dated saved result. No benchmark score is attached to a new live answer. Traces expose the request and returned rationale, not hidden chain of thought.
 
-The submitted brief accepts a lightweight prompt-driven build. The value demonstrated is an executable contract, inspectable behavior, error handling and reproducible evaluation. Judge and retrieval experiments on slides 6 and 7 are not live features. The original 48/50 is historical saved-output agreement; fresh identical-request controls returned 45/50 and 46/50.
+The submitted brief accepts a lightweight prompt-driven build. The value demonstrated is an executable contract, inspectable behavior, error handling and reproducible evaluation. Judge and retrieval experiments on slides 7 and 8 are not live features. The original 48/50 is historical saved-output agreement; fresh identical-request controls returned 45/50 and 46/50.
 
 During the prepared walkthrough, keep Request & response trace collapsed and use Model configuration plus the short workflow implementation to explain the call boundary. Complete trace records remain available for separate technical inspection. The saved-result viewer is a separate local page, not an integrated feature of the live classifier.
+
+Use the static case-review link to inspect C49, C22 and C47. It shows the original CSV label separately from physician v3, and compares saved Fable, MedGemma, Nemotron and historical V25 outputs. Case links replace the prior case in view. Use the downloaded HTML as an offline fallback. This is saved output review, not additional live inference.
 
 ### Sources
 
@@ -288,10 +330,11 @@ During the prepared walkthrough, keep Request & response trace collapsed and use
 - [tests/stripped-gui-workflow.test.mjs](../tests/stripped-gui-workflow.test.mjs)
 - publication/workflow-study-review/README.md
 - [docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md](../docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md)
+- [https://bgoatnote.github.io/counselcodex/#C49](https://bgoatnote.github.io/counselcodex/#C49)
 
-## Slide 9: Revised labels changed the historical score
+## Slide 10: Revised labels changed the historical score
 
-Time: 2 minutes.
+Time: 1 minute.
 
 | Reference | Agreement | Change |
 | --- | --- | --- |
@@ -301,7 +344,7 @@ Time: 2 minutes.
 
 - Same model outputs. Revised physician labels.
 
-Scope: Single physician, post-output review. Independent validation remains pending. Exact messages: appendices 24–25.
+Scope: Single physician, post-output review. Independent validation remains pending. Exact messages: appendices 25–26.
 
 ### Speaker notes
 
@@ -316,7 +359,7 @@ These are historical saved outputs. New identical-request repetitions against th
 - [docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md](../docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md)
 - [docs/STRIPPED_STRATIFICATION_FABLE_2026-09-15.md](../docs/STRIPPED_STRATIFICATION_FABLE_2026-09-15.md)
 
-## Slide 10: Workflow context produced mixed results
+## Slide 11: Workflow context produced mixed results
 
 Time: 3 minutes.
 
@@ -346,7 +389,7 @@ Rapid async context repetition 2 fixes C49 but newly assigns C43 to async, leavi
 - [outputs/workflow-aware-disposition-2026-09-16/study/scorecard-workflow-aware.json](../outputs/workflow-aware-disposition-2026-09-16/study/scorecard-workflow-aware.json)
 - [data/evaluation/physician-adjudication-v3-2026-09-15.json](../data/evaluation/physician-adjudication-v3-2026-09-15.json)
 
-## Slide 11: Correct routing still needs a sound rationale
+## Slide 12: Correct routing still needs a sound rationale
 
 Time: 2 minutes.
 
@@ -358,7 +401,7 @@ Time: 2 minutes.
 
 - These are reference corrections, not model improvements.
 
-Scope: Physician corrections apply to these cases. Rationale quality is a separate, unscored endpoint. Exact patient messages: appendix 25.
+Scope: Physician corrections apply to these cases. Rationale quality is a separate, unscored endpoint. Exact patient messages: appendix 26.
 
 ### Speaker notes
 
@@ -371,7 +414,7 @@ These cases were previously counted as model misses because the physician refere
 - [https://www.cdc.gov/ear-infection/about/index.html](https://www.cdc.gov/ear-infection/about/index.html)
 - [https://www.fda.gov/drugs/drug-safety-and-availability/fda-recommends-avoiding-use-nsaids-pregnancy-20-weeks-or-later-because-they-can-result-low-amniotic](https://www.fda.gov/drugs/drug-safety-and-availability/fda-recommends-avoiding-use-nsaids-pregnancy-20-weeks-or-later-because-they-can-result-low-amniotic)
 
-## Slide 12: Nano: higher agreement, new missed reviews
+## Slide 13: Nano: higher agreement, new missed reviews
 
 Time: 2 minutes.
 
@@ -400,7 +443,7 @@ This is local development evidence. No patient data, queue integration or clinic
 - [outputs/workflow-aware-disposition-2026-09-16/study/scorecard-workflow-aware.json](../outputs/workflow-aware-disposition-2026-09-16/study/scorecard-workflow-aware.json)
 - [data/research/workflow-aware-v1/nano-serving-provenance.json](../data/research/workflow-aware-v1/nano-serving-provenance.json)
 
-## Slide 13: How could this evaluation mislead us?
+## Slide 14: How could this evaluation mislead us?
 
 Time: 2 minutes.
 
@@ -429,7 +472,7 @@ WP16B adds an instruction to ignore reported symptoms. Nano baseline, rapid cont
 - [outputs/stripped-gui-2026-09-15/manifest.json](../outputs/stripped-gui-2026-09-15/manifest.json)
 - [docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md](../docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md)
 
-## Slide 14: First 30 days: one test, one reviewed decision
+## Slide 15: First 30 days: one test, one reviewed decision
 
 Time: 2 minutes.
 
@@ -470,7 +513,7 @@ The commitment is a bounded, reviewable contribution: own the code, preserve the
 - [docs/SUBMISSION_RED_TEAM_2026-09-15.md](../docs/SUBMISSION_RED_TEAM_2026-09-15.md)
 - [docs/FALSE_NEGATIVE_REDUCTION_PLAN_2026-09-16.md](../docs/FALSE_NEGATIVE_REDUCTION_PLAN_2026-09-16.md)
 
-## Slide 15: Evidence before supervised use
+## Slide 16: Evidence before supervised use
 
 Time: 2 minutes.
 
@@ -501,7 +544,7 @@ A supervised pilot is a separate decision. Clinical safety owners should define 
 - [https://www.imdrf.org/sites/default/files/2025-02/IMDRF_AIML%20WG_GMLP_N88%20Final.pdf](https://www.imdrf.org/sites/default/files/2025-02/IMDRF_AIML%20WG_GMLP_N88%20Final.pdf)
 - [docs/WORKFLOW_CLINICAL_OPERATIONS_ROADMAP_2026-09-16.md](../docs/WORKFLOW_CLINICAL_OPERATIONS_ROADMAP_2026-09-16.md)
 
-## Slide 16: Appendix: C22 and Ottawa ankle assessment
+## Slide 17: Appendix: C22 and Ottawa ankle assessment
 
 **Discussion illustration. Not part of the scored C22 input.**
 
@@ -524,7 +567,7 @@ For the scored C22 message, some weight bearing does not establish the required 
 - [output/submission-2026-09-15/content/assets/ottawa-ankle-rules-illustration.jpg](../output/submission-2026-09-15/content/assets/ottawa-ankle-rules-illustration.jpg)
 - [data/evaluation/physician-adjudication-v3-2026-09-15.json](../data/evaluation/physician-adjudication-v3-2026-09-15.json)
 
-## Slide 17: Appendix: taxonomy changes the score
+## Slide 18: Appendix: taxonomy changes the score
 
 - **35/49**: Five-way Opus, original exact-route score
 - **46/49**: Same outputs, collapsed to three buckets
@@ -543,7 +586,7 @@ The original exact-route result was 35 of 49. Collapsing those predictions and t
 - [docs/STRIPPED_BASELINE_REPORT_2026-09-15.md](../docs/STRIPPED_BASELINE_REPORT_2026-09-15.md)
 - [outputs/physician-adjudication-v3-2026-09-15/comparison.json](../outputs/physician-adjudication-v3-2026-09-15/comparison.json)
 
-## Slide 18: Appendix: assignment coverage
+## Slide 19: Appendix: assignment coverage
 
 | Take-home objective | Delivered evidence |
 | --- | --- |
@@ -551,7 +594,7 @@ The original exact-route result was 35 of 49. Collapsing those predictions and t
 | Data and evaluation | All 50 messages; frozen runs; versioned physician scoring |
 | Technical explanation | TypeScript/Mastra workflow and inspectable traces |
 | Discuss tradeoffs and next steps | Case review, evidence limits, independent validation plan |
-| Presentation and demonstration | 15 main slides; 7-minute demo; 30 appendix slides |
+| Presentation and demonstration | 16 main slides; 7-minute demo; 30 appendix slides |
 
 Scope: The project exceeded the original timebox. A timed rehearsal and final submission remain presenter responsibilities.
 
@@ -564,7 +607,7 @@ The requirements audit maps the attached brief to specific artifacts and records
 - [docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md](../docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md)
 - [output/submission-2026-09-15/README.md](../output/submission-2026-09-15/README.md)
 
-## Slide 19: Appendix: frozen provider prompt
+## Slide 20: Appendix: frozen provider prompt
 
 ```text
 Choose exactly one bucket for the patient message:
@@ -587,7 +630,7 @@ This is the exact frozen system prompt. The user turn contains only the patient 
 - [src/stripped/protocol.ts](../src/stripped/protocol.ts)
 - [outputs/stripped-3bucket-fable-2026-09-15/manifest.json](../outputs/stripped-3bucket-fable-2026-09-15/manifest.json)
 
-## Slide 20: Appendix: reproduce and inspect the evidence
+## Slide 21: Appendix: reproduce and inspect the evidence
 
 - Launch /stripped using the repository README.
 - Run: node scripts/score-physician-adjudication-v3.mjs
@@ -611,7 +654,7 @@ The v3 workbook exposes the current reference, original reference, exact frozen 
 - [docs/GUI_ACCESS.md](../docs/GUI_ACCESS.md)
 - [DISCLOSURES.md](../DISCLOSURES.md)
 
-## Slide 21: Experimental appendix: timing within the assigned setting
+## Slide 22: Experimental appendix: timing within the assigned setting
 
 | Fixed care setting | Numbered timing choices | Agreement |
 | --- | --- | --- |
@@ -621,7 +664,7 @@ The v3 workbook exposes the current reference, original reference, exact frozen 
 - Inherited 48/50 three-bucket agreement includes C25 as correct urgent routing.
 - Finer agreement: 31/40 after correct setting decisions and 38/49 overall.
 
-Scope: 41 new calls and nine self-care cases. Only C25’s emergency-versus-same-day label is unscored. Exact C25 message: appendix 24.
+Scope: 41 new calls and nine self-care cases. Only C25’s emergency-versus-same-day label is unscored. Exact C25 message: appendix 25.
 
 ### Speaker notes
 
@@ -634,7 +677,7 @@ This is a separate frozen conditional experiment. It reuses all 50 saved Fable 5
 - [outputs/stripped-stratification-fable-2026-09-15/generation-complete.json](../outputs/stripped-stratification-fable-2026-09-15/generation-complete.json)
 - [docs/STRIPPED_STRATIFICATION_FABLE_2026-09-15.md](../docs/STRIPPED_STRATIFICATION_FABLE_2026-09-15.md)
 
-## Slide 22: Experimental appendix: timing errors and policy conflicts
+## Slide 23: Experimental appendix: timing errors and policy conflicts
 
 | Cases | Model timing versus reference | Interpretation |
 | --- | --- | --- |
@@ -645,7 +688,7 @@ This is a separate frozen conditional experiment. It reuses all 50 saved Fable 5
 - The prompt prioritizes refills. Four reference labels require routine review.
 - C22 and C47 remain first-stage self-care errors. Timing cannot correct them.
 
-Scope: All nine subtype disagreements count as misses. Timing policy needs clinical review before operational use. Exact subtype-case messages: appendices 23, 26–28.
+Scope: All nine subtype disagreements count as misses. Timing policy needs clinical review before operational use. Exact subtype-case messages: appendices 24, 27–29.
 
 ### Speaker notes
 
@@ -657,7 +700,7 @@ All nine disagreements within correctly assigned, finer-eligible parents remain 
 - [outputs/stripped-stratification-fable-2026-09-15/summary.json](../outputs/stripped-stratification-fable-2026-09-15/summary.json)
 - [docs/STRIPPED_STRATIFICATION_FABLE_2026-09-15.md](../docs/STRIPPED_STRATIFICATION_FABLE_2026-09-15.md)
 
-## Slide 23: Case text: demonstration inputs
+## Slide 24: Case text: demonstration inputs
 
 | Case | Exact patient message |
 | --- | --- |
@@ -675,7 +718,7 @@ These are the exact synthetic patient messages from the assignment CSV, shown to
 
 - [data/patient_messages.csv](../data/patient_messages.csv)
 
-## Slide 24: Case text: model disagreements and urgent review
+## Slide 25: Case text: model disagreements and urgent review
 
 | Case | Exact patient message |
 | --- | --- |
@@ -693,7 +736,7 @@ These are the exact synthetic patient messages from the assignment CSV, shown to
 
 - [data/patient_messages.csv](../data/patient_messages.csv)
 
-## Slide 25: Case text: corrected self-care references
+## Slide 26: Case text: corrected self-care references
 
 | Case | Exact patient message |
 | --- | --- |
@@ -711,7 +754,7 @@ These are the exact synthetic patient messages from the assignment CSV, shown to
 
 - [data/patient_messages.csv](../data/patient_messages.csv)
 
-## Slide 26: Case text: additional refill timing cases
+## Slide 27: Case text: additional refill timing cases
 
 | Case | Exact patient message |
 | --- | --- |
@@ -729,7 +772,7 @@ These are the exact synthetic patient messages from the assignment CSV, shown to
 
 - [data/patient_messages.csv](../data/patient_messages.csv)
 
-## Slide 27: Case text: timing disagreements
+## Slide 28: Case text: timing disagreements
 
 | Case | Exact patient message |
 | --- | --- |
@@ -747,7 +790,7 @@ These are the exact synthetic patient messages from the assignment CSV, shown to
 
 - [data/patient_messages.csv](../data/patient_messages.csv)
 
-## Slide 28: Case text: urgent timing disagreements
+## Slide 29: Case text: urgent timing disagreements
 
 | Case | Exact patient message |
 | --- | --- |
@@ -764,7 +807,7 @@ These are the exact synthetic patient messages from the assignment CSV, shown to
 
 - [data/patient_messages.csv](../data/patient_messages.csv)
 
-## Slide 29: Earlier prompt-only experiment: mixed results
+## Slide 30: Earlier prompt-only experiment: mixed results
 
 | Case set and endpoint | Prior baseline | New prompt |
 | --- | --- | --- |
@@ -786,7 +829,7 @@ This separate September 16 development experiment retains the Fable 5.1 low-effo
 
 All 98 new calls completed with valid outputs: 50 known-case candidate calls and 24 calls in each authored-challenge arm. The known-case comparator is the previously frozen baseline, not a contemporaneous rerun. All references remained outside generation and scoring followed the completed output freeze. The known physician reference is still the unblinded, post-output v3 adjudication. The authored challenge labels are proposed policy expectations generated for development, with no independent physician approval. Its result must not be described as clinical validation.
 
-On the known set, C47 changes from self-care to the accepted async disposition, while C22 remains a missed review. C07 becomes a new self-care miss and C32 becomes an unnecessary async referral under the unchanged reference. C04, C43 and C49 change from the accepted urgent bucket to async review. Their exact messages appear on slide 31. The missed-clinician-action count stays at two. The frozen scorer counts the three urgent-to-async changes as false negatives against its urgent-reference endpoint. That remains the correct description of the scorer and its unchanged labels. It does not establish that a physician response, examination, investigation or treatment actually occurred late. No such outcomes were measured. The original 48/50 result and selected GUI remain unchanged.
+On the known set, C47 changes from self-care to the accepted async disposition, while C22 remains a missed review. C07 becomes a new self-care miss and C32 becomes an unnecessary async referral under the unchanged reference. C04, C43 and C49 change from the accepted urgent bucket to async review. Their exact messages appear on slide 32. The missed-clinician-action count stays at two. The frozen scorer counts the three urgent-to-async changes as false negatives against its urgent-reference endpoint. That remains the correct description of the scorer and its unchanged labels. It does not establish that a physician response, examination, investigation or treatment actually occurred late. No such outcomes were measured. The original 48/50 result and selected GUI remain unchanged.
 
 ASYNC_PHYSICIAN describes a communication channel and can potentially provide rapid physician assessment and coordinate same-day care. The required time and care capability need separate definitions. These three model/reference disagreements therefore require a clinical and operational contract review before interpreting them as demonstrated undertriage in the actual service. Several saved rationales focus on emergency thresholds even though the frozen urgent bucket includes same-day assessment. That is a hypothesis about the disagreement, not an established causal mechanism or proof that async is inappropriate in every case.
 
@@ -800,7 +843,7 @@ One run per arm does not isolate prompt effects from sampling variation. Related
 - [docs/FALSE_NEGATIVE_REDUCTION_RESULTS_2026-09-16.md](../docs/FALSE_NEGATIVE_REDUCTION_RESULTS_2026-09-16.md)
 - [docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md](../docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md)
 
-## Slide 30: Independent validation remains pending
+## Slide 31: Independent validation remains pending
 
 | Owner and work | Evidence required |
 | --- | --- |
@@ -829,7 +872,7 @@ Only after offline evidence supports continuation should the team assess the sug
 - [https://www.nature.com/articles/s41591-022-01772-9](https://www.nature.com/articles/s41591-022-01772-9)
 - [docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md](../docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md)
 
-## Slide 31: Case text: care-setting disagreements
+## Slide 32: Case text: care-setting disagreements
 
 | Case | Exact patient message |
 | --- | --- |
@@ -851,7 +894,7 @@ A rapid async pathway could potentially assess the presentation and coordinate s
 - [outputs/fn-reduction-2026-09-16/scorecard-known-development.json](../outputs/fn-reduction-2026-09-16/scorecard-known-development.json)
 - [docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md](../docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md)
 
-## Slide 32: Async care and required clinical timing
+## Slide 33: Async care and required clinical timing
 
 | Dimension | Question to specify | Evidence required |
 | --- | --- | --- |
@@ -880,7 +923,7 @@ The next review should determine whether the bucket represents the first contact
 - [docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md](../docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md)
 - [outputs/fn-reduction-2026-09-16/scorecard-known-development.json](../outputs/fn-reduction-2026-09-16/scorecard-known-development.json)
 
-## Slide 33: Four descriptions, one fixed disposition task
+## Slide 34: Four descriptions, one fixed disposition task
 
 | Arm | What changes |
 | --- | --- |
@@ -907,7 +950,7 @@ The study froze complete requests, model settings, source packets and its genera
 - [docs/WORKFLOW_REPRODUCTION_2026-09-16.md](../docs/WORKFLOW_REPRODUCTION_2026-09-16.md)
 - [docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md](../docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md)
 
-## Slide 34: What the retrieval comparison actually tests
+## Slide 35: What the retrieval comparison actually tests
 
 | Observation | Interpretation |
 | --- | --- |
@@ -932,7 +975,7 @@ Before extending the store, classify the observed failure: missing source, misse
 - [docs/WORKFLOW_AWARE_RESEARCH_PLAN_2026-09-16.md](../docs/WORKFLOW_AWARE_RESEARCH_PLAN_2026-09-16.md)
 - [data/research/workflow-aware-v1/evidence-cards.json](../data/research/workflow-aware-v1/evidence-cards.json)
 
-## Slide 35: Reference quality and clinical review
+## Slide 36: Reference quality and clinical review
 
 | Current evidence | Next required evidence |
 | --- | --- |
@@ -956,7 +999,7 @@ Clinical reviewers should decide whether each target describes the appropriate f
 - [docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md](../docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md)
 - [docs/WORKFLOW_EVIDENCE_REVIEW_2026-09-16.md](../docs/WORKFLOW_EVIDENCE_REVIEW_2026-09-16.md)
 
-## Slide 36: Historical model comparison: one pass per setting
+## Slide 37: Historical model comparison: one pass per setting
 
 | Same three-bucket protocol | Original v2 /49 | Revised v3 /50 | Median latency |
 | --- | --- | --- | --- |
@@ -984,7 +1027,7 @@ All 100 new known-case baseline request bodies exactly match the corresponding h
 - [docs/STRIPPED_3BUCKET_ASTRA_2026-09-15.md](../docs/STRIPPED_3BUCKET_ASTRA_2026-09-15.md)
 - [docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md](../docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md)
 
-## Slide 37: Historical baseline: separate safety denominators
+## Slide 38: Historical baseline: separate safety denominators
 
 | Endpoint | Observed result |
 | --- | --- |
@@ -1012,7 +1055,7 @@ Counsel’s published quality-assurance work motivates narrow clinician-defined 
 - [https://www.counselhealth.com/blog/scaling-clinical-quality-assurance-with-ai-judges](https://www.counselhealth.com/blog/scaling-clinical-quality-assurance-with-ai-judges)
 - [docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md](../docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md)
 
-## Slide 38: Separate authored challenges: no clinical gold
+## Slide 39: Separate authored challenges: no clinical gold
 
 | Arm | Fable agreement /48 | Nano agreement /48 |
 | --- | --- | --- |
@@ -1036,7 +1079,7 @@ Fable rapid-context improves compatibility with these authored targets in both r
 - [docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md](../docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md)
 - [outputs/workflow-aware-disposition-2026-09-16/study/scorecard-workflow-aware.json](../outputs/workflow-aware-disposition-2026-09-16/study/scorecard-workflow-aware.json)
 
-## Slide 39: Case identity matters when counts stay equal
+## Slide 40: Case identity matters when counts stay equal
 
 | Comparison | Resolved | Introduced or retained |
 | --- | --- | --- |
@@ -1051,14 +1094,14 @@ Scope: The saved screen is unchanged. A future protocol should predeclare case-l
 
 The current registered rule rejects new clinician-action false negatives, reduced urgent true-positive counts or unresolved output failures. It does not reject every new urgent miss when another urgent miss is simultaneously corrected. The Fable rapid-context repetition 2 comparison therefore accurately remains no_prespecified_regression_detected. This label does not mean no new urgent miss, clinical safety or approval.
 
-The D-versus-C source-package comparison also contains evidence-use instructions, so attribution to retrieval alone is not justified. Known-case C47 correction is repeat-consistent but does not generalize cleanly across the authored probes. Preserve the scored record. Define stricter case-level rules prospectively after clinical review. Exact C43/C49 messages are on slide 31; C07 is on slide 24; C15 and the discussed authored examples are reproduced on slides 41–43.
+The D-versus-C source-package comparison also contains evidence-use instructions, so attribution to retrieval alone is not justified. Known-case C47 correction is repeat-consistent but does not generalize cleanly across the authored probes. Preserve the scored record. Define stricter case-level rules prospectively after clinical review. Exact C43/C49 messages are on slide 32; C07 is on slide 25; C15 and the discussed authored examples are reproduced on slides 42–44.
 
 ### Sources
 
 - [docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md](../docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md)
 - [outputs/workflow-aware-disposition-2026-09-16/study/scorecard-workflow-aware.json](../outputs/workflow-aware-disposition-2026-09-16/study/scorecard-workflow-aware.json)
 
-## Slide 40: Choose the next evidence experiment deliberately
+## Slide 41: Choose the next evidence experiment deliberately
 
 | Failure question | Next test | Decision supported |
 | --- | --- | --- |
@@ -1082,7 +1125,7 @@ Mastra supplies typed workflow steps, persistent execution records and traceable
 - [https://mastra.ai/customers/counsel-health](https://mastra.ai/customers/counsel-health)
 - [https://www.baseten.co/resources/customers/openevidence-delivers-instant-medical-information-with-baseten/](https://www.baseten.co/resources/customers/openevidence-delivers-instant-medical-information-with-baseten/)
 
-## Slide 41: Case text: clinician-review decisions
+## Slide 42: Case text: clinician-review decisions
 
 | Case | Exact message |
 | --- | --- |
@@ -1101,7 +1144,7 @@ These messages are reproduced exactly from the frozen message-only input file. C
 - [outputs/workflow-aware-disposition-2026-09-16/messages.json](../outputs/workflow-aware-disposition-2026-09-16/messages.json)
 - [docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md](../docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md)
 
-## Slide 42: Case text: unreviewed challenge regressions
+## Slide 43: Case text: unreviewed challenge regressions
 
 | Case | Exact message |
 | --- | --- |
@@ -1119,7 +1162,7 @@ These messages are reproduced exactly from the frozen message-only input file. C
 - [outputs/workflow-aware-disposition-2026-09-16/messages.json](../outputs/workflow-aware-disposition-2026-09-16/messages.json)
 - [docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md](../docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md)
 
-## Slide 43: Case text: ankle and medication challenges
+## Slide 44: Case text: ankle and medication challenges
 
 | Case | Exact message |
 | --- | --- |
@@ -1137,7 +1180,7 @@ These messages are reproduced exactly from the frozen message-only input file. C
 - [outputs/workflow-aware-disposition-2026-09-16/messages.json](../outputs/workflow-aware-disposition-2026-09-16/messages.json)
 - [docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md](../docs/WORKFLOW_AWARE_RESULTS_2026-09-16.md)
 
-## Slide 44: Patient text can override the small model’s route
+## Slide 45: Patient text can override the small model’s route
 
 | WP16B | Exact input and observed output |
 | --- | --- |
@@ -1160,7 +1203,7 @@ The selected source card is pulmonary-embolism-assessment. This experiment canno
 - [outputs/workflow-aware-disposition-2026-09-16/study/parsed/challenge-WP16B-nano-workflow_evidence-r2.json](../outputs/workflow-aware-disposition-2026-09-16/study/parsed/challenge-WP16B-nano-workflow_evidence-r2.json)
 - [docs/WORKFLOW_EVIDENCE_FAILURE_ANALYSIS_2026-09-16.md](../docs/WORKFLOW_EVIDENCE_FAILURE_ANALYSIS_2026-09-16.md)
 
-## Slide 45: Case text: additional Nano missed-review cases
+## Slide 46: Case text: additional Nano missed-review cases
 
 | Case | Exact patient message |
 | --- | --- |
@@ -1171,7 +1214,7 @@ Scope: Known assignment cases. These are saved model/reference disagreements; no
 
 ### Speaker notes
 
-The exact messages complete the case record for the Nano regressions discussed on slide 12. C09 becomes a new clinician-action miss with rapid async context relative to the Nano original-prompt control. C40 is newly missed under each Nano variant relative to its control. All reference labels remain unchanged. These are qualitative and reference-based evaluation observations; they do not establish a diagnosis, care delay or observed harm.
+The exact messages complete the case record for the Nano regressions discussed on slide 13. C09 becomes a new clinician-action miss with rapid async context relative to the Nano original-prompt control. C40 is newly missed under each Nano variant relative to its control. All reference labels remain unchanged. These are qualitative and reference-based evaluation observations; they do not establish a diagnosis, care delay or observed harm.
 
 ### Sources
 

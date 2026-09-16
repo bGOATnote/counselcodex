@@ -1,22 +1,27 @@
 # Live disposition demo
 
-Re-reviewed 16 September 2026. Slide 8 allocates seven minutes inside the
+Re-reviewed 16 September 2026. Slide 9 allocates seven minutes inside the
 35-minute main presentation. The current surface is
 **/stripped, Fable 5.1 low effort, three buckets, one provider call per submit**.
 Frozen traces are an explicitly labeled fallback, never a claimed live completion.
 The live workflow has no judge or retrieval step; saved comparative evaluation
-is shown separately.
+is shown separately. Slides 2–4 introduce C22, C47 and C49 before the demonstration.
 
 ## Before the session
 
 1. Follow the [GUI access guide](GUI_ACCESS.md), run `npm run demo`, and open
-   [the local server](http://localhost:4120/stripped). The public guide is the
-   shareable entry point; localhost requires a server on the viewing machine.
+   [the local server](http://localhost:4120/stripped). Localhost requires a server
+   on the viewing machine. The separate saved-results viewer’s publishing target
+   is [the C49 case link](https://bgoatnote.github.io/counselcodex/#C49); verify
+   deployment before describing it as available publicly.
 2. Confirm Fable 5.1, low effort. Expand **Model configuration** and compare the
    prompt hash with the [GUI guide](STRIPPED_FABLE_GUI_2026-09-15.md).
 3. Confirm the sample picker and submit button are enabled. Keep the API key
-   server-side. Open this script and the [offline case viewer](../publication/workflow-study-review/index.html)
-   from the local checkout. Its saved records are separate from live submissions.
+   server-side. Open this script and the [four-model case viewer](../publication/medgemma-case-review/index.html)
+   from the local checkout. It works offline and embeds all 50 exact messages,
+   historical Fable, MedGemma, Nano and V25 results. Its records are separate from
+   live submissions. Keep the [workflow-study viewer](../publication/workflow-study-review/index.html)
+   available for retrieval-ablation questions.
 4. Keep the [latest five-call handoff manifest](../outputs/stripped-gui-handoff-2026-09-16/manifest.json)
    and [original six-call verification](../outputs/stripped-gui-2026-09-15/manifest.json)
    available. These are dated integration checks, separate
@@ -38,8 +43,8 @@ in the prepared walkthrough. Inspect the complete trace separately.
 | 2:15–3:05 | Select C06, stable losartan refill. Submit. | “The explicit refill rule assigns a physician-review category unless clear red flags require escalation.” |
 | 3:05–4:00 | Append the synthetic update below to C06. Show the old result disappearing. Submit. | “The edit starts a new assessment using only the edited message. No prior answer or reference label enters the request.” |
 | 4:00–5:00 | Expand Model configuration and show the one-call workflow implementation. Keep Request & response trace collapsed during the prepared presentation. | “The prompt and model settings are fixed. One Mastra step sends one message-only user turn. Complete execution records remain available for separate technical inspection.” |
-| 5:00–6:15 | Clearly switch to the separate offline viewer. Select C47, Fable, repetition 1; compare the baseline and source-package outputs. Briefly show C22 remaining self-care. | “These are saved research calls. The source package changes C47 to physician review in both repetitions, but C22 remains missed. No judge or retrieval has been added to the live demo.” |
-| 6:15–7:00 | Return to the evaluation slides. | “Historical outputs scored 44/49 under the original physician reference and 48/50 after its correction. Fresh identical-request baseline runs scored 45/50 and 46/50. The added components did not establish a reliable improvement, so the selected demonstration is unchanged.” |
+| 5:00–6:15 | Switch explicitly to the saved four-model viewer at C49. Show the exact message and distinct physician/CSV panels. Compare recorded routes and rationales; select C22 or C47 to revisit the opening slides. | “These are frozen outputs. C49 separates urgent from async routing; C22 and C47 expose missed clinician involvement. The physician reference and original CSV are displayed separately. This comparison did not make a new model call.” |
+| 6:15–7:00 | Show Nano’s repetition selector and V25’s completion status, then return to the evaluation slides. | “Nano defaults to the first unchanged baseline repetition; the second remains visible. V25 completed 27 of 50 attempts, and incomplete releases remain explicit. These familiar cases help inspect failures; they do not establish clinical readiness or a controlled model ranking.” |
 
 Exact synthetic update to append to C06:
 
@@ -49,6 +54,20 @@ Update: I now have crushing chest pressure, sweating, and pain going into my lef
 
 Do not paste an expected disposition, reference label, or saved answer into the
 message. Describe what actually appears, even if it differs from prior runs.
+
+## Reading the saved comparison
+
+The viewer starts at C49 and supports search, case links, under/over-escalation
+filters and **Presentation view**. Its Disagreements filter refers specifically
+to the six historical Fable/MedGemma differences. Displayed physician v3 agreement
+uses an unblinded post-output reference; CSV labels are discussion context only.
+Nano repetitions are separate observations, not a best-response selector. V25’s
+original 21/49 result remains distinct from the derived three-bucket v3 display;
+rejected drafts and early actions are not completed dispositions.
+
+For a question about retrieval, use the separate workflow-study viewer: its source
+package changes C47 to physician review in both Fable repetitions while C22 remains
+self-care. This experiment has not been added to the live GUI.
 
 ## Failure handling and labeled fallback
 

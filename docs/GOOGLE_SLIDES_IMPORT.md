@@ -22,13 +22,13 @@ Conversion creates a separate copy, so retain the source export and PDF.
 - Widescreen 16:9 layout and Arial text, including inherited theme defaults.
 - Editable native text, shapes and tables; slides are not flattened screenshots.
 - Embedded PNG/JPEG images, with no external image dependencies.
-- Speaker notes and clickable cover links retained in the PowerPoint.
+- Speaker notes, clickable cover links and case-review links on slides 4 and 9 retained in the PowerPoint.
 - No macros, embedded applications, animations, SmartArt or linked spreadsheets.
 
 The exported package and rendered PDF were inspected locally. **The file has
 not been imported or inspected inside Google Slides.** Conversion can change
-wrapping, table height, notes or hyperlinks. Check all 45 slides against the PDF,
-especially the cover, C22/C47 slides and roadmap tables. Confirm that the public
+wrapping, table height, notes or hyperlinks. Check all 46 slides against the PDF,
+especially the cover, C22/C47/C49 slides and roadmap tables. Confirm that the public
 reviewer-guide link works and remember that the local GUI link requires a
 running server on the viewing computer.
 

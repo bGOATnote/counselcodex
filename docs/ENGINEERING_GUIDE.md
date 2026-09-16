@@ -12,7 +12,8 @@ root**, regardless of where the checkout lives.
 | Local `/stripped` demonstration | Selected application; frozen three-bucket protocol | [GUI guide](GUI_ACCESS.md), [protocol](../src/stripped/protocol.ts) |
 | Workflow-aware Fable/Nano study | Completed, frozen research; not used by the GUI | [Results](WORKFLOW_AWARE_RESULTS_2026-09-16.md), [reproduction](WORKFLOW_REPRODUCTION_2026-09-16.md) |
 | MedGemma 27B comparison | Separate frozen local Q5_K_M run; not used by the GUI | [Results and offline scoring](MEDGEMMA_27B_COMPARISON_2026-09-16.md) |
-| Offline case viewer | Published inspection of saved outputs; no inference | [Viewer instructions](../publication/workflow-study-review/README.md) |
+| Four-model case review | Static saved-output inspection; no inference | [Viewer and provenance](../publication/medgemma-case-review/README.md), [builder](../scripts/build-medgemma-case-review.mjs) |
+| Offline workflow-study viewer | Published inspection of saved outputs; no inference | [Viewer instructions](../publication/workflow-study-review/README.md) |
 | Retrieval candidate audit | Post-study inspection; relevance review pending | [Audit report](RETRIEVAL_CANDIDATE_AUDIT_2026-09-16.md) |
 | `/candidate` | Historical V25 application; preserve its behavior | [V25 contract](V25_README.md) |
 | `/`, `/v0`, native Mastra server | Earlier applications and configurations | [Historical architecture](ARCHITECTURE_EVOLUTION.md) |

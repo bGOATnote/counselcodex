@@ -6,7 +6,7 @@
 2. [Historical physician-adjudication workbook](counsel-disposition-adjudication-v3.xlsx)
 3. [Physician v3 report](../../docs/PHYSICIAN_ADJUDICATION_V3_2026-09-15.md), [requirements audit](../../docs/TAKE_HOME_REQUIREMENTS_AUDIT_2026-09-15.md), and [evidence/failure review](../../docs/SUBMISSION_RED_TEAM_2026-09-15.md)
 
-Revision 32 contains 45 slides: 15 main slides, including a seven-minute live demo,
+Revision 34 contains 46 slides: 16 main slides, including a seven-minute live demo,
 planned for 35 minutes. Thirty appendix slides support 25 further minutes of discussion.
 [Full narrative and speaker notes](../../docs/INTERVIEW_DECK_2026-09-15.md).
 Current slides and notes contain no financial content or individual recipient names.
@@ -25,24 +25,31 @@ these boundaries and the unresolved third-party media permissions.
 Slides 2 and 3 show the exact C22 and C47 messages and identify both as false
 negatives for required clinician review. Their harm statements concern possible
 delayed assessment; no observed patient harm is claimed. C22 retains both ankle
-photographs. Appendix 16 shows the Ottawa illustration with a visible correction
+photographs. Appendix 17 shows the Ottawa illustration with a visible correction
 to its weight-bearing criterion. All three remain outside the scored input.
-Slide 4 uses the supplied historical architecture diagram to connect the earlier
+Slide 4 shows C49: the exact message, physician and CSV dispositions, and the
+saved Fable and MedGemma rationales. MedGemma retains clinician review but misses
+the urgent care setting under physician v3. The linked [case review](https://bgoatnote.github.io/counselcodex/#C49)
+compares all 50 messages across Fable, MedGemma, Nemotron baseline A (both
+repetitions) and V25. It highlights under-escalation, over-escalation and incomplete
+V25 releases separately. This is saved-output inspection without inference.
+
+Slide 5 uses the supplied historical architecture diagram to connect the earlier
 results with a proposal to test the simple baseline on unseen cases and add a
 component only against a documented clinical failure. The proposed diagram is
 not a record that every pictured component ran in V25. Its release language does
 not describe clinical deployment; current gold remains scorecard-only after freeze.
-Slides 5–7 distinguish proposed FP/FN controls, retrospective judge design and
-targeted retrieval research. Slide 8 demonstrates the live router and a separate
+Slides 6–8 distinguish proposed FP/FN controls, retrospective judge design and
+targeted retrieval research. Slide 9 demonstrates the live router and a separate
 saved-output review. The main narrative treats added complexity as a tested
 hypothesis: the completed experiments did not establish a reliable improvement.
-Slides 14–15 set out the proposed first 30 days and following 2–6 months, with
+Slides 15–16 set out the proposed first 30 days and following 2–6 months, with
 owners, deliverables and evidence needed before expanding use.
 
-Appendices 23–28 reproduce the exact messages for all other substantively discussed
+Appendices 24–29 reproduce the exact messages for all other substantively discussed
 cases: C01, C02, C06, C07, C12, C13, C16, C18, C19, C24, C25, C28, C32, C34, C38,
 C44 and C46. With C22 and C47, those historical sections contain 19 visible case inputs.
-Appendix 31 adds the exact C04, C43 and C49 messages discussed in the separate
+Appendix 32 adds the exact C04, C43 and C49 messages discussed in the separate
 false-negative experiment, bringing the visible total to 22 case inputs.
 
 ## Historical saved result
@@ -61,7 +68,7 @@ not resolve its omitted pregnancy precautions.
 
 ## Workflow-aware experiment and repeated controls
 
-Slides 10 and 12 report the separate completed **1,568-call** study: Fable and
+Slides 11 and 13 report the separate completed **1,568-call** study: Fable and
 local Nemotron 3 Nano, four arms, two repetitions, 50 familiar messages and
 48 separate authored challenges. All 100 new Fable baseline request bodies
 match the historical originals exactly. They returned **45/50 and 46/50**;
@@ -70,9 +77,9 @@ twice, changing C47 to clinician review but retaining C07 and C22 as missed
 reviews. Nano reached at most 43/50, with new missed-review cases versus its own
 control. The GUI protocol is unchanged; no research variant is promoted.
 
-Appendices 33–40 separate study methods, retrieval limitations, reference
+Appendices 34–41 separate study methods, retrieval limitations, reference
 quality, retained historical comparisons, authored challenge results and exact
-case substitutions. Appendices 41–45 reproduce all additional discussed inputs,
+case substitutions. Appendices 42–46 reproduce all additional discussed inputs,
 including an instruction embedded in patient text that Nano followed in its
 source-package arm. The presentation now contains **25 exact assignment
 messages and seven separately identified authored probes**. The source package
@@ -87,7 +94,7 @@ separate. No patient outcome or completed-care timing was measured.
 
 ## False-negative reduction experiment
 
-Appendix 29 reports a separate prompt experiment that **did not improve the
+Appendix 30 reports a separate prompt experiment that **did not improve the
 known-case result**: agreement fell from 48/50 to 44/50, and three urgent-reference cases
 moved to async review. C47 improved, C22 remained missed, C07 became a new missed
 clinician referral, and C32 became an additional referral under the unchanged
@@ -95,18 +102,18 @@ reference. The current GUI was not changed. All 98 planned new calls completed;
 there was no further prompt iteration.
 
 The separate 24-case challenge improved from 22/24 to 23/24 against **AI-authored,
-unreviewed labels**. That is not independent physician validation. Appendix 30
+unreviewed labels**. That is not independent physician validation. Appendix 31
 specifies the clinical policy, new independently labeled cases and prospective
 evaluation still required. [Full results and exact paired outputs](../../docs/FALSE_NEGATIVE_REDUCTION_RESULTS_2026-09-16.md)
 and [clinical validation plan](../../docs/FALSE_NEGATIVE_REDUCTION_PLAN_2026-09-16.md).
-Appendix 32 explains that async care can provide same-day physician review.
+Appendix 33 explains that async care can provide same-day physician review.
 Required care timing, communication channel and examination access need separate
 definitions. The study measured label agreement, not treatment delay; see the
 [service-context clarification](../../docs/COUNSEL_ASYNC_CARE_CONTEXT_2026-09-16.md).
 
 ## Additional timing experiment
 
-Appendix slides 21–22 present the [conditional subtype experiment](../../docs/STRIPPED_STRATIFICATION_FABLE_2026-09-15.md).
+Appendix slides 22–23 present the [conditional subtype experiment](../../docs/STRIPPED_STRATIFICATION_FABLE_2026-09-15.md).
 The frozen parent categories remain **48/50**, including C25 urgent and the
 C32/C34/C38 self-care corrections. The new timing decisions agree on 31/40
 eligible cases, and complete five-way agreement is 38/49. All three self-care
@@ -137,7 +144,9 @@ is labeled accordingly.
 
 Historical V25 remains at 21/49 delivered exact-route agreement and 22/49 after
 the original offline three-bucket mapping, with 27/50 completed full releases.
-It used a different output contract and is not rescored against v3 here.
+It used a different output contract. The case viewer adds a separately labeled
+physician-v3 projection for inspection, retaining all 23 incomplete releases;
+that projection does not replace the historical score.
 
 ## Working demonstration
 
@@ -179,6 +188,7 @@ discloses. A timed human rehearsal and final submission remain outstanding.
 ```bash
 node scripts/submission-evidence-audit.mjs
 node scripts/score-physician-adjudication-v3.mjs
+node --experimental-strip-types scripts/build-medgemma-case-review.mjs --verify
 node scripts/verify-submission-package.mjs
 ```
 

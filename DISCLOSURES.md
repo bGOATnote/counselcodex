@@ -108,3 +108,14 @@ For a rights or privacy concern, contact the repository owner through an
 established private channel. Do not post patient information or other sensitive
 details in public issues. The [security policy](SECURITY.md) covers software
 vulnerability reporting.
+
+## Public saved-output review
+
+The GitHub Pages case review displays the same synthetic assignment messages and
+frozen outputs included in this public repository. It accepts no patient text,
+calls no model, and submits no review decisions. The hosting provider receives
+ordinary web-request metadata; this is not a patient-care service. Physician v3
+is a single-author, post-output reference, not independent clinical validation.
+CSV labels are displayed separately for discussion. V25 early actions and
+incomplete releases are not substituted for completed dispositions. Model run,
+quantization, repetition and original score denominators remain identified.

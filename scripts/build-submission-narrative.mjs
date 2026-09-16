@@ -13,6 +13,7 @@ for (const [i, slide] of spec.slides.entries()) {
   if (slide.presenter) lines.push(`**${slide.presenter.name}**`, "", slide.presenter.title, "");
   if (slide.demoLink) lines.push(`[${slide.demoLink.url}](${slide.demoLink.url}) — ${slide.demoLink.label}`, "");
   if (slide.reviewerLink) lines.push(`[${slide.reviewerLink.label}](${slide.reviewerLink.url})`, "");
+  if (slide.caseReviewLink) lines.push(`[${slide.caseReviewLink.label}](${slide.caseReviewLink.url})`, "");
   if (slide.roadmap) lines.push(slide.roadmap, "");
   if (slide.logo) lines.push(...(slide.logo.label ? [slide.logo.label, ""] : []), `![${slide.logo.alt}](../${slide.logo.path})`, "");
   if (slide.table) {
@@ -28,6 +29,8 @@ for (const [i, slide] of spec.slides.entries()) {
   }
   if (slide.type === "prompt") lines.push("```text", ...slide.body, "```", "");
   else if (slide.body) lines.push(...slide.body.map((item) => `- ${item}`), "");
+  if (slide.references) lines.push(...slide.references.map(item => `- **${item.label}:** ${item.disposition}`), "");
+  if (slide.comparisons) for (const item of slide.comparisons) lines.push(`**${item.label}: ${item.disposition}**`, "", item.rationale, "");
   if (slide.emphasis) lines.push(`**${slide.emphasis}**`, "");
   if (slide.scoreQualifier) lines.push(slide.scoreQualifier, "");
   if (slide.harm) lines.push(`**${slide.harm}**`, "");

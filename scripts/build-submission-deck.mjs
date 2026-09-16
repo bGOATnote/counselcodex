@@ -149,7 +149,24 @@ for (const [index, data] of slides.entries()) {
     let y = Math.max(170, 51 + titleHeight + 27);
     if (data.subtitle) { text(slide, data.subtitle, 80, y, 1120, 68, 24, { color: colors.muted }); y += 79; }
     const bottom = data.emphasis ? 563 : data.footnote || data.takeaway ? 598 : 635;
-    if (data.imageLayout === 'historical-architecture') {
+    if (type === 'case-comparison') {
+      if (data.body?.length !== 1 || data.references?.length !== 2 || data.comparisons?.length !== 2) throw new Error('Case comparison requires one exact message and two reference/model pairs');
+      text(slide, 'PATIENT MESSAGE', 80, 140, 1120, 26, 17, { bold: true, color: colors.muted });
+      paragraphs(slide, data.body, 80, 175, 1120, 110, { size: 26, gap: 0 });
+      data.references.forEach((reference, i) => {
+        const x = 80 + i * 580;
+        text(slide, reference.label, x, 290, 530, 28, 18, { color: colors.muted });
+        text(slide, reference.disposition, x, 321, 530, 34, 23, { bold: true, color: colors.navy });
+      });
+      data.comparisons.forEach((response, i) => {
+        const x = 80 + i * 580;
+        text(slide, response.label, x, 370, 530, 28, 20, { color: colors.muted });
+        text(slide, response.disposition, x, 403, 530, 35, 26, { bold: true, color: i === 1 ? colors.risk : colors.teal });
+        paragraphs(slide, [response.rationale], x, 448, 530, 120, { size: 23, gap: 0 });
+      });
+      text(slide, data.emphasis, 80, 584, 1120, 34, 25, { color: colors.risk, bold: true });
+      text(slide, data.footnote, 80, 626, 1120, 28, 17, { color: colors.muted });
+    } else if (data.imageLayout === 'historical-architecture') {
       const source = data.images?.[0];
       if (!source || data.images.length !== 1) throw new Error('Architecture layout requires one image');
       slide.images.add({ blob: new Uint8Array(await fs.readFile(path.resolve(repo, source.path))), contentType: source.contentType, alt: source.alt, fit: 'contain', position: { left: 80, top: 136, width: 780, height: 439 } });
@@ -224,11 +241,12 @@ for (const [index, data] of slides.entries()) {
     } else {
       paragraphs(slide, data.items || data.bullets || data.body || data.text, 80, y, 1090, bottom - y, { size: data.fontSize || (type === 'prompt' ? 28 : 30), gap: data.gap ?? 26 });
     }
-    if (data.emphasis) text(slide, data.emphasis, 80, 584, 1090, data.harm ? 32 : 62, 25, { bold: true, color: data.harm ? colors.risk : colors.teal });
+    if (data.emphasis && type !== 'case-comparison') text(slide, data.emphasis, 80, 584, 1090, data.harm ? 32 : 62, 25, { bold: true, color: data.harm ? colors.risk : colors.teal });
     if (data.harm) text(slide, data.harm, 80, 620, 1090, 32, 23, { color: colors.risk });
-    if (data.emphasis && data.footnote) text(slide, data.footnote, 80, data.harm ? 663 : 654, 1060, data.harm ? 34 : 49, 17, { color: colors.muted });
+    if (data.emphasis && data.footnote && type !== 'case-comparison') text(slide, data.footnote, 80, data.harm ? 663 : 654, 1060, data.harm ? 34 : 49, 17, { color: colors.muted });
     else if (data.takeaway) text(slide, data.takeaway, 80, 613, 1090, 61, 24, { bold: true, color: colors.teal });
-    else if (data.footnote) text(slide, data.footnote, 80, 618, 1060, 54, 18, { color: colors.muted });
+    else if (data.footnote && type !== 'case-comparison') text(slide, data.footnote, 80, 618, 1060, 54, 18, { color: colors.muted });
+    if (data.caseReviewLink) text(slide, data.caseReviewLink.url, 80, 663, 1070, 26, 18, { color: colors.teal });
   }
   text(slide, String(number).padStart(2, '0'), 1186, 672, 38, 24, 17, { color: colors.muted, alignment: 'right' });
   layoutMetadata.push({ number, type, title });
@@ -236,7 +254,7 @@ for (const [index, data] of slides.entries()) {
 
 const candidate = path.join(staging, 'candidate.pptx');
 await (await PresentationFile.exportPptx(presentation)).save(candidate);
-const links = slides.flatMap((slide, index) => [slide.demoLink, slide.reviewerLink].filter(Boolean).map((link, linkIndex) => ({ slide: index + 1, url: link.url, relationshipId: `rIdExternalLink${linkIndex + 1}` })));
+const links = slides.flatMap((slide, index) => [slide.demoLink, slide.reviewerLink, slide.caseReviewLink].filter(Boolean).map((link, linkIndex) => ({ slide: index + 1, url: link.url, relationshipId: `rIdExternalLink${linkIndex + 1}` })));
 {
   // Artifact Tool authors the deck. Normalize inherited font defaults as well
   // as visible text, so later edits retain the same common font after import.

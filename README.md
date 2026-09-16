@@ -91,6 +91,16 @@ found an urgent-reference miss exchanged for another despite an unchanged count.
 - [Offline reproduction and artifact map](docs/WORKFLOW_REPRODUCTION_2026-09-16.md)
 - [Preserved research protocol](docs/WORKFLOW_AWARE_RESEARCH_PLAN_2026-09-16.md)
 
+## Review all 50 cases interactively
+
+[Open the saved case review](https://bgoatnote.github.io/counselcodex/#C49): select
+one case to see the full message, physician v3, original CSV disposition, and
+saved responses from **Fable, MedGemma, Nemotron and V25**. Under-escalation,
+over-escalation and incomplete V25 releases are identified separately. The
+CSV remains a discussion reference. Search, deep links and presentation mode
+support a live walkthrough; no model calls or patient input are available.
+[Offline HTML and provenance](publication/medgemma-case-review/README.md).
+
 ## Separate MedGemma 27B comparison
 
 The local **MedGemma 27B text-instruct, Q5_K_M** run returned 50 valid outputs

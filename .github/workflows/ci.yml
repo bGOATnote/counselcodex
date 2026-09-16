@@ -44,6 +44,10 @@ jobs:
           --reference-freeze outputs/workflow-aware-disposition-2026-09-16/reference-freeze.json
       - name: Verify offline research review artifacts without inference
         run: npm run research:retrieval:verify && npm run research:review:verify
+      - name: Verify the saved model-comparison viewer without inference
+        env:
+          MASTRA_TELEMETRY_DISABLED: "true"
+        run: node --experimental-strip-types scripts/build-medgemma-case-review.mjs --verify
       - run: npm run typecheck
       - run: npm test
       - run: npm run cqa:pilot:verify
