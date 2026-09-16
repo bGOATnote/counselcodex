@@ -9,6 +9,15 @@ OpenAI or Anthropic is claimed. Developed with Codex assistance. See
 [disclosures and media-rights limitations](DISCLOSURES.md) and
 [third-party notices](THIRD_PARTY_NOTICES.md). Not for patient care.
 
+## Engineering entry points
+
+For code changes, start with [AGENTS.md](AGENTS.md) and the
+[engineering guide](docs/ENGINEERING_GUIDE.md). The guide maps tasks to exact
+files, distinguishes current and historical runtimes, and identifies commands
+that write artifacts or call models. Use the [document index](docs/INDEX.md)
+for research reports. The selected application is `/stripped`; `/candidate`
+and the native Mastra development server are historical entry points.
+
 ## Current take-home submission
 
 **Fable 5.1 low effort, one native Anthropic call, one TypeScript/Mastra step.**

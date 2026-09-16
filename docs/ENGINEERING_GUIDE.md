@@ -1,0 +1,165 @@
+# Engineering guide
+
+This is the implementation map for humans and coding agents. Start with the
+[root instructions](../AGENTS.md); use the [document index](INDEX.md) for the
+research narrative. Paths below are relative to the **counselcodex repository
+root**, regardless of where the checkout lives.
+
+## Find the right surface
+
+| Surface | Status | Start here |
+|---|---|---|
+| Local `/stripped` demonstration | Selected application; frozen three-bucket protocol | [GUI guide](GUI_ACCESS.md), [protocol](../src/stripped/protocol.ts) |
+| Workflow-aware Fable/Nano study | Completed, frozen research; not used by the GUI | [Results](WORKFLOW_AWARE_RESULTS_2026-09-16.md), [reproduction](WORKFLOW_REPRODUCTION_2026-09-16.md) |
+| Offline case viewer | Published inspection of saved outputs; no inference | [Viewer instructions](../publication/workflow-study-review/README.md) |
+| Retrieval candidate audit | Post-study inspection; relevance review pending | [Audit report](RETRIEVAL_CANDIDATE_AUDIT_2026-09-16.md) |
+| `/candidate` | Historical V25 application; preserve its behavior | [V25 contract](V25_README.md) |
+| `/`, `/v0`, native Mastra server | Earlier applications and configurations | [Historical architecture](ARCHITECTURE_EVOLUTION.md) |
+| Presentation and submission package | Mutable exports with an integrity manifest | [Submission README](../output/submission-2026-09-15/README.md) |
+
+Historical names remain for reproducibility. In particular,
+`docs/CURRENT_PIPELINE.md` describes an earlier pipeline. A dated proposal is
+not evidence that its design was implemented or adopted. Establish status from
+the current entry point, its imports and the applicable completed report.
+
+## Task-to-file map
+
+| Task | Read first | Verify with |
+|---|---|---|
+| Change current GUI text, layout or interaction | [page](../apps/evaluation/app/stripped/page.tsx), [workbench](../apps/evaluation/components/stripped-workbench.tsx), [styles](../apps/evaluation/components/stripped-workbench.module.css) | `npm run review:test`, `npm run review:build`, browser checks |
+| Inspect examples shown in the GUI | [message-only projection](../apps/evaluation/lib/source-messages.ts) | Preserve the ID/message projection; labels must not enter requests |
+| Debug request validation or local HTTP access | [route wiring](../apps/evaluation/app/api/stripped/route.ts), [handler](../apps/evaluation/lib/stripped-handler.ts), [handler tests](../apps/evaluation/tests/stripped-handler.test.ts) | `npm run review:test` |
+| Debug server configuration, reservations or trace records | [service](../src/stripped/service.ts), [workflow](../src/stripped/workflow.ts), [contract](../src/stripped/contract.ts) | Stripped protocol/workflow tests below; preserve ledger history |
+| Inspect the selected request and parser | [protocol](../src/stripped/protocol.ts), [parity tests](../tests/stripped-gui-protocol.test.mjs), [workflow tests](../tests/stripped-gui-workflow.test.mjs) | Compare to archived requests; do not alter the frozen prompt casually |
+| Understand subtype timing | [separate protocol](../src/stripped/stratification.ts), [timing report](STRIPPED_STRATIFICATION_FABLE_2026-09-15.md) | Separate experiment; not a live GUI feature |
+| Inspect research generation and budgets | [runner](../src/research/workflow-aware/runner.ts), [budget](../src/research/workflow-aware/budget.ts), [transport](../src/research/workflow-aware/transport.ts), [CLI](../scripts/workflow-aware-study.ts) | `npm run test:workflow-research`; read freeze constraints first |
+| Inspect research prompt/evidence boundaries | [protocol](../src/research/workflow-aware/protocol.ts), [workflow](../src/research/workflow-aware/workflow.ts), [evidence](../src/research/workflow-aware/evidence.ts), [embeddings](../src/research/workflow-aware/embeddings.ts) | `npm run test:workflow-research`; version any new experiment separately |
+| Reproduce research metrics | [scorer](../scripts/score-workflow-aware.ts), [artifact map and exact command](WORKFLOW_REPRODUCTION_2026-09-16.md) | Completed-generation replay; no new model calls |
+| Change the offline viewer | [renderer](../src/research/workflow-review.ts), [builder](../scripts/build-workflow-review.ts), [tests](../tests/workflow-review.test.ts) | `npm run research:review:verify`, focused tests and browser inspection |
+| Inspect expanded retrieval candidates | [audit](../src/research/retrieval-candidate-audit.ts), [CLI](../scripts/audit-workflow-retrieval-candidates.ts), [tests](../tests/retrieval-candidate-audit.test.ts) | `npm run research:retrieval:verify` |
+| Update slide content or notes | [deck JSON](../output/submission-2026-09-15/content/deck.json), [deck builder](../scripts/build-submission-deck.mjs), [narrative builder](../scripts/build-submission-narrative.mjs) | Render/export review and submission verifier; follow package instructions |
+| Diagnose submission integrity | [manifest](../output/submission-2026-09-15/manifest.json), [verifier](../scripts/verify-submission-package.mjs) | `node scripts/verify-submission-package.mjs` |
+| Diagnose CI or dependency maintenance | [CI](../.github/workflows/ci.yml), [root package](../package.json), [Next package](../apps/evaluation/package.json), [maintenance policy](CI_AND_REVIEW.md) | Reproduce the failed step; preserve archived generation runtimes |
+| Review publication content | [checker](../scripts/check-public-content.py), [coverage and invocation](PUBLIC_CONTENT_CHECKS.md) | Exact-index scan; secret, image and history review are separate |
+
+## Search without loading the artifact archive
+
+Choose the task's source directory before searching. The repository contains
+thousands of saved requests and responses; a recursive whole-repo dump usually
+hides the relevant implementation and may expose sensitive local state.
+
+```bash
+git status --short --branch
+rg --files src/stripped apps/evaluation/app/stripped apps/evaluation/components
+rg -n 'executeStripped|createStrippedHandler|createStrippedWorkflow|buildRequest' src/stripped apps/evaluation/app/api/stripped apps/evaluation/lib/stripped-handler.ts
+rg --files src/research tests scripts -g '*workflow-aware*' -g '*workflow-review*' -g '*retrieval-candidate*'
+```
+
+For an experiment question, read its report and manifest before opening the
+specific case's records. Use the offline viewer for comparisons. Do not search
+`.env`, `.local/`, `node_modules/`, `.next/`, or `.mastra/output/` as ordinary
+project source. Read task-relevant installed framework documentation when
+scoped instructions require it, including the Next.js guides before app edits.
+Inspect dependency implementations for a specific runtime/build issue. Do not
+bulk-read `outputs/` or presentation binaries into model context to discover the
+current code path.
+
+## Command effects
+
+Commands run from the repository root. `package.json` and the entry-point source
+define their behavior; names such as “test,” “search,” “offline,” or “validate”
+are not sufficient evidence that a command is read-only. This is a selected
+command map, not permission to run other entry points.
+
+| Command | Model/provider activity | Other effects and intended use |
+|---|---|---|
+| `npm run lint` | None | Syntax-checks `.mjs` files; does not type-check TypeScript |
+| `npm run typecheck` | None | TypeScript check without emitting application code |
+| `npm test`, `npm run review:test`, `npm run test:workflow-research` | No live model calls in the configured test suites | Tests may create temporary fixtures/runtime state; inspect changes after execution |
+| `node scripts/verify-submission-package.mjs` | None | Reads package hashes, slide content and generated narrative; does not rebuild them |
+| `npm run research:review:verify`, `npm run research:retrieval:verify` | None | Exact verification; missing or changed saved artifacts fail rather than being regenerated |
+| `npm run demo:offline` | None | Prints paths to saved inspection materials; does not launch a model or server |
+| `npm run demo:check` | None | Checks installed runtime, build, key presence and port; does not validate provider access |
+| `npm run demo` | Startup: none. Submitting a message: one hosted call | Serves the current Next application on loopback port 4120; submissions write durable accounting/trace records |
+| `npm run review:dev` | Server startup alone does not submit a case | Next development server on loopback 4120; subsequent route requests determine inference activity |
+| `npm run dev` | Depends on invoked historical workflow | Starts the historical native Mastra application, not the selected GUI |
+| `npm run review:build` / `npm run build:candidate` | No disposition calls | Builds the entire Next workspace, including `/stripped`; writes build output |
+| `npm run build` | No disposition calls | Builds Next and native Mastra; generated dependency installation may require network access |
+| `npm run validate` | Inspect its full expansion | Includes historical evaluations, artifact writes and builds; not a read-only validation shortcut |
+| `npm run batch` | Historical rules evaluation, not the selected hosted model | Overwrites `outputs/predictions.csv` |
+| `npm run evaluate` | Historical rules evaluation, not the selected hosted model | Calls `batch`, then also overwrites `outputs/metrics.json` and `outputs/evaluation_cases.csv` |
+| `npm run ablate` | Historical component evaluation | Overwrites `outputs/component-ablation-v1.json` |
+| `npm run rag:search` | Default hybrid search can call an embedding provider | Opens the historical evidence database; `--lexical` avoids embeddings but does not make the command a current-GUI feature |
+| `npm run rag:build` | Source download; `--embed` adds embedding calls | Materializes the historical evidence store |
+| `scripts/stripped-*.mjs` generation entry points | Hosted inference; an extra `--live` flag is not generally required | Write experiment artifacts; not setup or reproduction checks |
+| `scripts/local-nemotron-smoke.mjs` | Local model generation | Writes a new run; “local” does not mean read-only |
+
+For scorer or builder commands not listed here, inspect the output handling.
+Some derived artifacts are created once and compared on replay; others are
+overwritten. Use `--verify` where the documented interface provides it. A command
+that performs no inference can still alter evidence or deliverables.
+
+## Data, evidence and generated-file boundaries
+
+| Location | Role and editing rule |
+|---|---|
+| `data/patient_messages.csv` | Original assignment input. Preserve bytes; CSV labels are discussion/scoring data, never inference context. |
+| `data/evaluation/` | Versioned physician references. Preserve historical versions and distinguish original from post-output amendments. |
+| `data/research/workflow-aware-v1/` | Frozen source cards, challenge targets and provenance. New investigations need a new version. |
+| `src/research/workflow-aware/` and bound generation/scoring scripts | Source-bound completed study. Do not change the runner's expired deadline or hashes to resume it. |
+| `outputs/` | Historical and completed experiment records. Read the run manifest; append a new experiment instead of overwriting a completed run. Some legacy scripts overwrite fixed destinations, as noted above. |
+| `output/submission-2026-09-15/` | Current submission sources and exports. Intentional revisions require consistent exports, review and manifest hashes. `output/` and `outputs/` have different roles. |
+| `publication/` | Derived review materials and source-only historical archives. Preserve their provenance and regenerate only through their documented workflow. |
+| `apps/evaluation/.local/` | Private runtime records. Do not commit, erase reservations, or treat as a new scoring cohort. |
+| `.next/`, `.mastra/output/`, `node_modules/` | Generated builds/dependencies. Do not hand-edit or commit as a fix. |
+
+Study generation must finish and freeze before scoring reads references. The
+reference, prompt, model settings, message content, raw output and denominator
+are distinct pieces of provenance. A documentation edit must not silently
+change any of them. Read [workflow reproduction](WORKFLOW_REPRODUCTION_2026-09-16.md)
+for the exact source and artifact bindings.
+
+## Verification by change
+
+Use the pinned Node version in [.nvmrc](../.nvmrc), or the supported range in
+[package.json](../package.json). Install with `npm ci` when needed; this accesses
+the dependency registry and writes the dependency tree, not model outputs.
+
+- **Navigation/docs only:** validate relative links and command names, inspect
+  the diff, and run `node scripts/verify-submission-package.mjs` if a changed
+  file is listed in its manifest. CI still runs its full checks.
+- **Current protocol/service:** run the two focused tests below, then root lint,
+  typecheck and tests. Any intentional model behavior change needs a separately
+  versioned experiment and its own evaluation; passing parity tests is not
+  clinical approval.
+- **GUI/shared imports:** also run `npm run review:test`, `npm run review:build`,
+  and browser checks. Test selection, consecutive submissions, edit clearing,
+  visible result/trace, errors and local request boundaries. Describe mocked
+  versus live verification accurately.
+- **Research or offline inspection tools:** run `npm run test:workflow-research`
+  and the applicable reproduction/verification command. Check source bindings
+  before making an edit. Do not revise a frozen scorer to improve a result.
+- **Slides/exports:** follow the [submission package](../output/submission-2026-09-15/README.md),
+  rebuild reviewed exports, inspect rendered pages and notes, update only
+  intentional deliverable hashes, and verify the package. The deck builder uses
+  a separately supplied presentation runtime; `npm ci` alone does not install it.
+- **Dependencies, native Mastra or build wiring:** run the affected tests and
+  `npm run build`; follow [CI and maintenance guidance](CI_AND_REVIEW.md) for
+  generated-runtime installation and verification.
+
+```bash
+node --test tests/stripped-gui-protocol.test.mjs tests/stripped-gui-workflow.test.mjs
+npm run lint
+npm run typecheck
+npm test
+```
+
+The authoritative CI sequence is [`.github/workflows/ci.yml`](../.github/workflows/ci.yml).
+Do not describe a saved green run as verification of a later revision.
+
+## Keep this map current
+
+When changing an entry point, command or artifact lifecycle, update this guide
+and the relevant scoped instructions in the same change. Keep the root
+instructions short and link to details instead of copying clinical metrics into
+another index. Reports and manifests own the evidence; this guide owns navigation.

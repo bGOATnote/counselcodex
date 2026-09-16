@@ -1,5 +1,13 @@
 # Repository guide
 
+## Engineering navigation
+
+Read [agent instructions](../AGENTS.md) for repository boundaries and the
+[engineering guide](ENGINEERING_GUIDE.md) for task-to-file mappings, command
+effects, and verification. This page catalogs reports and deliverables. Current
+runtime status comes from the engineering guide and executable entry points,
+not from the word “current” in a historical filename.
+
 ## Start here
 
 1. [Current submission package](../output/submission-2026-09-15/README.md): PowerPoint, PDF, evaluation workbooks and artifact manifest.
